@@ -1,0 +1,2268 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-02",
+  "status": "historical_evidence_audit_only",
+  "source_commit": "45195e866162df1cdf9de0169d2bf17347eb6abf",
+  "audit_scope": "Read-only inspection and extraction of committed text reports, CSVs and compact JSON. No model, training, generated-program execution, benchmark, test suite, or runtime verification was run.",
+  "provenance_policy": "Git object identities preserve exact upstream source identity without publishing numeric randomization values embedded in legacy paths. Use git cat-file -p GIT_BLOB in the pinned upstream checkout. Historical runs are not relabeled as prospective runs.",
+  "metric_notes": {
+    "pass_at_k": "Proportion, not percentage. Probability of at least one correct answer under a total draw budget k.",
+    "implementation_coverage_at_k": "Expected distinct correct AST fingerprint classes under a total draw budget k; incorrect draws remain in the population.",
+    "correct_matched_coverage_at_4": "Expected distinct AST classes in four correct draws, conditional on sufficient correct samples; denominator differs by method.",
+    "uncertainty": "Reported intervals bootstrap evaluation tasks within one historical training trajectory. They do not measure independent training-run variability.",
+    "semantic_scope": "AST classes are implementation proxies, not independently annotated algorithms."
+  },
+  "sources": {
+    "main_eval64_summary": {
+      "git_blob": "c66d7838e463253da59ffa26b131e1d379dedbf1",
+      "sha256": "cb7eb3882257f6603025f5f2005d7d94734804ac75ef5ee7655cc01ccdd32d3f",
+      "collection": "results/",
+      "artifact": "summary.csv"
+    },
+    "main_eval64_comparisons": {
+      "git_blob": "9a76b94919589056c5c2c7425c7c947bc148a06c",
+      "sha256": "f4a6f780c9dcad867c05fab87e82fc408f4cfdcbb8cd197ab08e047ff5bfdff0",
+      "collection": "results/",
+      "artifact": "comparisons_compact.json"
+    },
+    "main_eval64_report": {
+      "git_blob": "69bd0995c92488ca496af623194275518d7e08ee",
+      "sha256": "f01fe8b0a927410f82a5e1e113eba598684f85e1f2c8b9d02762f077e4728cdc",
+      "collection": "results/",
+      "artifact": "REPORT.md"
+    },
+    "main_eval16_metrics": {
+      "git_blob": "871c7f4ddc17b450691bb2828fbda7745b487eff",
+      "sha256": "57372434518680846040f72874d3e08424678fedbb334a768bf494582c1beaa1",
+      "collection": "results/",
+      "artifact": "metrics.csv"
+    },
+    "main_eval16_compact": {
+      "git_blob": "1af399dfeffafd20768a59bb804d43db6a651bda",
+      "sha256": "f2b72885fe84f69f83aa052022632ccbf881d83b33985fd982a8307f30f6a246",
+      "collection": "paper/iclr2027/source-data/",
+      "artifact": "report.compact.json"
+    },
+    "ssd_eval16_trajectories": {
+      "git_blob": "5dc34f034b544bd9c3ecaf6453a77eb47279c31e",
+      "sha256": "8c3611b5d6b5cdfba2a56905333b69e603ca39c421de56cfebe8b2d4c761fc70",
+      "collection": "results/sep20_continuation/",
+      "artifact": "trajectories.csv"
+    },
+    "ssd_eval64_status": {
+      "git_blob": "c192651b0b0767ef987291b5937a9c35a6c0069d",
+      "sha256": "33c4e0140fbec74b91c21dfb91d7670db41c88615385e582f1720eaba4456b01",
+      "collection": "results/sep20_continuation/",
+      "artifact": "ssd_round5_eval64_retention.json"
+    },
+    "apps_eval16_trajectories": {
+      "git_blob": "47788132a7b75e4f2258ab021027c068e01b4035",
+      "sha256": "2d42840e4b5301b4280d1700db2b92e53ad07ac85cfdae6ebe689294e2aa258c",
+      "collection": "results/sep20_continuation/",
+      "artifact": "trajectories.csv"
+    },
+    "humaneval_eval16_trajectories": {
+      "git_blob": "1892accd3cbf9ccb5b830dfdf61adc3d62a6a966",
+      "sha256": "b2b053ae4c0ff6854ae16184ac635378629aeef48dee986b07dec2a5bb4b4cb0",
+      "collection": "results/sep20_continuation/",
+      "artifact": "trajectories.csv"
+    },
+    "baseline_matrix": {
+      "git_blob": "be5e824719b2c11e306ab544de31fa5a14536601",
+      "sha256": "608cfa86c32563c6005a2900a9f76c3c8962cfd2650759d6ae6610a0c15d1a4c",
+      "collection": "docs/",
+      "artifact": "iclr2027_matrix_pass16.csv"
+    },
+    "baseline_matrix_status": {
+      "git_blob": "738ee6e6911b1dc42730637a346659fb93f1fe21",
+      "sha256": "e0de465a64cccde97da7a912a4f92b8be8f32477e4ddafc11fca5b7f960d54a8",
+      "collection": "docs/",
+      "artifact": "iclr2027_matrix_status.md"
+    },
+    "pilot_report": {
+      "git_blob": "bdbedf36b39a538116a1afda367ab8be85454f58",
+      "sha256": "8f1fcf23523daaeb2c5656e5d9647e5c9f767803b70df712d99849f0db9c6dab",
+      "collection": "results/",
+      "artifact": "README.md"
+    },
+    "smoke_report": {
+      "git_blob": "5c628d0812c1dab342e4fa018fec49c6ccab527f",
+      "sha256": "530d6952bacb2890344553903cd89c7334a0b13ecb08a07840bd97c4db488617",
+      "collection": "results/",
+      "artifact": "README.md"
+    },
+    "natural_example_summary": {
+      "git_blob": "adb1455d2f2fb45b1000fcd9ceab21a1b919dacd",
+      "sha256": "e88c591d2f120b129c8772cb812de2dc24a2b8ff7df5ac5a4355ab85a4c6ba6d",
+      "collection": "paper/iclr2027/source-data/",
+      "artifact": "derived_analysis.json"
+    },
+    "historical_manuscript": {
+      "git_blob": "50318101b74acf6fa4bd27c64d990c476cd02d25",
+      "sha256": "892a152d7213cee2984f05e01ccca305bb9cc2509b9ad76212ef7daffb9457eb",
+      "collection": "paper/iclr2027/",
+      "artifact": "main.tex"
+    },
+    "prior_final_study_plan": {
+      "git_blob": "902c72c6865b53abe1773063a70272766e32080a",
+      "sha256": "bae2c92448a428984806473fd3e753d35c5027f8c287b43cb79f7dc219ec92a9",
+      "collection": "experiments/final_study/",
+      "artifact": "PLAN.md"
+    }
+  },
+  "studies": {
+    "main_mbpp_final_n64": {
+      "status": "completed_historical",
+      "source_ids": [
+        "main_eval64_summary",
+        "main_eval64_comparisons",
+        "main_eval64_report"
+      ],
+      "independent_training_replicates": 1,
+      "evaluation_stage": "base and round-five native students",
+      "rows": [
+        {
+          "method": "base",
+          "round": 0,
+          "task_count": 500,
+          "samples_per_task": 64,
+          "sample_count": 32000,
+          "correct_count": 12142,
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.3794375,
+              "task_bootstrap_ci95": [
+                0.34740546875,
+                0.41365703125
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_4": {
+              "mean": 0.5507654491198912,
+              "task_bootstrap_ci95": [
+                0.5132311306218681,
+                0.5890580618405479
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_8": {
+              "mean": 0.6109743277142735,
+              "task_bootstrap_ci95": [
+                0.5724928416444336,
+                0.6497163629340588
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_16": {
+              "mean": 0.6569243830645763,
+              "task_bootstrap_ci95": [
+                0.6184579345767386,
+                0.6952451294337093
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_64": {
+              "mean": 0.72,
+              "task_bootstrap_ci95": [
+                0.6819500000000001,
+                0.758
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_4": {
+              "mean": 1.2665641226612274,
+              "task_bootstrap_ci95": [
+                1.159415250025182,
+                1.3736470797606455
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_16": {
+              "mean": 4.039637834881175,
+              "task_bootstrap_ci95": [
+                3.6929032849396326,
+                4.390863679872534
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_64": {
+              "mean": 12.802,
+              "task_bootstrap_ci95": [
+                11.69585,
+                13.9681
+              ],
+              "eligible_tasks": 500
+            },
+            "correct_matched_coverage_at_4": {
+              "mean": 3.3583723736089284,
+              "eligible_tasks": 322
+            }
+          }
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "task_count": 500,
+          "samples_per_task": 64,
+          "sample_count": 32000,
+          "correct_count": 13263,
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.41446875,
+              "task_bootstrap_ci95": [
+                0.38040546875,
+                0.45168984375
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_4": {
+              "mean": 0.5654111549696559,
+              "task_bootstrap_ci95": [
+                0.5268074897383598,
+                0.6045970197961521
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_8": {
+              "mean": 0.6185723086964429,
+              "task_bootstrap_ci95": [
+                0.5793926136329006,
+                0.65815805619536
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_16": {
+              "mean": 0.6563636760539059,
+              "task_bootstrap_ci95": [
+                0.6166121006457762,
+                0.6960772759859236
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_64": {
+              "mean": 0.704,
+              "task_bootstrap_ci95": [
+                0.664,
+                0.744
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_4": {
+              "mean": 1.1661383023595477,
+              "task_bootstrap_ci95": [
+                1.070903410028078,
+                1.2672731045868904
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_16": {
+              "mean": 3.1592155356398983,
+              "task_bootstrap_ci95": [
+                2.8673068380698647,
+                3.47591123889947
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_64": {
+              "mean": 8.506,
+              "task_bootstrap_ci95": [
+                7.60195,
+                9.46405
+              ],
+              "eligible_tasks": 500
+            },
+            "correct_matched_coverage_at_4": {
+              "mean": 2.856476213813779,
+              "eligible_tasks": 321
+            }
+          }
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "task_count": 500,
+          "samples_per_task": 64,
+          "sample_count": 32000,
+          "correct_count": 13365,
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.41765625,
+              "task_bootstrap_ci95": [
+                0.384625,
+                0.4546578125
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_4": {
+              "mean": 0.5659676600941804,
+              "task_bootstrap_ci95": [
+                0.527518317657576,
+                0.604875113633502
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_8": {
+              "mean": 0.6187692750882325,
+              "task_bootstrap_ci95": [
+                0.5796125930854173,
+                0.6583837108361063
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_16": {
+              "mean": 0.656461003056232,
+              "task_bootstrap_ci95": [
+                0.616541219686637,
+                0.6960544516270536
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_64": {
+              "mean": 0.702,
+              "task_bootstrap_ci95": [
+                0.662,
+                0.7420499999999998
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_4": {
+              "mean": 1.1526910962957369,
+              "task_bootstrap_ci95": [
+                1.059633787473874,
+                1.2513327874361007
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_16": {
+              "mean": 3.103388895756195,
+              "task_bootstrap_ci95": [
+                2.817451519989818,
+                3.40744240345712
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_64": {
+              "mean": 8.388,
+              "task_bootstrap_ci95": [
+                7.514,
+                9.322049999999999
+              ],
+              "eligible_tasks": 500
+            },
+            "correct_matched_coverage_at_4": {
+              "mean": 2.8097969039470296,
+              "eligible_tasks": 321
+            }
+          }
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "task_count": 500,
+          "samples_per_task": 64,
+          "sample_count": 32000,
+          "correct_count": 12906,
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.4033125,
+              "task_bootstrap_ci95": [
+                0.37115312500000003,
+                0.43831796874999995
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_4": {
+              "mean": 0.562148161088867,
+              "task_bootstrap_ci95": [
+                0.5239757778858503,
+                0.6009773591542646
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_8": {
+              "mean": 0.6189282395695613,
+              "task_bootstrap_ci95": [
+                0.5799531764909873,
+                0.6581920368265824
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_16": {
+              "mean": 0.6622507815182023,
+              "task_bootstrap_ci95": [
+                0.6233787417205545,
+                0.7018316378569717
+              ],
+              "eligible_tasks": 500
+            },
+            "pass_at_64": {
+              "mean": 0.726,
+              "task_bootstrap_ci95": [
+                0.688,
+                0.766
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_4": {
+              "mean": 1.243749039938556,
+              "task_bootstrap_ci95": [
+                1.1431083542658207,
+                1.348755115711012
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_16": {
+              "mean": 3.758255772115641,
+              "task_bootstrap_ci95": [
+                3.4251782302115035,
+                4.103086515045223
+              ],
+              "eligible_tasks": 500
+            },
+            "implementation_coverage_at_64": {
+              "mean": 11.51,
+              "task_bootstrap_ci95": [
+                10.424,
+                12.652399999999997
+              ],
+              "eligible_tasks": 500
+            },
+            "correct_matched_coverage_at_4": {
+              "mean": 3.143291510215674,
+              "eligible_tasks": 323
+            }
+          }
+        }
+      ],
+      "paired_comparisons": {
+        "plain_minus_base": {
+          "task_count": 500,
+          "evaluation_identity_check": "declared_provenance_equal",
+          "pass_at_1": {
+            "mean": 0.03503125,
+            "all_task_mean": 0.03503125,
+            "ci95": [
+              0.025403906249999997,
+              0.04540625
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_64": {
+            "mean": -0.016,
+            "all_task_mean": -0.016,
+            "ci95": [
+              -0.04,
+              0.008
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "implementation_coverage_at_64": {
+            "mean": -4.296,
+            "all_task_mean": -4.296,
+            "ci95": [
+              -4.91805,
+              -3.6919500000000003
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "correct_matched_coverage_at_4": {
+            "mean": -0.5105450460781567,
+            "all_task_mean": null,
+            "ci95": [
+              -0.5691189932070015,
+              -0.45464704799623973
+            ],
+            "eligible_tasks": 311,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_1_noninferior_at_absolute_margin_0_01": true
+        },
+        "spd_hard_minus_base": {
+          "task_count": 500,
+          "evaluation_identity_check": "declared_provenance_equal",
+          "pass_at_1": {
+            "mean": 0.03821875,
+            "all_task_mean": 0.03821875,
+            "ci95": [
+              0.028715625,
+              0.04859375
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_64": {
+            "mean": -0.018,
+            "all_task_mean": -0.018,
+            "ci95": [
+              -0.042,
+              0.004
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "implementation_coverage_at_64": {
+            "mean": -4.414,
+            "all_task_mean": -4.414,
+            "ci95": [
+              -5.0520499999999995,
+              -3.798
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "correct_matched_coverage_at_4": {
+            "mean": -0.5602393104834131,
+            "all_task_mean": null,
+            "ci95": [
+              -0.620203311960209,
+              -0.5024146068264466
+            ],
+            "eligible_tasks": 311,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_1_noninferior_at_absolute_margin_0_01": true
+        },
+        "spectral_soft_minus_base": {
+          "task_count": 500,
+          "evaluation_identity_check": "declared_provenance_equal",
+          "pass_at_1": {
+            "mean": 0.023875,
+            "all_task_mean": 0.023875,
+            "ci95": [
+              0.01578046875,
+              0.03222187499999998
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_64": {
+            "mean": 0.006,
+            "all_task_mean": 0.006,
+            "ci95": [
+              -0.018,
+              0.03
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "implementation_coverage_at_64": {
+            "mean": -1.292,
+            "all_task_mean": -1.292,
+            "ci95": [
+              -1.7860500000000001,
+              -0.78
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "correct_matched_coverage_at_4": {
+            "mean": -0.21621423592999497,
+            "all_task_mean": null,
+            "ci95": [
+              -0.26338146288134634,
+              -0.1712302020285684
+            ],
+            "eligible_tasks": 311,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_1_noninferior_at_absolute_margin_0_01": true
+        },
+        "spectral_soft_minus_plain": {
+          "task_count": 500,
+          "evaluation_identity_check": "declared_provenance_equal",
+          "pass_at_1": {
+            "mean": -0.01115625,
+            "all_task_mean": -0.01115625,
+            "ci95": [
+              -0.016094531250000002,
+              -0.00628125
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_64": {
+            "mean": 0.022,
+            "all_task_mean": 0.022,
+            "ci95": [
+              0.004,
+              0.042
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "implementation_coverage_at_64": {
+            "mean": 3.004,
+            "all_task_mean": 3.004,
+            "ci95": [
+              2.568,
+              3.4940999999999995
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "correct_matched_coverage_at_4": {
+            "mean": 0.29542497837164544,
+            "all_task_mean": null,
+            "ci95": [
+              0.2488768199585551,
+              0.34316922020628526
+            ],
+            "eligible_tasks": 316,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_1_noninferior_at_absolute_margin_0_01": false
+        },
+        "spectral_soft_minus_spd_hard": {
+          "task_count": 500,
+          "evaluation_identity_check": "declared_provenance_equal",
+          "pass_at_1": {
+            "mean": -0.01434375,
+            "all_task_mean": -0.01434375,
+            "ci95": [
+              -0.01887578125,
+              -0.009780468750000004
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_64": {
+            "mean": 0.024,
+            "all_task_mean": 0.024,
+            "ci95": [
+              0.006,
+              0.044
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "implementation_coverage_at_64": {
+            "mean": 3.122,
+            "all_task_mean": 3.122,
+            "ci95": [
+              2.68595,
+              3.59605
+            ],
+            "eligible_tasks": 500,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "correct_matched_coverage_at_4": {
+            "mean": 0.3343973321781965,
+            "all_task_mean": null,
+            "ci95": [
+              0.28955470590964033,
+              0.3787110897843099
+            ],
+            "eligible_tasks": 318,
+            "total_tasks": 500,
+            "population": "tasks_with_estimates_available_in_both_runs",
+            "bootstrap_valid_replicates": 2000
+          },
+          "pass_at_1_noninferior_at_absolute_margin_0_01": false
+        }
+      }
+    },
+    "main_mbpp_trajectory_n16": {
+      "status": "completed_historical",
+      "source_ids": [
+        "main_eval16_metrics",
+        "main_eval16_compact"
+      ],
+      "independent_training_replicates": 1,
+      "rows": [
+        {
+          "method": "base",
+          "round": 0,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3034,
+          "pass_at_1": 0.37925,
+          "correct_matched_coverage_at_4": 3.310434709480511,
+          "correct_matched_coverage_at_4_eligible_tasks": 262
+        },
+        {
+          "method": "plain",
+          "round": 1,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3074,
+          "pass_at_1": 0.38425,
+          "correct_matched_coverage_at_4": 3.173048067300941,
+          "correct_matched_coverage_at_4_eligible_tasks": 261
+        },
+        {
+          "method": "plain",
+          "round": 2,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3132,
+          "pass_at_1": 0.3915,
+          "correct_matched_coverage_at_4": 3.0800160393097196,
+          "correct_matched_coverage_at_4_eligible_tasks": 269
+        },
+        {
+          "method": "plain",
+          "round": 3,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3172,
+          "pass_at_1": 0.3965,
+          "correct_matched_coverage_at_4": 2.8954791209655024,
+          "correct_matched_coverage_at_4_eligible_tasks": 257
+        },
+        {
+          "method": "plain",
+          "round": 4,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3263,
+          "pass_at_1": 0.407875,
+          "correct_matched_coverage_at_4": 2.803304432193321,
+          "correct_matched_coverage_at_4_eligible_tasks": 270
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3304,
+          "pass_at_1": 0.413,
+          "correct_matched_coverage_at_4": 2.746691347624183,
+          "correct_matched_coverage_at_4_eligible_tasks": 268
+        },
+        {
+          "method": "spd_hard",
+          "round": 1,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3034,
+          "pass_at_1": 0.37925,
+          "correct_matched_coverage_at_4": 3.14389616004402,
+          "correct_matched_coverage_at_4_eligible_tasks": 257
+        },
+        {
+          "method": "spd_hard",
+          "round": 2,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3136,
+          "pass_at_1": 0.392,
+          "correct_matched_coverage_at_4": 3.0590361365642265,
+          "correct_matched_coverage_at_4_eligible_tasks": 267
+        },
+        {
+          "method": "spd_hard",
+          "round": 3,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3152,
+          "pass_at_1": 0.394,
+          "correct_matched_coverage_at_4": 2.888999737241925,
+          "correct_matched_coverage_at_4_eligible_tasks": 256
+        },
+        {
+          "method": "spd_hard",
+          "round": 4,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3287,
+          "pass_at_1": 0.410875,
+          "correct_matched_coverage_at_4": 2.774081202840601,
+          "correct_matched_coverage_at_4_eligible_tasks": 266
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3308,
+          "pass_at_1": 0.4135,
+          "correct_matched_coverage_at_4": 2.689757274108419,
+          "correct_matched_coverage_at_4_eligible_tasks": 262
+        },
+        {
+          "method": "spectral_soft",
+          "round": 1,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3027,
+          "pass_at_1": 0.378375,
+          "correct_matched_coverage_at_4": 3.221975831745947,
+          "correct_matched_coverage_at_4_eligible_tasks": 261
+        },
+        {
+          "method": "spectral_soft",
+          "round": 2,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3069,
+          "pass_at_1": 0.383625,
+          "correct_matched_coverage_at_4": 3.159304273589988,
+          "correct_matched_coverage_at_4_eligible_tasks": 259
+        },
+        {
+          "method": "spectral_soft",
+          "round": 3,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3124,
+          "pass_at_1": 0.3905,
+          "correct_matched_coverage_at_4": 3.0633024736078176,
+          "correct_matched_coverage_at_4_eligible_tasks": 262
+        },
+        {
+          "method": "spectral_soft",
+          "round": 4,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3182,
+          "pass_at_1": 0.39775,
+          "correct_matched_coverage_at_4": 2.991413656052439,
+          "correct_matched_coverage_at_4_eligible_tasks": 263
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "task_count": 500,
+          "samples_per_task": 16,
+          "sample_count": 8000,
+          "correct_count": 3214,
+          "pass_at_1": 0.40175,
+          "correct_matched_coverage_at_4": 2.9971258357189914,
+          "correct_matched_coverage_at_4_eligible_tasks": 263
+        }
+      ],
+      "coverage_trajectory": [
+        {
+          "id": "base/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.37925,
+              "ci95": [
+                0.346871875,
+                0.41400312499999997
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 4.016,
+                "ci95": [
+                  3.664,
+                  4.3740499999999995
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 3.310434709480511,
+              "ci95": [
+                3.221199169291293,
+                3.400123345220875
+              ],
+              "eligible_tasks": 262,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "plain/round_1/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.38425,
+              "ci95": [
+                0.351490625,
+                0.418875
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.808,
+                "ci95": [
+                  3.472,
+                  4.1581
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 3.173048067300941,
+              "ci95": [
+                3.0671956385801002,
+                3.280951416244543
+              ],
+              "eligible_tasks": 261,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "plain/round_2/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.3915,
+              "ci95": [
+                0.359621875,
+                0.42625625
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.634,
+                "ci95": [
+                  3.30195,
+                  3.9661999999999993
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 3.0800160393097196,
+              "ci95": [
+                2.973781447839116,
+                3.191841953132971
+              ],
+              "eligible_tasks": 269,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "plain/round_3/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.3965,
+              "ci95": [
+                0.364990625,
+                0.43238125
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.372,
+                "ci95": [
+                  3.06795,
+                  3.6900999999999993
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 2.8954791209655024,
+              "ci95": [
+                2.776544808807758,
+                3.018028129989538
+              ],
+              "eligible_tasks": 257,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "plain/round_4/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.407875,
+              "ci95": [
+                0.374375,
+                0.444375
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.19,
+                "ci95": [
+                  2.8859500000000002,
+                  3.506
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 2.803304432193321,
+              "ci95": [
+                2.685506626926781,
+                2.918009932185873
+              ],
+              "eligible_tasks": 270,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "plain/round_5/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.413,
+              "ci95": [
+                0.379375,
+                0.44975624999999997
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.09,
+                "ci95": [
+                  2.80395,
+                  3.398
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 2.746691347624183,
+              "ci95": [
+                2.6286378087769147,
+                2.8617909104231325
+              ],
+              "eligible_tasks": 268,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "spectral_soft/round_1/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.378375,
+              "ci95": [
+                0.34675,
+                0.41288125
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.848,
+                "ci95": [
+                  3.50395,
+                  4.202
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 3.221975831745947,
+              "ci95": [
+                3.1221283699493885,
+                3.3256851813758965
+              ],
+              "eligible_tasks": 261,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "spectral_soft/round_2/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.383625,
+              "ci95": [
+                0.351625,
+                0.417878125
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.768,
+                "ci95": [
+                  3.436,
+                  4.10405
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 3.159304273589988,
+              "ci95": [
+                3.054195526187688,
+                3.2671764167634643
+              ],
+              "eligible_tasks": 259,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "spectral_soft/round_3/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.3905,
+              "ci95": [
+                0.35960624999999996,
+                0.425375
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.662,
+                "ci95": [
+                  3.32995,
+                  4.0
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 3.0633024736078176,
+              "ci95": [
+                2.9517744700832935,
+                3.174149546385129
+              ],
+              "eligible_tasks": 262,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "spectral_soft/round_4/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.39775,
+              "ci95": [
+                0.36474375000000003,
+                0.43275625
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.588,
+                "ci95": [
+                  3.268,
+                  3.93005
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 2.991413656052439,
+              "ci95": [
+                2.8799553352713403,
+                3.1020587473730923
+              ],
+              "eligible_tasks": 263,
+              "total_tasks": 500
+            }
+          }
+        },
+        {
+          "id": "spectral_soft/round_5/evaluation",
+          "stage": "evaluation",
+          "metrics": {
+            "pass_at_1": {
+              "mean": 0.40175,
+              "ci95": [
+                0.368490625,
+                0.43750625
+              ],
+              "eligible_tasks": 500,
+              "total_tasks": 500
+            },
+            "implementation_coverage_at_k": {
+              "16": {
+                "mean": 3.606,
+                "ci95": [
+                  3.27395,
+                  3.954
+                ],
+                "eligible_tasks": 500,
+                "total_tasks": 500
+              }
+            },
+            "implementation_correct_matched_coverage": {
+              "mean": 2.9971258357189914,
+              "ci95": [
+                2.888132498642703,
+                3.1055915119398576
+              ],
+              "eligible_tasks": 263,
+              "total_tasks": 500
+            }
+          }
+        }
+      ],
+      "pass_at_16_round5_from_manuscript": {
+        "plain": 0.66,
+        "spectral_soft": 0.672,
+        "spd_hard": 0.656
+      },
+      "pass_at_16_source_id": "historical_manuscript",
+      "pass_at_16_audit_limit": "Read from manuscript design table; this audit did not recompute these three values from raw task outcomes."
+    },
+    "ssd_mbpp_trajectory_n16": {
+      "status": "completed_historical_separate_continuation",
+      "source_ids": [
+        "ssd_eval16_trajectories"
+      ],
+      "independent_training_replicates": 1,
+      "samples_per_task": 16,
+      "rows": [
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "Correct AST richness @16",
+          "mean": 3.992,
+          "task_bootstrap_ci95": [
+            3.644,
+            4.35
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.3106844010690164,
+          "task_bootstrap_ci95": [
+            3.21652972986675,
+            3.402133729545136
+          ],
+          "eligible_tasks": 260,
+          "total_tasks": 500
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "pass@1",
+          "mean": 0.378125,
+          "task_bootstrap_ci95": [
+            0.345625,
+            0.413125
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "pass@16",
+          "mean": 0.668,
+          "task_bootstrap_ci95": [
+            0.628,
+            0.71
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 1,
+          "metric": "Correct AST richness @16",
+          "mean": 3.846,
+          "task_bootstrap_ci95": [
+            3.51395,
+            4.192
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 1,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.232117156347926,
+          "task_bootstrap_ci95": [
+            3.1329853731608663,
+            3.333012925957806
+          ],
+          "eligible_tasks": 260,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 1,
+          "metric": "pass@1",
+          "mean": 0.378,
+          "task_bootstrap_ci95": [
+            0.34611562500000004,
+            0.41238125
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 1,
+          "metric": "pass@16",
+          "mean": 0.666,
+          "task_bootstrap_ci95": [
+            0.626,
+            0.706
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 2,
+          "metric": "Correct AST richness @16",
+          "mean": 3.71,
+          "task_bootstrap_ci95": [
+            3.38,
+            4.0520499999999995
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 2,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.200200355200355,
+          "task_bootstrap_ci95": [
+            3.0945905763840376,
+            3.305087266721882
+          ],
+          "eligible_tasks": 250,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 2,
+          "metric": "pass@1",
+          "mean": 0.368125,
+          "task_bootstrap_ci95": [
+            0.33599687500000003,
+            0.401875
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 2,
+          "metric": "pass@16",
+          "mean": 0.658,
+          "task_bootstrap_ci95": [
+            0.616,
+            0.7
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 3,
+          "metric": "Correct AST richness @16",
+          "mean": 3.724,
+          "task_bootstrap_ci95": [
+            3.396,
+            4.078
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 3,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.1955729166666664,
+          "task_bootstrap_ci95": [
+            3.0902026531520916,
+            3.2994894069905376
+          ],
+          "eligible_tasks": 256,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 3,
+          "metric": "pass@1",
+          "mean": 0.366,
+          "task_bootstrap_ci95": [
+            0.334875,
+            0.399128125
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 3,
+          "metric": "pass@16",
+          "mean": 0.66,
+          "task_bootstrap_ci95": [
+            0.62,
+            0.702
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 4,
+          "metric": "Correct AST richness @16",
+          "mean": 3.752,
+          "task_bootstrap_ci95": [
+            3.4178,
+            4.1021
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 4,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.1807553233623276,
+          "task_bootstrap_ci95": [
+            3.079899507558653,
+            3.2883654240769724
+          ],
+          "eligible_tasks": 257,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 4,
+          "metric": "pass@1",
+          "mean": 0.370875,
+          "task_bootstrap_ci95": [
+            0.339246875,
+            0.40488124999999997
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 4,
+          "metric": "pass@16",
+          "mean": 0.664,
+          "task_bootstrap_ci95": [
+            0.624,
+            0.706
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 5,
+          "metric": "Correct AST richness @16",
+          "mean": 3.71,
+          "task_bootstrap_ci95": [
+            3.38,
+            4.0600499999999995
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 5,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.2675807416983886,
+          "task_bootstrap_ci95": [
+            3.1779531003941677,
+            3.360489234202927
+          ],
+          "eligible_tasks": 255,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 5,
+          "metric": "pass@1",
+          "mean": 0.359625,
+          "task_bootstrap_ci95": [
+            0.329621875,
+            0.39387812499999997
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        },
+        {
+          "method": "ssd",
+          "round": 5,
+          "metric": "pass@16",
+          "mean": 0.656,
+          "task_bootstrap_ci95": [
+            0.616,
+            0.7
+          ],
+          "eligible_tasks": 500,
+          "total_tasks": 500
+        }
+      ],
+      "comparison_limit": "Separate initial resampling and continuation. Descriptive cross-run values are not a newly computed paired SPECTRUM-versus-SSD test. SSD uses an adapted synthesis decoding recipe."
+    },
+    "ssd_final_n64": {
+      "status": "pending_in_inspected_archive",
+      "source_ids": [
+        "ssd_eval64_status"
+      ],
+      "recorded_status": "retained_pending_eval64",
+      "metrics": null
+    },
+    "frozen_apps_transfer_n16": {
+      "status": "completed_historical",
+      "source_ids": [
+        "apps_eval16_trajectories"
+      ],
+      "samples_per_task": 16,
+      "protocol": "APPS Intro native adapted verifier; 200 tasks, frozen MBPP-trained checkpoints, no target training",
+      "rows": [
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "Correct AST richness @16",
+          "mean": 2.07,
+          "task_bootstrap_ci95": [
+            1.62,
+            2.545
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.7722537462537464,
+          "task_bootstrap_ci95": [
+            3.6743685697675064,
+            3.8639540519004805
+          ],
+          "eligible_tasks": 50,
+          "total_tasks": 200
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "pass@1",
+          "mean": 0.1546875,
+          "task_bootstrap_ci95": [
+            0.11875,
+            0.1934375
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "pass@16",
+          "mean": 0.415,
+          "task_bootstrap_ci95": [
+            0.345,
+            0.485
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "Correct AST richness @16",
+          "mean": 1.93,
+          "task_bootstrap_ci95": [
+            1.479875,
+            2.420124999999999
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.6317263654220175,
+          "task_bootstrap_ci95": [
+            3.487065744916848,
+            3.7545622140635206
+          ],
+          "eligible_tasks": 46,
+          "total_tasks": 200
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "pass@1",
+          "mean": 0.151875,
+          "task_bootstrap_ci95": [
+            0.11561718750000001,
+            0.1912656249999999
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "pass@16",
+          "mean": 0.355,
+          "task_bootstrap_ci95": [
+            0.29,
+            0.425
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "Correct AST richness @16",
+          "mean": 1.88,
+          "task_bootstrap_ci95": [
+            1.435,
+            2.3551249999999992
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.6851120510694977,
+          "task_bootstrap_ci95": [
+            3.5641863152279822,
+            3.795499467628932
+          ],
+          "eligible_tasks": 47,
+          "total_tasks": 200
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "pass@1",
+          "mean": 0.14875,
+          "task_bootstrap_ci95": [
+            0.1128125,
+            0.1890625
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "pass@16",
+          "mean": 0.345,
+          "task_bootstrap_ci95": [
+            0.28,
+            0.41
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "Correct AST richness @16",
+          "mean": 1.845,
+          "task_bootstrap_ci95": [
+            1.405,
+            2.3252499999999987
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.721248647992834,
+          "task_bootstrap_ci95": [
+            3.6047436332922533,
+            3.8226238337457397
+          ],
+          "eligible_tasks": 43,
+          "total_tasks": 200
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "pass@1",
+          "mean": 0.1396875,
+          "task_bootstrap_ci95": [
+            0.1053125,
+            0.17875
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "pass@16",
+          "mean": 0.34,
+          "task_bootstrap_ci95": [
+            0.28,
+            0.405
+          ],
+          "eligible_tasks": 200,
+          "total_tasks": 200
+        }
+      ]
+    },
+    "frozen_humaneval_transfer_n16": {
+      "status": "completed_historical",
+      "source_ids": [
+        "humaneval_eval16_trajectories"
+      ],
+      "samples_per_task": 16,
+      "protocol": "HumanEval+ historical transfer; 164 tasks; retain the original evaluator provenance, not a new run",
+      "rows": [
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "Correct AST richness @16",
+          "mean": 5.7682926829268295,
+          "task_bootstrap_ci95": [
+            5.152439024390244,
+            6.439024390243903
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.4096724157068987,
+          "task_bootstrap_ci95": [
+            3.279690653497321,
+            3.5368212806863633
+          ],
+          "eligible_tasks": 116,
+          "total_tasks": 164
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "pass@1",
+          "mean": 0.5308689024390244,
+          "task_bootstrap_ci95": [
+            0.477124618902439,
+            0.5872713414634146
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "base",
+          "round": 0,
+          "metric": "pass@16",
+          "mean": 0.8536585365853658,
+          "task_bootstrap_ci95": [
+            0.7987804878048781,
+            0.9024390243902439
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "Correct AST richness @16",
+          "mean": 5.847560975609756,
+          "task_bootstrap_ci95": [
+            5.2073170731707314,
+            6.4817073170731705
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.4220283420283417,
+          "task_bootstrap_ci95": [
+            3.3000203379490882,
+            3.5329778050323184
+          ],
+          "eligible_tasks": 120,
+          "total_tasks": 164
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "pass@1",
+          "mean": 0.5346798780487805,
+          "task_bootstrap_ci95": [
+            0.48093559451219514,
+            0.5880430640243902
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "plain",
+          "round": 5,
+          "metric": "pass@16",
+          "mean": 0.8658536585365854,
+          "task_bootstrap_ci95": [
+            0.8109756097560976,
+            0.9146341463414634
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "Correct AST richness @16",
+          "mean": 5.920731707317073,
+          "task_bootstrap_ci95": [
+            5.286585365853658,
+            6.573475609756096
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.473379615553528,
+          "task_bootstrap_ci95": [
+            3.358140143672752,
+            3.5871894678546057
+          ],
+          "eligible_tasks": 115,
+          "total_tasks": 164
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "pass@1",
+          "mean": 0.5274390243902439,
+          "task_bootstrap_ci95": [
+            0.47331364329268294,
+            0.5815644054878049
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "spd_hard",
+          "round": 5,
+          "metric": "pass@16",
+          "mean": 0.8475609756097561,
+          "task_bootstrap_ci95": [
+            0.7925304878048781,
+            0.8963414634146342
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "Correct AST richness @16",
+          "mean": 6.0,
+          "task_bootstrap_ci95": [
+            5.347560975609756,
+            6.664634146341464
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "Correct-conditioned AST richness @4",
+          "mean": 3.497130355025092,
+          "task_bootstrap_ci95": [
+            3.385948823528627,
+            3.6019821195367956
+          ],
+          "eligible_tasks": 114,
+          "total_tasks": 164
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "pass@1",
+          "mean": 0.5194359756097561,
+          "task_bootstrap_ci95": [
+            0.46684451219512196,
+            0.5727991615853658
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        },
+        {
+          "method": "spectral_soft",
+          "round": 5,
+          "metric": "pass@16",
+          "mean": 0.8658536585365854,
+          "task_bootstrap_ci95": [
+            0.8109756097560976,
+            0.9146341463414634
+          ],
+          "eligible_tasks": 164,
+          "total_tasks": 164
+        }
+      ]
+    },
+    "cross_model_baseline_matrix": {
+      "status": "reported_completed_baseline_only",
+      "source_ids": [
+        "baseline_matrix",
+        "baseline_matrix_status"
+      ],
+      "completion_basis": "Committed status report and 20 aggregate table rows; raw per-task artifacts were not re-executed or independently audited here.",
+      "rows": [
+        {
+          "model": "Qwen2.5-Coder-1.5B-Instruct",
+          "benchmark": "mbpp",
+          "task_count": 500,
+          "samples_per_task": 64,
+          "pass_at_16": 0.6650813205039876,
+          "ci95_low": 0.6283038458602922,
+          "ci95_high": 0.7030719135502644,
+          "pass_at_1": 0.37765625,
+          "verifier": "local_mbpp"
+        },
+        {
+          "model": "Qwen2.5-Coder-1.5B-Instruct",
+          "benchmark": "humanevalplus",
+          "task_count": 164,
+          "samples_per_task": 16,
+          "pass_at_16": 0.8597560975609756,
+          "ci95_low": 0.8048780487804879,
+          "ci95_high": 0.9085365853658537,
+          "pass_at_1": 0.5487804878048781,
+          "verifier": "official_evalplus"
+        },
+        {
+          "model": "Qwen2.5-Coder-1.5B-Instruct",
+          "benchmark": "apps_intro",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.365,
+          "ci95_low": 0.3,
+          "ci95_high": 0.43,
+          "pass_at_1": 0.15125,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Qwen2.5-Coder-1.5B-Instruct",
+          "benchmark": "codecontests",
+          "task_count": 165,
+          "samples_per_task": 16,
+          "pass_at_16": 0.006060606060606061,
+          "ci95_low": 0.0,
+          "ci95_high": 0.024242424242424242,
+          "pass_at_1": 0.0003787878787878788,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Qwen2.5-Coder-1.5B-Instruct",
+          "benchmark": "livecodebench",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.22,
+          "ci95_low": 0.165,
+          "ci95_high": 0.28,
+          "pass_at_1": 0.0478125,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "DeepSeek-Coder-6.7B-Instruct",
+          "benchmark": "mbpp",
+          "task_count": 500,
+          "samples_per_task": 64,
+          "pass_at_16": 0.6747846100261747,
+          "ci95_low": 0.6368505692785956,
+          "ci95_high": 0.7139129541803942,
+          "pass_at_1": 0.46734375,
+          "verifier": "local_mbpp"
+        },
+        {
+          "model": "DeepSeek-Coder-6.7B-Instruct",
+          "benchmark": "humanevalplus",
+          "task_count": 164,
+          "samples_per_task": 16,
+          "pass_at_16": 0.8780487804878049,
+          "ci95_low": 0.8291158536585366,
+          "ci95_high": 0.926829268292683,
+          "pass_at_1": 0.635670731707317,
+          "verifier": "official_evalplus"
+        },
+        {
+          "model": "DeepSeek-Coder-6.7B-Instruct",
+          "benchmark": "apps_intro",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.505,
+          "ci95_low": 0.44,
+          "ci95_high": 0.57,
+          "pass_at_1": 0.2778125,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "DeepSeek-Coder-6.7B-Instruct",
+          "benchmark": "codecontests",
+          "task_count": 165,
+          "samples_per_task": 16,
+          "pass_at_16": 0.06060606060606061,
+          "ci95_low": 0.024242424242424242,
+          "ci95_high": 0.09696969696969697,
+          "pass_at_1": 0.007196969696969697,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "DeepSeek-Coder-6.7B-Instruct",
+          "benchmark": "livecodebench",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.225,
+          "ci95_low": 0.17,
+          "ci95_high": 0.285,
+          "pass_at_1": 0.0796875,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Gemma-3-4B-IT",
+          "benchmark": "mbpp",
+          "task_count": 500,
+          "samples_per_task": 64,
+          "pass_at_16": 0.5807040794076489,
+          "ci95_low": 0.5364060115716996,
+          "ci95_high": 0.6220586919751978,
+          "pass_at_1": 0.496375,
+          "verifier": "local_mbpp"
+        },
+        {
+          "model": "Gemma-3-4B-IT",
+          "benchmark": "humanevalplus",
+          "task_count": 164,
+          "samples_per_task": 16,
+          "pass_at_16": 0.7378048780487805,
+          "ci95_low": 0.670579268292683,
+          "ci95_high": 0.7987804878048781,
+          "pass_at_1": 0.6509146341463414,
+          "verifier": "official_evalplus"
+        },
+        {
+          "model": "Gemma-3-4B-IT",
+          "benchmark": "apps_intro",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.38,
+          "ci95_low": 0.315,
+          "ci95_high": 0.445,
+          "pass_at_1": 0.2234375,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Gemma-3-4B-IT",
+          "benchmark": "codecontests",
+          "task_count": 165,
+          "samples_per_task": 16,
+          "pass_at_16": 0.030303030303030304,
+          "ci95_low": 0.006060606060606061,
+          "ci95_high": 0.06060606060606061,
+          "pass_at_1": 0.012121212121212121,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Gemma-3-4B-IT",
+          "benchmark": "livecodebench",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.24,
+          "ci95_low": 0.185,
+          "ci95_high": 0.3,
+          "pass_at_1": 0.1578125,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Qwen3-8B",
+          "benchmark": "mbpp",
+          "task_count": 500,
+          "samples_per_task": 64,
+          "pass_at_16": 0.6237638673376608,
+          "ci95_low": 0.5831082034739858,
+          "ci95_high": 0.6659106236708965,
+          "pass_at_1": 0.52965625,
+          "verifier": "local_mbpp"
+        },
+        {
+          "model": "Qwen3-8B",
+          "benchmark": "humanevalplus",
+          "task_count": 164,
+          "samples_per_task": 16,
+          "pass_at_16": 0.9329268292682927,
+          "ci95_low": 0.8902439024390244,
+          "ci95_high": 0.9695121951219512,
+          "pass_at_1": 0.7671493902439024,
+          "verifier": "official_evalplus"
+        },
+        {
+          "model": "Qwen3-8B",
+          "benchmark": "apps_intro",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.51,
+          "ci95_low": 0.44,
+          "ci95_high": 0.58,
+          "pass_at_1": 0.30625,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Qwen3-8B",
+          "benchmark": "codecontests",
+          "task_count": 165,
+          "samples_per_task": 16,
+          "pass_at_16": 0.05454545454545454,
+          "ci95_low": 0.024242424242424242,
+          "ci95_high": 0.09090909090909091,
+          "pass_at_1": 0.013257575757575758,
+          "verifier": "native_adapted"
+        },
+        {
+          "model": "Qwen3-8B",
+          "benchmark": "livecodebench",
+          "task_count": 200,
+          "samples_per_task": 16,
+          "pass_at_16": 0.405,
+          "ci95_low": 0.335,
+          "ci95_high": 0.475,
+          "pass_at_1": 0.25375,
+          "verifier": "native_adapted"
+        }
+      ],
+      "does_not_establish": "Trained SPECTRUM performance across four models and five benchmarks."
+    },
+    "pilot": {
+      "status": "completed_exploratory_excluded_from_confirmation",
+      "source_ids": [
+        "pilot_report"
+      ],
+      "task_count": 64,
+      "samples_per_task": 64,
+      "rounds": 1,
+      "limit": "Post-hoc first-fence extraction sensitivity analysis; a different small-task single-round study, not final-round or independent confirmation data."
+    },
+    "smoke": {
+      "status": "completed_functional_check_excluded_from_research",
+      "source_ids": [
+        "smoke_report"
+      ],
+      "task_count": 4,
+      "samples_per_task": 4,
+      "rounds": 10
+    },
+    "natural_gate_0": {
+      "status": "incomplete",
+      "source_ids": [
+        "natural_example_summary"
+      ],
+      "existing_material": "Task-level equal-correct-count AST contrasts in frozen HumanEval+/APPS results.",
+      "missing": [
+        "Audited natural-task program sets linking initial, intervention-generator and post-SFT outcomes.",
+        "Blind semantic strategy labels or an explicit AST-only scope.",
+        "Prespecified natural-case selection, shared denominators, and a documented consequence tied to the observed failure."
+      ],
+      "per_case_outcomes": null
+    },
+    "prospective_final_study": {
+      "status": "planned_unexecuted_in_this_release",
+      "source_ids": [
+        "prior_final_study_plan"
+      ],
+      "metrics": null,
+      "limit": "Runnable code and a finite execution plan are not completed results."
+    }
+  }
+}

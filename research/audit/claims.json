@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "source_commit": "45195e866162df1cdf9de0169d2bf17347eb6abf",
+  "audit_date": "2026-10-02",
+  "scope": "Claims supported or restricted by the inspected historical archive; no prospective outcomes.",
+  "claims": [
+    {
+      "id": "historical_accuracy_breadth_separation",
+      "status": "supported_with_scope",
+      "statement": "In the completed MBPP final n=64 evaluation, Plain improves pass@1 while correct AST richness drops.",
+      "evidence": [
+        "main_mbpp_final_n64"
+      ],
+      "limits": [
+        "One independent historical training trajectory.",
+        "AST richness is an implementation proxy."
+      ]
+    },
+    {
+      "id": "practical_consequence",
+      "status": "supported_as_observed_point_estimate",
+      "statement": "Plain pass@64 falls from 0.720 to 0.704 despite pass@1 rising; the paired difference is -0.016 with 95% CI [-0.040, 0.008].",
+      "evidence": [
+        "main_mbpp_final_n64"
+      ],
+      "limits": [
+        "The interval includes zero.",
+        "This does not establish a causal effect of AST collapse or measured harm on each natural case."
+      ]
+    },
+    {
+      "id": "spectrum_partial_retention",
+      "status": "supported_with_accuracy_tradeoff",
+      "statement": "SPECTRUM retains more correct AST richness than Plain and the projection control at the historical final n=64 checkpoint, while remaining below the initial model.",
+      "evidence": [
+        "main_mbpp_final_n64"
+      ],
+      "limits": [
+        "Pass@1 noninferiority fails against both controls at the recorded absolute 0.01 margin.",
+        "Do not describe this as preserving all diversity or improving all endpoints."
+      ]
+    },
+    {
+      "id": "spectrum_dominates_ssd",
+      "status": "not_supported",
+      "statement": "The separate completed n=16 SSD continuation retains higher C16 and marginal D4 than SPECTRUM, while SPECTRUM has higher pass@1 and reported pass@16.",
+      "evidence": [
+        "ssd_mbpp_trajectory_n16",
+        "main_mbpp_trajectory_n16"
+      ],
+      "limits": [
+        "Different eligible task sets for marginal D4.",
+        "No newly audited paired cross-run SSD comparison.",
+        "Do not substitute missing n=64 SSD results with its n=16 scores or pilot scores."
+      ]
+    },
+    {
+      "id": "semantic_algorithm_retention",
+      "status": "not_established",
+      "statement": "Correct AST richness alone does not establish retention of distinct semantic algorithms.",
+      "evidence": [
+        "main_mbpp_final_n64",
+        "natural_gate_0"
+      ],
+      "required_evidence": "Bounded blind annotation and audited natural programs, or retain an implementation-proxy-only claim."
+    },
+    {
+      "id": "natural_gate_0",
+      "status": "incomplete",
+      "statement": "The archive contains selected real-task AST contrasts, but not a completed audit showing the full natural iterative-collapse chain with consequence.",
+      "evidence": [
+        "natural_gate_0"
+      ],
+      "required_evidence": "Complete the documented natural-case gate with actual programs and labels; do not fill missing outcomes with illustrative inventions."
+    },
+    {
+      "id": "calibrated_direction_necessity",
+      "status": "not_established",
+      "statement": "A projection comparison alone cannot isolate whether calibrated orientation, soft attenuation strength, reference information, or realized token budget explains the effect.",
+      "required_evidence": "Prespecified bounded geometry/strength controls and an anchor-information control if causal information-budget claims are retained.",
+      "limits": [
+        "No test-set selection of the main strength.",
+        "No claim of necessity from an inconclusive comparison."
+      ]
+    },
+    {
+      "id": "training_replication",
+      "status": "not_established",
+      "statement": "Five sequential rounds are one training trajectory, not five independent repeats; task bootstrap intervals do not establish training-run reproducibility.",
+      "required_evidence": "Run the frozen independent replications and report per-run results plus the prespecified aggregate."
+    },
+    {
+      "id": "broad_transfer",
+      "status": "mixed_limited_evidence",
+      "statement": "Historical HumanEval+/APPS final transfers are completed, but their outcomes do not establish universal improvements.",
+      "evidence": [
+        "frozen_humaneval_transfer_n16",
+        "frozen_apps_transfer_n16"
+      ],
+      "limits": [
+        "APPS SPECTRUM has lower pass@16 and C16 than Plain in point estimates.",
+        "No completed SSD transfer comparison was established by this audit."
+      ]
+    },
+    {
+      "id": "cross_model_spectrum",
+      "status": "not_established",
+      "statement": "The completed four-model by five-benchmark baseline matrix evaluates base models; it is not a completed trained-method matrix.",
+      "evidence": [
+        "cross_model_baseline_matrix"
+      ]
+    },
+    {
+      "id": "first_iterative_self_distillation",
+      "status": "prohibited_novelty_claim",
+      "statement": "Do not claim the first iterative self-distillation method. The contribution must be scoped to this spectral generation intervention and its tested retention question.",
+      "evidence": [
+        "historical_manuscript"
+      ]
+    },
+    {
+      "id": "equal_compute",
+      "status": "not_established",
+      "statement": "Matched candidate counts and update schedules do not imply equal generated tokens, wall time, memory, or FLOPs.",
+      "required_evidence": "Report measured length and resource records for each arm; label missing resources explicitly."
+    }
+  ],
+  "minimal_remaining_work": [
+    {
+      "priority": 0,
+      "item": "Complete Natural Gate 0 using actual archived or prospectively collected programs, with transparent case selection and no invented per-case consequence."
+    },
+    {
+      "priority": 1,
+      "item": "Execute the frozen finite main study with Plain, SSD recipe adaptation and SPECTRUM, matched evaluation decoding and samples, retained checkpoints, and independent training replications."
+    },
+    {
+      "priority": 2,
+      "item": "Measure the intervention-generator and native-student stages on aligned tasks to separate generation effects from post-SFT retention."
+    },
+    {
+      "priority": 3,
+      "item": "Run the finite strength/loss/geometry diagnostics already in the approved study; require an anchor-only information control if retaining a claim that excludes reference-information advantage."
+    },
+    {
+      "priority": 4,
+      "item": "Complete fixed frozen transfer with all main comparators. Keep adapted benchmark protocols, failure counts, eligibility, and compute costs explicit."
+    },
+    {
+      "priority": 5,
+      "item": "Write the paper after the planned artifacts are complete, regardless of outcome. Do not add models, tasks, strengths or repeats to chase a favorable result."
+    }
+  ]
+}

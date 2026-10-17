@@ -1,0 +1,258 @@
+{
+  "kind": "research-coverage",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "previous_ref": {
+    "path": "research-state/coverage-L01-attempt-000001.json",
+    "sha256": "55e84fdcdd4a2d121596aa7486400391738c09209ea86fe897be00039fe3b9da"
+  },
+  "obligations": [
+    {
+      "id": "restore-evidence",
+      "description": "Recover SPECTRUM historical results, precise source identity, negative evidence, missing raw outputs and the user-authorized scope",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/P02-asset-inventory-attempt-000001.json",
+          "sha256": "a15b50b3d3ed85cdb52594f25b98c58416c744d6efeb8c9c046e6be2573616be"
+        },
+        {
+          "path": "research-state/P02-asset-status-attempt-000001.md",
+          "sha256": "e7d20df8b95a651d99f9f0fe71a1377861893af5fb987542b24cfb9933104f0b"
+        },
+        {
+          "path": "research-state/I01-entry-card-attempt-000001.md",
+          "sha256": "d444fa8f2ae35b8e247ba24b4a087fef329f93b394cc0fc0720816d5325223c6"
+        },
+        {
+          "path": "research-state/I01-evidence-readback-attempt-000001.json",
+          "sha256": "27ff08b1cf161a0943a8abf4c3188f58bdb20f6fd1d3bec2faf740ab2f8077bc"
+        },
+        {
+          "path": "research-state/I02-parent-problem-attempt-000001.md",
+          "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+        },
+        {
+          "path": "research-state/I02-evidence-readback-attempt-000001.json",
+          "sha256": "2b486685ca1937cf8497640389f37dcc204c1449d941896c54b46fce8c44543a"
+        },
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P04-resource-boundaries-attempt-000001.md",
+          "sha256": "d91132119fea973f63a253de6f43424f1eced6dc94c1df89e64198065973592d"
+        },
+        {
+          "path": "research-state/P04-resource-observation-attempt-000001.json",
+          "sha256": "4394483e087999c90afe5942d140253adbf8740a7037bd3ee548bd4e169946a1"
+        },
+        {
+          "path": "research-state/P04-evidence-readback-attempt-000001.json",
+          "sha256": "d7f6cde4c05ee9520c97b0eec78f602c4093189a77072af55d164f56a7426477"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "source-and-community",
+      "description": "Use primary papers/code and bounded authorized Xiaohongshu leads, with honest access limits",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        },
+        {
+          "path": "reports/L01-search-evidence-attempt-000001.md",
+          "sha256": "c59f80cde3cf23800736b1282c074cfca733b283e2712cc59b3a9cc94597568e"
+        },
+        {
+          "path": "research-state/L01-search-index-attempt-000001.json",
+          "sha256": "f3e7eb25d3db9c58bbbbd77e0259b76dcb0929b8af0b8ccd9e605904d2a5f325"
+        },
+        {
+          "path": "reports/L02-topic-map-attempt-000001.md",
+          "sha256": "a226680339dbf89e8cf26432b7f4da87cd83fc72c51f117cd7cfcfb65d22ec0f"
+        },
+        {
+          "path": "research-state/L02-evidence-index-attempt-000001.json",
+          "sha256": "003ef27911864d0299d8de02ca5a3e46599eea4c0181e7bb5cd485938773660e"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "second-round-inquiry",
+      "description": "Compare mechanisms, simple alternatives and conditional predictions; identify an appropriate decisive next check without starting experiments",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/I02-parent-problem-attempt-000001.md",
+          "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+        },
+        {
+          "path": "research-state/I02-evidence-readback-attempt-000001.json",
+          "sha256": "2b486685ca1937cf8497640389f37dcc204c1449d941896c54b46fce8c44543a"
+        },
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        },
+        {
+          "path": "reports/L01-search-evidence-attempt-000001.md",
+          "sha256": "c59f80cde3cf23800736b1282c074cfca733b283e2712cc59b3a9cc94597568e"
+        },
+        {
+          "path": "research-state/L01-search-index-attempt-000001.json",
+          "sha256": "f3e7eb25d3db9c58bbbbd77e0259b76dcb0929b8af0b8ccd9e605904d2a5f325"
+        },
+        {
+          "path": "reports/L02-topic-map-attempt-000001.md",
+          "sha256": "a226680339dbf89e8cf26432b7f4da87cd83fc72c51f117cd7cfcfb65d22ec0f"
+        },
+        {
+          "path": "research-state/L02-evidence-index-attempt-000001.json",
+          "sha256": "003ef27911864d0299d8de02ca5a3e46599eea4c0181e7bb5cd485938773660e"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "independent-review",
+      "description": "Obtain separate actual review of the evidence, candidate necessity and claim limits",
+      "kind": "review",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "deliver-research-decision",
+      "description": "Deliver a Chinese second-round decision report with source links, caveats, falsifier and next action",
+      "kind": "delivery",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        }
+      ],
+      "blocking_reason": null
+    }
+  ],
+  "experiment_contracts": []
+}

@@ -1,0 +1,145 @@
+{
+  "authority": {
+    "path": "research-state/autonomous-experiments-20261017.md",
+    "sha256": "95d596a851a3dafb0f5d693ab30e11dfa4dbac53223a754710760ecb720d9883"
+  },
+  "old_program": {
+    "agent_config_ref": {
+      "path": "research-state/agents.json",
+      "sha256": "bde42f7fbf03d427970a76699062424fe5fdef5cf9a917287f66f19ebcf71314"
+    },
+    "authorization_ref": {
+      "path": "research-state/user-continuation-20261017.md",
+      "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+    },
+    "coverage_ref": {
+      "path": "research-state/coverage-0000.json",
+      "sha256": "89c1a0a0164df193e12d8def0e60fc395e505fa81d6ce1f6b614b2ff869012d1"
+    },
+    "goal_id": "spectrum-round2",
+    "max_rounds": null,
+    "native_target_ref": null,
+    "objective_ref": {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    "planner": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 300
+    },
+    "policy": {
+      "edition": "autonomous-rsi-harness",
+      "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+      "source_revision": "a17842f9c8eb5042e99e392fa5414cb0791772a2",
+      "version": "0.4.0-harness.2"
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "reviewer": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 300
+    },
+    "schema_version": 2,
+    "sequence": {
+      "mode": "once",
+      "scopes": [
+        "research"
+      ]
+    },
+    "verifier": {
+      "max_seconds": 30
+    }
+  },
+  "new_program": {
+    "agent_config_ref": {
+      "path": "research-state/agents-autonomous-20261017.json",
+      "sha256": "03e89c8f8fc94ec697506f4a5618c14b189f1f4b3efc23ca0e282361223d5d31"
+    },
+    "authorization_ref": {
+      "path": "research-state/autonomous-experiments-20261017.md",
+      "sha256": "95d596a851a3dafb0f5d693ab30e11dfa4dbac53223a754710760ecb720d9883"
+    },
+    "coverage_ref": {
+      "path": "research-state/coverage-0000.json",
+      "sha256": "89c1a0a0164df193e12d8def0e60fc395e505fa81d6ce1f6b614b2ff869012d1"
+    },
+    "goal_id": "spectrum-round2",
+    "max_rounds": null,
+    "native_target_ref": {
+      "path": "research-state/native-gpu-target-20261017.json",
+      "sha256": "711314dba486f6383c94feb180a8b2b81b0ab970d6d2d117b6e4c27d0570133d"
+    },
+    "objective_ref": {
+      "path": "research-state/objective-autonomous-20261017.md",
+      "sha256": "9cd8cd9959d25731191b869b57715a3293e1f92fd0160c68ef43e154d9992c03"
+    },
+    "planner": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 1800
+    },
+    "policy": {
+      "edition": "autonomous-rsi-harness",
+      "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+      "source_revision": "a17842f9c8eb5042e99e392fa5414cb0791772a2",
+      "version": "0.4.0-harness.2"
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "reviewer": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 1800
+    },
+    "schema_version": 2,
+    "sequence": {
+      "mode": "repeat",
+      "scopes": [
+        "research"
+      ]
+    },
+    "verifier": {
+      "max_seconds": 30
+    }
+  },
+  "old_project": {
+    "adapters": [
+      "codex-local",
+      "native"
+    ],
+    "limits": {
+      "cycle_seconds": 300,
+      "max_cost": 0,
+      "max_seconds": null,
+      "max_workers": 1,
+      "report_seconds": 300
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "role": "local_executor",
+    "root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/project",
+    "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+    "skill_root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot",
+    "workflow_class": "scientific_method"
+  },
+  "new_project": {
+    "adapters": [
+      "codex-local",
+      "native"
+    ],
+    "limits": {
+      "cycle_seconds": 86400,
+      "max_cost": 0,
+      "max_seconds": null,
+      "max_workers": 1,
+      "report_seconds": 300
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "role": "local_executor",
+    "root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/project",
+    "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+    "skill_root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot",
+    "workflow_class": "scientific_method"
+  },
+  "retained_revision": 39,
+  "reason": "Explicit user requests repeat loop, GPU testing/experiments and autonomous debugging; no task/history/budget reset"
+}

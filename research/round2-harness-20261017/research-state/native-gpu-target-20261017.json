@@ -1,0 +1,6 @@
+{
+  "root": "/root/rivermind-data/spectrum-harness/project",
+  "skill_root": "/root/rivermind-data/spectrum-harness/skill",
+  "host": "spectrum-harness-gpu",
+  "python": "/opt/conda/bin/python"
+}

@@ -1,0 +1,73 @@
+{
+  "kind": "L02-work-version-overlay",
+  "schema_version": 1,
+  "records": [
+    {
+      "schema_version": "1.0.0",
+      "work_id": "arxiv:2002.05715",
+      "version_id": "arxiv:2002.05715v3",
+      "canonical_work_id": "neurips:2020:2288f691b58edecadcc9a8691762b4fd",
+      "publication_status": "preprint",
+      "reproduction_status": "not_attempted",
+      "read_depth": "D1",
+      "full_text_status": "partial excerpts only; no full D2/D3 claim",
+      "read_scope": "metadata, author version note, introduction/problem-setup excerpts",
+      "distinction": "unknown",
+      "identity_links": [
+        {
+          "from_id": "arxiv:2002.05715",
+          "to_id": "neurips:2020:2288f691b58edecadcc9a8691762b4fd",
+          "relation": "same_work",
+          "evidence_refs": [
+            {
+              "path": "research-state/L02-identity-link-mobahi-attempt-000001.json",
+              "sha256": "20ed5b55913fbf5c50ca691453640f6e00a421bc27eb46d57d5c75984d0ba3cc"
+            }
+          ]
+        }
+      ],
+      "unresolved_aliases": []
+    },
+    {
+      "schema_version": "1.0.0",
+      "work_id": "neurips:2020:2288f691b58edecadcc9a8691762b4fd",
+      "version_id": "neurips:2020:2288f691b58edecadcc9a8691762b4fd#proceedings",
+      "canonical_work_id": "neurips:2020:2288f691b58edecadcc9a8691762b4fd",
+      "publication_status": "formally_published",
+      "reproduction_status": "not_attempted",
+      "read_depth": "D1",
+      "full_text_status": "partial excerpts only; no full D2/D3 claim",
+      "read_scope": "official proceedings metadata/abstract and author-hosted conference PDF pp1–3 excerpts",
+      "distinction": "unknown",
+      "identity_links": [
+        {
+          "from_id": "arxiv:2002.05715",
+          "to_id": "neurips:2020:2288f691b58edecadcc9a8691762b4fd",
+          "relation": "same_work",
+          "evidence_refs": [
+            {
+              "path": "research-state/L02-identity-link-mobahi-attempt-000001.json",
+              "sha256": "20ed5b55913fbf5c50ca691453640f6e00a421bc27eb46d57d5c75984d0ba3cc"
+            }
+          ]
+        }
+      ],
+      "unresolved_aliases": []
+    }
+  ],
+  "prior_ledger_ref": {
+    "path": "research-state/L01-search-index-attempt-000001.json",
+    "sha256": "f3e7eb25d3db9c58bbbbd77e0259b76dcb0929b8af0b8ccd9e605904d2a5f325"
+  },
+  "historical_reading_ref": {
+    "path": "inputs/spectrum/docs/LITERATURE_AUDIT.md",
+    "sha256": "d80ff2344a5445dc0446cc1e8e04f1c4ed359cbbdbf33f6bc7114aba75b222b7"
+  },
+  "unresolved_versions": [
+    "SSD v2 content delta",
+    "Shumailov Nature candidate identity/access",
+    "Borup arXiv to proceedings explicit identity link",
+    "final venue identities for 2026 preprints"
+  ],
+  "note": "No count of D2 works or novelty verdict; historical versions not overwritten."
+}

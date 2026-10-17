@@ -1,0 +1,23 @@
+{
+  "capture_format": "work-identity-link-v1",
+  "relation": "same_work",
+  "identifiers": [
+    "arxiv:2002.05715",
+    "neurips:2020:2288f691b58edecadcc9a8691762b4fd"
+  ],
+  "primary_source": true,
+  "source_url": "https://arxiv.org/html/2002.05715v3",
+  "locator": "title version note, lines 57–61; official proceedings capture 7 lines 0–6",
+  "excerpt": "This article is a more detailed version of a paper with the same title in Neural and Information Processing Systems (NeurIPS) 2020 conference.",
+  "evidence_refs": [
+    {
+      "path": "research-state/L02-source-capture-8-attempt-000001.json",
+      "sha256": "0d7e55a5bc21fd3a0a29d83c4eda11d0793f5ac6674af3bd62f2798633c5f2b9"
+    },
+    {
+      "path": "research-state/L02-source-capture-7-attempt-000001.json",
+      "sha256": "0fe2008119a517c903293f7fbdf819d1fcc8b56a57a544730db16038b66b0244"
+    }
+  ],
+  "limitation": "same work, distinct versions; not content identity or reproduction"
+}

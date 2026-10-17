@@ -1,0 +1,124 @@
+{
+  "kind": "L02-evidence-index",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "evidence_refs": [
+    {
+      "path": "reports/L02-topic-map-attempt-000001.md",
+      "sha256": "a226680339dbf89e8cf26432b7f4da87cd83fc72c51f117cd7cfcfb65d22ec0f"
+    },
+    {
+      "path": "research-state/L02-identity-link-mobahi-attempt-000001.json",
+      "sha256": "20ed5b55913fbf5c50ca691453640f6e00a421bc27eb46d57d5c75984d0ba3cc"
+    },
+    {
+      "path": "research-state/L02-work-versions-attempt-000001.json",
+      "sha256": "566bc8788fba75f64769320db8a41e9c68cb0ddcdd3c3316817f2337c2f724a2"
+    },
+    {
+      "path": "research-state/L02-source-capture-1-attempt-000001.json",
+      "sha256": "cdf3f3e8e4a2e4ddf975ecb8dd039bd6bda998231c029b908bd1cb4399241d3d"
+    },
+    {
+      "path": "research-state/L02-source-capture-2-attempt-000001.json",
+      "sha256": "73db8828e7826e794df7920e173c729ac1a3c9f0d954b4802aee92e69f81f825"
+    },
+    {
+      "path": "research-state/L02-source-capture-3-attempt-000001.json",
+      "sha256": "cca18a3099473e1ee5230ca1f5f24243005a1f1bb3a2980bb7f9acfeb5650548"
+    },
+    {
+      "path": "research-state/L02-source-capture-4-attempt-000001.json",
+      "sha256": "b8bf480665dd3c84f633b102a874b91bc8767208568348261ee2980813da658c"
+    },
+    {
+      "path": "research-state/L02-source-capture-5-attempt-000001.json",
+      "sha256": "3c2235796e4f1cd4c6684cbf87a6c451f8b2dba238e95213c512437aa5dd69e8"
+    },
+    {
+      "path": "research-state/L02-source-capture-6-attempt-000001.json",
+      "sha256": "2a36f37bb94820ed5b3e50acbae9eed824a6d199964f48c4c60b5b46541a0af7"
+    },
+    {
+      "path": "research-state/L02-source-capture-7-attempt-000001.json",
+      "sha256": "0fe2008119a517c903293f7fbdf819d1fcc8b56a57a544730db16038b66b0244"
+    },
+    {
+      "path": "research-state/L02-source-capture-8-attempt-000001.json",
+      "sha256": "0d7e55a5bc21fd3a0a29d83c4eda11d0793f5ac6674af3bd62f2798633c5f2b9"
+    },
+    {
+      "path": "reports/L01-search-evidence-attempt-000001.md",
+      "sha256": "c59f80cde3cf23800736b1282c074cfca733b283e2712cc59b3a9cc94597568e"
+    },
+    {
+      "path": "research-state/L01-search-index-attempt-000001.json",
+      "sha256": "f3e7eb25d3db9c58bbbbd77e0259b76dcb0929b8af0b8ccd9e605904d2a5f325"
+    },
+    {
+      "path": "inputs/spectrum/docs/LITERATURE_AUDIT.md",
+      "sha256": "d80ff2344a5445dc0446cc1e8e04f1c4ed359cbbdbf33f6bc7114aba75b222b7"
+    },
+    {
+      "path": "reports/community-intake-20261017.md",
+      "sha256": "0720672b9d111ebbe61192b1491195bd9a5bdcb1058708490acc341228f3edab"
+    },
+    {
+      "path": "research-state/community/provider-handoff-20261017.md",
+      "sha256": "f4ad6ffb647ad4eca94a452c5b3b5879c374e1f0f564a09e1edd6c07516c80f1"
+    },
+    {
+      "path": "research-state/gpu-and-delivery-authorization-20261017.md",
+      "sha256": "b893b3740043aae3466f922ad57b3795476f9e8d7219d829dda8b688457cc5e1"
+    },
+    {
+      "path": "research-state/harness/round-000012/reviewer-response.json",
+      "sha256": "4b74ba74a5854791fdb5ae7d35e5732d42ece3b46085d6a15b71ab5d6697d5c2"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-rejection.json",
+      "sha256": "aab775a2f6ae33bcc82fad31ae7103dc86d0fde9f5deab3cb6f51a2fa1e3ff63"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/L01/attempt-000001/acceptance.json",
+      "sha256": "d1f8d402a25b229d6bf5279778964e65b3f545f5fd81580a513deb512423e8ba"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/L02/attempt-000001/planner-history.json",
+      "sha256": "29824efd303f16277d0308ceb491c70590293191facd85f96e19f39917eb3013"
+    },
+    {
+      "path": "research-state/community/20261017-6a126a17000000003502fc41.json",
+      "sha256": "3e689c88a096474df23e59628f3840f1e2137fb574e8aa3ea7f1a026e69921ee"
+    },
+    {
+      "path": "research-state/community/20261017-6a34f4ae000000001503d43b.json",
+      "sha256": "f83a52662b767a102b64b156cb2b0cfd2024911774ef0af98fbbd1442513e33c"
+    },
+    {
+      "path": "research-state/community/20261017-6a4293ea000000001c024ec3.json",
+      "sha256": "eed8789f9a9fdca009a63d1fa4af77c3778ff1e3ea08580f9a22905546bc0160"
+    },
+    {
+      "path": "research-state/community/20261017-excluded-6ac60b6d000000001303e2bb.json",
+      "sha256": "0ed28de4c8f8f50224e087da923e6852ee56e28c7de2a920fdf984c3ef5e4fdd"
+    },
+    {
+      "path": "research-state/community/20261017-primary-2607.01763.json",
+      "sha256": "71fd5a4d421a4e9fad126f730303e82b172f5e3d80ccef15594e899bb92946c3"
+    }
+  ],
+  "search_protocol": {
+    "provider": "web.run",
+    "date": "2026-10-17",
+    "parser": "verbatim-tool-return-v1",
+    "request_metadata": "each capture retains exact request and returned text",
+    "sort_index_pagination": "not exposed; no pagination",
+    "canonicalization": "only explicit primary identity link merged; unresolved aliases retained",
+    "scope": "bounded forward citing papers and backward references, not saturation"
+  },
+  "inspection_refs": [],
+  "native_receipts": [],
+  "independent_review": "pending existing program reviewer; no self-review asserted",
+  "policy": "User-injected pinned Harness policy governs; installed skill is different and was not adopted into running project."
+}

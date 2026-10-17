@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "kind": "project-cooperation",
+  "project_id": "spectrum-final-validation",
+  "repository": "Yunbo-max/SPECTRUM",
+  "coordination_branch": "main",
+  "project_root": ".",
+  "coordinator_id": "work-autopilot-spectrum-20261017-01",
+  "observed_revision": "f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+  "coverage_status": "complete_for_accessible_sources",
+  "coverage_gaps": [
+    "No shared .autopilot registry existed at the inspected main revision; this registration starts the shared ledger. GitHub inventory covers the only listed branch (main), 11 returned commits, and no open/closed issues or pull requests. Unpublished host activity not represented in GitHub remains unobserved."
+  ],
+  "participants": [
+    {
+      "owner_id": "work-autopilot-spectrum-20261017-01",
+      "label": "Research Autopilot Auto Work coordinator",
+      "role": "coordinator",
+      "assigned_branch": "main",
+      "output_namespace": ".autopilot/participants/work-autopilot-spectrum-20261017-01/",
+      "current_task": "spectrum-setup-preflight-20261017",
+      "checkpoint": "research/audit/research-state.json",
+      "dependencies": [],
+      "help_requests": [],
+      "status": "active"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "spectrum-main-f7b661f",
+      "repository": "Yunbo-max/SPECTRUM",
+      "branch": "main",
+      "revision": "f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+      "paths": [
+        "README.md",
+        "docs/AUTORESEARCH_CHECK.md",
+        "docs/EXISTING_EVIDENCE.md",
+        "docs/FINAL_EXPERIMENTS.md",
+        "docs/RUN_FINAL_ZH.md",
+        "configs/final/assets.json",
+        "research/audit/research-state.json",
+        "research/audit/claims.json",
+        "experiments/iclr2027/README.md",
+        "scripts/run_release_study.py",
+        "scripts/prepare_final_data.py",
+        "src/improving/modeling.py"
+      ],
+      "coverage": "Default branch source inventory and project-specific experimental state"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "spectrum-setup-preflight-20261017",
+      "task_key": {
+        "question": "Can the existing SPECTRUM final-release core validation be prepared and executed unchanged on the user-selected Linux GPU host?",
+        "mechanism": "SPECTRUM fixed-reference spectral intervention compared with Plain and SSD",
+        "operation": "prepare pinned data, seal plan, qualify runtime and resource feasibility",
+        "data_split_revision": "configs/final/assets.json at SPECTRUM f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "model_code_revision": "SPECTRUM f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "scorer_metric_protocol": "spectrum-final-release-v1; MBPP native original-tests protocol; 64 samples per task",
+        "work_unit": "core block, three independent seeds, five rounds, three methods; setup and feasibility preflight before training"
+      },
+      "owner_id": "work-autopilot-spectrum-20261017-01",
+      "state": "claimed",
+      "claim_revision": 1,
+      "observation_time": "2026-10-17T11:02:29Z",
+      "parent_refs": [
+        "research/audit/research-state.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+      ],
+      "input_refs": [
+        "README.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "docs/RUN_FINAL_ZH.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "docs/FINAL_EXPERIMENTS.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "configs/final/assets.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "research/audit/research-state.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+      ],
+      "output_paths": [
+        "data/",
+        "runs/private/seeds.json",
+        "runs/spectrum_release_v1/plan/manifest.json",
+        "runs/spectrum_release_v1/configs/",
+        "logs/research/"
+      ],
+      "observed_constraints": {
+        "gpu": "1x Tesla T4, 15360 MiB, compute capability 7.5",
+        "native_bf16": false,
+        "pytorch_bf16_emulation": true,
+        "data_disk": "49 GiB total, approximately 48 GiB free at inspection",
+        "root_overlay": "30 GiB total",
+        "docker": "not installed",
+        "python_packages": "SPECTRUM training/data optional dependencies absent from checked interpreters"
+      },
+      "completion_conditions": [
+        "Pinned assets are prepared and verified without changing their declared revisions or populations",
+        "A hardware-accurate plan and resource preflight are recorded",
+        "Do not start the frozen core block until required runtime, evaluator isolation, GPU and checkpoint storage conditions are met"
+      ],
+      "next_action": "Qualify an isolated Python environment and data preparation path; independently estimate core checkpoint storage and validate an allowed evaluator isolation path."
+    }
+  ],
+  "sync_receipts": [
+    {
+      "cycle_id": "cycle-20261017-initial-inventory",
+      "project_id": "spectrum-final-validation",
+      "owner_id": "work-autopilot-spectrum-20261017-01",
+      "observation_time": "2026-10-17T11:02:29Z",
+      "source_heads": {
+        "main": "f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+      },
+      "read_refs": [
+        "README.md",
+        "docs/AUTORESEARCH_CHECK.md",
+        "docs/EXISTING_EVIDENCE.md",
+        "docs/FINAL_EXPERIMENTS.md",
+        "docs/RUN_FINAL_ZH.md",
+        "research/audit/research-state.json",
+        "research/audit/claims.json",
+        "configs/final/assets.json",
+        "experiments/iclr2027/README.md",
+        "GitHub branches/issues/pull-requests inventory"
+      ],
+      "coverage_gaps": [
+        "No prior shared registry or task ledger; unpublished host state remains unobserved."
+      ],
+      "plan_delta": {
+        "reuse_refs": [
+          "Historical SPECTRUM evidence and frozen release plan; no new method search"
+        ],
+        "avoided_duplicates": [
+          "No existing GitHub peer task/PR/issue observed; no formal experiments have been reported in the project state"
+        ],
+        "affected_dependencies": [
+          "SPECTRUM runtime dependencies, native evaluator isolation, sufficient persistent storage, T4 precision/memory compatibility"
+        ],
+        "conflicts": [],
+        "help_requests": [],
+        "complementary_next_action": "Prepare environment/data/plan only after resource and evaluator constraints are assessed; do not dispatch training on the current T4/disk profile yet.",
+        "rationale": "The fixed core design cannot be silently reduced, and current host observations indicate likely precision, VRAM, evaluator and storage constraints."
+      }
+    }
+  ]
+}

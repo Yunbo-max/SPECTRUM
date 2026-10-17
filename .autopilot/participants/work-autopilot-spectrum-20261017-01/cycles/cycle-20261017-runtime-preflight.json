@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "kind": "project-progress-packet",
+  "project_id": "spectrum-final-validation",
+  "owner_id": "work-autopilot-spectrum-20261017-01",
+  "cycle_id": "cycle-20261017-runtime-preflight",
+  "task_id": "spectrum-setup-preflight-20261017",
+  "attempt_id": "setup-preflight-attempt-02",
+  "status": "blocked",
+  "recorded_at": "2026-10-17T11:20:00Z",
+  "source_refs": [
+    "Yunbo-max/SPECTRUM@024234c4c4d0f1f07f2cf0ec4d6b866876c2c391",
+    "configs/final/assets.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "src/improving/pipeline.py@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+  ],
+  "observations": {
+    "protocol": "Core unchanged: Qwen2.5-Coder-1.5B; MBPP original tests; 64 samples/task; 3 methods; 3 seeds; 5 rounds.",
+    "data_preparation": "Isolated data venv created. MBPP exact pinned revision fetched; HumanEval+ v0.1.10 official GitHub release downloaded and gzip-tested. Preparation stopped at CodeContests test.jsonl (~1.29 GB) after repeated HF Xet transfer timeouts. No completed final registry or plan.",
+    "resources": "Tesla T4 15 GiB; persistent data disk 49 GiB with ~45 GiB free. Pipeline merges adapters and saves full weights each round, all retained by default. Frozen core is 45 checkpoints; disk is insufficient even before other artifacts.",
+    "isolation": "No secure generated-code sandbox qualified. Docker unavailable and forbidden by Auto Work; unshare user namespaces denied; no alternative sandbox found.",
+    "precision": "Native BF16 unsupported; project disallows FP16; source/runtime precision path is unqualified."
+  },
+  "actions_observed": [
+    {
+      "action": "Created isolated data venv and installed datasets 3.5.1, huggingface_hub and evalplus 0.3.1.",
+      "result": "Completed; no system packages changed."
+    },
+    {
+      "action": "Ran pinned final data preparation.",
+      "result": "Partial only; MBPP and HumanEval+ obtained, large CodeContests artifact timed out."
+    },
+    {
+      "action": "Inspected checkpoint pipeline and host sandbox capabilities.",
+      "result": "Confirmed full merged checkpoints each round and no approved evaluator isolation."
+    }
+  ],
+  "failed_predicates": [
+    "Pinned data preparation incomplete",
+    "49 GiB disk cannot retain all 45 core checkpoints",
+    "No qualified generated-code isolation",
+    "Native BF16 unavailable and FP16 prohibited"
+  ],
+  "plan_delta": {
+    "reuse_refs": [
+      "Frozen final release contract and initial inventory"
+    ],
+    "avoided_duplicates": [
+      "Existing setup-preflight claim; no training started"
+    ],
+    "conflicts": [],
+    "help_requests": [],
+    "next_action": "Await larger persistent storage, a safe evaluator sandbox, working pinned-data egress, and precision-compatible GPU/runtime; then resume preparation and seal the unchanged plan. Do not dispatch training on current host.",
+    "rationale": "Infrastructure blockers prevent executing the unchanged protocol safely and with full artifact retention."
+  },
+  "output_refs": [
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM",
+      "description": "Remote SPECTRUM checkout"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/private/seeds.json",
+      "description": "Private seeds, values withheld"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/envs/spectrum-data",
+      "description": "Isolated preparation environment"
+    }
+  ],
+  "limits": {
+    "selected_host": "user-provided Linux GPU host",
+    "scope": "fixed core setup and preflight only",
+    "training_started": false,
+    "generated_code_executed": false
+  }
+}

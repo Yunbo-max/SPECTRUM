@@ -6,7 +6,7 @@
   "coordination_branch": "main",
   "project_root": ".",
   "coordinator_id": "work-autopilot-spectrum-20261017-01",
-  "observed_revision": "cb8327b01e60a2302ea5cc2437d7680dca7b79c1",
+  "observed_revision": "81938d69c46427f32711c25f18858184b36b8193",
   "coverage_status": "complete_for_accessible_sources",
   "coverage_gaps": [
     "No shared .autopilot registry existed at the inspected main revision; this registration starts the shared ledger. GitHub inventory covers the only listed branch (main), 11 returned commits, and no open/closed issues or pull requests. Unpublished host activity not represented in GitHub remains unobserved."
@@ -84,18 +84,19 @@
       "observed_constraints": {
         "gpu": "1x Tesla T4, 15360 MiB; native BF16 unavailable",
         "native_bf16": false,
-        "pytorch_bf16_emulation": true,
-        "persistent_data_disk": "49 GiB total, approximately 45 GiB free after setup",
-        "remote_hf_egress": "huggingface.co times out; mirror metadata works, large Xet transfers time out",
-        "evaluator_isolation": "No qualified sandbox; unshare user namespaces denied; no bwrap/firejail/nsjail/container runtime found",
-        "checkpoint_policy": "Full merged model checkpoints saved each round; retention defaults to all"
+        "pinned_data": "All final assets prepared; counts MBPP 500, HumanEval+ 164, APPS intro 200, CodeContests 165, LiveCodeBench 200",
+        "persistent_data_disk": "49 GiB total, about 42 GiB available",
+        "qwen15b_weight_file": "3,087,467,144 bytes at the exact locked revision",
+        "core_checkpoint_lower_bound": "45 full checkpoints; ~129.4 GiB at the pinned BF16 checkpoint byte size, excluding overhead; ~2x for FP32",
+        "planner_profiles": "24/48/80 GB only; no hardware-honest profile for 15 GiB T4",
+        "evaluator_isolation": "No qualified sandbox; unshare user namespace denied; Docker unavailable/forbidden"
       },
       "completion_conditions": [
         "Pinned assets are prepared and verified without changing their declared revisions or populations",
         "A hardware-accurate plan and resource preflight are recorded",
         "Do not start the frozen core block until required runtime, evaluator isolation, GPU and checkpoint storage conditions are met"
       ],
-      "next_action": "Await larger persistent storage, a safe evaluator sandbox, working pinned-data egress, and a precision-compatible GPU/runtime; then resume preparation and seal the unchanged plan. Do not dispatch training on current host."
+      "next_action": "Resume only on a host/runtime supporting the frozen precision and planner profile, with qualified safe evaluator isolation and at least 130 GiB free persistent storage plus runtime/data overhead. Then create the unchanged plan and rerun resource preflight; do not dispatch on the current host."
     }
   ],
   "sync_receipts": [
@@ -195,6 +196,30 @@
           "path": ".autopilot/participants/work-autopilot-spectrum-20261017-01/cycles/cycle-20261017-runtime-preflight.json",
           "commit_sha": "cb8327b01e60a2302ea5cc2437d7680dca7b79c1",
           "blob_sha": "fad890c9c532e1ae060f251f2f675a1d78df5d05",
+          "verified_readback": true
+        }
+      ]
+    },
+    {
+      "cycle_id": "cycle-20261017-data-preparation-complete",
+      "project_id": "spectrum-final-validation",
+      "owner_id": "work-autopilot-spectrum-20261017-01",
+      "observation_time": "2026-10-17T12:10:00Z",
+      "source_heads": {
+        "main": "81938d69c46427f32711c25f18858184b36b8193"
+      },
+      "read_refs": [
+        ".autopilot/participants/work-autopilot-spectrum-20261017-01/cycles/cycle-20261017-data-preparation-complete.json@ff6ffdb54b3dca8e0fe4fcf8e86fa682767d85ef",
+        "configs/final/assets.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "scripts/run_release_study.py@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+        "src/improving/training.py@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+      ],
+      "coverage": "Prepared asset counts, pinned model weight size, planner profiles, GPU precision, checkpoint retention and isolation were checked. Branch/issues/PRs were refreshed; only main branch and no issues/PRs found.",
+      "progress_packets": [
+        {
+          "path": ".autopilot/participants/work-autopilot-spectrum-20261017-01/cycles/cycle-20261017-data-preparation-complete.json",
+          "commit_sha": "81938d69c46427f32711c25f18858184b36b8193",
+          "blob_sha": "ff6ffdb54b3dca8e0fe4fcf8e86fa682767d85ef",
           "verified_readback": true
         }
       ]

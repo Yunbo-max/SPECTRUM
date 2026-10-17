@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "kind": "project-progress-packet",
+  "project_id": "spectrum-final-validation",
+  "owner_id": "work-autopilot-spectrum-20261017-01",
+  "cycle_id": "cycle-20261017-t4-lora-memory-qualification",
+  "task_id": "spectrum-setup-preflight-20261017",
+  "attempt_id": "setup-preflight-attempt-06",
+  "status": "active",
+  "recorded_at": "2026-10-17T14:52:23Z",
+  "source_refs": [
+    "Yunbo-max/SPECTRUM@ab9687a0c3f1ebc959d4d63b4630c8b146f097e0",
+    "Research_Autopilot@9cdaa97 (autonomous-rsi, 0.2.0-autonomous.13)"
+  ],
+  "observations": {
+    "remote_identity": "SPECTRUM main is clean at ab9687a0c3f1ebc959d4d63b4630c8b146f097e0 after syncing the prior progress packet.",
+    "environment": "Installed isolated /root/rivermind-data/envs/spectrum-release-pinned from repository pyproject-compatible pins: torch 2.7.1+cu126, transformers 4.51.3, peft 0.15.2, accelerate 1.6.0, datasets 3.5.1, evalplus 0.3.1. CUDA is available on Tesla T4. BF16 operations run through emulation; native BF16 is false.",
+    "model_weights": "Pinned Qwen2.5-Coder-1.5B-Instruct revision 2e1fd397ee46e1388853d2af2c993145b0f1098a was downloaded locally (3.1 GiB; model.safetensors SHA-256 c1b9b30e907950516ba3c646bdf570d8084c25a6410a0cdca80cf04b11bc13a8). Host HF API calls fail with Network is unreachable. SSH/SCP upload throughput fell to 12-100 KB/s; transfer was stopped after only a few MiB. The incomplete remote weight file is marked .incomplete-transfer and is not loadable.",
+    "lora_memory_probe": "Harness-run engineering probe used the exact pinned Qwen configuration, randomly initialized weights, BF16, non-reentrant checkpointing, LoRA r=8/alpha=8 on q/k/v/o, microbatch 1 and sequence length 1536. One forward/backward/AdamW step completed on T4 in 6.23 seconds. Model parameters 1,545,893,376; trainable 2,179,072; resident allocation 2,953.6 MiB; peak allocation 6,215.2 MiB; peak reserved 6,760 MiB; total GPU memory 14,912.7 MiB. This is engineering feasibility evidence only, not a pretrained-model qualification or scientific result.",
+    "storage": "Persistent disk is 49 GiB total, 36 GiB available after installing the pinned environment. The fixed core queue needs approximately 129.4 GiB just for 45 BF16 checkpoints; the full guide estimates about 1 TB including outputs and overhead.",
+    "evaluator": "No Docker or Podman is installed. bubblewrap/unshare user namespaces remain denied by the kernel. The Auto Work host-adapter contract requires a host-enforced sandbox for untrusted generated code; the current host has no qualified adapter. No generated candidate code was executed.",
+    "queue": "scripts/run_release_study.py status still lists all 40 jobs pending with zero completed stages. No pretrained weights, training, official benchmark evaluation or scientific result."
+  },
+  "actions_observed": [
+    {
+      "action": "Install project-pinned runtime in an isolated venv",
+      "result": "Completed under the local harness preparation plan. Environment is available on the persistent data volume. Model download from the host failed because outbound Hugging Face traffic is unavailable."
+    },
+    {
+      "action": "Attempt exact-revision model transfer",
+      "result": "Downloaded the pinned 3.1 GiB model locally and recorded its SHA-256. Host upload was measured at tens of KB/s; stopped the impractically slow transfer and marked remote partial weights as incomplete."
+    },
+    {
+      "action": "Qwen architecture / LoRA memory qualification",
+      "result": "Outer harness batch spectrum-qwen15b-lora-memory-v2-20261017 completed; harness plan digest 101f671b6fc0e8df5f04d59d3d411b00a9a49498dc4b0ec6170e35c78dc61096; inner plan digest 32e6fe16a59b2ab1bd3f357b1213f6779187f741c1d98e1f8727f85bc6db1560. The recorded report explicitly identifies random initialization and completes one step. Report SHA-256 c925ba27e1a711936d69a322331844ddfff4bab4f5d99f81da75aaba28a7fc0f; runner receipt SHA-256 072e5b6513bd4b679a0c2a1262c6e60e395ecce35133c1f3ff309a32d4a6ffe2; output SHA-256 46bdfa2ffc08ce527e509e606576e418f310dc9a3098d260172e23a231f968bc. gate_advanced=false, scientific_result_verified=false, billing_verified=false."
+    },
+    {
+      "action": "Reconcile fixed experiment queue",
+      "result": "scripts/run_release_study.py status confirms 40 jobs remain pending; no stages were completed or dispatched."
+    },
+    {
+      "action": "Audit method against proposed latent-recursion architecture question",
+      "result": "Current method changes calibrated K/V projection output geometry temporarily during generation, then restores weights before LoRA SFT. It has no recurrent latent state z_t, no causal update skipping, and no persistent long-term memory. The proposed selective-update architecture is a separate research line; current mechanism/token/decoder/transfer controls remain useful experimental practice."
+    }
+  ],
+  "failed_predicates": [
+    "Full pretrained Qwen weights are not present on the GPU host; direct host download is unreachable and SSH file transfer is too slow.",
+    "Available persistent storage is below even the core checkpoint lower bound.",
+    "Safe execution isolation for generated candidate programs is unavailable.",
+    "Exact pretrained-weight load, generation throughput, real-data calibration, and training remain unqualified."
+  ],
+  "plan_delta": {
+    "reuse_refs": [
+      "Pinned complete datasets and private seeds already on host",
+      "The fixed 40-job spectrum_release_v1 plan",
+      "Earlier Docker and user-namespace isolation recheck"
+    ],
+    "avoided_duplicates": [
+      "No repeated data preparation",
+      "No duplicate formal training or benchmark jobs",
+      "The failed model-download attempt and first configuration-path probe remain preserved as separate attempts"
+    ],
+    "affected_dependencies": [
+      "BF16 LoRA training at the core sequence length is feasible for the exact architecture shape in a random-weight one-step probe on this 15 GiB T4.",
+      "Model transfer, durable checkpoint retention, and safe evaluator isolation still block the frozen queue."
+    ],
+    "conflicts": [],
+    "help_requests": [],
+    "next_action": "Keep the frozen queue unchanged and pending. Resume formal jobs when the authorized Linux host has at least 130 GiB free persistent storage plus output overhead, a reliable path to the exact pinned model weights, and a qualified host-enforced Docker-equivalent sandbox. Use the memory probe only as engineering evidence. Treat selective latent-state updates as a separate parent problem and run an update-redundancy causal screen before proposing architecture.",
+    "rationale": "The T4's memory is adequate for the tested LoRA shape, but the fixed study cannot meet retention and evaluator requirements on the current host. No protocol reduction or unsafe local code execution is justified by the user's 'run as much as possible' instruction."
+  },
+  "limits": {
+    "scope": "User authorized autonomous work to run as much as possible on the supplied host; no new paid host/service or unbounded spend was authorized.",
+    "current_cycle_gpu_seconds_observed": 202,
+    "current_cycle_gpu_task_reserved_upper_bound": 540,
+    "training_started": false,
+    "generated_code_executed": false,
+    "full_experiment_budget_source": "No separate full-campaign provider budget or billing receipt recorded."
+  },
+  "output_refs": [
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/preflight/qwen15b-lora-memory-v2-harness.json",
+      "description": "Frozen finite local-harness plan for exact-architecture random-weight memory qualification"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/harness/spectrum-qwen15b-lora-memory-v2-20261017/report.json",
+      "description": "Completed local-harness report; gate not advanced"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/attempts/spectrum-qwen15b-lora-memory-v2-20261017/receipt.json",
+      "description": "Retained runner receipt for the successful one-step engineering probe"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/attempts/spectrum-qwen15b-lora-memory-v2-20261017/qwen15b-lora-1536-random-init-a1-d31ecdf9f4454755be9ad59306e85cf0/workspace/runs/preflight/qwen15b_lora_memory_report.json",
+      "description": "Full metrics, including explicit random-weight limitation"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/spectrum_release_v1/plan/manifest.json",
+      "description": "Frozen 40-job plan; all jobs remain pending"
+    }
+  ]
+}

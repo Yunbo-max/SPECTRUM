@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "kind": "project-progress-packet",
+  "project_id": "spectrum-final-validation",
+  "owner_id": "work-autopilot-spectrum-20261017-01",
+  "cycle_id": "cycle-20261017-autoharness-bf16-probe",
+  "task_id": "spectrum-setup-preflight-20261017",
+  "attempt_id": "setup-preflight-attempt-05",
+  "status": "active",
+  "recorded_at": "2026-10-17T14:20:30Z",
+  "source_refs": [
+    "Yunbo-max/SPECTRUM@ca2337bfa8612c5a8ebd856604a8c34b82d9a63a",
+    "Research_Autopilot@9cdaa97 (autonomous-rsi, 0.2.0-autonomous.13)"
+  ],
+  "observations": {
+    "remote_identity": "Reconnected to existing authorized SSH target. SPECTRUM is clean main at ca2337bfa8612c5a8ebd856604a8c34b82d9a63a; no prior training/evaluation/harness process or manifest was present before this cycle.",
+    "host": "Linux x86_64, 10 CPU cores reported by provider, 58 GB RAM provider summary; harness inspect observed 96 CPU affinity cores and 44,791 MiB available RAM. One Tesla T4: 15,360 MiB, UUID GPU-560c0cb8-e62c-993a-7579-6a7fb2853379; no foreign GPU process/memory at inspection.",
+    "storage": "Persistent data disk 49 GiB total, 42 GiB available. Current fixed release requires at least about 129.4 GiB just for 45 BF16 core checkpoints, excluding model/data/runtime overhead. Full experiment guide estimates about 1 TB.",
+    "precision": "torch 2.12.1+cu130 reports BF16 emulation available but native BF16 unavailable. A harness-run 512x512 BF16 matmul completed; peak allocated 9.125 MiB and reserved 22 MiB. This is only an operator probe; full-model memory/kernels remain unqualified. Corrects the earlier blanket wording that BF16 could not run at all on this T4.",
+    "queue": "Created the fixed spectrum_release_v1 plan with the 24gb batch preset. It contains 40 jobs: 13 training and 27 evaluation jobs across core, decoder, mechanism, token_matched, diagnostic, scale and transfer; 134 method-replicate-round units and 7,106,080 fresh-run candidates. No model weights, training, benchmark evaluation or generated-code execution.",
+    "evaluator": "Prior retained recheck says Docker is unavailable and user namespace/bubblewrap isolation is denied by the kernel; no safe generated-code evaluator path is yet qualified. This cycle did not retry or alter isolation.",
+    "shared_inventory": "GitHub main at ca2337b is the only branch; all issues and PRs query empty. Compare f7b661f..ca2337b shows only the four prior Autopilot records and registry changed; SPECTRUM source/config files are unchanged."
+  },
+  "actions_observed": [
+    {
+      "action": "Stage pinned Auto Work harness source",
+      "result": "Transferred the autonomous-rsi 0.2.0-autonomous.13 skill runtime archive to the GPU data disk; local and remote SHA-256 both 764eb63db4b34e8b866cec477f25b19ecd2e1ece8d0f18b2d6e83f3664032453."
+    },
+    {
+      "action": "Inspect Linux execution host",
+      "result": "run_harness.py --inspect-host completed; execution_started=false. GPU inventory and available RAM recorded above."
+    },
+    {
+      "action": "BF16 operator capability probe",
+      "result": "Outer harness batch spectrum-bf16-capability-20261017-v2 completed in 3.51 seconds; actual GPU occupied 3.36 seconds. Native plan digest 773f18222d528099b5fc84eb05e5ea6314a7c82ab00161e098b915e3a217e5ed; harness plan digest 14c1c140da290c34c69cfe9299ec253c05496e577defe9b8789950273d40e664. Output hash b5d668fdfab71d8cdae85e47f8a0d4876049f084d84b5d91da1f5c9ddc1bad58; runner receipt hash 5e458f4f949a7264facf867dde80257d225b99cd0b63a0ab88912f798a4e9fd7; report hash f756407cbc63f01b6e8f90d9690d40b58fd3e84a7465109ff40554a0ce7b9cf6. gate_advanced=false, scientific_result_verified=false, billing_verified=false."
+    },
+    {
+      "action": "Create final-release plan",
+      "result": "Plan created at runs/spectrum_release_v1/plan/manifest.json; SHA-256 deeb1c8c4e67815f948b414f55f12088973fa9a22e39dd6a6d9f8a47900016a2. Status confirms 40 jobs, all pending."
+    },
+    {
+      "action": "Recover malformed first preflight-plan serialization",
+      "result": "First plan validation rejected literal backslash-n as INVALID_JSON; no runner task was dispatched. Preserved as the failed initial plan attempt and created/validated a distinct v2 plan."
+    }
+  ],
+  "failed_predicates": [
+    "The full core checkpoint lower bound exceeds current persistent disk capacity; no training dispatched.",
+    "Safe isolation for generated-code evaluation is not currently available; evaluation jobs remain unqualified.",
+    "Full-model peak VRAM and BF16-emulation kernel coverage have not been measured. The small matrix probe is not model qualification."
+  ],
+  "plan_delta": {
+    "reuse_refs": [
+      "Existing complete pinned dataset registry and private seed manifest on remote host",
+      "Prior Docker/namespace isolation recheck"
+    ],
+    "avoided_duplicates": [
+      "No repeated dataset preparation",
+      "No duplicate SPECTRUM job or training/evaluation dispatch"
+    ],
+    "affected_dependencies": [
+      "Host preflight now shows BF16 tensor arithmetic can run through emulation; full Qwen model load remains a new check."
+    ],
+    "conflicts": [],
+    "help_requests": [],
+    "next_action": "Run a harness-bound, pinned Qwen2.5-Coder-1.5B model load and short forward/generation memory qualification using the existing 24gb batch preset only if the model download and temporary files fit current disk. In parallel, review whether the project's exact checkpoints can be retained losslessly in a smaller versioned archive strategy and whether any already-installed safe evaluator exists. Keep all 40 research jobs pending until required storage and evaluator conditions are met.",
+    "rationale": "This advances the user's full-campaign goal with a low-cost model-specific capacity check while preserving the fixed release protocol and avoiding training or unsafe code execution."
+  },
+  "limits": {
+    "scope": "User authorized the full fixed SPECTRUM experiment queue and autonomous continuation; no new paid service/host or unbounded spend was authorized.",
+    "current_cycle_gpu_seconds_observed": 3.36,
+    "current_cycle_gpu_task_reserved_upper_bound": 180,
+    "full_experiment_budget_source": "Not separately recorded in the GitHub project contract; current host is the only observed authorized execution resource and provider billing is unverified.",
+    "training_started": false,
+    "generated_code_executed": false
+  },
+  "output_refs": [
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/preflight/harness-plan-v2.json",
+      "description": "Frozen and validated finite harness plan"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/harness/spectrum-bf16-capability-20261017-v2/report.json",
+      "description": "Completed outer harness report"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/attempts/spectrum-bf16-capability-20261017-v2/receipt.json",
+      "description": "Completed inner runner receipt and output hashes"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/spectrum_release_v1/plan/manifest.json",
+      "description": "40-job fixed release plan; all jobs pending"
+    }
+  ]
+}

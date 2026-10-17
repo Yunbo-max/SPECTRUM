@@ -10,7 +10,6 @@
   "recorded_at": "2026-10-17T12:18:00Z",
   "source_refs": [
     "Yunbo-max/SPECTRUM@9c96b4d941822023de8dd1d5a6d7502cbc4f89ec",
-    "data/final/benchmark_registry.json@remote-preflight",
     "scripts/run_release_study.py@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
   ],
   "observations": {
@@ -57,5 +56,15 @@
     "scope": "fixed final-release core only, unchanged",
     "training_started": false,
     "generated_code_executed": false
-  }
+  },
+  "output_refs": [
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/data/final/benchmark_registry.json",
+      "description": "Complete prepared data registry on remote host"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/private/seeds.json",
+      "description": "Private randomization manifest; values withheld"
+    }
+  ]
 }

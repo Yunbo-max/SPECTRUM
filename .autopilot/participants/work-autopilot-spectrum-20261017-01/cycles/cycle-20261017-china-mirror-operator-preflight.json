@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "kind": "project-progress-packet",
+  "project_id": "spectrum-final-validation",
+  "owner_id": "work-autopilot-spectrum-20261017-01",
+  "cycle_id": "cycle-20261017-china-mirror-operator-preflight",
+  "task_id": "spectrum-mirror-and-mechanism-preflight-20261017",
+  "attempt_id": "mirror-preflight-attempt-01",
+  "status": "active",
+  "recorded_at": "2026-10-17T16:48:48Z",
+  "source_refs": [
+    "Yunbo-max/SPECTRUM@c8616bbbac69a0e566b485a857d6459f84e6cfbd",
+    "Research_Autopilot@9cdaa97 (autonomous-rsi, 0.2.0-autonomous.13)",
+    "Qwen/Qwen2.5-Coder-1.5B-Instruct@2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "https://mirrors.tuna.tsinghua.edu.cn/news/remove-hugging-face/"
+  ],
+  "observations": {
+    "remote_identity": "SPECTRUM remains clean at c8616bbbac69a0e566b485a857d6459f84e6cfbd; all newly created preflight plans and outputs are under ignored runs/ paths.",
+    "environment": "The pinned isolated environment remains available: torch 2.7.1+cu126, transformers 4.51.3, peft 0.15.2, accelerate 1.6.0, datasets 3.5.1, evalplus 0.3.1. T4 BF16 runs through emulation; native BF16 support is false. Tsinghua PyPI mirror returned HTTP 200. TUNA has removed its Hugging Face model mirror; hf-mirror.com metadata is reachable but the large-file transfer was slow.",
+    "model_weights": "Exact Qwen2.5-Coder-1.5B-Instruct revision metadata/tokenizer files were fetched from the pinned HF revision via hf-mirror.com. The model.safetensors file was fetched from ModelScope; its X-Linked-Etag and computed SHA-256 match the locally pinned file: c1b9b30e907950516ba3c646bdf570d8084c25a6410a0cdca80cf04b11bc13a8 (3,087,467,144 bytes). The file now loads from /root/rivermind-data/models/qwen2.5-coder-1.5b-instruct-2e1fd39/model.safetensors.",
+    "inference_preflight": "Native local-agent harness batch spectrum-qwen15b-modelscope-forward-v2-20261017 completed. Exact pinned BF16 weights loaded on Tesla T4 in 3.28 s; deterministic 32-token generation took 1.64 s. Peak allocated/reserved CUDA memory: 2,956.9/3,158 MiB. Engineering inference only; generated code was not executed.",
+    "pretrained_lora_preflight": "Native local-agent harness batch spectrum-qwen15b-pretrained-lora-step-20261017 completed one BF16 forward/backward/AdamW step using the pinned pretrained checkpoint, LoRA r=8/alpha=8 on q/k/v/o, microbatch 1, sequence length 1536, non-reentrant gradient checkpointing. It used synthetic random token IDs, not MBPP examples. One step took 6.14 s; peak allocated/reserved memory 6,215.2/6,760 MiB. Engineering feasibility only, not training evidence.",
+    "calibration_preflight": "A bounded harness task ran the project _calibrate implementation on the fixed 50-example MBPP calibration split with the pinned pretrained model, completion-span loss, and 1536-token limit. It wrote a valid 6,306,163-byte covariance/eigensystem artifact, SHA-256 05550b0fc30735633cd5513c85fe4b90ef841660c755228a7f6b277040edb65e. The first task failed only during report formatting because its in-memory return lacked an eigenvalues key; the artifact was preserved and validated with load_calibration in a successful follow-up harness task. The follow-up constructed four spectral_soft K/V operators for layers 14 and 27. Across these operators, eigenvalue minima are about 0.5000 and maxima about 1.0, as expected from the configured tau=1 construction. This is a mechanism/preflight observation, not a correctness, diversity, or causal result.",
+    "storage": "Persistent disk is 49 GiB total with 33 GiB available after the exact 1.5B model download. The fixed release requires about 129.4 GiB for its 45 core BF16 checkpoints alone, before output overhead. The current host still cannot retain the fixed matrix.",
+    "evaluator": "The official frozen entry was attempted for core-qwen1.5b-r1. Its preflight stopped before dispatch with `Docker is not installed; see README for the explicit local alternative`. No Docker, Podman, or qualified host-enforced candidate-code sandbox is available. No generated candidate code was executed.",
+    "queue": "scripts/run_release_study.py status still reports 40/40 fixed jobs pending and zero completed stages. No formal training or benchmark job started. GPU is idle."
+  },
+  "actions_observed": [
+    {
+      "action": "Probe China mirror routes",
+      "result": "Tsinghua PyPI returned HTTP 200; hf-mirror.com served the pinned revision metadata; ModelScope exposed the exact model file hash. Large weights were downloaded from ModelScope at high throughput, then SHA-256 verified."
+    },
+    {
+      "action": "Run exact-weight generation preflight through the native harness",
+      "result": "Batch spectrum-qwen15b-modelscope-forward-v2-20261017 completed; harness plan digest 9168738f570212ca4089795fad4685c15b1438c246856bf08c2b4bb562c36ad6; native plan digest 6125f87d285a3d3a48ef01017e2ef3b29f0e98090a508fdf4a0bec5c64bfd79c. Report SHA-256 d75fac6c56b7366a5d27d5803194676a006ad14064d1b5fb3de1990b5ff30b96; receipt SHA-256 71586e97d8d0761e01bd32c4377dfbe22825cb941d33fbdd68a3db87efc03078."
+    },
+    {
+      "action": "Run exact-weight one-step LoRA memory preflight through the native harness",
+      "result": "Batch spectrum-qwen15b-pretrained-lora-step-20261017 completed; harness plan digest 25e9699195865ef5c3f60459c264ae7be62ce9d20bc7494b38dec1c49bf6e0fe; native plan digest 8ba7bbeec5a243ede812edcc1e665ebe03d3125927c549fe994de79e178b6d8d. Report SHA-256 6f7c5803eadaba6154a751d17244ced11e168cb0675edccf4c7c711d302cd183; receipt SHA-256 2e0fe68f547160117bd32c4377dfbe22825cb941d33fbdd68a3db87efc03078b."
+    },
+    {
+      "action": "Run fixed-reference SPECTRUM calibration and construct initial spectral operators",
+      "result": "GPU covariance/eigensystem computation ran under a finite harness plan; its artifact survived a downstream report-formatting failure. A subsequent successful CPU harness task validated the artifact metadata/reference hash and created the spectral_soft operator artifact. Summary batch plan digest c8463447957a5a5cd79e8a355a6f68338e35ecd3d422aa58dbcaa2c87f2679cc; native plan digest 12497616f1459317b0a334f59a4f38948180a6e2c87ae9ad7cc57afab8e0cc97. Summary report SHA-256 d3d6d722b24b527b0d18efc02bb15a55cff35bb36cc6ada12bea1cd75f073eb6; operator artifact SHA-256 5646059a216a8bf9d8d6545901b6e0e2779cb2f4048419fce88fd5cb99dafa01; successful follow-up receipt SHA-256 b64bae56732a621619034380d0f59d7b6533b22652a8215fc6daea4ebd2f5ebf."
+    },
+    {
+      "action": "Attempt the frozen core training entry",
+      "result": "The official run_release_study.py entry verified its plan and data, then failed closed at Docker preflight before job dispatch. Fixed queue remained unchanged."
+    },
+    {
+      "action": "Reconcile fixed queue and working tree",
+      "result": "40 jobs remain pending with zero completed stages; git status is clean. All temporary plans/results are under ignored runs/ paths and the downloaded model remains on persistent data storage."
+    }
+  ],
+  "failed_predicates": [
+    "The frozen training/benchmark jobs cannot pass their required Docker evaluator preflight on this host.",
+    "Persistent storage remains below the core checkpoint minimum; 33 GiB free cannot retain the fixed 45-checkpoint core queue.",
+    "No verified formal training stage or benchmark score exists; all successful tasks in this cycle are engineering/mechanism preflights.",
+    "No exact model weights for the larger scale arms have been staged."
+  ],
+  "plan_delta": {
+    "reuse_refs": [
+      "Pinned prepared MBPP and benchmark data, private seeds, and the immutable spectrum_release_v1 40-job manifest",
+      "Previously preserved progress packet cycle-20261017-t4-lora-memory-qualification"
+    ],
+    "avoided_duplicates": [
+      "No data preparation repeated",
+      "No formal training or benchmark job was dispatched",
+      "The initial failed harness attempts and the calibration report-formatting failure remain preserved with their receipts"
+    ],
+    "affected_dependencies": [
+      "The exact 1.5B pretrained weights are now available on the GPU host through a Chinese mirror source and hash-verified against the pinned file.",
+      "The T4 can load/generate with the real checkpoint and complete the locked-shape single-step LoRA memory probe.",
+      "The first-round 50-example calibration and spectral_soft operator construction are now verified as a mechanism preflight.",
+      "Docker-equivalent candidate isolation and persistent checkpoint storage still block all frozen release jobs."
+    ],
+    "conflicts": [],
+    "help_requests": [],
+    "next_action": "Keep spectrum_release_v1 unchanged. Continue bounded, non-executing SPECTRUM mechanism checks that fit the host. Dispatch frozen training/evaluation jobs only after the host has a qualified Docker-equivalent sandbox and at least 130 GiB free persistent storage plus output headroom. Treat every preflight here as non-scientific support evidence.",
+    "rationale": "Chinese mirrors resolved exact 1.5B model availability and actual model-memory qualification, so the earlier weight-transfer blocker no longer applies to that model. The fixed study still cannot run because the official evaluator is Docker-gated and persistent storage cannot retain its prescribed checkpoints. The user requested running feasible work; no protocol reduction or unsafe generated-code execution is justified."
+  },
+  "limits": {
+    "scope": "User authorized autonomous work on the supplied GPU host and asked to use a Chinese/Tsinghua mirror; no new paid host or unbounded spend was authorized.",
+    "current_cycle_gpu_seconds_observed": 54.3,
+    "current_cycle_gpu_task_reserved_upper_bound": 3240,
+    "formal_training_started": false,
+    "generated_code_executed": false,
+    "billing_verified": false,
+    "full_experiment_budget_source": "No separate full-campaign provider budget or billing receipt recorded."
+  },
+  "output_refs": [
+    {
+      "uri": "remote:/root/rivermind-data/models/qwen2.5-coder-1.5b-instruct-2e1fd39/model.safetensors",
+      "description": "Exact pinned Qwen2.5-Coder-1.5B-Instruct weight file; SHA-256 c1b9b30e907950516ba3c646bdf570d8084c25a6410a0cdca80cf04b11bc13a8"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/harness/spectrum-qwen15b-modelscope-forward-v2-20261017/report.json",
+      "description": "Completed exact-weight T4 inference preflight harness report"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/attempts/spectrum-qwen15b-modelscope-forward-v2-20261017/qwen15b-modelscope-forward-v2-a1-2873606c33ba4977854825f35709a530/workspace/runs/preflight/model_probe_forward_mirror_report.json",
+      "description": "Exact-weight load and 32-token generation metrics"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/attempts/spectrum-qwen15b-pretrained-lora-step-20261017/qwen15b-pretrained-lora-step-a1-9c76a9ac9d494c45a0808a2f09a1c792/workspace/runs/preflight/qwen15b_lora_memory_pretrained_report.json",
+      "description": "One-step exact-weight LoRA memory qualification using synthetic random token IDs"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/preflight/qwen15b_spectrum_initial_calibration.pt",
+      "description": "Hash-verified covariance/eigensystem artifact from 50 fixed calibration references; SHA-256 05550b0fc30735633cd5513c85fe4b90ef841660c755228a7f6b277040edb65e"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/attempts/spectrum-qwen15b-calibration-summary-20261017/qwen15b-calibration-summary-a1-2e98fe34da5342cbbafe8d578a363ce2/workspace/runs/preflight/qwen15b_spectrum_initial_calibration_report.json",
+      "description": "Validated first-round calibration and spectral_soft operator summary; report SHA-256 d3d6d722b24b527b0d18efc02bb15a55cff35bb36cc6ada12bea1cd75f073eb6"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/attempts/spectrum-qwen15b-calibration-summary-20261017/qwen15b-calibration-summary-a1-2e98fe34da5342cbbafe8d578a363ce2/workspace/runs/preflight/qwen15b_spectrum_initial_operator.pt",
+      "description": "Initial spectral_soft operator artifact; SHA-256 5646059a216a8bf9d8d6545901b6e0e2779cb2f4048419fce88fd5cb99dafa01"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/spectrum_release_v1/plan/manifest.json",
+      "description": "Frozen 40-job release plan remains unchanged and pending"
+    }
+  ]
+}

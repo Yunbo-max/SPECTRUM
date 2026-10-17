@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "kind": "project-progress-packet",
+  "project_id": "spectrum-final-validation",
+  "owner_id": "work-autopilot-spectrum-20261017-01",
+  "cycle_id": "cycle-20261017-initial-inventory",
+  "task_id": "spectrum-setup-preflight-20261017",
+  "attempt_id": "setup-preflight-attempt-01",
+  "status": "in_progress",
+  "recorded_at": "2026-10-17T11:02:29Z",
+  "source_refs": [
+    "Yunbo-max/SPECTRUM@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "research/audit/research-state.json@94c3da01cff8bf62d98edd2349c31839aa2f4f3a",
+    "README.md@c03c09ca21cc42cf61f898684314c72ba63101a"
+  ],
+  "observations": {
+    "project_state": {
+      "entry_origin": "M",
+      "current_route": "repair_evidence",
+      "status": "implementation_prepared_runtime_pending",
+      "natural_gate_0": "inconclusive_missing_case_census_and_qualified_simple_alternative",
+      "collision_audit": "bounded_primary_source_audit_no_exhaustive_advance",
+      "prospective_validation": "not_run",
+      "next_action_from_project": "Prepare pinned data, seal the run plan, execute the core block explicitly on the user's GPU"
+    },
+    "historical_evidence": [
+      "One historical MBPP trajectory supports partial correct-AST-richness retention by SPECTRUM versus Plain/projection, with an accuracy tradeoff.",
+      "Historical SSD n=16 richness exceeds SPECTRUM on some endpoints; no final n=64 SSD result is available.",
+      "Historical results are developmental evidence, not prospective confirmation."
+    ],
+    "host_setup": {
+      "remote_checkout": "/root/rivermind-data/SPECTRUM",
+      "branch": "main",
+      "revision": "f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+      "working_tree": "clean at verification",
+      "seed_manifest": "runs/private/seeds.json exists on host; values withheld and file excluded from Git",
+      "data_preparation": "not started; no data directory",
+      "gpu": "Tesla T4, 15360 MiB, compute capability 7.5",
+      "native_bf16": false,
+      "pytorch_bf16_emulation": true,
+      "root_overlay": "30 GiB total",
+      "persistent_data_disk": "49 GiB total, approximately 48 GiB free at inspection",
+      "docker": "not installed",
+      "dependency_environment": "checked interpreters lack project training/data dependencies; system Python 3.12 has torch 2.12.1+cu130, outside the project's declared torch <2.8 range; existing Python 3.10 environment lacks torch"
+    }
+  },
+  "actions_observed": [
+    {
+      "action": "Read SPECTRUM main README, research audit/claims, final experiment contract, run guide, pinned assets and relevant runner/modeling source.",
+      "result": "Current supported release entrypoint is scripts/run_release_study.py; historical work is distinct from the 40-job finite release plan."
+    },
+    {
+      "action": "GitHub cooperation inventory.",
+      "result": "Main is the only branch; 11 commits returned; no open or closed issues/PRs observed; no existing .autopilot/project-cooperation.json at the captured main revision."
+    },
+    {
+      "action": "Clone public source on authorized remote host.",
+      "result": "Checkout is present at /root/rivermind-data/SPECTRUM at f7b661f593719d4f0a98a4db13dc33c0ad09824a."
+    },
+    {
+      "action": "Run scripts/run_release_study.py init-seeds.",
+      "result": "Host reported creation of runs/private/seeds.json; random values were not printed or copied into GitHub."
+    },
+    {
+      "action": "Inspect host GPU/storage/dependencies and CLI help.",
+      "result": "The environment is not ready for the frozen training path; no data, model download, training, benchmark, generated-code execution, or tests have been run."
+    }
+  ],
+  "input_refs": [
+    "README.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "docs/AUTORESEARCH_CHECK.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "docs/EXISTING_EVIDENCE.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "docs/FINAL_EXPERIMENTS.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "docs/RUN_FINAL_ZH.md@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "configs/final/assets.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "research/audit/research-state.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "research/audit/claims.json@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+  ],
+  "output_refs": [
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM",
+      "description": "Public SPECTRUM source checkout on persistent data disk"
+    },
+    {
+      "uri": "remote:/root/rivermind-data/SPECTRUM/runs/private/seeds.json",
+      "description": "Private host randomization manifest; contents not published"
+    }
+  ],
+  "failed_predicates": [
+    "No native BF16 support on the available Tesla T4; project source supports float32 or BF16 but not FP16.",
+    "Project data/training dependencies are absent from checked Python environments.",
+    "No Docker installation is present; Auto Work execution rules forbid Docker, so an alternate evaluator isolation route must be qualified.",
+    "The 49 GiB persistent disk is below the documented full-run checkpoint/storage requirement; core-block storage must be estimated before dispatch."
+  ],
+  "plan_delta": {
+    "reuse_refs": [
+      "Historical results and frozen protocol; no new method search or changed experimental design."
+    ],
+    "avoided_duplicates": [
+      "No peer claim, issue, PR or other branch work was observed in the GitHub project inventory."
+    ],
+    "conflicts": [],
+    "help_requests": [],
+    "next_action": "Run resource and evaluator-isolation preflights, prepare a compatible isolated environment and pinned datasets if capacity allows, then seal only a hardware-honest plan. Do not start the core block until its unchanged protocol is feasible.",
+    "rationale": "The current host differs materially from the release's documented BF16/GPU/storage assumptions. Keep scientific conditions frozen and address infrastructure separately."
+  },
+  "delivery": {
+    "coordination_registry_commit": "99f100304de940fe174bccb8271e56d8b5202ce1",
+    "coordination_registry_readback_blob_sha": "db8fdcb048e485bb93023178361d23ea88f102e6",
+    "packet_commit": null,
+    "exact_readback": "registry readback verified; packet write pending"
+  },
+  "limits": {
+    "selected_host": "user-provided remote GPU instance",
+    "expansion": "no additional paid compute or external storage provisioned",
+    "experiment_scope": "existing fixed SPECTRUM final-release core validation; no protocol reduction"
+  }
+}

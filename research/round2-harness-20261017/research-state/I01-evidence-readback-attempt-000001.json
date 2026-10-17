@@ -1,0 +1,205 @@
+{
+  "kind": "I01-evidence-readback",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "sequence": {
+    "attempt": 1,
+    "catalog_sha256": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+    "cycle": 1,
+    "step_id": "I01"
+  },
+  "verified_refs": [
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I01/attempt-000001/planner-history.json",
+      "sha256": "a7f6ada0453665f1edbed5fbe4116b2aff8db6165a6af57742e1c7648a3f90ca"
+    },
+    {
+      "path": "research-state/coverage-P02-attempt-000001.json",
+      "sha256": "1fe16394173e926a300b48531b003e6a0ff387a88b02ebc5166ec38edf3efd83"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P02/attempt-000001/acceptance.json",
+      "sha256": "f47d67ae64032abddb3a3321373bef73f49c1a256aa724d411cbe38ccf728cf1"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-rejection.json",
+      "sha256": "aab775a2f6ae33bcc82fad31ae7103dc86d0fde9f5deab3cb6f51a2fa1e3ff63"
+    },
+    {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    {
+      "path": "research-state/authorization.md",
+      "sha256": "5c0f87ede67c8a556c700f6eb9c154f61fd2c12510748839210db3f4d7c3309f"
+    },
+    {
+      "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+      "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+    },
+    {
+      "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+      "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+    },
+    {
+      "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+      "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+    },
+    {
+      "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+      "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+    },
+    {
+      "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+      "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+    },
+    {
+      "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+      "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+    },
+    {
+      "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+      "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+    },
+    {
+      "path": "inputs/provenance.json",
+      "sha256": "326f4753eb920b00cecd1c751d9e4ccae3888a4f3ebd73bda2d6c3722587b9f9"
+    },
+    {
+      "path": "inputs/source-notes.md",
+      "sha256": "b103431f0154fcfe6151d239f067008c91260038aa02d1c2410860b3988531dd"
+    },
+    {
+      "path": "inputs/spectrum/README.md",
+      "sha256": "efcae95223220821fbb3bdcb51528d88dc7b48c97e0bc5d1193aa59ce882fdad"
+    },
+    {
+      "path": "inputs/spectrum/docs/CORE_AUDIT.md",
+      "sha256": "80e97fcc2c2cb98fbb2d082f2579b26dae3a8510747da04565d85c463d898612"
+    },
+    {
+      "path": "inputs/spectrum/docs/EXISTING_EVIDENCE.md",
+      "sha256": "9bda68f72eec8b1641fb9368e5448725b80dd2f23eaee99563ba2951deb26275"
+    },
+    {
+      "path": "inputs/spectrum/docs/FINAL_EXPERIMENTS.md",
+      "sha256": "7af33b78a539ec059df9aed2df4fd66e502a97989eab2042ab9d0427fb72e197"
+    },
+    {
+      "path": "inputs/spectrum/docs/LITERATURE_AUDIT.md",
+      "sha256": "d80ff2344a5445dc0446cc1e8e04f1c4ed359cbbdbf33f6bc7114aba75b222b7"
+    },
+    {
+      "path": "inputs/spectrum/research/audit/claims.json",
+      "sha256": "fac9656cb3091f84be92b02d979a45a7d433787b777a186151e359db91d87bcf"
+    },
+    {
+      "path": "inputs/spectrum/research/audit/observed_results.json",
+      "sha256": "6c9353517eb67ac08a68955023a7f0dff7b978597eb5c6a0cc671aa9ada64f93"
+    },
+    {
+      "path": "inputs/spectrum/research/audit/research-state.json",
+      "sha256": "10f4aa59eea0daefce31ff7db6f526b06d725a56a5b1efaabb52eb05818dde1b"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/metrics.py",
+      "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/spectral.py",
+      "sha256": "2b9f91d0edbb4b270c69ace605eb6ec6646861f28c702b114a4f86ebac0a9ced"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    },
+    {
+      "path": "inputs/user-request.md",
+      "sha256": "cb7ff6ce2e67dab3cbd4ec3430a6df15ffc5dceb68e063d8fa63745e2fb35f60"
+    }
+  ],
+  "historical_receipts": [
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+        "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+      },
+      "task_id": "harness.planner.000001",
+      "state": "failed",
+      "reason": "Observed terminal Codex turn.failed: configured gpt-6-luna unsupported with ChatGPT account. Worker cleanup confirms leader stopped; process PID now absent. No response produced. Consumer stopped before reconciliation to prevent retries.",
+      "actual_seconds": 5.009553791955113
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+        "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+      },
+      "task_id": "harness.planner.000002",
+      "state": "failed",
+      "reason": "Observed terminal turn.failed: inherited gpt-6-luna unsupported for ChatGPT account; child absent and owned consumer stopped. Project model override did not take effect.",
+      "actual_seconds": 4.292720317840576
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+        "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+      },
+      "task_id": "harness.planner.000003",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 52.27915692329407
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+        "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+      },
+      "task_id": "harness.planner.000004",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 82.30538487434387
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+        "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+      },
+      "task_id": "harness.reviewer.000004",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 64.44149470329285
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+        "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+      },
+      "task_id": "harness.planner.000005",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 119.73773694038391
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+        "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+      },
+      "task_id": "harness.reviewer.000005",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 61.32794499397278
+    }
+  ],
+  "reused_review_refs": [
+    {
+      "path": "research-state/harness/round-000004/reviewer-response.json",
+      "sha256": "f7c52b78ec9747a0fa98e9fbdd3379f3ac97287b180914ce72a929d39f05878a"
+    },
+    {
+      "path": "research-state/harness/round-000005/reviewer-response.json",
+      "sha256": "94896be22e8381bf3429f00a751b164908c8bc0260781f0be242f7a84d42a58a"
+    }
+  ],
+  "inspection_refs": [],
+  "scope": "Local byte identity and entry audit only; no scientific execution, independent review of I01, or provider access claimed."
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "community-source-exclusion",
+  "observed_at": "2026-10-17T22:45:06.254Z",
+  "source_url": "https://www.rednote.com/explore/6ac60b6d000000001303e2bb",
+  "title": "递归自蒸馏：老师也该进步吗？",
+  "read_scope": {
+    "post_description": true,
+    "images_read": 0,
+    "top_level_comments": 1,
+    "visible_replies": 1
+  },
+  "decision": "exclude from discussion evidence",
+  "reason": "作者@点点后收到论文摘要式回复；可见评论没有实际技术争论或复现经验。不能把这条回复当作独立实践者证据。",
+  "primary_paper_lead": "arXiv:2609.30652v1; not checked in this intake"
+}

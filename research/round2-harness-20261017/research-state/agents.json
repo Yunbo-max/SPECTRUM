@@ -1,0 +1,20 @@
+{
+  "adapters": {
+    "codex-local": {
+      "kind": "command",
+      "argv": [
+        "/Users/yunbo/.nvm/versions/node/v24.21.0/bin/codex",
+        "exec",
+        "--skip-git-repo-check",
+        "--json",
+        "--output-schema",
+        "{schema_path}",
+        "--output-last-message",
+        "{response_path}",
+        "-"
+      ],
+      "response_mode": "json",
+      "lease_seconds": 60
+    }
+  }
+}

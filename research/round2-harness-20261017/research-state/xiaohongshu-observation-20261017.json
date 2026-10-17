@@ -1,0 +1,28 @@
+{
+  "observed_at": "2026-10-17T22:36:01.551070+00:00",
+  "preference": "enabled",
+  "authority": "research-state/user-continuation-20261017.md",
+  "provider_owner": "parent supervisor; serial retrieval only",
+  "endpoint": "http://127.0.0.1:18061/mcp",
+  "process_cwd": "/Users/yunbo/.local/share/xpzouying-xiaohongshu-mcp",
+  "backend": "rednote",
+  "same_local_session_file_confirmed": true,
+  "previous_login_evidence": "Session file and successful saved read/search artifacts from earlier today exist; credential contents omitted",
+  "current_checks": [
+    "check_login_status returned 未登录",
+    "second check_login_status returned 未登录"
+  ],
+  "serial_search": {
+    "keyword": "模型蒸馏 多样性",
+    "filters": {
+      "note_type": "图文",
+      "sort_by": "最多评论"
+    },
+    "result": "internal error: context deadline exceeded"
+  },
+  "availability": "error",
+  "posts_read": 0,
+  "comments_read": 0,
+  "meaning": "Current read access failed; does not disprove prior login, prove cookie expiry, or establish no relevant community discussion",
+  "next": "Restore provider login/read access through supported user local handoff; never bypass login or substitute scraping. Continue papers/code research independently."
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "community-research-lead",
+  "observed_at": "2026-10-17T22:43:54.470Z",
+  "source_url": "https://www.rednote.com/explore/6a126a17000000003502fc41",
+  "note_id": "6a126a17000000003502fc41",
+  "title": "自蒸馏能不能入坑",
+  "query": "自蒸馏 复现",
+  "read_scope": {
+    "post_description": true,
+    "images_read": 0,
+    "images_returned": 1,
+    "top_level_comments": 1,
+    "visible_replies": 0,
+    "has_more_comments": false
+  },
+  "original_post_summary": "作者询问自蒸馏方向是否值得进入，并担心论文复现难度；没有报告具体复现失败或配置。",
+  "comment_summary": "唯一可见评论询问自蒸馏的定义，没有补充技术证据。",
+  "project_inference": "只能支持存在易复现说明和明确基线的需求线索，不能据此认定该领域普遍不可复现或提出具体机制。",
+  "scientific_status": "low-specificity user concern; not experimental evidence"
+}

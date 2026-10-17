@@ -1,0 +1,7 @@
+# Explicit user continuation, 2026-10-17
+User: 不用6次你继续跑，跑到哪里了，小红书那边就一个个看下 交流帖子
+User: 你不要设限制
+User also confirms login occurred in the chat “检查 Research Autopilot 插件安装”.
+These newer instructions supersede the operator-selected six-attempt and 1800 cumulative-second trial caps and one-search/post-count cap. Continue the SAME SPECTRUM research goal, cursor and evidence history using GPT-6-Astra. No agent-selected total attempts, total time, or discussion-post quota. Preserve accumulated accounting and failures. Individual process watchdogs, transport timeouts and service rate limits remain operational failure detection, not a new aggregate allowance. Retain the research objective and independent acceptance requirements.
+Read Xiaohongshu discussion-style text/image posts and available comments serially; no parallel requests, promotional/video sampling, mass unattended harvesting, posting, likes or messages. Pause only that source if login or access fails; do not infer that previous login never happened. The parent supervisor currently owns serial community retrieval; workers analyze saved observations, avoid concurrent MCP requests.
+This is continued reading/research, not authorization for GPU, training, benchmarks, paid APIs, publishing, SSH experiments or original SPECTRUM modifications. Existing subscription Codex login is reused. The local supervisor is authorized to adapt and adopt the runtime at this quiet boundary to apply these explicit changed limits without clearing state or budgets.

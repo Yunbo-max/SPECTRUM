@@ -1,0 +1,55 @@
+{
+  "observed_at": "2026-10-17T22:40:34.102601+00:00",
+  "scope": "local control host only; read-only telemetry, not scientific execution",
+  "cwd": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/project",
+  "python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/uname",
+        "-srm"
+      ],
+      "exit_code": 0,
+      "stdout": "Darwin 23.2.0 arm64\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/sbin/sysctl",
+        "-n",
+        "hw.logicalcpu",
+        "hw.memsize"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "sysctl: sysctl fmt -1 1024 1: Operation not permitted\n"
+    },
+    {
+      "argv": [
+        "/usr/bin/vm_stat"
+      ],
+      "exit_code": 0,
+      "stdout": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                5354.\nPages active:                            200795.\nPages inactive:                          194078.\nPages speculative:                         5883.\nPages throttled:                              0.\nPages wired down:                        159903.\nPages purgeable:                           1062.\n\"Translation faults\":                8390983968.\nPages copy-on-write:                  171964908.\nPages zero filled:                   2809696241.\nPages reactivated:                   2517099527.\nPages purged:                          86795426.\nFile-backed pages:                       129616.\nAnonymous pages:                         271140.\nPages stored in compressor:             2148857.\nPages occupied by compressor:            442553.\nDecompressions:                      2660059506.\nCompressions:                        2824128307.\nPageins:                              224517035.\nPageouts:                               2518641.\nSwapins:                               15582038.\nSwapouts:                              21107952.\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/bin/df",
+        "-k",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "Filesystem   1024-blocks      Used Available Capacity iused    ifree %iused  Mounted on\n/dev/disk3s5   482797652 431494936   9266548    98% 5615653 92665480    6%   /System/Volumes/Data\n",
+      "stderr": ""
+    }
+  ],
+  "cpu_allocation": null,
+  "total_ram_bytes": null,
+  "usable_ram_allocation_bytes": null,
+  "gpu_hardware_inventory": "not inspected; outside current workload scope",
+  "authorized_experimental_gpu_count": 0,
+  "authorized_gpu_hours": 0,
+  "remote_target": null,
+  "resource_reservation": "none created; not an OS reservation",
+  "incident": "sysctl denied by sandbox; no escalation or capacity inference; vm_stat pages are not a workload allocation"
+}

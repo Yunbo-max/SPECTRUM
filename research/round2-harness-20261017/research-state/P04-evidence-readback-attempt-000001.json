@@ -1,0 +1,217 @@
+{
+  "sequence": {
+    "attempt": 1,
+    "catalog_sha256": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+    "cycle": 1,
+    "step_id": "P04"
+  },
+  "input_refs": [
+    {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    {
+      "path": "research-state/authorization.md",
+      "sha256": "5c0f87ede67c8a556c700f6eb9c154f61fd2c12510748839210db3f4d7c3309f"
+    },
+    {
+      "path": "inputs/user-request.md",
+      "sha256": "cb7ff6ce2e67dab3cbd4ec3430a6df15ffc5dceb68e063d8fa63745e2fb35f60"
+    },
+    {
+      "path": "research-state/user-continuation-20261017.md",
+      "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+    },
+    {
+      "path": "research-state/uncapped-contract-amendment-20261017.json",
+      "sha256": "8ce54b028c0ee77a84519e321c7a4bd435529026e4f1294438670e6b97254157"
+    },
+    {
+      "path": "research-state/agents.json",
+      "sha256": "bde42f7fbf03d427970a76699062424fe5fdef5cf9a917287f66f19ebcf71314"
+    },
+    {
+      "path": "research-state/model-activation-20261017.json",
+      "sha256": "404d8a2edfcdc73dacb308851ca0769416e6d59d16cc3eead0c8361ec957fe9b"
+    },
+    {
+      "path": "research-state/xiaohongshu-login-restored-20261017.json",
+      "sha256": "5ee3574c6360509e35aaf0d2e003fc4ad0aec1d8227e355ec232be72b93edc45"
+    },
+    {
+      "path": "research-state/I04-exit-criteria-attempt-000001.md",
+      "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+    },
+    {
+      "path": "research-state/harness/round-000008/reviewer-response.json",
+      "sha256": "3d86cb3f1dd1a395f953b6dbcdf1f063eb74e78af5489c613f28cc3a071bf240"
+    }
+  ],
+  "planner_input_ref": {
+    "path": "research-state/harness/round-000009/planner-input.json",
+    "sha256": "ecf24ce6f3c198a8feaf6bf846df0a13839517a40dfb2cda2b79491fcae545a9"
+  },
+  "history_ref": {
+    "path": "research-state/harness/sequence/cycle-000001/P04/attempt-000001/planner-history.json",
+    "sha256": "82f2af00871660cc89405b9536152351200d5a92a72c9bf7eda9d3d37db6cb99"
+  },
+  "prior_acceptance_ref": {
+    "path": "research-state/harness/sequence/cycle-000001/I04/attempt-000001/acceptance.json",
+    "sha256": "8d5f9742ebc38dad91569678972b7d02d55a3676072448a7b16662c356ed962a"
+  },
+  "receipt_readback": [
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+        "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+      },
+      "task_id": "harness.planner.000001",
+      "state": "failed",
+      "actual_seconds": 5.009553791955113,
+      "actual_cost": 0,
+      "reason": "Observed terminal Codex turn.failed: configured gpt-6-luna unsupported with ChatGPT account. Worker cleanup confirms leader stopped; process PID now absent. No response produced. Consumer stopped before reconciliation to prevent retries."
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+        "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+      },
+      "task_id": "harness.planner.000002",
+      "state": "failed",
+      "actual_seconds": 4.292720317840576,
+      "actual_cost": 0,
+      "reason": "Observed terminal turn.failed: inherited gpt-6-luna unsupported for ChatGPT account; child absent and owned consumer stopped. Project model override did not take effect."
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+        "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+      },
+      "task_id": "harness.planner.000003",
+      "state": "completed",
+      "actual_seconds": 52.27915692329407,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+        "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+      },
+      "task_id": "harness.planner.000004",
+      "state": "completed",
+      "actual_seconds": 82.30538487434387,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+        "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+      },
+      "task_id": "harness.reviewer.000004",
+      "state": "completed",
+      "actual_seconds": 64.44149470329285,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+        "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+      },
+      "task_id": "harness.planner.000005",
+      "state": "completed",
+      "actual_seconds": 119.73773694038391,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+        "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+      },
+      "task_id": "harness.reviewer.000005",
+      "state": "completed",
+      "actual_seconds": 61.32794499397278,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/60ebad5772e34e77aa5cad5b3bac7a43.json",
+        "sha256": "46629334dcb86fed5b3bd9698c47105d830830ab4685d16fd9059954eaacb82a"
+      },
+      "task_id": "harness.planner.000006",
+      "state": "completed",
+      "actual_seconds": 102.57513213157654,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/4df749392a144855907672a394947093.json",
+        "sha256": "5e5fb579a7ce048e7a293ad184eeddba499cdf063217090982c35e15b208e134"
+      },
+      "task_id": "harness.reviewer.000006",
+      "state": "completed",
+      "actual_seconds": 60.2804651260376,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/4048ffe80234459b95c9292e4e23ff1e.json",
+        "sha256": "cec0f6b83e3654ca79e68032c0a6a94ae3024d620b4ece6f13eb3eafaa6fa464"
+      },
+      "task_id": "harness.planner.000007",
+      "state": "completed",
+      "actual_seconds": 127.39489889144897,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/8b70d46c1e58435ab54afad5250e0e9c.json",
+        "sha256": "342bfaf680c73174c51a8ea106d76dbdd369975d865672a9c053f160d0495fab"
+      },
+      "task_id": "harness.reviewer.000007",
+      "state": "completed",
+      "actual_seconds": 71.94071793556213,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/c8341883ba4f469983e1c6e2c3f88a27.json",
+        "sha256": "164b7eda00d10799f2d1452fe84e3f1220a220b4887aea48663422e39af6b7e4"
+      },
+      "task_id": "harness.planner.000008",
+      "state": "completed",
+      "actual_seconds": 108.07175278663635,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/d79f193c7c6740d2a6c9b4a74cdd2b2a.json",
+        "sha256": "ad95435ddb5f1cfe386106f4895f7a18f5348d676c6f31de817678b0013f9afe"
+      },
+      "task_id": "harness.reviewer.000008",
+      "state": "completed",
+      "actual_seconds": 61.11211800575256,
+      "actual_cost": 0,
+      "reason": null
+    }
+  ],
+  "inspection_refs": [],
+  "repair_basis": [],
+  "budget_snapshot": {
+    "reserved_cost": 0,
+    "reserved_seconds": 0.0,
+    "spent_cost": 0,
+    "spent_seconds": 920.7690774220973
+  },
+  "receipt_seconds_sum": 920.7690774220973,
+  "note": "13 historical receipts read and hashes verified; current invocation not yet settled; no new native receipts or never-started cancellations in supplied inspection set"
+}

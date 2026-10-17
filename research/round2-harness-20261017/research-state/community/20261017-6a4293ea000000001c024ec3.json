@@ -1,0 +1,30 @@
+{
+  "kind": "community-research-lead",
+  "observed_at": "2026-10-17T22:42:53.879Z",
+  "source_url": "https://www.rednote.com/explore/6a4293ea000000001c024ec3",
+  "note_id": "6a4293ea000000001c024ec3",
+  "title": "策略自蒸馏降低输出多样性",
+  "query": "自蒸馏 多样性",
+  "selection": "论文分享但评论提出具体机制反问，纳入讨论线索；不是凭热度纳入",
+  "read_scope": {
+    "post_description": true,
+    "images_read": 0,
+    "images_returned": 1,
+    "top_level_comments": 1,
+    "visible_replies": 1,
+    "has_more_comments": false
+  },
+  "original_post_summary": "作者介绍条件于正确演示的自蒸馏可能集中输出模式；属于对论文的转述。",
+  "discussion_question": {
+    "comment_id": "6a43a664000000002a00739f",
+    "summary": "评论者追问：非自蒸馏中的 reverse KL 是否也降低多样性？这种下降是否关联推理重复？作者仅回复表情，没有技术答案。"
+  },
+  "primary_source_check": {
+    "url": "https://arxiv.org/abs/2606.26091",
+    "read_scope": "arXiv abstract and metadata only",
+    "title": "On-Policy Self-Distillation with Sampled Demonstrations Reduces Output Diversity",
+    "finding": "原摘要讨论正确演示条件化下的偏置及模式集中，并在特定任务对比 RL；没有直接回答 SPECTRUM 的因果机制。"
+  },
+  "project_inference": "第二轮应区分一般目标函数的模式偏好、正确演示条件化的额外偏置，以及谱干预效果。先核对本项目实际损失，不能把 SPECTRUM 当作 reverse-KL OPSD；评论中的泛化问题仍待原文和代码核验。",
+  "scientific_status": "unresolved lead, not evidence of causal mechanism or novelty"
+}

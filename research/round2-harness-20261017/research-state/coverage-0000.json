@@ -1,0 +1,54 @@
+{
+  "kind": "research-coverage",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "previous_ref": null,
+  "obligations": [
+    {
+      "id": "restore-evidence",
+      "description": "Recover SPECTRUM historical results, precise source identity, negative evidence, missing raw outputs and the user-authorized scope",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    },
+    {
+      "id": "source-and-community",
+      "description": "Use primary papers/code and bounded authorized Xiaohongshu leads, with honest access limits",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    },
+    {
+      "id": "second-round-inquiry",
+      "description": "Compare mechanisms, simple alternatives and conditional predictions; identify an appropriate decisive next check without starting experiments",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    },
+    {
+      "id": "independent-review",
+      "description": "Obtain separate actual review of the evidence, candidate necessity and claim limits",
+      "kind": "review",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    },
+    {
+      "id": "deliver-research-decision",
+      "description": "Deliver a Chinese second-round decision report with source links, caveats, falsifier and next action",
+      "kind": "delivery",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    }
+  ],
+  "experiment_contracts": []
+}

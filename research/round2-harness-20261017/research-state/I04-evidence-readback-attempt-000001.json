@@ -1,0 +1,109 @@
+{
+  "sequence": {
+    "attempt": 1,
+    "catalog_sha256": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+    "cycle": 1,
+    "step_id": "I04"
+  },
+  "evidence_refs": [
+    {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    {
+      "path": "research-state/user-continuation-20261017.md",
+      "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+    },
+    {
+      "path": "research-state/authorization.md",
+      "sha256": "5c0f87ede67c8a556c700f6eb9c154f61fd2c12510748839210db3f4d7c3309f"
+    },
+    {
+      "path": "inputs/user-request.md",
+      "sha256": "cb7ff6ce2e67dab3cbd4ec3430a6df15ffc5dceb68e063d8fa63745e2fb35f60"
+    },
+    {
+      "path": "research-state/I02-parent-problem-attempt-000001.md",
+      "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+    },
+    {
+      "path": "research-state/harness/round-000007/reviewer-response.json",
+      "sha256": "dc3bb2ec666f86783d94427c82af5acce61290b1208f40ddd6556e42ac3594f9"
+    },
+    {
+      "path": "research-state/source-recovery-20261017.json",
+      "sha256": "16569fdcef84acd3001391a35a30b4b5c450bc51e916f7d84824150fd4185905"
+    },
+    {
+      "path": "research-state/xiaohongshu-observation-20261017.json",
+      "sha256": "7686b94b4e43baabce6643ee685e143859e545a8b8611b96a2c403ec9a31f776"
+    },
+    {
+      "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+      "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+    },
+    {
+      "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+      "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+    },
+    {
+      "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+      "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+    },
+    {
+      "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+      "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+    },
+    {
+      "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+      "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+    },
+    {
+      "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+      "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+    },
+    {
+      "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+      "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+    },
+    {
+      "path": "research-state/harness/receipts/60ebad5772e34e77aa5cad5b3bac7a43.json",
+      "sha256": "46629334dcb86fed5b3bd9698c47105d830830ab4685d16fd9059954eaacb82a"
+    },
+    {
+      "path": "research-state/harness/receipts/4df749392a144855907672a394947093.json",
+      "sha256": "5e5fb579a7ce048e7a293ad184eeddba499cdf063217090982c35e15b208e134"
+    },
+    {
+      "path": "research-state/harness/receipts/4048ffe80234459b95c9292e4e23ff1e.json",
+      "sha256": "cec0f6b83e3654ca79e68032c0a6a94ae3024d620b4ece6f13eb3eafaa6fa464"
+    },
+    {
+      "path": "research-state/harness/receipts/8b70d46c1e58435ab54afad5250e0e9c.json",
+      "sha256": "342bfaf680c73174c51a8ea106d76dbdd369975d865672a9c053f160d0495fab"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I04/attempt-000001/planner-history.json",
+      "sha256": "94c278446ad24c39686eb9f8c20a86d0458e5400d4875d71ad6ed52b87da2cf2"
+    },
+    {
+      "path": "research-state/coverage-I02-attempt-000001.json",
+      "sha256": "fdc282ac95991e46466b23b98ee806254cec039ff796dd017ee018bf6cee528c"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-rejection.json",
+      "sha256": "aab775a2f6ae33bcc82fad31ae7103dc86d0fde9f5deab3cb6f51a2fa1e3ff63"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I02/attempt-000001/acceptance.json",
+      "sha256": "df65955c6055d4ddabe200ef8e0d011c1d993142048ebdc6281110f25a7c8b70"
+    }
+  ],
+  "receipt_count": 11,
+  "inspection_refs": [],
+  "native_receipts": [],
+  "accepted_decision_ref": null,
+  "prior_spent_seconds": 751.5852066297084,
+  "current_invocation_settled": false,
+  "observation": "核验并读回历史11份回执；两次模型失败与一次契约拒绝保留。无新native执行、未启动取消或待读inspection。"
+}

@@ -1,0 +1,411 @@
+{
+  "kind": "P02-asset-inventory",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "sequence": {
+    "attempt": 1,
+    "catalog_sha256": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+    "cycle": 1,
+    "step_id": "P02"
+  },
+  "source_identity": {
+    "snapshot_commit": "f7b661f593719d4f0a98a4db13dc33c0ad09824a",
+    "historical_upstream_commit": "45195e866162df1cdf9de0169d2bf17347eb6abf",
+    "runtime_source_commit": "c31f163c5044dc8ca9b810e98e6c3b4862b0fdc6",
+    "policy": {
+      "edition": "autonomous-rsi-harness",
+      "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+      "source_revision": "c31f163c5044dc8ca9b810e98e6c3b4862b0fdc6",
+      "version": "0.4.0-harness.2"
+    },
+    "snapshot_limit": "Original SPECTRUM has uncommitted batch configuration changes. This input snapshot uses the committed files only. No live experiment data was copied or generated."
+  },
+  "assets": [
+    {
+      "ref": {
+        "path": "inputs/provenance.json",
+        "sha256": "326f4753eb920b00cecd1c751d9e4ccae3888a4f3ebd73bda2d6c3722587b9f9"
+      },
+      "bytes": 2121,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    },
+    {
+      "ref": {
+        "path": "inputs/source-notes.md",
+        "sha256": "b103431f0154fcfe6151d239f067008c91260038aa02d1c2410860b3988531dd"
+      },
+      "bytes": 1848,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/README.md",
+        "sha256": "efcae95223220821fbb3bdcb51528d88dc7b48c97e0bc5d1193aa59ce882fdad"
+      },
+      "bytes": 7661,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/docs/CORE_AUDIT.md",
+        "sha256": "80e97fcc2c2cb98fbb2d082f2579b26dae3a8510747da04565d85c463d898612"
+      },
+      "bytes": 11583,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/docs/EXISTING_EVIDENCE.md",
+        "sha256": "9bda68f72eec8b1641fb9368e5448725b80dd2f23eaee99563ba2951deb26275"
+      },
+      "bytes": 9047,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/docs/FINAL_EXPERIMENTS.md",
+        "sha256": "7af33b78a539ec059df9aed2df4fd66e502a97989eab2042ab9d0427fb72e197"
+      },
+      "bytes": 9234,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/docs/LITERATURE_AUDIT.md",
+        "sha256": "d80ff2344a5445dc0446cc1e8e04f1c4ed359cbbdbf33f6bc7114aba75b222b7"
+      },
+      "bytes": 16144,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/research/audit/claims.json",
+        "sha256": "fac9656cb3091f84be92b02d979a45a7d433787b777a186151e359db91d87bcf"
+      },
+      "bytes": 6978,
+      "status": "historical_audit_summary_not_raw_run",
+      "inspection_scope": "审计状态、来源身份、主终点和限制；observed_results 全字节哈希、定点阅读，不声称逐行验证全部表格。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/research/audit/observed_results.json",
+        "sha256": "6c9353517eb67ac08a68955023a7f0dff7b978597eb5c6a0cc671aa9ada64f93"
+      },
+      "bytes": 68925,
+      "status": "historical_audit_summary_not_raw_run",
+      "inspection_scope": "审计状态、来源身份、主终点和限制；observed_results 全字节哈希、定点阅读，不声称逐行验证全部表格。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/research/audit/research-state.json",
+        "sha256": "10f4aa59eea0daefce31ff7db6f526b06d725a56a5b1efaabb52eb05818dde1b"
+      },
+      "bytes": 885,
+      "status": "historical_audit_summary_not_raw_run",
+      "inspection_scope": "审计状态、来源身份、主终点和限制；observed_results 全字节哈希、定点阅读，不声称逐行验证全部表格。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/src/improving/metrics.py",
+        "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+      },
+      "bytes": 33011,
+      "status": "authored_source_static_scope_only",
+      "inspection_scope": "函数索引；metrics.py:159-190,559-589；spectral.py:1-90；training.py:18-67，按文件适用。未执行、未完整依赖审查。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/src/improving/spectral.py",
+        "sha256": "2b9f91d0edbb4b270c69ace605eb6ec6646861f28c702b114a4f86ebac0a9ced"
+      },
+      "bytes": 10505,
+      "status": "authored_source_static_scope_only",
+      "inspection_scope": "函数索引；metrics.py:159-190,559-589；spectral.py:1-90；training.py:18-67，按文件适用。未执行、未完整依赖审查。"
+    },
+    {
+      "ref": {
+        "path": "inputs/spectrum/src/improving/training.py",
+        "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+      },
+      "bytes": 11553,
+      "status": "authored_source_static_scope_only",
+      "inspection_scope": "函数索引；metrics.py:159-190,559-589；spectral.py:1-90；training.py:18-67，按文件适用。未执行、未完整依赖审查。"
+    },
+    {
+      "ref": {
+        "path": "inputs/user-request.md",
+        "sha256": "cb7ff6ce2e67dab3cbd4ec3430a6df15ffc5dceb68e063d8fa63745e2fb35f60"
+      },
+      "bytes": 857,
+      "status": "retained_document_not_execution",
+      "inspection_scope": "目标/来源/计划/历史审计文字，不能替代原始证据。"
+    }
+  ],
+  "snapshot_hash_checks": [
+    {
+      "path": "inputs/spectrum/README.md",
+      "sha256": "efcae95223220821fbb3bdcb51528d88dc7b48c97e0bc5d1193aa59ce882fdad"
+    },
+    {
+      "path": "inputs/spectrum/docs/EXISTING_EVIDENCE.md",
+      "sha256": "9bda68f72eec8b1641fb9368e5448725b80dd2f23eaee99563ba2951deb26275"
+    },
+    {
+      "path": "inputs/spectrum/docs/CORE_AUDIT.md",
+      "sha256": "80e97fcc2c2cb98fbb2d082f2579b26dae3a8510747da04565d85c463d898612"
+    },
+    {
+      "path": "inputs/spectrum/docs/LITERATURE_AUDIT.md",
+      "sha256": "d80ff2344a5445dc0446cc1e8e04f1c4ed359cbbdbf33f6bc7114aba75b222b7"
+    },
+    {
+      "path": "inputs/spectrum/docs/FINAL_EXPERIMENTS.md",
+      "sha256": "7af33b78a539ec059df9aed2df4fd66e502a97989eab2042ab9d0427fb72e197"
+    },
+    {
+      "path": "inputs/spectrum/research/audit/observed_results.json",
+      "sha256": "6c9353517eb67ac08a68955023a7f0dff7b978597eb5c6a0cc671aa9ada64f93"
+    },
+    {
+      "path": "inputs/spectrum/research/audit/claims.json",
+      "sha256": "fac9656cb3091f84be92b02d979a45a7d433787b777a186151e359db91d87bcf"
+    },
+    {
+      "path": "inputs/spectrum/research/audit/research-state.json",
+      "sha256": "10f4aa59eea0daefce31ff7db6f526b06d725a56a5b1efaabb52eb05818dde1b"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/metrics.py",
+      "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/spectral.py",
+      "sha256": "2b9f91d0edbb4b270c69ace605eb6ec6646861f28c702b114a4f86ebac0a9ced"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    }
+  ],
+  "historical_referenced_assets_not_present_as_raw_files": {
+    "main_eval64_summary": {
+      "git_blob": "c66d7838e463253da59ffa26b131e1d379dedbf1",
+      "sha256": "cb7eb3882257f6603025f5f2005d7d94734804ac75ef5ee7655cc01ccdd32d3f",
+      "collection": "results/",
+      "artifact": "summary.csv"
+    },
+    "main_eval64_comparisons": {
+      "git_blob": "9a76b94919589056c5c2c7425c7c947bc148a06c",
+      "sha256": "f4a6f780c9dcad867c05fab87e82fc408f4cfdcbb8cd197ab08e047ff5bfdff0",
+      "collection": "results/",
+      "artifact": "comparisons_compact.json"
+    },
+    "main_eval64_report": {
+      "git_blob": "69bd0995c92488ca496af623194275518d7e08ee",
+      "sha256": "f01fe8b0a927410f82a5e1e113eba598684f85e1f2c8b9d02762f077e4728cdc",
+      "collection": "results/",
+      "artifact": "REPORT.md"
+    },
+    "main_eval16_metrics": {
+      "git_blob": "871c7f4ddc17b450691bb2828fbda7745b487eff",
+      "sha256": "57372434518680846040f72874d3e08424678fedbb334a768bf494582c1beaa1",
+      "collection": "results/",
+      "artifact": "metrics.csv"
+    },
+    "main_eval16_compact": {
+      "git_blob": "1af399dfeffafd20768a59bb804d43db6a651bda",
+      "sha256": "f2b72885fe84f69f83aa052022632ccbf881d83b33985fd982a8307f30f6a246",
+      "collection": "paper/iclr2027/source-data/",
+      "artifact": "report.compact.json"
+    },
+    "ssd_eval16_trajectories": {
+      "git_blob": "5dc34f034b544bd9c3ecaf6453a77eb47279c31e",
+      "sha256": "8c3611b5d6b5cdfba2a56905333b69e603ca39c421de56cfebe8b2d4c761fc70",
+      "collection": "results/sep20_continuation/",
+      "artifact": "trajectories.csv"
+    },
+    "ssd_eval64_status": {
+      "git_blob": "c192651b0b0767ef987291b5937a9c35a6c0069d",
+      "sha256": "33c4e0140fbec74b91c21dfb91d7670db41c88615385e582f1720eaba4456b01",
+      "collection": "results/sep20_continuation/",
+      "artifact": "ssd_round5_eval64_retention.json"
+    },
+    "apps_eval16_trajectories": {
+      "git_blob": "47788132a7b75e4f2258ab021027c068e01b4035",
+      "sha256": "2d42840e4b5301b4280d1700db2b92e53ad07ac85cfdae6ebe689294e2aa258c",
+      "collection": "results/sep20_continuation/",
+      "artifact": "trajectories.csv"
+    },
+    "humaneval_eval16_trajectories": {
+      "git_blob": "1892accd3cbf9ccb5b830dfdf61adc3d62a6a966",
+      "sha256": "b2b053ae4c0ff6854ae16184ac635378629aeef48dee986b07dec2a5bb4b4cb0",
+      "collection": "results/sep20_continuation/",
+      "artifact": "trajectories.csv"
+    },
+    "baseline_matrix": {
+      "git_blob": "be5e824719b2c11e306ab544de31fa5a14536601",
+      "sha256": "608cfa86c32563c6005a2900a9f76c3c8962cfd2650759d6ae6610a0c15d1a4c",
+      "collection": "docs/",
+      "artifact": "iclr2027_matrix_pass16.csv"
+    },
+    "baseline_matrix_status": {
+      "git_blob": "738ee6e6911b1dc42730637a346659fb93f1fe21",
+      "sha256": "e0de465a64cccde97da7a912a4f92b8be8f32477e4ddafc11fca5b7f960d54a8",
+      "collection": "docs/",
+      "artifact": "iclr2027_matrix_status.md"
+    },
+    "pilot_report": {
+      "git_blob": "bdbedf36b39a538116a1afda367ab8be85454f58",
+      "sha256": "8f1fcf23523daaeb2c5656e5d9647e5c9f767803b70df712d99849f0db9c6dab",
+      "collection": "results/",
+      "artifact": "README.md"
+    },
+    "smoke_report": {
+      "git_blob": "5c628d0812c1dab342e4fa018fec49c6ccab527f",
+      "sha256": "530d6952bacb2890344553903cd89c7334a0b13ecb08a07840bd97c4db488617",
+      "collection": "results/",
+      "artifact": "README.md"
+    },
+    "natural_example_summary": {
+      "git_blob": "adb1455d2f2fb45b1000fcd9ceab21a1b919dacd",
+      "sha256": "e88c591d2f120b129c8772cb812de2dc24a2b8ff7df5ac5a4355ab85a4c6ba6d",
+      "collection": "paper/iclr2027/source-data/",
+      "artifact": "derived_analysis.json"
+    },
+    "historical_manuscript": {
+      "git_blob": "50318101b74acf6fa4bd27c64d990c476cd02d25",
+      "sha256": "892a152d7213cee2984f05e01ccca305bb9cc2509b9ad76212ef7daffb9457eb",
+      "collection": "paper/iclr2027/",
+      "artifact": "main.tex"
+    },
+    "prior_final_study_plan": {
+      "git_blob": "902c72c6865b53abe1773063a70272766e32080a",
+      "sha256": "bae2c92448a428984806473fd3e753d35c5027f8c287b43cb79f7dc219ec92a9",
+      "collection": "experiments/final_study/",
+      "artifact": "PLAN.md"
+    }
+  },
+  "missing_in_supplied_snapshot": [
+    "manuscript main.tex and full paper PDF",
+    "raw generated programs and per-case scorer outputs",
+    "data/split files and model/checkpoint tensors",
+    "pipeline.py, calibration implementation, modeling.py, official evaluator, configs/final/assets.json and release scripts",
+    "independent semantic annotations",
+    "prospective final-study results and scientific verification receipts"
+  ],
+  "historical_receipts": [
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+        "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+      },
+      "task_id": "harness.planner.000001",
+      "run_id": "e8d17e6787a5414580007a818913f01f",
+      "state": "failed",
+      "reason": "Observed terminal Codex turn.failed: configured gpt-6-luna unsupported with ChatGPT account. Worker cleanup confirms leader stopped; process PID now absent. No response produced. Consumer stopped before reconciliation to prevent retries.",
+      "actual_seconds": 5.009553791955113,
+      "outputs": []
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+        "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+      },
+      "task_id": "harness.planner.000002",
+      "run_id": "bdaaede9143a4f6492900f53cc0bc96c",
+      "state": "failed",
+      "reason": "Observed terminal turn.failed: inherited gpt-6-luna unsupported for ChatGPT account; child absent and owned consumer stopped. Project model override did not take effect.",
+      "actual_seconds": 4.292720317840576,
+      "outputs": []
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+        "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+      },
+      "task_id": "harness.planner.000003",
+      "run_id": "7390f475a51d4ddeba2d048ddd569175",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 52.27915692329407,
+      "outputs": [
+        {
+          "path": "research-state/harness/round-000003/planner-response.json",
+          "sha256": "6b13a334e25610344becc59de3ee0992bb63272642ceb26194ce1fb0d6e75b80"
+        }
+      ]
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+        "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+      },
+      "task_id": "harness.planner.000004",
+      "run_id": "3c2469fbd1664ca4a6dd33eab2134c1c",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 82.30538487434387,
+      "outputs": [
+        {
+          "path": "research-state/harness/round-000004/planner-response.json",
+          "sha256": "d3d619fe9c67cac70aca3754693b016e610c8b188a2aa94c64ca3612c5e8820a"
+        }
+      ]
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+        "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+      },
+      "task_id": "harness.reviewer.000004",
+      "run_id": "ee5009b8b91f44f3a2b4d0c601059abd",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 64.44149470329285,
+      "outputs": [
+        {
+          "path": "research-state/harness/round-000004/reviewer-response.json",
+          "sha256": "f7c52b78ec9747a0fa98e9fbdd3379f3ac97287b180914ce72a929d39f05878a"
+        }
+      ]
+    }
+  ],
+  "checkpoint_refs": [
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P02/attempt-000001/planner-history.json",
+      "sha256": "c7ca5c59678445f8f71265543478317e7eb915314fa8d34876d882f44c3a8ae0"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P01/attempt-000004/acceptance.json",
+      "sha256": "8729f884950b39c7c27527d5541ea1288927ab3d611ea553013f0f06b8c4daa1"
+    },
+    {
+      "path": "research-state/harness/round-000004/reviewer-response.json",
+      "sha256": "f7c52b78ec9747a0fa98e9fbdd3379f3ac97287b180914ce72a929d39f05878a"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-rejection.json",
+      "sha256": "aab775a2f6ae33bcc82fad31ae7103dc86d0fde9f5deab3cb6f51a2fa1e3ff63"
+    }
+  ],
+  "current_attempt": {
+    "task_id": "harness.planner.000005",
+    "run_id": "8aabe43c8690486385a03d08f0c7a699",
+    "status": "current_invocation_no_terminal_receipt_yet",
+    "inspection_refs": [],
+    "native_tasks": []
+  },
+  "limitations": [
+    "Missing is scoped to supplied snapshot, not asserted absent from original repository.",
+    "Existing P01 independent review does not validate SPECTRUM scientific results or accept P02.",
+    "No native experiments, semantic annotations, provider recovery or scientific tests performed.",
+    "Reports directory absent at initial inventory; no prior second-round delivery found there."
+  ]
+}

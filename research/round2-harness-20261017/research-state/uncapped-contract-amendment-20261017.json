@@ -1,0 +1,143 @@
+{
+  "instruction_ref": {
+    "path": "research-state/user-continuation-20261017.md",
+    "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+  },
+  "old_program_contract": {
+    "agent_config_ref": {
+      "path": "research-state/agents.json",
+      "sha256": "bde42f7fbf03d427970a76699062424fe5fdef5cf9a917287f66f19ebcf71314"
+    },
+    "authorization_ref": {
+      "path": "research-state/authorization.md",
+      "sha256": "5c0f87ede67c8a556c700f6eb9c154f61fd2c12510748839210db3f4d7c3309f"
+    },
+    "coverage_ref": {
+      "path": "research-state/coverage-0000.json",
+      "sha256": "89c1a0a0164df193e12d8def0e60fc395e505fa81d6ce1f6b614b2ff869012d1"
+    },
+    "goal_id": "spectrum-round2",
+    "max_rounds": 6,
+    "native_target_ref": null,
+    "objective_ref": {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    "planner": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 300
+    },
+    "policy": {
+      "edition": "autonomous-rsi-harness",
+      "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+      "source_revision": "c31f163c5044dc8ca9b810e98e6c3b4862b0fdc6",
+      "version": "0.4.0-harness.2"
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "reviewer": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 300
+    },
+    "schema_version": 2,
+    "sequence": {
+      "mode": "once",
+      "scopes": [
+        "research"
+      ]
+    },
+    "verifier": {
+      "max_seconds": 30
+    }
+  },
+  "new_program_contract": {
+    "agent_config_ref": {
+      "path": "research-state/agents.json",
+      "sha256": "bde42f7fbf03d427970a76699062424fe5fdef5cf9a917287f66f19ebcf71314"
+    },
+    "authorization_ref": {
+      "path": "research-state/user-continuation-20261017.md",
+      "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+    },
+    "coverage_ref": {
+      "path": "research-state/coverage-0000.json",
+      "sha256": "89c1a0a0164df193e12d8def0e60fc395e505fa81d6ce1f6b614b2ff869012d1"
+    },
+    "goal_id": "spectrum-round2",
+    "max_rounds": null,
+    "native_target_ref": null,
+    "objective_ref": {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    "planner": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 300
+    },
+    "policy": {
+      "edition": "autonomous-rsi-harness",
+      "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+      "source_revision": "a17842f9c8eb5042e99e392fa5414cb0791772a2",
+      "version": "0.4.0-harness.2"
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "reviewer": {
+      "adapter": "codex-local",
+      "max_cost": 0,
+      "max_seconds": 300
+    },
+    "schema_version": 2,
+    "sequence": {
+      "mode": "once",
+      "scopes": [
+        "research"
+      ]
+    },
+    "verifier": {
+      "max_seconds": 30
+    }
+  },
+  "old_project_contract": {
+    "adapters": [
+      "codex-local",
+      "native"
+    ],
+    "limits": {
+      "cycle_seconds": 300,
+      "max_cost": 0,
+      "max_seconds": 1800,
+      "max_workers": 1,
+      "report_seconds": 300
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "role": "local_executor",
+    "root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/project",
+    "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+    "skill_root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot",
+    "workflow_class": "scientific_method"
+  },
+  "new_project_contract": {
+    "adapters": [
+      "codex-local",
+      "native"
+    ],
+    "limits": {
+      "cycle_seconds": 300,
+      "max_cost": 0,
+      "max_seconds": null,
+      "max_workers": 1,
+      "report_seconds": 300
+    },
+    "project_id": "spectrum-round2-work-harness",
+    "role": "local_executor",
+    "root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/project",
+    "skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
+    "skill_root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot",
+    "workflow_class": "scientific_method"
+  },
+  "previous_revision": 16,
+  "change": "Explicit user amendment at quiet boundary; no tasks, runs, receipts, counters or acceptance modified",
+  "independent_static_review": "review_uncapped_resume: no blocking issue found; no tests run"
+}

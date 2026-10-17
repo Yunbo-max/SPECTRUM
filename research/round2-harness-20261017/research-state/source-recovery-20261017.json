@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-10-17T22:25:57.692227+00:00",
+  "actor": "parent local supervisor; source recovery support, not an accepted Harness step",
+  "source_commit": "45195e866162df1cdf9de0169d2bf17347eb6abf",
+  "repository": "https://github.com/Yunbo-max/SPECTRUM",
+  "local_repository": "/Users/yunbo/Documents/ssdforever/SPECTRUM",
+  "local_cat_file_observation": {
+    "requested_objects": 16,
+    "available": 0,
+    "missing": 16
+  },
+  "remote_fetch": {
+    "destination": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/evidence-objects.git",
+    "filter": "blob:none",
+    "depth": 1,
+    "returncode": 128,
+    "stderr": "fatal: remote error: upload-pack: not our ref 45195e866162df1cdf9de0169d2bf17347eb6abf"
+  },
+  "conclusion": "The audited objects were not recoverable from these two checked locations. This does not prove they do not exist elsewhere. Do not relabel reported historical metrics as independently verified raw execution.",
+  "experiment_executed": false,
+  "original_workspace_modified": false
+}

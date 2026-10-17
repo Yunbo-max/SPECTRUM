@@ -1,0 +1,11 @@
+{
+  "model": "gpt-6-astra",
+  "selection": "explicit user choice GPT-6-Astra",
+  "configuration_scope": "private CODEX_HOME for this consumer and descendants",
+  "private_config_path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/codex-profile/config.toml",
+  "global_config_sha256": "08f5a15e88559a6051fcede3da33df01565751e3868f8779a59b9af935c1dbd2",
+  "global_config_unchanged": true,
+  "authentication": "reuse existing local auth via symlink; credential content not logged",
+  "program_contract_unchanged": true,
+  "prior_failed_runs_preserved": true
+}

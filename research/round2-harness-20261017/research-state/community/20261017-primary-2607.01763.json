@@ -1,0 +1,11 @@
+{
+  "kind": "primary-source-followup",
+  "observed_at": "2026-10-17T22:42:53.879Z",
+  "origin_community_note": "20261017-6a34f4ae000000001503d43b.json",
+  "source_url": "https://arxiv.org/abs/2607.01763",
+  "title": "Denser ≠ Better: Limits of On-Policy Self-Distillation for Continual Post-Training",
+  "read_scope": "arXiv abstract and metadata, plus authors project-page search result; not full-paper/code audit",
+  "authors_report": "其持续后训练实验中，SDPO 的域内专门化伴随更多遗忘、参数及响应漂移，并可能放大高频格式痕迹。结论受教师稳定性、目标可靠性和任务设置约束。",
+  "project_inference": "把正确程序中的格式/高频 token 变化与可执行策略变化分开，作为解释 SPECTRUM AST 多样性收益的竞争因素；论文不直接证明本项目有同样机制。",
+  "next": "在相关研究节点阅读完整论文和代码，核对其任务、信息集与 SPECTRUM 的可比性。"
+}

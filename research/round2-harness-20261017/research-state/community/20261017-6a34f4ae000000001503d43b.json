@@ -1,0 +1,41 @@
+{
+  "kind": "community-research-lead",
+  "observed_at": "2026-10-17T22:42:04.415Z",
+  "source_url": "https://www.rednote.com/explore/6a34f4ae000000001503d43b",
+  "note_id": "6a34f4ae000000001503d43b",
+  "title": "Self distillation 死路一条？",
+  "query": "自蒸馏 多样性",
+  "retrieval": "authorized Xiaohongshu MCP, serial get_feed_detail",
+  "read_scope": {
+    "post_description": true,
+    "images_read": 0,
+    "images_returned": 7,
+    "top_level_comments": 10,
+    "visible_replies": 5,
+    "has_more_comments": true
+  },
+  "original_post": "作者发起自蒸馏综述讨论；正文要点放在图片中，本次没有读取图片内容，不能将评论当作作者全文结论。",
+  "discussion_leads": [
+    {
+      "comment_id": "6a35188600000000090156c8",
+      "summary": "提问者提出只对失败轨迹续接教师；作者回应涉及正确路径中重要内容的学习。属于建议和解释，未给出可核验实验。"
+    },
+    {
+      "comment_id": "6a34fffd000000000b038dfc",
+      "summary": "有人问教师在低频领域有偏时学生能否减偏；回复提出 MOPD 方向，具体条件未知。"
+    },
+    {
+      "comment_id": "6a45c3f9000000000403b116",
+      "summary": "一位评论者强调多来源数据、轨迹及修改后校验，并自述更细致设计取得有效结果；无原始日志，不能作为效果证明。"
+    },
+    {
+      "comment_id": "6a48bcd20000000015016f03",
+      "summary": "评论提供论文线索：Denser ≠ Better: Limits of On-Policy Self-Distillation for Continual Post-Training，待核验原文。"
+    }
+  ],
+  "disagreement": "部分评论否定自蒸馏；另有跨领域例子和实践者不同意见。排名样本不能证明共识或普遍效果。",
+  "unsupported_argument": "某评论借哥德尔不完备定理断言训练需要外部信息才收敛；没有给出适用前提，不能当作学习算法的收敛证明。",
+  "project_inference": "可把信息来源、错误轨迹处理和外部校验列为竞争解释。对 SPECTRUM，应区分谱操作本身与锚点信息/正确性带来的收益，并保留条件分母、强简单对照和成本匹配。OPSD 与当前循环训练协议不能直接等同。",
+  "scientific_status": "lead only; no causal, novelty, prevalence or experimental validation",
+  "next": "核验评论所引论文和 SPECTRUM 实现；在相关程序节点比较预测，不自行推进游标或启动实验。"
+}

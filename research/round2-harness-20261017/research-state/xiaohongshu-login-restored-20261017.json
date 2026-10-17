@@ -1,0 +1,11 @@
+{
+  "observed_at": "2026-10-17T22:39:38.421974+00:00",
+  "preference": "enabled",
+  "availability": "available",
+  "login_helper": "exited 0; 登录成功",
+  "mcp_check": "已登录",
+  "source_choice": "serial discussion posts and comments",
+  "supersedes_login_failure_observation": "xiaohongshu-observation-20261017.json",
+  "search_in_progress": true,
+  "successful_posts_read": 0
+}

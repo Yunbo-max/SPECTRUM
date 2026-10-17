@@ -1,0 +1,476 @@
+{
+  "kind": "L01-search-evidence-index",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "sequence": {
+    "attempt": 1,
+    "catalog_sha256": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+    "cycle": 1,
+    "step_id": "L01"
+  },
+  "date": "2026-10-17",
+  "analysis_cutoff": "2026-10-17",
+  "query_protocol": {
+    "provider": "web.run",
+    "api_index_version": "not exposed",
+    "filters": "exact request retained; no date filter",
+    "sort": "provider default; not exposed",
+    "page_size": "not exposed",
+    "pagination": "none requested; provider does not expose cursor here",
+    "parser_version": "verbatim-tool-return-v1",
+    "canonicalization": "no automated merging; retain explicit arXiv version and URL",
+    "deduplication": "no quantitative unique-work or D2 count claimed",
+    "seed_policy": "historical audit and saved discussion leads; classical/mechanism/failure/simple-alternative/benchmark query families",
+    "citation_expansion": "selected primary links only; not exhaustive backward/forward expansion",
+    "saturation": "not established; L01 scoped source coverage only",
+    "replay_limit": "saved requests and returned bytes reproducible locally; live provider ranking/index not reproducible"
+  },
+  "queries": [
+    {
+      "capture_ref": {
+        "path": "research-state/L01-search-capture-1-attempt-000001.json",
+        "sha256": "94d5a0b5b0d680a46e5b0d58b091695c24d718c62b48e8b4a1dfeb52fa62af68"
+      },
+      "request": {
+        "search_query": [
+          {
+            "q": "iterated learning self distillation spectral bias kernel regression Mobahi 2020 self distillation"
+          },
+          {
+            "q": "self consuming generative models collapse fresh data accumulating training data 2024"
+          },
+          {
+            "q": "code generation diversity self distillation simple sampling temperature HumanEval APPS benchmark"
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_text_characters": 37002,
+      "result_count": "not computed; raw tool return retained",
+      "read_depth": "D0/D1, source excerpts only"
+    },
+    {
+      "capture_ref": {
+        "path": "research-state/L01-search-capture-2-attempt-000001.json",
+        "sha256": "eedc695e19f8df30638806c2a65e03bf982f2b7e2dceafa7ae15668ffb5975c3"
+      },
+      "request": {
+        "search_query": [
+          {
+            "q": "site:arxiv.org \"self-distillation\" \"2604.01193\""
+          },
+          {
+            "q": "site:arxiv.org \"2605.22675\""
+          },
+          {
+            "q": "site:arxiv.org \"2606.26091\""
+          },
+          {
+            "q": "site:arxiv.org \"Denser\" \"Self-Distillation\""
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_text_characters": 8395,
+      "result_count": "not computed; raw tool return retained",
+      "read_depth": "D0/D1, source excerpts only"
+    },
+    {
+      "capture_ref": {
+        "path": "research-state/L01-search-capture-3-attempt-000001.json",
+        "sha256": "30117b75eae016a3c71a2c751bdd911a58137fd62c274539bfa6f33b9580c65c"
+      },
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://research.google/pubs/self-distillation-amplifies-regularization-in-hilbert-space/"
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2404.01413"
+          },
+          {
+            "ref_id": "https://github.com/evalplus/evalplus"
+          },
+          {
+            "ref_id": "https://github.com/hendrycks/apps"
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_text_characters": 27232,
+      "result_count": "not computed; raw tool return retained",
+      "read_depth": "D0/D1, source excerpts only"
+    },
+    {
+      "capture_ref": {
+        "path": "research-state/L01-search-capture-4-attempt-000001.json",
+        "sha256": "65b2c8c70641b0c00d4332ea622b3acb0de274f51dee3aa087720d8c9c0b58f3"
+      },
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://arxiv.org/abs/2604.01193v1"
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2605.22675v1"
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2606.26091v1"
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2607.01763"
+          }
+        ],
+        "search_query": [
+          {
+            "q": "site:github.com/openai human-eval pass k temperature"
+          },
+          {
+            "q": "site:arxiv.org code generation self distillation diversity spectral proximal 2026"
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_text_characters": 31212,
+      "result_count": "not computed; raw tool return retained",
+      "read_depth": "D0/D1, source excerpts only"
+    },
+    {
+      "capture_ref": {
+        "path": "research-state/L01-search-capture-5-attempt-000001.json",
+        "sha256": "e528dacc25818739140204b3f36b35f64a4138322ba42fe38f26b893e66c4327"
+      },
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://arxiv.org/abs/2606.26091v1",
+            "lineno": 35
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2604.01193v1",
+            "lineno": 35
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2605.22675v1",
+            "lineno": 35
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2607.01763",
+            "lineno": 35
+          }
+        ],
+        "response_length": "short"
+      },
+      "returned_text_characters": 11497,
+      "result_count": "not computed; raw tool return retained",
+      "read_depth": "D0/D1, source excerpts only"
+    },
+    {
+      "capture_ref": {
+        "path": "research-state/L01-search-capture-6-attempt-000001.json",
+        "sha256": "2b3ac88bac2cd1ffecc55081defa7b8cfea219fe67b0860523fb9bf884ef1cfe"
+      },
+      "request": {
+        "open": [
+          {
+            "ref_id": "https://arxiv.org/abs/2606.26091v1",
+            "lineno": 8
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2604.01193v1",
+            "lineno": 8
+          },
+          {
+            "ref_id": "https://arxiv.org/abs/2605.22675v1",
+            "lineno": 8
+          }
+        ],
+        "response_length": "long"
+      },
+      "returned_text_characters": 21802,
+      "result_count": "not computed; raw tool return retained",
+      "read_depth": "D0/D1, source excerpts only"
+    }
+  ],
+  "read_refs": [
+    {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    {
+      "path": "research-state/authorization.md",
+      "sha256": "5c0f87ede67c8a556c700f6eb9c154f61fd2c12510748839210db3f4d7c3309f"
+    },
+    {
+      "path": "inputs/user-request.md",
+      "sha256": "cb7ff6ce2e67dab3cbd4ec3430a6df15ffc5dceb68e063d8fa63745e2fb35f60"
+    },
+    {
+      "path": "research-state/user-continuation-20261017.md",
+      "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+    },
+    {
+      "path": "research-state/community/provider-handoff-20261017.md",
+      "sha256": "f4ad6ffb647ad4eca94a452c5b3b5879c374e1f0f564a09e1edd6c07516c80f1"
+    },
+    {
+      "path": "reports/community-intake-20261017.md",
+      "sha256": "0720672b9d111ebbe61192b1491195bd9a5bdcb1058708490acc341228f3edab"
+    },
+    {
+      "path": "research-state/xiaohongshu-login-restored-20261017.json",
+      "sha256": "5ee3574c6360509e35aaf0d2e003fc4ad0aec1d8227e355ec232be72b93edc45"
+    },
+    {
+      "path": "inputs/spectrum/docs/LITERATURE_AUDIT.md",
+      "sha256": "d80ff2344a5445dc0446cc1e8e04f1c4ed359cbbdbf33f6bc7114aba75b222b7"
+    },
+    {
+      "path": "inputs/spectrum/docs/CORE_AUDIT.md",
+      "sha256": "80e97fcc2c2cb98fbb2d082f2579b26dae3a8510747da04565d85c463d898612"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/spectral.py",
+      "sha256": "2b9f91d0edbb4b270c69ace605eb6ec6646861f28c702b114a4f86ebac0a9ced"
+    },
+    {
+      "path": "inputs/source-notes.md",
+      "sha256": "b103431f0154fcfe6151d239f067008c91260038aa02d1c2410860b3988531dd"
+    },
+    {
+      "path": "reports/X01-position-attempt-000001.md",
+      "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+    },
+    {
+      "path": "research-state/harness/round-000011/reviewer-response.json",
+      "sha256": "ad97ff8a8e375eac225e7d5d1ee62106b1ad5ad32267279c2548ab4271af2f37"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-rejection.json",
+      "sha256": "aab775a2f6ae33bcc82fad31ae7103dc86d0fde9f5deab3cb6f51a2fa1e3ff63"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/L01/attempt-000001/planner-history.json",
+      "sha256": "7c0be4c750a80ac244f8d2a57e046ff82f4ac115572c0c4263cd90b06f40c988"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/X01/attempt-000001/acceptance.json",
+      "sha256": "35dd97e300d25abe1af3aeb0bd3c99eb4c92ec99d85abf778123172c1be333da"
+    },
+    {
+      "path": "research-state/community/20261017-6a126a17000000003502fc41.json",
+      "sha256": "3e689c88a096474df23e59628f3840f1e2137fb574e8aa3ea7f1a026e69921ee"
+    },
+    {
+      "path": "research-state/community/20261017-6a34f4ae000000001503d43b.json",
+      "sha256": "f83a52662b767a102b64b156cb2b0cfd2024911774ef0af98fbbd1442513e33c"
+    },
+    {
+      "path": "research-state/community/20261017-6a4293ea000000001c024ec3.json",
+      "sha256": "eed8789f9a9fdca009a63d1fa4af77c3778ff1e3ea08580f9a22905546bc0160"
+    },
+    {
+      "path": "research-state/community/20261017-excluded-6ac60b6d000000001303e2bb.json",
+      "sha256": "0ed28de4c8f8f50224e087da923e6852ee56e28c7de2a920fdf984c3ef5e4fdd"
+    },
+    {
+      "path": "research-state/community/20261017-primary-2607.01763.json",
+      "sha256": "71fd5a4d421a4e9fad126f730303e82b172f5e3d80ccef15594e899bb92946c3"
+    }
+  ],
+  "historical_receipts_read": [
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+        "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+      },
+      "task_id": "harness.planner.000001",
+      "valid_execution": false,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+        "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+      },
+      "task_id": "harness.planner.000002",
+      "valid_execution": false,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+        "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+      },
+      "task_id": "harness.planner.000003",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+        "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+      },
+      "task_id": "harness.planner.000004",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+        "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+      },
+      "task_id": "harness.reviewer.000004",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+        "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+      },
+      "task_id": "harness.planner.000005",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+        "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+      },
+      "task_id": "harness.reviewer.000005",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/60ebad5772e34e77aa5cad5b3bac7a43.json",
+        "sha256": "46629334dcb86fed5b3bd9698c47105d830830ab4685d16fd9059954eaacb82a"
+      },
+      "task_id": "harness.planner.000006",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/4df749392a144855907672a394947093.json",
+        "sha256": "5e5fb579a7ce048e7a293ad184eeddba499cdf063217090982c35e15b208e134"
+      },
+      "task_id": "harness.reviewer.000006",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/4048ffe80234459b95c9292e4e23ff1e.json",
+        "sha256": "cec0f6b83e3654ca79e68032c0a6a94ae3024d620b4ece6f13eb3eafaa6fa464"
+      },
+      "task_id": "harness.planner.000007",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/8b70d46c1e58435ab54afad5250e0e9c.json",
+        "sha256": "342bfaf680c73174c51a8ea106d76dbdd369975d865672a9c053f160d0495fab"
+      },
+      "task_id": "harness.reviewer.000007",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/c8341883ba4f469983e1c6e2c3f88a27.json",
+        "sha256": "164b7eda00d10799f2d1452fe84e3f1220a220b4887aea48663422e39af6b7e4"
+      },
+      "task_id": "harness.planner.000008",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/d79f193c7c6740d2a6c9b4a74cdd2b2a.json",
+        "sha256": "ad95435ddb5f1cfe386106f4895f7a18f5348d676c6f31de817678b0013f9afe"
+      },
+      "task_id": "harness.reviewer.000008",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/21f9857414ca4dbcabb3987b3bad4859.json",
+        "sha256": "e8489c9dc5821696438bb1a718c05f4ee28c0b60cd912f8ac0b61ffdb5b7f0e8"
+      },
+      "task_id": "harness.planner.000009",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/3818ac05a036478caa320bf49e07bafb.json",
+        "sha256": "c722f7c748647f7c9623b2c26dd175b77afb24cf483326c355082d8391990227"
+      },
+      "task_id": "harness.reviewer.000009",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/4ced23654b7d42c2aa4f99ef7c6d1a38.json",
+        "sha256": "d9dc840c6f047d52a643c6b1963608731b0aad2eb9eed2fa7a66f6a627f80dd5"
+      },
+      "task_id": "harness.planner.000010",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/a3107f1af9b64c46b1722ca2121613c3.json",
+        "sha256": "f8ab2162e35d7065b05f832bba63db417cadbafcfb2b9aa609319bfc07853d91"
+      },
+      "task_id": "harness.reviewer.000010",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/1a5f087cc866453883dfc07d9c876646.json",
+        "sha256": "c797f7d9714c1c2e59b2f828e874fbcd81e77f254f6e6ae6d0c2882c231a5145"
+      },
+      "task_id": "harness.planner.000011",
+      "valid_execution": true,
+      "read": true
+    },
+    {
+      "ref": {
+        "path": "research-state/harness/receipts/e9b1e5ed0c3f43b7828101784114f434.json",
+        "sha256": "8f85c7273bd2e1b7ab670efa44ad40210beeaf009ed5fbfc2d12a9f54fd26534"
+      },
+      "task_id": "harness.reviewer.000011",
+      "valid_execution": true,
+      "read": true
+    }
+  ],
+  "inspection_refs": [],
+  "community": {
+    "preference": "enabled",
+    "last_saved_availability": "available",
+    "availability_current_session": "not rechecked",
+    "new_provider_calls": 0,
+    "ownership": "single worker permitted by handoff; saved serial observations reused",
+    "raw_payload_limit": "sanitized parent summaries; not full MCP payloads"
+  },
+  "version_obligations": [
+    "SSD v1 historical reading retained; v2 listed, full difference unchecked",
+    "Denser current abstract is v2 dated 2026-10-02; no full-text/code review",
+    "Live benchmark repository heads unpinned; no scorer qualification"
+  ],
+  "report_ref": {
+    "path": "reports/L01-search-evidence-attempt-000001.md",
+    "sha256": "c59f80cde3cf23800736b1282c074cfca733b283e2712cc59b3a9cc94597568e"
+  }
+}

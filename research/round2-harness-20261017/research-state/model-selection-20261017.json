@@ -1,0 +1,13 @@
+{
+  "kind": "user-authorized-local-model-selection",
+  "model": "gpt-6-astra",
+  "user_answer": "GPT-6-Astra（推荐）",
+  "scope": "This isolated Work Harness project only",
+  "config_path": ".codex/config.toml",
+  "config_sha256": "397e5f05e79973ed2a4369ebc86d6f5b625ebde6a92377dd0446708a5c75dfe9",
+  "previous_failed_run": "e8d17e6787a5414580007a818913f01f",
+  "program_contract_unchanged": true,
+  "cumulative_usage_retained": true,
+  "global_config_unchanged": true,
+  "observed_unix": 1792275358.8133519
+}

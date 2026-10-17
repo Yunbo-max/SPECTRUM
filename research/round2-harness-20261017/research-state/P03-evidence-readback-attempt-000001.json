@@ -1,0 +1,277 @@
+{
+  "kind": "P03-evidence-readback",
+  "sequence": {
+    "attempt": 1,
+    "catalog_sha256": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+    "cycle": 1,
+    "step_id": "P03"
+  },
+  "source_refs": [
+    {
+      "path": "research-state/user-continuation-20261017.md",
+      "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+    },
+    {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    {
+      "path": "research-state/authorization.md",
+      "sha256": "5c0f87ede67c8a556c700f6eb9c154f61fd2c12510748839210db3f4d7c3309f"
+    },
+    {
+      "path": "inputs/user-request.md",
+      "sha256": "cb7ff6ce2e67dab3cbd4ec3430a6df15ffc5dceb68e063d8fa63745e2fb35f60"
+    },
+    {
+      "path": "research-state/coverage-P04-attempt-000001.json",
+      "sha256": "c60ca20220d79397484af6bf21999b1830679861fbb90f070163c60e8d75f0ee"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P03/attempt-000001/planner-history.json",
+      "sha256": "87fd1bd219ff893549f1d66a51393696bca774e902fe8fe5598626bb55af7c1a"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-rejection.json",
+      "sha256": "aab775a2f6ae33bcc82fad31ae7103dc86d0fde9f5deab3cb6f51a2fa1e3ff63"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P04/attempt-000001/acceptance.json",
+      "sha256": "089f0473acb46f98d1b0098c1c14037778d27965bfe0872c0fa273d17be584c4"
+    },
+    {
+      "path": "research-state/harness/round-000009/reviewer-response.json",
+      "sha256": "6d8509180f3f53959330340f80e461ce341d3c119f27b927220603b83a929a6a"
+    },
+    {
+      "path": "research-state/I02-parent-problem-attempt-000001.md",
+      "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+    },
+    {
+      "path": "research-state/I04-exit-criteria-attempt-000001.md",
+      "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+    },
+    {
+      "path": "research-state/P04-resource-boundaries-attempt-000001.md",
+      "sha256": "d91132119fea973f63a253de6f43424f1eced6dc94c1df89e64198065973592d"
+    },
+    {
+      "path": "research-state/P02-asset-status-attempt-000001.md",
+      "sha256": "e7d20df8b95a651d99f9f0fe71a1377861893af5fb987542b24cfb9933104f0b"
+    },
+    {
+      "path": "research-state/source-recovery-20261017.json",
+      "sha256": "16569fdcef84acd3001391a35a30b4b5c450bc51e916f7d84824150fd4185905"
+    },
+    {
+      "path": "inputs/spectrum/docs/EXISTING_EVIDENCE.md",
+      "sha256": "9bda68f72eec8b1641fb9368e5448725b80dd2f23eaee99563ba2951deb26275"
+    },
+    {
+      "path": "inputs/spectrum/docs/FINAL_EXPERIMENTS.md",
+      "sha256": "7af33b78a539ec059df9aed2df4fd66e502a97989eab2042ab9d0427fb72e197"
+    },
+    {
+      "path": "inputs/spectrum/src/improving/training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    },
+    {
+      "path": "research-state/community/20261017-6a4293ea000000001c024ec3.json",
+      "sha256": "eed8789f9a9fdca009a63d1fa4af77c3778ff1e3ea08580f9a22905546bc0160"
+    },
+    {
+      "path": "research-state/community/20261017-6a34f4ae000000001503d43b.json",
+      "sha256": "f83a52662b767a102b64b156cb2b0cfd2024911774ef0af98fbbd1442513e33c"
+    },
+    {
+      "path": "research-state/community/20261017-primary-2607.01763.json",
+      "sha256": "71fd5a4d421a4e9fad126f730303e82b172f5e3d80ccef15594e899bb92946c3"
+    }
+  ],
+  "receipts": [
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+        "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+      },
+      "task_id": "harness.planner.000001",
+      "run_id": "e8d17e6787a5414580007a818913f01f",
+      "state": "failed",
+      "actual_seconds": 5.009553791955113,
+      "actual_cost": 0,
+      "reason": "Observed terminal Codex turn.failed: configured gpt-6-luna unsupported with ChatGPT account. Worker cleanup confirms leader stopped; process PID now absent. No response produced. Consumer stopped before reconciliation to prevent retries."
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+        "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+      },
+      "task_id": "harness.planner.000002",
+      "run_id": "bdaaede9143a4f6492900f53cc0bc96c",
+      "state": "failed",
+      "actual_seconds": 4.292720317840576,
+      "actual_cost": 0,
+      "reason": "Observed terminal turn.failed: inherited gpt-6-luna unsupported for ChatGPT account; child absent and owned consumer stopped. Project model override did not take effect."
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+        "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+      },
+      "task_id": "harness.planner.000003",
+      "run_id": "7390f475a51d4ddeba2d048ddd569175",
+      "state": "completed",
+      "actual_seconds": 52.27915692329407,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+        "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+      },
+      "task_id": "harness.planner.000004",
+      "run_id": "3c2469fbd1664ca4a6dd33eab2134c1c",
+      "state": "completed",
+      "actual_seconds": 82.30538487434387,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+        "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+      },
+      "task_id": "harness.reviewer.000004",
+      "run_id": "ee5009b8b91f44f3a2b4d0c601059abd",
+      "state": "completed",
+      "actual_seconds": 64.44149470329285,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+        "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+      },
+      "task_id": "harness.planner.000005",
+      "run_id": "8aabe43c8690486385a03d08f0c7a699",
+      "state": "completed",
+      "actual_seconds": 119.73773694038391,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+        "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+      },
+      "task_id": "harness.reviewer.000005",
+      "run_id": "1d3450b116ac4da2af0cfed0ead4f65d",
+      "state": "completed",
+      "actual_seconds": 61.32794499397278,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/60ebad5772e34e77aa5cad5b3bac7a43.json",
+        "sha256": "46629334dcb86fed5b3bd9698c47105d830830ab4685d16fd9059954eaacb82a"
+      },
+      "task_id": "harness.planner.000006",
+      "run_id": "60ebad5772e34e77aa5cad5b3bac7a43",
+      "state": "completed",
+      "actual_seconds": 102.57513213157654,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/4df749392a144855907672a394947093.json",
+        "sha256": "5e5fb579a7ce048e7a293ad184eeddba499cdf063217090982c35e15b208e134"
+      },
+      "task_id": "harness.reviewer.000006",
+      "run_id": "4df749392a144855907672a394947093",
+      "state": "completed",
+      "actual_seconds": 60.2804651260376,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/4048ffe80234459b95c9292e4e23ff1e.json",
+        "sha256": "cec0f6b83e3654ca79e68032c0a6a94ae3024d620b4ece6f13eb3eafaa6fa464"
+      },
+      "task_id": "harness.planner.000007",
+      "run_id": "4048ffe80234459b95c9292e4e23ff1e",
+      "state": "completed",
+      "actual_seconds": 127.39489889144897,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/8b70d46c1e58435ab54afad5250e0e9c.json",
+        "sha256": "342bfaf680c73174c51a8ea106d76dbdd369975d865672a9c053f160d0495fab"
+      },
+      "task_id": "harness.reviewer.000007",
+      "run_id": "8b70d46c1e58435ab54afad5250e0e9c",
+      "state": "completed",
+      "actual_seconds": 71.94071793556213,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/c8341883ba4f469983e1c6e2c3f88a27.json",
+        "sha256": "164b7eda00d10799f2d1452fe84e3f1220a220b4887aea48663422e39af6b7e4"
+      },
+      "task_id": "harness.planner.000008",
+      "run_id": "c8341883ba4f469983e1c6e2c3f88a27",
+      "state": "completed",
+      "actual_seconds": 108.07175278663635,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/d79f193c7c6740d2a6c9b4a74cdd2b2a.json",
+        "sha256": "ad95435ddb5f1cfe386106f4895f7a18f5348d676c6f31de817678b0013f9afe"
+      },
+      "task_id": "harness.reviewer.000008",
+      "run_id": "d79f193c7c6740d2a6c9b4a74cdd2b2a",
+      "state": "completed",
+      "actual_seconds": 61.11211800575256,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/21f9857414ca4dbcabb3987b3bad4859.json",
+        "sha256": "e8489c9dc5821696438bb1a718c05f4ee28c0b60cd912f8ac0b61ffdb5b7f0e8"
+      },
+      "task_id": "harness.planner.000009",
+      "run_id": "21f9857414ca4dbcabb3987b3bad4859",
+      "state": "completed",
+      "actual_seconds": 130.61164689064026,
+      "actual_cost": 0,
+      "reason": null
+    },
+    {
+      "receipt_ref": {
+        "path": "research-state/harness/receipts/3818ac05a036478caa320bf49e07bafb.json",
+        "sha256": "c722f7c748647f7c9623b2c26dd175b77afb24cf483326c355082d8391990227"
+      },
+      "task_id": "harness.reviewer.000009",
+      "run_id": "3818ac05a036478caa320bf49e07bafb",
+      "state": "completed",
+      "actual_seconds": 80.43762993812561,
+      "actual_cost": 0,
+      "reason": null
+    }
+  ],
+  "actual_seconds_sum": 1131.8183542508632,
+  "inspection_refs": [],
+  "limits": "No new aggregate limit; no scientific execution",
+  "read_scope": "Local queue, historical reported results, frozen plan, static training source and saved parent community observations; no external full-text read or reproduction."
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "research-coverage",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "previous_ref": {
+    "path": "research-state/coverage-I01-attempt-000001.json",
+    "sha256": "e8cf16085a6cc620802e9986190fd1879f6d232a257848741a804d3bb611b9b3"
+  },
+  "obligations": [
+    {
+      "id": "restore-evidence",
+      "description": "Recover SPECTRUM historical results, precise source identity, negative evidence, missing raw outputs and the user-authorized scope",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/P02-asset-inventory-attempt-000001.json",
+          "sha256": "a15b50b3d3ed85cdb52594f25b98c58416c744d6efeb8c9c046e6be2573616be"
+        },
+        {
+          "path": "research-state/P02-asset-status-attempt-000001.md",
+          "sha256": "e7d20df8b95a651d99f9f0fe71a1377861893af5fb987542b24cfb9933104f0b"
+        },
+        {
+          "path": "research-state/I01-entry-card-attempt-000001.md",
+          "sha256": "d444fa8f2ae35b8e247ba24b4a087fef329f93b394cc0fc0720816d5325223c6"
+        },
+        {
+          "path": "research-state/I01-evidence-readback-attempt-000001.json",
+          "sha256": "27ff08b1cf161a0943a8abf4c3188f58bdb20f6fd1d3bec2faf740ab2f8077bc"
+        },
+        {
+          "path": "research-state/I02-parent-problem-attempt-000001.md",
+          "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+        },
+        {
+          "path": "research-state/I02-evidence-readback-attempt-000001.json",
+          "sha256": "2b486685ca1937cf8497640389f37dcc204c1449d941896c54b46fce8c44543a"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "source-and-community",
+      "description": "Use primary papers/code and bounded authorized Xiaohongshu leads, with honest access limits",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    },
+    {
+      "id": "second-round-inquiry",
+      "description": "Compare mechanisms, simple alternatives and conditional predictions; identify an appropriate decisive next check without starting experiments",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/I02-parent-problem-attempt-000001.md",
+          "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+        },
+        {
+          "path": "research-state/I02-evidence-readback-attempt-000001.json",
+          "sha256": "2b486685ca1937cf8497640389f37dcc204c1449d941896c54b46fce8c44543a"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "independent-review",
+      "description": "Obtain separate actual review of the evidence, candidate necessity and claim limits",
+      "kind": "review",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    },
+    {
+      "id": "deliver-research-decision",
+      "description": "Deliver a Chinese second-round decision report with source links, caveats, falsifier and next action",
+      "kind": "delivery",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [],
+      "blocking_reason": null
+    }
+  ],
+  "experiment_contracts": []
+}

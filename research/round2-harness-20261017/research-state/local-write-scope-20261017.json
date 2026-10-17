@@ -1,0 +1,8 @@
+{
+  "reason": "Native CLI defaults to read-only; authorized Harness must write local research artifacts. Apply only to subsequent invocations.",
+  "sandbox_mode": "workspace-write",
+  "approval_policy": "never",
+  "cwd": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/project",
+  "scope": "private Codex profile only; no global config changes",
+  "scientific_experiments_authorized": false
+}

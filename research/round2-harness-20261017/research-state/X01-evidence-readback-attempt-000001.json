@@ -1,0 +1,670 @@
+{
+  "kind": "X01-evidence-readback",
+  "sequence": {
+    "attempt": 1,
+    "catalog_sha256": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+    "cycle": 1,
+    "step_id": "X01"
+  },
+  "observed_at": "2026-10-17T22:48:24.514686+00:00",
+  "scope": "Local byte/record verification and source reading; not scientific validation",
+  "evidence_refs": [
+    {
+      "path": "research-state/harness/sequence/cycle-000001/X01/attempt-000001/planner-history.json",
+      "sha256": "9c6002a9fade73b65af5304283e512524785e778c8af2cec67778d06b91aa038"
+    },
+    {
+      "path": "research-state/coverage-P03-attempt-000001.json",
+      "sha256": "727f7526e472ed8797aef8fce3ef2d2a03c1d704f22345eca2478453dac64e23"
+    },
+    {
+      "path": "research-state/objective.md",
+      "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+    },
+    {
+      "path": "research-state/user-continuation-20261017.md",
+      "sha256": "f262d9284d1e6bd11b28a54a46be8ae7b40e32940370e998e08c5eafd7fbb17a"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-rejection.json",
+      "sha256": "aab775a2f6ae33bcc82fad31ae7103dc86d0fde9f5deab3cb6f51a2fa1e3ff63"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P01/attempt-000004/acceptance.json",
+      "sha256": "8729f884950b39c7c27527d5541ea1288927ab3d611ea553013f0f06b8c4daa1"
+    },
+    {
+      "path": "research-state/harness/round-000004/reviewer-response.json",
+      "sha256": "f7c52b78ec9747a0fa98e9fbdd3379f3ac97287b180914ce72a929d39f05878a"
+    },
+    {
+      "path": "research-state/harness/round-000004/planner-response.json",
+      "sha256": "d3d619fe9c67cac70aca3754693b016e610c8b188a2aa94c64ca3612c5e8820a"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P01/attempt-000004/proposal.json",
+      "sha256": "a38dae5fad40733c1b50efdc22496b431d8775c7207b048daece59f36720dd9b"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P02/attempt-000001/acceptance.json",
+      "sha256": "f47d67ae64032abddb3a3321373bef73f49c1a256aa724d411cbe38ccf728cf1"
+    },
+    {
+      "path": "research-state/harness/round-000005/reviewer-response.json",
+      "sha256": "94896be22e8381bf3429f00a751b164908c8bc0260781f0be242f7a84d42a58a"
+    },
+    {
+      "path": "research-state/harness/round-000005/planner-response.json",
+      "sha256": "57fb33ba66baa7cfc5be0651bb58694cba42b00653abe1ed78dbd6ef1b1cbcd1"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P02/attempt-000001/proposal.json",
+      "sha256": "797c6fe9d9505c66c82447704ad0a1c5c91a48b211c386e9b6cd8d28ac65a271"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I01/attempt-000001/acceptance.json",
+      "sha256": "af780d6877e8049df85cfaf4ef3eb2d77f5b7409f5198cc57959004fc3a20ebb"
+    },
+    {
+      "path": "research-state/harness/round-000006/reviewer-response.json",
+      "sha256": "eda3187ecda0fa30a4d1d1a3727f79cfa4bff2f4bda1aeec5d06aece244a74ae"
+    },
+    {
+      "path": "research-state/harness/round-000006/planner-response.json",
+      "sha256": "0ab3101a0fd1a3b3872526487ecd1171bc56d3afade8e55c016d79779d37af22"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I01/attempt-000001/proposal.json",
+      "sha256": "b34a9627ec99dba657a4b2dd5bc58a1fc461c754988ab3caf081a6a22db221dd"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I02/attempt-000001/acceptance.json",
+      "sha256": "df65955c6055d4ddabe200ef8e0d011c1d993142048ebdc6281110f25a7c8b70"
+    },
+    {
+      "path": "research-state/harness/round-000007/reviewer-response.json",
+      "sha256": "dc3bb2ec666f86783d94427c82af5acce61290b1208f40ddd6556e42ac3594f9"
+    },
+    {
+      "path": "research-state/harness/round-000007/planner-response.json",
+      "sha256": "28a53d3b0b4ce346f2abe48101ed09e4e4ac84098cf22e7066f21eac213b5517"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I02/attempt-000001/proposal.json",
+      "sha256": "df4f0c5759ed7351d2789f242e1eac283c14f122e373847843dcc50d53716411"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I04/attempt-000001/acceptance.json",
+      "sha256": "8d5f9742ebc38dad91569678972b7d02d55a3676072448a7b16662c356ed962a"
+    },
+    {
+      "path": "research-state/harness/round-000008/reviewer-response.json",
+      "sha256": "3d86cb3f1dd1a395f953b6dbcdf1f063eb74e78af5489c613f28cc3a071bf240"
+    },
+    {
+      "path": "research-state/harness/round-000008/planner-response.json",
+      "sha256": "4e19a9b44edabec620c8f746f734e2888ae8f36ac3ca9bd3f46e01c7a2082398"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/I04/attempt-000001/proposal.json",
+      "sha256": "2f1c993ffdc95d7cc2d14fb8d1a85ba3f2d2f00d0bf493aaadd7a3f0f063e8e3"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P04/attempt-000001/acceptance.json",
+      "sha256": "089f0473acb46f98d1b0098c1c14037778d27965bfe0872c0fa273d17be584c4"
+    },
+    {
+      "path": "research-state/harness/round-000009/reviewer-response.json",
+      "sha256": "6d8509180f3f53959330340f80e461ce341d3c119f27b927220603b83a929a6a"
+    },
+    {
+      "path": "research-state/harness/round-000009/planner-response.json",
+      "sha256": "5ef10f8311cfea56fca92282424c45e013f6261b98b52c91abedf685a5d1850c"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P04/attempt-000001/proposal.json",
+      "sha256": "0133f7cb264eaea15e45498a41ed73214aad391414d93a3a0191bd0aa731c282"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P03/attempt-000001/acceptance.json",
+      "sha256": "4b1524afd49c6dbff8c4ef50499eef6a7ec0865f7a40c190014189ef4315b0e8"
+    },
+    {
+      "path": "research-state/harness/round-000010/reviewer-response.json",
+      "sha256": "842792c358702c24d00d2d0d8e18fe623cc6f4435e6b6c392b2b6b3ff2c835c7"
+    },
+    {
+      "path": "research-state/harness/round-000010/planner-response.json",
+      "sha256": "1178c89fb29181f1779eca68c56c0bbb7376847752d279e738985512a35d65d5"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/P03/attempt-000001/proposal.json",
+      "sha256": "0715e0a421697f1d14f0b68727c638c91a9064319c9fe67423e240556ccf63d5"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/R02/attempt-000000/acceptance.json",
+      "sha256": "32bcd5accfacb9c7ca93a8924d23806eab9371431224ec26df9ce8217ca80f34"
+    },
+    {
+      "path": "research-state/harness/sequence/cycle-000001/R03/attempt-000000/acceptance.json",
+      "sha256": "5598db6096de73cea1413196fc55bd86f0e66801be5f7179cbad2df189c47508"
+    },
+    {
+      "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+      "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+    },
+    {
+      "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+      "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+    },
+    {
+      "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+      "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+    },
+    {
+      "path": "research-state/harness/round-000003/planner-response.json",
+      "sha256": "6b13a334e25610344becc59de3ee0992bb63272642ceb26194ce1fb0d6e75b80"
+    },
+    {
+      "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+      "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+    },
+    {
+      "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+      "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+    },
+    {
+      "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+      "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+    },
+    {
+      "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+      "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+    },
+    {
+      "path": "research-state/harness/receipts/60ebad5772e34e77aa5cad5b3bac7a43.json",
+      "sha256": "46629334dcb86fed5b3bd9698c47105d830830ab4685d16fd9059954eaacb82a"
+    },
+    {
+      "path": "research-state/harness/receipts/4df749392a144855907672a394947093.json",
+      "sha256": "5e5fb579a7ce048e7a293ad184eeddba499cdf063217090982c35e15b208e134"
+    },
+    {
+      "path": "research-state/harness/receipts/4048ffe80234459b95c9292e4e23ff1e.json",
+      "sha256": "cec0f6b83e3654ca79e68032c0a6a94ae3024d620b4ece6f13eb3eafaa6fa464"
+    },
+    {
+      "path": "research-state/harness/receipts/8b70d46c1e58435ab54afad5250e0e9c.json",
+      "sha256": "342bfaf680c73174c51a8ea106d76dbdd369975d865672a9c053f160d0495fab"
+    },
+    {
+      "path": "research-state/harness/receipts/c8341883ba4f469983e1c6e2c3f88a27.json",
+      "sha256": "164b7eda00d10799f2d1452fe84e3f1220a220b4887aea48663422e39af6b7e4"
+    },
+    {
+      "path": "research-state/harness/receipts/d79f193c7c6740d2a6c9b4a74cdd2b2a.json",
+      "sha256": "ad95435ddb5f1cfe386106f4895f7a18f5348d676c6f31de817678b0013f9afe"
+    },
+    {
+      "path": "research-state/harness/receipts/21f9857414ca4dbcabb3987b3bad4859.json",
+      "sha256": "e8489c9dc5821696438bb1a718c05f4ee28c0b60cd912f8ac0b61ffdb5b7f0e8"
+    },
+    {
+      "path": "research-state/harness/receipts/3818ac05a036478caa320bf49e07bafb.json",
+      "sha256": "c722f7c748647f7c9623b2c26dd175b77afb24cf483326c355082d8391990227"
+    },
+    {
+      "path": "research-state/harness/receipts/4ced23654b7d42c2aa4f99ef7c6d1a38.json",
+      "sha256": "d9dc840c6f047d52a643c6b1963608731b0aad2eb9eed2fa7a66f6a627f80dd5"
+    },
+    {
+      "path": "research-state/harness/receipts/a3107f1af9b64c46b1722ca2121613c3.json",
+      "sha256": "f8ab2162e35d7065b05f832bba63db417cadbafcfb2b9aa609319bfc07853d91"
+    },
+    {
+      "path": "research-state/P02-asset-inventory-attempt-000001.json",
+      "sha256": "a15b50b3d3ed85cdb52594f25b98c58416c744d6efeb8c9c046e6be2573616be"
+    },
+    {
+      "path": "research-state/P02-asset-status-attempt-000001.md",
+      "sha256": "e7d20df8b95a651d99f9f0fe71a1377861893af5fb987542b24cfb9933104f0b"
+    },
+    {
+      "path": "research-state/I01-entry-card-attempt-000001.md",
+      "sha256": "d444fa8f2ae35b8e247ba24b4a087fef329f93b394cc0fc0720816d5325223c6"
+    },
+    {
+      "path": "research-state/I01-evidence-readback-attempt-000001.json",
+      "sha256": "27ff08b1cf161a0943a8abf4c3188f58bdb20f6fd1d3bec2faf740ab2f8077bc"
+    },
+    {
+      "path": "research-state/I02-parent-problem-attempt-000001.md",
+      "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+    },
+    {
+      "path": "research-state/I02-evidence-readback-attempt-000001.json",
+      "sha256": "2b486685ca1937cf8497640389f37dcc204c1449d941896c54b46fce8c44543a"
+    },
+    {
+      "path": "research-state/I04-exit-criteria-attempt-000001.md",
+      "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+    },
+    {
+      "path": "research-state/I04-evidence-readback-attempt-000001.json",
+      "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+    },
+    {
+      "path": "research-state/P04-resource-boundaries-attempt-000001.md",
+      "sha256": "d91132119fea973f63a253de6f43424f1eced6dc94c1df89e64198065973592d"
+    },
+    {
+      "path": "research-state/P04-resource-observation-attempt-000001.json",
+      "sha256": "4394483e087999c90afe5942d140253adbf8740a7037bd3ee548bd4e169946a1"
+    },
+    {
+      "path": "research-state/P04-evidence-readback-attempt-000001.json",
+      "sha256": "d7f6cde4c05ee9520c97b0eec78f602c4093189a77072af55d164f56a7426477"
+    },
+    {
+      "path": "research-state/P03-priority-queue-attempt-000001.md",
+      "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+    },
+    {
+      "path": "research-state/P03-evidence-readback-attempt-000001.json",
+      "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+    },
+    {
+      "path": "research-state/authorization.md",
+      "sha256": "5c0f87ede67c8a556c700f6eb9c154f61fd2c12510748839210db3f4d7c3309f"
+    },
+    {
+      "path": "inputs/user-request.md",
+      "sha256": "cb7ff6ce2e67dab3cbd4ec3430a6df15ffc5dceb68e063d8fa63745e2fb35f60"
+    },
+    {
+      "path": "research-state/source-recovery-20261017.json",
+      "sha256": "16569fdcef84acd3001391a35a30b4b5c450bc51e916f7d84824150fd4185905"
+    },
+    {
+      "path": "research-state/community/provider-handoff-20261017.md",
+      "sha256": "f4ad6ffb647ad4eca94a452c5b3b5879c374e1f0f564a09e1edd6c07516c80f1"
+    },
+    {
+      "path": "reports/community-intake-20261017.md",
+      "sha256": "0720672b9d111ebbe61192b1491195bd9a5bdcb1058708490acc341228f3edab"
+    },
+    {
+      "path": "research-state/community/20261017-6a126a17000000003502fc41.json",
+      "sha256": "3e689c88a096474df23e59628f3840f1e2137fb574e8aa3ea7f1a026e69921ee"
+    },
+    {
+      "path": "research-state/community/20261017-6a34f4ae000000001503d43b.json",
+      "sha256": "f83a52662b767a102b64b156cb2b0cfd2024911774ef0af98fbbd1442513e33c"
+    },
+    {
+      "path": "research-state/community/20261017-6a4293ea000000001c024ec3.json",
+      "sha256": "eed8789f9a9fdca009a63d1fa4af77c3778ff1e3ea08580f9a22905546bc0160"
+    },
+    {
+      "path": "research-state/community/20261017-excluded-6ac60b6d000000001303e2bb.json",
+      "sha256": "0ed28de4c8f8f50224e087da923e6852ee56e28c7de2a920fdf984c3ef5e4fdd"
+    },
+    {
+      "path": "research-state/community/20261017-primary-2607.01763.json",
+      "sha256": "71fd5a4d421a4e9fad126f730303e82b172f5e3d80ccef15594e899bb92946c3"
+    }
+  ],
+  "canonical_source_refs": [
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/skill-sequence.md",
+      "sha256": "0211f906d1f47a7985ac6ca856cb1d9c03472bc9bff5c10089f00c1a3cc3c735"
+    },
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/edition-policy.md",
+      "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
+    },
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/research-cycle.md",
+      "sha256": "98c3de0ac8b4be72518dce88e211ed722e27266f76a12860f11ad6ad6d734a54"
+    },
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/nodes/X01.md",
+      "sha256": "26a4393410a2cbcfcda8e522382df90c6644ca7ecc20683ae51682934843738a"
+    },
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/visual-map-maintenance.md",
+      "sha256": "457a0da9ff7bba4b4889055fcc844b26022a69c019a8d04861ac84455dcbe9c0"
+    },
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/state-and-routing.md",
+      "sha256": "6eb3f35607dc040fc17db6a185adfea269a264f8221322773713a7ebeca89615"
+    },
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/multi-route-supervision.md",
+      "sha256": "083550233bc660dcf43804e1e1af8fd2a735d3cb1e63333747cc3eee1a2ffe2c"
+    },
+    {
+      "path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source/skills/research-autopilot/references/research-quality-bar.md",
+      "sha256": "5289770268053ec384d1635c01b5a6253f0ee1c31696580744e72c86477b3586"
+    }
+  ],
+  "accepted_records": [
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/P01/attempt-000004/acceptance.json",
+        "sha256": "8729f884950b39c7c27527d5541ea1288927ab3d611ea553013f0f06b8c4daa1"
+      },
+      "node": "P01",
+      "disposition": "accepted",
+      "review_ref": {
+        "path": "research-state/harness/round-000004/reviewer-response.json",
+        "sha256": "f7c52b78ec9747a0fa98e9fbdd3379f3ac97287b180914ce72a929d39f05878a"
+      }
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/P02/attempt-000001/acceptance.json",
+        "sha256": "f47d67ae64032abddb3a3321373bef73f49c1a256aa724d411cbe38ccf728cf1"
+      },
+      "node": "P02",
+      "disposition": "accepted",
+      "review_ref": {
+        "path": "research-state/harness/round-000005/reviewer-response.json",
+        "sha256": "94896be22e8381bf3429f00a751b164908c8bc0260781f0be242f7a84d42a58a"
+      }
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/I01/attempt-000001/acceptance.json",
+        "sha256": "af780d6877e8049df85cfaf4ef3eb2d77f5b7409f5198cc57959004fc3a20ebb"
+      },
+      "node": "I01",
+      "disposition": "accepted",
+      "review_ref": {
+        "path": "research-state/harness/round-000006/reviewer-response.json",
+        "sha256": "eda3187ecda0fa30a4d1d1a3727f79cfa4bff2f4bda1aeec5d06aece244a74ae"
+      }
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/I02/attempt-000001/acceptance.json",
+        "sha256": "df65955c6055d4ddabe200ef8e0d011c1d993142048ebdc6281110f25a7c8b70"
+      },
+      "node": "I02",
+      "disposition": "accepted",
+      "review_ref": {
+        "path": "research-state/harness/round-000007/reviewer-response.json",
+        "sha256": "dc3bb2ec666f86783d94427c82af5acce61290b1208f40ddd6556e42ac3594f9"
+      }
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/I04/attempt-000001/acceptance.json",
+        "sha256": "8d5f9742ebc38dad91569678972b7d02d55a3676072448a7b16662c356ed962a"
+      },
+      "node": "I04",
+      "disposition": "accepted",
+      "review_ref": {
+        "path": "research-state/harness/round-000008/reviewer-response.json",
+        "sha256": "3d86cb3f1dd1a395f953b6dbcdf1f063eb74e78af5489c613f28cc3a071bf240"
+      }
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/P04/attempt-000001/acceptance.json",
+        "sha256": "089f0473acb46f98d1b0098c1c14037778d27965bfe0872c0fa273d17be584c4"
+      },
+      "node": "P04",
+      "disposition": "accepted",
+      "review_ref": {
+        "path": "research-state/harness/round-000009/reviewer-response.json",
+        "sha256": "6d8509180f3f53959330340f80e461ce341d3c119f27b927220603b83a929a6a"
+      }
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/P03/attempt-000001/acceptance.json",
+        "sha256": "4b1524afd49c6dbff8c4ef50499eef6a7ec0865f7a40c190014189ef4315b0e8"
+      },
+      "node": "P03",
+      "disposition": "accepted",
+      "review_ref": {
+        "path": "research-state/harness/round-000010/reviewer-response.json",
+        "sha256": "842792c358702c24d00d2d0d8e18fe623cc6f4435e6b6c392b2b6b3ff2c835c7"
+      }
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/R02/attempt-000000/acceptance.json",
+        "sha256": "32bcd5accfacb9c7ca93a8924d23806eab9371431224ec26df9ce8217ca80f34"
+      },
+      "node": "R02",
+      "disposition": "not_applicable",
+      "review_ref": null
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/sequence/cycle-000001/R03/attempt-000000/acceptance.json",
+        "sha256": "5598db6096de73cea1413196fc55bd86f0e66801be5f7179cbad2df189c47508"
+      },
+      "node": "R03",
+      "disposition": "not_applicable",
+      "review_ref": null
+    }
+  ],
+  "receipt_observations": [
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/e8d17e6787a5414580007a818913f01f.json",
+        "sha256": "e0bcc7ecb09b1b282d6fd5b982dd3a7985d9702a4ba0c0328b11b300e4f888c3"
+      },
+      "task_id": "harness.planner.000001",
+      "run_id": "e8d17e6787a5414580007a818913f01f",
+      "state": "failed",
+      "reason": "Observed terminal Codex turn.failed: configured gpt-6-luna unsupported with ChatGPT account. Worker cleanup confirms leader stopped; process PID now absent. No response produced. Consumer stopped before reconciliation to prevent retries.",
+      "actual_seconds": 5.009553791955113
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/bdaaede9143a4f6492900f53cc0bc96c.json",
+        "sha256": "7a1ff34889757614d2ae36f7043ad1a94d0a93c8496d9941911b5561bddddd55"
+      },
+      "task_id": "harness.planner.000002",
+      "run_id": "bdaaede9143a4f6492900f53cc0bc96c",
+      "state": "failed",
+      "reason": "Observed terminal turn.failed: inherited gpt-6-luna unsupported for ChatGPT account; child absent and owned consumer stopped. Project model override did not take effect.",
+      "actual_seconds": 4.292720317840576
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/7390f475a51d4ddeba2d048ddd569175.json",
+        "sha256": "b68cb23ea4ccb8140c5edf28ded04725ea1558df570f694122a08d5d3e75d77d"
+      },
+      "task_id": "harness.planner.000003",
+      "run_id": "7390f475a51d4ddeba2d048ddd569175",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 52.27915692329407
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/3c2469fbd1664ca4a6dd33eab2134c1c.json",
+        "sha256": "9bd765f84796a432daed9a2eed44f64a24c0763e890ba4ef3f8a7a8ca2051063"
+      },
+      "task_id": "harness.planner.000004",
+      "run_id": "3c2469fbd1664ca4a6dd33eab2134c1c",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 82.30538487434387
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/ee5009b8b91f44f3a2b4d0c601059abd.json",
+        "sha256": "28bb7875eeb8a9f9c7a263f448a3fcbc48c1d784c798ae1cc3e9c334d6de57c3"
+      },
+      "task_id": "harness.reviewer.000004",
+      "run_id": "ee5009b8b91f44f3a2b4d0c601059abd",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 64.44149470329285
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/8aabe43c8690486385a03d08f0c7a699.json",
+        "sha256": "131de2db8b8ef3c695af5c91b322dcfa47ccae7b482b75fd9c480880115a00a2"
+      },
+      "task_id": "harness.planner.000005",
+      "run_id": "8aabe43c8690486385a03d08f0c7a699",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 119.73773694038391
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/1d3450b116ac4da2af0cfed0ead4f65d.json",
+        "sha256": "ecbe0e3ceef2dc12728617fa2a1bbcd8264bc2872e474425d0bca9af295f2cdd"
+      },
+      "task_id": "harness.reviewer.000005",
+      "run_id": "1d3450b116ac4da2af0cfed0ead4f65d",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 61.32794499397278
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/60ebad5772e34e77aa5cad5b3bac7a43.json",
+        "sha256": "46629334dcb86fed5b3bd9698c47105d830830ab4685d16fd9059954eaacb82a"
+      },
+      "task_id": "harness.planner.000006",
+      "run_id": "60ebad5772e34e77aa5cad5b3bac7a43",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 102.57513213157654
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/4df749392a144855907672a394947093.json",
+        "sha256": "5e5fb579a7ce048e7a293ad184eeddba499cdf063217090982c35e15b208e134"
+      },
+      "task_id": "harness.reviewer.000006",
+      "run_id": "4df749392a144855907672a394947093",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 60.2804651260376
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/4048ffe80234459b95c9292e4e23ff1e.json",
+        "sha256": "cec0f6b83e3654ca79e68032c0a6a94ae3024d620b4ece6f13eb3eafaa6fa464"
+      },
+      "task_id": "harness.planner.000007",
+      "run_id": "4048ffe80234459b95c9292e4e23ff1e",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 127.39489889144897
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/8b70d46c1e58435ab54afad5250e0e9c.json",
+        "sha256": "342bfaf680c73174c51a8ea106d76dbdd369975d865672a9c053f160d0495fab"
+      },
+      "task_id": "harness.reviewer.000007",
+      "run_id": "8b70d46c1e58435ab54afad5250e0e9c",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 71.94071793556213
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/c8341883ba4f469983e1c6e2c3f88a27.json",
+        "sha256": "164b7eda00d10799f2d1452fe84e3f1220a220b4887aea48663422e39af6b7e4"
+      },
+      "task_id": "harness.planner.000008",
+      "run_id": "c8341883ba4f469983e1c6e2c3f88a27",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 108.07175278663635
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/d79f193c7c6740d2a6c9b4a74cdd2b2a.json",
+        "sha256": "ad95435ddb5f1cfe386106f4895f7a18f5348d676c6f31de817678b0013f9afe"
+      },
+      "task_id": "harness.reviewer.000008",
+      "run_id": "d79f193c7c6740d2a6c9b4a74cdd2b2a",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 61.11211800575256
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/21f9857414ca4dbcabb3987b3bad4859.json",
+        "sha256": "e8489c9dc5821696438bb1a718c05f4ee28c0b60cd912f8ac0b61ffdb5b7f0e8"
+      },
+      "task_id": "harness.planner.000009",
+      "run_id": "21f9857414ca4dbcabb3987b3bad4859",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 130.61164689064026
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/3818ac05a036478caa320bf49e07bafb.json",
+        "sha256": "c722f7c748647f7c9623b2c26dd175b77afb24cf483326c355082d8391990227"
+      },
+      "task_id": "harness.reviewer.000009",
+      "run_id": "3818ac05a036478caa320bf49e07bafb",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 80.43762993812561
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/4ced23654b7d42c2aa4f99ef7c6d1a38.json",
+        "sha256": "d9dc840c6f047d52a643c6b1963608731b0aad2eb9eed2fa7a66f6a627f80dd5"
+      },
+      "task_id": "harness.planner.000010",
+      "run_id": "4ced23654b7d42c2aa4f99ef7c6d1a38",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 158.52502608299255
+    },
+    {
+      "evidence_ref": {
+        "path": "research-state/harness/receipts/a3107f1af9b64c46b1722ca2121613c3.json",
+        "sha256": "f8ab2162e35d7065b05f832bba63db417cadbafcfb2b9aa609319bfc07853d91"
+      },
+      "task_id": "harness.reviewer.000010",
+      "run_id": "a3107f1af9b64c46b1722ca2121613c3",
+      "state": "completed",
+      "reason": null,
+      "actual_seconds": 86.33266806602478
+    }
+  ],
+  "community_refs": [
+    {
+      "path": "research-state/community/20261017-6a126a17000000003502fc41.json",
+      "sha256": "3e689c88a096474df23e59628f3840f1e2137fb574e8aa3ea7f1a026e69921ee"
+    },
+    {
+      "path": "research-state/community/20261017-6a34f4ae000000001503d43b.json",
+      "sha256": "f83a52662b767a102b64b156cb2b0cfd2024911774ef0af98fbbd1442513e33c"
+    },
+    {
+      "path": "research-state/community/20261017-6a4293ea000000001c024ec3.json",
+      "sha256": "eed8789f9a9fdca009a63d1fa4af77c3778ff1e3ea08580f9a22905546bc0160"
+    },
+    {
+      "path": "research-state/community/20261017-excluded-6ac60b6d000000001303e2bb.json",
+      "sha256": "0ed28de4c8f8f50224e087da923e6852ee56e28c7de2a920fdf984c3ef5e4fdd"
+    },
+    {
+      "path": "research-state/community/20261017-primary-2607.01763.json",
+      "sha256": "71fd5a4d421a4e9fad126f730303e82b172f5e3d80ccef15594e899bb92946c3"
+    }
+  ],
+  "inspection_refs": [],
+  "new_native_receipts": [],
+  "spent_seconds_from_receipts": 1376.6760483998805,
+  "operational_observation": "Root authorization.md absent; located and read research-state/authorization.md. Latest user-continuation overrides historical aggregate caps. Installed skill differs from adopted pinned Harness; adopted user handoff governs; no installation/config edits."
+}

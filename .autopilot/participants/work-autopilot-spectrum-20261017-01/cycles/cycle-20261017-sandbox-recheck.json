@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "kind": "project-progress-packet",
+  "project_id": "spectrum-final-validation",
+  "owner_id": "work-autopilot-spectrum-20261017-01",
+  "cycle_id": "cycle-20261017-sandbox-recheck",
+  "task_id": "spectrum-setup-preflight-20261017",
+  "attempt_id": "setup-preflight-attempt-04",
+  "status": "blocked",
+  "recorded_at": "2026-10-17T12:18:00Z",
+  "source_refs": [
+    "Yunbo-max/SPECTRUM@9c96b4d941822023de8dd1d5a6d7502cbc4f89ec",
+    "data/final/benchmark_registry.json@remote-preflight",
+    "scripts/run_release_study.py@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+  ],
+  "observations": {
+    "datasets": "Pinned preparation complete: MBPP 500, HumanEval+ 164, APPS intro 200, CodeContests 165, LiveCodeBench 200.",
+    "plan": "Not sealed. CLI plan supports only 24gb, 48gb and 80gb profiles; user host has 15 GiB T4. status command confirms no manifest exists.",
+    "checkpoint_storage": "Pinned base model file is 3,087,467,144 bytes. Forty-five full merged checkpoints need at least 129.4 GiB at the same BF16 size; available persistent disk is ~42 GiB. FP32 approx doubles this.",
+    "precision": "The model loader defaults to BF16 on CUDA and rejects unsupported BF16. Native BF16 false on T4; FP16 is unsupported by project code.",
+    "isolation_recheck": "Installed Ubuntu bubblewrap package. Its execution failed: kernel disallows user namespaces. unshare user namespace also fails Operation not permitted. sysctl configuration is read-only; no qualified isolation path.",
+    "run_status": "No model weights downloaded; no training, evaluation, or candidate code execution."
+  },
+  "actions_observed": [
+    {
+      "action": "Install and try bwrap sandbox",
+      "result": "Installation succeeded, namespace creation failed due host kernel policy; sandbox unusable."
+    },
+    {
+      "action": "Inspect release plan status",
+      "result": "No manifest was created; all supported memory profiles exceed the host's 15 GiB."
+    },
+    {
+      "action": "Inspect available branches/issues/PRs",
+      "result": "Only main branch; no accessible issues or PRs observed."
+    }
+  ],
+  "failed_predicates": [
+    "No supported hardware profile",
+    "BF16 unsupported; FP16 rejected",
+    "Checkpoint lower bound exceeds disk",
+    "No secure evaluator namespace available"
+  ],
+  "plan_delta": {
+    "reuse_refs": [
+      "Complete pinned data snapshot and preflight attempt 03"
+    ],
+    "avoided_duplicates": [
+      "No training/benchmark dispatch"
+    ],
+    "conflicts": [],
+    "help_requests": [],
+    "next_action": "Use a compatible GPU host with at least 24 GiB VRAM, native BF16 (or a declared supported precision profile), qualified kernel-supported evaluator sandbox, and at least 130 GiB free persistent disk plus overhead; then resume plan sealing.",
+    "rationale": "Additional sandbox installation attempt did not change kernel namespace restrictions. Current host cannot meet fixed protocol without unsafe changes."
+  },
+  "limits": {
+    "scope": "fixed final-release core only, unchanged",
+    "training_started": false,
+    "generated_code_executed": false
+  }
+}

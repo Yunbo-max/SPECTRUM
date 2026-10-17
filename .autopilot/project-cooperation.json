@@ -6,7 +6,7 @@
   "coordination_branch": "main",
   "project_root": ".",
   "coordinator_id": "work-autopilot-spectrum-20261017-01",
-  "observed_revision": "81938d69c46427f32711c25f18858184b36b8193",
+  "observed_revision": "7b2a28ab961ece4069fed8f7be4b7b9659320d3f",
   "coverage_status": "complete_for_accessible_sources",
   "coverage_gaps": [
     "No shared .autopilot registry existed at the inspected main revision; this registration starts the shared ledger. GitHub inventory covers the only listed branch (main), 11 returned commits, and no open/closed issues or pull requests. Unpublished host activity not represented in GitHub remains unobserved."
@@ -89,14 +89,14 @@
         "qwen15b_weight_file": "3,087,467,144 bytes at the exact locked revision",
         "core_checkpoint_lower_bound": "45 full checkpoints; ~129.4 GiB at the pinned BF16 checkpoint byte size, excluding overhead; ~2x for FP32",
         "planner_profiles": "24/48/80 GB only; no hardware-honest profile for 15 GiB T4",
-        "evaluator_isolation": "No qualified sandbox; unshare user namespace denied; Docker unavailable/forbidden"
+        "evaluator_isolation": "bubblewrap installed; namespace creation denied by kernel, as is unshare; host sysctl read-only"
       },
       "completion_conditions": [
         "Pinned assets are prepared and verified without changing their declared revisions or populations",
         "A hardware-accurate plan and resource preflight are recorded",
         "Do not start the frozen core block until required runtime, evaluator isolation, GPU and checkpoint storage conditions are met"
       ],
-      "next_action": "Resume only on a host/runtime supporting the frozen precision and planner profile, with qualified safe evaluator isolation and at least 130 GiB free persistent storage plus runtime/data overhead. Then create the unchanged plan and rerun resource preflight; do not dispatch on the current host."
+      "next_action": "Resume only on a host/runtime supporting the frozen plan precision, a planner profile matching VRAM, a qualified safe evaluator sandbox, and at least 130 GiB free persistent storage plus overhead. The current host cannot proceed safely or preserve all core checkpoints."
     }
   ],
   "sync_receipts": [
@@ -220,6 +220,29 @@
           "path": ".autopilot/participants/work-autopilot-spectrum-20261017-01/cycles/cycle-20261017-data-preparation-complete.json",
           "commit_sha": "81938d69c46427f32711c25f18858184b36b8193",
           "blob_sha": "ff6ffdb54b3dca8e0fe4fcf8e86fa682767d85ef",
+          "verified_readback": true
+        }
+      ]
+    },
+    {
+      "cycle_id": "cycle-20261017-sandbox-recheck",
+      "project_id": "spectrum-final-validation",
+      "owner_id": "work-autopilot-spectrum-20261017-01",
+      "observation_time": "2026-10-17T12:19:00Z",
+      "source_heads": {
+        "main": "7b2a28ab961ece4069fed8f7be4b7b9659320d3f"
+      },
+      "read_refs": [
+        ".autopilot/participants/work-autopilot-spectrum-20261017-01/cycles/cycle-20261017-sandbox-recheck.json@1c0ea692391f3a48f2f629da051a2faaf80c34e6",
+        ".autopilot/participants/work-autopilot-spectrum-20261017-01/cycles/cycle-20261017-data-preparation-complete.json@ff6ffdb54b3dca8e0fe4fcf8e86fa682767d85ef",
+        "scripts/run_release_study.py@f7b661f593719d4f0a98a4db13dc33c0ad09824a"
+      ],
+      "coverage": "Rechecked bwrap and unshare isolation on selected host; source and data preparation state reused without rerun.",
+      "progress_packets": [
+        {
+          "path": ".autopilot/participants/work-autopilot-spectrum-20261017-01/cycles/cycle-20261017-sandbox-recheck.json",
+          "commit_sha": "7b2a28ab961ece4069fed8f7be4b7b9659320d3f",
+          "blob_sha": "1c0ea692391f3a48f2f629da051a2faaf80c34e6",
           "verified_readback": true
         }
       ]

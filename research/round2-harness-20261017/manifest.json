@@ -298,5 +298,9 @@
   {
     "path": "reports/progress-snapshot-20261017.json",
     "sha256": "cbbff64a6f1ec6e198cd4c1456ac71744678d6a844b1fe74f862a0ad188a88cc"
+  },
+  {
+    "path": "research-state/remote-readiness-20261018.md",
+    "sha256": "e52d375c642eb6fd503d7173c9d99e2bd3c18ad2de8d57c2db6ba843f9b1fe95"
   }
 ]

@@ -14,3 +14,6 @@ SSH 检查已取得 GPU/磁盘/解释器结果；完整探测 shell 最终 exit=
 
 ## 2026-10-18 更新
 已按最新授权启用 repeat 模式、GPU native target、LaunchAgent 后台控制和自动故障恢复策略。最新状态见 reports/autonomous-activation-20261018.md；早期仅阅读限制已由最新授权覆盖。正式训练尚未开始，依赖/模型/数据准备和研究节点继续执行。
+
+## 主机保护修复
+2026-10-18 已部署本地主机资源守护，详见 reports/host-protection-20261018.md 和 operations/。部署后内存压力仍偏高，研究处于资源等待；这不是新增实验结果，也不代表已证明崩溃根因。

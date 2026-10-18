@@ -322,5 +322,21 @@
   {
     "path": "research-state/receipt-fix-adoption-20261018.json",
     "sha256": "40dadb38d041664d116348f4dbd91a11d3bf8eff5d3d0c8d24180d8b43e640e3"
+  },
+  {
+    "path": "operations/host_guard.py",
+    "sha256": "a28ae461dfaa8fffa876c45fe5571ea1253a038e07423650dee1255873770dcc"
+  },
+  {
+    "path": "operations/tests/test_guard.py",
+    "sha256": "5fcb3dae3f798601e14e885f0bc2e890c8108721998487040fcc688164db1b39"
+  },
+  {
+    "path": "operations/README.md",
+    "sha256": "49af11dc15bcc9375c2a6c5d980fec6e534bf422730f95da810529bf249b8134"
+  },
+  {
+    "path": "reports/host-protection-20261018.md",
+    "sha256": "cad27c1c4446c5b1cef4576971bc8fd902f031eb126b9fcad6c15c2f471c36e5"
   }
 ]

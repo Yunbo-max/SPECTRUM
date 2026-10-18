@@ -426,5 +426,13 @@
   {
     "path": "runtime-fixes/b01-native-qualification.patch",
     "sha256": "620ef169a869b1092451b1e290c64663245475d47c111f066c92c7f16b8b8d05"
+  },
+  {
+    "path": "reports/hn01-live-continuation-20261018.md",
+    "sha256": "44eb2007b8397b7b42d5f4b2b48d54d5c53f70e43f17fb0e14c45058693fe20b"
+  },
+  {
+    "path": "research-state/hn01-setup-20261018/venv-cuda-probe.log",
+    "sha256": "01bac0db2334b2ae8d80b4eaa47e8345234d22ee7fcd016b8644ca61cdcc210c"
   }
 ]

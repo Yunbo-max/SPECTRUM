@@ -1,0 +1,9 @@
+{
+  "stage": "prediction",
+  "gpu_count": 1,
+  "precision": "bf16",
+  "min_free_vram_mib": null,
+  "allocated_gpu_uuids": [
+    "GPU-3350bcde-dd30-eb6c-2d75-1d6f7515fdb2"
+  ]
+}

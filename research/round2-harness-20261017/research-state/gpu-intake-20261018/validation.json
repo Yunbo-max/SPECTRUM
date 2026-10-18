@@ -1,0 +1,30 @@
+{
+  "source_revision": "067ec2866abc2912a8f718080f4275ae4c2a34db",
+  "base_revision": "61b6e723501b301f37e0daed5ec83fa2d387573e",
+  "test_host": "spectrum-harness-gpu-hn01",
+  "code_test_execution": "remote GPU server; no portable unit tests on Mac",
+  "test_groups_passed": {
+    "runtime": 85,
+    "plugin_package": 34,
+    "node_sources": 12,
+    "startup_intake": 7
+  },
+  "full_runtime_suite_run": false,
+  "precision_execution": "project venv on remote RTX 4090; SSH orchestration on Mac",
+  "precision_cli_exit_code": 2,
+  "precision_cli_status": "needs_measurement",
+  "precision_reason": "full workload memory requirement remains unknown; FP32 FP16 BF16 operations passed",
+  "live_projects_migrated": false,
+  "source_files": {
+    "src/research_autopilot/gpu_preflight.py": "954ab3efe2c5e64627297dc0d33dacc3c6d653dcf842d91f008496237f637767",
+    "tests/runtime/test_gpu_preflight.py": "44fc43c7338166f2065bb0cfc2f6183f71c2ebe3ad76606883679227b1f387cb",
+    "tests/runtime/test_gpu_intake_guidance.py": "4140b361632a945b172c34c89d7e3f2ec045021610dc48a1a5ac9ccae03b5edb"
+  },
+  "test_commands": [
+    "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /root/rivermind-data/spectrum-harness/venv/bin/python -m pytest -q tests/runtime/test_gpu_preflight.py tests/runtime/test_gpu_intake_guidance.py tests/runtime/test_b01_qualification.py tests/runtime/test_controller.py tests/runtime/test_command_receipt_preflight.py",
+    "python3 -m unittest discover -s tests/plugins -p test_*.py -q",
+    "python3 -m unittest discover -s skills/research-autopilot/tests -p test_node_sources.py -q",
+    "python3 -m unittest discover -s skills/research-autopilot/tests -p test_startup_intake.py -q"
+  ],
+  "package_installation_version": "0.4.0-harness.3"
+}

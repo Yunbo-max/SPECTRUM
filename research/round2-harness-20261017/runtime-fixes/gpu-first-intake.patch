@@ -1,0 +1,3121 @@
+diff --git a/.codex-plugin/plugin.json b/.codex-plugin/plugin.json
+index 3b815e7..d6a58b4 100644
+--- a/.codex-plugin/plugin.json
++++ b/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.2",
++  "version": "0.4.0-harness.3",
+   "description": "Execute the existing Autopilot Skill in program-owned order with per-step evidence and independent acceptance.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/EDITION.json b/EDITION.json
+index 61ca076..98b0837 100644
+--- a/EDITION.json
++++ b/EDITION.json
+@@ -3,7 +3,7 @@
+   "branch": "autonomous-rsi-harness",
+   "plugin_name": "research-autopilot",
+   "display_name": "Autopilot Work Harness 10.17",
+-  "plugin_version": "0.4.0-harness.2",
++  "plugin_version": "0.4.0-harness.3",
+   "round_selection": "machine",
+   "authoring_host": "local_agent",
+   "execution_host": "local_agent",
+diff --git a/EXPORT_MANIFEST.json b/EXPORT_MANIFEST.json
+index 8730590..e7d361c 100644
+--- a/EXPORT_MANIFEST.json
++++ b/EXPORT_MANIFEST.json
+@@ -4,7 +4,7 @@
+   "skills": [
+     {
+       "name": "research-autopilot",
+-      "file_count": 359,
++      "file_count": 360,
+       "source_revision": "e05a999e058e0eda88379dd2f184f7f5b362f604",
+       "source_status": "derived_autonomous-rsi-harness; installation_unverified"
+     },
+@@ -47,20 +47,20 @@
+     "skills/designing-pipeline-figures/references/style-catalog.md": "ad4139c6fc721237c7b6cdd0c33c01f88a7bc34dd2c350c1cbd8f409c3fbc009",
+     "skills/designing-pipeline-figures/references/worked-example.md": "fb67b4b1fc6003d18f162cb49cf070f474cea1d10bc881da9f8acc84e5b571a9",
+     "skills/designing-pipeline-figures/scripts/validate_drawio.py": "dc8409ad3041aefe1184e40b57854d3745a50667736e0200ae36427e61850ae1",
+-    "skills/research-autopilot/SKILL.md": "c0c754fcd49ef97d6b2e440f3e5775ef0a3ce470a5f4560a5cfa5e4c338a82a5",
++    "skills/research-autopilot/SKILL.md": "6b6a370331cc37adc8884fc272bdf2b031783450680fcad2508df43551353b94",
+     "skills/research-autopilot/agents/openai.yaml": "8b11f2dbdaddfade9021fe29ab6c48d31a6c6e61f2d0ff1e100693523ca4e8e5",
+     "skills/research-autopilot/assets/examples/object-first/README.md": "26f8a08c68525d0c9cc5bce0b2009c74be71bf737f8bf8cc7303ac435ceaa1d8",
+     "skills/research-autopilot/assets/examples/object-first/setup.py": "1fbc84b25add3a323d5c4f6e17ec327d34ae403154a179b6c0e6417861765e8d",
+-    "skills/research-autopilot/assets/harness-policy.json": "3ad027faa60c87e44717503e9e7ac3a043c6ce8b570a43a4a69dfec25d0fab5f",
++    "skills/research-autopilot/assets/harness-policy.json": "34ea860d9a715ef6bb4459417dd453122e28fafdedf7fdf3176379eee5eec300",
+     "skills/research-autopilot/assets/icon.svg": "83edb7ff1fcb54461e60f8bab4147bf6e24b4f9bb9e5d29283c614f40b811039",
+     "skills/research-autopilot/assets/licenses/scholar-skill-MIT.txt": "c115f24608ca19d44d8ba103ae52dff3dfcd4639ba548068a897f076bf5b8758",
+-    "skills/research-autopilot/assets/research-nodes.json": "9c62ae4fc74cec41f9c9fb00a4a712cf0676bc14331bafa23cf60d752a39dfcb",
+-    "skills/research-autopilot/assets/runtime-guidance.json": "4e49e0a4ad7bdea6879c1d569eb3c149fa28fdc144ba4a4b06ecaa14328ab64e",
++    "skills/research-autopilot/assets/research-nodes.json": "f85089373e183ca8f1084876d657ccd75404bbbee6b63bd6c6c8cb880ab9fea0",
++    "skills/research-autopilot/assets/runtime-guidance.json": "dcdb2af6087090c297be36de935a23b3ed48a3ee245773c56901e47717a75677",
+     "skills/research-autopilot/assets/skill-sequence.json": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
+     "skills/research-autopilot/assets/templates/adaptive-trajectory.json": "b7e634f5f1677a3a38edfbca5d496674a4486a25cab018e8569228807771c246",
+     "skills/research-autopilot/assets/templates/chat-cycle.json": "247f6fbc5ee00fe94e5b9726405de0ea8f222de1e018ebfa15495ae6fa1ba811",
+     "skills/research-autopilot/assets/templates/experiment-design-contract.json": "1b3c9717f55d3f967e7e6d2b9b25ea0f150c9b13c98626763f4f96fc8f4c1199",
+-    "skills/research-autopilot/assets/templates/gpu-host-runtime.yaml": "40b490359b8f7a15fb7169a4c430b700e587828d08d7fe9f5c14f85f147be8a8",
++    "skills/research-autopilot/assets/templates/gpu-host-runtime.yaml": "a350f318b81863fd69de1f211f4292b2637ded28fd7df4ec35e5af73e2a1cc25",
+     "skills/research-autopilot/assets/templates/knowledge-change-card.md": "c07df0157db60ef0e2aebeabb291aea270e4bbbe6093ae87572b3b1a25c84833",
+     "skills/research-autopilot/assets/templates/local-agent-runbook.md": "bda3997f0164703bb3aa7beace51c8709568d7f6aae7396655a3b77d49ea2899",
+     "skills/research-autopilot/assets/templates/mathematical-trace.json": "74338e45ad889e8f6c495a7e37db5c29d2c7b58c81244fd6b913ae95809791b7",
+@@ -97,19 +97,20 @@
+     "skills/research-autopilot/references/gate-a.md": "3521c306dc72c42ecdb305326a5afcfbe75301904e277ec34ed3f610274b8d9c",
+     "skills/research-autopilot/references/github-zip-fallback.md": "a0b3394d9206c574872bc0d9cce5f04307cffcb6c6c27760d9f9fc2cf715bb96",
+     "skills/research-autopilot/references/goal-linked-quality.md": "7aa23a3682ea91dc9f47f2487574ee68a282a73cd65085769ae66b7f3c0efebe",
+-    "skills/research-autopilot/references/gpu-host-runtime.md": "75ecd2e6ff2a09003f30940f1706335f6cc55f146ed88cde73ef425a62f8e2ea",
++    "skills/research-autopilot/references/gpu-host-runtime.md": "5e430ed41679ea8f9ac5572beb2a17895de3f3d99e12ba5f89cb75b016b23605",
++    "skills/research-autopilot/references/gpu-intake-feasibility.md": "1d15e10e85064ecfa13b9aac0a0721356daeca65fdc9c52437f45ab5b946a4ca",
+     "skills/research-autopilot/references/host-adapters.md": "c1696de410660790bd520ee31a186add2e74065bcafd9f7c73e148aeef95c0c4",
+     "skills/research-autopilot/references/human-ai-supervision.md": "192a3764d0af0753ebda64ad86f5246281b07dfda598e97d9fc09652c6615400",
+     "skills/research-autopilot/references/human-question-bank.md": "e16398b978bb38cbb6a8d01b13e7e0cdbcbcc559ee9ad03e02357f55f87f476c",
+     "skills/research-autopilot/references/idea-generation.md": "6089dd6fe9b87edb0dd3958b96af190fdca061dff50ad6e4e0f1fb071087ce96",
+     "skills/research-autopilot/references/importance-preserving-gate.md": "ebad6558ed819a0aa22b6478bd7573795fe0b4c8678761657588dbadb877ec3f",
+-    "skills/research-autopilot/references/initial-intake.md": "31dd0e155be1edeb8fa8e907aa9b16813a0ae00bb3767f6f0e64f37305ebc9c2",
++    "skills/research-autopilot/references/initial-intake.md": "22d031eff12269fca51dd9846034bd7af1ceeb59faad6d0bbcc826e5b169519b",
+     "skills/research-autopilot/references/inquiry-generation.md": "6ae9348cfc91fd01d85d357d4ba50ac84aa176e426fac43d9da8b439aea1fa05",
+     "skills/research-autopilot/references/literature-evidence.md": "a3612904bc54490c6d254fe620a5057aa119a281c74bffc9bb4069cb30e619df",
+     "skills/research-autopilot/references/literature-harnesses.md": "6e308e6225feb4c735139eaa58c0698762f4e3e18c1a9cd3e79fa02c7ded457b",
+     "skills/research-autopilot/references/local-code-handoff.md": "b71615bae40f0ebdda2f3f818b53bf7f590acc0fb30354f6aa768bae7a6d27f6",
+     "skills/research-autopilot/references/local-execution-harness.md": "4d767c1365e3c572b4fc172d50ebb2b0932569fc5a5ac40432cfbbcf48310f6c",
+-    "skills/research-autopilot/references/local-execution.md": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5",
++    "skills/research-autopilot/references/local-execution.md": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e",
+     "skills/research-autopilot/references/local-installation-and-logging.md": "f88c9ece0b8670dfa5005aad44898d321a8bede481e3cd8c179c90c767c24d9f",
+     "skills/research-autopilot/references/math-analysis-moves.md": "0d7874c006df68152c17706280b611de9e38ebba38d8c2bd033ec9f2fb62de3c",
+     "skills/research-autopilot/references/math-analysis.md": "c34d5bf6f014273fa5c073399bf50d40078e0f217ac78e8cf1faf9deda1ad7c2",
+@@ -220,7 +221,7 @@
+     "skills/research-autopilot/references/release-and-promotion.md": "a233dd3d9ca6c5c30b4fde5a91b0d597fc2fff355cfc9229567373601d8ae61e",
+     "skills/research-autopilot/references/repository-round-trips.md": "3166fa9b612f593d0a0783843048d7f644750990287822dd7e1c1623c2fb0468",
+     "skills/research-autopilot/references/research-cycle.md": "98c3de0ac8b4be72518dce88e211ed722e27266f76a12860f11ad6ad6d734a54",
+-    "skills/research-autopilot/references/research-harness.md": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d",
++    "skills/research-autopilot/references/research-harness.md": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4",
+     "skills/research-autopilot/references/research-policy.md": "9c93b2cd8e3386f578c29b4e15279bfb932e416b26620e6e30bec7ad7a7de435",
+     "skills/research-autopilot/references/research-quality-bar.md": "5289770268053ec384d1635c01b5a6253f0ee1c31696580744e72c86477b3586",
+     "skills/research-autopilot/references/research-reasoning.md": "39f63fb6e7224b72d4282f6332e14e17d23a53d6f4f7772e62c5d1454629303e",
+@@ -418,12 +419,12 @@
+     "skills/writing-top-tier-papers/references/visual-orchestration.md": "a2a7d2acd566a19170aee6c997e206ad7b80f4e758e3a58d9d1ffc5779585f23"
+   },
+   "source_note": "Original per-skill revisions and exported_at retain export ancestry. Shared scientific helpers are imported from the source recorded in SOURCE_PUBLICATION.json. Exact delivered bytes are pinned below; no installed or live-project parity is asserted.",
+-  "research_skill_digest": "f25544d599e304e2d2d6cd84699e027c84480302e3773a70a137772c12f14957",
++  "research_skill_digest": "1775fa9d59aa47bd22ad8c70a2bdca91b106248d9761ca5fc48141589e1cc029",
+   "runtime_source_revision": "80d99dfd4b6d44ca51c2fb13239334fc08e6a69d",
+   "runtime_files": {
+     "docs/AUTONOMOUS.zh-CN.md": "0665ef54169aa4453ae6ba1f5dbda9a914333ce8648666ec0970c356522f39f8",
+     "docs/PROGRESS.zh-CN.md": "eadc02e32c56ee161fc63409476e8ae16ed5cff1c264e73310f0eadc7313ac9e",
+-    "docs/SKILL_SEQUENCE.md": "5cda0d6e064fd728c6bb5d192c9cd9a370c409af24cb4da58f0762f3949ef789",
++    "docs/SKILL_SEQUENCE.md": "3dfc69957248c008970bdadfefcec435b094b3dd844d21b1057df4aaa3f8e911",
+     "docs/architecture/fixed-skill-loop.md": "0daaa29909c5340130207501d66bf106517caae62a449675e0409697d12da256",
+     "docs/architecture/skill-sequence-catalog.md": "88d6621a0ad39a4224137c413843553540644b02e6cce58435f6b0223000bdeb",
+     "docs/validation/autonomous-rsi.md": "7582d46c6fc128b08aace47cf66f24023f49df2c6917307b0d2cd37a4ee5359b",
+@@ -447,19 +448,21 @@
+     "src/research_autopilot/autonomy.py": "b4ebb8a23b4e4f822a225121084594bcd47d610aceae1608e9b013080ffef557",
+     "src/research_autopilot/cli.py": "ed65d052fb8f1521249fc9f27fa7b171a78e2f2ab56cb3a900f222953eb33c3f",
+     "src/research_autopilot/closure_worker.py": "d035238b7892a696f1b43eda5ef475edbcb46fd96a241e182d4d12cbc1db0803",
++    "src/research_autopilot/command_contract.py": "c70eb094e79df691fe112d05927cac1874e54a20afc89d05f8dcba50fb93bffb",
+     "src/research_autopilot/command_worker.py": "dfb0d6f01a9efae9398ed9bdf1f5ebc4c2e9efb6c322514cc9a54f128d70a822",
+-    "src/research_autopilot/controller.py": "82a968732ce5383d9b52da08f7c1763967d939085d69fd828a703ca0358993ea",
++    "src/research_autopilot/controller.py": "e9c953020b875c1a24672fb96346442113132dcbaa30b1863b186e0efbff5d08",
+     "src/research_autopilot/coverage.py": "2187fd1453d7fe011dcd8194b817217eef15179dc3304c9ea59259324a20369f",
++    "src/research_autopilot/gpu_preflight.py": "954ab3efe2c5e64627297dc0d33dacc3c6d653dcf842d91f008496237f637767",
+     "src/research_autopilot/lease.py": "a3ca2ae353102619a20a1fb340fc09b9eb2f16a7a04c5e49ff6ef8a589b19532",
+     "src/research_autopilot/mcp.py": "1f5a7a09921a238730a14f04e3c53b85b9a98a641ab78bc26ad76200c49fa122",
+-    "src/research_autopilot/models.py": "e970073c70bf42d1780fc9527eb9db14b706b9dfac63f4f376842d95ee214df7",
++    "src/research_autopilot/models.py": "12fb3cbe2f3cb08537b85bd42216dce7a09f7c38bc11646ec70fa1261b485eb9",
+     "src/research_autopilot/native_artifacts.py": "0a651cce13d3f7e0791c095c40690172438c70c1ec8954ef89dfd205e995beb2",
+-    "src/research_autopilot/program.py": "a1bbc4b3efd9256a165e915fa6d9185978bd371bc6ea39445c7b6a21899011d4",
+-    "src/research_autopilot/program_cli.py": "98b84a52d550ebd80ab84d5528710bd8c3791fb6ff5bc0e39f7044e40b2fbc4b",
++    "src/research_autopilot/program.py": "5a6c50201f5b0394bbbcb0ac271217da8f8001d5425a1c1d6e915b1ee8ee2b42",
++    "src/research_autopilot/program_cli.py": "81b789ddbbcac328bfc66ab940c513a73075e6fbc4b40acf294c387e11ca6ab7",
+     "src/research_autopilot/remote.py": "de1af3aa8c398f11ca96cef7e8dda5598e941c7b5f2a9bbeeab449afb57b3097",
+     "src/research_autopilot/scientific_closure.py": "834f6eb1eee618bd84ded37da35ba5cc4086bac69b0e618d9eae7ef32ccafda6",
+     "src/research_autopilot/skill_registry.py": "a0b4b3ab6390db88a2d248bad2b4e0aa98108aaa7c7995016bcbce61e8175d8b",
+-    "src/research_autopilot/skill_sequence.py": "bd772d556f5637d44f6f03c06757ac9373448403b79235875c108ced4cf20227",
++    "src/research_autopilot/skill_sequence.py": "a7cc1f1ee01872fca6194691345700cae0481ca289ec9b3cab3e323849267576",
+     "src/research_autopilot/supervisor.py": "7084191247baef5167c64e4b6839f3ddf90e552ff4b9347ef4c8be980a600cb5",
+     "src/research_autopilot/worker.py": "653f0bd274a2c3fe15131f0111b433c39d36a917edffc734589ab63e313e5ef0",
+     "tests/runtime/fixtures/acp_agent.py": "1a5c80a5a14342bbc14096aca258de69f20386ca672cbe6062684f2ba0cb1f93",
+@@ -469,8 +472,12 @@
+     "tests/runtime/test_autonomous_cli.py": "f73ec0ad882aa33d3f7e6fe63a8b94c2e1937947f2a3022f46f327d4a41b2dbe",
+     "tests/runtime/test_autonomous_supervisor.py": "a948b93bb19d09d81e151e1de3fdfcafdb68cc9c41436c593910c341deabf5e5",
+     "tests/runtime/test_autonomy.py": "46348840746a184867c0b98298cf81d52400be9c5afc7609df633191f8e90d27",
++    "tests/runtime/test_b01_qualification.py": "3ccc0247e41ed88d3b0665c4547ef417d68b8dee00fcd1da14f63a71a3f9f85b",
+     "tests/runtime/test_cli.py": "0072f975d8dca5203e458d34b0ad3b1a93c420071630f017029a77ba076c66f1",
++    "tests/runtime/test_command_receipt_preflight.py": "27344c1f5d9b365f4c6bc92bc5a682a89da87efb8c02484c9fe8a97cd271a9bb",
+     "tests/runtime/test_controller.py": "70effb6c2a1273bcf860ec366a51d4b33901b97acbb0230b51c653b1bbb9b9dc",
++    "tests/runtime/test_gpu_intake_guidance.py": "4140b361632a945b172c34c89d7e3f2ec045021610dc48a1a5ac9ccae03b5edb",
++    "tests/runtime/test_gpu_preflight.py": "44fc43c7338166f2065bb0cfc2f6183f71c2ebe3ad76606883679227b1f387cb",
+     "tests/runtime/test_mcp.py": "f07b51c5a345d939545e6dd774772d09708afb4c6fe38aac6ec4502c9765baf1",
+     "tests/runtime/test_native_lease.py": "91c1a49c89798083bf908c8f43a492a5c8cd14b89c90b19ed52d71b890e4f0f2",
+     "tests/runtime/test_remote.py": "8ce8d5113b22ac15248f0d122ed1343663c3e61b5fb4e5dd47b2d41e435f462d",
+@@ -481,7 +488,7 @@
+   "public_baseline_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+   "variant": {
+     "name": "autonomous-rsi-harness",
+-    "version": "0.4.0-harness.2",
++    "version": "0.4.0-harness.3",
+     "base_main_revision": "658a39f3f32bc6bddc6a27d7e845773964c8c962",
+     "personal_skill_updated": false,
+     "source_kind": "derived_repository_branch"
+@@ -489,7 +496,7 @@
+   "repository_update": {
+     "feature": "deterministic-autopilot-skill-loop",
+     "branch": "autonomous-rsi-harness",
+-    "base_repository_revision": "c4b34f7abf7debe1f9302adfc5bf43541b7ad0fa",
++    "base_repository_revision": "61b6e723501b301f37e0daed5ec83fa2d387573e",
+     "personal_skill_updated": false,
+     "scope": "repository source; installation and live continuation require separate receipts"
+   }
+diff --git a/SOURCE_PUBLICATION.json b/SOURCE_PUBLICATION.json
+index 709000b..ac866a9 100644
+--- a/SOURCE_PUBLICATION.json
++++ b/SOURCE_PUBLICATION.json
+@@ -1,9 +1,9 @@
+ {
+   "schema_version": 1,
+   "branch": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.2",
+-  "base_commit": "c4b34f7abf7debe1f9302adfc5bf43541b7ad0fa",
+-  "change": "Program-owned ordered execution and independent per-step acceptance of the existing Autopilot Skill; persistent repeat/once cycles; no Docker or live project migration",
++  "version": "0.4.0-harness.3",
++  "base_commit": "61b6e723501b301f37e0daed5ec83fa2d387573e",
++  "change": "GPU-first intake, native precision observation and stage-specific feasibility before implementation; existing live project pins retained",
+   "installation_updated": false,
+   "live_projects_migrated": false,
+   "research_schedulers_started": false,
+@@ -21,8 +21,9 @@
+   "runtime_version": "0.4.0a2",
+   "validation_scope": {
+     "static_source_review": true,
+-    "runtime_tests_run": false,
++    "runtime_tests_run": true,
+     "live_model_or_scoring_execution": false,
+-    "ssh_execution_started": false
++    "ssh_execution_started": true,
++    "gpu_precision_smoke_run": true
+   }
+ }
+diff --git a/plugin.json b/plugin.json
+index 736acb8..56325bc 100644
+--- a/plugin.json
++++ b/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.2",
++  "version": "0.4.0-harness.3",
+   "description": "Execute the existing Autopilot Skill in program-owned order with per-step evidence and independent acceptance.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/skills/research-autopilot/SKILL.md b/skills/research-autopilot/SKILL.md
+index 74b8277..f63a869 100644
+--- a/skills/research-autopilot/SKILL.md
++++ b/skills/research-autopilot/SKILL.md
+@@ -52,6 +52,8 @@ variants/new datasets through primary sources, Web and accessible discussion lea
+ 
+ ## Local control and SSH execution
+ 
++Before GPU-dependent design or code, use [GPU intake and feasibility](references/gpu-intake-feasibility.md): ask for a missing execution target, reuse supplied SSH authority, inspect real hardware/native precision and qualify the intended stage before promising it fits.
++
+ The local agent supervises from the user's computer. At startup/resume and before
+ execution, read [local-execution.md](references/local-execution.md): restore existing
+ authorized SSH GPU targets, reconcile jobs, choose the actual task host, fetch/pull
+@@ -85,7 +87,7 @@ Read [edition-policy.md](references/edition-policy.md) and
+ [round-continuation.md](references/round-continuation.md) and
+ [resource-queue.md](references/resource-queue.md) first. They govern
+ decision ownership, execution host and continuation across every module below.
+-Version: `0.4.0-harness.2`; branch: `autonomous-rsi-harness`.
++Version: `0.4.0-harness.3`; branch: `autonomous-rsi-harness`.
+ Keep the current Codex or other supported local agent. This fifth Work-derived
+ edition adds a persistent whole-goal program with fixed Skill order: the
+ current-step worker, independently executed review, v4 decision admission,
+diff --git a/skills/research-autopilot/assets/harness-policy.json b/skills/research-autopilot/assets/harness-policy.json
+index 7e783b5..40bf5b7 100644
+--- a/skills/research-autopilot/assets/harness-policy.json
++++ b/skills/research-autopilot/assets/harness-policy.json
+@@ -1,4 +1,4 @@
+ {
+   "edition": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.2"
++  "version": "0.4.0-harness.3"
+ }
+diff --git a/skills/research-autopilot/assets/research-nodes.json b/skills/research-autopilot/assets/research-nodes.json
+index ec91e65..6378c7e 100644
+--- a/skills/research-autopilot/assets/research-nodes.json
++++ b/skills/research-autopilot/assets/research-nodes.json
+@@ -721,7 +721,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -736,7 +736,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -1556,7 +1556,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -1571,7 +1571,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -2936,7 +2936,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -2951,7 +2951,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -3855,7 +3855,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -3870,7 +3870,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -3975,7 +3975,7 @@
+     {
+      "source": "r-gpu-host-runtime",
+      "heading": "# Native GPU-host runtime",
+-     "sha256": "75ecd2e6ff2a09003f30940f1706335f6cc55f146ed88cde73ef425a62f8e2ea"
++     "sha256": "5e430ed41679ea8f9ac5572beb2a17895de3f3d99e12ba5f89cb75b016b23605"
+     },
+     {
+      "source": "r-workflow-harness",
+@@ -5302,7 +5302,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5317,7 +5317,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -5421,7 +5421,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5436,7 +5436,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -5471,7 +5471,7 @@
+     {
+      "source": "r-initial-intake",
+      "heading": "### 6.1 First response",
+-     "sha256": "9f2c1d48b00b773bda89603affe37701492fb31313b92f58e275224564214d0f"
++     "sha256": "01eaf9b2435221381424f39cfcb2c0c90a936ae74ec42cb98f213434d1546ff7"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -6423,7 +6423,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6438,7 +6438,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -6670,7 +6670,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6685,7 +6685,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -6834,7 +6834,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6849,7 +6849,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -7095,7 +7095,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7110,7 +7110,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -7351,7 +7351,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7366,7 +7366,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -7685,7 +7685,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7700,7 +7700,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -8059,7 +8059,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8074,7 +8074,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -8751,7 +8751,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8766,7 +8766,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -9050,7 +9050,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9065,7 +9065,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -9604,7 +9604,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9619,7 +9619,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -10093,7 +10093,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10108,7 +10108,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -10707,7 +10707,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10722,7 +10722,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -10846,7 +10846,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10861,7 +10861,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -10995,7 +10995,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -11010,7 +11010,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -12493,7 +12493,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -12508,7 +12508,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -13258,7 +13258,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -13273,7 +13273,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -14481,7 +14481,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14496,7 +14496,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -14640,7 +14640,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14655,7 +14655,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -14814,7 +14814,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14829,7 +14829,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -15739,7 +15739,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -15754,7 +15754,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -16694,7 +16694,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -16709,7 +16709,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -17188,7 +17188,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17203,7 +17203,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -17362,7 +17362,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17377,7 +17377,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -17531,7 +17531,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17546,7 +17546,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -18143,7 +18143,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18158,7 +18158,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -18380,7 +18380,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18395,7 +18395,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -18668,7 +18668,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18683,7 +18683,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -19217,7 +19217,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19232,7 +19232,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -19401,7 +19401,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19416,7 +19416,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -19521,7 +19521,7 @@
+     {
+      "source": "r-gpu-host-runtime",
+      "heading": "# Native GPU-host runtime",
+-     "sha256": "75ecd2e6ff2a09003f30940f1706335f6cc55f146ed88cde73ef425a62f8e2ea"
++     "sha256": "5e430ed41679ea8f9ac5572beb2a17895de3f3d99e12ba5f89cb75b016b23605"
+     },
+     {
+      "source": "r-workflow-harness",
+@@ -21147,7 +21147,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -21162,7 +21162,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -22080,7 +22080,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22095,7 +22095,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -22267,7 +22267,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22282,7 +22282,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -23354,7 +23354,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -23369,7 +23369,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -24075,7 +24075,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24090,7 +24090,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -24165,7 +24165,7 @@
+     {
+      "source": "r-gpu-host-runtime",
+      "heading": "# Native GPU-host runtime",
+-     "sha256": "75ecd2e6ff2a09003f30940f1706335f6cc55f146ed88cde73ef425a62f8e2ea"
++     "sha256": "5e430ed41679ea8f9ac5572beb2a17895de3f3d99e12ba5f89cb75b016b23605"
+     },
+     {
+      "source": "r-workflow-harness",
+@@ -24934,7 +24934,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24949,7 +24949,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -25522,7 +25522,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -25537,7 +25537,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -25652,7 +25652,7 @@
+     {
+      "source": "r-gpu-host-runtime",
+      "heading": "# Native GPU-host runtime",
+-     "sha256": "75ecd2e6ff2a09003f30940f1706335f6cc55f146ed88cde73ef425a62f8e2ea"
++     "sha256": "5e430ed41679ea8f9ac5572beb2a17895de3f3d99e12ba5f89cb75b016b23605"
+     },
+     {
+      "source": "r-workflow-harness",
+@@ -27153,7 +27153,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -27168,7 +27168,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -28392,7 +28392,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -28407,7 +28407,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -29532,7 +29532,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -29547,7 +29547,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -30545,7 +30545,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30560,7 +30560,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -30739,7 +30739,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30754,7 +30754,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -30908,7 +30908,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30923,7 +30923,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -31092,7 +31092,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31107,7 +31107,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -31266,7 +31266,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31281,7 +31281,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -31682,7 +31682,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31697,7 +31697,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -32283,7 +32283,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32298,7 +32298,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -32515,7 +32515,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32530,7 +32530,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -32732,7 +32732,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32747,7 +32747,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -32969,7 +32969,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32984,7 +32984,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -33256,7 +33256,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33271,7 +33271,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -33508,7 +33508,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33523,7 +33523,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -33780,7 +33780,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33795,7 +33795,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -34017,7 +34017,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34032,7 +34032,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -34461,7 +34461,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34476,7 +34476,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -34665,7 +34665,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34680,7 +34680,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -34937,7 +34937,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34952,7 +34952,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -35209,7 +35209,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35224,7 +35224,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -35461,7 +35461,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35476,7 +35476,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -35635,7 +35635,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35650,7 +35650,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -35812,7 +35812,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35827,7 +35827,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -36072,7 +36072,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36087,7 +36087,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -36319,7 +36319,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36334,7 +36334,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -36645,7 +36645,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36660,7 +36660,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -37779,7 +37779,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -37794,7 +37794,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -38416,7 +38416,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38431,7 +38431,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -38535,7 +38535,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38550,7 +38550,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -38719,7 +38719,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38734,7 +38734,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -39040,7 +39040,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39055,7 +39055,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -39179,7 +39179,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39194,7 +39194,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -39348,7 +39348,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39363,7 +39363,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -39487,7 +39487,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39502,7 +39502,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -39626,7 +39626,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39641,7 +39641,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -39765,7 +39765,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39780,7 +39780,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -40056,7 +40056,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40071,7 +40071,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -40385,7 +40385,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40400,7 +40400,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -40836,7 +40836,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40851,7 +40851,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -41471,7 +41471,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41486,7 +41486,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -41785,7 +41785,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41800,7 +41800,7 @@
+     {
+      "source": "r-local-execution",
+      "heading": "# Research with a local agent",
+-     "sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++     "sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+     },
+     {
+      "source": "r-benchmark-discovery",
+@@ -43993,7 +43993,7 @@
+   "r-initial-intake": {
+    "skill": "research-autopilot",
+    "path": "references/initial-intake.md",
+-   "audit_file_sha256": "31dd0e155be1edeb8fa8e907aa9b16813a0ae00bb3767f6f0e64f37305ebc9c2"
++   "audit_file_sha256": "22d031eff12269fca51dd9846034bd7af1ceeb59faad6d0bbcc826e5b169519b"
+   },
+   "r-literature-evidence": {
+    "skill": "research-autopilot",
+@@ -44243,7 +44243,7 @@
+   "r-gpu-host-runtime": {
+    "skill": "research-autopilot",
+    "path": "references/gpu-host-runtime.md",
+-   "audit_file_sha256": "75ecd2e6ff2a09003f30940f1706335f6cc55f146ed88cde73ef425a62f8e2ea"
++   "audit_file_sha256": "5e430ed41679ea8f9ac5572beb2a17895de3f3d99e12ba5f89cb75b016b23605"
+   },
+   "r-workflow-harness": {
+    "skill": "research-autopilot",
+@@ -44313,7 +44313,7 @@
+   "r-local-execution": {
+    "skill": "research-autopilot",
+    "path": "references/local-execution.md",
+-   "audit_file_sha256": "27aa6231ff80280dbe73bfd3d5ed21bd3ce7a61542682ab3f12ecbd00e3888f5"
++   "audit_file_sha256": "a7a3cdca65c9786dae90ee39c91adf92e2427eb54e11498b223ba300513e553e"
+   },
+   "r-native-scoring-stages": {
+    "skill": "research-autopilot",
+@@ -44328,7 +44328,7 @@
+   "r-research-harness": {
+    "skill": "research-autopilot",
+    "path": "references/research-harness.md",
+-   "audit_file_sha256": "1186a0f4e42bd1108b1db8a2fd05adec6a58319fbf4e7ad7ce11f985d498314d"
++   "audit_file_sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
+   },
+   "r-skill-sequence": {
+    "skill": "research-autopilot",
+diff --git a/skills/research-autopilot/assets/runtime-guidance.json b/skills/research-autopilot/assets/runtime-guidance.json
+index a3a29eb..ead370a 100644
+--- a/skills/research-autopilot/assets/runtime-guidance.json
++++ b/skills/research-autopilot/assets/runtime-guidance.json
+@@ -7,6 +7,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -29,6 +30,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -54,6 +56,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -77,6 +80,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -99,6 +103,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -122,6 +127,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -151,6 +157,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -176,6 +183,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -199,6 +207,7 @@
+       "references/research-harness.md",
+       "references/round-continuation.md",
+       "references/local-execution.md",
++      "references/gpu-intake-feasibility.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+diff --git a/skills/research-autopilot/assets/templates/gpu-host-runtime.yaml b/skills/research-autopilot/assets/templates/gpu-host-runtime.yaml
+index 7174535..a4ae2fa 100644
+--- a/skills/research-autopilot/assets/templates/gpu-host-runtime.yaml
++++ b/skills/research-autopilot/assets/templates/gpu-host-runtime.yaml
+@@ -13,13 +13,22 @@ runtime_profile:
+   dependency_lock_refs: []
+   resolved_environment_manifest_ref: null
+   gpu_inventory:
+-    count: 1
+-    count_status: user_stated
++    count: null
++    count_status: unknown
+     model: null
+     vram_mib: null
+     device_uuid: null
+     host_inventory_ref: null
+     allocation_status: unknown
++    native_bf16: null
++    precision_smoke_ref: null
++  feasibility:
++    stage: null
++    status: needs_measurement
++    gpu_preflight_ref: null
++    model_config_ref: null
++    measured_pilot_ref: null
++    unresolved: []
+   scheduling:
+     default_gpu_workloads_at_once: 1
+     cpu_overlap: independent_reading_code_or_data_preparation_within_resources
+diff --git a/skills/research-autopilot/references/gpu-host-runtime.md b/skills/research-autopilot/references/gpu-host-runtime.md
+index 2b87c42..1d3a6d2 100644
+--- a/skills/research-autopilot/references/gpu-host-runtime.md
++++ b/skills/research-autopilot/references/gpu-host-runtime.md
+@@ -38,11 +38,11 @@ Contents: [topology and readiness](#step-1-sourced-topology-and-readiness),
+ 
+ ## Step 1: sourced topology and readiness
+ 
++Start with [GPU intake and feasibility](gpu-intake-feasibility.md). User-stated hardware is a lead; inspect actual visible/allocated devices, native precision and the chosen project environment before implementation.
++
+ Copy [the planning template](../assets/templates/gpu-host-runtime.yaml) into the
+ project and resolve its actual environment identity. Retain source, status and
+-timestamp. The current user-stated device count is one; it is not verified device
+-telemetry. Reuse that answer for this host until the user or newer actual allocation
+-evidence changes it. New/different hosts retain their own current sourced inventory;
++timestamp. Reuse the current project's explicitly stated device allocation; do not assume a count from this template. Verify device telemetry on its actual host. New/different hosts retain their own current sourced inventory;
+ do not impose a blanket single-GPU default. Keep model, VRAM, UUID, driver and
+ actual allocation unknown until read from the host; never infer them from old runs.
+ 
+diff --git a/skills/research-autopilot/references/gpu-intake-feasibility.md b/skills/research-autopilot/references/gpu-intake-feasibility.md
+new file mode 100644
+index 0000000..a4f476a
+--- /dev/null
++++ b/skills/research-autopilot/references/gpu-intake-feasibility.md
+@@ -0,0 +1,109 @@
++# GPU intake and experiment feasibility
++
++## Ask once, inspect before committing to a plan
++
++Before GPU-dependent design or implementation, restore the user's current target,
++allocation and intended task. If no execution target is supplied, ask first:
++“这次用哪台 GPU 机器？请提供已有的 SSH 连接或机器信息；还没选的话可先给 GPU 型号与显存。”
++This is one execution-target choice, not a request for credentials in a public
++artifact. Never save passwords, private keys or tokens in research files.
++
++If an authorized SSH target already exists, inspect it directly and report the
++observed GPU name, visible/allocated device count, VRAM, native precision support
++and selected interpreter. Ask only for missing allocation or access facts that
++cannot be observed. Do not ask again on every round. A user estimate such as
++“应该支持 BF16” remains user-stated until verified. After target replacement,
++reinspect the new host; never copy the previous host's readiness flags.
++
++Read-only research may proceed while execution facts are unknown. Hardware-bound
++model, batch, precision and training promises must remain provisional until the
++checks below. Optional source/delivery preferences must not delay discovering an
++unknown execution target when the immediate request is GPU work.
++
++## Real host preflight
++
++The Work Harness source runtime provides a bounded helper:
++
++Use the reviewed runtime source accompanying this edition (or its separately
++installed runtime). A skills-only archive does not supply the Python module.
++For a source checkout, run from that root with `PYTHONPATH=src`; do not upgrade a
++running project's pinned runtime merely to invoke this standalone observer.
++
++```sh
++python -m research_autopilot.gpu_preflight \
++  --target gpu-target.json --requirements gpu-requirements.json \
++  --output gpu-preflight.json
++```
++
++Use the explicit project interpreter in the target (not whatever system Python
++happens to import torch). Target format is the existing trusted NativeTarget:
++
++```json
++{"host":"authorized-ssh-alias","root":"/absolute/project","skill_root":"/absolute/skill","python":"/absolute/project-venv/bin/python"}
++```
++
++A requirements example (numbers are an example, not a universal safe budget):
++
++```json
++{"stage":"prediction","gpu_count":1,"precision":"bf16","min_free_vram_mib":8192}
++```
++
++Use null for precision or required free VRAM when not yet determined. GPU count
++means the job's required count; do not infer permission to use every host GPU.
++Use allocated_gpu_uuids with canonical `GPU-...` or `MIG-...` identities when the
++allocation is restricted; bare UUIDs are not allocation declarations. All hosts and paths
++must come from existing user authority. Missing SSH/framework/device observations
++remain unknown; do not quietly switch hosts or interpreters.
++Without an explicit UUID list, the helper probes the first `gpu_count` visible
++devices. Use explicit UUIDs for a different selection. Device inventory is separate
++from device operations; only the selected scope receives memory/precision probes
++and optional smoke. CUDA inspection may initialize a context on selected devices.
++
++The helper reports process-visible devices separately from host inventory,
++selected Python/PyTorch, UUID/capability, memory and native BF16 versus emulation.
++Do not interpret default `torch.cuda.is_bf16_supported()` as proof of native BF16.
++Optional `--smoke` performs tiny precision operations on the selected GPU scope;
++use only when such execution is authorized, after reconciling current jobs. It
++never downloads a model, runs generated benchmark code or qualifies training.
++
++## Decide what can actually run
++
++Return a short feasibility card before investing in the chosen implementation:
++
++| Question | Required evidence |
++| --- | --- |
++| What hardware may this job use? | Actual host/device identity, allocation and live free VRAM; CPU/RAM/disk observations where relevant. |
++| Which precision works? | Native dtype support, actual small operation if authorized, and compatibility of the project's implementation. |
++| Does this stage fit? | Selected model/config, sequence length, batch, optimizer/LoRA and memory estimate followed by a measured pilot with headroom. |
++| Is the environment usable? | Correct project interpreter, dependency versions and actual imports; a successful check in system Python does not qualify a different venv. |
++| What remains blocked? | Exact stage dependency, failure/unknown and next test or scoped code repair. |
++
++Use three outcomes: `blocked` for a measured hard prerequisite mismatch;
++`needs_measurement` for unresolved facts; `ready_for_pilot` for satisfied measured
++GPU prerequisites. None means the complete experiment is proven feasible.
++The weight size alone excludes activations, gradients, optimizer state, cache,
++workspace and fragmentation. Snapshot free VRAM is not a reservation. Calibrate
++one workload at a time using supported batches, preserving effective batch and
++scientific protocol. An FP16 matmul passing does not supply a missing training
++GradScaler or prove gradients are stable. Do not silently substitute BF16/FP16/
++FP32: record the effective dtype and the implementation change, then test it.
++
++Separate training, generation and scoring. SSH success does not prove namespace
++permissions; failed unshare does not mean SSH or CUDA is unavailable. Only the
++stage executing generated programs acquires its required execution-isolation
++checks. Reuse actual deferred-scoring support; retain unscored outputs honestly.
++
++## Keep the result current and attributable
++
++Pin the report and requirement/config identities in the current stage's evidence.
++Re-run on host, device allocation, interpreter, precision or material config
++change, and check volatile resources immediately before dispatch. Preserve failed
++observations; avoid repeated identical read-only loops after an execution gap is
++known. Use the authorized qualification route to resolve that gap, with existing
++review and actual receipts. The helper is an observation tool, not a scheduler,
++allocation, sandbox, scientific acceptance or permission grant.
++
++Run portable/code verification on the user's designated GPU server when requested;
++Mac-specific process/service checks must still use their actual host. Keep source
++changes, remotely tested bytes, plugin installation and live project adoption
++separate. Updating a plugin does not rewrite immutable running Skill pins.
+diff --git a/skills/research-autopilot/references/initial-intake.md b/skills/research-autopilot/references/initial-intake.md
+index a83a2e1..2efb2de 100644
+--- a/skills/research-autopilot/references/initial-intake.md
++++ b/skills/research-autopilot/references/initial-intake.md
+@@ -13,7 +13,7 @@ edition policy controls any inherited intake priorities and candidate quotas bel
+ 
+ Before asking, inspect the request, conversation, supplied assets and saved state.
+ For a new scientific project, confirm its GitHub and Hugging Face delivery choices
+-at startup, together with the human's project goal and available resource envelope.
++at startup, together with the human's project goal and available resource envelope. For an immediate GPU task, resolve the missing execution target before optional destination choices.
+ Both choices belong to the first intake turn, before the first research batch,
+ even if that batch is only ideas or plans and no weights exist yet. Reuse explicit
+ project-scoped choices; ask missing choices instead of guessing. The human may
+@@ -31,6 +31,8 @@ When sufficient information already exists, present the inferred intake for corr
+ 
+ ### 6.1 First response
+ 
++For GPU work, apply [GPU intake and feasibility](gpu-intake-feasibility.md) first. A missing current execution target takes the first material question slot; inspect a supplied authorized target rather than asking the user to guess precision or VRAM. Confirm hardware and stage feasibility before model/batch/precision commitments.
++
+ For a new scientific project, order the first response as follows:
+ 
+ 1. **Project goal:** summarize the known purpose, core problem and minimum useful
+@@ -48,7 +50,7 @@ For a new scientific project, order the first response as follows:
+    rejection entry, the operating mode and this session's requested deliverable.
+ 5. **Next questions:** ask at most three independently answerable material unknowns.
+    Ask which GitHub delivery repository to use and which Hugging Face delivery
+-   destination to use as the first two slots when both choices are unresolved.
++   destination to use after the missing GPU execution target, when applicable, within the same question limit.
+    Already selected choices cost no question. For empirical/GPU planning, if the
+    current usable GPU count remains unknown after inspection, ask that next, in
+    the first turn when a slot is available. Reuse an explicit current inventory
+diff --git a/skills/research-autopilot/references/local-execution.md b/skills/research-autopilot/references/local-execution.md
+index 87fd0c0..e7052f0 100644
+--- a/skills/research-autopilot/references/local-execution.md
++++ b/skills/research-autopilot/references/local-execution.md
+@@ -15,6 +15,8 @@ to the user's computer or require an LLM agent on the GPU server.
+ 
+ ## Decide the execution target first
+ 
++Apply [GPU intake and feasibility](gpu-intake-feasibility.md) before hardware-bound planning. Ask for the target only when missing; inspect actual GPU/VRAM/native precision through the selected project interpreter and record stage-specific feasibility.
++
+ At startup/resume and before an executable task, restore the project host/path map,
+ authorized SSH alias/connection, remote project and environment, source pin, live
+ or unknown jobs, allocations, budgets and pauses. Read existing project runbooks
+diff --git a/skills/research-autopilot/references/research-harness.md b/skills/research-autopilot/references/research-harness.md
+index 8786d38..df49796 100644
+--- a/skills/research-autopilot/references/research-harness.md
++++ b/skills/research-autopilot/references/research-harness.md
+@@ -2,7 +2,7 @@
+ 
+ Read this at startup, every actual agent invocation, after a terminal result, and
+ before reporting completion or unattended continuation. This is the fifth edition,
+-`autonomous-rsi-harness`, version `0.4.0-harness.2`. Preserve the original Work
++`autonomous-rsi-harness`, version `0.4.0-harness.3`. Preserve the original Work
+ scientific method and the user's existing Codex or other supported local agent.
+ 
+ ## What the harness adds
+diff --git a/src/research_autopilot/gpu_preflight.py b/src/research_autopilot/gpu_preflight.py
+new file mode 100644
+index 0000000..ab47c42
+--- /dev/null
++++ b/src/research_autopilot/gpu_preflight.py
+@@ -0,0 +1,526 @@
++"""Bounded, read-only SSH GPU intake; readiness means prerequisites for a pilot only.
++
++This standalone command does not change program admission or a pinned project.
++Use --smoke explicitly to permit tiny sequential matrix multiplications.
++"""
++from __future__ import annotations
++
++import argparse
++from dataclasses import asdict
++from datetime import datetime, timezone
++import hashlib
++import inspect
++import json
++from pathlib import Path
++import subprocess
++import tempfile
++import time
++
++from .remote import NativeTarget, ssh_argv
++
++OUTPUT_LIMIT = 512 * 1024
++PROBE_SECONDS = 45
++
++
++def _normalize_uuid(raw, known=()):
++    """Match bare CUDA UUIDs to observed/allocated GPU or MIG identities."""
++    import uuid
++
++    if raw is None:
++        return None, None, 'missing'
++    if isinstance(raw, (bytes, bytearray, memoryview)):
++        raw_text = bytes(raw).hex()
++        try:
++            bare = str(uuid.UUID(bytes=bytes(raw)))
++        except ValueError:
++            return None, raw_text, 'invalid_uuid_bytes'
++    else:
++        raw_text = str(raw).strip()
++        # Preserve the GPU/MIG namespace. Legacy MIG-GPU-.../GI/CI identifiers
++        # are already typed, and cannot be inferred from a parent's GPU UUID.
++        for prefix in ('GPU-', 'MIG-'):
++            if raw_text.startswith(prefix):
++                try:
++                    canonical = prefix + str(uuid.UUID(raw_text[len(prefix):]))
++                except ValueError:
++                    canonical = raw_text
++                return canonical, raw_text, 'typed_uuid'
++        try:
++            bare = str(uuid.UUID(raw_text))
++        except ValueError:
++            return None, raw_text, 'unrecognized_uuid'
++    matches = set()
++    for identity in known:
++        if not isinstance(identity, str):
++            continue
++        for prefix in ('GPU-', 'MIG-'):
++            if identity.startswith(prefix):
++                try:
++                    if str(uuid.UUID(identity[len(prefix):])) == bare:
++                        matches.add(prefix + bare)
++                except ValueError:
++                    pass
++    if len(matches) == 1:
++        return matches.pop(), raw_text, 'matched_inventory_or_allocation'
++    return None, raw_text, 'ambiguous_uuid_namespace' if matches else 'unmapped_uuid_namespace'
++
++
++def _remote_probe(mode, root, requested, smoke, requirements=None):
++    # This function is sent as source, so imports must remain self-contained.
++    import csv
++    import importlib.metadata
++    import io
++    import os
++    import platform
++    import shutil
++    import signal
++    import subprocess
++    import sys
++
++    signal.alarm(35)
++    result = {'python': {'requested': requested, 'executable': sys.executable,
++                        'version': platform.python_version(), 'prefix': sys.prefix},
++              'packages': {}, 'errors': []}
++    for package in ('torch', 'numpy', 'transformers', 'accelerate'):
++        try:
++            result['packages'][package] = importlib.metadata.version(package)
++        except importlib.metadata.PackageNotFoundError:
++            result['packages'][package] = None
++    if mode == 'system':
++        return result
++    resolved = shutil.which(requested)
++    result['python']['requested_resolved'] = resolved
++    result['python']['matches_requested_realpath'] = bool(
++        resolved and os.path.realpath(resolved) == os.path.realpath(sys.executable))
++    # Virtualenv interpreters commonly share the system binary's realpath.
++    # Keep invocation identity and environment prefix separate from that fact.
++    result['python']['matches_requested_path'] = bool(
++        resolved and os.path.abspath(resolved) == os.path.abspath(sys.executable))
++    expected_prefix = None
++    if resolved:
++        candidate = os.path.dirname(os.path.dirname(os.path.abspath(resolved)))
++        if (os.path.isfile(os.path.join(candidate, 'pyvenv.cfg')) or
++                os.path.isdir(os.path.join(candidate, 'conda-meta'))):
++            expected_prefix = candidate
++    result['python']['expected_prefix'] = expected_prefix
++    result['python']['matches_expected_prefix'] = (
++        os.path.realpath(sys.prefix) == os.path.realpath(expected_prefix)
++        if expected_prefix else None)
++    result['python']['matches_requested'] = (
++        result['python']['matches_requested_path'] and
++        result['python']['matches_expected_prefix'] is not False)
++    if not result['python']['matches_requested']:
++        result['errors'].append('selected_interpreter_mismatch')
++        return result
++    try:
++        os.chdir(root)
++    except OSError as error:
++        result['errors'].append('project_root_unavailable:' + type(error).__name__)
++        return result
++    result['host_resources'] = {'ram_total_mib': None, 'ram_available_mib': None,
++                                'cgroup_memory_max_bytes': None,
++                                'cgroup_memory_current_bytes': None,
++                                'target_root_disk_free_mib': None}
++    try:
++        with open('/proc/meminfo') as handle:
++            values = dict(line.split(':', 1) for line in handle if ':' in line)
++        result['host_resources']['ram_total_mib'] = int(values['MemTotal'].split()[0]) // 1024
++        result['host_resources']['ram_available_mib'] = int(values['MemAvailable'].split()[0]) // 1024
++    except (OSError, ValueError, KeyError):
++        pass
++    try:
++        # Resolve this process's cgroup v2, rather than assuming the root group.
++        with open('/proc/self/cgroup') as handle:
++            group = next(line.strip().split('::', 1)[1] for line in handle if line.startswith('0::'))
++        base = os.path.join('/sys/fs/cgroup', group.lstrip('/'))
++        for filename, key in [('memory.max', 'cgroup_memory_max_bytes'),
++                              ('memory.current', 'cgroup_memory_current_bytes')]:
++            with open(os.path.join(base, filename)) as handle:
++                value = handle.read(64).strip()
++            result['host_resources'][key] = 'unlimited' if value == 'max' else int(value)
++    except (OSError, ValueError, StopIteration):
++        pass
++    try:
++        result['host_resources']['target_root_disk_free_mib'] = shutil.disk_usage(root).free // (1024 * 1024)
++    except OSError:
++        pass
++    result['nvidia_smi'] = {'status': 'unknown', 'gpus': []}
++    try:
++        process = subprocess.run(
++            ['nvidia-smi', '--query-gpu=uuid,name,memory.total,memory.free,driver_version',
++             '--format=csv,noheader,nounits'], capture_output=True, text=True, timeout=8)
++        if process.returncode:
++            result['nvidia_smi']['error'] = 'command_failed'
++        elif len(process.stdout) > 131072:
++            result['nvidia_smi']['error'] = 'output_limit'
++        else:
++            rows = list(csv.reader(io.StringIO(process.stdout)))
++            if len(rows) > 128:
++                raise ValueError('device_limit')
++            for row in rows:
++                if len(row) != 5:
++                    raise ValueError('malformed_csv')
++                uuid, name, total, free, driver = [value.strip() for value in row]
++                total, free = int(total), int(free)
++                if not uuid or total <= 0 or not 0 <= free <= total:
++                    raise ValueError('invalid_memory_or_identity')
++                result['nvidia_smi']['gpus'].append(
++                    {'uuid': uuid, 'name': name, 'total_vram_mib': total,
++                     'free_vram_mib': free, 'driver_version': driver})
++            result['nvidia_smi']['status'] = 'observed'
++    except Exception as error:
++        result['nvidia_smi']['error'] = type(error).__name__
++        result['nvidia_smi']['gpus'] = []
++    result['torch'] = {'status': 'unknown', 'devices': []}
++    try:
++        import torch
++    except ImportError:
++        result['torch']['status'] = 'missing'
++        return result
++    except Exception as error:
++        result['torch']['error'] = 'import_failed:' + type(error).__name__
++        return result
++    result['torch'].update({'version': str(torch.__version__),
++                            'cuda_build': torch.version.cuda})
++    try:
++        available = bool(torch.cuda.is_available())
++        count = int(torch.cuda.device_count())
++        if not 0 <= count <= 128:
++            raise ValueError('device_count_out_of_bounds')
++        result['torch'].update({'status': 'observed', 'cuda_available': available,
++                                'visible_device_count': count})
++        requirement = requirements or {'gpu_count': 1}
++        allocation = requirement.get('allocated_gpu_uuids')
++        known_uuids = [gpu['uuid'] for gpu in result['nvidia_smi']['gpus']] + (allocation or [])
++        if allocation is not None:
++            allocation = [_normalize_uuid(identity, known_uuids)[0] for identity in allocation]
++            allocation = [identity for identity in allocation if identity is not None]
++        for index in range(count if available else 0):
++            device = {'index': index, 'smoke': {precision: {'status': 'not_requested'}
++                       for precision in ('fp32', 'fp16', 'bf16')}, 'probe_selected': False}
++            result['torch']['devices'].append(device)
++            try:
++                # Metadata enumeration precedes device contexts, memory queries,
++                # precision checks and any optional tensor allocation.
++                properties = torch.cuda.get_device_properties(index)
++                capability = list(torch.cuda.get_device_capability(index))
++                canonical_uuid, raw_uuid, uuid_basis = _normalize_uuid(
++                    getattr(properties, 'uuid', None), known_uuids)
++                device.update({'name': str(properties.name),
++                               'uuid': canonical_uuid, 'uuid_raw': raw_uuid, 'uuid_basis': uuid_basis,
++                               'capability': capability,
++                               'total_vram_mib': int(properties.total_memory // (1024 * 1024))})
++            except Exception as error:
++                device['error'] = type(error).__name__
++        candidates = [device for device in result['torch']['devices']
++                      if allocation is None or device.get('uuid') in allocation]
++        selected_probe = candidates[:requirement.get('gpu_count', 1)]
++        result['torch']['probe_selected_device_indices'] = [device['index'] for device in selected_probe]
++        for device in selected_probe:
++            device['probe_selected'] = True
++            index = device['index']
++            if device.get('error'):
++                continue
++            capability = device['capability']
++            try:
++                with torch.cuda.device(index):
++                    try:
++                        free, total = torch.cuda.mem_get_info(index)
++                        device['free_vram_mib'] = int(free // (1024 * 1024))
++                        device['visible_total_vram_mib'] = int(total // (1024 * 1024))
++                    except Exception as error:
++                        device['free_vram_mib'] = None
++                        device['memory_error'] = type(error).__name__
++                    native_bf16 = None
++                    default_bf16 = None
++                    bf16_basis = 'unknown'
++                    if smoke:
++                        # The default API can allocate an emulation tensor on
++                        # older GPUs, so it requires explicit smoke permission.
++                        try:
++                            default_bf16 = bool(torch.cuda.is_bf16_supported())
++                        except Exception:
++                            pass
++                    try:
++                        native_bf16 = bool(torch.cuda.is_bf16_supported(including_emulation=False))
++                        bf16_basis = 'torch_including_emulation_false'
++                    except TypeError:
++                        # A pre-Ampere NVIDIA CUDA device cannot have native BF16.
++                        # Newer hardware alone does not establish runtime support.
++                        native_bf16 = False if capability[0] < 8 else None
++                        bf16_basis = 'legacy_api_conservative_capability'
++                    except Exception as error:
++                        device['bf16_error'] = type(error).__name__
++                    device['precision'] = {
++                        'fp32': True, 'fp16': tuple(capability) >= (5, 3),
++                        'bf16': native_bf16, 'bf16_default_may_emulate': default_bf16,
++                        'bf16_basis': bf16_basis}
++            except Exception as error:
++                device['error'] = type(error).__name__
++        if smoke:
++            candidates = []
++            for device in result['torch']['devices']:
++                device['smoke'] = {precision: {'status': 'not_selected'}
++                                   for precision in ('fp32', 'fp16', 'bf16')}
++                if not device['probe_selected']:
++                    continue
++                if allocation is not None and device.get('uuid') not in allocation:
++                    continue
++                if device.get('error'):
++                    continue
++                candidates.append(device)
++            # No retry on additional GPUs: the explicit smoke budget is one
++            # sequential pass on at most the requested count of selected GPUs.
++            selected = candidates[:requirement.get('gpu_count', 1)]
++            result['torch']['smoke_selected_device_indices'] = [device['index'] for device in selected]
++            for device in selected:
++                index = device['index']
++                try:
++                    with torch.cuda.device(index):
++                        for precision, dtype in [('fp32', torch.float32),
++                                                 ('fp16', torch.float16), ('bf16', torch.bfloat16)]:
++                            support = device['precision'][precision]
++                            if support is not True:
++                                device['smoke'][precision] = {'status': 'unsupported' if support is False else 'unknown'}
++                                continue
++                            left = output = None
++                            try:
++                                left = torch.ones((32, 32), device='cuda:' + str(index), dtype=dtype)
++                                output = left @ left
++                                torch.cuda.synchronize(index)
++                                finite = bool(torch.isfinite(output).all().item())
++                                correct = bool((output == 32).all().item())
++                                device['smoke'][precision] = {
++                                    'status': 'tested' if finite and correct else 'error',
++                                    'expected_value': 32}
++                                if not finite:
++                                    device['smoke'][precision]['error'] = 'nonfinite_output'
++                                elif not correct:
++                                    device['smoke'][precision]['error'] = 'incorrect_output'
++                            except Exception as error:
++                                device['smoke'][precision] = {'status': 'error', 'error': type(error).__name__}
++                            finally:
++                                del left, output
++                                # Release only this short-lived probe's allocator cache.
++                                torch.cuda.empty_cache()
++                except Exception as error:
++                    device['error'] = type(error).__name__
++    except Exception as error:
++        result['torch']['status'] = 'unknown'
++        result['torch']['error'] = type(error).__name__
++    return result
++
++
++def _run_bounded(argv, timeout=PROBE_SECONDS):
++    """Bound captured bytes and wall time; never disclose raw stderr/environment."""
++    with tempfile.TemporaryFile() as out, tempfile.TemporaryFile() as err:
++        process = subprocess.Popen(argv, stdout=out, stderr=err)
++        deadline = time.monotonic() + timeout
++        reason = None
++        while process.poll() is None:
++            if out.tell() > OUTPUT_LIMIT or err.tell() > OUTPUT_LIMIT:
++                reason = 'output_limit'
++                break
++            if time.monotonic() >= deadline:
++                reason = 'timeout'
++                break
++            time.sleep(0.05)
++        if reason:
++            process.kill()
++        process.wait()
++        if out.tell() > OUTPUT_LIMIT or err.tell() > OUTPUT_LIMIT:
++            reason = 'output_limit'
++        out.seek(0)
++        output = out.read(OUTPUT_LIMIT + 1)
++        if len(output) > OUTPUT_LIMIT:
++            reason = 'output_limit'
++        if reason:
++            raise RuntimeError(reason)
++        if process.returncode:
++            raise RuntimeError('ssh_or_interpreter_failed:exit_' + str(process.returncode))
++        return output.decode('utf-8')
++
++
++def _probe(target, mode, smoke, runner, requirements=None):
++    executable = target.python if mode == 'project' else 'python3'
++    source = ('import json\n' + inspect.getsource(_normalize_uuid) + '\n' + inspect.getsource(_remote_probe) +
++              '\nprint(json.dumps(_remote_probe(' + ','.join(repr(value) for value in
++              (mode, target.root, executable, smoke and mode == 'project', requirements)) +
++              '), allow_nan=False))\n')
++    argv = ssh_argv(target, [executable, '-c', source])
++    try:
++        output = runner(argv)
++        if len(output) > OUTPUT_LIMIT:
++            raise RuntimeError('output_limit')
++        value = json.loads(output)
++        if not isinstance(value, dict) or not isinstance(value.get('python'), dict):
++            raise ValueError('invalid_probe_shape')
++        return {'status': 'observed', 'observation': value}
++    except (OSError, RuntimeError, ValueError, subprocess.SubprocessError) as error:
++        # Error strings from the remote environment may contain private values.
++        code = str(error) if type(error) is RuntimeError and str(error).split(':')[0] in {
++            'output_limit', 'timeout', 'ssh_or_interpreter_failed'} else type(error).__name__
++        return {'status': 'unknown', 'error': code}
++
++
++def validate_requirements(requirements):
++    if not isinstance(requirements, dict):
++        raise ValueError('requirements must be a JSON object')
++    allowed = {'stage', 'gpu_count', 'precision', 'min_free_vram_mib', 'allocated_gpu_uuids'}
++    if set(requirements) - allowed:
++        raise ValueError('unknown requirement fields')
++    if requirements.get('stage') not in {'training', 'prediction', 'export', 'scoring'}:
++        raise ValueError('stage must be training, prediction, export or scoring')
++    count = requirements.get('gpu_count')
++    if type(count) is not int or not 1 <= count <= 128:
++        raise ValueError('gpu_count must be an integer from 1 to 128')
++    if requirements.get('precision') not in (None, 'fp32', 'fp16', 'bf16'):
++        raise ValueError('precision must be fp32, fp16, bf16 or null')
++    memory = requirements.get('min_free_vram_mib')
++    if memory is not None and (type(memory) is not int or memory <= 0):
++        raise ValueError('min_free_vram_mib must be a positive per-device integer or null')
++    allocation = requirements.get('allocated_gpu_uuids')
++    if allocation is not None and (not isinstance(allocation, list) or not allocation or
++            len(allocation) > 128 or any(not isinstance(item, str) or not item or len(item) > 128
++                                       for item in allocation) or len(set(allocation)) != len(allocation)):
++        raise ValueError('allocated_gpu_uuids must be a nonempty unique list of GPU or MIG UUIDs')
++    if allocation is not None and any(not item.startswith(('GPU-', 'MIG-')) or len(item) <= 4
++                                      for item in allocation):
++        raise ValueError('allocated_gpu_uuids entries must be canonical IDs prefixed with GPU- or MIG-; bare UUIDs are not accepted')
++
++
++def _assess(project, requirements, smoke):
++    if project['status'] != 'observed':
++        return 'needs_measurement', ['selected_project_observation_unavailable'], []
++    observed = project['observation']
++    if observed.get('errors') or observed.get('python', {}).get('matches_requested') is not True:
++        return 'blocked', ['selected_project_interpreter_or_root_unqualified'], []
++    torch = observed.get('torch', {})
++    if not isinstance(torch, dict):
++        return 'needs_measurement', ['project_cuda_observation_malformed'], []
++    if torch.get('status') == 'missing':
++        return 'blocked', ['selected_project_interpreter_missing_torch'], []
++    if torch.get('status') != 'observed':
++        return 'needs_measurement', ['project_cuda_observation_unknown'], []
++    if torch.get('cuda_available') is False:
++        return 'blocked', ['project_cuda_unavailable'], []
++    if torch.get('cuda_available') is not True or not isinstance(torch.get('devices'), list):
++        return 'needs_measurement', ['project_cuda_visibility_unknown'], []
++    devices = torch['devices']
++    if (type(torch.get('visible_device_count')) is not int or
++            torch['visible_device_count'] != len(devices) or len(devices) > 128 or
++            any(not isinstance(device, dict) for device in devices)):
++        return 'needs_measurement', ['incomplete_visible_device_inventory'], []
++    allocation = requirements.get('allocated_gpu_uuids')
++    if allocation is not None:
++        allocation = [_normalize_uuid(identity, allocation)[0] for identity in allocation]
++        if any(not device.get('uuid') for device in devices):
++            return 'needs_measurement', ['allocation_to_visible_uuid_mapping_unknown'], []
++        devices = [device for device in devices if device['uuid'] in allocation]
++    if any('probe_selected' in device for device in devices):
++        devices = [device for device in devices if device.get('probe_selected') is True]
++    if len(devices) < requirements['gpu_count']:
++        return 'blocked', ['insufficient_visible_allocated_gpu_count'], []
++    precision, memory = requirements.get('precision'), requirements.get('min_free_vram_mib')
++    missing = []
++    if precision is None:
++        missing.append('precision_requirement_unknown')
++    if memory is None:
++        missing.append('full_workload_per_device_memory_requirement_unknown')
++    if missing:
++        return 'needs_measurement', missing, []
++    eligible, unknown = [], []
++    for device in devices:
++        precision_observation = device.get('precision')
++        support = precision_observation.get(precision) if isinstance(precision_observation, dict) else None
++        free = device.get('free_vram_mib')
++        if support is False or (type(free) is int and free < memory):
++            continue
++        if support is not True or type(free) is not int or device.get('error'):
++            unknown.append(device.get('index'))
++            continue
++        if smoke:
++            smoke_observation = device.get('smoke')
++            smoke_result = smoke_observation.get(precision) if isinstance(smoke_observation, dict) else None
++            status = smoke_result.get('status') if isinstance(smoke_result, dict) else None
++            if status in {'error', 'unsupported'}:
++                continue
++            if status != 'tested':
++                unknown.append(device.get('index'))
++                continue
++        eligible.append(device.get('index'))
++    if len(eligible) >= requirements['gpu_count']:
++        return 'ready_for_pilot', ['declared_gpu_prerequisites_observed'], eligible
++    if len(eligible) + len(unknown) >= requirements['gpu_count']:
++        return 'needs_measurement', ['precision_memory_or_smoke_observation_unknown'], eligible
++    return 'blocked', ['insufficient_devices_meeting_precision_memory_and_requested_smoke'], eligible
++
++
++def collect_report(target, requirements, *, smoke=False, runner=None):
++    """Return JSON-safe evidence, without admitting or launching an experiment."""
++    report = {
++        'kind': 'research-gpu-preflight', 'schema_version': 1,
++        'observed_at': datetime.now(timezone.utc).isoformat(),
++        'status': 'blocked', 'smoke_requested': smoke,
++        'scope': 'declared GPU prerequisites for a pilot in one stage only',
++        'limitations': ['Free VRAM is a changing observation, not a reservation.',
++                       'No complete workload feasibility or scientific success is established.',
++                       'Measure model, activations, gradients, optimizer, workspaces and peak memory in a representative pilot.',
++                       'Scorer, dependencies and isolation qualification remain separate for each stage.',
++                       'Visible devices do not establish exclusive allocation or multi-GPU communication readiness.'],
++    }
++    try:
++        if isinstance(target, dict):
++            target = NativeTarget(**target)
++        if not isinstance(target, NativeTarget) or target.host is None:
++            raise ValueError('explicit authorized SSH host is required; local probing is disabled')
++        validate_requirements(requirements)
++    except (TypeError, ValueError) as error:
++        report['reasons'] = ['invalid_configuration']
++        report['configuration_error'] = str(error) if isinstance(error, ValueError) else 'invalid target fields'
++        return report
++    report['target'] = asdict(target)
++    report['target_sha256'] = hashlib.sha256(json.dumps(asdict(target), sort_keys=True).encode()).hexdigest()
++    report['requirements'] = requirements
++    report['requirements_sha256'] = hashlib.sha256(json.dumps(requirements, sort_keys=True).encode()).hexdigest()
++    runner = runner or _run_bounded
++    project = _probe(target, 'project', smoke, runner, requirements)
++    system = _probe(target, 'system', False, runner)
++    report['interpreters'] = {'project': project, 'system': system}
++    if project['status'] == system['status'] == 'observed':
++        p, s = project['observation']['python'], system['observation']['python']
++        report['interpreter_comparison'] = {
++            'same_executable': p.get('executable') == s.get('executable'),
++            'same_prefix': p.get('prefix') == s.get('prefix'),
++            'fallback_used': False}
++    else:
++        report['interpreter_comparison'] = {'same_executable': None, 'same_prefix': None, 'fallback_used': False}
++    report['status'], report['reasons'], report['eligible_visible_device_indices'] = _assess(project, requirements, smoke)
++    return report
++
++
++def main(argv=None):
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--target', required=True, type=Path)
++    parser.add_argument('--requirements', required=True, type=Path)
++    parser.add_argument('--output', required=True, type=Path)
++    parser.add_argument('--smoke', action='store_true')
++    args = parser.parse_args(argv)
++    try:
++        for path in (args.target, args.requirements):
++            if path.stat().st_size > OUTPUT_LIMIT:
++                raise ValueError('configuration file exceeds size limit')
++        target = json.loads(args.target.read_text())
++        requirements = json.loads(args.requirements.read_text())
++        report = collect_report(target, requirements, smoke=args.smoke)
++    except (OSError, ValueError) as error:
++        report = {'kind': 'research-gpu-preflight', 'schema_version': 1, 'status': 'blocked',
++                  'observed_at': datetime.now(timezone.utc).isoformat(),
++                  'reasons': ['configuration_read_failed:' + type(error).__name__]}
++    args.output.parent.mkdir(parents=True, exist_ok=True)
++    args.output.write_text(json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + '\n')
++    return 0 if report['status'] == 'ready_for_pilot' else 2
++
++
++if __name__ == '__main__':
++    raise SystemExit(main())
+diff --git a/tests/runtime/test_gpu_intake_guidance.py b/tests/runtime/test_gpu_intake_guidance.py
+new file mode 100644
+index 0000000..715bad5
+--- /dev/null
++++ b/tests/runtime/test_gpu_intake_guidance.py
+@@ -0,0 +1,35 @@
++"""Keep the GPU intake entry points and executable documentation consistent."""
++import json
++from pathlib import Path
++import re
++import unittest
++
++from research_autopilot.gpu_preflight import validate_requirements
++
++ROOT = Path(__file__).resolve().parents[2]
++SKILL = ROOT / 'skills/research-autopilot'
++
++
++class GPUIntakeGuidanceTests(unittest.TestCase):
++    def test_documented_requirements_are_accepted(self):
++        text = (SKILL / 'references/gpu-intake-feasibility.md').read_text()
++        values = [json.loads(value) for value in re.findall(r'```json\n(.*?)\n```', text, re.S)]
++        requirements = [value for value in values if 'stage' in value]
++        self.assertEqual(len(requirements), 1)
++        validate_requirements(requirements[0])
++
++    def test_entry_points_link_gpu_intake(self):
++        for path in ('SKILL.md', 'references/initial-intake.md',
++                     'references/local-execution.md', 'references/gpu-host-runtime.md'):
++            with self.subTest(path=path):
++                self.assertIn('gpu-intake-feasibility.md', (SKILL / path).read_text())
++
++    def test_runtime_guidance_keeps_gpu_intake_with_local_execution(self):
++        text = (SKILL / 'assets/runtime-guidance.json').read_text()
++        self.assertEqual(text.count('references/local-execution.md'),
++                         text.count('references/gpu-intake-feasibility.md'))
++        self.assertGreater(text.count('references/gpu-intake-feasibility.md'), 0)
++
++
++if __name__ == '__main__':
++    unittest.main()
+diff --git a/tests/runtime/test_gpu_preflight.py b/tests/runtime/test_gpu_preflight.py
+new file mode 100644
+index 0000000..f3703a3
+--- /dev/null
++++ b/tests/runtime/test_gpu_preflight.py
+@@ -0,0 +1,405 @@
++"""Portable mocks; execute on the authorized GPU host, not the supervising laptop."""
++from contextlib import nullcontext
++import json
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++from types import SimpleNamespace
++import unittest
++from unittest.mock import patch
++
++from research_autopilot import gpu_preflight as G
++
++
++TARGET = {'host': 'owner@gpu-host', 'root': '/project', 'skill_root': '/skill',
++          'python': '/project/.venv/bin/python'}
++REQUIREMENTS = {'stage': 'training', 'gpu_count': 1, 'precision': 'bf16',
++                'min_free_vram_mib': 10000}
++
++
++def device(index=0, native=True, free=20000):
++    return {'index': index, 'uuid': 'GPU-' + str(index), 'name': 'not-used-for-admission',
++            'free_vram_mib': free, 'precision': {'fp32': True, 'fp16': True,
++            'bf16': native, 'bf16_default_may_emulate': True},
++            'smoke': {p: {'status': 'not_requested'} for p in ('fp32', 'fp16', 'bf16')}}
++
++
++def observation(devices=None):
++    devices = [device()] if devices is None else devices
++    return {'python': {'matches_requested': True, 'executable': TARGET['python'], 'prefix': '/project/.venv'},
++            'errors': [], 'torch': {'status': 'observed', 'cuda_available': bool(devices),
++                                   'visible_device_count': len(devices), 'devices': devices}}
++
++
++class FakeTensor:
++    def __init__(self, correct=True):
++        self.correct = correct
++
++    def __matmul__(self, other):
++        return self
++
++    def __eq__(self, value):
++        return SimpleNamespace(all=lambda: SimpleNamespace(item=lambda: self.correct and value == 32))
++
++    def all(self):
++        return self
++
++    def item(self):
++        return True
++
++
++def fake_torch(capability=(8, 9), native=True, *, legacy=False, smoke_error=False,
++               wrong_result=False, count=1, device_uuids=None):
++    calls = []
++    bf16_calls, context_calls, memory_calls = [], [], []
++
++    def bf16(**kwargs):
++        bf16_calls.append(kwargs)
++        if kwargs and legacy:
++            raise TypeError('old API')
++        return native if kwargs else True
++
++    def context(index):
++        context_calls.append(index)
++        return nullcontext()
++
++    def memory(index):
++        memory_calls.append(index)
++        return 20000 * 1024 * 1024, 24000 * 1024 * 1024
++
++    def ones(shape, **kwargs):
++        calls.append((shape, kwargs))
++        if smoke_error:
++            raise RuntimeError('private detail must not reach report')
++        return FakeTensor(correct=not wrong_result)
++
++    cuda = SimpleNamespace(
++        is_available=lambda: True, device_count=lambda: count,
++        device=context,
++        get_device_properties=lambda index: SimpleNamespace(
++            name='T4' if capability[0] == 7 else 'RTX 4090',
++            uuid=device_uuids[index] if device_uuids is not None else 'GPU-' + str(index),
++            total_memory=24000 * 1024 * 1024),
++        get_device_capability=lambda index: capability,
++        mem_get_info=memory, bf16_calls=bf16_calls, context_calls=context_calls,
++        memory_calls=memory_calls, is_bf16_supported=bf16,
++        synchronize=lambda index: None, empty_cache=lambda: None)
++    return SimpleNamespace(cuda=cuda, version=SimpleNamespace(cuda='12.4'),
++                           __version__='2.5.0', float32='float32', float16='float16',
++                           bfloat16='bfloat16', ones=ones, isfinite=lambda tensor: tensor), calls
++
++
++class GPUPreflightTests(unittest.TestCase):
++    def report(self, project=None, requirements=None, **kwargs):
++        payload = observation() if project is None else project
++        calls = []
++
++        def runner(argv):
++            calls.append(argv)
++            return json.dumps(payload)
++
++        result = G.collect_report(TARGET, REQUIREMENTS if requirements is None else requirements,
++                                  runner=runner, **kwargs)
++        return result, calls
++
++    def remote(self, torch, *, smoke=False, requirements=None,
++               csv='GPU-0, NVIDIA RTX 4090, 24000, 20000, 550.1\n'):
++        with patch.dict(sys.modules, {'torch': torch}), \
++                patch('signal.alarm'), patch('os.chdir'), \
++                patch('shutil.which', return_value=sys.executable), \
++                patch('subprocess.run', return_value=SimpleNamespace(returncode=0, stdout=csv)), \
++                patch('importlib.metadata.version', return_value='test-version'):
++            return G._remote_probe('project', '/project', sys.executable, smoke, requirements)
++
++    def test_explicit_ssh_required_and_invalid_host_not_executed(self):
++        for bad in ({**TARGET, 'host': None}, {**TARGET, 'host': '-oProxyCommand=bad'}):
++            with patch.object(G, '_run_bounded') as run:
++                result = G.collect_report(bad, REQUIREMENTS)
++                self.assertEqual(result['status'], 'blocked')
++                run.assert_not_called()
++
++    def test_separate_system_and_selected_interpreter_without_fallback(self):
++        result, calls = self.report()
++        self.assertEqual(result['status'], 'ready_for_pilot')
++        self.assertEqual(len(calls), 2)
++        self.assertEqual(calls[0][:5], ['ssh', '-oBatchMode=yes', '-oConnectTimeout=10', '--', TARGET['host']])
++        self.assertTrue(calls[0][-1].startswith(TARGET['python'] + ' -c '))
++        self.assertTrue(calls[1][-1].startswith('python3 -c '))
++        self.assertFalse(result['interpreter_comparison']['fallback_used'])
++        self.assertEqual(len(result['requirements_sha256']), 64)
++        self.assertIn('observed_at', result)
++
++    def test_t4_emulation_does_not_qualify_native_bf16(self):
++        torch, calls = fake_torch((7, 5), False)
++        project = self.remote(torch, smoke=True)
++        precision = project['torch']['devices'][0]['precision']
++        self.assertTrue(precision['bf16_default_may_emulate'])
++        self.assertFalse(precision['bf16'])
++        result, _ = self.report(project)
++        self.assertEqual(result['status'], 'blocked')
++        self.assertEqual(len(calls), 2)
++
++    def test_no_smoke_never_calls_default_emulation_api(self):
++        torch, calls = fake_torch((7, 5), False, count=3)
++        project = self.remote(torch, requirements={**REQUIREMENTS, 'allocated_gpu_uuids': ['GPU-2']})
++        self.assertIsNone(project['torch']['devices'][2]['precision']['bf16_default_may_emulate'])
++        self.assertEqual(torch.cuda.bf16_calls, [{'including_emulation': False}])
++        self.assertEqual(torch.cuda.context_calls, [2])
++        self.assertEqual(torch.cuda.memory_calls, [2])
++        self.assertEqual(calls, [])
++
++    def test_4090_native_bf16_and_nvidia_inventory(self):
++        torch, calls = fake_torch()
++        project = self.remote(torch)
++        self.assertTrue(project['torch']['devices'][0]['precision']['bf16'])
++        self.assertEqual(project['nvidia_smi']['gpus'][0]['driver_version'], '550.1')
++        self.assertEqual(project['nvidia_smi']['gpus'][0]['free_vram_mib'], 20000)
++        self.assertEqual(self.report(project)[0]['status'], 'ready_for_pilot')
++        self.assertEqual(calls, [])
++
++    def test_bare_torch_uuid_matches_actual_nvidia_and_allocation_identity(self):
++        bare = '3350bcde-dd30-eb6c-2d75-1d6f7515fdb2'
++        canonical = 'GPU-' + bare
++        torch, calls = fake_torch(device_uuids=[bare])
++        requirements = {**REQUIREMENTS, 'allocated_gpu_uuids': [canonical]}
++        project = self.remote(torch, smoke=True, requirements=requirements,
++                              csv=canonical + ', NVIDIA RTX 4090, 24000, 20000, 550.1\n')
++        observed = project['torch']['devices'][0]
++        self.assertEqual(observed['uuid'], canonical)
++        self.assertEqual(observed['uuid_raw'], bare)
++        self.assertEqual(observed['uuid_basis'], 'matched_inventory_or_allocation')
++        self.assertEqual(project['torch']['probe_selected_device_indices'], [0])
++        self.assertEqual(len(calls), 3)
++        self.assertEqual(self.report(project, requirements, smoke=True)[0]['status'], 'ready_for_pilot')
++
++    def test_uuid_bytes_map_to_known_gpu_without_guessing_mig_namespace(self):
++        import uuid
++        bare = '3350bcde-dd30-eb6c-2d75-1d6f7515fdb2'
++        raw = uuid.UUID(bare).bytes
++        self.assertEqual(G._normalize_uuid(raw, ['GPU-' + bare])[0], 'GPU-' + bare)
++        self.assertEqual(G._normalize_uuid(raw, ['MIG-' + bare])[0], 'MIG-' + bare)
++        self.assertIsNone(G._normalize_uuid(raw)[0])
++        self.assertIsNone(G._normalize_uuid(raw, ['GPU-' + bare, 'MIG-' + bare])[0])
++
++    def test_mig_uuid_does_not_match_parent_gpu_namespace(self):
++        bare = '3350bcde-dd30-eb6c-2d75-1d6f7515fdb2'
++        canonical = 'MIG-' + bare
++        torch, calls = fake_torch(device_uuids=[canonical])
++        requirements = {**REQUIREMENTS, 'allocated_gpu_uuids': ['GPU-' + bare]}
++        project = self.remote(torch, smoke=True, requirements=requirements,
++                              csv='GPU-' + bare + ', NVIDIA GPU, 24000, 20000, 550.1\n')
++        self.assertEqual(project['torch']['devices'][0]['uuid'], canonical)
++        self.assertEqual(project['torch']['probe_selected_device_indices'], [])
++        self.assertEqual(calls, [])
++        legacy = 'MIG-GPU-' + bare + '/1/0'
++        self.assertEqual(G._normalize_uuid(legacy, ['GPU-' + bare])[0], legacy)
++
++    def test_legacy_bf16_api_is_conservative(self):
++        for capability, expected in [((7, 5), False), ((8, 9), None)]:
++            torch, _ = fake_torch(capability, legacy=True)
++            project = self.remote(torch)
++            self.assertIs(project['torch']['devices'][0]['precision']['bf16'], expected)
++        self.assertEqual(self.report(project)[0]['status'], 'needs_measurement')
++
++    def test_missing_torch_is_project_dependency_blocker(self):
++        project = self.remote(None)
++        self.assertEqual(project['torch']['status'], 'missing')
++        self.assertEqual(self.report(project)[0]['status'], 'blocked')
++
++    def test_observed_cuda_unavailable_is_blocked(self):
++        self.assertEqual(self.report(observation([]))[0]['status'], 'blocked')
++
++    def test_wrong_selected_interpreter_blocks_even_when_system_works(self):
++        project = observation()
++        project['python']['matches_requested'] = False
++        answers = iter([json.dumps(project), json.dumps(observation())])
++        result = G.collect_report(TARGET, REQUIREMENTS, runner=lambda argv: next(answers))
++        self.assertEqual(result['status'], 'blocked')
++        self.assertFalse(result['interpreter_comparison']['fallback_used'])
++
++    def test_remote_rejects_wrong_interpreter_before_cuda_probe(self):
++        with patch('signal.alarm'), patch('shutil.which', return_value='/missing/python'), \
++                patch('importlib.metadata.version', return_value='test-version'), \
++                patch('subprocess.run') as run:
++            project = G._remote_probe('project', '/project', '/missing/python', False)
++        self.assertFalse(project['python']['matches_requested'])
++        self.assertIn('selected_interpreter_mismatch', project['errors'])
++        run.assert_not_called()
++
++    def test_shared_binary_realpath_does_not_accept_system_fallback(self):
++        with patch('signal.alarm'), patch('shutil.which', return_value='/project/.venv/bin/python'), \
++                patch('os.path.realpath', return_value='/usr/bin/python3'), \
++                patch('sys.executable', '/usr/bin/python3'), \
++                patch('importlib.metadata.version', return_value='test-version'), \
++                patch('subprocess.run') as run:
++            project = G._remote_probe('project', '/project', '/project/.venv/bin/python', False)
++        self.assertTrue(project['python']['matches_requested_realpath'])
++        self.assertFalse(project['python']['matches_requested_path'])
++        self.assertFalse(project['python']['matches_requested'])
++        run.assert_not_called()
++
++    def test_environment_prefix_mismatch_blocks_matching_executable(self):
++        with patch('signal.alarm'), patch('shutil.which', return_value='/project/.venv/bin/python'), \
++                patch('sys.executable', '/project/.venv/bin/python'), \
++                patch('sys.prefix', '/usr'), patch('os.path.isfile', return_value=True), \
++                patch('importlib.metadata.version', return_value='test-version'), \
++                patch('subprocess.run') as run:
++            project = G._remote_probe('project', '/project', '/project/.venv/bin/python', False)
++        self.assertEqual(project['python']['expected_prefix'], '/project/.venv')
++        self.assertFalse(project['python']['matches_expected_prefix'])
++        self.assertFalse(project['python']['matches_requested'])
++        run.assert_not_called()
++
++    def test_ssh_failure_does_not_use_system_result(self):
++        calls = []
++
++        def runner(argv):
++            calls.append(argv)
++            if len(calls) == 1:
++                raise RuntimeError('ssh_or_interpreter_failed:exit_127')
++            return json.dumps(observation())
++
++        result = G.collect_report(TARGET, REQUIREMENTS, runner=runner)
++        self.assertEqual(result['status'], 'needs_measurement')
++        self.assertEqual(result['interpreters']['project']['status'], 'unknown')
++        self.assertEqual(result['interpreters']['system']['status'], 'observed')
++
++    def test_multi_gpu_checks_each_visible_device_and_allocation(self):
++        project = observation([device(0, free=9000), device(1), device(2)])
++        requirements = {**REQUIREMENTS, 'gpu_count': 2}
++        result, _ = self.report(project, requirements)
++        self.assertEqual(result['status'], 'ready_for_pilot')
++        self.assertEqual(result['eligible_visible_device_indices'], [1, 2])
++        requirements['allocated_gpu_uuids'] = ['GPU-0', 'GPU-1']
++        self.assertEqual(self.report(project, requirements)[0]['status'], 'blocked')
++        project['torch']['devices'][0]['uuid'] = None
++        self.assertEqual(self.report(project, requirements)[0]['status'], 'needs_measurement')
++
++    def test_host_inventory_does_not_expand_visible_allocation(self):
++        project = observation([device(0)])
++        project['nvidia_smi'] = {'status': 'observed', 'gpus': [device(i) for i in range(8)]}
++        self.assertEqual(self.report(project, {**REQUIREMENTS, 'gpu_count': 2})[0]['status'], 'blocked')
++
++    def test_partial_or_malformed_inventory_stays_unknown(self):
++        for field, value in [('devices', [None]), ('visible_device_count', True)]:
++            project = observation()
++            project['torch'][field] = value
++            self.assertEqual(self.report(project)[0]['status'], 'needs_measurement')
++
++    def test_unknown_requirements_and_memory_stay_unknown(self):
++        for key in ('precision', 'min_free_vram_mib'):
++            requirements = {**REQUIREMENTS, key: None}
++            self.assertEqual(self.report(requirements=requirements)[0]['status'], 'needs_measurement')
++        project = observation([device(free=None)])
++        self.assertEqual(self.report(project)[0]['status'], 'needs_measurement')
++
++    def test_malformed_requirements_never_probe(self):
++        for update in ({'gpu_count': True}, {'gpu_count': 0}, {'gpu_count': 129},
++                       {'stage': 'all'}, {'precision': 'auto'}, {'precision': []},
++                       {'min_free_vram_mib': -1}, {'min_free_vram_mib': True},
++                       {'allocated_gpu_uuids': ['GPU-0', 'GPU-0']}, {'unknown': 1}):
++            with patch.object(G, '_run_bounded') as run:
++                self.assertEqual(G.collect_report(TARGET, {**REQUIREMENTS, **update})['status'], 'blocked')
++                run.assert_not_called()
++
++    def test_bare_allocation_uuid_is_rejected_before_probe(self):
++        for identity in ('3350bcde-dd30-eb6c-2d75-1d6f7515fdb2', 'GPU-', 'MIG-'):
++            with patch.object(G, '_run_bounded') as run:
++                result = G.collect_report(TARGET, {
++                    **REQUIREMENTS, 'allocated_gpu_uuids': [identity]})
++                self.assertEqual(result['status'], 'blocked')
++                self.assertEqual(result['reasons'], ['invalid_configuration'])
++                self.assertIn('prefixed with GPU- or MIG-', result['configuration_error'])
++                run.assert_not_called()
++
++    def test_smoke_is_opt_in_and_sequential_and_distinguishes_unsupported(self):
++        torch, calls = fake_torch((7, 5), False)
++        project = self.remote(torch, smoke=True)
++        smoke = project['torch']['devices'][0]['smoke']
++        self.assertEqual(smoke['fp32']['status'], 'tested')
++        self.assertEqual(smoke['fp16']['status'], 'tested')
++        self.assertEqual(smoke['bf16']['status'], 'unsupported')
++        self.assertEqual([call[1]['dtype'] for call in calls], ['float32', 'float16'])
++        self.assertTrue(all(call[0] == (32, 32) for call in calls))
++
++    def test_smoke_failure_is_error_not_unsupported(self):
++        torch, _ = fake_torch(smoke_error=True)
++        project = self.remote(torch, smoke=True)
++        smoke = project['torch']['devices'][0]['smoke']
++        self.assertEqual(smoke['bf16'], {'status': 'error', 'error': 'RuntimeError'})
++        self.assertEqual(self.report(project, smoke=True)[0]['status'], 'blocked')
++        self.assertNotIn('private detail', json.dumps(project))
++
++    def test_smoke_only_uses_allocated_uuids_up_to_requested_count(self):
++        torch, calls = fake_torch(count=4)
++        requirements = {**REQUIREMENTS, 'allocated_gpu_uuids': ['GPU-2', 'GPU-3']}
++        project = self.remote(torch, smoke=True, requirements=requirements)
++        self.assertEqual(project['torch']['smoke_selected_device_indices'], [2])
++        self.assertEqual({call[1]['device'] for call in calls}, {'cuda:2'})
++        self.assertEqual(torch.cuda.context_calls, [2, 2])
++        self.assertEqual(torch.cuda.memory_calls, [2])
++        self.assertEqual(project['torch']['devices'][0]['smoke']['fp32']['status'], 'not_selected')
++        self.assertEqual(project['torch']['devices'][3]['smoke']['fp32']['status'], 'not_selected')
++
++    def test_smoke_without_allocation_never_exceeds_gpu_count(self):
++        torch, calls = fake_torch(count=4)
++        project = self.remote(torch, smoke=True, requirements={**REQUIREMENTS, 'gpu_count': 2})
++        self.assertEqual(project['torch']['smoke_selected_device_indices'], [0, 1])
++        self.assertEqual([call[1]['device'] for call in calls], ['cuda:0'] * 3 + ['cuda:1'] * 3)
++
++    def test_unmapped_allocation_never_smokes_other_visible_gpus(self):
++        torch, calls = fake_torch(count=3)
++        project = self.remote(torch, smoke=True, requirements={
++            **REQUIREMENTS, 'allocated_gpu_uuids': ['GPU-not-visible']})
++        self.assertEqual(calls, [])
++        self.assertEqual(project['torch']['smoke_selected_device_indices'], [])
++        self.assertEqual(torch.cuda.context_calls, [])
++        self.assertEqual(torch.cuda.memory_calls, [])
++        self.assertEqual(torch.cuda.bf16_calls, [])
++
++    def test_finite_wrong_smoke_output_is_error(self):
++        torch, _ = fake_torch(wrong_result=True)
++        project = self.remote(torch, smoke=True)
++        smoke = project['torch']['devices'][0]['smoke']['bf16']
++        self.assertEqual(smoke['status'], 'error')
++        self.assertEqual(smoke['error'], 'incorrect_output')
++        self.assertEqual(self.report(project, smoke=True)[0]['status'], 'blocked')
++
++    def test_requested_smoke_missing_does_not_qualify(self):
++        self.assertEqual(self.report(smoke=True)[0]['status'], 'needs_measurement')
++
++    def test_failed_or_malformed_nvidia_inventory_is_unknown(self):
++        torch, _ = fake_torch()
++        for csv in ('bad,row\n', 'GPU-0, Device, N/A, N/A, 550.1\n'):
++            project = self.remote(torch, csv=csv)
++            self.assertEqual(project['nvidia_smi']['status'], 'unknown')
++            self.assertEqual(project['nvidia_smi']['gpus'], [])
++
++    def test_probe_timeout_and_output_limit_are_bounded_unknowns(self):
++        for error in (RuntimeError('timeout'), RuntimeError('output_limit'),
++                      subprocess.TimeoutExpired('ssh', 45)):
++            with patch.object(G, '_run_bounded', side_effect=error):
++                report = G.collect_report(TARGET, REQUIREMENTS)
++            self.assertEqual(report['status'], 'needs_measurement')
++            self.assertEqual(report['interpreters']['project']['status'], 'unknown')
++        report = G.collect_report(TARGET, REQUIREMENTS, runner=lambda argv: 'x' * (G.OUTPUT_LIMIT + 1))
++        self.assertEqual(report['interpreters']['project']['error'], 'output_limit')
++        for payload in ('{', '{}'):
++            report = G.collect_report(TARGET, REQUIREMENTS, runner=lambda argv: payload)
++            self.assertEqual(report['status'], 'needs_measurement')
++            self.assertEqual(report['reasons'], ['selected_project_observation_unavailable'])
++
++    def test_cli_writes_report_for_invalid_json(self):
++        with tempfile.TemporaryDirectory() as directory:
++            root = Path(directory)
++            (root / 'target.json').write_text('{')
++            (root / 'requirements.json').write_text(json.dumps(REQUIREMENTS))
++            code = G.main(['--target', str(root / 'target.json'), '--requirements',
++                           str(root / 'requirements.json'), '--output', str(root / 'report.json')])
++            self.assertEqual(code, 2)
++            self.assertEqual(json.loads((root / 'report.json').read_text())['status'], 'blocked')
++
++
++if __name__ == '__main__':
++    unittest.main()

@@ -1,0 +1,155 @@
+{
+  "eligible_visible_device_indices": [],
+  "interpreter_comparison": {
+    "fallback_used": false,
+    "same_executable": false,
+    "same_prefix": false
+  },
+  "interpreters": {
+    "project": {
+      "observation": {
+        "errors": [],
+        "host_resources": {
+          "cgroup_memory_current_bytes": 9941442560,
+          "cgroup_memory_max_bytes": 107374182400,
+          "ram_available_mib": 987941,
+          "ram_total_mib": 1031891,
+          "target_root_disk_free_mib": 41148
+        },
+        "nvidia_smi": {
+          "gpus": [
+            {
+              "driver_version": "580.119.02",
+              "free_vram_mib": 24081,
+              "name": "NVIDIA GeForce RTX 4090",
+              "total_vram_mib": 24564,
+              "uuid": "GPU-3350bcde-dd30-eb6c-2d75-1d6f7515fdb2"
+            }
+          ],
+          "status": "observed"
+        },
+        "packages": {
+          "accelerate": "1.6.0",
+          "numpy": "2.5.4",
+          "torch": "2.7.1",
+          "transformers": "4.51.3"
+        },
+        "python": {
+          "executable": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+          "expected_prefix": "/root/rivermind-data/spectrum-harness/venv",
+          "matches_expected_prefix": true,
+          "matches_requested": true,
+          "matches_requested_path": true,
+          "matches_requested_realpath": true,
+          "prefix": "/root/rivermind-data/spectrum-harness/venv",
+          "requested": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+          "requested_resolved": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+          "version": "3.12.13"
+        },
+        "torch": {
+          "cuda_available": true,
+          "cuda_build": "12.6",
+          "devices": [
+            {
+              "capability": [
+                8,
+                9
+              ],
+              "free_vram_mib": 23686,
+              "index": 0,
+              "name": "NVIDIA GeForce RTX 4090",
+              "precision": {
+                "bf16": true,
+                "bf16_basis": "torch_including_emulation_false",
+                "bf16_default_may_emulate": true,
+                "fp16": true,
+                "fp32": true
+              },
+              "probe_selected": true,
+              "smoke": {
+                "bf16": {
+                  "expected_value": 32,
+                  "status": "tested"
+                },
+                "fp16": {
+                  "expected_value": 32,
+                  "status": "tested"
+                },
+                "fp32": {
+                  "expected_value": 32,
+                  "status": "tested"
+                }
+              },
+              "total_vram_mib": 24080,
+              "uuid": "GPU-3350bcde-dd30-eb6c-2d75-1d6f7515fdb2",
+              "uuid_basis": "matched_inventory_or_allocation",
+              "uuid_raw": "3350bcde-dd30-eb6c-2d75-1d6f7515fdb2",
+              "visible_total_vram_mib": 24080
+            }
+          ],
+          "probe_selected_device_indices": [
+            0
+          ],
+          "smoke_selected_device_indices": [
+            0
+          ],
+          "status": "observed",
+          "version": "2.7.1+cu126",
+          "visible_device_count": 1
+        }
+      },
+      "status": "observed"
+    },
+    "system": {
+      "observation": {
+        "errors": [],
+        "packages": {
+          "accelerate": null,
+          "numpy": "2.4.4",
+          "torch": "2.12.1+cu130",
+          "transformers": null
+        },
+        "python": {
+          "executable": "/opt/conda/bin/python3",
+          "prefix": "/opt/conda",
+          "requested": "python3",
+          "version": "3.12.13"
+        }
+      },
+      "status": "observed"
+    }
+  },
+  "kind": "research-gpu-preflight",
+  "limitations": [
+    "Free VRAM is a changing observation, not a reservation.",
+    "No complete workload feasibility or scientific success is established.",
+    "Measure model, activations, gradients, optimizer, workspaces and peak memory in a representative pilot.",
+    "Scorer, dependencies and isolation qualification remain separate for each stage.",
+    "Visible devices do not establish exclusive allocation or multi-GPU communication readiness."
+  ],
+  "observed_at": "2026-10-18T10:44:25.698550+00:00",
+  "reasons": [
+    "full_workload_per_device_memory_requirement_unknown"
+  ],
+  "requirements": {
+    "allocated_gpu_uuids": [
+      "GPU-3350bcde-dd30-eb6c-2d75-1d6f7515fdb2"
+    ],
+    "gpu_count": 1,
+    "min_free_vram_mib": null,
+    "precision": "bf16",
+    "stage": "prediction"
+  },
+  "requirements_sha256": "5eb088cc3b74937b00318b9d98729581b3d09615303fb3ade2684f93a5874e1a",
+  "schema_version": 1,
+  "scope": "declared GPU prerequisites for a pilot in one stage only",
+  "smoke_requested": true,
+  "status": "needs_measurement",
+  "target": {
+    "host": "spectrum-harness-gpu-hn01",
+    "python": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+    "root": "/root/rivermind-data/spectrum-harness/project",
+    "skill_root": "/root/rivermind-data/spectrum-harness/skill"
+  },
+  "target_sha256": "d7ace3d04ece2f4ae1142ebf03ea97481c0b61fd62f8df79134b0ec8d6248a15"
+}

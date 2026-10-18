@@ -434,5 +434,61 @@
   {
     "path": "research-state/hn01-setup-20261018/venv-cuda-probe.log",
     "sha256": "01bac0db2334b2ae8d80b4eaa47e8345234d22ee7fcd016b8644ca61cdcc210c"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/requirements.json",
+    "sha256": "73fc3730c858893296d20048f54d48c76767bc4781ce9da44995db2c8b8fefa2"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/target.json",
+    "sha256": "98f26e49582c6c6fcb04e9e0df350f485f42cff1ed870ac7a45076646e97dcf8"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/gpu-intake-node-tests.log",
+    "sha256": "b3d3f635a74b2b5fce06510c75a614eeda8fdfcb73948141f51fe1a9cf3ba85e"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/gpu-intake-plugin-tests.log",
+    "sha256": "3790cc5479b01d28171b211720dd114a7757a179d20ce7a23a35acdbd0ffc0f5"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/plugin-install.json",
+    "sha256": "71c15c71fe476417b9d557012066f836609d5edb7faf6b66cfb2dc29d6101bf5"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/gpu-intake-nodes.log",
+    "sha256": "b20399f1b8c3393d9b579d20c7e575c719b32727d3c3cc1c3c1ea010a66efed0"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/validation.json",
+    "sha256": "1ae9220af9b00630789fe97fad169ed15a37a0cffc8dedc30499bc4457bdadd0"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/gpu-intake-runtime-tests.log",
+    "sha256": "6e737976e1fc2f4b840c549451ae693ec3d919417a9abccc809ba5a56225f3ff"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/installed-readback.json",
+    "sha256": "8717252a25cfc07227fb0a20e2f2b4cbaeee7371174ee344563d9ebcb7c1556e"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/gpu-intake-intake-tests.log",
+    "sha256": "88041552acc3607e023ef004d968c26cffa7d205c45adf9c4c7d946f49ba4626"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/review.md",
+    "sha256": "5d3530d3324b09fe60c8233a0155bfbe571cd8cd4ba760fa357913a9d7d941b2"
+  },
+  {
+    "path": "research-state/gpu-intake-20261018/hn01-final-preflight.json",
+    "sha256": "2bf91c8e66ece6e6bd68c591621a53204d5d62284a538561e126c1d0d538fc62"
+  },
+  {
+    "path": "runtime-fixes/gpu-first-intake.patch",
+    "sha256": "6dd03568d0e062f49ea874c71abd0015f55f0f1356266b256bd01867ee2347e1"
+  },
+  {
+    "path": "reports/gpu-first-intake-20261018.md",
+    "sha256": "16710da67a6402c117b1fa2048766a50e2835fe666311ff2f90ba0ee94fda759"
   }
 ]

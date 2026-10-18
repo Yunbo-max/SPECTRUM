@@ -1,0 +1,8 @@
+{
+  "commit": "2637d2021f1bc523385b48a1f88ea9aa4812b0a9",
+  "files": {
+    "adapted/evaluation/livecodebench_utils.py": "44a6c24188c789af5f61cdc7be04daf8b0ce981309ac1ee510dfafc0fb703ecf",
+    "adapted/evaluation/__init__.py": "8ca8ed7f11eb9ee6d627843d7e4610d0d679c7ecccc6a0e426645e6040982eba",
+    "adapted/evaluation/benchmark.py": "503ba5a98d7486a6bbc934afbf63dca232159d3b91f2159b7d369031b3ea60ae"
+  }
+}

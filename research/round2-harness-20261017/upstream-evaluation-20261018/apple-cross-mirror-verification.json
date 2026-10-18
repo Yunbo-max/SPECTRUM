@@ -1,0 +1,24 @@
+{
+  "observed_utc": "2026-10-18T23:15:11.240872+00:00",
+  "files": [
+    {
+      "url": "https://hf-mirror.com/apple/SimpleSD-4B-instruct/raw/main/model-00001-of-00003.safetensors",
+      "returncode": 0,
+      "pointer": "version https://git-lfs.github.com/spec/v1\noid sha256:26d4d75e14954b5a5880b0591c0c16269f94f0c8af161f3213c752e325e963b2\nsize 3957900808\n",
+      "matches_modelscope": true
+    },
+    {
+      "url": "https://hf-mirror.com/apple/SimpleSD-4B-instruct/raw/main/model-00002-of-00003.safetensors",
+      "returncode": 0,
+      "pointer": "version https://git-lfs.github.com/spec/v1\noid sha256:a3fdd29b19d637aeb2d23d52aa044b9dc6dec761d880be94aa76a49b7dc1e69e\nsize 3987450496\n",
+      "matches_modelscope": true
+    },
+    {
+      "url": "https://hf-mirror.com/apple/SimpleSD-4B-instruct/raw/main/model-00003-of-00003.safetensors",
+      "returncode": 0,
+      "pointer": "version https://git-lfs.github.com/spec/v1\noid sha256:9a4f016f191feaf8f8d72a9a534cad4a72b3a427468419aec01175c4734a90ff\nsize 99630608\n",
+      "matches_modelscope": true
+    }
+  ],
+  "qualification": "HF repository pointers accessed via hf-mirror; cross-mirror agreement only. Direct origin HF unavailable."
+}

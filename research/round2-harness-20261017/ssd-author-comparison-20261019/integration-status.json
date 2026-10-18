@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-18T23:20:57.951271+00:00",
+  "isolation_probe": "passed",
+  "native_software_probes": "stdin-pass, functional-pass, incorrect, exception, timeout all matched expectations",
+  "private_test_decode": "131 tasks, 4852 tests; completed within containment",
+  "prompt_profile": "Both checkpoints have byte-identical author prompts/chat templates; max1410 input tokens; context67072 accommodates65536 new tokens",
+  "GPU_initialization": "Succeeded: 7.6065GiB weights,13.23GiB KV,96352 tokens; configured67072 context",
+  "model_results": "Base T0.7 generation active, no correctness result yet",
+  "failures_resolved": [
+    "optional pytz missing during runtime preparation; copy optional timezone packages only if installed",
+    "initial tokenizer inspection omitted SSD chat_template.jinja; retrieved actual author template and verified hash"
+  ],
+  "pending": [
+    "monitor/reconcile runner65584 and analyze first condition",
+    "resume unfinished SSD download after current condition releases exclusive lock",
+    "run SSD recommended and matched decoder controls"
+  ],
+  "do_not_duplicate": "Original pipeline.lock remains held by download process; generation launcher obtains same exclusive lock before initialization."
+}

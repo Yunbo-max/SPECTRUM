@@ -1,0 +1,24 @@
+{
+  "Qwen--Qwen3-4B-Instruct-2507": {
+    "task_count": 131,
+    "max_prompt_tokens": 1410,
+    "min_prompt_tokens": 242,
+    "context_for_65536_new_tokens": 67072,
+    "kv_bytes_per_token_bf16": 147456,
+    "kv_GiB_one_full_sequence": 9.2109375,
+    "prompt_sha256": "998017f001894b71df09d82c5d6e99f41eca5877f213aac1f62ac972a242e44d",
+    "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+    "eos_token_id": 151645
+  },
+  "apple--SimpleSD-4B-instruct": {
+    "task_count": 131,
+    "max_prompt_tokens": 1410,
+    "min_prompt_tokens": 242,
+    "context_for_65536_new_tokens": 67072,
+    "kv_bytes_per_token_bf16": 147456,
+    "kv_GiB_one_full_sequence": 9.2109375,
+    "prompt_sha256": "998017f001894b71df09d82c5d6e99f41eca5877f213aac1f62ac972a242e44d",
+    "chat_template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+    "eos_token_id": 151645
+  }
+}

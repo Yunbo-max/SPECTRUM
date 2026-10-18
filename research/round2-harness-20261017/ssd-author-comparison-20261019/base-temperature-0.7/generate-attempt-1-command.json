@@ -1,0 +1,10 @@
+[
+  "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "/root/rivermind-data/spectrum-harness/project/research-state/ssd-author-comparison-20261019/generate_condition.py",
+  "--model",
+  "base",
+  "--temperature",
+  "0.7",
+  "--lock-fd",
+  "3"
+]

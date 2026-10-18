@@ -1,0 +1,11 @@
+{
+  "software_only": true,
+  "expected_outcomes_verified": true,
+  "outcomes": {
+    "software-stdin-pass": true,
+    "software-functional-pass": true,
+    "software-incorrect": false,
+    "software-exception": false,
+    "software-timeout": false
+  }
+}

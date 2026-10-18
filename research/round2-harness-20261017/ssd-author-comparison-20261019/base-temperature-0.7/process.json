@@ -1,0 +1,14 @@
+{
+  "pid": 65584,
+  "command": [
+    "/root/rivermind-data/spectrum-harness/venv/bin/python",
+    "/root/rivermind-data/spectrum-harness/project/research-state/ssd-author-comparison-20261019/run_condition.py",
+    "--model",
+    "base",
+    "--temperature",
+    "0.7"
+  ],
+  "proc_stat": "65584 (python) R 65581 65584 65584 0 -1 4194304 2 0 0 0 0 0 0 0 20 0 1 0 144158755 7217152 0 18446744073709551615 0 0 140731396463738 0 0 0 0 0 0 0 0 0 17 60 0 0 0 0 0 0 0 0 140731396463738 0 0 0 0\n",
+  "boot_id": "aa1004c2-64a2-463b-b0dd-310855aa203d",
+  "utc": "2026-10-18T23:22:40.309165+00:00"
+}

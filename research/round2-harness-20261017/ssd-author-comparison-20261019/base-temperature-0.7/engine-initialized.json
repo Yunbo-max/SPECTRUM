@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-18T23:23:13.103385+00:00",
+  "options": {
+    "max_model_len": 67072,
+    "tensor_parallel_size": 1,
+    "dtype": "bfloat16",
+    "max_num_seqs": 1,
+    "max_num_batched_tokens": 4096,
+    "gpu_memory_utilization": 0.9,
+    "enforce_eager": true,
+    "enable_chunked_prefill": true
+  }
+}

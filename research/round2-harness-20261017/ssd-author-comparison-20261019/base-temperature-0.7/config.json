@@ -1,0 +1,32 @@
+{
+  "model_path": "/root/rivermind-data/spectrum-harness/cache/modelscope-author-pair-20261018/Qwen--Qwen3-4B-Instruct-2507",
+  "model": "base",
+  "temperature": 0.7,
+  "top_p": 0.8,
+  "top_k": 20,
+  "min_p": 0.0,
+  "n_repeat": 10,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "max_tokens": 65536,
+  "max_model_len": 67072,
+  "tensor_parallel_size": 1,
+  "dtype": "bfloat16",
+  "max_num_seqs": 1,
+  "max_num_batched_tokens": 4096,
+  "gpu_memory_utilization": 0.9,
+  "enforce_eager": true,
+  "enable_chunked_prefill": true,
+  "dataset_sha256": "d95cab6feef0bea860315bb3a2273641351da96cd43b657ac981f4e51053a73a",
+  "source_commit": "2637d2021f1bc523385b48a1f88ea9aa4812b0a9"
+}

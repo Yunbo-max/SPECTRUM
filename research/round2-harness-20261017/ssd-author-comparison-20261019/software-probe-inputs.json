@@ -1,0 +1,119 @@
+[
+  {
+    "task_id": "software-stdin-pass",
+    "prompt": "Software integration probe, not a model result.",
+    "test": [
+      {
+        "input": "2\n",
+        "output": "3\n",
+        "testtype": "stdin"
+      }
+    ],
+    "entry_point": "",
+    "metadata": {},
+    "is_stdin": true,
+    "difficulty": "software-probe",
+    "model_outputs": [
+      "```python\nprint(int(input())+1)\n```"
+    ],
+    "model_answers": [
+      [
+        "print(int(input())+1)"
+      ]
+    ]
+  },
+  {
+    "task_id": "software-functional-pass",
+    "prompt": "Software integration probe, not a model result.",
+    "test": [
+      {
+        "input": "2\n",
+        "output": "3\n",
+        "testtype": "functional"
+      }
+    ],
+    "entry_point": "def f(x):",
+    "metadata": {
+      "func_name": "f"
+    },
+    "is_stdin": false,
+    "difficulty": "software-probe",
+    "model_outputs": [
+      "```python\ndef f(x):\n    return x+1\n```"
+    ],
+    "model_answers": [
+      [
+        "def f(x):\n    return x+1"
+      ]
+    ]
+  },
+  {
+    "task_id": "software-incorrect",
+    "prompt": "Software integration probe, not a model result.",
+    "test": [
+      {
+        "input": "2\n",
+        "output": "3\n",
+        "testtype": "stdin"
+      }
+    ],
+    "entry_point": "",
+    "metadata": {},
+    "is_stdin": true,
+    "difficulty": "software-probe",
+    "model_outputs": [
+      "```python\nprint(0)\n```"
+    ],
+    "model_answers": [
+      [
+        "print(0)"
+      ]
+    ]
+  },
+  {
+    "task_id": "software-exception",
+    "prompt": "Software integration probe, not a model result.",
+    "test": [
+      {
+        "input": "2\n",
+        "output": "3\n",
+        "testtype": "stdin"
+      }
+    ],
+    "entry_point": "",
+    "metadata": {},
+    "is_stdin": true,
+    "difficulty": "software-probe",
+    "model_outputs": [
+      "```python\nraise ValueError(\"software probe\")\n```"
+    ],
+    "model_answers": [
+      [
+        "raise ValueError(\"software probe\")"
+      ]
+    ]
+  },
+  {
+    "task_id": "software-timeout",
+    "prompt": "Software integration probe, not a model result.",
+    "test": [
+      {
+        "input": "2\n",
+        "output": "3\n",
+        "testtype": "stdin"
+      }
+    ],
+    "entry_point": "",
+    "metadata": {},
+    "is_stdin": true,
+    "difficulty": "software-probe",
+    "model_outputs": [
+      "```python\nwhile True:\n    pass\n```"
+    ],
+    "model_answers": [
+      [
+        "while True:\n    pass"
+      ]
+    ]
+  }
+]

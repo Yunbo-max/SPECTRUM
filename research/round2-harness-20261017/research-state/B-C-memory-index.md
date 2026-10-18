@@ -1,3 +1,13 @@
+## 当前运行：作者原生SSD对照基座（2026-10-18 23:23 UTC）
+
+已继续到LCB真实模型生成：基座Qwen3-4B-Instruct-2507，作者推荐T0.7/top-p0.8/top-k20，每题10 samples、131题、输出上限65536，使用SSD作者原生prompt/generate。runner PID65584，身份与分阶段日志在research-state/ssd-author-comparison-20261019/base-temperature-0.7/。4090实际初始化通过：模型7.6065GiB、可用KV13.23GiB/96352 tokens，配置context67072、单序列、BF16、TP1。实际正在生成，尚无此模型的正确率；同一runner随后调用隔离的作者evaluator。
+
+此前下载PID63741已在Qwen基座13文件全部校验完成后有意终止进程组，Apple未完成分片保留，原因记录在upstream-evaluation-20261018/author-pair-download-interruption.json。不是暂停Harness。等当前条件结束/退出再恢复下载，勿与当前pipeline.lock并发或重启已活动runner。恢复时先核对PID、boot/start ticks、active-stage与退出记录；完成的repeat文件可以复用。
+
+SSD作者实现已适配隔离：UID61044、只读运行库、禁IPv4/IPv6、允许Manager所需Unix IPC；stdin/functional正确、错误、异常、超时五种软件探针均符合预期，不是模型结果。原生私测解码在隔离内完成，131题/4852测试。数据test6的官方摘要核对已通过；官方README说明先前release_v5截止Jan2025，支持仅加载test6并按作者Feb-May过滤，未下载审计所有先前shard。两个模型实际chat template和prompt完全一致，最长输入1410 tokens。Apple三权重摘要现已在ModelScope与HF镜像指针间交叉一致（直连HF仍不可用）。
+
+下一步：分析基座原生LCB结果及截断，再运行SSD T1.1推荐条件，结合交叉温度条件辨别权重与解码效应。研究决策、数学null与限制见research-state/ssd-author-comparison-20261019/research-decision.md。旧MBPP近零容量地板已被否定，尚无D谱机制证据。研究持续，Harness未暂停或修改runtime。
+
 ## 交付与LCB数据进展（2026-10-18 23:09 UTC）
 
 真实Qwen评分、sanitizer诊断及记忆已交付分支research/round2-harness-20261017，commit153692c。LCB官方snapshot0fe84c3的test6已在GPU下载并与官方SHA256核对；175题中131题符合作者日期条件，其他shard日期完整性尚待核对。源文件在远端cache/lcb-0fe84c3/test6.jsonl，不入Git。下一步见upstream-evaluation-20261018/lcb-continuation.md；下载PID63741仍需恢复前核对。研究未完成，保持Harness自动续跑。

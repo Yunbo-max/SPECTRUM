@@ -1,0 +1,64 @@
+======================================================================
+ERROR: test_prepare_without_final_scorer_is_admitted (test_native_stages.NativeStageTests.test_prepare_without_final_scorer_is_admitted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 40, in test_prepare_without_final_scorer_is_admitted
+    t=self.prepare(self.stage_task());self.assertTrue(admission.ScientificAdmission()(self.p,t))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_cd_admission.py", line 71, in prepare
+    return admission.prepare_research_task(self.p, t, accepted_ref=self.dref, goal_id='goal')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 203, in prepare_research_task
+    return cd_admission.prepare_task(project, task, accepted_ref=accepted_ref, goal_id=goal_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 40, in prepare_task
+    refs = _call(project, prepared,
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 21, in _call
+    return json.loads(_run_canonical(project, task, source, options=options))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 189, in _run_canonical
+    raise ContractError('canonical admission denied: ' + result.stderr[-2000:])
+research_autopilot.models.ContractError: canonical admission denied: Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+  File "/tmp/tmpoe1f5lo6/skill/scripts/research_cd.py", line 219, in check_task
+    need(q.get('native_purpose') == 'development', 'C/D native purpose must be development')
+  File "/tmp/tmpoe1f5lo6/skill/scripts/research_cd.py", line 20, in need
+    raise ValueError(message)
+ValueError: C/D native purpose must be development
+
+
+======================================================================
+ERROR: test_real_stage_execution_receives_runtime_identity (test_native_stages.NativeStageTests.test_real_stage_execution_receives_runtime_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 45, in test_real_stage_execution_receives_runtime_identity
+    result=R.run_plan(self.f.root,self.native_plan,authorizer=lambda _:True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/run_experiments.py", line 186, in run_plan
+    root = C.root_path(root); validate_plan(root, plan)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/run_experiments.py", line 49, in validate_plan
+    contract = N.verify_protocol(root, protocol)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/_native_eval.py", line 202, in verify_protocol
+    if "native_eval_contracts" not in protocol: return _verify_single_protocol(root,protocol)
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/_native_eval.py", line 228, in _verify_single_protocol
+    C.validate(contract, "native-eval-contract")
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/_autoresearch.py", line 235, in validate
+    schema_check(value, load_file(schema_path))
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/_autoresearch.py", line 198, in schema_check
+    schema_check(child, definition, path + "." + key)
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/_autoresearch.py", line 198, in schema_check
+    schema_check(child, definition, path + "." + key)
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/_autoresearch.py", line 188, in schema_check
+    fail("SCHEMA_ENUM", path)
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/skills/research-autopilot/scripts/_autoresearch.py", line 52, in fail
+    raise Failure(code, path)
+_autoresearch.Failure: SCHEMA_ENUM
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.537s
+
+FAILED (errors=2)

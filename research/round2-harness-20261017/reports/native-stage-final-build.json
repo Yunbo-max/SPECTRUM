@@ -1,0 +1,8 @@
+{
+  "source_revision": "bd949b68d6eecb9feaf82ee3fe2dc0c666fc21ac",
+  "version": "0.4.0-harness.7",
+  "host": "spectrum-harness-gpu-hn01",
+  "archive_sha256": "4d124f6fbd438e797640022ada92e8850083750030a1be95e379ce752e5a6baf",
+  "build_exit_code": 0,
+  "scientific_results": false
+}

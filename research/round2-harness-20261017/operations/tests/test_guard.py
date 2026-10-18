@@ -20,8 +20,12 @@ class GuardTests(unittest.TestCase):
  def test_unknown_fails_closed(self):self.assertIn('observation_unavailable',g.reasons(None))
  def test_hysteresis(self):
   self.assertFalse(g.can_resume(self.sample(disk_free=12*g.GIB)))
-  self.assertFalse(g.can_resume(self.sample(swap_bytes=5*g.GIB)))
+  self.assertTrue(g.can_resume(self.sample(swap_bytes=5*g.GIB)))
   self.assertTrue(g.can_resume(self.sample()))
+ def test_residual_swap_does_not_block_normal_low_load_resume(self):
+  self.assertTrue(g.can_resume(self.sample(swap_bytes=5*g.GIB)))
+  self.assertFalse(g.can_resume(self.sample(pressure=2,swap_bytes=5*g.GIB)))
+  self.assertFalse(g.can_resume(self.sample(swap_bytes=6*g.GIB)))
  def test_tree_does_not_include_unrelated(self):
   rows={10:(1,100,'a'),11:(10,200,'b'),12:(11,300,'c'),50:(1,9000,'d')}
   self.assertEqual(g.descendants(rows,10),{10,11,12})

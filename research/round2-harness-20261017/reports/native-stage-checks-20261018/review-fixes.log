@@ -1,0 +1,118 @@
+======================================================================
+ERROR: test_full_native_worker_publishes_declared_stage_outputs (test_native_stages.NativeStageTests.test_full_native_worker_publishes_declared_stage_outputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 74, in test_full_native_worker_publishes_declared_stage_outputs
+    t=self.prepare(self.stage_task());t['adapter']='native'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_cd_admission.py", line 71, in prepare
+    return admission.prepare_research_task(self.p, t, accepted_ref=self.dref, goal_id='goal')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 204, in prepare_research_task
+    return cd_admission.prepare_task(project, task, accepted_ref=accepted_ref, goal_id=goal_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 40, in prepare_task
+    refs = _call(project, prepared,
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 21, in _call
+    return json.loads(_run_canonical(project, task, source, options=options))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 190, in _run_canonical
+    raise ContractError('canonical admission denied: ' + result.stderr[-2000:])
+research_autopilot.models.ContractError: canonical admission denied: Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+  File "/tmp/tmptfjq0mfu/skill/scripts/research_cd.py", line 241, in check_task
+    descriptor, stage_program, stage_refs = NS.validate_plan(root,native)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmptfjq0mfu/skill/scripts/native_stages.py", line 73, in validate_plan
+    need(all(path.startswith(prefix) and C.safe_path(root,path).relative_to(C.safe_path(root,prefix)).parts for path in j['output_paths']),'OUTPUT_NAMESPACE')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmptfjq0mfu/skill/scripts/native_stages.py", line 73, in <genexpr>
+    need(all(path.startswith(prefix) and C.safe_path(root,path).relative_to(C.safe_path(root,prefix)).parts for path in j['output_paths']),'OUTPUT_NAMESPACE')
+                                         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmptfjq0mfu/skill/scripts/_autoresearch.py", line 343, in safe_path
+    if part == root.parent:
+               ^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'parent'
+
+
+======================================================================
+ERROR: test_native_bridge_executes_stage_and_retains_actual_dispatch_context (test_native_stages.NativeStageTests.test_native_bridge_executes_stage_and_retains_actual_dispatch_context)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 57, in test_native_bridge_executes_stage_and_retains_actual_dispatch_context
+    t=self.prepare(self.stage_task())
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_cd_admission.py", line 71, in prepare
+    return admission.prepare_research_task(self.p, t, accepted_ref=self.dref, goal_id='goal')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 204, in prepare_research_task
+    return cd_admission.prepare_task(project, task, accepted_ref=accepted_ref, goal_id=goal_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 40, in prepare_task
+    refs = _call(project, prepared,
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 21, in _call
+    return json.loads(_run_canonical(project, task, source, options=options))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 190, in _run_canonical
+    raise ContractError('canonical admission denied: ' + result.stderr[-2000:])
+research_autopilot.models.ContractError: canonical admission denied: Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+  File "/tmp/tmp_6_y7wb5/skill/scripts/research_cd.py", line 241, in check_task
+    descriptor, stage_program, stage_refs = NS.validate_plan(root,native)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmp_6_y7wb5/skill/scripts/native_stages.py", line 73, in validate_plan
+    need(all(path.startswith(prefix) and C.safe_path(root,path).relative_to(C.safe_path(root,prefix)).parts for path in j['output_paths']),'OUTPUT_NAMESPACE')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmp_6_y7wb5/skill/scripts/native_stages.py", line 73, in <genexpr>
+    need(all(path.startswith(prefix) and C.safe_path(root,path).relative_to(C.safe_path(root,prefix)).parts for path in j['output_paths']),'OUTPUT_NAMESPACE')
+                                         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmp_6_y7wb5/skill/scripts/_autoresearch.py", line 343, in safe_path
+    if part == root.parent:
+               ^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'parent'
+
+
+======================================================================
+ERROR: test_prepare_without_final_scorer_is_admitted (test_native_stages.NativeStageTests.test_prepare_without_final_scorer_is_admitted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 44, in test_prepare_without_final_scorer_is_admitted
+    t=self.prepare(self.stage_task());self.assertTrue(admission.ScientificAdmission()(self.p,t))
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_cd_admission.py", line 71, in prepare
+    return admission.prepare_research_task(self.p, t, accepted_ref=self.dref, goal_id='goal')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 204, in prepare_research_task
+    return cd_admission.prepare_task(project, task, accepted_ref=accepted_ref, goal_id=goal_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 40, in prepare_task
+    refs = _call(project, prepared,
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/cd_admission.py", line 21, in _call
+    return json.loads(_run_canonical(project, task, source, options=options))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/admission.py", line 190, in _run_canonical
+    raise ContractError('canonical admission denied: ' + result.stderr[-2000:])
+research_autopilot.models.ContractError: canonical admission denied: Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+  File "/tmp/tmpsv9kzk1x/skill/scripts/research_cd.py", line 241, in check_task
+    descriptor, stage_program, stage_refs = NS.validate_plan(root,native)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpsv9kzk1x/skill/scripts/native_stages.py", line 73, in validate_plan
+    need(all(path.startswith(prefix) and C.safe_path(root,path).relative_to(C.safe_path(root,prefix)).parts for path in j['output_paths']),'OUTPUT_NAMESPACE')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpsv9kzk1x/skill/scripts/native_stages.py", line 73, in <genexpr>
+    need(all(path.startswith(prefix) and C.safe_path(root,path).relative_to(C.safe_path(root,prefix)).parts for path in j['output_paths']),'OUTPUT_NAMESPACE')
+                                         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpsv9kzk1x/skill/scripts/_autoresearch.py", line 343, in safe_path
+    if part == root.parent:
+               ^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'parent'
+
+
+----------------------------------------------------------------------
+Ran 77 tests in 55.708s
+
+FAILED (errors=3)

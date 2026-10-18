@@ -1,0 +1,21 @@
+======================================================================
+ERROR: test_full_native_worker_publishes_declared_stage_outputs (test_native_stages.NativeStageTests.test_full_native_worker_publishes_declared_stage_outputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 78, in test_full_native_worker_publishes_declared_stage_outputs
+    result=NativeWorker(c,bridge).run_once(self.p['project_id'],'fixture-owner')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/remote.py", line 287, in run_once
+    claim=self.controller.claim(project_id,owner,adapter=adapter,lease_seconds=self.lease_seconds,actions=['native_harness'],task_ids=task_ids)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/controller.py", line 271, in claim
+    program = self._program_state(db, project)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/controller.py", line 218, in _program_state
+    raise ContractError('harness scientific dispatch requires an initialized research program')
+research_autopilot.models.ContractError: harness scientific dispatch requires an initialized research program
+
+----------------------------------------------------------------------
+Ran 3 tests in 3.718s
+
+FAILED (errors=1)

@@ -1,0 +1,10 @@
+{
+  "node_count": 84,
+  "region_count": 16,
+  "edge_count": 221,
+  "coverage_counts": {
+    "detailed": 84
+  },
+  "errors": [],
+  "scope": "source traceability and navigation; not execution or scientific validation"
+}

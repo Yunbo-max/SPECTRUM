@@ -1,0 +1,11 @@
+{
+  "kind": "native-stage-plugin-install",
+  "version": "0.4.0-harness.7",
+  "source_revision": "bd949b68d6eecb9feaf82ee3fe2dc0c666fc21ac",
+  "verified_files": 413,
+  "profiles": {
+    "main": true,
+    "harness": true
+  },
+  "other_plugin_manifests_unchanged": true
+}

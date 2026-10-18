@@ -1,0 +1,15 @@
+{
+  "kind": "native-stage-live-adoption",
+  "version": "0.4.0-harness.7",
+  "source_revision": "bd949b68d6eecb9feaf82ee3fe2dc0c666fc21ac",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/native-stages-000237.json",
+    "sha256": "136c635687fc8a90b118e85b0c8bc116e0e5e46b6501ac98690752186b580f77"
+  },
+  "revision": 237,
+  "step_id": "B02",
+  "phase": "active",
+  "stage": "decide",
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true
+}

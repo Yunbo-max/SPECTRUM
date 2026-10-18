@@ -17,7 +17,9 @@ def reasons(s):
  return [name for name,bad in [('memory_pressure',s['pressure'] not in (1,2)),('swap_used',s['swap_bytes']>=6*GIB),('disk_free',s['disk_free']<10*GIB),('owned_rss',s['owned_rss']>=2*GIB)] if bad]
 
 def can_resume(s):
- return not reasons(s) and s['disk_free']>=15*GIB and s['swap_bytes']<=4*GIB
+ # Old swap can persist after pressure normalizes; allow low-load recovery
+ # under the same 6 GiB stop threshold after the existing 60-second stability window.
+ return not reasons(s) and s['disk_free']>=15*GIB and (s['swap_bytes']<=4*GIB or (s['pressure']==1 and s['owned_rss']<GIB))
 
 def descendants(rows,pid):
  owned={pid}

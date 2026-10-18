@@ -1,0 +1,26 @@
+======================================================================
+ERROR: test_full_native_worker_publishes_declared_stage_outputs (test_native_stages.NativeStageTests.test_full_native_worker_publishes_declared_stage_outputs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 75, in test_full_native_worker_publishes_declared_stage_outputs
+    c=Controller(self.f.root/'worker.db',admission=admission.ScientificAdmission());c.register_project(self.p);c.register_task(self.p['project_id'],t)
+                                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/src/research_autopilot/controller.py", line 161, in register_task
+    raise ContractError("task adapter is outside the project allowlist")
+research_autopilot.models.ContractError: task adapter is outside the project allowlist
+
+======================================================================
+FAIL: test_native_bridge_executes_stage_and_retains_actual_dispatch_context (test_native_stages.NativeStageTests.test_native_bridge_executes_stage_and_retains_actual_dispatch_context)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/tests/runtime/test_native_stages.py", line 63, in test_native_bridge_executes_stage_and_retains_actual_dispatch_context
+    self.assertEqual(result['status'],'completed',result)
+AssertionError: 'unknown' != 'completed'
+- unknown
++ completed
+ : {'status': 'unknown', 'identity_sha256': '2635ca81fb95fa4ad56088ffb60f209e1758c89a0cee4aec926ee2758898fa34', 'verified_tasks': 0, 'never_launched_tasks': 0, 'retained_status': 'failed'}
+
+----------------------------------------------------------------------
+Ran 78 tests in 59.725s
+
+FAILED (failures=1, errors=1)

@@ -1,0 +1,12 @@
+======================================================================
+FAIL: test_residual_swap_does_not_block_normal_low_load_resume (test_guard.GuardTests.test_residual_swap_does_not_block_normal_low_load_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/stage-repair/test_guard.py", line 26, in test_residual_swap_does_not_block_normal_low_load_resume
+    self.assertTrue(g.can_resume(self.sample(swap_bytes=5*g.GIB)))
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.023s
+
+FAILED (failures=1)

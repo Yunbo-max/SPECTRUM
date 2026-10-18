@@ -9,11 +9,11 @@
   },
   {
     "path": "operations/host_guard.py",
-    "sha256": "31635c0ff73ed41e4e70c496d60dd33c40f3b3762eaeb41a301000852746be3b"
+    "sha256": "1cea58d61980bf0a6cf4527f7f85d60855d02c1133f24b43be3fc4c3e7f7aa8a"
   },
   {
     "path": "operations/tests/test_guard.py",
-    "sha256": "66c9c5e9c28a675200bf180e5ea8b6827d66f4f76a7092012f0a0e2f32385ba5"
+    "sha256": "56b091d527c453485d072dc20fa760e51e9b86669cffe85bd37a15c0f46651fe"
   },
   {
     "path": "reports/B01-native-route-hn01-20261018.md",
@@ -72,12 +72,100 @@
     "sha256": "cad27c1c4446c5b1cef4576971bc8fd902f031eb126b9fcad6c15c2f471c36e5"
   },
   {
+    "path": "reports/native-stage-checks-20261018/README.md",
+    "sha256": "d9a7207ffee826d8346727809bcb9334292a14a51fb16fba886fab62b4184461"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/b02-software.log",
+    "sha256": "ecb63bd4be0a3c602505428ab9b60880f3aba2fefcde49135515fd752efd5d85"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/build.log",
+    "sha256": "fb28236a25e0d9f5e171793bccac1da1224ee709691dc8b169730d06be907d3c"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/combined.log",
+    "sha256": "f5c3161a3d4a6f23e81365afbf2d94724dae12aa7cd1692c2e276ea7b88e25ec"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/final-runtime.log",
+    "sha256": "b1de98cd05b7be0134370211850a3ef5c50f9eeea855482291b095d9038ebfb8"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/final-stage.log",
+    "sha256": "d7068522893b13500fdb4e7fdbd7103e725211122e00bc1106f5fa34f1bf8b96"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/full-stage-chain-green.log",
+    "sha256": "9a9c0a6901951f7315a4f551cafeea2119381b32754fb98d69333cc0ab354ee2"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/full-stage-chain.log",
+    "sha256": "3caa8c917298b0fc211e340b2ab1fc588213d45e0abd28f28f9b6a16927abc75"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/green.log",
+    "sha256": "8b55b4ef0a9465919e6dc844da07cffae02885eeb9bab199b030806f60fd0d91"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/guard-green.log",
+    "sha256": "726ad85fa72aa0f9fb5c2ff0887469593495ed6c771802b5bd874d1fea1ddcb7"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/guard-red.log",
+    "sha256": "820cdfcd987d884072463a640ae5897d878ba8ca7deae1728584c5afb8b9314e"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/legacy-runner.log",
+    "sha256": "d243757265c0bfdf70542230bafd519d81535b1a98e05adf6ce68ad12b84b39a"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/node-check.log",
+    "sha256": "b20399f1b8c3393d9b579d20c7e575c719b32727d3c3cc1c3c1ea010a66efed0"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/red.log",
+    "sha256": "3f49a5557ca3e9808292212989bcdc7c59527af6c95310377c155f0eb065ac8d"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/review-fixes-green.log",
+    "sha256": "a4e64850c9d1e8f5f75b9c18f44f7101a84c0796b76f7cc08a4cd6501294beed"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/review-fixes.log",
+    "sha256": "829977674ecfdda11f76b3083e1c840eaa2d3b3e8f281d7ad46777485a42fa39"
+  },
+  {
+    "path": "reports/native-stage-checks-20261018/stages.log",
+    "sha256": "feeeffd07bc867150495a36744d66bbadbeffa87b7cebf089a09ab1221f47a53"
+  },
+  {
+    "path": "reports/native-stage-continuation-20261018.md",
+    "sha256": "52fa9adf7b194c562a86e52b67295da8bc545379e4d8cdf306c6c36004582cec"
+  },
+  {
+    "path": "reports/native-stage-final-build.json",
+    "sha256": "66150cf7f05a4bd72d2430b2351c95fb8a0b9792d7d76eb7302118d9ea6975a2"
+  },
+  {
+    "path": "reports/native-stage-source-repair-20261018.md",
+    "sha256": "71e01eb0d762a2875e7fc7e283dc95b63cfe20ffebf9e3b4974d036c60f49fb5"
+  },
+  {
     "path": "reports/progress-snapshot-20261017.json",
     "sha256": "cbbff64a6f1ec6e198cd4c1456ac71744678d6a844b1fe74f862a0ad188a88cc"
   },
   {
     "path": "reports/skill-evidence-reuse-20261018.md",
     "sha256": "6b1c47e8929d6c739c490f806dce8c0052f0776ae73c15324e2b1b6fc451bc2c"
+  },
+  {
+    "path": "reports/stage-install-receipt.json",
+    "sha256": "94633c97687e6cf98ba2ab08acd70ba0470898b73aa63ea4e52cce345d50c937"
+  },
+  {
+    "path": "reports/stage-live-adoption-receipt.json",
+    "sha256": "63fde9917d09940d5b71bc5ed169049f09fbfe03ec65101b47cfc4ea64eba8b0"
   },
   {
     "path": "reports/warning-continuation-20261018.md",
@@ -600,6 +688,14 @@
     "sha256": "6f7f3f5ea453297de0fa5be55cba8d57199ef7a41314ae0f8703b51af20cac37"
   },
   {
+    "path": "research-state/harness/adoptions/native-stages-000237.json",
+    "sha256": "136c635687fc8a90b118e85b0c8bc116e0e5e46b6501ac98690752186b580f77"
+  },
+  {
+    "path": "research-state/harness/adoptions/stage-repair-interruption-reconciliation.json",
+    "sha256": "df4255e5bc587d90bd65ac508239882ea1cfcffeaee980c38c37e5b6dcb134b8"
+  },
+  {
     "path": "research-state/hn01-setup-20261018/b01-admission-baseline.log",
     "sha256": "bedaee7c2df1075ae7d1e7bd699c75299249b1fcd0b1d42ef04e94b90b1fed9e"
   },
@@ -650,6 +746,10 @@
   {
     "path": "research-state/native-gpu-target-hn01-20261018.json",
     "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+  },
+  {
+    "path": "research-state/native-stage-owner-instruction-20261018.md",
+    "sha256": "d6f4fbab5ddd4e496b75cbeca76b161a0607c60c554171784b880b02e816f0d1"
   },
   {
     "path": "research-state/objective-autonomous-20261017.md",
@@ -714,6 +814,10 @@
   {
     "path": "runtime-fixes/gpu-first-intake.patch",
     "sha256": "6dd03568d0e062f49ea874c71abd0015f55f0f1356266b256bd01867ee2347e1"
+  },
+  {
+    "path": "runtime-fixes/native-stages-deferred-scoring.patch",
+    "sha256": "1dc465f71a91bbebf038826496037568e29344dc4a2652704a95fa3a3a66bb0e"
   },
   {
     "path": "runtime-fixes/skill-evidence-reuse.patch",

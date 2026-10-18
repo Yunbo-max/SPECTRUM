@@ -1,3 +1,9 @@
+## 十样本解释边界与续跑（2026-10-18 23:46 UTC）
+
+核对同一runner65584身份仍匹配，第一repeat最新39/131 prompts，无完整repeat或正确率。未重启、未并发其他模型，已完成的官方MBPP不重跑。
+
+新增ssd-author-comparison-20261019/finite-sample-interpretation.md及hn01解析计算finite-sample-reference.json：IID假设下0/10成功的单侧95%概率上界仍为25.89%；即便两个sampler能力相同，也可出现大量任一方独有成功题。因此不能用零样本成功或筛选后的失败集合定义条件性gap。按题配对总体指标、两方向discordance、外部difficulty描述及截断/提取/计算量一起解释；发现后选出的条件须独立确认。示例为数学参考，不是模型分数、额外实验或强制增加采样轮次。当前程序继续，研究未完成，Harness未暂停。
+
 ## Decoder对照源码核验（2026-10-18 23:41 UTC）
 
 原生LCB runner65584/start ticks144158755仍活动，第一repeat日志32/131 prompts，未产出完整repeat或正确率。保持单一程序，未恢复Apple下载或启动第二模型。上轮分析器及采样源码审计已交付666945a。

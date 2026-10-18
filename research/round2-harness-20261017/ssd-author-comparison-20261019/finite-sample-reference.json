@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-10-18T23:45:17.278171+00:00",
+  "kind": "Analytic IID reference only; not fitted to model outcomes, not a new experiment or performance result.",
+  "n": 10,
+  "tasks": 131,
+  "one_sided_95pct_upper_probability_after_zero_successes": 0.2588655508930523,
+  "one_sided_95pct_lower_probability_after_all_successes": 0.7411344491069477,
+  "at_least_one_success_chance_95pct_required_samples_at_p_0.1": 29,
+  "homogeneous_equal_probability_reference": [
+    {
+      "hypothetical_true_success_probability": 0.01,
+      "zero_of_10_probability": 0.9043820750088044,
+      "one_direction_any_success_discordance_probability": 0.08647513741157369,
+      "expected_one_direction_discordant_tasks_if_all_131_share_p": 11.328243000916153,
+      "expected_two_direction_discordant_tasks": 22.656486001832306
+    },
+    {
+      "hypothetical_true_success_probability": 0.05,
+      "zero_of_10_probability": 0.5987369392383787,
+      "one_direction_any_success_discordance_probability": 0.2402510168298367,
+      "expected_one_direction_discordant_tasks_if_all_131_share_p": 31.47288320470861,
+      "expected_two_direction_discordant_tasks": 62.94576640941722
+    },
+    {
+      "hypothetical_true_success_probability": 0.1,
+      "zero_of_10_probability": 0.3486784401000001,
+      "one_direction_any_success_discordance_probability": 0.22710178550943075,
+      "expected_one_direction_discordant_tasks_if_all_131_share_p": 29.750333901735427,
+      "expected_two_direction_discordant_tasks": 59.500667803470854
+    },
+    {
+      "hypothetical_true_success_probability": 0.2,
+      "zero_of_10_probability": 0.10737418240000006,
+      "one_direction_any_success_discordance_probability": 0.09584496735393158,
+      "expected_one_direction_discordant_tasks_if_all_131_share_p": 12.555690723365037,
+      "expected_two_direction_discordant_tasks": 25.111381446730075
+    },
+    {
+      "hypothetical_true_success_probability": 0.3,
+      "zero_of_10_probability": 0.028247524899999984,
+      "one_direction_any_success_discordance_probability": 0.027449602237023866,
+      "expected_one_direction_discordant_tasks_if_all_131_share_p": 3.5958978930501266,
+      "expected_two_direction_discordant_tasks": 7.191795786100253
+    },
+    {
+      "hypothetical_true_success_probability": 0.5,
+      "zero_of_10_probability": 0.0009765625,
+      "one_direction_any_success_discordance_probability": 0.0009756088256835938,
+      "expected_one_direction_discordant_tasks_if_all_131_share_p": 0.12780475616455078,
+      "expected_two_direction_discordant_tasks": 0.25560951232910156
+    }
+  ],
+  "pass_at_5_estimator_by_observed_correct_count": {
+    "0": 0.0,
+    "1": 0.5,
+    "2": 0.7777777777777778,
+    "3": 0.9166666666666666,
+    "4": 0.9761904761904762,
+    "5": 0.996031746031746,
+    "6": 1,
+    "7": 1,
+    "8": 1,
+    "9": 1,
+    "10": 1
+  },
+  "limitations": [
+    "Independent identical Bernoulli draws are an illustrative null; model and shared-seed dependence can invalidate it.",
+    "Task probabilities are heterogeneous; these rows are not expected counts fitted to this benchmark.",
+    "No optional stopping or condition selection is authorized by this reference."
+  ]
+}

@@ -1,0 +1,389 @@
+diff --git a/.codex-plugin/plugin.json b/.codex-plugin/plugin.json
+index 526f1b0..dd7c968 100644
+--- a/.codex-plugin/plugin.json
++++ b/.codex-plugin/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.15",
+-  "description": "Prompt-guided B/C/D/E research: GPT directly reads, reasons, codes, runs experiments and iterates.",
++  "version": "0.4.0-harness.16",
++  "description": "Harness manages long research tasks; GPT autonomously designs, runs and revises B/C/D/E experiments.",
+   "author": {
+     "name": "Yunbo Long",
+     "url": "https://yunbo-max.github.io/"
+@@ -17,9 +17,9 @@
+   ],
+   "skills": "./skills/",
+   "interface": {
+-    "displayName": "Autopilot Direct Research",
+-    "shortDescription": "Prompt-guided research and experiments",
+-    "longDescription": "GPT directly pursues B/C/D/E with mathematics, official code and real experiments. No mandatory scheduler, proposal schema, receipts or execution gates.",
++    "displayName": "Autopilot Work Harness",
++    "shortDescription": "Long tasks with autonomous experiments",
++    "longDescription": "Harness retains memory, pause/resume and automatic continuation. GPT directly performs B/C/D/E research without compulsory experiment output formats or admission gates.",
+     "developerName": "Yunbo Long",
+     "category": "Productivity",
+     "capabilities": [
+@@ -31,7 +31,7 @@
+     ],
+     "websiteURL": "https://yunbo-max.github.io/research-autopilot/",
+     "defaultPrompt": [
+-      "Run prompt-guided B/C/D/E research directly, using actual experiments to revise the question and method."
++      "Continue research with Harness supervision and prompt-guided autonomous B/C/D/E experiments."
+     ],
+     "composerIcon": "./assets/icon.svg",
+     "logo": "./assets/icon.svg"
+diff --git a/AGENTS.md b/AGENTS.md
+index 9c630a9..6110fee 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -1,5 +1,5 @@
+-# Research Autopilot — direct research edition
++# Research Autopilot — supervised experimental autonomy
+ 
+-The owner retired mandatory Work Harness orchestration and requested prompt-guided B/C/D/E. The active policy is `skills/research-autopilot/SKILL.md` and its four `prompt-*.md` phase guides. Historical source/controller docs are implementation history, not execution instructions. Do not introduce mandatory schemas, per-command review, stage gates or micro-workers.
++The owner retains Work Harness long-task management, memory, automatic continuation and recovery. Relax only B/C/D/E experimental design/execution: use `skills/research-autopilot/SKILL.md` and its four prompt phase guides, with direct agent tools and no compulsory scientific response schema, mailbox or per-command admission. Other controller paths and history remain intact. Do not disable the entire supervisor.
+ 
+-Preserve the plugin identity and other editions. Retain legacy runtime/source and evidence for recovery; do not reactivate old controllers. Use the existing authorized GPU for code tests/experiments when requested, never report tests or scientific results that were not run. Keep credentials out of Git. Scientific rigor is expressed in the phase guidance and actual analyses, not admission machinery.
++Use the existing authorized GPU for code execution/checks. Preserve plugin identity, other editions, evidence, user pause/budget authority and single-worker operation. Keep credentials out of Git. Scientific rigor belongs in actual experiments and analysis, not artificial prerequisites to run a command.
+diff --git a/EDITION.json b/EDITION.json
+index 8502212..713ae15 100644
+--- a/EDITION.json
++++ b/EDITION.json
+@@ -2,8 +2,8 @@
+   "schema_version": 2,
+   "branch": "autonomous-rsi-harness",
+   "plugin_name": "research-autopilot",
+-  "display_name": "Autopilot Direct Research",
+-  "plugin_version": "0.4.0-harness.15",
++  "display_name": "Autopilot Work Harness",
++  "plugin_version": "0.4.0-harness.16",
+   "round_selection": "agent",
+   "authoring_host": "local_agent",
+   "execution_host": "local_agent",
+@@ -11,5 +11,5 @@
+     "compute": "measured_authorized",
+     "memory_planning_cap_bytes": null
+   },
+-  "execution_mode": "prompt_guided"
++  "execution_mode": "supervised_experiment_autonomy"
+ }
+diff --git a/EXPORT_MANIFEST.json b/EXPORT_MANIFEST.json
+index 01f2494..0821888 100644
+--- a/EXPORT_MANIFEST.json
++++ b/EXPORT_MANIFEST.json
+@@ -1,5 +1,5 @@
+ {
+-  "version": "0.4.0-harness.15",
++  "version": "0.4.0-harness.16",
+   "active_entrypoint": "skills/research-autopilot/SKILL.md",
+   "phase_guides": [
+     "skills/research-autopilot/references/prompt-B.md",
+@@ -7,6 +7,6 @@
+     "skills/research-autopilot/references/prompt-D.md",
+     "skills/research-autopilot/references/prompt-E.md"
+   ],
+-  "legacy_controller_required": false,
+-  "historical_manifest": "docs/legacy-harness-014/EXPORT_MANIFEST.json"
++  "historical_manifest": "docs/legacy-harness-014/EXPORT_MANIFEST.json",
++  "supervisor": "Existing Harness consumer with experiment_autonomy transport"
+ }
+diff --git a/README.md b/README.md
+index 9c09889..441d48d 100644
+--- a/README.md
++++ b/README.md
+@@ -1,10 +1,10 @@
+-# Current edition: prompt-guided B/C/D/E (.15)
++# Current edition: Harness with autonomous experiments (.16)
+ 
+-The active entrypoint is [Research Autopilot](skills/research-autopilot/SKILL.md). GPT directly designs, executes, debugs and analyzes research. The controller, phase admission and mandatory output schemas described below are retained historical documentation, not prerequisites for this edition. Installing the Skill does not launch an unattended service.
++Harness retains long-task supervision, memory, pause/resume and automatic continuation. B/C/D/E experiment design and execution are prompt-guided, with direct tools and ordinary prose instead of mandatory proposals, response schemas and execution gates. See [active Skill](skills/research-autopilot/SKILL.md). Other controller routes remain available; adopting this mode is explicit and does not reset existing research history.
+ 
+ ---
+ 
+-# Autopilot Work Harness 10.17
++ Autopilot Work Harness 10.17
+ 
+ Experiment execution: one program at a time; try supported batches from large
+ to small (e.g. 64 → 32 → 16 → 8 → 4 → 2), then use a stable setting with good
+diff --git a/SOURCE_PUBLICATION.json b/SOURCE_PUBLICATION.json
+index fc146cf..724c5e4 100644
+--- a/SOURCE_PUBLICATION.json
++++ b/SOURCE_PUBLICATION.json
+@@ -1,8 +1,8 @@
+ {
+-  "version": "0.4.0-harness.15",
+-  "base_commit": "f7771d4ff34c35c65a29536174a73bea850b819e",
+-  "change": "Prompt-guided B/C/D/E; retired mandatory controller and output contracts",
+-  "runtime_changed": false,
++  "version": "0.4.0-harness.16",
++  "base_commit": "3a025585f42108d6bf712bd127df1d82a5e032c2",
++  "change": "Restore Harness supervision with direct experiment sessions; other-stage routes retained",
++  "runtime_changed": true,
+   "tests_run": false,
+   "historical_publication": "docs/legacy-harness-014/SOURCE_PUBLICATION.json"
+ }
+diff --git a/plugin.json b/plugin.json
+index e4fe450..257726b 100644
+--- a/plugin.json
++++ b/plugin.json
+@@ -1,8 +1,8 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.15",
+-  "description": "Prompt-guided B/C/D/E research: GPT directly reads, reasons, codes, runs experiments and iterates.",
++  "version": "0.4.0-harness.16",
++  "description": "Harness manages long research tasks; GPT autonomously designs, runs and revises B/C/D/E experiments.",
+   "author": {
+     "name": "Yunbo Long",
+     "url": "https://yunbo-max.github.io/"
+@@ -19,9 +19,9 @@
+   "extensions": {
+     "com.openai": {
+       "interface": {
+-        "displayName": "Autopilot Direct Research",
+-        "shortDescription": "Prompt-guided research and experiments",
+-        "longDescription": "GPT directly pursues B/C/D/E with mathematics, official code and real experiments. No mandatory scheduler, proposal schema, receipts or execution gates.",
++        "displayName": "Autopilot Work Harness",
++        "shortDescription": "Long tasks with autonomous experiments",
++        "longDescription": "Harness retains memory, pause/resume and automatic continuation. GPT directly performs B/C/D/E research without compulsory experiment output formats or admission gates.",
+         "developerName": "Yunbo Long",
+         "category": "Productivity",
+         "capabilities": [
+@@ -33,7 +33,7 @@
+         ],
+         "websiteURL": "https://yunbo-max.github.io/research-autopilot/",
+         "defaultPrompt": [
+-          "Run prompt-guided B/C/D/E research directly, using actual experiments to revise the question and method."
++          "Continue research with Harness supervision and prompt-guided autonomous B/C/D/E experiments."
+         ],
+         "composerIcon": "./assets/icon.svg",
+         "logo": "./assets/icon.svg"
+diff --git a/skills/research-autopilot/SKILL.md b/skills/research-autopilot/SKILL.md
+index bfdb796..5903ca7 100644
+--- a/skills/research-autopilot/SKILL.md
++++ b/skills/research-autopilot/SKILL.md
+@@ -5,7 +5,9 @@ description: Use for sustained research with GPT directly reading papers and cod
+ 
+ # Research Autopilot — prompt-guided research
+ 
+-Version: `0.4.0-harness.15`. The plugin identity is retained; the mandatory Work Harness controller is retired for new use. Use the existing GPT/Codex agent directly. This Skill supplies research guidance, not a scheduler or an unattended service.
++Version: `0.4.0-harness.16`. Keep Work Harness for long-task supervision, persistent memory, pause/resume, automatic continuation and interruption recovery. GPT performs the scientific work. B/C/D/E experiment design and execution use the prompt guidance below rather than strict output/admission contracts. Installing a plugin alone does not start the supervisor.
++
++The restored `program_cli` supports an explicitly adopted `experiment_autonomy` transport for B/C/D/E. It reuses the existing single-consumer lock, heartbeat and program state, runs one GPT session, retains its ordinary prose/logs, and resumes the same conversation. No experiment proposal, mailbox or response schema is involved. Existing other-stage controller paths, prior accepted history and source files remain intact. Do not replace the whole Harness or migrate unrelated projects when relaxing experimental work.
+ 
+ Restore the user's research objective, living project memory, authorized compute and actual jobs/results. Keep a useful handbook from A intake onward: motivation, gap, ideas, mathematical predictions, experiment choices, hardware and findings. Its format and level of detail are yours to choose. Update existing project memory instead of rebuilding it or automatically trusting it.
+ 
+@@ -18,13 +20,13 @@ Read the relevant guidance as the scientific question requires:
+ - [D — mathematical mechanisms and executable ideas](references/prompt-D.md)
+ - [E — broad, fair and reproducible evaluation](references/prompt-E.md)
+ 
+-B/C/D/E describe kinds of research, not fixed steps. Retrieve missing knowledge through B at any time. Let real experiments change the question, implementation, method or evaluation. A single sustained agent can perform the whole loop. Move into wider E evaluation when the mechanism and evidence justify it; revisit earlier work when they do not. Scientific criticism is part of thinking and analysis, not a compulsory reviewer service or software approval.
++B/C/D/E describe kinds of research, not fixed steps. Retrieve missing knowledge through B at any time. Let real experiments change the question, implementation, method or evaluation. Harness keeps a single sustained agent performing this loop and preserves progress across turns. Move into wider E evaluation when the mechanism and evidence justify it; revisit earlier work when they do not. Scientific criticism is part of thinking and analysis, not a compulsory reviewer service or software approval.
+ 
+ ## Execution freedom
+ 
+ Design, code, install needed dependencies, run, debug and analyze within the user's existing authorization. Prefer relevant official code and native evaluation; adapt them on the actual execution host. Practical scripts, notebooks and configuration files are chosen to suit the tools. A single baseline may be measured or scored independently; comparisons are needed to support comparative claims, not to authorize a command.
+ 
+-No compulsory proposal JSON, response schema, output template, mailbox, controller database, receipt chain, coverage mapping, stage binding, typed revisit or per-step acceptance is needed. Do not manufacture comparison arms or repeat generation to satisfy an interface. Existing records are evidence to read, not contracts to enforce. Remaining legacy references, schemas and runtime code in this package are archival/optional implementation material; they do not override these four phase guides or reactivate the controller.
++No compulsory proposal JSON, response schema, output template, mailbox, controller database, receipt chain, coverage mapping, stage binding, typed revisit or per-step acceptance is needed. Do not manufacture comparison arms or repeat generation to satisfy an interface. Existing records are evidence to read, not contracts to enforce. Existing controller metadata and non-experimental stage guidance continue serving task management. Legacy experiment schemas/admission rules do not override these four phase guides. Runtime bookkeeping is written by Harness, not a required research response.
+ 
+ Use the authorized GPU host for heavy work and code experiments. Inspect hardware and reuse a suitable existing environment. Adapt batch, concurrency and precision to measured capacity while preserving scientific meaning. Reconcile existing jobs before launching another; honor the user's single-experiment preference. Keep raw outputs, actual settings and sufficient provenance to reproduce conclusions, in whatever format works. Checkpoints and logs help recover a long job; they are not admission paperwork. Preserve execution isolation when running generated code.
+ 
+diff --git a/skills/research-autopilot/agents/openai.yaml b/skills/research-autopilot/agents/openai.yaml
+index 3df8121..9a857c3 100644
+--- a/skills/research-autopilot/agents/openai.yaml
++++ b/skills/research-autopilot/agents/openai.yaml
+@@ -1,7 +1,7 @@
+ interface:
+-  display_name: "Autopilot — Direct Research"
+-  short_description: "Prompt-guided mathematics, code and GPU experiments"
+-  default_prompt: "Use $research-autopilot to pursue the research question directly through B/C/D/E, adapting experiments from real results."
++  display_name: "Autopilot Work Harness"
++  short_description: "Harness supervision with autonomous GPU experiments"
++  default_prompt: "Use $research-autopilot to pursue the research question with Harness continuation and autonomous B/C/D/E, adapting experiments from real results."
+   icon_small: assets/icon.svg
+   icon_large: assets/icon.svg
+ policy:
+diff --git a/skills/research-autopilot/assets/harness-policy.json b/skills/research-autopilot/assets/harness-policy.json
+index 50bbce1..92a123b 100644
+--- a/skills/research-autopilot/assets/harness-policy.json
++++ b/skills/research-autopilot/assets/harness-policy.json
+@@ -1,6 +1,5 @@
+ {
+   "edition": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.15",
+-  "execution_mode": "prompt_guided",
+-  "controller_required": false
++  "version": "0.4.0-harness.16",
++  "execution_mode": "supervised_experiment_autonomy"
+ }
+diff --git a/src/research_autopilot/program_cli.py b/src/research_autopilot/program_cli.py
+index 92a37a8..711c120 100644
+--- a/src/research_autopilot/program_cli.py
++++ b/src/research_autopilot/program_cli.py
+@@ -408,6 +408,9 @@ def _consume(controller, program, args):
+         raise ContractError('max-ticks must be positive')
+     count = 0
+     with ConsumerLease(controller, project, args.owner) as lease:
++        from . import prompt_experiments
++        if prompt_experiments.enabled(program.status(args.project)):
++            return prompt_experiments.run(controller, program, args, lease)
+         while maximum is None or count < maximum:
+             prior = program.status(args.project)
+             # Pauses preserve jobs. This command does not query SSH or invoke an
+diff --git a/src/research_autopilot/prompt_experiments.py b/src/research_autopilot/prompt_experiments.py
+new file mode 100644
+index 0000000..1cdffe5
+--- /dev/null
++++ b/src/research_autopilot/prompt_experiments.py
+@@ -0,0 +1,147 @@
++"""Harness-managed long experiment sessions, with unconstrained research output.
++
++Keeps the existing consumer lease, program pause, logs and resume thread. Scientific
++work uses direct tools; no experiment admission, mailbox or response schema.
++"""
++from __future__ import annotations
++
++import json
++from contextlib import closing
++import os
++from pathlib import Path
++import subprocess
++import time
++
++from .artifacts import verify_ref
++from .models import ContractError, cumulative_time_limit
++
++
++def enabled(prior):
++    return prior['state'].get('experiment_autonomy', {}).get('enabled') is True
++
++
++def _thread(path):
++    # The transport emits thread.started before potentially large tool events.
++    try:
++        with path.open('rb') as stream:
++            for _ in range(12):
++                raw = stream.readline(65536)
++                if not raw:
++                    break
++                try:
++                    event = json.loads(raw)
++                except (ValueError, UnicodeDecodeError):
++                    continue
++                if event.get('type') == 'thread.started':
++                    return event.get('thread_id')
++    except FileNotFoundError:
++        pass
++    return None
++
++
++def _update(program, pid, **values):
++    current = program.status(pid)
++    current['state']['experiment_autonomy'].update(values)
++    return program._update(current, current['state'], 'experiment_session_observed')
++
++
++def run(controller, program, args, lease):
++    pid = args.project
++    project = controller.get_project(pid)
++    root = Path(project['root'])
++    maximum = 1 if args.command == 'tick' else args.max_ticks
++    count = 0
++    while maximum is None or count < maximum:
++        prior = program.status(pid)
++        if prior['state']['phase'] != 'active' or not enabled(prior):
++            return 0
++        program._policy(project, prior['contract'])
++        with closing(controller._connect()) as db:
++            live = db.execute("SELECT 1 FROM tasks WHERE project_id=? AND state NOT IN ('completed','failed','cancelled') LIMIT 1", (pid,)).fetchone()
++            historic_seconds = db.execute('SELECT spent_seconds FROM projects WHERE project_id=?', (pid,)).fetchone()[0]
++        if live:
++            lease.observed('reconcile_existing_task_before_experiment_session')
++            time.sleep(5)
++            continue
++        settings = prior['state']['experiment_autonomy']
++        remaining = settings.get('not_before', 0) - time.time()
++        if remaining > 0:
++            lease.observed('experiment_continuation_backoff')
++            time.sleep(min(remaining, 5))
++            continue
++        spent = historic_seconds + settings.get('elapsed_seconds', 0)
++        allowance = cumulative_time_limit(project) - spent
++        if allowance <= 0:
++            lease.observed('existing_user_time_budget_exhausted')
++            return 0
++        instruction = verify_ref(root, settings['instruction_ref']).read_text()
++        adapter = json.loads(verify_ref(root, prior['contract']['agent_config_ref']).read_text())
++        binary = adapter['adapters'][prior['contract']['planner']['adapter']]['argv'][0]
++        attempt = settings.get('attempt', 0) + 1
++        directory = root / 'research-state/harness/experiment-sessions' / f'{attempt:06d}'
++        directory.mkdir(parents=True, exist_ok=True)
++        # New directory numbers survive interruption because state precedes spawn.
++        events = directory / 'events.jsonl'
++        errors = directory / 'stderr.log'
++        response = directory / 'summary.md'
++        prompt = instruction + '\n\nContinue the same research now. Read the living handbook and previous session notes. Reconcile remote jobs before launching anything. Use real tool execution, preserve evidence, update memory before ending a turn. A turn ending is not scientific completion. The Harness will resume this same conversation automatically. Do not wait for the old phase-native mailbox or generate its proposals.\n'
++        (directory / 'prompt.md').write_text(prompt)
++        argv = [binary, 'exec']
++        thread = settings.get('thread_id')
++        if thread:
++            argv += ['resume']
++        argv += ['-c', 'sandbox_mode="danger-full-access"', '-c', 'approval_policy="never"',
++                 '-m', settings['model'], '--skip-git-repo-check', '--json',
++                 '--output-last-message', str(response)]
++        if thread:
++            argv += [thread]
++        argv += ['-']
++        _update(program, pid, attempt=attempt, status='starting', directory=str(directory.relative_to(root)),
++                started_at=time.time(), worker_pid=None)
++        started = time.monotonic()
++        child = None
++        rc = None
++        try:
++            with events.open('wb') as out, errors.open('wb') as err:
++                child = subprocess.Popen(argv, cwd=root, stdin=subprocess.PIPE, stdout=out, stderr=err,
++                                         env=os.environ.copy())
++                _update(program, pid, status='running', worker_pid=child.pid)
++                child.stdin.write(prompt.encode()); child.stdin.close()
++                while child.poll() is None:
++                    current = program.status(pid)
++                    if current['state']['phase'] != 'active' or not enabled(current):
++                        break
++                    if time.monotonic() - started >= allowance:
++                        break
++                    found = _thread(events)
++                    if found and found != thread:
++                        thread = found
++                        _update(program, pid, thread_id=thread)
++                    lease.observed('experiment_worker_running')
++                    time.sleep(3)
++                rc = child.poll()
++        finally:
++            # The existing host guard reconciles descendants on consumer shutdown.
++            # Never terminate a detached remote scientific job from this transport.
++            if child is not None and child.poll() is None:
++                child.terminate()
++                try:
++                    child.wait(timeout=15)
++                except subprocess.TimeoutExpired:
++                    child.kill(); child.wait(timeout=5)
++            if child is not None:
++                rc = child.returncode
++            current = program.status(pid)
++            now = current['state']['experiment_autonomy']
++            found = _thread(events)
++            failures = 0 if rc == 0 else now.get('consecutive_transport_failures', 0) + 1
++            delay = 30 if rc == 0 else min(600, 30 * 2 ** min(failures, 5))
++            _update(program, pid, status='between_turns' if rc == 0 else 'transport_retry',
++                    worker_pid=None, thread_id=found or thread, exit_code=rc,
++                    elapsed_seconds=now.get('elapsed_seconds', 0) + time.monotonic() - started,
++                    consecutive_transport_failures=failures, not_before=time.time() + delay,
++                    summary_path=str(response.relative_to(root)) if response.exists() else None)
++        count += 1
++        lease.observed('experiment_turn_retained')
++        print(json.dumps({'status': 'experiment_turn_retained', 'attempt': attempt, 'exit_code': rc}), flush=True)
++    return 0

@@ -1,0 +1,5 @@
+# Harness restored; experimental freedom retained
+
+The owner clarified that only experimental design/execution was too strict. Version .16 restores the existing Harness supervisor, single-consumer lock/heartbeat, persistent program state, pause/resume and automatic same-thread continuation. A new experimental transport calls GPT-6-Astra with ordinary prose and direct tools, without old proposal/output schemas, mailbox admission or artificial comparison-role requirements. Other controller routes and historical acceptance/budget data remain intact. The legacy sequence cursor is retained as history while this experimental mode follows B/C/D/E through living project memory.
+
+The existing LaunchAgent is re-enabled; no second supervisor is added. Existing pauses and authorized execution target remain applicable. GPT must reconcile remote processes before running anything, and preserve real evidence and appropriate scientific comparisons. Installation, transport checks and model results are separate observations.

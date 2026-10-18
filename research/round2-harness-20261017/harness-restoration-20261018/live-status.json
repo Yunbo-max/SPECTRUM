@@ -1,0 +1,23 @@
+{
+  "revision": 424,
+  "phase": "active",
+  "consumer_alive": true,
+  "worker": {
+    "attempt": 1,
+    "directory": "research-state/harness/experiment-sessions/000001",
+    "elapsed_seconds": 0,
+    "enabled": true,
+    "instruction_ref": {
+      "path": "research-state/restore-harness-experiment-autonomy-20261018.md",
+      "sha256": "78049af60b4be59e19e497b71bbb587c195ec896527929fdd4c338d663b8eeb3"
+    },
+    "legacy_planner_task_id": "harness.planner.000152",
+    "legacy_stage": "phase_wait",
+    "model": "gpt-6-astra",
+    "scope": "BCDE",
+    "started_at": 1792361678.1137989,
+    "status": "running",
+    "thread_id": "01a15114-c889-7252-bc12-061a17d853ee",
+    "worker_pid": 80595
+  }
+}

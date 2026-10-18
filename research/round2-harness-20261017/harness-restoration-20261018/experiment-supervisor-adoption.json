@@ -1,0 +1,18 @@
+{
+  "source_revision": "229993937586506bf76f5a14c5e0df0f91dbc6b4",
+  "policy": {
+    "edition": "autonomous-rsi-harness",
+    "version": "0.4.0-harness.16",
+    "source_revision": "229993937586506bf76f5a14c5e0df0f91dbc6b4",
+    "skill_digest": "f99194a9dabbd3959778e89c597940212745a37a8ccd0f5f8e87df60a7657ccb"
+  },
+  "revision": 421,
+  "phase": "active",
+  "mode": "experiment_autonomy",
+  "legacy_sequence_step": "B02",
+  "instruction_ref": {
+    "path": "research-state/restore-harness-experiment-autonomy-20261018.md",
+    "sha256": "78049af60b4be59e19e497b71bbb587c195ec896527929fdd4c338d663b8eeb3"
+  },
+  "prior_revision": 419
+}

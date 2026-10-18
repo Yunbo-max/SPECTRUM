@@ -1,0 +1,8 @@
+{
+  "version": "0.4.0-harness.15",
+  "source_revision": "3a025585f42108d6bf712bd127df1d82a5e032c2",
+  "main_and_private_plugin_files_match": true,
+  "controller_retired": true,
+  "code_tests_run": false,
+  "scientific_experiments_run_by_this_update": false
+}

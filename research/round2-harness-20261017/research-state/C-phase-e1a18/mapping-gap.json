@@ -1,0 +1,58 @@
+{
+  "scope": "static JSON reference comparison only; no code or scientific test",
+  "missing_code_bindings": [
+    {
+      "mathematical_object": "有限语料SFT与全部原始记录暴露",
+      "code_ref": {
+        "path": "research-state/B02-plain-lineage-source-000004/remote-training.py",
+        "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+      },
+      "location": "train_on_records:69-151"
+    },
+    {
+      "mathematical_object": "base/生成器/student阶段与分布",
+      "code_ref": {
+        "path": "research-state/B02-plain-lineage-source-000004/remote-pipeline.py",
+        "sha256": "c1dab8671209ada9272989f4802ac9b1331ec1bef005c440c4be845cf8f05a6d"
+      },
+      "location": "pipeline.py:488-703"
+    },
+    {
+      "mathematical_object": "官方总体与开发分配",
+      "code_ref": {
+        "path": "research-state/B02-plain-lineage-source-000004/data.py",
+        "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+      },
+      "location": "prepare_mbpp:182-260"
+    },
+    {
+      "mathematical_object": "round/stage/batch-seed驱动的匹配生成及完整token保存",
+      "code_ref": {
+        "path": "research-state/B02-plain-lineage-source-000004/generation.py",
+        "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+      },
+      "location": "generate_to_file: manifest, seed_material, raw completion records"
+    },
+    {
+      "mathematical_object": "显式CLI参数；train seed与pipeline seed+round不同",
+      "code_ref": {
+        "path": "research-state/E01-attempt-000001/src__improving__cli.py",
+        "sha256": "809334344acf3ad95dada58b092de099834815898be548aa7e3faec0bae73ad1"
+      },
+      "location": "_parser / _dispatch: prepare, generate, train, verify"
+    },
+    {
+      "mathematical_object": "共同eligible配对与AST指标，重复seed同时区间扩展尚待实现",
+      "code_ref": {
+        "path": "research-state/B01-scorer-source-binding-000003/spectrum-src__improving__metrics.py",
+        "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+      },
+      "location": "_label_metrics:215; compare_summaries:489"
+    }
+  ],
+  "request_ref": {
+    "path": "research-state/C-phase-e1a18/request-02.json",
+    "sha256": "8b6082d9118ffe717649d8e5d51fe9b5993af7fde584cce07ca6cd08a970a733"
+  },
+  "native_receipt_refs": []
+}

@@ -1,0 +1,21 @@
+======================================================================
+ERROR: test_resumed_worker_pins_checkpoint_but_not_stale_dependency (test_phase_freedom.PhaseWaitingTests.test_resumed_worker_pins_checkpoint_but_not_stale_dependency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/phase-freedom/tests/runtime/test_phase_freedom.py", line 186, in test_resumed_worker_pins_checkpoint_but_not_stale_dependency
+    task = seq._task(self.program, prior, self.project, 'planner', packet)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/phase-freedom/src/research_autopilot/skill_sequence.py", line 274, in _task
+    task = program._agent_task(prior, project, role, packet)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/phase-freedom/src/research_autopilot/program.py", line 587, in _agent_task
+    return validate_task(task)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/phase-freedom/src/research_autopilot/models.py", line 160, in validate_task
+    raise ContractError(f"duplicate {group} paths")
+research_autopilot.models.ContractError: duplicate inputs paths
+
+----------------------------------------------------------------------
+Ran 468 tests in 228.627s
+
+FAILED (errors=1)

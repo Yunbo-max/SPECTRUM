@@ -1,0 +1,227 @@
+{
+  "request_id": "spectrum-C-e1a18-prepare-02",
+  "task": {
+    "task_id": "spectrum.C.prepare.e1.a14",
+    "action": "native_harness",
+    "adapter": "native",
+    "capabilities": [],
+    "dependencies": [],
+    "inputs": [
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/config.json",
+        "sha256": "79eb79993fc98631fb902993ed74df44354f650c074f8ee96d7d3aa04b8428aa"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/deployment-manifest.json",
+        "sha256": "a9b9a091cbcb7ecfe15b4295b972e0796040c569b182d5b5b369c1eaddb6610b"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/dependency-analysis.md",
+        "sha256": "5a358b0a7475fd2262200f752451e5faba642a32a4d146c55bd03ae1906e9e29"
+      },
+      {
+        "path": "research-state/B02-cd-design-e1a1/design.json",
+        "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+      },
+      {
+        "path": "research-state/B02-raw-train-source-000009.json",
+        "sha256": "baca10f5ffb1dc8936f056ac891a72c3f2bc90a2cbc9ecdef1d97840471624e9"
+      },
+      {
+        "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+        "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+      },
+      {
+        "path": "research-state/B02-plain-lineage-source-000004/data.py",
+        "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+      },
+      {
+        "path": "research-state/B02-plain-lineage-source-000004/remote-training.py",
+        "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+      },
+      {
+        "path": "research-state/B02-plain-lineage-source-000004/generation.py",
+        "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/source/modeling.py",
+        "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/source/utils.py",
+        "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+      },
+      {
+        "path": "research-state/B01-scorer-source-binding-000003/spectrum-src__improving__metrics.py",
+        "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+      },
+      {
+        "path": "research-state/B01-official-setup-20261018/configuration.json",
+        "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+      },
+      {
+        "path": "research-state/B01-official-setup-20261018/setup-report.json",
+        "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+      },
+      {
+        "path": "research-state/B02-attempt-000010/prospective-input-policy.json",
+        "sha256": "aabeccb2cb9886ebfb73ef1a4717315b48572928aece105d54a3f81e0d460939"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/stage-plan-inputs.json",
+        "sha256": "3e4e6b1802348b6da8214c2eb6c66850831b6b73397c03d0e5aac4ddc29202b6"
+      },
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+        "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+      },
+      {
+        "path": "research-state/B02-native-stage-plans-e1a13/stage-program.json",
+        "sha256": "595973cbf5e26606249d4a932faa28b55c253aff3c8dfcbf29eb00ce1addd268"
+      },
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/sample-manifest.json",
+        "sha256": "cf59b9b5e829b7b4f0a13b816dc2a5789f7b3c9e23541dc15cd2d77f957079f5"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/analysis.py",
+        "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/diagnostic_driver.py",
+        "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/native_wrapper.py",
+        "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/stage_entry.py",
+        "sha256": "edcf71560559a0313ec520cfac4da8c6185d82a8ce44f30a05d364f1ce3caaee"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/test_analysis.py",
+        "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/test_diagnostic.py",
+        "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/test_native_integration.py",
+        "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/test_stage_entry.py",
+        "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/test_training.py",
+        "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+      },
+      {
+        "path": "research-state/B02-native-stage-adapter-e1a12/training_instrumented.py",
+        "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+      },
+      {
+        "path": "research-state/B02-native-stage-plans-e1a13/prepare-stage.json",
+        "sha256": "f28b7cddf314b41ee76979bfb40e16ad9d952195d0cf782a34c693b81bd2bf92"
+      },
+      {
+        "path": "research-state/B02-native-stage-plans-e1a13/prepare-native-plan.json",
+        "sha256": "1dc05c14bf21466191f775b28af8a51e24ec7e5aaa907867ddf0a30d7bc2fdd1"
+      },
+      {
+        "path": "research-state/B02-native-stage-plans-e1a13/prepare-harness-plan.json",
+        "sha256": "8f46aa4e4d7bfd65dde61bf869523d9efe6eb802ce6f8617ffafb4bd10b093fd"
+      },
+      {
+        "path": "research-state/native-gpu-target-hn01-20261018.json",
+        "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+      },
+      {
+        "path": "research-state/C-phase-e1a14/decision-01.json",
+        "sha256": "c12930892ea79c0a5a03e9f259d6c1e249062697d2071207a5b814852a9bbc37"
+      },
+      {
+        "path": "research-state/C-phase-e1a14/method-basis.md",
+        "sha256": "52b1ae33a58d3fd8511b8488724c41b878d31ad9d7b0d2cc87dc4efda7cbd826"
+      },
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/design-task.md",
+        "sha256": "662d199fe0bd267358054fb728d6ef4e5721ee4581e06f7e1aee75a065e9e6e4"
+      }
+    ],
+    "outputs": [
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/stage-summary.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/inventory.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/origin-map.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/stdout.log",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/stderr.log",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/checkpoint-inventory.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-index.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/resource-observation.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/driver-receipt.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/driver-request.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-00.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-01.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-02.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-03.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-04.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-05.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-06.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/archive-07.bin",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/train.jsonl",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/calibration.jsonl",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/validation.jsonl",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/eval.jsonl",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/source_fields.jsonl",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/preparation_manifest.jsonl",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/task-manifest.json",
+      "runs/stage-outputs/spectrum-b02-prepare-e1a12/base-assets.json",
+      "runs/attempts/spectrum-b02-prepare-e1a12/receipt.json"
+    ],
+    "instructions": [
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/design-task.md",
+        "sha256": "662d199fe0bd267358054fb728d6ef4e5721ee4581e06f7e1aee75a065e9e6e4"
+      }
+    ],
+    "parameters": {
+      "native_purpose": "development_stage",
+      "harness_plan_ref": {
+        "path": "research-state/B02-native-stage-plans-e1a13/prepare-harness-plan.json",
+        "sha256": "8f46aa4e4d7bfd65dde61bf869523d9efe6eb802ce6f8617ffafb4bd10b093fd"
+      },
+      "cd_evidence_ref": {
+        "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+        "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+      },
+      "research_scope": "diagnostic",
+      "goal_id": "spectrum-round2",
+      "candidate_id": "spectrum-plain-transfer-diagnosis",
+      "native_transfer_limits": {
+        "max_bytes": 4294967296,
+        "timeout_seconds": 600
+      },
+      "reasoning_ref": {
+        "path": "research-state/C-phase-e1a14/decision-01.json",
+        "sha256": "c12930892ea79c0a5a03e9f259d6c1e249062697d2071207a5b814852a9bbc37"
+      }
+    },
+    "max_seconds": 1800,
+    "max_cost": 0,
+    "priority": 0,
+    "completion": {
+      "kind": "outputs_verified"
+    }
+  },
+  "decision_ref": {
+    "path": "research-state/C-phase-e1a14/decision-01.json",
+    "sha256": "c12930892ea79c0a5a03e9f259d6c1e249062697d2071207a5b814852a9bbc37"
+  },
+  "coverage_ref": {
+    "path": "research-state/C-phase-e1a18/coverage-02.json",
+    "sha256": "917d817f4f3e2434741d5edea501a64e09b496d1029c05a9d41f8fdbcb6daa09"
+  }
+}

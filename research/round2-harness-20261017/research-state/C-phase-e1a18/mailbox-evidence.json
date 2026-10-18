@@ -1,0 +1,18 @@
+{
+  "responses": [
+    {
+      "path": "research-state/C-phase-e1a18/mailbox-5957ed546afe413793cdcf383f4c09b0.response.json",
+      "sha256": "942bd7ad0265695b51d5f4985e9ea72f7083482d03d58c28876f8f48dea7cc47"
+    },
+    {
+      "path": "research-state/C-phase-e1a18/mailbox-918c56db026e4a93bc09274d1c0b305b.response.json",
+      "sha256": "18148743b442ee878b6dd77ee9cbcb46a09c94f9b67a281175243ec1caeef456"
+    },
+    {
+      "path": "research-state/C-phase-e1a18/mailbox-d8e8316585ac44dba08bbad1bc31c5fc.response.json",
+      "sha256": "00bfa3d4ec55c04c8dbb82537878cbbc121b2158cf25024f028030ae7e583361"
+    }
+  ],
+  "native_receipt_refs": [],
+  "interpretation": "All three responses rejected before registration in phase_native.execute; no native success inferred."
+}

@@ -1,0 +1,123 @@
+[
+  {
+    "path": "research-state/community/20261017-6a126a17000000003502fc41.json",
+    "sha256": "3e689c88a096474df23e59628f3840f1e2137fb574e8aa3ea7f1a026e69921ee",
+    "keys": [
+      "kind",
+      "observed_at",
+      "source_url",
+      "note_id",
+      "title",
+      "query",
+      "read_scope",
+      "original_post_summary",
+      "comment_summary",
+      "project_inference",
+      "scientific_status"
+    ]
+  },
+  {
+    "path": "research-state/community/20261017-6a34f4ae000000001503d43b.json",
+    "sha256": "f83a52662b767a102b64b156cb2b0cfd2024911774ef0af98fbbd1442513e33c",
+    "keys": [
+      "kind",
+      "observed_at",
+      "source_url",
+      "note_id",
+      "title",
+      "query",
+      "retrieval",
+      "read_scope",
+      "original_post",
+      "discussion_leads",
+      "disagreement",
+      "unsupported_argument",
+      "project_inference",
+      "scientific_status",
+      "next"
+    ]
+  },
+  {
+    "path": "research-state/community/20261017-6a4293ea000000001c024ec3.json",
+    "sha256": "eed8789f9a9fdca009a63d1fa4af77c3778ff1e3ea08580f9a22905546bc0160",
+    "keys": [
+      "kind",
+      "observed_at",
+      "source_url",
+      "note_id",
+      "title",
+      "query",
+      "selection",
+      "read_scope",
+      "original_post_summary",
+      "discussion_question",
+      "primary_source_check",
+      "project_inference",
+      "scientific_status"
+    ]
+  },
+  {
+    "path": "research-state/community/20261017-excluded-6ac60b6d000000001303e2bb.json",
+    "sha256": "0ed28de4c8f8f50224e087da923e6852ee56e28c7de2a920fdf984c3ef5e4fdd",
+    "keys": [
+      "kind",
+      "observed_at",
+      "source_url",
+      "title",
+      "read_scope",
+      "decision",
+      "reason",
+      "primary_paper_lead"
+    ]
+  },
+  {
+    "path": "research-state/community/20261017-primary-2607.01763.json",
+    "sha256": "71fd5a4d421a4e9fad126f730303e82b172f5e3d80ccef15594e899bb92946c3",
+    "keys": [
+      "kind",
+      "observed_at",
+      "origin_community_note",
+      "source_url",
+      "title",
+      "read_scope",
+      "authors_report",
+      "project_inference",
+      "next"
+    ]
+  },
+  {
+    "path": "research-state/community/20261018-69d5a7af000000001a0203ed.json",
+    "sha256": "cdb2ac9aa571f50c2d80f2e730ed66d6510f95c6ed779aced2c49be0c592afce",
+    "keys": [
+      "kind",
+      "source_url",
+      "title",
+      "observed_at",
+      "query",
+      "read_scope",
+      "post_summary",
+      "comment_summary",
+      "decision",
+      "reason"
+    ]
+  },
+  {
+    "path": "research-state/community/20261018-6accce440000000015013c77.json",
+    "sha256": "a53481001a5058cf90170810d8d00cd7cd0551c716b4562f5e4e464a2b99252f",
+    "keys": [
+      "kind",
+      "query",
+      "observed_at",
+      "retrieval",
+      "search_results",
+      "note_id",
+      "title",
+      "source_url",
+      "read_scope",
+      "post_summary",
+      "comment_summary",
+      "inference",
+      "scientific_status"
+    ]
+  }
+]

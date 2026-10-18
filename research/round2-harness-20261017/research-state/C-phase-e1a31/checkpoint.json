@@ -1,0 +1,67 @@
+{
+  "kind": "operational-recovery-checkpoint",
+  "observed_at": "2026-10-18T18:19:26.485259+00:00",
+  "task_id": "harness.planner.000093",
+  "run_id": "6b063debc94d4c42b0cbcdaf99e9ae60",
+  "sequence": {
+    "attempt": 31,
+    "catalog_sha256": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+    "cycle": 1,
+    "epoch": 1,
+    "flow_profile": "work-harness-cd-v1",
+    "problem_ref": null,
+    "scaleup_acceptance_ref": null,
+    "step_id": "B02",
+    "verified_ref": null
+  },
+  "phase_progress": {
+    "coverage_ref": {
+      "path": "research-state/B02-cd-epoch1-attempt13/coverage.json",
+      "sha256": "c8001b34a7f52ebec97ac5601cf706fd8f1a8bd1c08e03f6867724e57d01fdda"
+    },
+    "decision_ref": {
+      "path": "research-state/B02-cd-epoch1-attempt13/decision.json",
+      "sha256": "46670b54d4d27e6bf7ba21aee5f26f549903e6225b619b5993d61c6119b99ff8"
+    },
+    "scientific_acceptance": false
+  },
+  "phase_completed": false,
+  "scientific_acceptance": false,
+  "new_dispatch": false,
+  "native_receipt_refs": [],
+  "evidence_refs": [
+    {
+      "path": "research-state/harness/round-000093/planner-input.json",
+      "sha256": "ff5bf7ed9a5b38421c3b9303cb3f4ad1329409eb25c02a3912508cee5a19139b"
+    },
+    {
+      "path": "research-state/harness/round-000092/planner-rejection.json",
+      "sha256": "e9c2f1d5ca6fb8356e4fb333c25a94f9baf4c02a1253fea72d36a82696bd768f"
+    },
+    {
+      "path": "research-state/C-phase-e1a18/mailbox-918c56db026e4a93bc09274d1c0b305b.response.json",
+      "sha256": "18148743b442ee878b6dd77ee9cbcb46a09c94f9b67a281175243ec1caeef456"
+    },
+    {
+      "path": "reports/C-phase-e1a18-dispatch-independent-review.md",
+      "sha256": "415dd183dcd2b14709c01138f5bc632375cfa4928c49f5c8a03865815c6eead6"
+    },
+    {
+      "path": "research-state/C-phase-e1a21/prepare-mapping-repair.json",
+      "sha256": "95289aa05b8b28e5534eb6f09374690149199b97203e138018597ea3715ca073"
+    },
+    {
+      "path": "../source-mailbox-v1/src/research_autopilot/program.py",
+      "sha256": "6f21b07d85c38a9ef4c66b56bcc9affeaafff3e0e9ede046a45f9ccd8120a95a"
+    },
+    {
+      "path": "../source-mailbox-v1/src/research_autopilot/skill_sequence.py",
+      "sha256": "2df06a3ce22ec6bfc8be014db08a7d4d82e12dff9da6c9fa73daa3aa7b58978b"
+    },
+    {
+      "path": "reports/C-phase-e1a31-interface-repair-handoff.md",
+      "sha256": "dceb2d8dabaeb1a7c686ba2ceb34c5713eab688f536b841a0e97db04c433052e"
+    }
+  ],
+  "next_action": "Owner repair and explicit adoption of stage coverage and nonterminal recovery interface; preserve same phase and pending scientific obligations."
+}

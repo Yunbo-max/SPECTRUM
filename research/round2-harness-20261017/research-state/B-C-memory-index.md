@@ -45,3 +45,9 @@ The .8 readonly database failure is an execution-interface failure, not evidence
 for or against a scientific hypothesis. .9 installation/tests likewise do not
 prove any research hypothesis. Native receipts and scientific acceptance must be
 reported separately.
+
+## e1a18 恢复观察（非科学结果）
+
+- `reports/C-phase-e1a18-dispatch-recovery.md`：.9邮箱实际返回准入拒绝；coverage缺字段修复后暴露真实mapped-code缺口。无native实验执行或新科学分数。
+- `reports/C-phase-e1a18-dispatch-independent-review.md`：独立静态检查具体映射与后续stage/coverage接线冲突；非软件测试或科学接受。
+- `research-state/C-phase-e1a18/checkpoint.json`：当前phase绑定、三次拒绝响应和原有phase_progress；后续恢复须保留身份并先解决明确准入依赖，不重复安装/数据下载。

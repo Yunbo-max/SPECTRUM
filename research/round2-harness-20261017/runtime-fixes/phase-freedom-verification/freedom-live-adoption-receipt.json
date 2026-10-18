@@ -1,0 +1,14 @@
+{
+  "kind": "phase-freedom-live-adoption",
+  "version": "0.4.0-harness.10",
+  "source_revision": "c323a0615318261c81041d87ca1f9a38fef94f9b",
+  "skill_digest": "304f296d806577b4c59c87d53e02d6d24f5f6614f6dcf761db7e3449fe52c84a",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/phase-freedom-000392.json",
+    "sha256": "ae27c6ebb9a7c31657b91c623eab4f2e0c1b14291492b532c225857e6218c0a0"
+  },
+  "revision": 392,
+  "phase": "paused",
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true
+}

@@ -1,0 +1,58 @@
+{
+  "kind": "operational-recovery-checkpoint",
+  "task_id": "harness.planner.000080",
+  "run_id": "3f2589c132774b9da7bfc3b4e4c3ffa1",
+  "sequence": {
+    "attempt": 18,
+    "catalog_sha256": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+    "cycle": 1,
+    "epoch": 1,
+    "flow_profile": "work-harness-cd-v1",
+    "problem_ref": null,
+    "scaleup_acceptance_ref": null,
+    "step_id": "B02",
+    "verified_ref": null
+  },
+  "phase_progress": {
+    "coverage_ref": {
+      "path": "research-state/B02-cd-epoch1-attempt13/coverage.json",
+      "sha256": "c8001b34a7f52ebec97ac5601cf706fd8f1a8bd1c08e03f6867724e57d01fdda"
+    },
+    "decision_ref": {
+      "path": "research-state/B02-cd-epoch1-attempt13/decision.json",
+      "sha256": "46670b54d4d27e6bf7ba21aee5f26f549903e6225b619b5993d61c6119b99ff8"
+    },
+    "scientific_acceptance": false
+  },
+  "observed_at_unix": 1792346167.784631,
+  "scientific_acceptance": false,
+  "native_receipt_refs": [],
+  "evidence_refs": [
+    {
+      "path": "reports/C-phase-e1a18-dispatch-recovery.md",
+      "sha256": "054b60db4228b3456deb026ed0e76e8d7c48e790e0ee75e965424fc485e37279"
+    },
+    {
+      "path": "research-state/C-phase-e1a18/mailbox-evidence.json",
+      "sha256": "7a39a6b7d08f699209a608652fe981ddbd007540ecfb6f5439e5fc6986aae345"
+    },
+    {
+      "path": "research-state/C-phase-e1a18/mapping-gap.json",
+      "sha256": "e324ef7941efeb4b3e3b31f1dbb86cb257b7246de0bd53b05fed4f72499e3f18"
+    },
+    {
+      "path": "research-state/C-phase-e1a18/coverage-02.json",
+      "sha256": "917d817f4f3e2434741d5edea501a64e09b496d1029c05a9d41f8fdbcb6daa09"
+    },
+    {
+      "path": "research-state/C-phase-e1a18/request-02.json",
+      "sha256": "8b6082d9118ffe717649d8e5d51fe9b5993af7fde584cce07ca6cd08a970a733"
+    }
+  ],
+  "blocker": "Actual canonical code-binding mismatch; subsequent stage coverage admission requires legacy experiment binding/review inconsistent with sustained-phase contract. Immutable runtime and source adoption belong to owner.",
+  "next_action": "Owner resolves phase-stage coverage and operational recovery contract at quiet boundary; version real prepare mapping and plans, reconcile requests, resume same phase without reinstalling or changing scientific success criteria.",
+  "independent_review_ref": {
+    "path": "reports/C-phase-e1a18-dispatch-independent-review.md",
+    "sha256": "415dd183dcd2b14709c01138f5bc632375cfa4928c49f5c8a03865815c6eead6"
+  }
+}

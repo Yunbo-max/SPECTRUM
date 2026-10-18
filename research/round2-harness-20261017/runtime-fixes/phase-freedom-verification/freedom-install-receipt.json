@@ -1,0 +1,16 @@
+{
+  "runtime_modules_verified": 36,
+  "profiles": [
+    {
+      "profile": "main",
+      "version": "0.4.0-harness.10",
+      "files_verified": 414
+    },
+    {
+      "profile": "private",
+      "version": "0.4.0-harness.10",
+      "files_verified": 414
+    }
+  ],
+  "wheel_sha256": "25223048c0ee203bc6c332b29e0d3397dc6b41654cf1b9b2ce1e8175f445cc78"
+}

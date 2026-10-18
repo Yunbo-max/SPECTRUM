@@ -23,6 +23,9 @@ def analyze(condition):
         assert [r['task_id'] for r in raw]==ids
         for item,result in zip(raw,results):
             assert item['seed']==index
+            entry=tasks[item['task_id']]
+            if 'prompt_sha256' not in entry:entry['prompt_sha256']=item['prompt_sha256']
+            assert entry['prompt_sha256']==item['prompt_sha256'], 'Prompt changed between repeats'
             blocks=has_code(item['text']);assert result['content']==blocks
             correct=bool(result['correctness']);tests=result['test_results']
             assert correct==bool(tests and all(tests)),(item['task_id'],index)
@@ -53,11 +56,26 @@ def analyze(condition):
 
 def compare(first,second):
     a={t['task_id']:t for t in json.loads((S/first/'per-task-analysis.json').read_text())};b={t['task_id']:t for t in json.loads((S/second/'per-task-analysis.json').read_text())};assert a.keys()==b.keys()
+    ca=json.loads((S/first/'config.json').read_text());cb=json.loads((S/second/'config.json').read_text())
+    for key in ['dataset_sha256','source_commit','n_repeat','max_tokens','top_p','top_k','min_p']:
+        if ca[key]!=cb[key]:raise ValueError(f'Incompatible comparison setting: {key}')
+    for task in a:
+        assert a[task]['prompt_sha256']==b[task]['prompt_sha256'], 'Prompt differs between conditions'
+        assert a[task]['difficulty']==b[task]['difficulty']
+    differences={key:{'first':ca.get(key),'second':cb.get(key)} for key in sorted(ca.keys()|cb.keys()) if ca.get(key)!=cb.get(key)}
     results={}
     for name in a[next(iter(a))]['metrics']:
         delta=[b[t]['metrics'][name]-a[t]['metrics'][name] for t in a]
         results[name]={'second_minus_first':statistics.mean(delta),'paired_task_bootstrap_95pct':interval(delta)}
-    return {'first':first,'second':second,'task_count':len(a),'paired_differences':results,'interpretation':'Compare config.json to identify weight, temperature or combined effects. These intervals do not establish causality or optimal decoder tuning.'}
+    discordance=collections.Counter()
+    for task in a:
+        left=a[task]['correct']>0;right=b[task]['correct']>0
+        discordance['both' if left and right else 'first_only' if left else 'second_only' if right else 'neither']+=1
+    strata={}
+    for difficulty in sorted({t['difficulty'] for t in a.values()}):
+        selected=[task for task in a if a[task]['difficulty']==difficulty]
+        strata[difficulty]={'tasks':len(selected),'second_minus_first':{name:statistics.mean(b[t]['metrics'][name]-a[t]['metrics'][name] for t in selected) for name in results}}
+    return {'first':first,'second':second,'task_count':len(a),'configuration_differences':differences,'paired_differences':results,'any_success_discordance':{key:discordance[key] for key in ['both','first_only','second_only','neither']},'descriptive_difficulty_differences':strata,'interpretation':'Configuration differences identify weight, temperature or combined changes. Difficulty summaries are exploratory; any-success discordance is finite-sample evidence, not proof of support loss. These intervals do not establish causality or optimal decoder tuning.'}
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('conditions',nargs='+');args=p.parse_args()
     for condition in args.conditions:print(json.dumps(analyze(condition),indent=2))

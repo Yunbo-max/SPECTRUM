@@ -1,0 +1,40 @@
+{
+  "software_only": true,
+  "source": "Previously executed author software-probe-results.json; no generated code re-executed.",
+  "checks": {
+    "same_native_evidence_compares_correctly": true,
+    "different_dataset_rejected": true,
+    "different_prompt_rejected": true
+  },
+  "same_evidence_comparison": {
+    "first": "first",
+    "second": "second",
+    "task_count": 5,
+    "configuration_differences": {},
+    "paired_differences": {
+      "pass@1": {
+        "second_minus_first": 0.0,
+        "paired_task_bootstrap_95pct": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "any_success_discordance": {
+      "both": 2,
+      "first_only": 0,
+      "second_only": 0,
+      "neither": 3
+    },
+    "descriptive_difficulty_differences": {
+      "software-probe": {
+        "tasks": 5,
+        "second_minus_first": {
+          "pass@1": 0.0
+        }
+      }
+    },
+    "interpretation": "Configuration differences identify weight, temperature or combined changes. Difficulty summaries are exploratory; any-success discordance is finite-sample evidence, not proof of support loss. These intervals do not establish causality or optimal decoder tuning."
+  },
+  "note": "The two fixture conditions contain identical software outcomes, not two model runs. Empty token arrays are placeholders."
+}

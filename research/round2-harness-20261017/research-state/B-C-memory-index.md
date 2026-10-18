@@ -1,3 +1,11 @@
+## 配对分析绑定与续跑（2026-10-18 23:58 UTC）
+
+同一原生LCB runner65584身份匹配，首repeat61/131 prompts，约61.5 tokens/s，无完整repeat或正确率。未重启、不并发其他模型。
+
+已增强analyze_condition.py：逐题prompt hash跨repeat及跨条件核对；两条件比较绑定dataset/source/n_repeat/max_tokens/top-p/top-k/min-p，显式列出其他配置差异；增加两方向any-success discordance与外部difficulty的描述性差值。分析器只读取作者评分状态，不执行代码、不改变官方指标。hn01以既有真实软件探针结果验证正常聚合、异数据拒绝、异提示拒绝均通过，记录comparison-analysis-validation.json；验证中的两份相同fixture不是模型比较，0差值不是科学结果。当前runner不调用这个后处理模块，生成/隔离评分路径未改动。
+
+下一步仍为当前完整条件结束后的真实结果分析，再恢复SSD资产并执行作者推荐/交叉温度条件。此前官方MBPP结果保留不重跑，研究尚未完成，Harness未暂停。
+
 ## 训练来源边界核验（2026-10-18 23:52 UTC）
 
 原生LCB第一repeat进至52/131 prompts；runner65584的boot/start ticks仍匹配，尚无完整repeat或正确率。当前继续生成，无第二模型任务。

@@ -9,3 +9,5 @@
 - Next work is the versioned B02 wrapper/stage-entry adapter, independent review and actual prepare/calibrate/diagnostic execution using the existing hn01 4090/environment/model/MBPP inputs. Final scorer remains unqualified; no six-arm predictions or benchmark score improvement is claimed.
 
 Live worker readback and Git delivery are recorded separately.
+
+Actual activation readback: revision238, round74, B02 attempt12; worker harness.planner.000074 is running with controller run b13476a56a3d454984d45520805d3cd8 and real command PID42205. This is research orchestration/adapter work; production GPU training has not been claimed.

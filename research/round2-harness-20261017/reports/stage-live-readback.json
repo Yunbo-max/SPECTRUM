@@ -1,0 +1,34 @@
+{
+  "observed_at": 1792340067.216416,
+  "revision": 238,
+  "step_id": "B02",
+  "attempt": 12,
+  "round": 74,
+  "stage": "planner",
+  "phase": "active",
+  "policy": {
+    "edition": "autonomous-rsi-harness",
+    "skill_digest": "093af61314f64e24dbefeeae1a4912924f611e783144613567e633418b06173c",
+    "source_revision": "bd949b68d6eecb9feaf82ee3fe2dc0c666fc21ac",
+    "version": "0.4.0-harness.7"
+  },
+  "tasks": [
+    {
+      "task_id": "harness.planner.000074",
+      "state": "running",
+      "run_id": "b13476a56a3d454984d45520805d3cd8",
+      "session_id": "command:b13476a56a3d454984d45520805d3cd8:42205"
+    }
+  ],
+  "host_guard": {
+    "time": 1792340056.788179,
+    "event": "consumer_started",
+    "pid": 42149,
+    "snapshot": {
+      "pressure": 1,
+      "swap_bytes": 5396234240,
+      "disk_free": 29083037696,
+      "owned_rss": 0
+    }
+  }
+}

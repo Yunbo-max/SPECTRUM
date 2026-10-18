@@ -141,7 +141,7 @@
   },
   {
     "path": "reports/native-stage-continuation-20261018.md",
-    "sha256": "52fa9adf7b194c562a86e52b67295da8bc545379e4d8cdf306c6c36004582cec"
+    "sha256": "7a01d50e04cd4fdab0e51f0037a9ac87af70644c6a448a9adef66c2f78528332"
   },
   {
     "path": "reports/native-stage-final-build.json",
@@ -160,12 +160,20 @@
     "sha256": "6b1c47e8929d6c739c490f806dce8c0052f0776ae73c15324e2b1b6fc451bc2c"
   },
   {
+    "path": "reports/stage-github-readback.json",
+    "sha256": "1b8467b5d6f1605ed78f523a40889625edda81adf088970fc63c881090958b4c"
+  },
+  {
     "path": "reports/stage-install-receipt.json",
     "sha256": "94633c97687e6cf98ba2ab08acd70ba0470898b73aa63ea4e52cce345d50c937"
   },
   {
     "path": "reports/stage-live-adoption-receipt.json",
     "sha256": "63fde9917d09940d5b71bc5ed169049f09fbfe03ec65101b47cfc4ea64eba8b0"
+  },
+  {
+    "path": "reports/stage-live-readback.json",
+    "sha256": "3bb800378636d7ce274c1cf795250c50ce0f35dd02d8d31db9ef64d346e61684"
   },
   {
     "path": "reports/warning-continuation-20261018.md",

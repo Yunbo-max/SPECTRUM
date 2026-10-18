@@ -32,3 +32,11 @@ Work Harness .4 已安装并显式部署本轮运行时：起始时确定 GPU，
 ## Latest: sustained phase Work Harness .8
 
 See [phase autonomy update](reports/phase-autonomy-20261018.md), [source patch](runtime-fixes/phase-autonomy.patch), and `runtime-fixes/phase-autonomy-verification/` for actual GPU software checks, installed parity and quiet adoption receipts.
+
+## Work Harness .9 mailbox repair and B-memory/C loop
+
+See [repair report](reports/phase-mailbox-20261018.md),
+[shared memory index](research-state/B-C-memory-index.md) and
+[verification logs](runtime-fixes/phase-mailbox-verification/).
+Worker submissions no longer require runtime DB writes. Native/scientific
+progress is reported separately from worker liveness.

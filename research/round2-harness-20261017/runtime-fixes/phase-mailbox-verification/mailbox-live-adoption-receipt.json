@@ -1,0 +1,14 @@
+{
+  "kind": "phase-mailbox-live-adoption",
+  "version": "0.4.0-harness.9",
+  "source_revision": "1b4f0a369fe8bca4b3d3437546bd4a3f1aebff48",
+  "skill_digest": "b2f1c542f28d6acf734e00273803671567ab94a526a3ee48707d6a4943bb9db8",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/phase-mailbox-000258.json",
+    "sha256": "c2860eaf0e526d81d7cd6b1ecd99df63ac3f9f232329b02d907e88ec33ecc0f5"
+  },
+  "revision": 258,
+  "phase": "paused",
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true
+}

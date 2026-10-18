@@ -1,7 +1,7 @@
 [
   {
     "path": "README.md",
-    "sha256": "abbe1ab1de756ddfef46dd28599e390af39c21c3baa9c65c048aaefaf0bb011e"
+    "sha256": "dfbd210313d6558ffe387c93738ce8380a66fe13b5239b903f1e3c3a069405d2"
   },
   {
     "path": "operations/README.md",
@@ -156,6 +156,10 @@
     "sha256": "48fd4173d3c0ee314fee0200e38cdbad29c50abe8854fc77f8dde4c5ccdc71fe"
   },
   {
+    "path": "reports/phase-mailbox-20261018.md",
+    "sha256": "c6a1056dfe129d7d36ed539da1817bc15064184b62ac4af4ae81f34a601db583"
+  },
+  {
     "path": "reports/progress-snapshot-20261017.json",
     "sha256": "cbbff64a6f1ec6e198cd4c1456ac71744678d6a844b1fe74f862a0ad188a88cc"
   },
@@ -182,6 +186,10 @@
   {
     "path": "reports/warning-continuation-20261018.md",
     "sha256": "fc337f54c4345c1490b5e5697af00219209e99efadd418d21542b68b2d5b0bb0"
+  },
+  {
+    "path": "research-state/B-C-memory-index.md",
+    "sha256": "c7fcb6ef0f8708091e3e1311733fc058097d95d5f0fb9f00544b910cdf3aa741"
   },
   {
     "path": "research-state/B01-dispatch-incident-20261018.md",
@@ -780,6 +788,14 @@
     "sha256": "775eb81a37170ce40d7d2b5a9f5ce7ebe054e3edc11d03a578f00df0cd5f2935"
   },
   {
+    "path": "research-state/phase-mailbox-maintenance-20261018.md",
+    "sha256": "b70a6c28a84d299c12a4de83aed0e82853ffd1fca944181273cba216b53198b7"
+  },
+  {
+    "path": "research-state/phase-mailbox-resume-20261018.md",
+    "sha256": "210f871151ac564a787c5a849a957ba18aab1c96f2701ba35375eaac03a30170"
+  },
+  {
     "path": "research-state/receipt-fix-adoption-20261018.json",
     "sha256": "40dadb38d041664d116348f4dbd91a11d3bf8eff5d3d0c8d24180d8b43e640e3"
   },
@@ -902,6 +918,62 @@
   {
     "path": "runtime-fixes/phase-autonomy.patch",
     "sha256": "5fdf6bba0c4413bd5abf4960d0b4eee51ec105f11ad592f5f8d88dc2505b7c2c"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/REVIEW.md",
+    "sha256": "682008880670bf0874976b550930816de90676b0ec77ff6e1613ba1aa3872f67"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/actual-submission-observations.json",
+    "sha256": "07fc78cd9863fee3aea29b71258af90b2497fe4f295e343e751b49cac0dda0c6"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/build.log",
+    "sha256": "61f5d59d0122de816cd2c11c57cb90fba49d4408ddab47b0c5b449a8924455d9"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/mailbox-install-receipt.json",
+    "sha256": "ea35f86ae557c8ebf7cf541a09b21d464ed03ef51e798d0bad6bcb130ececdc5"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/mailbox-live-adoption-receipt.json",
+    "sha256": "b9d2cba3490ef5771d35372bbc91bc6d55c9a1db3eacb1c7e4b78ff7259a207d"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/mailbox-live-worker-receipt.json",
+    "sha256": "0a4e8f2fa92e7ceeedefb28e91f3b05cd0dfdf19d1e4a68fa169b3fe65a401df"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/nodes.log",
+    "sha256": "b20399f1b8c3393d9b579d20c7e575c719b32727d3c3cc1c3c1ea010a66efed0"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/plugins.log",
+    "sha256": "6ab3441c763e2c4ab49d31ad748c9e372dcc47c738a77071cbda5020f44578aa"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/real-mailbox.log",
+    "sha256": "0dd5c393abe1fe3df1e36f2c143be3110e88649340183e18f13e1774fe1b618d"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/runtime-initial.log",
+    "sha256": "9e728b67d21907a62d0e415da78305a407b9485f06c69985cd9facbe38a35fbe"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/runtime-short-lease.log",
+    "sha256": "b5ea46cdd6b3c838b645def67a59303c470508af24c28a2ad2d9535bcff7f4a7"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/runtime.log",
+    "sha256": "b6d51004bf027465a81acdb5dc922d8ea32f678d1528c772e6b92d8bbf484981"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox-verification/wheel.log",
+    "sha256": "9c9e24fcc4925e8349f3f42c8b82c2ede4eae725e84d4cc24acc1c54e62ea057"
+  },
+  {
+    "path": "runtime-fixes/phase-mailbox.patch",
+    "sha256": "e7098a10524fc7c37a82494388ecd413691f3cb9a85d135cf1d8d81bbc354914"
   },
   {
     "path": "runtime-fixes/skill-evidence-reuse.patch",

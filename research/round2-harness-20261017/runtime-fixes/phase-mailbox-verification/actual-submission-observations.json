@@ -1,0 +1,26 @@
+{
+  "observed_at_unix": 1792346050.1178792,
+  "worker_run_id": "3f2589c132774b9da7bfc3b4e4c3ffa1",
+  "responses": [
+    {
+      "call_id": "5957ed546afe413793cdcf383f4c09b0",
+      "error": "ContractError",
+      "message": "contract fields are missing or unsupported",
+      "request_digest": "779a58eb5f2790eb712d9920e7900d8d5669c85a4e799e779bfbc0da39023f6c"
+    },
+    {
+      "call_id": "918c56db026e4a93bc09274d1c0b305b",
+      "error": "ContractError",
+      "message": "canonical admission denied: Traceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    print(json.dumps(CD.check_task(p,t,accepted_ref=o['accepted_ref'],goal_id=o['goal_id'],expand=True)))\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source-mailbox-v1/skills/research-autopilot/scripts/research_cd.py\", line 251, in check_task\n    need(all(ref in actual_code + stage_program_code for ref in code_refs), 'mapped code is absent from native jobs')\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source-mailbox-v1/skills/research-autopilot/scripts/research_cd.py\", line 20, in need\n    raise ValueError(message)\nValueError: mapped code is absent from native jobs\n",
+      "request_digest": "42f73bb60d9c4fee71f43e1e9856cbd8b5fe8bb1adb6eb802465c788452f8f80"
+    },
+    {
+      "call_id": "d8e8316585ac44dba08bbad1bc31c5fc",
+      "error": "ContractError",
+      "message": "only a blocked obligation has a blocking_reason",
+      "request_digest": "3ebf61bf5726ae951a4ad02afdd18dfdd2d18b1f8e517006a59bce1e19c2caaf"
+    }
+  ],
+  "native_receipt_observed": false,
+  "scientific_acceptance": false
+}

@@ -1,0 +1,2535 @@
+From 1b4f0a369fe8bca4b3d3437546bd4a3f1aebff48 Mon Sep 17 00:00:00 2001
+From: Yunbo Long <82950147+Yunbo-max@users.noreply.github.com>
+Date: Sun, 18 Oct 2026 18:43:30 +0100
+Subject: [PATCH] Delegate phase native requests to the controller and reuse B
+ research memory
+
+---
+ .codex-plugin/plugin.json                     |   2 +-
+ EDITION.json                                  |   2 +-
+ EXPORT_MANIFEST.json                          |  28 +-
+ SOURCE_PUBLICATION.json                       |   2 +-
+ .../plans/2026-10-18-phase-mailbox.md         |  19 +
+ logs/maintenance/mailbox-20261018/REVIEW.md   |  24 ++
+ logs/maintenance/mailbox-20261018/nodes.log   |  10 +
+ logs/maintenance/mailbox-20261018/plugins.log |   4 +
+ .../mailbox-20261018/real-mailbox.log         |   6 +
+ .../mailbox-20261018/runtime-initial.log      |   4 +
+ .../mailbox-20261018/runtime-short-lease.log  |  20 ++
+ logs/maintenance/mailbox-20261018/wheel.log   |  13 +
+ plugin.json                                   |   2 +-
+ skills/research-autopilot/SKILL.md            |   6 +-
+ .../assets/harness-policy.json                |   2 +-
+ .../assets/research-nodes.json                | 340 +++++++++---------
+ .../references/edition-policy.md              |   2 +-
+ .../references/phase-autonomy.md              |  53 ++-
+ .../references/research-harness.md            |   2 +-
+ src/research_autopilot/command_worker.py      |  17 +-
+ src/research_autopilot/phase_autonomy.py      |  11 +-
+ src/research_autopilot/phase_mailbox.py       | 192 ++++++++++
+ src/research_autopilot/phase_native.py        |  11 +-
+ tests/runtime/test_phase_mailbox.py           | 123 +++++++
+ tests/runtime/test_phase_native.py            |  42 ++-
+ 25 files changed, 734 insertions(+), 203 deletions(-)
+ create mode 100644 docs/superpowers/plans/2026-10-18-phase-mailbox.md
+ create mode 100644 logs/maintenance/mailbox-20261018/REVIEW.md
+ create mode 100644 logs/maintenance/mailbox-20261018/nodes.log
+ create mode 100644 logs/maintenance/mailbox-20261018/plugins.log
+ create mode 100644 logs/maintenance/mailbox-20261018/real-mailbox.log
+ create mode 100644 logs/maintenance/mailbox-20261018/runtime-initial.log
+ create mode 100644 logs/maintenance/mailbox-20261018/runtime-short-lease.log
+ create mode 100644 logs/maintenance/mailbox-20261018/wheel.log
+ create mode 100644 src/research_autopilot/phase_mailbox.py
+ create mode 100644 tests/runtime/test_phase_mailbox.py
+
+diff --git a/.codex-plugin/plugin.json b/.codex-plugin/plugin.json
+index bb61e7a..0dc9b63 100644
+--- a/.codex-plugin/plugin.json
++++ b/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.8",
++  "version": "0.4.0-harness.9",
+   "description": "Run mathematical diagnosis and code experiments through reviewed B/C/D research loops, then verified scale-up.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/EDITION.json b/EDITION.json
+index b770b7a..422f4af 100644
+--- a/EDITION.json
++++ b/EDITION.json
+@@ -3,7 +3,7 @@
+   "branch": "autonomous-rsi-harness",
+   "plugin_name": "research-autopilot",
+   "display_name": "Autopilot Work Harness 10.17",
+-  "plugin_version": "0.4.0-harness.8",
++  "plugin_version": "0.4.0-harness.9",
+   "round_selection": "machine",
+   "authoring_host": "local_agent",
+   "execution_host": "local_agent",
+diff --git a/EXPORT_MANIFEST.json b/EXPORT_MANIFEST.json
+index 9c2e394..f726dcd 100644
+--- a/EXPORT_MANIFEST.json
++++ b/EXPORT_MANIFEST.json
+@@ -47,14 +47,14 @@
+     "skills/designing-pipeline-figures/references/style-catalog.md": "ad4139c6fc721237c7b6cdd0c33c01f88a7bc34dd2c350c1cbd8f409c3fbc009",
+     "skills/designing-pipeline-figures/references/worked-example.md": "fb67b4b1fc6003d18f162cb49cf070f474cea1d10bc881da9f8acc84e5b571a9",
+     "skills/designing-pipeline-figures/scripts/validate_drawio.py": "dc8409ad3041aefe1184e40b57854d3745a50667736e0200ae36427e61850ae1",
+-    "skills/research-autopilot/SKILL.md": "e3d8c65cb8a67be9dd958ff4a721cb1cbf2695acd450d2d7111e4f98f21bea57",
++    "skills/research-autopilot/SKILL.md": "7a855b6c88904431add3b2fce8f792a28905cc735a02018bc3b9e22e6d7a4095",
+     "skills/research-autopilot/agents/openai.yaml": "8b11f2dbdaddfade9021fe29ab6c48d31a6c6e61f2d0ff1e100693523ca4e8e5",
+     "skills/research-autopilot/assets/examples/object-first/README.md": "26f8a08c68525d0c9cc5bce0b2009c74be71bf737f8bf8cc7303ac435ceaa1d8",
+     "skills/research-autopilot/assets/examples/object-first/setup.py": "1fbc84b25add3a323d5c4f6e17ec327d34ae403154a179b6c0e6417861765e8d",
+-    "skills/research-autopilot/assets/harness-policy.json": "ec80b2ce5699b2a7d26a50e43aa9fb773409e836a723f634d2c7393a44be71a6",
++    "skills/research-autopilot/assets/harness-policy.json": "85c9e9e66eb44ee6d26cfa07df77b915d3e82ae3b6c01c7047e8e3ab07e8cfcc",
+     "skills/research-autopilot/assets/icon.svg": "83edb7ff1fcb54461e60f8bab4147bf6e24b4f9bb9e5d29283c614f40b811039",
+     "skills/research-autopilot/assets/licenses/scholar-skill-MIT.txt": "c115f24608ca19d44d8ba103ae52dff3dfcd4639ba548068a897f076bf5b8758",
+-    "skills/research-autopilot/assets/research-nodes.json": "6bd46b70f26549c73a87a763c34b946c3953130024e7de6403a621bdd391e65d",
++    "skills/research-autopilot/assets/research-nodes.json": "f8c101f657f629b266059bdd6ace1a34f0f57e63fe3f74673f96f5e0c60bbd98",
+     "skills/research-autopilot/assets/runtime-guidance.json": "56aefd1946d40796b00349281f89e9bc4a9c679ee8c33799b8934f1c8c661e62",
+     "skills/research-autopilot/assets/skill-sequence-cd-v1.json": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+     "skills/research-autopilot/assets/skill-sequence.json": "bff5e470610e016dc798cffa56cc7bdc62fdb21901835444aba9df34f4a9d971",
+@@ -94,7 +94,7 @@
+     "skills/research-autopilot/references/dependency-resource-scheduling.md": "b5944b3c42d6b7bc33fb77fe9364956a6042cd43edff268666e02669f3f8a478",
+     "skills/research-autopilot/references/development-and-execution.md": "3ae73d0086240173bae3c1e8b70183100a9f2c5e536b330d95bff5b91a2bb8c1",
+     "skills/research-autopilot/references/editable-writing-artifacts.md": "4b8d8eb55089fddc42559e326b4860ec1cd80b498988c9494504ad132ca20bf1",
+-    "skills/research-autopilot/references/edition-policy.md": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51",
++    "skills/research-autopilot/references/edition-policy.md": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9",
+     "skills/research-autopilot/references/evaluation-and-assets.md": "2adcf5ae506bd32280a0202c643571ef6f7fb436513b2beb729c6864bed5e0c7",
+     "skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md": "ebf748722285234083ce7ee650bbec7fa1bacba8f7e2645ece807d4e38b5d941",
+     "skills/research-autopilot/references/execution-and-handoffs.md": "e161aa072114df6aebb9947e55636d744cfbc69a88ca6927d4906cb6df4f4ac0",
+@@ -237,14 +237,14 @@
+     "skills/research-autopilot/references/operational-recovery.md": "8065f60d6283a950c2971383682b9eec29e762596e27f40d730711b8cbdd4fc2",
+     "skills/research-autopilot/references/paper-grounded-experiment-design.md": "e9876e66af804b6688bc0b39ff328b05230ac372aed55ad8f664bffa33a9e241",
+     "skills/research-autopilot/references/paper-knowledge-loop.md": "5eff0aa7517e4d503a56d69a2e8208c3c3f7ddca06a0a4a27dd90330bcfaac59",
+-    "skills/research-autopilot/references/phase-autonomy.md": "540e10e9e51b87efc2b54d4e85fe3137fd5650eb2189fff85cfd5f6fea113c68",
++    "skills/research-autopilot/references/phase-autonomy.md": "92f56ca1eff0119340317942be7c1345b2d31c4b7915ec17ba3fb892d26c8ac4",
+     "skills/research-autopilot/references/progress-observability.md": "f4ee68fa4d20e29adc95a8ccf1109082ccb2af85a9e6e6190242f026a3635157",
+     "skills/research-autopilot/references/project-chat-instructions.md": "65505a3d6cf7c3f822609a100f8f9120ade1908dcb76889a0da06fc6083c9901",
+     "skills/research-autopilot/references/project-cooperation.md": "46dc36a6d052ca8c3bcfd1b8d9999c5cd7f17e750d2b512b139174f40876ba3a",
+     "skills/research-autopilot/references/release-and-promotion.md": "a233dd3d9ca6c5c30b4fde5a91b0d597fc2fff355cfc9229567373601d8ae61e",
+     "skills/research-autopilot/references/repository-round-trips.md": "3166fa9b612f593d0a0783843048d7f644750990287822dd7e1c1623c2fb0468",
+     "skills/research-autopilot/references/research-cycle.md": "2f109b446769975447da5e73bf8e3d729f545e856256a35f87bf659e18fa2cfd",
+-    "skills/research-autopilot/references/research-harness.md": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0",
++    "skills/research-autopilot/references/research-harness.md": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59",
+     "skills/research-autopilot/references/research-policy.md": "9c93b2cd8e3386f578c29b4e15279bfb932e416b26620e6e30bec7ad7a7de435",
+     "skills/research-autopilot/references/research-quality-bar.md": "5289770268053ec384d1635c01b5a6253f0ee1c31696580744e72c86477b3586",
+     "skills/research-autopilot/references/research-reasoning.md": "39f63fb6e7224b72d4282f6332e14e17d23a53d6f4f7772e62c5d1454629303e",
+@@ -444,7 +444,7 @@
+     "skills/writing-top-tier-papers/references/visual-orchestration.md": "a2a7d2acd566a19170aee6c997e206ad7b80f4e758e3a58d9d1ffc5779585f23"
+   },
+   "source_note": "Original per-skill revisions and exported_at retain export ancestry. Shared scientific helpers are imported from the source recorded in SOURCE_PUBLICATION.json. Exact delivered bytes are pinned below; no installed or live-project parity is asserted.",
+-  "research_skill_digest": "09b311474ca0b141a5df1d28b76a3a7cde9a195780ffcfd4624e2f9de218a729",
++  "research_skill_digest": "b2f1c542f28d6acf734e00273803671567ab94a526a3ee48707d6a4943bb9db8",
+   "runtime_source_revision": "80d99dfd4b6d44ca51c2fb13239334fc08e6a69d",
+   "runtime_files": {
+     "docs/AUTONOMOUS.zh-CN.md": "0665ef54169aa4453ae6ba1f5dbda9a914333ce8648666ec0970c356522f39f8",
+@@ -478,7 +478,7 @@
+     "src/research_autopilot/cli.py": "ed65d052fb8f1521249fc9f27fa7b171a78e2f2ab56cb3a900f222953eb33c3f",
+     "src/research_autopilot/closure_worker.py": "6668177936b8746f353afc57f939d7226eb3200fba9126848f0846647694f770",
+     "src/research_autopilot/command_contract.py": "c70eb094e79df691fe112d05927cac1874e54a20afc89d05f8dcba50fb93bffb",
+-    "src/research_autopilot/command_worker.py": "ad2befc5947059a951c9c5aaaef72eb27572de3fb7d29f86a51a1e11e1a621ae",
++    "src/research_autopilot/command_worker.py": "e09759cd34f87190af26fc253eac3c1e2ce0fdd32ae0e500f7834f78fc46e87a",
+     "src/research_autopilot/controller.py": "e6bce188315246919d227170a5cce0dc64ca3ee929677239b621070f96e33b28",
+     "src/research_autopilot/coverage.py": "2187fd1453d7fe011dcd8194b817217eef15179dc3304c9ea59259324a20369f",
+     "src/research_autopilot/gpu_preflight.py": "954ab3efe2c5e64627297dc0d33dacc3c6d653dcf842d91f008496237f637767",
+@@ -486,8 +486,9 @@
+     "src/research_autopilot/mcp.py": "1f5a7a09921a238730a14f04e3c53b85b9a98a641ab78bc26ad76200c49fa122",
+     "src/research_autopilot/models.py": "12fb3cbe2f3cb08537b85bd42216dce7a09f7c38bc11646ec70fa1261b485eb9",
+     "src/research_autopilot/native_artifacts.py": "0a651cce13d3f7e0791c095c40690172438c70c1ec8954ef89dfd205e995beb2",
+-    "src/research_autopilot/phase_autonomy.py": "ccb29f0a051f134d7d0887b6de4d2375a099b3b4eaa12cd78ccb68ab09efd219",
+-    "src/research_autopilot/phase_native.py": "bdc23fcb4dbef35c4ef3de7c58d3a140952ad454c26f5d6f40f079e607f4d212",
++    "src/research_autopilot/phase_autonomy.py": "f0a3507eea2a6830fc1d1972191e1e10f9d62454b058a867ff1d64b76f37c7a0",
++    "src/research_autopilot/phase_mailbox.py": "5edd0ad84017dbe9c8dde59407a3b56253f56df1f0203f7d57cbf0b51fed70b8",
++    "src/research_autopilot/phase_native.py": "3f6cd8f8cd9ec014db84f8b71cefd3a729bb22624c554dc5a92ff62e23a8c08f",
+     "src/research_autopilot/program.py": "6f21b07d85c38a9ef4c66b56bcc9affeaafff3e0e9ede046a45f9ccd8120a95a",
+     "src/research_autopilot/program_cli.py": "4c99bbab34f3a7f30ba6f1e02c1e63966745d96206d26c0b4d746538a58564ff",
+     "src/research_autopilot/remote.py": "de2fd42752393881a6197bcafa5e9e69951559a15ecd7d6333a2cbc264e69f3f",
+@@ -520,7 +521,8 @@
+     "tests/runtime/test_phase_acceptance.py": "e186b01aefcb06fe294fd172728fd21bde3bd1dcbd75f6d0f00d88815cb4b136",
+     "tests/runtime/test_phase_autonomy.py": "2f45bed79cdf8e7666973c8803a465404ae8654af2ece8f1b46c1e39ececad97",
+     "tests/runtime/test_phase_lineage.py": "a33343db80cd21d0938762c7e66d9dcb1074dd73c4d89ec110a85473f924ccdc",
+-    "tests/runtime/test_phase_native.py": "c6e35da47a1f6abe04a6b8f19a01c7f8433042027b812d1be1ca7fb01d8fe175",
++    "tests/runtime/test_phase_mailbox.py": "d0cdb07e0f5ca2e8c02784dce06d42b11411fd625a3517b52465eebf94153e56",
++    "tests/runtime/test_phase_native.py": "359e416e4e618dbefafe58bb6243c8f2cb29a75f39c83afb2c8e458e578069d0",
+     "tests/runtime/test_remote.py": "8ce8d5113b22ac15248f0d122ed1343663c3e61b5fb4e5dd47b2d41e435f462d",
+     "tests/runtime/test_research_strategy.py": "7c99a3c4cbff167f270c732161533ffbbfcd9a2387a8fd18889ff4be5797f553",
+     "tests/runtime/test_skill_registry.py": "5c918c19771e3557279a3ff6f90ffa9cfea86913d7fe2836c6b641318ee5c5b2"
+@@ -529,7 +531,7 @@
+   "public_baseline_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+   "variant": {
+     "name": "autonomous-rsi-harness",
+-    "version": "0.4.0-harness.8",
++    "version": "0.4.0-harness.9",
+     "base_main_revision": "658a39f3f32bc6bddc6a27d7e845773964c8c962",
+     "personal_skill_updated": false,
+     "source_kind": "derived_repository_branch"
+@@ -537,7 +539,7 @@
+   "repository_update": {
+     "feature": "deterministic-autopilot-skill-loop",
+     "branch": "autonomous-rsi-harness",
+-    "base_repository_revision": "bd949b68d6eecb9feaf82ee3fe2dc0c666fc21ac",
++    "base_repository_revision": "ded0afcbb485bcd4abd5334a6e4b9bf4b8d14db9",
+     "personal_skill_updated": false,
+     "scope": "repository source; installation and live continuation require separate receipts"
+   }
+diff --git a/SOURCE_PUBLICATION.json b/SOURCE_PUBLICATION.json
+index e0b8c23..e8496cb 100644
+--- a/SOURCE_PUBLICATION.json
++++ b/SOURCE_PUBLICATION.json
+@@ -1,7 +1,7 @@
+ {
+   "schema_version": 1,
+   "branch": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.8",
++  "version": "0.4.0-harness.9",
+   "base_commit": "bd949b68d6eecb9feaf82ee3fe2dc0c666fc21ac",
+   "change": "Phase-sized sustained Work Harness execution, fenced native calls, persistent phase coverage, core-paper/code-grounded C and independent phase acceptance",
+   "installation_updated": false,
+diff --git a/docs/superpowers/plans/2026-10-18-phase-mailbox.md b/docs/superpowers/plans/2026-10-18-phase-mailbox.md
+new file mode 100644
+index 0000000..00f09ba
+--- /dev/null
++++ b/docs/superpowers/plans/2026-10-18-phase-mailbox.md
+@@ -0,0 +1,19 @@
++# Repair phase-native dispatch ownership
++
++User approved worker submission with controller-owned registration/SSH execution.
++Replace the worker's direct database CLI with a project-local request mailbox.
++The existing CommandWorker services requests with its trusted parent claim while
++pumping logs and heartbeats. Native execution retains the existing validation,
++idempotence, fencing, fixed target, accounting and receipts. No additional agent
++or consumer. One asynchronous native call at a time; retain unknown jobs.
++
++Client writes an atomic bounded request and waits for the matching response. It
++never opens the controller DB. Controller owns claim context and rejects altered
++requests. Waiting/cancellation does not reset experiment identity. Worker exit
++must drain the active native call before phase completion.
++
++Implement service/client and protocol wiring; verify behavior on authorized GPU,
++including mailbox retries/errors/parent exit and existing native lineage tests.
++Update reusable guidance/version, build and install runtime/Skill, adopt at a
++quiet boundary, then confirm actual worker-submitted native dispatch and receipt.
++Publish repair and actual observations to the existing SPECTRUM branch.
+diff --git a/logs/maintenance/mailbox-20261018/REVIEW.md b/logs/maintenance/mailbox-20261018/REVIEW.md
+new file mode 100644
+index 0000000..c0805a3
+--- /dev/null
++++ b/logs/maintenance/mailbox-20261018/REVIEW.md
+@@ -0,0 +1,24 @@
++# Controller-owned phase mailbox repair review
++
++Independent static reviewer: /root/mailbox_review, 2026-10-18.
++
++Initial review found that FIFO request files could block the heartbeat loop and
++that replacing the mailbox directory could redirect controller file operations.
++Both were fixed with nonblocking/no-follow regular-file reads and a retained
++directory descriptor. Added GPU-host behavior tests cover both cases.
++
++Final review found no remaining important issue. Worker DB access is removed;
++trusted parent context, original request identity, native fencing, receipts and
++accounting remain in the controller. Cleanup uses try/finally. The real subprocess
++integration denies all SQLite connection attempts in the client while the actual
++CommandWorker log/heartbeat pump serves a native call exceeding its parent lease.
++
++The B-memory/C evidence loop stays within one sustained worker. Source refresh,
++negative evidence, experiment revision and problem reselection preserve independent
++B05/D/formal-E gates. Review is static; execution results are in adjacent GPU logs.
++
++The 2-second synthetic parent lease expired during real admission validation in
++the full run (runtime-short-lease.log). The integration fixture now uses a
++10-second lease and deliberately waits 12 seconds before native execution;
++production's existing 60-second lease and ownership checks are unchanged.
++The isolated real mailbox test passed in 17.617s (real-mailbox.log).
+diff --git a/logs/maintenance/mailbox-20261018/nodes.log b/logs/maintenance/mailbox-20261018/nodes.log
+new file mode 100644
+index 0000000..2a53001
+--- /dev/null
++++ b/logs/maintenance/mailbox-20261018/nodes.log
+@@ -0,0 +1,10 @@
++{
++  "node_count": 84,
++  "region_count": 16,
++  "edge_count": 221,
++  "coverage_counts": {
++    "detailed": 84
++  },
++  "errors": [],
++  "scope": "source traceability and navigation; not execution or scientific validation"
++}
+diff --git a/logs/maintenance/mailbox-20261018/plugins.log b/logs/maintenance/mailbox-20261018/plugins.log
+new file mode 100644
+index 0000000..f05b907
+--- /dev/null
++++ b/logs/maintenance/mailbox-20261018/plugins.log
+@@ -0,0 +1,4 @@
++----------------------------------------------------------------------
++Ran 34 tests in 49.421s
++
++OK
+diff --git a/logs/maintenance/mailbox-20261018/real-mailbox.log b/logs/maintenance/mailbox-20261018/real-mailbox.log
+new file mode 100644
+index 0000000..4ad12e4
+--- /dev/null
++++ b/logs/maintenance/mailbox-20261018/real-mailbox.log
+@@ -0,0 +1,6 @@
++test_project_only_client_gets_real_native_receipt (test_phase_native.PhaseNativeTests.test_project_only_client_gets_real_native_receipt) ... ok
++
++----------------------------------------------------------------------
++Ran 1 test in 17.617s
++
++OK
+diff --git a/logs/maintenance/mailbox-20261018/runtime-initial.log b/logs/maintenance/mailbox-20261018/runtime-initial.log
+new file mode 100644
+index 0000000..63b40c9
+--- /dev/null
++++ b/logs/maintenance/mailbox-20261018/runtime-initial.log
+@@ -0,0 +1,4 @@
++----------------------------------------------------------------------
++Ran 458 tests in 203.668s
++
++OK
+diff --git a/logs/maintenance/mailbox-20261018/runtime-short-lease.log b/logs/maintenance/mailbox-20261018/runtime-short-lease.log
+new file mode 100644
+index 0000000..3923164
+--- /dev/null
++++ b/logs/maintenance/mailbox-20261018/runtime-short-lease.log
+@@ -0,0 +1,20 @@
++======================================================================
++ERROR: test_project_only_client_gets_real_native_receipt (test_phase_native.PhaseNativeTests.test_project_only_client_gets_real_native_receipt)
++----------------------------------------------------------------------
++Traceback (most recent call last):
++  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/tests/runtime/test_phase_native.py", line 138, in test_project_only_client_gets_real_native_receipt
++    code=worker._communicate(child,b'{}\n',pump,self.parent,self.key,lambda *a,**k:None,None,service)
++         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/src/research_autopilot/command_worker.py", line 392, in _communicate
++    self.controller.heartbeat(*identity, lease_seconds=self.config.lease_seconds)
++  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/src/research_autopilot/controller.py", line 464, in heartbeat
++    run = self._owned(db, run_id, owner, fence)
++          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/src/research_autopilot/controller.py", line 121, in _owned
++    raise OwnershipError("owner/run/fence is stale or transition requires reconciliation")
++research_autopilot.models.OwnershipError: owner/run/fence is stale or transition requires reconciliation
++
++----------------------------------------------------------------------
++Ran 460 tests in 204.245s
++
++FAILED (errors=1)
+diff --git a/logs/maintenance/mailbox-20261018/wheel.log b/logs/maintenance/mailbox-20261018/wheel.log
+new file mode 100644
+index 0000000..935b113
+--- /dev/null
++++ b/logs/maintenance/mailbox-20261018/wheel.log
+@@ -0,0 +1,13 @@
++Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
++Processing /root/rivermind-data/spectrum-harness/code-tests/mailbox-repair
++  Preparing metadata (pyproject.toml): started
++  Preparing metadata (pyproject.toml): finished with status 'done'
++Building wheels for collected packages: research-autopilot-runtime
++  Building wheel for research-autopilot-runtime (pyproject.toml): started
++  Building wheel for research-autopilot-runtime (pyproject.toml): finished with status 'done'
++  Created wheel for research-autopilot-runtime: filename=research_autopilot_runtime-0.4.0a2-py3-none-any.whl size=172949 sha256=b1a43135fc6c70460aa7a12dc597165a93c36ecdfbedb19e7c5a60bc9e2c3e69
++  Stored in directory: /root/.cache/pip/wheels/be/e9/95/1ac509e81813266848137a33390a0c05d985da29fe3a7eb025
++Successfully built research-autopilot-runtime
++
++[notice] A new release of pip is available: 25.0.1 -> 26.2.1
++[notice] To update, run: python -m pip install --upgrade pip
+diff --git a/plugin.json b/plugin.json
+index 5510365..4263057 100644
+--- a/plugin.json
++++ b/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.8",
++  "version": "0.4.0-harness.9",
+   "description": "Run mathematical diagnosis and code experiments through reviewed B/C/D research loops, then verified scale-up.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/skills/research-autopilot/SKILL.md b/skills/research-autopilot/SKILL.md
+index 917106a..22f7c9e 100644
+--- a/skills/research-autopilot/SKILL.md
++++ b/skills/research-autopilot/SKILL.md
+@@ -13,6 +13,10 @@ worker performs the phase's reading, mathematics, code, GPU experiments and debu
+ all milestone evidence is reviewed together at the phase boundary. C requires
+ core-paper official code, task-relevant strong methods and checked community
+ implementation leads through the explicit `C.method_basis` requirement. Ordinary
++B02/B03/B04 work retrieves B's shared research memory first, refreshes missing
++paper/code/community evidence through B, then returns to C's mathematical and
++experimental question. Results determine advancement, experiment revision or
++problem reselection; write findings and failures back into memory. Ordinary
+ B/C/D research iterations stay within the worker; accepted scientific gates use
+ typed revisits. B05/M05 and formal E/freeze remain substantive acceptance points.
+ 
+@@ -138,7 +142,7 @@ Read [edition-policy.md](references/edition-policy.md) and
+ [round-continuation.md](references/round-continuation.md) and
+ [resource-queue.md](references/resource-queue.md) first. They govern
+ decision ownership, execution host and continuation across every module below.
+-Version: `0.4.0-harness.8`; branch: `autonomous-rsi-harness`.
++Version: `0.4.0-harness.9`; branch: `autonomous-rsi-harness`.
+ Keep the current Codex or other supported local agent. This fifth Work-derived
+ edition adds a persistent whole-goal program with fixed Skill order: the
+ current-step worker, independently executed review, v4 decision admission,
+diff --git a/skills/research-autopilot/assets/harness-policy.json b/skills/research-autopilot/assets/harness-policy.json
+index d30c01a..1104422 100644
+--- a/skills/research-autopilot/assets/harness-policy.json
++++ b/skills/research-autopilot/assets/harness-policy.json
+@@ -1,4 +1,4 @@
+ {
+   "edition": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.8"
++  "version": "0.4.0-harness.9"
+ }
+diff --git a/skills/research-autopilot/assets/research-nodes.json b/skills/research-autopilot/assets/research-nodes.json
+index 96d8308..dca02b5 100644
+--- a/skills/research-autopilot/assets/research-nodes.json
++++ b/skills/research-autopilot/assets/research-nodes.json
+@@ -721,7 +721,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -766,7 +766,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -1556,7 +1556,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -1601,7 +1601,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -2936,7 +2936,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -2981,7 +2981,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-root",
+@@ -3855,7 +3855,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -3900,7 +3900,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -5302,7 +5302,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5347,7 +5347,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-human-ai-supervision",
+@@ -5421,7 +5421,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5466,7 +5466,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -6423,7 +6423,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6468,7 +6468,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -6670,7 +6670,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6715,7 +6715,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -6834,7 +6834,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6879,7 +6879,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -7095,7 +7095,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7140,7 +7140,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7351,7 +7351,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7396,7 +7396,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7685,7 +7685,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7730,7 +7730,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -8059,7 +8059,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8104,7 +8104,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -8751,7 +8751,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8796,7 +8796,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -9050,7 +9050,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9095,7 +9095,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -9604,7 +9604,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9649,7 +9649,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10093,7 +10093,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10138,7 +10138,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10707,7 +10707,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10752,7 +10752,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -10846,7 +10846,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10891,7 +10891,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -10995,7 +10995,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -11040,7 +11040,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -12493,7 +12493,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -12538,7 +12538,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -13258,7 +13258,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -13303,7 +13303,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -14481,7 +14481,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14526,7 +14526,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-collision-audit",
+@@ -14640,7 +14640,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14685,7 +14685,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -14814,7 +14814,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14859,7 +14859,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -15739,7 +15739,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -15784,7 +15784,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -16694,7 +16694,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -16739,7 +16739,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -17188,7 +17188,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17233,7 +17233,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17362,7 +17362,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17407,7 +17407,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17531,7 +17531,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17576,7 +17576,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -18143,7 +18143,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18188,7 +18188,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -18380,7 +18380,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18425,7 +18425,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -18668,7 +18668,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18713,7 +18713,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -19217,7 +19217,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19262,7 +19262,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -19401,7 +19401,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19446,7 +19446,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -21147,7 +21147,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -21192,7 +21192,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22080,7 +22080,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22125,7 +22125,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22267,7 +22267,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22312,7 +22312,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -23354,7 +23354,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -23399,7 +23399,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -24075,7 +24075,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24120,7 +24120,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -24934,7 +24934,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24979,7 +24979,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -25522,7 +25522,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -25567,7 +25567,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-host-adapters",
+@@ -27153,7 +27153,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -27198,7 +27198,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -28392,7 +28392,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -28437,7 +28437,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -29532,7 +29532,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -29577,7 +29577,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30545,7 +30545,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30590,7 +30590,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30739,7 +30739,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30784,7 +30784,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30908,7 +30908,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30953,7 +30953,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31092,7 +31092,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31137,7 +31137,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31266,7 +31266,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31311,7 +31311,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31682,7 +31682,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31727,7 +31727,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -32283,7 +32283,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32328,7 +32328,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -32515,7 +32515,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32560,7 +32560,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -32732,7 +32732,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32777,7 +32777,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -32969,7 +32969,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33014,7 +33014,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -33256,7 +33256,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33301,7 +33301,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -33508,7 +33508,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33553,7 +33553,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -33780,7 +33780,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33825,7 +33825,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -34017,7 +34017,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34062,7 +34062,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-output-contract",
+@@ -34461,7 +34461,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34506,7 +34506,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "p-root",
+@@ -34665,7 +34665,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34710,7 +34710,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "f-root",
+@@ -34937,7 +34937,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34982,7 +34982,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -35209,7 +35209,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35254,7 +35254,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -35461,7 +35461,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35506,7 +35506,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -35635,7 +35635,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35680,7 +35680,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -35812,7 +35812,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35857,7 +35857,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -36072,7 +36072,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36117,7 +36117,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-root",
+@@ -36319,7 +36319,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36364,7 +36364,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -36645,7 +36645,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36690,7 +36690,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -37779,7 +37779,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -37824,7 +37824,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -38416,7 +38416,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38461,7 +38461,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -38535,7 +38535,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38580,7 +38580,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-research-websites",
+@@ -38719,7 +38719,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38764,7 +38764,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -39040,7 +39040,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39085,7 +39085,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-research-websites",
+@@ -39179,7 +39179,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39224,7 +39224,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -39348,7 +39348,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39393,7 +39393,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39487,7 +39487,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39532,7 +39532,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39626,7 +39626,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39671,7 +39671,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39765,7 +39765,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39810,7 +39810,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -40056,7 +40056,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40101,7 +40101,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -40385,7 +40385,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40430,7 +40430,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -40836,7 +40836,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40881,7 +40881,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -41471,7 +41471,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41516,7 +41516,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-visual-map-maintenance",
+@@ -41785,7 +41785,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++     "sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41830,7 +41830,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++     "sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+     },
+     {
+      "source": "r-execution-and-handoffs",
+@@ -44283,7 +44283,7 @@
+   "r-edition-policy": {
+    "skill": "research-autopilot",
+    "path": "references/edition-policy.md",
+-   "audit_file_sha256": "b9ed2c7d755b6eb44b7ee1e8586842fcb5d38cd443345c5accf473db6b4c5b51"
++   "audit_file_sha256": "3c61212296cc2ffdd88101f5681f9a44fc5c8758aed3f2b05353098766cec3c9"
+   },
+   "r-round-continuation": {
+    "skill": "research-autopilot",
+@@ -44328,7 +44328,7 @@
+   "r-research-harness": {
+    "skill": "research-autopilot",
+    "path": "references/research-harness.md",
+-   "audit_file_sha256": "be81f7ba89e5f037a124ea2608de46869c099560dfb804884b7c67a7f5af0cc0"
++   "audit_file_sha256": "8116cc41b1cb4e6d2da9db407e148cc7f7a50ba8ad075a8935a027b196a51d59"
+   },
+   "r-skill-sequence": {
+    "skill": "research-autopilot",
+diff --git a/skills/research-autopilot/references/edition-policy.md b/skills/research-autopilot/references/edition-policy.md
+index 425b23e..11c2be3 100644
+--- a/skills/research-autopilot/references/edition-policy.md
++++ b/skills/research-autopilot/references/edition-policy.md
+@@ -21,7 +21,7 @@ Installation alone does not migrate a running project or change another edition.
+ 
+ This edition policy, skill-sequence.md, research-harness.md and round-continuation.md take precedence
+ over inherited routing, candidate quotas and round-end defaults throughout this package.
+-This checkout is autonomous-rsi-harness, version 0.4.0-harness.8: the fifth,
++This checkout is autonomous-rsi-harness, version 0.4.0-harness.9: the fifth,
+ Work-derived edition, keeping existing Codex and other local agents.
+ Scientific evidence requirements still apply to the actual claim.
+ 
+diff --git a/skills/research-autopilot/references/phase-autonomy.md b/skills/research-autopilot/references/phase-autonomy.md
+index 489ebf9..d78545e 100644
+--- a/skills/research-autopilot/references/phase-autonomy.md
++++ b/skills/research-autopilot/references/phase-autonomy.md
+@@ -51,13 +51,53 @@ its predicted intervention, comparing it with qualified strong/simple controls.
+ Follow the evidence through repeated B/C/D work. Do not freeze an old convenient
+ F/P/A-style plan before examining the closest published implementation.
+ 
++## B memory and C evidence loop
++
++B builds durable research memory from papers, actual code and read-only community
++discussions. Reuse the project's existing memory/index rather than inventing a
++parallel store. Each entry retains the question, source URL/revision, code entry
++points, model/data/evaluator/settings, observed evidence versus untested claims,
++applicable conditions, unresolved gaps and relevant experiment/result references.
++Community claims remain leads until checked against primary sources/code/results.
++
++Before each of B02, B03 and B04, use this loop within the same sustained worker:
++
++1. State its current question and retrieve the relevant B memory. Assess whether
++   it answers this question under the actual current conditions; reading a memory
++   entry is not itself proof that it applies.
++2. If sufficient, proceed directly. If incomplete, stale or contradictory, use
++   the relevant B methods to search/read papers, inspect implementations or read
++   Xiaohongshu discussions. Update memory with the new evidence and gaps, then
++   return to the same C question. No full B restart or handoff is required.
++3. Derive the hypothesis and competing explanations, design a discriminating
++   experiment using existing benchmark/model/data/evaluation, and run it on the
++   authorized GPU. Record predictions, settings, raw outputs and uncertainty.
++4. Let results choose the next action: adequate evidence answering the question
++   advances to the next milestone; inconclusive evidence triggers a targeted
++   experiment revision or source refresh; a falsified premise triggers problem
++   revision or selection of another question. Record the reason and next action.
++   A negative result can answer a question; do not optimize toward positive results
++   or discard failed trials. Changed hypotheses/protocols get new versions.
++5. Write C's result and updated boundaries back into the shared memory so later
++   B/C/D reasoning starts from accumulated evidence rather than repeated searching.
++
++B02 retrieves mechanism/assumption evidence; B03 retrieves strong implementations,
++fair comparison settings and reproduction pitfalls; B04 retrieves the combined
++mathematical and experimental evidence to define the problem and its falsifiers.
++These milestones do not launch separate agents. This loop does not waive B05
++independent acceptance, D verification or formal E. Material revisions to already
++accepted evidence still use the typed revisit route.
++
+ ## Real GPU execution inside the worker
+ 
+ The CommandWorker injects `response_protocol.phase_native` only after a real
+ controller claim. Its context binds project/run/owner/fence to the current live
+-phase worker. Invoke the supplied `phase-native --context ... --request ...`
++phase worker. Invoke the exact supplied `phase_mailbox --mailbox ... --request ...`
+ command with one request containing `request_id`, `task`, `decision_ref`, and
+-`coverage_ref`. The task is native_harness/native, never another general agent.
++`coverage_ref`. The worker submits in its project directory and waits for the
++matching result. The existing dispatcher owns database writes and native SSH
++execution; the worker must not open the runtime database, request broader sandbox
++access or copy the database. The task is native_harness/native, never another general agent.
+ Synchronize pinned input/code files to the already fixed target; the existing
+ NativeBridge verifies pins and performs actual execution and output collection.
+ Do not fabricate future run IDs or receipts to satisfy an input schema.
+@@ -70,6 +110,15 @@ unknown jobs retain that slot and must be reconciled under their original identi
+ A repeated identical request observes the same child; changed content with the
+ same request ID is rejected. The parent cannot complete with unresolved children.
+ 
++The dispatcher pumps worker logs and heartbeats while serving one native request.
++On dispatcher loss, keep the submitted request and original execution identity;
++resume through reconciliation. Do not turn a repeated infrastructure error into
++new research rounds or claim experimental progress from a live model process.
++Status reports distinguish worker activity, native dispatch, actual GPU execution,
++collected results and scientific acceptance. Installation qualification must include
++a real worker-to-dispatcher call under the deployed worker permissions and a native
++receipt; unit tests or an unsandboxed controller call alone cannot establish this.
++
+ Every subsequent request extends the latest worker-local decision and coverage;
+ the final phase result extends them again and consumes all actual native receipts,
+ including failures. Pending scoring and formal E obligations cannot disappear.
+diff --git a/skills/research-autopilot/references/research-harness.md b/skills/research-autopilot/references/research-harness.md
+index bd41030..b914d0d 100644
+--- a/skills/research-autopilot/references/research-harness.md
++++ b/skills/research-autopilot/references/research-harness.md
+@@ -33,7 +33,7 @@ Installation alone does not migrate a running project or change another edition.
+ 
+ Read this at startup, every actual agent invocation, after a terminal result, and
+ before reporting completion or unattended continuation. This is the fifth edition,
+-`autonomous-rsi-harness`, version `0.4.0-harness.8`. Preserve the original Work
++`autonomous-rsi-harness`, version `0.4.0-harness.9`. Preserve the original Work
+ scientific method and the user's existing Codex or other supported local agent.
+ 
+ ## What the harness adds
+diff --git a/src/research_autopilot/command_worker.py b/src/research_autopilot/command_worker.py
+index 6bee2f6..eab47ff 100644
+--- a/src/research_autopilot/command_worker.py
++++ b/src/research_autopilot/command_worker.py
+@@ -210,6 +210,7 @@ class CommandWorker:
+         cleanup_done = False
+         spawn_attempted = False
+         run_dir = None
++        mailbox_service = None
+         def record(kind, data):
+             return self.controller.record_event(*identity, kind=kind, data=data)
+         def elapsed():
+@@ -263,6 +264,12 @@ class CommandWorker:
+             phase_protocol = execution_protocol(self.controller, claim, run_dir)
+             if phase_protocol is not None:
+                 protocol['phase_native'] = phase_protocol
++                from .phase_mailbox import MailboxService
++                from .phase_native import execute
++                context = {k: claim[k] for k in ('project_id', 'run_id', 'owner', 'fence')}
++                mailbox_service = MailboxService(Path(phase_protocol['mailbox_path']).parent,
++                    lambda request: execute(self.controller, context, request),
++                    claim['started_at'] + claim['reserved_seconds'])
+             prompt = (canonical_json({'instruction_handoff': envelope,
+                                       'response_protocol': protocol}) + '\n').encode('utf-8')
+             if len(prompt) > self.config.max_handoff_bytes:
+@@ -301,7 +308,7 @@ class CommandWorker:
+             # Identity is durable before any task bytes enter stdin.
+             record('dispatch_started', {'adapter': adapter, 'pid': child.pid})
+             result = self._communicate(child, prompt, run_dir, claim, identity,
+-                                       record, cancel_event)
++                                       record, cancel_event, mailbox_service)
+             record('command_exit', {'returncode': result, 'actual_seconds': elapsed(),
+                 'actual_cost': None, 'cost_basis': 'unknown; full reservation',
+                 'stdout': pin_file(root, f'{run_rel}/stdout.log'),
+@@ -351,6 +358,8 @@ class CommandWorker:
+                 raise
+             return self.controller.get_task(project_id, claim['task_id'])
+         finally:
++            if mailbox_service is not None:
++                mailbox_service.close()
+             if child is not None:
+                 if not cleanup_done:
+                     _cleanup(child, self.config.cleanup_seconds)
+@@ -358,7 +367,7 @@ class CommandWorker:
+                     if stream is not None:
+                         stream.close()
+ 
+-    def _communicate(self, child, prompt, run_dir, claim, identity, record, cancel_event):
++    def _communicate(self, child, prompt, run_dir, claim, identity, record, cancel_event, mailbox_service=None):
+         """Nonblocking stdin/log pump; heartbeats and deadlines include startup."""
+         next_heartbeat = time.monotonic() + self.config.lease_seconds / 3
+         deadline = time.monotonic() + max(0, claim['started_at'] + claim['reserved_seconds'] - time.time())
+@@ -373,7 +382,7 @@ class CommandWorker:
+             for path in (run_dir / 'stdout.log', run_dir / 'stderr.log'):
+                 os.chmod(path, 0o600)
+             try:
+-                while selector.get_map() or child.poll() is None:
++                while selector.get_map() or child.poll() is None or (mailbox_service and mailbox_service.busy):
+                     now = time.monotonic()
+                     if now >= deadline:
+                         raise TimeoutError('command wall reservation exhausted')
+@@ -382,6 +391,8 @@ class CommandWorker:
+                     if now >= next_heartbeat:
+                         self.controller.heartbeat(*identity, lease_seconds=self.config.lease_seconds)
+                         next_heartbeat = time.monotonic() + self.config.lease_seconds / 3
++                    if mailbox_service is not None:
++                        mailbox_service.poll(accept=child.poll() is None)
+                     timeout = min(self.config.poll_seconds, max(0, deadline - now),
+                                   max(0, next_heartbeat - now))
+                     for key, _ in selector.select(timeout):
+diff --git a/src/research_autopilot/phase_autonomy.py b/src/research_autopilot/phase_autonomy.py
+index cd848a2..62540da 100644
+--- a/src/research_autopilot/phase_autonomy.py
++++ b/src/research_autopilot/phase_autonomy.py
+@@ -68,7 +68,9 @@ its latest decision_ref and coverage_ref, including after interrupted transports
+ an already accepted scientific gate needs a typed reviewed revisit.
+ 
+ Use response_protocol.phase_native to run real registered native work while this
+-worker remains alive. This routes through the fixed target, canonical admission,
++worker remains alive. Submit through its project-local mailbox; the existing
++dispatcher owns database writes and execution. Do not call the direct DB CLI.
++This routes through the fixed target, canonical admission,
+ actual NativeWorker and retained receipts. Never manufacture future run IDs,
+ receipts, reviews or successful observations. Synchronize pinned inputs to the
+ fixed GPU target before dispatch; use its existing environment/models/data. All
+@@ -98,4 +100,11 @@ C tests mathematically specified failure modes or unnecessary dependencies under
+ plausible conditions; D derives and tests a mechanism under those conditions.
+ Iterate B/C/D as evidence requires. Keep native evaluation, strong simple controls,
+ uncertainty, confounds, practical effect sizes and negative boundaries in scope.
++Before each of B02/B03/B04, state the question and retrieve relevant B research
++memory. If sufficient, use it; otherwise refresh the specific paper/code/community
++gap with B's methods, update shared memory, and return to the same C milestone.
++Run discriminating experiments, then choose from advance, revise experiment,
++refresh sources or revise/reselect the problem based on evidence. Write results
++and boundaries back into memory. Negative results may answer the question;
++never equate satisfaction with a positive effect or discard unsuccessful trials.
+ """
+diff --git a/src/research_autopilot/phase_mailbox.py b/src/research_autopilot/phase_mailbox.py
+new file mode 100644
+index 0000000..cd8a27a
+--- /dev/null
++++ b/src/research_autopilot/phase_mailbox.py
+@@ -0,0 +1,192 @@
++"""Project-local submission transport. Only the owning dispatcher opens the DB."""
++import argparse
++from concurrent.futures import ThreadPoolExecutor
++import hashlib
++import json
++import os
++from pathlib import Path
++import re
++import stat
++import sys
++import time
++import uuid
++
++MAX_BYTES = 2 * 1024 * 1024
++
++
++def _read(path, *, dir_fd=None):
++    fd = os.open(path.name if dir_fd is not None else path,
++                 os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW, dir_fd=dir_fd)
++    with os.fdopen(fd, 'rb') as stream:
++        if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
++            raise ValueError('mailbox messages must be regular files')
++        raw = stream.read(MAX_BYTES + 1)
++    if len(raw) > MAX_BYTES:
++        raise ValueError('mailbox message exceeds byte limit')
++    value = json.loads(raw)
++    if not isinstance(value, dict):
++        raise ValueError('mailbox message must be an object')
++    return value
++
++
++def _bytes(value):
++    raw = json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
++    if len(raw) > MAX_BYTES:
++        raise ValueError('mailbox message exceeds byte limit')
++    return raw
++
++
++def _write(path, value, *, replace=False, dir_fd=None):
++    raw = _bytes(value)
++    temp = path.with_name('.' + uuid.uuid4().hex + '.tmp')
++    try:
++        target = path.name if dir_fd is not None else path
++        temporary = temp.name if dir_fd is not None else temp
++        fd = os.open(temporary, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600, dir_fd=dir_fd)
++        with os.fdopen(fd, 'wb') as stream:
++            stream.write(raw); stream.flush(); os.fsync(stream.fileno())
++        if replace:
++            os.replace(temporary, target, src_dir_fd=dir_fd, dst_dir_fd=dir_fd)
++        else:
++            os.link(temporary, target, src_dir_fd=dir_fd, dst_dir_fd=dir_fd)
++    finally:
++        try: os.unlink(temporary, dir_fd=dir_fd)
++        except FileNotFoundError: pass
++
++
++def descriptor(directory, deadline):
++    directory = Path(directory)
++    directory.mkdir(mode=0o700, parents=True, exist_ok=True)
++    path = directory / 'mailbox.json'
++    _write(path, {'protocol': 'phase-mailbox-v1', 'deadline_unix': deadline})
++    return path
++
++
++def submit(mailbox, request_path, *, poll_seconds=.25):
++    """Submit without Controller construction, DB access or execution authority."""
++    mailbox = Path(mailbox)
++    info = _read(mailbox)
++    if info.get('protocol') != 'phase-mailbox-v1':
++        raise ValueError('unsupported phase mailbox')
++    directory = mailbox.parent
++    request = _read(Path(request_path))
++    digest = hashlib.sha256(_bytes(request)).hexdigest()
++    call_id = uuid.uuid4().hex
++    submitted = False
++    while True:
++        response = directory / (call_id + '.response.json')
++        if response.exists():
++            data = _read(response)
++            if data.get('request_digest') != digest or data.get('call_id') != call_id:
++                raise ValueError('mailbox response identity mismatch')
++            if 'error' in data:
++                raise RuntimeError(data['error'] + ': ' + data.get('message', ''))
++            return data['result']
++        if time.time() >= info['deadline_unix']:
++            raise TimeoutError('parent deadline reached; retain request identity and reconcile')
++        status = _read(directory / 'service.json')
++        if status.get('state') != 'running':
++            raise RuntimeError('owning dispatcher stopped; retain request identity and reconcile')
++        if time.time() - status['heartbeat_at'] > 30:
++            raise RuntimeError('dispatcher heartbeat missing; retain request identity and reconcile')
++        if not submitted:
++            _write(directory / (call_id + '.request.json'), request)
++            submitted = True
++        time.sleep(poll_seconds)
++
++
++class MailboxService:
++    """One native call at a time; authority is an in-memory controller closure."""
++    def __init__(self, directory, execute, deadline):
++        self.root = Path(directory)
++        self.descriptor = self.root / 'mailbox.json'
++        if not self.descriptor.exists():
++            descriptor(self.root, deadline)
++        # Keep directory identity even if the worker renames/replaces its path.
++        self.dir_fd = os.open(self.root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
++        self.execute, self.deadline = execute, deadline
++        self.pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix='phase-native')
++        self.active = None
++        self.seen = set()
++        self.closed = False
++        self.last_heartbeat = 0
++        self._heartbeat()
++
++    @property
++    def busy(self):
++        return self.active is not None
++
++    def _heartbeat(self):
++        _write(self.root / 'service.json', {'state': 'stopped' if self.closed else 'running',
++            'heartbeat_at': time.time()}, replace=True, dir_fd=self.dir_fd)
++        self.last_heartbeat = time.monotonic()
++
++    def poll(self, *, accept=True):
++        if self.closed:
++            return
++        if time.monotonic() - self.last_heartbeat >= 1:
++            self._heartbeat()
++        if self.active:
++            call_id, digest, future = self.active
++            if not future.done():
++                return
++            value = {'call_id': call_id, 'request_digest': digest}
++            try:
++                value['result'] = future.result()
++            except Exception as exc:
++                value.update(error=type(exc).__name__, message=str(exc))
++            _write(self.root / (call_id + '.response.json'), value, dir_fd=self.dir_fd)
++            self.active = None
++        if not accept or time.time() >= self.deadline:
++            return
++        names = set(os.listdir(self.dir_fd))
++        for name in sorted(names):
++            if not name.endswith('.request.json'):
++                continue
++            path = self.root / name
++            call_id = path.name.removesuffix('.request.json')
++            if not re.fullmatch('[a-f0-9]{32}', call_id) or call_id in self.seen:
++                continue
++            self.seen.add(call_id)
++            if call_id + '.response.json' in names:
++                continue
++            try:
++                request = _read(path, dir_fd=self.dir_fd)
++                digest = hashlib.sha256(_bytes(request)).hexdigest()
++            except Exception as exc:
++                _write(self.root / (call_id + '.response.json'), {
++                    'call_id': call_id, 'request_digest': None,
++                    'error': type(exc).__name__, 'message': str(exc)}, dir_fd=self.dir_fd)
++                continue
++            self.active = (call_id, digest, self.pool.submit(self.execute, request))
++            return
++
++    def close(self):
++        if not self.closed:
++            self.closed = True
++            try:
++                self._heartbeat()
++            except OSError:
++                pass  # Do not mask the original failure or prevent child cleanup.
++            finally:
++                # Interrupted native work retains its original controller identity.
++                self.pool.shutdown(wait=False, cancel_futures=True)
++                os.close(self.dir_fd)
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--mailbox', required=True)
++    parser.add_argument('--request', required=True)
++    args = parser.parse_args()
++    try:
++        print(json.dumps(submit(args.mailbox, args.request)))
++    except Exception as exc:
++        print(json.dumps({'error': type(exc).__name__, 'message': str(exc),
++                          'status': 'submission_failed'}))
++        return 2
++    return 0
++
++
++if __name__ == '__main__':
++    sys.exit(main())
+diff --git a/src/research_autopilot/phase_native.py b/src/research_autopilot/phase_native.py
+index 53c8291..53fc3f2 100644
+--- a/src/research_autopilot/phase_native.py
++++ b/src/research_autopilot/phase_native.py
+@@ -19,12 +19,15 @@ def execution_protocol(controller, claim, run_dir):
+     with path.open('x') as stream:
+         stream.write(canonical_json(context) + '\n')
+     path.chmod(0o600)
+-    return {'context_path': str(path),
+-        'argv': [sys.executable, '-m', 'research_autopilot.program_cli', '--db', controller.db_path,
+-                 'phase-native', '--context', str(path), '--request', 'ABSOLUTE_REQUEST_JSON'],
++    from .phase_mailbox import descriptor
++    mailbox = descriptor(Path(run_dir) / 'native-mailbox', claim['started_at'] + claim['reserved_seconds'])
++    return {'context_path': str(path), 'mailbox_path': str(mailbox),
++        'transport': 'controller-owned-mailbox',
++        'argv': [sys.executable, '-m', 'research_autopilot.phase_mailbox',
++                 '--mailbox', str(mailbox), '--request', 'ABSOLUTE_REQUEST_JSON'],
+         'request_schema': {'request_id': 'unique stable local request ID', 'task': 'one native_harness task',
+                            'decision_ref': 'pinned selection decision', 'coverage_ref': 'pinned coverage'},
+-        'instructions': 'Prepare and sync pinned inputs to the fixed target, invoke this argv with your request file, read returned receipt_refs. Retry the identical request to observe its original identity; never relaunch an unknown run. Final phase decision must consume all returned native receipts including failures. Parent wall time and native time are conservatively accounted separately; no budget is reset.'}
++        'instructions': 'Prepare and sync pinned inputs to the fixed target, invoke this argv with your request file, read returned receipt_refs. The existing dispatcher owns DB registration and SSH execution; the worker writes only this project-local mailbox. Do not call the direct database phase-native CLI or broaden sandbox permissions. Retry the identical request to observe its original identity; never relaunch an unknown run. Final phase decision must consume all returned native receipts including failures. Parent wall time and native time are conservatively accounted separately; no budget is reset.'}
+ 
+ 
+ def execute(controller, context, request):
+diff --git a/tests/runtime/test_phase_mailbox.py b/tests/runtime/test_phase_mailbox.py
+new file mode 100644
+index 0000000..4fbbad6
+--- /dev/null
++++ b/tests/runtime/test_phase_mailbox.py
+@@ -0,0 +1,123 @@
++"""Worker writes only its project mailbox; controller retains execution authority."""
++import json
++import os
++import tempfile
++import threading
++import time
++import unittest
++from pathlib import Path
++from research_autopilot.phase_mailbox import MailboxService, submit
++
++
++class MailboxTests(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.addCleanup(self.tmp.cleanup)
++        self.root = Path(self.tmp.name)
++        self.calls = []
++        self.release = threading.Event()
++
++    def service(self, execute=None):
++        def run(request):
++            self.calls.append(request)
++            return {'status': 'completed', 'receipt_refs': ['actual-fixture']}
++        s = MailboxService(self.root, execute or run, time.time() + 30)
++        self.addCleanup(s.close)
++        return s
++
++    def client(self, s, request):
++        path = self.root / ('input-' + str(time.time_ns()) + '.json')
++        path.write_text(json.dumps(request))
++        result = {}
++        def call():
++            try: result['value'] = submit(s.descriptor, path, poll_seconds=.01)
++            except Exception as exc: result['error'] = str(exc)
++        thread = threading.Thread(target=call)
++        thread.start()
++        return thread, result
++
++    def finish(self, s, thread):
++        end = time.monotonic() + 5
++        while thread.is_alive() and time.monotonic() < end:
++            s.poll()
++            time.sleep(.01)
++        thread.join(.1)
++        self.assertFalse(thread.is_alive())
++
++    def test_client_roundtrip_without_database_or_context_authority(self):
++        s = self.service()
++        request = {'request_id': 'stable', 'task': {'id': 'native'}}
++        thread, out = self.client(s, request)
++        self.finish(s, thread)
++        self.assertEqual(self.calls, [request])
++        self.assertEqual(out['value']['receipt_refs'], ['actual-fixture'])
++        self.assertNotIn('db', s.descriptor.read_text())
++
++    def test_native_errors_return_to_worker_and_next_call_can_proceed(self):
++        s = self.service(lambda request: (_ for _ in ()).throw(ValueError('invalid request')))
++        thread, out = self.client(s, {'request_id': 'bad'})
++        self.finish(s, thread)
++        self.assertIn('invalid request', out['error'])
++        self.assertFalse(s.busy)
++
++    def test_only_one_call_runs_while_parent_pumps(self):
++        def run(request):
++            self.calls.append(request)
++            self.release.wait(3)
++            return {'status': 'completed'}
++        s = self.service(run)
++        a, _ = self.client(s, {'request_id': 'one'})
++        b, _ = self.client(s, {'request_id': 'two'})
++        for _ in range(15): s.poll(); time.sleep(.01)
++        self.assertEqual(len(self.calls), 1)
++        self.assertTrue(s.busy)
++        self.release.set()
++        self.finish(s, a); self.finish(s, b)
++        self.assertEqual(len(self.calls), 2)
++
++    def test_close_prevents_late_submission(self):
++        s = self.service(); s.close()
++        thread, out = self.client(s, {'request_id': 'late'})
++        thread.join(2)
++        self.assertFalse(thread.is_alive())
++        self.assertIn('stopped', out['error'])
++        self.assertEqual(self.calls, [])
++
++    def test_parent_exit_drains_active_but_does_not_launch_queued(self):
++        s = self.service(lambda request: (self.release.wait(3) or True) and {'status': 'completed'})
++        a, out = self.client(s, {'request_id': 'one'})
++        for _ in range(10): s.poll(); time.sleep(.01)
++        self.assertTrue(s.busy)
++        self.release.set()
++        end = time.monotonic()+3
++        while s.busy and time.monotonic()<end: s.poll(accept=False); time.sleep(.01)
++        a.join(1)
++        self.assertEqual(out['value']['status'], 'completed')
++
++    def test_missing_live_service_fails_without_native_execution(self):
++        s = self.service()
++        status = self.root/'service.json'
++        data=json.loads(status.read_text()); data['heartbeat_at']=0
++        status.write_text(json.dumps(data))
++        thread, out=self.client(s, {'request_id':'one'})
++        thread.join(2)
++        self.assertFalse(thread.is_alive())
++        self.assertIn('heartbeat',out['error'])
++        self.assertEqual(self.calls,[])
++
++    def test_fifo_request_does_not_block_dispatcher_heartbeat(self):
++        s=self.service();call_id='a'*32
++        os.mkfifo(self.root/(call_id+'.request.json'))
++        s.poll()
++        result=json.loads((self.root/(call_id+'.response.json')).read_text())
++        self.assertIn('regular files',result['message'])
++        self.assertEqual(self.calls,[])
++
++    def test_replaced_directory_cannot_redirect_controller_writes(self):
++        root=self.root/'mailbox';outside=self.root/'outside';outside.mkdir()
++        s=MailboxService(root,lambda r:{},time.time()+30)
++        self.addCleanup(s.close)
++        original=self.root/'original';root.rename(original);root.symlink_to(outside)
++        s._heartbeat()
++        self.assertFalse((outside/'service.json').exists())
++        self.assertTrue((original/'service.json').exists())
+diff --git a/tests/runtime/test_phase_native.py b/tests/runtime/test_phase_native.py
+index 1b08626..90aff3f 100644
+--- a/tests/runtime/test_phase_native.py
++++ b/tests/runtime/test_phase_native.py
+@@ -1,5 +1,5 @@
+ """Actual controller/native execution on the authorized test host; software evidence only."""
+-import copy,json,unittest
++import copy,json,unittest,subprocess,sys,time
+ from pathlib import Path
+ from unittest.mock import patch
+ import test_native_stages as base
+@@ -97,7 +97,9 @@ class PhaseNativeTests(base.NativeStageTests):
+         self.setup_phase();directory=self.f.root/'command';directory.mkdir()
+         protocol=execution_protocol(self.c,self.parent,directory)
+         self.assertEqual(json.loads(Path(protocol['context_path']).read_text()),self.ctx)
+-        self.assertIn('phase-native',protocol['argv'])
++        self.assertIn('research_autopilot.phase_mailbox',protocol['argv'])
++        self.assertNotIn('--db',protocol['argv'])
++        self.assertEqual(protocol['transport'],'controller-owned-mailbox')
+         wrong=copy.deepcopy(self.parent);wrong['task']['parameters']['harness_role']='reviewer'
+         self.assertIsNone(execution_protocol(self.c,wrong,directory))
+ 
+@@ -109,6 +111,42 @@ class PhaseNativeTests(base.NativeStageTests):
+         self.assertEqual(effective['state']['coverage_ref'],self.metadata)
+         self.assertEqual(self.program.status('p'),prior)
+ 
++    def test_project_only_client_gets_real_native_receipt(self):
++        from research_autopilot.phase_mailbox import MailboxService
++        from research_autopilot.command_worker import CommandWorker, CommandAgentConfig
++        self.setup_phase()
++        bridge=NativeBridge(NativeTarget(root=str(self.f.root),skill_root=str(self.skill)),allow_local_scientific=True)
++        def dispatch(request):
++            time.sleep(12)  # exceed parent lease while the real log pump heartbeats
++            self.c.register_phase_native(self.ctx,request['request_id'],contract_hash(request),
++                                        self.t,self.dref,self.metadata)
++            item=NativeWorker(self.c,bridge).run_once('p','mailbox-native',task_ids=['task'])
++            receipts=self.program._snapshot(self.p,self.c.status('p'))
++            return {'status':item['state'],'receipts':receipts}
++        service=MailboxService(self.f.root/'mailbox',dispatch,time.time()+30)
++        self.addCleanup(service.close)
++        request=self.f.root/'request.json';request.write_text(json.dumps({'request_id':'stable'}))
++        # The real subprocess cannot open SQLite at all. Only the owning service
++        # executes native work and returns its actual controller receipt.
++        script="import sys; sys.stdin.read(); import sqlite3; sqlite3.connect=lambda *a,**k: (_ for _ in ()).throw(RuntimeError('DB forbidden')); from research_autopilot.phase_mailbox import main; raise SystemExit(main())"
++        child=subprocess.Popen([sys.executable,'-c',script,'--mailbox',str(service.descriptor),
++                                '--request',str(request)],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
++        pump=self.f.root/'pump';pump.mkdir()
++        worker=CommandWorker(self.c,CommandAgentConfig(argv=[sys.executable],lease_seconds=10,poll_seconds=.02))
++        self.c.heartbeat(*self.key,lease_seconds=10)
++        try:
++            code=worker._communicate(child,b'{}\n',pump,self.parent,self.key,lambda *a,**k:None,None,service)
++        finally:
++            if child.poll() is None:child.kill();child.wait()
++            for stream in (child.stdin,child.stdout,child.stderr):stream.close()
++        out=(pump/'stdout.log').read_text();err=(pump/'stderr.log').read_text()
++        self.assertEqual(code,0,err+out)
++        self.assertEqual(self.c.get_task('p','harness.planner.1')['state'],'running')
++        result=json.loads(out)
++        self.assertEqual(result['status'],'completed')
++        self.assertEqual(len(result['receipts']),1)
++        self.assertEqual(result['receipts'][0]['action'],'native_harness')
++
+     def test_failed_parent_checkpoint_survives_new_worker_attempt(self):
+         self.setup_phase();self.register()
+         self.c.fail(*self.key,reason='fixture process interruption',actual_seconds=1,actual_cost=0)
+-- 
+2.39.3 (Apple Git-145)
+

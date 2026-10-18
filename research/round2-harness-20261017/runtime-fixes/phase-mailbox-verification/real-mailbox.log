@@ -1,0 +1,6 @@
+test_project_only_client_gets_real_native_receipt (test_phase_native.PhaseNativeTests.test_project_only_client_gets_real_native_receipt) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 17.617s
+
+OK

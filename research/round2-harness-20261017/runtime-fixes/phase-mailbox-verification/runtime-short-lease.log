@@ -1,0 +1,20 @@
+======================================================================
+ERROR: test_project_only_client_gets_real_native_receipt (test_phase_native.PhaseNativeTests.test_project_only_client_gets_real_native_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/tests/runtime/test_phase_native.py", line 138, in test_project_only_client_gets_real_native_receipt
+    code=worker._communicate(child,b'{}\n',pump,self.parent,self.key,lambda *a,**k:None,None,service)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/src/research_autopilot/command_worker.py", line 392, in _communicate
+    self.controller.heartbeat(*identity, lease_seconds=self.config.lease_seconds)
+  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/src/research_autopilot/controller.py", line 464, in heartbeat
+    run = self._owned(db, run_id, owner, fence)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/mailbox-repair/src/research_autopilot/controller.py", line 121, in _owned
+    raise OwnershipError("owner/run/fence is stale or transition requires reconciliation")
+research_autopilot.models.OwnershipError: owner/run/fence is stale or transition requires reconciliation
+
+----------------------------------------------------------------------
+Ran 460 tests in 204.245s
+
+FAILED (errors=1)

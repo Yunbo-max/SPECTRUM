@@ -15,5 +15,5 @@
     "resume unfinished SSD download after current condition releases exclusive lock",
     "run SSD recommended and matched decoder controls"
   ],
-  "do_not_duplicate": "Original pipeline.lock remains held by download process; generation launcher obtains same exclusive lock before initialization."
+  "do_not_duplicate": "Runner65584 owns original pipeline.lock; download63741 was intentionally interrupted after base verification. Reconcile runner and stage before any new launch."
 }

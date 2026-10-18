@@ -1,0 +1,12 @@
+{
+  "software_only": true,
+  "native_fixture": "software-probe-results.json",
+  "expected_pass_at_1": 0.4,
+  "observed_analysis_pass_at_1": 0.4,
+  "verified_counts": {
+    "zero_correct": 3,
+    "all_correct": 2
+  },
+  "initial_check": "Rejected fixture whose manually supplied model_answers omit a newline present in its raw fenced string. Kept the assertion; reconstructed fixture fences from the exact executed content for this aggregation check.",
+  "note": "Token lists are empty fixture placeholders, not model measurements. Full131x10 model data still pending."
+}

@@ -1,0 +1,26 @@
+{
+  "installed_version": "0.10.0",
+  "paper_commit": "b8b302cde434df8c9289a2b465406b47ebab1c2d",
+  "archive_sha256": "6c0678fa6981d17b626e1a1029a0d9a5342dfa637ecbb931ee1eba9ce5b21996",
+  "files": [
+    {
+      "path": "sampler.py",
+      "installed_sha256": "db2dd76516188d5ccde26eb2856f363ddbd5910d84b821eebc5a1b119e3ceeae",
+      "paper_sha256": "3720fbfd59c1f064a62b8e0489ec0436468188b69f8b8eb84d2d62eba31f3912",
+      "functions": {
+        "apply_temperature": "different_or_absent",
+        "sample": "different_or_absent"
+      }
+    },
+    {
+      "path": "ops/topk_topp_sampler.py",
+      "installed_sha256": "445cf48ead6ef4f8ac78be0df75a30fa5145c2f1076af2456a98b35ba38fea2d",
+      "paper_sha256": "536ed05e4cbf2eef8817d57c04fd0e424441f4b05ee5282cf072722d2592b203",
+      "functions": {
+        "forward_native": "different_or_absent",
+        "apply_top_k_top_p": "same_ast",
+        "random_sample": "same_ast"
+      }
+    }
+  ]
+}

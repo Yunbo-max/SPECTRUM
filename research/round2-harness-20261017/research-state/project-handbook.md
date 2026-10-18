@@ -1,3 +1,13 @@
+## 续研核对与B/C修正（2026-10-18 23:34 UTC）
+
+已核对runner65584的真实start ticks，仍为同一原生LCB基座程序。最新日志第一repeat已完成21/131 prompts，约61.8输出tokens/s；尚无完整repeat文件或正确率，不重启、不并发第二实验。旧资产下载保持中断，部分Apple权重保留，待当前条件释放锁再恢复。
+
+本轮增加analyze_condition.py：读取未修改作者评分状态，核对任务/seed/原始输出与被评分代码绑定、重算原生聚合指标作一致性检查，统计样本截断、语法/提取诊断和任务bootstrap区间。已通过原先真实执行的软件探针验证聚合；第一轮测试发现软件fixture的手工model_answers与fenced raw差一个换行，保留绑定断言并修正测试构造，实际模型结果未改动。分析器不执行生成代码，不替代作者evaluator。
+
+已获取论文指定vLLM0.11.0源码并与当前0.10.0比对：top-k/top-p和随机采样函数AST相同，当前非greedy、不请求processed-logprob路径的已审读差异不改变采样步骤；不宣称模型kernel或随机轨迹逐位一致。失败的raw源获取转用codeload成功，运行环境未升级。证据见ssd-author-comparison-20261019/sampler-audit.md及sampler-source-audit/。
+
+B/C进一步否定预设：作者card已报告pass@5提升，不能预设自蒸馏普遍丢失coverage。作者训练采样T1.6（不是示例config1.5）；原论文已经做更广温度扫描、support compression和context-dependent理论，两个matched温度或重述lock/fork都不构成新机制。带训练support mask的理想decoder null及证伪边界记于decoder-null-and-novelty.md，尚未启动新方法或宣称新gap。当前继续等真实对照证据，Harness目标未完成、未暂停。
+
 ## 当前运行：作者原生SSD对照基座（2026-10-18 23:23 UTC）
 
 已继续到LCB真实模型生成：基座Qwen3-4B-Instruct-2507，作者推荐T0.7/top-p0.8/top-k20，每题10 samples、131题、输出上限65536，使用SSD作者原生prompt/generate。runner PID65584，身份与分阶段日志在research-state/ssd-author-comparison-20261019/base-temperature-0.7/。4090实际初始化通过：模型7.6065GiB、可用KV13.23GiB/96352 tokens，配置context67072、单序列、BF16、TP1。实际正在生成，尚无此模型的正确率；同一runner随后调用隔离的作者evaluator。

@@ -1,0 +1,20 @@
+{
+  "dataset_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+  "file": "test6.jsonl",
+  "sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5",
+  "bytes": 134303240,
+  "tasks": 175,
+  "months": {
+    "2025-01": 44,
+    "2025-02": 51,
+    "2025-03": 68,
+    "2025-04": 12
+  },
+  "difficulty": {
+    "easy": 43,
+    "hard": 80,
+    "medium": 52
+  },
+  "note": "Raw JSON only; private encoded tests not unpickled. Other shard date ranges still need checking to establish complete author-filter equivalence.",
+  "retrieved_utc": "2026-10-18T23:09:20.905935+00:00"
+}

@@ -61,5 +61,5 @@ Files: plugin/version metadata, export manifest, maintenance logs, source instal
 - [x] Run runtime, Skill and package regression checks on GPU; record failures honestly and fix affected behavior.
 - [x] Obtain independent whole-change review; address important findings with regression checks.
 - [x] Bump only Work Harness version; rebuild inventories, update marketplace source, reinstall via Codex CLI and verify installed identity/version.
-- [ ] Publish source/evidence to authorized SPECTRUM branch preserving concurrent writes, or verified ZIP fallback if remote unavailable.
+- [x] Publish source/evidence to authorized SPECTRUM branch preserving concurrent writes, or verified ZIP fallback if remote unavailable.
 - [x] Adopt into live project only at quiet boundary after backup/CAS, then observe next real packet; otherwise retain concrete pending adoption instruction and report exact boundary.

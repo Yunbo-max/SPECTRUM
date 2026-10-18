@@ -365,7 +365,7 @@
   },
   {
     "path": "research-state/cd-loop-20261018/2026-10-18-work-harness-cd-loop.md",
-    "sha256": "5a6843da9d1d3674c826f462c587e419d4369859eab10c0809a0931327563b65"
+    "sha256": "a7be652482de9202297a6d0de7373cb1bf93c8615144d9b5603a66b4252f367d"
   },
   {
     "path": "research-state/cd-loop-20261018/baseline-runtime.log",
@@ -422,6 +422,10 @@
   {
     "path": "research-state/cd-loop-20261018/focused.log",
     "sha256": "89e72cc62f9f71a922cedb71a2a5900bb75d40fea29eae514dde7bc7df9e0edc"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/github-readback.json",
+    "sha256": "28c682502ffc81cd75bcf4a48ee275ae6e4d1930631f7f33b1fa0b6bfa6dfab3"
   },
   {
     "path": "research-state/cd-loop-20261018/live-readback.json",

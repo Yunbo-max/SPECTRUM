@@ -1,0 +1,9 @@
+{
+  "branch": "research/round2-harness-20261017",
+  "verified_remote_commit": "70aae0743e11750a746c8eb29a234f330b73d367",
+  "files": {
+    "research/round2-harness-20261017/reports/cd-math-code-loop-20261018.md": "e64f8caa47223ce67e274e76ea2834c42ded19ad024569a8e75d21caafe22f8f",
+    "research/round2-harness-20261017/runtime-fixes/cd-math-code-loop.patch": "a73c6c7d9b97d7d1dfe96e0dc257f2d6083b0d54e19b39119ea3cb156ace383c",
+    "research/round2-harness-20261017/research-state/cd-loop-20261018/live-readback.json": "09f1b536e89332c3ab657063c35f0b35919d78c5565e672d1d7abd654a7199a9"
+  }
+}

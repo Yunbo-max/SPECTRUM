@@ -72,6 +72,10 @@
     "sha256": "cbbff64a6f1ec6e198cd4c1456ac71744678d6a844b1fe74f862a0ad188a88cc"
   },
   {
+    "path": "reports/skill-evidence-reuse-20261018.md",
+    "sha256": "6b1c47e8929d6c739c490f806dce8c0052f0776ae73c15324e2b1b6fc451bc2c"
+  },
+  {
     "path": "reports/warning-continuation-20261018.md",
     "sha256": "fc337f54c4345c1490b5e5697af00219209e99efadd418d21542b68b2d5b0bb0"
   },
@@ -548,6 +552,10 @@
     "sha256": "e52d375c642eb6fd503d7173c9d99e2bd3c18ad2de8d57c2db6ba843f9b1fe95"
   },
   {
+    "path": "research-state/skill-evidence-reuse-install-20261018.json",
+    "sha256": "8a37f93137763e3e14e935331496ba8568fa66308d7863f2ff19f23a45441f6a"
+  },
+  {
     "path": "research-state/source-recovery-20261017.json",
     "sha256": "16569fdcef84acd3001391a35a30b4b5c450bc51e916f7d84824150fd4185905"
   },
@@ -586,5 +594,9 @@
   {
     "path": "runtime-fixes/gpu-first-intake.patch",
     "sha256": "6dd03568d0e062f49ea874c71abd0015f55f0f1356266b256bd01867ee2347e1"
+  },
+  {
+    "path": "runtime-fixes/skill-evidence-reuse.patch",
+    "sha256": "459f0dc48e9cb1a6e9c4b6f11fda49fca2b380dea9630072de998c779a03fd79"
   }
 ]

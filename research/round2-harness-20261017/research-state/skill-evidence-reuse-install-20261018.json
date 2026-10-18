@@ -1,0 +1,32 @@
+{
+  "source_revision": "2828edfb4ed64c5d05402769e4622d5ed4efcc63",
+  "plugin": {
+    "pluginId": "research-autopilot-harness@research-autopilot-six",
+    "name": "research-autopilot-harness",
+    "marketplaceName": "research-autopilot-six",
+    "version": "0.4.0-harness.5",
+    "installed": true,
+    "enabled": true,
+    "source": {
+      "source": "local",
+      "path": "/Users/yunbo/.codex/local-marketplaces/research-autopilot-six/plugins/research-autopilot-harness"
+    },
+    "marketplaceSource": {
+      "sourceType": "local",
+      "source": "/Users/yunbo/.codex/local-marketplaces/research-autopilot-six"
+    },
+    "installPolicy": "AVAILABLE",
+    "authPolicy": "ON_INSTALL"
+  },
+  "inventory_exact": true,
+  "node_check": {
+    "node_count": 84,
+    "region_count": 16,
+    "edge_count": 221,
+    "coverage_counts": {
+      "detailed": 84
+    },
+    "errors": [],
+    "scope": "source traceability and navigation; not execution or scientific validation"
+  }
+}

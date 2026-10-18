@@ -1,0 +1,9 @@
+[
+  "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "-u",
+  "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/isolate_upstream.py",
+  "--rootfs",
+  "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/evaluation-rootfs",
+  "--samples",
+  "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/official-qwen-greedy/mbpp/qwen2_chat_temp_0.0"
+]

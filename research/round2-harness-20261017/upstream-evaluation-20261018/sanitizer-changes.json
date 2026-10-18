@@ -1,0 +1,194 @@
+[
+  {
+    "task": "Mbpp_119",
+    "raw_chars": 6960,
+    "sanitized_chars": 6924,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_124",
+    "raw_chars": 474,
+    "sanitized_chars": 473,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_126",
+    "raw_chars": 442,
+    "sanitized_chars": 0,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_137",
+    "raw_chars": 434,
+    "sanitized_chars": 433,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_139",
+    "raw_chars": 279,
+    "sanitized_chars": 278,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_233",
+    "raw_chars": 394,
+    "sanitized_chars": 11,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_237",
+    "raw_chars": 549,
+    "sanitized_chars": 0,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_244",
+    "raw_chars": 483,
+    "sanitized_chars": 482,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_252",
+    "raw_chars": 356,
+    "sanitized_chars": 355,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_276",
+    "raw_chars": 180,
+    "sanitized_chars": 179,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_293",
+    "raw_chars": 282,
+    "sanitized_chars": 281,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_300",
+    "raw_chars": 790,
+    "sanitized_chars": 788,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_312",
+    "raw_chars": 333,
+    "sanitized_chars": 332,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_4",
+    "raw_chars": 230,
+    "sanitized_chars": 229,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_429",
+    "raw_chars": 165,
+    "sanitized_chars": 0,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_440",
+    "raw_chars": 291,
+    "sanitized_chars": 290,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_446",
+    "raw_chars": 6493,
+    "sanitized_chars": 0,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_590",
+    "raw_chars": 422,
+    "sanitized_chars": 421,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_596",
+    "raw_chars": 287,
+    "sanitized_chars": 286,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_607",
+    "raw_chars": 182,
+    "sanitized_chars": 181,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_626",
+    "raw_chars": 258,
+    "sanitized_chars": 257,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_635",
+    "raw_chars": 860,
+    "sanitized_chars": 287,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_731",
+    "raw_chars": 384,
+    "sanitized_chars": 383,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_737",
+    "raw_chars": 270,
+    "sanitized_chars": 269,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_742",
+    "raw_chars": 329,
+    "sanitized_chars": 328,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_759",
+    "raw_chars": 173,
+    "sanitized_chars": 172,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_765",
+    "raw_chars": 514,
+    "sanitized_chars": 313,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_794",
+    "raw_chars": 306,
+    "sanitized_chars": 305,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_803",
+    "raw_chars": 330,
+    "sanitized_chars": 329,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_82",
+    "raw_chars": 265,
+    "sanitized_chars": 264,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_85",
+    "raw_chars": 280,
+    "sanitized_chars": 279,
+    "whitespace_only": false
+  },
+  {
+    "task": "Mbpp_98",
+    "raw_chars": 327,
+    "sanitized_chars": 326,
+    "whitespace_only": false
+  }
+]

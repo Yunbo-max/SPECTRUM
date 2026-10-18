@@ -1,0 +1,1 @@
+{"uid": 61043, "host_files_absent": true, "network_denied": true, "runtime_readonly": true, "multiprocessing_works": true, "evaluator": "/upstream/evalplus/evaluate.py"}

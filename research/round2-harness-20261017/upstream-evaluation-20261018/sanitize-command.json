@@ -1,0 +1,8 @@
+[
+  "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "-u",
+  "-m",
+  "evalplus.sanitize",
+  "--samples",
+  "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/official-qwen-greedy/mbpp/qwen2_chat_temp_0.0"
+]

@@ -1,0 +1,41 @@
+--- upstream/model.py
++++ qwen-execution/model.py
+@@ -70,7 +70,7 @@
+             "dtype": self.dtype,
+             "trust_remote_code": self.trust_remote_code,
+             "enforce_eager": True,
+-            "gpu_memory_utilization": 0.98
++            "gpu_memory_utilization": 0.80
+         }
+         print(kwargs)
+         self.llm = LLM(model=name, max_model_len=1536, **kwargs)
+@@ -91,6 +91,14 @@
+             use_tqdm=False,
+         )
+ 
++        # Observation only: preserve engine text/tokens before upstream postprocessing.
++        import json
++        if os.environ.get("SPECTRUM_GENERATION_LOG"):
++            with open(os.environ["SPECTRUM_GENERATION_LOG"], "a") as audit:
++                for item in vllm_outputs:
++                    audit.write(json.dumps({"prompt": item.prompt, "prompt_token_ids": item.prompt_token_ids,
++                        "outputs": [{"text": o.text, "token_ids": list(o.token_ids), "finish_reason": o.finish_reason,
++                                     "stop_reason": o.stop_reason} for o in item.outputs]}) + "\n")
+         gen_strs = [x.outputs[0].text.replace("\t", "    ") for x in vllm_outputs]
+         return gen_strs
+ 
+@@ -124,6 +132,14 @@
+             use_tqdm=False,
+         )
+ 
++        # Observation only: preserve engine text/tokens before upstream postprocessing.
++        import json
++        if os.environ.get("SPECTRUM_GENERATION_LOG"):
++            with open(os.environ["SPECTRUM_GENERATION_LOG"], "a") as audit:
++                for item in vllm_outputs:
++                    audit.write(json.dumps({"prompt": item.prompt, "prompt_token_ids": item.prompt_token_ids,
++                        "outputs": [{"text": o.text, "token_ids": list(o.token_ids), "finish_reason": o.finish_reason,
++                                     "stop_reason": o.stop_reason} for o in item.outputs]}) + "\n")
+         gen_strs = [x.outputs[0].text.replace("\t", "    ") for x in vllm_outputs]
+         return gen_strs
+ 

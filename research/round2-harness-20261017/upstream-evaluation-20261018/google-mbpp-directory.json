@@ -1,0 +1,50 @@
+[
+  {
+    "name": "README.md",
+    "path": "mbpp/README.md",
+    "sha": "719199c2d95ba6683d6ce5c716f3db35eaeb2a55",
+    "size": 1422,
+    "url": "https://api.github.com/repos/google-research/google-research/contents/mbpp/README.md?ref=master",
+    "html_url": "https://github.com/google-research/google-research/blob/master/mbpp/README.md",
+    "git_url": "https://api.github.com/repos/google-research/google-research/git/blobs/719199c2d95ba6683d6ce5c716f3db35eaeb2a55",
+    "download_url": "https://raw.githubusercontent.com/google-research/google-research/master/mbpp/README.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/google-research/google-research/contents/mbpp/README.md?ref=master",
+      "git": "https://api.github.com/repos/google-research/google-research/git/blobs/719199c2d95ba6683d6ce5c716f3db35eaeb2a55",
+      "html": "https://github.com/google-research/google-research/blob/master/mbpp/README.md"
+    }
+  },
+  {
+    "name": "mbpp.jsonl",
+    "path": "mbpp/mbpp.jsonl",
+    "sha": "96e2dc2f7dd95b7b87b38dc46e42cbed444251bb",
+    "size": 563743,
+    "url": "https://api.github.com/repos/google-research/google-research/contents/mbpp/mbpp.jsonl?ref=master",
+    "html_url": "https://github.com/google-research/google-research/blob/master/mbpp/mbpp.jsonl",
+    "git_url": "https://api.github.com/repos/google-research/google-research/git/blobs/96e2dc2f7dd95b7b87b38dc46e42cbed444251bb",
+    "download_url": "https://raw.githubusercontent.com/google-research/google-research/master/mbpp/mbpp.jsonl",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/google-research/google-research/contents/mbpp/mbpp.jsonl?ref=master",
+      "git": "https://api.github.com/repos/google-research/google-research/git/blobs/96e2dc2f7dd95b7b87b38dc46e42cbed444251bb",
+      "html": "https://github.com/google-research/google-research/blob/master/mbpp/mbpp.jsonl"
+    }
+  },
+  {
+    "name": "sanitized-mbpp.json",
+    "path": "mbpp/sanitized-mbpp.json",
+    "sha": "a999d25df7e489e4c183cadfa5c0ecf557a702b6",
+    "size": 255053,
+    "url": "https://api.github.com/repos/google-research/google-research/contents/mbpp/sanitized-mbpp.json?ref=master",
+    "html_url": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json",
+    "git_url": "https://api.github.com/repos/google-research/google-research/git/blobs/a999d25df7e489e4c183cadfa5c0ecf557a702b6",
+    "download_url": "https://raw.githubusercontent.com/google-research/google-research/master/mbpp/sanitized-mbpp.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/google-research/google-research/contents/mbpp/sanitized-mbpp.json?ref=master",
+      "git": "https://api.github.com/repos/google-research/google-research/git/blobs/a999d25df7e489e4c183cadfa5c0ecf557a702b6",
+      "html": "https://github.com/google-research/google-research/blob/master/mbpp/sanitized-mbpp.json"
+    }
+  }
+]

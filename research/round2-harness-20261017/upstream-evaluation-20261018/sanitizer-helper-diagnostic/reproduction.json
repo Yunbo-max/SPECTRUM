@@ -1,0 +1,18 @@
+{
+  "task": "Mbpp/635",
+  "raw_functions": [
+    "heap_sort",
+    "heapify"
+  ],
+  "upstream_sanitized_functions": [
+    "heap_sort"
+  ],
+  "diagnostic_functions": [
+    "heap_sort",
+    "heapify"
+  ],
+  "cause": "Upstream function-node filtering drops all functions lacking a return statement before dependency closure; heapify intentionally mutates the array and returns None.",
+  "scope": "Static sanitizer reproduction; official raw result passes base and extended tests; sanitized result still pending.",
+  "upstream_source_sha256": "0a93a25f22bf3f46ecedd62a9bdd5414cc54ca069dab188267201924fbb0a0a7",
+  "diagnostic_source_sha256": "69523fce969dce3a3cb65d95c6d9eb3da37f6856fe39c26832f8ade17e107bfe"
+}

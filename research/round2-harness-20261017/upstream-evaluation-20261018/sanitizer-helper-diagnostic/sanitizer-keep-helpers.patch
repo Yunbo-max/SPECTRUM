@@ -1,0 +1,11 @@
+--- upstream/sanitize.py
++++ diagnostic/sanitize_keep_helpers.py
+@@ -135,7 +135,7 @@
+             name = get_definition_name(child)
+             if not (
+                 name in function_names or name in variable_names or name in class_names
+-            ) and has_return_statement(child):
++            ):
+                 definition_nodes.append((name, child))
+                 function_names.add(get_definition_name(child))
+         elif (

@@ -1,0 +1,90 @@
+{
+  "tasks": 378,
+  "samples_per_task": 1,
+  "protocol": "Qwen-author greedy generation and pinned EvalPlus899b2b3",
+  "endpoint_notes": "plus requires BOTH base and extended tests to pass; statuses come from unmodified upstream evaluator",
+  "uncertainty_notes": "Task bootstrap only; one greedy sample per task, not training/generation-seed variability or untouched confirmation",
+  "sanitizer_changed_files": 32,
+  "raw_syntax_valid": 377,
+  "finish_reasons": {
+    "stop": 376,
+    "length": 2
+  },
+  "imports": {
+    "heapq": 1,
+    "math": 15,
+    "cmath": 3,
+    "re": 5,
+    "sys": 1
+  },
+  "endpoints": {
+    "raw": {
+      "base_passed": 267,
+      "base_pass_at_1": 0.7063492063492064,
+      "base_task_bootstrap_ci95": [
+        0.6613756613756614,
+        0.7513227513227513
+      ],
+      "plus_passed": 230,
+      "plus_pass_at_1": 0.6084656084656085,
+      "plus_task_bootstrap_ci95": [
+        0.5608465608465608,
+        0.6587301587301587
+      ],
+      "base_pass_plus_fail": 37,
+      "base_statuses": {
+        "fail": 111,
+        "pass": 267
+      },
+      "extended_statuses": {
+        "fail": 145,
+        "pass": 233
+      },
+      "length_capped_base_failures": [
+        "Mbpp/119",
+        "Mbpp/446"
+      ],
+      "length_capped_plus_failures": [
+        "Mbpp/119",
+        "Mbpp/446"
+      ]
+    },
+    "sanitized": {
+      "base_passed": 266,
+      "base_pass_at_1": 0.7037037037037037,
+      "base_task_bootstrap_ci95": [
+        0.6587301587301587,
+        0.7486772486772487
+      ],
+      "plus_passed": 229,
+      "plus_pass_at_1": 0.6058201058201058,
+      "plus_task_bootstrap_ci95": [
+        0.5555555555555556,
+        0.6534391534391535
+      ],
+      "base_pass_plus_fail": 37,
+      "base_statuses": {
+        "fail": 112,
+        "pass": 266
+      },
+      "extended_statuses": {
+        "fail": 145,
+        "pass": 233
+      },
+      "length_capped_base_failures": [
+        "Mbpp/119",
+        "Mbpp/446"
+      ],
+      "length_capped_plus_failures": [
+        "Mbpp/119",
+        "Mbpp/446"
+      ]
+    }
+  },
+  "sanitization_outcome_changes": {
+    "base_status": [
+      "Mbpp/635"
+    ],
+    "plus_status": []
+  }
+}

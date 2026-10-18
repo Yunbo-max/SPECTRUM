@@ -1,0 +1,30 @@
+{
+  "old_tasks": 500,
+  "upstream_tasks": 378,
+  "overlapping_task_ids": 224,
+  "identical_prompt_bytes_on_overlap": 0,
+  "upstream_base_test_counts": {
+    "3": 349,
+    "5": 4,
+    "6": 2,
+    "4": 22,
+    "7": 1
+  },
+  "upstream_total_base_inputs": 1174,
+  "upstream_total_extended_inputs": 39841,
+  "upstream_entry_points": 373,
+  "old_sampling": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "max_new_tokens": 512,
+    "samples": 16
+  },
+  "qwen_author_sampling": {
+    "temperature": 0,
+    "top_p": 1,
+    "requested_max_tokens": 2048,
+    "engine_max_model_len": 1536,
+    "samples": 1
+  },
+  "reuse_as_official_reproduction": false
+}

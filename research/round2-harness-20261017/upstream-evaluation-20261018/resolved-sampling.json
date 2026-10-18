@@ -1,0 +1,21 @@
+{
+  "temperature": 0,
+  "top_p": 1.0,
+  "top_k": 0,
+  "repetition_penalty": 1.0,
+  "frequency_penalty": 0.0,
+  "presence_penalty": 0.0,
+  "max_tokens": 2048,
+  "stop": [
+    "<|endoftext|>",
+    "<|endofmask|>",
+    "</s>",
+    "\nif __name__",
+    "\ndef main(",
+    "\nprint(",
+    "\n#",
+    "\n```"
+  ],
+  "max_model_len": 1536,
+  "source_note": "Instantiated upstream SamplingParams arguments with installed vLLM0.10.0. update_from_generation_config in sampling_params.py only merges EOS IDs, not repetition penalty."
+}

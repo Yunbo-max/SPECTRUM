@@ -1,0 +1,14 @@
+[
+  {
+    "model": "apple/SimpleSD-4B-instruct",
+    "endpoint": "https://hf-mirror.com",
+    "observed_utc": "2026-10-18T22:49:53.936901+00:00",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "endpoint": "https://hf-mirror.com",
+    "observed_utc": "2026-10-18T22:49:54.250795+00:00",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  }
+]

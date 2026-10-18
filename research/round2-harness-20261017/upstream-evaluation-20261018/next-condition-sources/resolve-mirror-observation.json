@@ -1,0 +1,12 @@
+[
+  {
+    "model": "apple/SimpleSD-4B-instruct",
+    "url": "https://hf-mirror.com/apple/SimpleSD-4B-instruct/resolve/main/config.json",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  },
+  {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "url": "https://hf-mirror.com/Qwen/Qwen3-4B-Instruct-2507/resolve/main/config.json",
+    "error": "HTTPError: HTTP Error 403: Forbidden"
+  }
+]

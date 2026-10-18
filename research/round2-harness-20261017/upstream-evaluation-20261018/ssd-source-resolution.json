@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/apple-aiml-research/ml-ssd",
+  "commit": "2637d2021f1bc523385b48a1f88ea9aa4812b0a9",
+  "retrieval": "codeload archive after git clone TLS failure",
+  "archive_sha256": "7ca58cb85ef1ef41a2fbacb85d222e12eaf181c1f86b37249ec70a841858450d",
+  "directory": "/root/rivermind-data/spectrum-harness/project/upstreams/ml-ssd-2637d2021f1bc523385b48a1f88ea9aa4812b0a9",
+  "files": {
+    "evaluation/eval.py": "260cbf97ea715321527800187b678e063cec517d908c4b48998e7030a272353d",
+    "evaluation/benchmark.py": "20487523b0f5831590f9ed00b2105443feac2635ccdb6a161e6af39ec7ea31b6",
+    "evaluation/livecodebench_utils.py": "44a6c24188c789af5f61cdc7be04daf8b0ce981309ac1ee510dfafc0fb703ecf",
+    "data_generation/generate.py": "65d656b6c16394698748aa1cac9a3c84c7a960c2fdde084fd9f1e84636aa6a6e",
+    "data_generation/config.yaml": "5031a93d3ba2b1da8677b8cd15cc59cf442bd92cee6fb7dad734b1a89f1ee5b4",
+    "pyproject.toml": "2e98c48511d5cd20f73f7efca287f65c220200e2a36be232f6f5e17914200587",
+    "README.md": "d0813d7c903c9162e1931c83c14d1374f88d769ff18a4c03bf75dc1722c32cc7"
+  }
+}

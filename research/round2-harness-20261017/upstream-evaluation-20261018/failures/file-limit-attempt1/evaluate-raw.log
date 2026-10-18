@@ -1,0 +1,17 @@
+Computing expected output...
+<string>:9: SyntaxWarning: invalid escape sequence '\w'
+<string>:9: SyntaxWarning: invalid escape sequence '\w'
+<string>:8: SyntaxWarning: invalid escape sequence '\.'
+<string>:8: SyntaxWarning: invalid escape sequence '\.'
+Expected outputs computed in 48.96s
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/isolate_upstream.py", line 134, in <module>
+  File "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/isolate_upstream.py", line 132, in main
+  File "/upstream/evalplus/evaluate.py", line 357, in main
+    evaluate(args)
+  File "/upstream/evalplus/evaluate.py", line 160, in evaluate
+    expected_output = get_groundtruth(
+                      ^^^^^^^^^^^^^^^^
+  File "/upstream/evalplus/evaluate.py", line 73, in get_groundtruth
+    pickle.dump(expected_output, f)
+OSError: [Errno 27] File too large

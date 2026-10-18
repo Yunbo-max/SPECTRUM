@@ -1,0 +1,1164 @@
+INFO 10-18 22:44:51 [__init__.py:235] Automatically detected platform cuda.
+Namespace(model_type='qwen2', model_path='/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a', model_size='chat', bs=1, temperature=0.0, dataset='mbpp', root='/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/official-qwen-greedy', n_samples=1, resume=True, output=None, tensor_parallel_size=1, contract_type='none', greedy=True, id_range=None)
+Loading model from /root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Running model=qwen2, size=chat
+	Load from `/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a`
+Initializing a decoder model: /root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a ...
+{'tensor_parallel_size': 1, 'dtype': 'bfloat16', 'trust_remote_code': False, 'enforce_eager': True, 'gpu_memory_utilization': 0.8}
+INFO 10-18 22:45:00 [config.py:1604] Using max model len 1536
+INFO 10-18 22:45:01 [config.py:2434] Chunked prefill is enabled with max_num_batched_tokens=8192.
+INFO 10-18 22:45:02 [core.py:572] Waiting for init message from front-end.
+INFO 10-18 22:45:02 [core.py:71] Initializing a V1 LLM engine (v0.10.0) with config: model='/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a', speculative_config=None, tokenizer='/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config={}, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=1536, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_backend=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=0, served_model_name=/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":[],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"use_cudagraph":true,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"max_capture_size":0,"local_cache_dir":null}
+INFO 10-18 22:45:15 [parallel_state.py:1102] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+WARNING 10-18 22:45:15 [topk_topp_sampler.py:59] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 10-18 22:45:15 [gpu_model_runner.py:1843] Starting to load model /root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a...
+INFO 10-18 22:45:16 [gpu_model_runner.py:1875] Loading model from scratch...
+INFO 10-18 22:45:16 [cuda.py:290] Using Flash Attention backend on V1 engine.
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.45it/s]
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00,  1.45it/s]
+
+INFO 10-18 22:45:17 [default_loader.py:262] Loading weights took 0.92 seconds
+INFO 10-18 22:45:17 [gpu_model_runner.py:1892] Model loading took 2.8876 GiB and 1.072022 seconds
+INFO 10-18 22:45:19 [gpu_worker.py:255] Available KV cache memory: 14.50 GiB
+INFO 10-18 22:45:19 [kv_cache_utils.py:833] GPU KV cache size: 542,992 tokens
+INFO 10-18 22:45:19 [kv_cache_utils.py:837] Maximum concurrency for 1,536 tokens per request: 353.51x
+INFO 10-18 22:45:19 [core.py:193] init engine (profile, create kv cache, warmup model) took 1.52 seconds
+Working dir: /root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/official-qwen-greedy/mbpp/qwen2_chat_temp_0.0
+Model cls: <class 'model.ChatML'>
+EOS tokens: ['<|endoftext|>', '<|endofmask|>', '</s>', '\nif __name__', '\ndef main(', '\nprint(', '\n#', '\n```']
+Codegen: Mbpp_2 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_3 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_4 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_6 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_7 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_8 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_9 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_11 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_12 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_14 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_16 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_17 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_18 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_19 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_20 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_56 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_57 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_58 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_59 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_61 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_62 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_63 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_64 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_65 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_66 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_67 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_68 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_69 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_70 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_71 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_72 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_74 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_75 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_77 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_79 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_80 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_82 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_84 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_85 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_86 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_87 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_88 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_89 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_90 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_91 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_92 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_93 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_94 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_95 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_96 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_97 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_98 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_99 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_100 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_101 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_102 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_103 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_104 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_105 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_106 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_108 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_109 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_111 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_113 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_116 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_118 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_119 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_120 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_123 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_124 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_125 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_126 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_127 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_128 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_129 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_130 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_131 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_132 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_133 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_135 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_137 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_138 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_139 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_140 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_141 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_142 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_145 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_160 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_161 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_162 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_165 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_166 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_167 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_168 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_170 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_171 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_172 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_222 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_223 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_224 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_226 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_227 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_230 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_232 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_233 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_234 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_235 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_237 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_238 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_239 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_240 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_242 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_244 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_245 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_247 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_250 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_251 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_252 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_253 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_255 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_256 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_257 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_259 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_260 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_261 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_262 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_264 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_265 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_266 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_267 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_268 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_269 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_270 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_271 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_272 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_273 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_274 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_276 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_277 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_278 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_279 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_280 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_281 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_282 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_283 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_284 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_285 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_286 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_287 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_290 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_292 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_293 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_294 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_296 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_297 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_299 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_300 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_301 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_305 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_306 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_308 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_309 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_310 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_311 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_312 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_388 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_389 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_390 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_391 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_392 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_394 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_395 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_397 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_398 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_404 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_405 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_406 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_409 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_410 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_412 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_413 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_414 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_415 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_418 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_419 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_420 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_421 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_422 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_424 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_425 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_426 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_427 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_428 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_429 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_430 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_432 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_433 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_435 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_436 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_437 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_439 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_440 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_441 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_445 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_446 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_447 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_448 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_450 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_451 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_453 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_454 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_455 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_456 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_457 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_458 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_459 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_460 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_462 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_463 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_465 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_468 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_470 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_471 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_472 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_473 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_474 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_475 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_476 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_477 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_478 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_479 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_554 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_555 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_556 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_557 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_558 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_559 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_560 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_562 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_563 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_564 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_565 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_566 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_567 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_568 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_569 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_572 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_573 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_576 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_577 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_578 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_579 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_580 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_581 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_583 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_585 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_586 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_587 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_588 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_589 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_590 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_591 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_592 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_593 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_594 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_596 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_597 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_598 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_599 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_600 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_602 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_603 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_604 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_605 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_606 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_607 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_608 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_610 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_611 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_612 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_614 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_615 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_616 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_618 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_619 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_620 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_622 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_623 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_624 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_626 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_628 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_629 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_630 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_631 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_632 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_633 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_635 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_637 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_638 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_639 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_641 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_643 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_644 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_720 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_721 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_722 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_723 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_724 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_725 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_726 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_728 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_730 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_731 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_732 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_733 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_734 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_735 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_736 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_737 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_739 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_740 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_741 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_742 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_743 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_744 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_745 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_748 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_749 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_750 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_751 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_752 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_753 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_754 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_755 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_757 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_758 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_759 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_760 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_762 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_763 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_764 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_765 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_766 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_767 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_769 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_770 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_771 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_772 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_773 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_775 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_777 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_778 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_780 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_781 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_782 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_784 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_785 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_786 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_787 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_788 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_790 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_791 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_792 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_793 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_794 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_796 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_797 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_798 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_799 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_800 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_801 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_803 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_804 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_805 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_806 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_807 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_808 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+Codegen: Mbpp_809 @ 
+/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.
+5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+mbpp •100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 378/378 • 0:06:26

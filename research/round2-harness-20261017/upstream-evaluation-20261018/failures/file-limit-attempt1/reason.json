@@ -1,0 +1,12 @@
+{
+  "cause": "RLIMIT_FSIZE256MiB prevented trusted EvalPlus groundtruth cache write",
+  "remedy": "Raise wrapper file size limit to4GiB; preserve evaluator semantics and completed generation/sanitization",
+  "partial_caches": [
+    {
+      "file": "ee43ecabebf20deef4bb776a405ac5b1.pkl",
+      "bytes": 268435456,
+      "sha256": "ddf5ce44fcfe53219d7410731ae611233557e7449ff84cca4ea555c2778622b6"
+    }
+  ],
+  "utc": "2026-10-18T22:53:26.082475+00:00"
+}

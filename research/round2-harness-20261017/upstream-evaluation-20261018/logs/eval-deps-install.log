@@ -1,0 +1,13 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting tree-sitter==0.21.3
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ec/87/0c3593552cb0d09ab6271d37fc0e6a9476919d2a975661d709d4b3289fc7/tree_sitter-0.21.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (502 kB)
+Collecting tree-sitter-languages==1.10.2
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/f2/e6/eddc76ad899d77adcb5fca6cdf651eb1d33b4a799456bf303540f6cf8204/tree_sitter_languages-1.10.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (8.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.4/8.4 MB 11.1 MB/s eta 0:00:00
+Installing collected packages: tree-sitter, tree-sitter-languages
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+evalplus 0.3.1 requires tree-sitter>=0.22.0, but you have tree-sitter 0.21.3 which is incompatible.
+Successfully installed tree-sitter-0.21.3 tree-sitter-languages-1.10.2
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip

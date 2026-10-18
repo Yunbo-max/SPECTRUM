@@ -1,0 +1,9 @@
+{
+  "evalplus_path": "/root/rivermind-data/spectrum-harness/project/upstreams/evalplus/evalplus/__init__.py",
+  "sanitize_path": "/root/rivermind-data/spectrum-harness/project/upstreams/evalplus/evalplus/sanitize.py",
+  "evaluate_path": "/root/rivermind-data/spectrum-harness/project/upstreams/evalplus/evalplus/evaluate.py",
+  "gitlink": "899b2b31bbe8d6e12337b865a8aa03fcd57c1121",
+  "tasks": 378,
+  "dataset_path": "/root/.cache/evalplus/MbppPlus-v0.2.0.jsonl",
+  "dataset_sha256": "b54e762755248ca411b523c917fa9f93c07b5ff2966bf60b3917b853926a3dad"
+}

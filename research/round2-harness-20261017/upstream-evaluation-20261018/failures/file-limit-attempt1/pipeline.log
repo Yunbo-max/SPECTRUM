@@ -1,0 +1,14 @@
+Started generate 60579
+{"stage": "generate", "returncode": 0, "elapsed_seconds": 421.0833086881321, "finished_utc": "2026-10-18T22:51:48.149490+00:00"}
+Started sanitize 61035
+{"stage": "sanitize", "returncode": 0, "elapsed_seconds": 2.6548799371812493, "finished_utc": "2026-10-18T22:51:50.805023+00:00"}
+Started evaluate-raw 61037
+{"stage": "evaluate-raw", "returncode": 1, "elapsed_seconds": 51.41037512710318, "finished_utc": "2026-10-18T22:52:42.216171+00:00"}
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/run_official_pipeline.py", line 52, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/root/rivermind-data/spectrum-harness/project/research-state/upstream-evaluation-20261018/run_official_pipeline.py", line 49, in main
+    if code:raise RuntimeError('Stage failed: '+stage)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Stage failed: evaluate-raw

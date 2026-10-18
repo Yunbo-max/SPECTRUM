@@ -1,0 +1,17 @@
+# MBPP upstream source inspection — no official evaluation completed
+
+Latest update: the title describes the initial historical inspection. Qwen-author generation and both pinned EvalPlus evaluations are now complete; see report.md and analysis.json. A separate sanitizer helper-retention repair was reproduced through the same evaluator. Research continues with the author SSD/base pair; weights are being fetched from ModelScope with captured per-file revisions/SHA256 after direct HF and hf-mirror access failed. No earlier pause remains in force.
+
+## Resume and resolved execution (2026-10-18)
+
+The subsequent explicit user resume supersedes the historical paused state below. On hn01 the embedded Qwen EvalPlus directory was empty and the installed distribution was 0.3.1. The embedded path now links to the exact 899b2b3 checkout, with that checkout also first on PYTHONPATH for module commands. Actual imports of data, sanitize and evaluate were verified and recorded in `resolved-implementation.json`; distribution metadata is not used as the source identity. Compatible tree-sitter 0.21.3 and tree-sitter-languages 1.10.2 are isolated under eval-deps. The upstream sanitizer was executed successfully on a software example, which is not model performance.
+
+Qwen's MBPP commands are being run sequentially on the GPU. vLLM0.10.0 and Transformers4.53.3 were installed through the Tsinghua mirror, retaining Torch2.7.1. The only model.py edits reduce GPU allocation .98→.80 and log raw engine outputs before unchanged upstream postprocessing; the complete diff is retained. The pinned MBPP+ loader returned378 tasks,1,174 base inputs and39,841 extended inputs. Only224 task IDs overlap the historical500 and none of those prompt bytes match. New generation is necessary. `protocol-compatibility.json` and the living handbook record the boundary; no official result yet.
+
+- Google MBPP author source: https://github.com/google-research/google-research/tree/master/mbpp . Inspected directory contains README.md, mbpp.jsonl, sanitized-mbpp.json. This provides data and the original protocol, not a runnable evaluator in that directory.
+- Qwen model-author scripts: https://github.com/QwenLM/Qwen3-Coder/tree/33bc6aabd7791ad7b32f7e92104f11f2359ba890/qwencoder-eval/instruct/eval_plus . Local source: upstreams/Qwen3-Coder. README describes Qwen2.5-Coder evaluation; test.sh uses EvalPlus generation, sanitization and evaluation for MBPP and HumanEval.
+- EvalPlus: https://github.com/evalplus/evalplus/tree/899b2b31bbe8d6e12337b865a8aa03fcd57c1121 . Local source: upstreams/evalplus, checked out at the Qwen embedded gitlink revision. Qwen requirements also names evalplus==0.2.1 (tag ae747121ca8e4bf52b432f75da15cf6ab8dee89a); resolve and report the actual imported implementation before executing, rather than silently mixing these versions.
+
+The old custom run has 500 tasks × 16 outputs and project-specific generation and scoring. It is historical diagnostic evidence, not an official Qwen/EvalPlus reproduction. Determine compatibility with upstream task IDs, prompts and generation settings before reusing any output. Otherwise generate afresh. Preserve original results separately from upstream protocol results.
+
+Current state: user pause; upstream code downloaded/read, no new official generation or evaluation launched. Select the applicable upstream protocol and adapt only necessary GPU/dependency execution settings after authorized resumption.

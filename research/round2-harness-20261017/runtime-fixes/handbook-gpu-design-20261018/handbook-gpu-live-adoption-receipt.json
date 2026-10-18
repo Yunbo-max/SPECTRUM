@@ -1,0 +1,14 @@
+{
+  "kind": "handbook-gpu-design-live-adoption",
+  "version": "0.4.0-harness.13",
+  "source_revision": "a192921a695f9fabfd11060880587dd65aed1bfd",
+  "skill_digest": "fa932d66078a2b88190678d3ac2dc77b103b3bc37290a8c06ea2656c7e012162",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/handbook-gpu-design-000410.json",
+    "sha256": "24db52ee2eaefa94b8438f9d62b9a3d964cda4fcdb84365834936ccd2f9320cd"
+  },
+  "revision": 410,
+  "phase": "paused",
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true
+}

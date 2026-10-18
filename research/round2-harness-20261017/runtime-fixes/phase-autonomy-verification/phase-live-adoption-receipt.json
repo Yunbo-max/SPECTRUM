@@ -1,0 +1,24 @@
+{
+  "kind": "phase-autonomy-live-adoption",
+  "version": "0.4.0-harness.8",
+  "source_revision": "ded0afcbb485bcd4abd5334a6e4b9bf4b8d14db9",
+  "skill_digest": "09b311474ca0b141a5df1d28b76a3a7cde9a195780ffcfd4624e2f9de218a729",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/phase-autonomy-000248.json",
+    "sha256": "072ecadbe00d80947ae4b1f9cd8f920a9ae2fb55f3284449980a1a1221f9b8d1"
+  },
+  "revision": 248,
+  "phase": "paused",
+  "stage": "decide",
+  "milestone_ids": [
+    "B02",
+    "B03",
+    "B04",
+    "B05"
+  ],
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true,
+  "aggregate_round_cap": null,
+  "aggregate_seconds_cap": null,
+  "planner_transport_seconds": 86400
+}

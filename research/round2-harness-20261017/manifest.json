@@ -1,7 +1,7 @@
 [
   {
     "path": "README.md",
-    "sha256": "770e44b8c1ba04b882474e2512bb9ec624a7a67a76e2a8f2a23a13ef7d1236da"
+    "sha256": "abbe1ab1de756ddfef46dd28599e390af39c21c3baa9c65c048aaefaf0bb011e"
   },
   {
     "path": "operations/README.md",
@@ -150,6 +150,10 @@
   {
     "path": "reports/native-stage-source-repair-20261018.md",
     "sha256": "71e01eb0d762a2875e7fc7e283dc95b63cfe20ffebf9e3b4974d036c60f49fb5"
+  },
+  {
+    "path": "reports/phase-autonomy-20261018.md",
+    "sha256": "48fd4173d3c0ee314fee0200e38cdbad29c50abe8854fc77f8dde4c5ccdc71fe"
   },
   {
     "path": "reports/progress-snapshot-20261017.json",
@@ -760,12 +764,20 @@
     "sha256": "d6f4fbab5ddd4e496b75cbeca76b161a0607c60c554171784b880b02e816f0d1"
   },
   {
+    "path": "research-state/node-autonomy-owner-instruction-20261018.md",
+    "sha256": "08c16c2ada4174b3126fadc8184bd2534406b09622c0fba8c08c228047c5ba52"
+  },
+  {
     "path": "research-state/objective-autonomous-20261017.md",
     "sha256": "9cd8cd9959d25731191b869b57715a3293e1f92fd0160c68ef43e154d9992c03"
   },
   {
     "path": "research-state/objective.md",
     "sha256": "676711b6c480c77e1e84f7f9487d6aa8494f230c8f010e4a9eea46c3efd46dd2"
+  },
+  {
+    "path": "research-state/phase-autonomy-resume-authority-20261018.md",
+    "sha256": "775eb81a37170ce40d7d2b5a9f5ce7ebe054e3edc11d03a578f00df0cd5f2935"
   },
   {
     "path": "research-state/receipt-fix-adoption-20261018.json",
@@ -826,6 +838,70 @@
   {
     "path": "runtime-fixes/native-stages-deferred-scoring.patch",
     "sha256": "1dc465f71a91bbebf038826496037568e29344dc4a2652704a95fa3a3a66bb0e"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/REVIEW.md",
+    "sha256": "2b03ed663bcc466d0902711751a56c00cb5184edef45552f4d683282fa02aecf"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/build.log",
+    "sha256": "9e5cc24a1d10e0d15f29f5bf187fcbe61b2cad6329de329086ce58a14452c914"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/installed-enabled.json",
+    "sha256": "e367d29d4fa56e180cf45580ac6ac0969c7e59fe5c02945a73fbe8914dda085e"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/nodes.log",
+    "sha256": "b20399f1b8c3393d9b579d20c7e575c719b32727d3c3cc1c3c1ea010a66efed0"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/parent-admission.log",
+    "sha256": "3dff6f1df124c6a8782c64208c6c5f5d329c0a2a8d04d4c15cdeeab33b5f27f4"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/phase-and-admission.log",
+    "sha256": "ab4febd3914f1320bdd13cf9533bb93571baa40163b9decc2c5dcc162efbf08e"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/phase-autonomy-000248.json",
+    "sha256": "072ecadbe00d80947ae4b1f9cd8f920a9ae2fb55f3284449980a1a1221f9b8d1"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/phase-install-receipt.json",
+    "sha256": "5e4069ee9740e877034044a262198c2844620ae4bd2516f1f325922f5fcd1282"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/phase-live-adoption-receipt.json",
+    "sha256": "46660d73f4f68885703214955dafbc4e1962e4f4a7c5db6e725f2b2caab9caf5"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/phase-live-worker-receipt.json",
+    "sha256": "3ae115c1f50f49ecbea782679b33d6f49370b0c32076181b32fe94c455691ff9"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/phase-runtime-install-receipt.json",
+    "sha256": "bbf5883b0593c86a2641b8ab938002b85133dfd072585fa24119ea09765ecf00"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/plugins.log",
+    "sha256": "d26d0a13356ecc2d3ed4213e063db41fcd260f713d41e0f1e382d3f034867702"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/runtime-final.log",
+    "sha256": "801bc424bcff848d37ff64f0bb604823d7bcd94d8e5e6974f9076652d4c0c8b7"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/runtime-initial.log",
+    "sha256": "339090c5748b570861c84ea9233abf2f28492a2e034d2dd41984e34bba32cee1"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy-verification/wheel.log",
+    "sha256": "51c1c033cc93fe35be0495fd9b762fcfb604239c51b6b092116b85a87db25c92"
+  },
+  {
+    "path": "runtime-fixes/phase-autonomy.patch",
+    "sha256": "5fdf6bba0c4413bd5abf4960d0b4eee51ec105f11ad592f5f8d88dc2505b7c2c"
   },
   {
     "path": "runtime-fixes/skill-evidence-reuse.patch",

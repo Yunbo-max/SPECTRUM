@@ -1,0 +1,14 @@
+{
+  "main": {
+    "pluginId": "research-autopilot-harness@research-autopilot-six",
+    "version": "0.4.0-harness.8",
+    "installed": true,
+    "enabled": true
+  },
+  "private": {
+    "pluginId": "research-autopilot-harness@research-autopilot-six",
+    "version": "0.4.0-harness.8",
+    "installed": true,
+    "enabled": true
+  }
+}

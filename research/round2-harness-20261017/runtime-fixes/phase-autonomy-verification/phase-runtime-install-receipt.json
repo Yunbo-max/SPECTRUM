@@ -1,0 +1,9 @@
+{
+  "kind": "phase-runtime-install-parity",
+  "source_revision": "ded0afcbb485bcd4abd5334a6e4b9bf4b8d14db9",
+  "verified_python_modules": 34,
+  "installed_root": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/venv/lib/python3.14/site-packages/research_autopilot",
+  "wheel_sha256": "a92d5bb54c47cdaf8263bb49f25bb5b1a99bba912d1af3fdc6a366833b63eeb9",
+  "gpu_skill_digest": "09b311474ca0b141a5df1d28b76a3a7cde9a195780ffcfd4624e2f9de218a729",
+  "gpu_skill_matches_source": true
+}

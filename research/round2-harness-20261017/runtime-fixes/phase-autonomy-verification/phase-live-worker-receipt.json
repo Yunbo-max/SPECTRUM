@@ -1,0 +1,26 @@
+{
+  "kind": "phase-autonomy-actual-worker-observation",
+  "observed_at_unix": 1792343800.970498,
+  "source_revision": "ded0afcbb485bcd4abd5334a6e4b9bf4b8d14db9",
+  "version": "0.4.0-harness.8",
+  "revision": 250,
+  "phase": "active",
+  "stage": "planner",
+  "execution_mode": "phase_autonomy",
+  "round": 76,
+  "milestone_ids": [
+    "B02",
+    "B03",
+    "B04",
+    "B05"
+  ],
+  "method_basis_required": true,
+  "task_id": "harness.planner.000076",
+  "run_id": "e8ee5e2315c94c389bd06ac06c832b45",
+  "session_id": "command:e8ee5e2315c94c389bd06ac06c832b45:95766",
+  "consumer_alive": true,
+  "actual_phase_native_context": true,
+  "aggregate_round_cap": null,
+  "aggregate_seconds_cap": null,
+  "scientific_outcome": "No new scientific experiment result claimed by this maintenance."
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "phase-autonomy-plugin-install",
+  "version": "0.4.0-harness.8",
+  "source_revision": "ded0afcbb485bcd4abd5334a6e4b9bf4b8d14db9",
+  "verified_files": 414,
+  "profiles": {
+    "main": true,
+    "harness": true
+  },
+  "other_plugin_manifests_unchanged": true,
+  "skill_digest": "09b311474ca0b141a5df1d28b76a3a7cde9a195780ffcfd4624e2f9de218a729"
+}

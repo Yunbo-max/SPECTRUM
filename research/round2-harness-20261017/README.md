@@ -28,3 +28,7 @@ Work Harness 已更新并安装为 0.4.0-harness.3：先确认/实测 GPU，再�
 
 ## B01 配置阶段修正
 Work Harness .4 已安装并显式部署本轮运行时：起始时确定 GPU，B01 配置上游资源并检查真实启动，评分资格留到后续节点。详见 reports/b01-upstream-setup-20261018.md。
+
+## Latest: sustained phase Work Harness .8
+
+See [phase autonomy update](reports/phase-autonomy-20261018.md), [source patch](runtime-fixes/phase-autonomy.patch), and `runtime-fixes/phase-autonomy-verification/` for actual GPU software checks, installed parity and quiet adoption receipts.

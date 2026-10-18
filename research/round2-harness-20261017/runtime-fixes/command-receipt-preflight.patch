@@ -1,0 +1,205 @@
+From 32e37467bfad424655f10dc844a318275018e9b5 Mon Sep 17 00:00:00 2001
+From: Yunbo Long <82950147+Yunbo-max@users.noreply.github.com>
+Date: Sun, 18 Oct 2026 10:13:56 +0100
+Subject: [PATCH] Reject malformed command receipts before admission and
+ recover legacy tasks
+
+---
+ src/research_autopilot/command_contract.py    | 18 ++++
+ src/research_autopilot/program.py             |  7 ++
+ src/research_autopilot/program_cli.py         | 21 +++--
+ .../runtime/test_command_receipt_preflight.py | 93 +++++++++++++++++++
+ 4 files changed, 129 insertions(+), 10 deletions(-)
+ create mode 100644 src/research_autopilot/command_contract.py
+ create mode 100644 tests/runtime/test_command_receipt_preflight.py
+
+diff --git a/src/research_autopilot/command_contract.py b/src/research_autopilot/command_contract.py
+new file mode 100644
+index 0000000..696261f
+--- /dev/null
++++ b/src/research_autopilot/command_contract.py
+@@ -0,0 +1,18 @@
++"""Shared command-agent task receipt preflight; no execution or mutations."""
++from pathlib import Path
++from .models import ContractError
++
++
++def command_response_path(task):
++    outputs = task['outputs']
++    selected = task['parameters'].get('command_response_path')
++    if selected is not None:
++        if not isinstance(selected, str) or selected not in outputs:
++            raise ContractError('command_response_path must be a declared output')
++    elif len(outputs) != 1:
++        raise ContractError('multiple outputs require a separate command_response_path receipt')
++    else:
++        selected = outputs[0]
++    if Path(selected).suffix.lower() not in {'.json', '.txt', '.md'}:
++        raise ContractError('command final response must be a separate JSON/text receipt')
++    return selected
+diff --git a/src/research_autopilot/program.py b/src/research_autopilot/program.py
+index 4aacd34..5b752fa 100644
+--- a/src/research_autopilot/program.py
++++ b/src/research_autopilot/program.py
+@@ -20,6 +20,7 @@ from .artifacts import canonical_json, contract_hash, digest_tree, pin_file, res
+ from .models import cumulative_time_limit
+ from .models import ContractError, fields, identifier, money, seconds, text, validate_task
+ from .coverage import validate_coverage
++from .command_contract import command_response_path
+ from .scientific_closure import verify_scientific_closure
+ from .admission import prepare_research_task, run_host_feedback, _run_canonical
+ 
+@@ -559,6 +560,12 @@ print(json.dumps(report['required_input_refs']))
+                 if ref not in coverage['verified_refs']:
+                     coverage['verified_refs'].append(ref)
+         tasks = [validate_task(t) for t in proposal["tasks"]]
++        adapters = read_json(project['root'], prior['contract']['agent_config_ref'])['adapters'] if tasks else {}
++        for task in tasks:
++            adapter = adapters.get(task['adapter'])
++            if (task['action'] != 'native_harness' and isinstance(adapter, dict)
++                    and adapter.get('kind') == 'command'):
++                command_response_path(task)
+         if len({t["task_id"] for t in tasks}) != len(tasks):
+             raise ContractError("duplicate selected task IDs")
+         known = {item['task_id'] for item in self.controller.status(project['project_id'])['tasks']}
+diff --git a/src/research_autopilot/program_cli.py b/src/research_autopilot/program_cli.py
+index 0b5731b..831288c 100644
+--- a/src/research_autopilot/program_cli.py
++++ b/src/research_autopilot/program_cli.py
+@@ -25,6 +25,7 @@ from .adapters import AdapterConfig, AdapterRegistry
+ from .admission import ScientificAdmission
+ from .artifacts import ArtifactError, canonical_json, pin_file, resolve_path, verify_ref
+ from .command_worker import CommandAgentConfig, CommandWorker
++from .command_contract import command_response_path
+ from .controller import Controller
+ from .models import cumulative_time_limit
+ from .models import ContractError, fields, json_data, seconds, text
+@@ -274,16 +275,16 @@ class ProgramDispatcher:
+                 base = CommandAgentConfig(**{k: v for k, v in selected.items() if k != 'kind'})
+                 if base.response_path is not None:
+                     raise ContractError('global response_path is forbidden; select it on each task')
+-                response_path = task['parameters'].get('command_response_path')
+-                if response_path is not None:
+-                    if response_path not in task['outputs']:
+-                        raise ContractError('command_response_path must be a declared output')
+-                    base = replace(base, response_path=response_path)
+-                elif len(task['outputs']) != 1:
+-                    raise ContractError('multiple outputs require a separate command_response_path receipt')
+-                chosen = base.response_path or task['outputs'][0]
+-                if Path(chosen).suffix.lower() not in {'.json', '.txt', '.md'}:
+-                    raise ContractError('command final response must be a separate JSON/text receipt')
++                try:
++                    chosen = command_response_path(task)
++                except ContractError as exc:
++                    if role != 'execution':
++                        raise
++                    # No run has been claimed. Retain the invalid contract and
++                    # return through normal same-step receipt inspection/repair.
++                    return self.controller.cancel_pending(self.project_id, task_id,
++                        reason='command task preflight rejected before launch: ' + str(exc))
++                base = replace(base, response_path=chosen)
+                 result = CommandWorker(self.controller, base).run_once(self.project_id, owner,
+                     adapter=adapter, actions=[task['action']], task_ids=[task_id])
+             elif kind == 'acp':
+diff --git a/tests/runtime/test_command_receipt_preflight.py b/tests/runtime/test_command_receipt_preflight.py
+new file mode 100644
+index 0000000..01b6358
+--- /dev/null
++++ b/tests/runtime/test_command_receipt_preflight.py
+@@ -0,0 +1,93 @@
++import unittest
++from unittest.mock import Mock, patch
++from research_autopilot.program_cli import ProgramDispatcher
++
++class ReceiptPreflightTests(unittest.TestCase):
++    def test_legacy_bad_task_is_retired_without_agent_launch(self):
++        controller, program = Mock(), Mock()
++        task = {'task_id':'child', 'action':'source_read', 'adapter':'codex-local',
++                'parameters':{}, 'outputs':['report.md','evidence.json']}
++        controller.get_task.return_value={'task':task,'state':'pending'}
++        controller.cancel_pending.return_value={'state':'cancelled'}
++        dispatcher=ProgramDispatcher(controller,program,'project','owner')
++        configured=({'adapters':['codex-local']},{},
++                    {'codex-local':{'kind':'command','argv':['unused']}})
++        with patch.object(dispatcher,'_configured',return_value=configured), \
++             patch('research_autopilot.program_cli.CommandWorker') as worker:
++            result=dispatcher('execution','codex-local','child')
++        self.assertEqual(result['state'],'cancelled')
++        worker.assert_not_called()
++        controller.cancel_pending.assert_called_once()
++        self.assertIn('command_response_path',controller.cancel_pending.call_args.kwargs['reason'])
++
++class ReceiptContractTests(unittest.TestCase):
++    def test_receipt_selection(self):
++        from research_autopilot.command_contract import command_response_path
++        from research_autopilot.models import ContractError
++        for outputs, params, expected in [
++            (['response.json'], {}, 'response.json'),
++            (['report.md','evidence.json','receipt.json'], {'command_response_path':'receipt.json'}, 'receipt.json'),
++            (['report.md','evidence.json'], {}, None),
++            (['report.md'], {'command_response_path':'missing.json'}, None),
++            (['figure.png'], {}, None),
++            (['report.md'], {'command_response_path':[]}, None),
++        ]:
++            with self.subTest(outputs=outputs,params=params):
++                task={'outputs':outputs,'parameters':params}
++                if expected is None:
++                    with self.assertRaises(ContractError):command_response_path(task)
++                else:self.assertEqual(command_response_path(task),expected)
++
++    def test_proposal_rejects_before_materializing(self):
++        from research_autopilot.program import ResearchProgram
++        from research_autopilot.models import ContractError
++        program=ResearchProgram.__new__(ResearchProgram);program.controller=Mock()
++        prior={'state':{'goal_id':'goal','consumed_runs':[],'coverage_ref':None},
++               'contract':{'agent_config_ref':{'path':'agents.json','sha256':'0'*64}}}
++        project={'root':'/unused','project_id':'project'}
++        task={'adapter':'codex-local','action':'source_read','outputs':['a.md','b.json'],'parameters':{}}
++        proposal={'kind':'research-loop-proposal','schema_version':1,'goal_id':'goal',
++                  'status':'continue','summary':'source read','decision_ref':None,'coverage_ref':None,
++                  'tasks':[task],'cancel_pending_task_ids':[],'consumed_run_ids':[],'wait_seconds':0}
++        with patch.object(program,'_decision',return_value=[]), \
++             patch('research_autopilot.program.validate_coverage',return_value={'manifest':{'goal_id':'goal'}}), \
++             patch('research_autopilot.program.validate_task',side_effect=lambda x:x), \
++             patch('research_autopilot.program.read_json',return_value={'adapters':{'codex-local':{'kind':'command'}}}):
++            with self.assertRaisesRegex(ContractError,'command_response_path'):
++                program._proposal(prior,project,proposal,[])
++        program.controller.register_task.assert_not_called()
++
++class RealControllerRecoveryTests(unittest.TestCase):
++    def test_cancel_preserves_contract_and_does_not_claim_run(self):
++        import tempfile
++        from pathlib import Path
++        import research_autopilot.controller as api
++        from test_controller import setup_controller, task
++        with tempfile.TemporaryDirectory() as tmp:
++            c=setup_controller(api,Path(tmp))
++            original=task('bad',adapter='codex',outputs=['report.md','data.json'])
++            c.register_task('p',original)
++            before=c.get_task('p','bad')['task']
++            d=ProgramDispatcher(c,Mock(),'p','owner')
++            with patch.object(d,'_configured',return_value=(c.get_project('p'),{},
++                    {'codex':{'kind':'command','argv':['unused']}})):
++                result=d('execution','codex','bad')
++            self.assertEqual(result['state'],'cancelled')
++            self.assertIsNone(result['attempt'])
++            self.assertEqual(result['task'],before)
++            self.assertEqual(c.status('p')['budget']['spent_seconds'],0)
++
++    def test_running_attempt_cannot_be_retired(self):
++        import tempfile
++        from pathlib import Path
++        import research_autopilot.controller as api
++        from research_autopilot.models import ContractError
++        from test_controller import setup_controller, task
++        with tempfile.TemporaryDirectory() as tmp:
++            c=setup_controller(api,Path(tmp));c.register_task('p',task('live'))
++            claim=c.claim('p','owner',adapter='codex')
++            self.assertIsNotNone(claim)
++            with self.assertRaises(ContractError):c.cancel_pending('p','live',reason='invalid receipt')
++            self.assertEqual(c.get_task('p','live')['state'],'running')
++
++if __name__=='__main__':unittest.main()
+-- 
+2.39.3 (Apple Git-145)
+

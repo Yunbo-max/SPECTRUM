@@ -302,5 +302,21 @@
   {
     "path": "research-state/remote-readiness-20261018.md",
     "sha256": "e52d375c642eb6fd503d7173c9d99e2bd3c18ad2de8d57c2db6ba843f9b1fe95"
+  },
+  {
+    "path": "runtime-fixes/command-receipt-preflight.patch",
+    "sha256": "873161b79395bcfd9778b2732d1f10c3c3ab6833d479948eab3411c364d624a2"
+  },
+  {
+    "path": "reports/command-receipt-debug-20261018.md",
+    "sha256": "2d3cd3c60ed469a96673404055dc31d0ae24dd99c1c38c32a2158e42e271a5dd"
+  },
+  {
+    "path": "research-state/B01-dispatch-incident-20261018.md",
+    "sha256": "0f1aa34d40f7fef3cb692c0ed8f3a788ffbe6b0a7b3fdf19e6cd3b1aa7c5753d"
+  },
+  {
+    "path": "research-state/asset-completion-20261018.md",
+    "sha256": "bc218a768d329f5afc49db72a5b5393541311c3f77b0460d0cb5ac26483b69ce"
   }
 ]

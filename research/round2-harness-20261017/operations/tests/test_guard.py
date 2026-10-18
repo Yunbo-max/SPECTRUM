@@ -8,7 +8,11 @@ class GuardTests(unittest.TestCase):
  def sample(self,**kw):
   s=dict(pressure=1,swap_bytes=0,disk_free=30*g.GIB,owned_rss=0);s.update(kw);return s
  def test_normal(self):self.assertEqual(g.reasons(self.sample()),[])
- def test_pressure_warning(self):self.assertIn('memory_pressure',g.reasons(self.sample(pressure=2)))
+ def test_pressure_warning(self):
+  self.assertEqual(g.reasons(self.sample(pressure=2)),[])
+  self.assertTrue(g.can_resume(self.sample(pressure=2)))
+  self.assertIn('owned_rss',g.reasons(self.sample(pressure=2,owned_rss=2*g.GIB)))
+  self.assertFalse(g.can_resume(self.sample(pressure=2,swap_bytes=5*g.GIB)))
  def test_critical(self):self.assertIn('memory_pressure',g.reasons(self.sample(pressure=4)))
  def test_memory(self):self.assertIn('owned_rss',g.reasons(self.sample(owned_rss=2*g.GIB)))
  def test_disk(self):self.assertIn('disk_free',g.reasons(self.sample(disk_free=9*g.GIB)))

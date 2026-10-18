@@ -10,9 +10,11 @@ def parse_swap(value):
  if not m:raise ValueError('unrecognized swap observation')
  return int(float(m[1])*1024**('KMGTP'.index(m[2])+1))
 
+# Darwin dispatch levels: 1 normal, 2 warning, 4 critical.
+# Warning alone permits lightweight control; all other resource checks remain.
 def reasons(s):
  if s is None:return ['observation_unavailable']
- return [name for name,bad in [('memory_pressure',s['pressure']!=1),('swap_used',s['swap_bytes']>=6*GIB),('disk_free',s['disk_free']<10*GIB),('owned_rss',s['owned_rss']>=2*GIB)] if bad]
+ return [name for name,bad in [('memory_pressure',s['pressure'] not in (1,2)),('swap_used',s['swap_bytes']>=6*GIB),('disk_free',s['disk_free']<10*GIB),('owned_rss',s['owned_rss']>=2*GIB)] if bad]
 
 def can_resume(s):
  return not reasons(s) and s['disk_free']>=15*GIB and s['swap_bytes']<=4*GIB

@@ -17,3 +17,5 @@ SSH 检查已取得 GPU/磁盘/解释器结果；完整探测 shell 最终 exit=
 
 ## 主机保护修复
 2026-10-18 已部署本地主机资源守护，详见 reports/host-protection-20261018.md 和 operations/。部署后内存压力仍偏高，研究处于资源等待；这不是新增实验结果，也不代表已证明崩溃根因。
+
+警告等级续跑条件已更正，见 reports/warning-continuation-20261018.md；内存压力2本身不再阻止轻量研究调度。

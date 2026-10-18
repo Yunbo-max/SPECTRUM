@@ -7,3 +7,7 @@ Installed through the Codex plugin CLI in both the main and Harness profiles; th
 The ten obsolete custom MBPP evaluator/runner files were removed from active local and remote project paths. Raw predictions, prior outputs and logs remain available as historical custom-protocol diagnostics. See the deletion and stop records. Historical source copies are retained for provenance, not active execution.
 
 Official-source inspection and version distinctions are in source-notes.md. No official evaluation result is claimed. Experiments remain paused per user instruction.
+
+## Subsequent user-authorized continuation
+
+The user subsequently requested official evaluation and continued research. See resume-official-evaluation-20261018.md and resume.json: Harness is active again, retaining the same GPT-6-Astra conversation and single-worker execution. This records resumption, not a completed official evaluation result.

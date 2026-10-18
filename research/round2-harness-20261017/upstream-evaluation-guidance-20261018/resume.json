@@ -1,0 +1,10 @@
+{
+  "phase": "active",
+  "revision": 429,
+  "instruction_ref": {
+    "path": "research-state/resume-official-evaluation-20261018.md",
+    "sha256": "0c050b75bb9f88679f4568e005ff49d2e426411c2b8b9a596dcb9fbfd0dd220f"
+  },
+  "model": "gpt-6-astra",
+  "thread_id": "01a15114-c889-7252-bc12-061a17d853ee"
+}

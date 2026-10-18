@@ -1,0 +1,28 @@
+test_current_chat_starter_is_first_and_preserves_scope (test_chat_goal_policy.ChatGoalPolicyTests.test_current_chat_starter_is_first_and_preserves_scope) ... FAIL
+test_cycle_counts_require_research_evidence_not_seed_counts (test_chat_goal_policy.ChatGoalPolicyTests.test_cycle_counts_require_research_evidence_not_seed_counts) ... ok
+test_entry_preserves_request_and_separates_goal_from_milestone (test_chat_goal_policy.ChatGoalPolicyTests.test_entry_preserves_request_and_separates_goal_from_milestone) ... ok
+test_explicit_selection_only_scope_remains_valid (test_chat_goal_policy.ChatGoalPolicyTests.test_explicit_selection_only_scope_remains_valid) ... ok
+test_preflight_cannot_close_authorized_research (test_chat_goal_policy.ChatGoalPolicyTests.test_preflight_cannot_close_authorized_research) ... ok
+test_resume_does_not_reset_or_invent_round_bound (test_chat_goal_policy.ChatGoalPolicyTests.test_resume_does_not_reset_or_invent_round_bound) ... ok
+test_web_contract_keeps_host_boundary_and_goal_review (test_chat_goal_policy.ChatGoalPolicyTests.test_web_contract_keeps_host_boundary_and_goal_review) ... FAIL
+
+======================================================================
+FAIL: test_current_chat_starter_is_first_and_preserves_scope (test_chat_goal_policy.ChatGoalPolicyTests.test_current_chat_starter_is_first_and_preserves_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/tests/test_chat_goal_policy.py", line 49, in test_current_chat_starter_is_first_and_preserves_scope
+    self.assertIn(term, first_block)
+AssertionError: 'original user request' not found in '\nUse Research Autopilot for my selected field and existing research goal.\nUse the local agent and its real terminal, files and tools. Choose the next in-field action automatically within the existing goal and limits.\nRestore cumulative paper/code knowledge, reproductions, failures, source pins,\nlive attempts, budgets and pauses. Choose the next knowledge/evidence question:\nreading, code tracing, reproduction, diagnosis, mathematics or a decisive comparison.\nUse research-cycle.md, edition-policy.md and local-execution.md.\nFirst inspect and reuse the authorized SSH GPU route when the task needs it;\ndo not require ChatGPT Work, a cloud registry or a new controller.\nRetain actual execution and delivery receipts. Save the exact next action and use\nonly a supported continuation mechanism; do not claim an absent agent is running.\n'
+
+======================================================================
+FAIL: test_web_contract_keeps_host_boundary_and_goal_review (test_chat_goal_policy.ChatGoalPolicyTests.test_web_contract_keeps_host_boundary_and_goal_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/tests/test_chat_goal_policy.py", line 54, in test_web_contract_keeps_host_boundary_and_goal_review
+    self.assertIn('goal_review', text)
+AssertionError: 'goal_review' not found in "# Web reasoning and local execution Local means the control agent on the user's computer. Before execution restore the authorized SSH GPU route and choose the workload target under local-execution.md; sync the pinned code there and monitor/collect its real results. No Docker anywhere. Read edition-policy.md, research-cycle.md and local-execution.md first. Work and Simple use the local agent for research and execution. Web authoring or ChatGPT Work is optional and is not the default route. Use the actual local tools to complete the next authorized in-field action and inspect its results. Save source pins, raw outputs, cumulative knowledge, budgets and next actions. Use a supported local continuation mechanism; a detached experiment is not a decision consumer. No automatic cloud service or human Web handoff is required. ## Define the authoring goal Restore the selected field, goal, paper/code/reproduction knowledge, current question, source pins and cumulative limits. Select a concrete next action within the field; use the local agent's tools to execute authorized work. ## Completion and handoff Inspect actual results, retain negative findings, save artifacts and costs, and choose the next unresolved question. Use supported local continuation when available; no separate Web or Work handoff is required. Completion follows the user's actual scoped goal and evidence requirements, not one positive comparison."
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+FAILED (failures=2)

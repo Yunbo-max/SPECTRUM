@@ -1,0 +1,51 @@
+collector_failed_after_dispatch: OSError('injected state persistence failure after Popen')
+======================================================================
+ERROR: test_frozen_bootstrap_is_repeatable_and_not_a_point_verdict (test_statistical_analysis.StatisticalAnalysisTests.test_frozen_bootstrap_is_repeatable_and_not_a_point_verdict)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/scripts/_statistical.py", line 115, in analyze
+    import scipy
+ModuleNotFoundError: No module named 'scipy'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/tests/test_statistical_analysis.py", line 71, in test_frozen_bootstrap_is_repeatable_and_not_a_point_verdict
+    first = self.analyze([-.5, 0, .25, .5, 1], "bootstrap", unit_policy=policy)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/tests/test_statistical_analysis.py", line 18, in analyze
+    return S.analyze(values, rule, **args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/scripts/_statistical.py", line 118, in analyze
+    C.fail("SCIPY_ANALYSIS_UNAVAILABLE")
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/scripts/_autoresearch.py", line 52, in fail
+    raise Failure(code, path)
+_autoresearch.Failure: SCIPY_ANALYSIS_UNAVAILABLE
+
+======================================================================
+ERROR: test_paired_t_reports_wider_small_sample_interval_than_normal (test_statistical_analysis.StatisticalAnalysisTests.test_paired_t_reports_wider_small_sample_interval_than_normal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/scripts/_statistical.py", line 115, in analyze
+    import scipy
+ModuleNotFoundError: No module named 'scipy'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/tests/test_statistical_analysis.py", line 22, in test_paired_t_reports_wider_small_sample_interval_than_normal
+    student = self.analyze([0, .5], "paired_t")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/tests/test_statistical_analysis.py", line 18, in analyze
+    return S.analyze(values, rule, **args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/scripts/_statistical.py", line 118, in analyze
+    C.fail("SCIPY_ANALYSIS_UNAVAILABLE")
+  File "/root/rivermind-data/spectrum-harness/code-tests/skill-policy-regression/skills/research-autopilot/scripts/_autoresearch.py", line 52, in fail
+    raise Failure(code, path)
+_autoresearch.Failure: SCIPY_ANALYSIS_UNAVAILABLE
+
+----------------------------------------------------------------------
+Ran 933 tests in 74.831s
+
+FAILED (errors=2, skipped=9)

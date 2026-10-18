@@ -1,0 +1,475 @@
+diff --git a/docs/SKILL_SEQUENCE.md b/docs/SKILL_SEQUENCE.md
+index c5bd535..7426b5a 100644
+--- a/docs/SKILL_SEQUENCE.md
++++ b/docs/SKILL_SEQUENCE.md
+@@ -77,6 +77,60 @@ child work, with the existing v4 decision, coverage and independent review check
+ A negative scientific result alone does not authorize implementation repair or
+ a workflow jump.
+ 
++### Explicit B01 evaluator qualification
++
++B01 normally remains source work. An owner may explicitly opt into bounded native
++evaluator/baseline qualification without changing the adopted catalog or its
++historical hashes. Pin this JSON under the project root:
++
++```json
++{
++  "kind": "research-b01-qualification-authorization",
++  "schema_version": 1,
++  "project_id": "field-study",
++  "goal_id": "original-goal",
++  "step_id": "B01",
++  "native_purpose": "qualification",
++  "instruction_ref": {"path": "research-state/user-qualification.md", "sha256": "ACTUAL_HASH"},
++  "native_target_ref": {"path": "research-state/native-target.json", "sha256": "ACTUAL_HASH"},
++  "max_tasks": 1,
++  "max_task_seconds": 3600
++}
++```
++
++`instruction_ref` retains the actual user direction. The target must equal the
++program's already adopted `native_target_ref`. `max_tasks` bounds each proposal
++(1–64); it adds no lifetime task cap. `max_task_seconds` must fit the existing
++project time limits. Existing budgets, serial execution and pause rules continue
++to apply. The JSON example needs real project values and hashes before use.
++
++For a new schema-2 program, add its pin as
++`sequence.qualification_authorization_ref`. For an existing program, stop its
++consumer at an active B01 `decide` boundary, reconcile all work, then invoke the
++supervising-host API:
++
++```python
++program.authorize_b01_qualification(
++    project_id, authorization_ref, expected_revision=observed_revision)
++```
++
++This one-time amendment rejects paused/blocked programs, another step, staged or
++pending work, running/uncertain attempts, stale revisions and replacement of an
++existing opt-in. It atomically retains an immutable receipt containing the old
++contract/state and the adopted contract, increments revision, and appends the
++`b01_qualification_authorized` event. The state gains only
++`qualification_adoption_ref`; catalog, cursor, prior receipts, decisions, coverage,
++tasks and consumed budgets are preserved. Source or target adoption is separate.
++
++Worker and reviewer packets expose `qualification_authorization` and retain its
++pins. The worker can prepare the actual qualification protocol/plans and request
++`native_harness` with `native_purpose=qualification`, `research_scope=diagnostic`,
++and `qualification_authorization_ref` matching the opt-in. Existing canonical v4
++admission rejects treatment jobs and still requires the fixed target, coverage,
++finite reservation and separate review before execution. This extension does not
++enable method implementation/design actions or advance B01. Actual receipts and
++normal independent per-requirement acceptance remain necessary.
++
+ Use the exact response schema supplied in each handoff. A successful command or
+ DSH activation merely transports the response. A file hash establishes identity,
+ not scientific truth. The program checks real evidence and required bindings;
+diff --git a/src/research_autopilot/program.py b/src/research_autopilot/program.py
+index 5b752fa..961b82c 100644
+--- a/src/research_autopilot/program.py
++++ b/src/research_autopilot/program.py
+@@ -18,7 +18,7 @@ import time
+ 
+ from .artifacts import canonical_json, contract_hash, digest_tree, pin_file, resolve_path, verify_ref
+ from .models import cumulative_time_limit
+-from .models import ContractError, fields, identifier, money, seconds, text, validate_task
++from .models import ContractError, fields, identifier, money, seconds, text, validate_ref, validate_task
+ from .coverage import validate_coverage
+ from .command_contract import command_response_path
+ from .scientific_closure import verify_scientific_closure
+@@ -253,6 +253,60 @@ class ResearchProgram:
+             return {"project_id": project_id, "contract": json.loads(row["contract"]),
+                     "state": json.loads(row["state"]), "revision": row["revision"]}
+ 
++    def authorize_b01_qualification(self, project_id, authorization_ref, *, expected_revision):
++        """Owner-only, audited opt-in at a quiet B01 decision boundary.
++
++        Call from the supervising host after explicit user authorization. This
++        is not an agent response field, resume operation or source/target update.
++        """
++        from .skill_sequence import _cursor, _qualification_authorization
++        validate_ref(authorization_ref)
++        if type(expected_revision) is not int or expected_revision < 0:
++            raise ContractError('qualification adoption requires an exact expected revision')
++        prior = self.status(project_id)
++        project = self.controller.get_project(project_id)
++        if prior['revision'] != expected_revision:
++            raise ContractError('program changed before qualification adoption')
++        config, state = prior['contract'], prior['state']
++        if (config.get('schema_version') != 2 or state['phase'] != 'active'
++                or state['stage'] != 'decide' or state.get('staged_tasks')
++                or state.get('execution_task_ids')):
++            raise ContractError('qualification adoption needs an active quiet decision boundary')
++        self._policy(project, config)
++        _, step = _cursor(project, prior)
++        if step['id'] != 'B01' or 'qualification_authorization_ref' in config['sequence']:
++            raise ContractError('qualification may be adopted once, only at B01')
++        updated = strict_json(canonical_json(config))
++        updated['sequence']['qualification_authorization_ref'] = authorization_ref
++        _qualification_authorization(project, updated)
++        revision = expected_revision + 1
++        with self.controller._transaction() as db:
++            row = db.execute('SELECT revision,contract,state FROM research_programs WHERE project_id=?',
++                             (project_id,)).fetchone()
++            if (row is None or row['revision'] != expected_revision
++                    or row['contract'] != canonical_json(config)
++                    or row['state'] != canonical_json(state)):
++                raise ContractError('program changed concurrently before qualification adoption')
++            if (db.execute("SELECT 1 FROM tasks WHERE project_id=? AND state NOT IN ('completed','failed','cancelled') LIMIT 1",
++                           (project_id,)).fetchone()
++                    or db.execute("SELECT 1 FROM runs WHERE project_id=? AND state NOT IN ('completed','failed','cancelled') LIMIT 1",
++                                  (project_id,)).fetchone()):
++                raise ContractError('qualification adoption cannot replace pending, running or uncertain work')
++            receipt = save_artifact(project['root'],
++                f'research-state/harness/adoptions/b01-qualification-{revision:06d}.json', {
++                    'kind': 'research-b01-qualification-adoption', 'schema_version': 1,
++                    'project_id': project_id, 'previous_revision': expected_revision,
++                    'revision': revision, 'authorization_ref': authorization_ref,
++                    'previous_contract': config, 'previous_state': state,
++                    'adopted_contract': updated})
++            new_state = {**state, 'qualification_adoption_ref': receipt}
++            payload = canonical_json(new_state)
++            db.execute('UPDATE research_programs SET contract=?,state=?,revision=? WHERE project_id=?',
++                       (canonical_json(updated), payload, revision, project_id))
++            db.execute('INSERT INTO research_program_events VALUES(?,?,?,?,?)',
++                       (project_id, revision, 'b01_qualification_authorized', payload, time.time()))
++        return self.status(project_id)
++
+     def _update(self, prior, state, kind):
+         with self.controller._transaction() as db:
+             row = db.execute("SELECT revision FROM research_programs WHERE project_id=?", (prior["project_id"],)).fetchone()
+diff --git a/src/research_autopilot/skill_sequence.py b/src/research_autopilot/skill_sequence.py
+index 0d4a7d0..278beb8 100644
+--- a/src/research_autopilot/skill_sequence.py
++++ b/src/research_autopilot/skill_sequence.py
+@@ -15,8 +15,8 @@ import time
+ 
+ from .artifacts import canonical_json, digest_tree, pin_file, resolve_path, verify_ref
+ from .coverage import validate_coverage
+-from .models import (ACTIONS, ContractError, fields, identifier, json_data,
+-                     relative_path, strings, text, validate_ref, validate_task)
++from .models import (ACTIONS, ContractError, cumulative_time_limit, fields, identifier, json_data,
++                     relative_path, seconds, strings, text, validate_ref, validate_task)
+ from .scientific_closure import verify_scientific_closure
+ 
+ 
+@@ -120,7 +120,8 @@ def validate_sequence(project, contract):
+     if type(contract.get('schema_version')) is not int or contract['schema_version'] != 2:
+         raise ContractError('fixed Skill sequence requires program schema_version=2')
+     config = contract.get('sequence')
+-    fields(config, {'mode', 'scopes'})
++    fields(config, {'mode', 'scopes'}, {'qualification_authorization_ref'})
++    _qualification_authorization(project, contract)
+     if config['mode'] not in {'repeat', 'once'}:
+         raise ContractError('sequence mode must be repeat or once')
+     scopes = strings(config['scopes'], 'sequence scopes')
+@@ -188,7 +189,8 @@ def _cursor(project, prior):
+     step = _closure() if index == len(catalog['steps']) else catalog['steps'][index]
+     if step['id'] != selected['step_id']:
+         raise ContractError('sequence index and current step identity disagree')
+-    fields(config['sequence'], {'mode', 'scopes'})
++    fields(config['sequence'], {'mode', 'scopes'}, {'qualification_authorization_ref'})
++    _qualification_authorization(project, config)
+     if config['sequence']['mode'] not in {'once', 'repeat'}:
+         raise ContractError('unknown fixed sequence mode')
+     scopes = strings(config['sequence']['scopes'], 'sequence scopes')
+@@ -249,6 +251,12 @@ def _refs(root, refs, label):
+ def _task(program, prior, project, role, packet):
+     task = program._agent_task(prior, project, role, packet)
+     task['parameters']['sequence_binding'] = binding(prior['state'])
++    authorization = packet.get('qualification_authorization')
++    if authorization is not None:
++        for ref in (authorization['reference'], authorization['instruction_ref'],
++                    authorization['native_target_ref']):
++            if ref not in task['inputs']:
++                task['inputs'].append(ref)
+     if packet.get('history_ref') is not None and packet['history_ref'] not in task['inputs']:
+         task['inputs'].append(packet['history_ref'])
+     for ref in (prior['state']['sequence']['inspection_refs']
+@@ -345,8 +353,64 @@ def _repair_refs(program, project, state):
+     return refs
+ 
+ 
+-def _allowed_actions(program, project, state, step):
++def _qualification_authorization(project, contract):
++    """Optional owner adoption; never infer qualification authority from a gap."""
++    config = contract.get('sequence', {})
++    if 'qualification_authorization_ref' not in config:
++        return None
++    reference = validate_ref(config['qualification_authorization_ref'])
++    value = _read(project['root'], reference)
++    fields(value, {'kind', 'schema_version', 'project_id', 'goal_id', 'step_id',
++                   'native_purpose', 'instruction_ref', 'native_target_ref',
++                   'max_tasks', 'max_task_seconds'})
++    if (value['kind'] != 'research-b01-qualification-authorization'
++            or type(value['schema_version']) is not int or value['schema_version'] != 1
++            or value['project_id'] != project['project_id']
++            or value['goal_id'] != contract['goal_id'] or value['step_id'] != 'B01'
++            or value['native_purpose'] != 'qualification'
++            or contract.get('native_target_ref') is None
++            or value['native_target_ref'] != contract['native_target_ref']):
++        raise ContractError('qualification authorization must bind B01, this goal and the fixed native target')
++    if type(value['max_tasks']) is not int or not 1 <= value['max_tasks'] <= 64:
++        raise ContractError('qualification needs a finite per-proposal task allowance of 1..64')
++    duration = seconds(value['max_task_seconds'], 'qualification task seconds')
++    if duration > min(project['limits']['cycle_seconds'], cumulative_time_limit(project)):
++        raise ContractError('qualification cannot increase existing project time limits')
++    for ref in (value['instruction_ref'], value['native_target_ref']):
++        verify_ref(project['root'], ref)
++    return {'reference': reference, **value}
++
++
++def _qualification_tasks(program, project, contract, step, tasks):
++    """Restrict the B01 exception before existing v4/canonical admission runs."""
++    if step['id'] != 'B01' or step['allows_native']:
++        return
++    native = [task for task in tasks if task['action'] == 'native_harness']
++    if not native:
++        return
++    authorization = _qualification_authorization(project, contract)
++    if authorization is None:
++        raise ContractError('B01 native qualification requires explicit pinned owner authorization')
++    reference = authorization['reference']
++    if len(native) > authorization['max_tasks']:
++        raise ContractError('B01 qualification proposal exceeds its task allowance')
++    for task in native:
++        params = task['parameters']
++        if (params.get('native_purpose') != 'qualification'
++                or params.get('research_scope') != 'diagnostic'
++                or params.get('qualification_authorization_ref') != reference
++                or task['max_seconds'] > authorization['max_task_seconds']):
++            raise ContractError('B01 permits only explicitly bound finite diagnostic qualification')
++        for ref in (reference, authorization['instruction_ref']):
++            if ref not in task['inputs']:
++                task['inputs'].append(ref)
++
++
++def _allowed_actions(program, project, state, step, contract=None):
+     allowed = (COMMON_ACTIONS | {step['action']}) - {'runtime_maintenance'}
++    if (step['id'] == 'B01' and contract is not None
++            and _qualification_authorization(project, contract) is not None):
++        allowed |= {'native_harness'}
+     if step['allows_native']:
+         allowed |= {'native_harness'}
+         # An actual implementation failure may need a repair without changing
+@@ -535,7 +599,7 @@ def _result(program, prior, project, response, step, receipts):
+     tasks = response['tasks']
+     if not isinstance(tasks, list) or len(tasks) > 64:
+         raise ContractError('step work must be a bounded array of concrete tasks')
+-    allowed = _allowed_actions(program, project, state, step)
++    allowed = _allowed_actions(program, project, state, step, prior['contract'])
+     for raw in tasks:
+         task = validate_task(raw)
+         if task['action'] not in allowed or 'harness_role' in task['parameters']:
+@@ -546,6 +610,7 @@ def _result(program, prior, project, response, step, receipts):
+         if task['action'] not in COMMON_ACTIONS | {step['action'], 'native_harness'}:
+             if not any(ref in task['inputs'] + task['instructions'] for ref in repair_refs):
+                 raise ContractError('same-step implementation repair must pin its actual failed/cancelled inspection receipt')
++    _qualification_tasks(program, project, prior['contract'], step, tasks)
+     bindings = response.get('scientific_validation', [])
+     if not isinstance(bindings, list) or (step['id'] != CLOSURE_ID and 'scientific_validation' in response):
+         raise ContractError('scientific_validation is reserved for the fixed cycle closure audit')
+@@ -592,7 +657,9 @@ def _prepare_review(program, prior, project, step, result_ref, envelope_ref, env
+     coverage_report_ref = _save(project['root'], _step_prefix(state) + '/reviewer-coverage.json', coverage)
+     packet = {'role': 'independent_step_reviewer', 'contract': prior['contract'],
+               **context, 'step': step, 'sequence': binding(state),
+-              'allowed_actions': sorted(_allowed_actions(program, project, state, step)),
++              'allowed_actions': sorted(_allowed_actions(program, project, state, step, prior['contract'])),
++              'qualification_authorization': (_qualification_authorization(project, prior['contract'])
++                  if step['id'] == 'B01' else None),
+               'result_ref': result_ref, 'proposal_ref': envelope_ref,
+               'proposal': envelope, 'coverage': {'reference': coverage['reference'],
+                   'report_ref': coverage_report_ref, 'coverage_complete': coverage['report']['coverage_complete'],
+@@ -703,7 +770,9 @@ def tick_sequence(program, prior, owner, dispatch):
+         context = _packet_context(program, prior, project, receipts, 'planner')
+         packet = {'role': 'current_skill_step_worker', 'contract': config, **context,
+                   'step': step, 'sequence': binding(state),
+-                  'allowed_actions': sorted(_allowed_actions(program, project, state, step)),
++                  'allowed_actions': sorted(_allowed_actions(program, project, state, step, config)),
++                  'qualification_authorization': (_qualification_authorization(project, config)
++                      if step['id'] == 'B01' else None),
+                   'instructions': STEP_INSTRUCTIONS}
+         task = _task(program, prior, project, 'planner', packet)
+         for ref in (state['sequence']['accepted'][-1:] + state['sequence']['cycle_receipts'][-1:]):
+@@ -886,6 +955,18 @@ failed/cancelled execution in program.sequence.repair_basis; cite these original
+ failure refs throughout the repair. The basis stays through successful intermediate
+ repairs until this step is accepted. Successful negative science does not qualify.
+ Every repair retains v4 admission, independent review and the full frozen matrix.
++When packet.qualification_authorization is present at B01, a separately sourced
++owner opt-in permits finite native evaluator/baseline qualification even though
++the retained catalog has allows_native=false. Prepare the real protocol, plans
++and supporting files needed for that qualification within this node, then request
++native_harness with native_purpose=qualification, research_scope=diagnostic and
++qualification_authorization_ref equal to the supplied reference. Stay within its
++per-proposal max_tasks and per-task max_task_seconds plus existing project budgets.
++Use the accepted v4 diagnostic decision and retained coverage; all plans still
++pass canonical admission, prohibit treatment jobs and require independent review
++before execution. This opt-in does not authorize candidate_code, experiment_design
++actions, direct launches, scorer success claims or selecting another node. Read
++back actual receipts and seek normal per-requirement acceptance after execution.
+ An extra implementation/design repair must include its actual failed/cancelled
+ inspection receipt in the task inputs or instructions.
+ runtime_maintenance tasks are never delegated by this scientific loop;
+diff --git a/tests/runtime/test_b01_qualification.py b/tests/runtime/test_b01_qualification.py
+new file mode 100644
+index 0000000..8e67f93
+--- /dev/null
++++ b/tests/runtime/test_b01_qualification.py
+@@ -0,0 +1,158 @@
++"""B01 opt-in uses real pins and SQLite without launching an agent or native job."""
++import copy
++import json
++import tempfile
++import unittest
++from pathlib import Path
++
++from research_autopilot.artifacts import canonical_json, digest_tree
++from research_autopilot.controller import Controller
++from research_autopilot.models import ContractError
++from research_autopilot.program import ResearchProgram, save_artifact, read_json
++from research_autopilot import skill_sequence as sequence
++from test_controller import project, task
++
++
++class B01QualificationTests(unittest.TestCase):
++    def setUp(self):
++        tmp = tempfile.TemporaryDirectory()
++        self.addCleanup(tmp.cleanup)
++        self.root = Path(tmp.name)
++        self.skill = Path(__file__).resolve().parents[2] / 'skills/research-autopilot'
++        self.controller = Controller(self.root / 'controller.sqlite')
++        self.controller.register_project(project(self.root, workflow_class='scientific_method',
++            adapters=['codex', 'native'], skill_root=str(self.skill), skill_digest=digest_tree(self.skill),
++            limits={'max_workers': 1, 'max_cost': 100, 'max_seconds': 1000}))
++        self.project = self.controller.get_project('p')
++        self.program = ResearchProgram(self.controller)
++        self.target = save_artifact(self.root, 'target.json', {
++            'host': 'authorized-gpu', 'root': '/project', 'skill_root': '/skill', 'python': '/python'})
++        self.instruction = save_artifact(self.root, 'user.json', {'instruction': 'Qualify the B01 evaluator on the authorized GPU.'})
++        marker = json.loads((self.skill / 'assets/harness-policy.json').read_text())
++        self.contract = {'schema_version': 2, 'project_id': 'p', 'goal_id': 'goal',
++            'sequence': {'mode': 'repeat', 'scopes': ['research']},
++            'native_target_ref': self.target,
++            'policy': {'edition': marker['edition'], 'version': marker['version'],
++                'source_revision': 'a' * 40, 'skill_digest': self.project['skill_digest']}}
++        catalog, catalog_ref = sequence._catalog(self.project)
++        index = next(i for i, item in enumerate(catalog['steps']) if item['id'] == 'B01')
++        self.step = catalog['steps'][index]
++        history = save_artifact(self.root, 'history.json', {'retained': True})
++        self.state = {'phase': 'active', 'stage': 'decide', 'goal_id': 'goal', 'round': 37,
++            'staged_tasks': [], 'execution_task_ids': [], 'coverage_ref': history,
++            'accepted_decision_ref': history, 'consumed_runs': ['retained-run'],
++            'sequence': {'catalog_sha256': catalog_ref['sha256'], 'cycle': 1, 'index': index,
++                'step_id': 'B01', 'attempt': 3, 'accepted': [history] * index,
++                'cycle_receipts': [], 'result_ref': None, 'inspect_task_ids': [],
++                'inspection_refs': [], 'repair_basis': []}}
++        self.authorization = {'kind': 'research-b01-qualification-authorization', 'schema_version': 1,
++            'project_id': 'p', 'goal_id': 'goal', 'step_id': 'B01', 'native_purpose': 'qualification',
++            'instruction_ref': self.instruction, 'native_target_ref': self.target,
++            'max_tasks': 2, 'max_task_seconds': 100}
++        self.auth_ref = save_artifact(self.root, 'qualification.json', self.authorization)
++        with self.controller._transaction() as db:
++            db.execute('INSERT INTO research_programs VALUES(?,?,?,?)',
++                ('p', canonical_json(self.contract), canonical_json(self.state), 7))
++            db.execute('INSERT INTO research_program_events VALUES(?,?,?,?,?)',
++                ('p', 7, 'retained', canonical_json(self.state), 1))
++
++    def adopt(self):
++        return self.program.authorize_b01_qualification('p', self.auth_ref, expected_revision=7)
++
++    def native(self, **parameters):
++        return task('qualify', action='native_harness', adapter='native', parameters={
++            'native_purpose': 'qualification', 'research_scope': 'diagnostic',
++            'qualification_authorization_ref': self.auth_ref, **parameters})
++
++    def test_adoption_retains_history_catalog_and_limits(self):
++        before_budget = self.controller.status('p')['budget']
++        adopted = self.adopt()
++        self.assertEqual(adopted['revision'], 8)
++        expected = copy.deepcopy(self.contract)
++        expected['sequence']['qualification_authorization_ref'] = self.auth_ref
++        self.assertEqual(adopted['contract'], expected)
++        state = copy.deepcopy(adopted['state'])
++        receipt = read_json(self.root, state.pop('qualification_adoption_ref'))
++        self.assertEqual(state, self.state)
++        self.assertEqual(receipt['previous_contract'], self.contract)
++        self.assertEqual(receipt['previous_state'], self.state)
++        self.assertEqual(self.controller.status('p')['budget'], before_budget)
++        with self.controller._connect() as db:
++            self.assertEqual([r['revision'] for r in db.execute('SELECT revision FROM research_program_events ORDER BY revision')], [7, 8])
++
++    def test_default_off_and_only_b01_gets_qualification(self):
++        self.assertNotIn('native_harness', sequence._allowed_actions(self.program, self.project, self.state, self.step, self.contract))
++        config = self.adopt()['contract']
++        self.assertIn('native_harness', sequence._allowed_actions(self.program, self.project, self.state, self.step, config))
++        self.assertNotIn('candidate_code', sequence._allowed_actions(self.program, self.project, self.state, self.step, config))
++        self.assertNotIn('experiment_design', sequence._allowed_actions(self.program, self.project, self.state, self.step, config))
++        other = {**self.step, 'id': 'S01'}
++        self.assertNotIn('native_harness', sequence._allowed_actions(self.program, self.project, self.state, other, config))
++
++    def test_adoption_rejects_stale_paused_and_inflight_programs(self):
++        with self.assertRaises(ContractError):
++            self.program.authorize_b01_qualification('p', self.auth_ref, expected_revision=6)
++        for change in ({'phase': 'paused'}, {'phase': 'blocked'}, {'stage': 'planner'},
++                       {'staged_tasks': [self.native()]}, {'execution_task_ids': ['unknown']}):
++            with self.subTest(change=change):
++                state = {**self.state, **change}
++                with self.controller._transaction() as db:
++                    db.execute('UPDATE research_programs SET state=?', (canonical_json(state),))
++                with self.assertRaises(ContractError):
++                    self.adopt()
++        with self.controller._transaction() as db:
++            db.execute('UPDATE research_programs SET state=?', (canonical_json(self.state),))
++        self.controller.register_task('p', task('pending', action='source_read', adapter='codex'))
++        for status in ('pending', 'running', 'reconcile_required', 'unknown'):
++            with self.subTest(status=status):
++                with self.controller._transaction() as db:
++                    db.execute('UPDATE tasks SET state=?', (status,))
++                with self.assertRaises(ContractError):
++                    self.adopt()
++
++    def test_batch_allowance_does_not_become_a_lifetime_cap(self):
++        config = self.adopt()['contract']
++        for number in range(3):
++            existing = self.native()
++            existing['task_id'] = 'old-' + str(number)
++            self.controller.register_task('p', existing)
++            self.controller.cancel_pending('p', existing['task_id'], reason='retained cancelled qualification')
++        sequence._qualification_tasks(self.program, self.project, config, self.step, [self.native()])
++
++    def test_failed_optin_does_not_modify_contract_or_history(self):
++        before = self.program.status('p')
++        with self.assertRaises(ContractError):
++            self.program.authorize_b01_qualification('p', None, expected_revision=7)
++        self.assertEqual(self.program.status('p'), before)
++        malformed = copy.deepcopy(self.contract)
++        malformed['sequence']['qualification_authorization_ref'] = None
++        with self.assertRaises(ContractError):
++            sequence._qualification_authorization(self.project, malformed)
++        invalid = {**self.authorization, 'max_tasks': True}
++        reference = save_artifact(self.root, 'invalid.json', invalid)
++        with self.assertRaises(ContractError):
++            self.program.authorize_b01_qualification('p', reference, expected_revision=7)
++        self.assertEqual(self.program.status('p'), before)
++
++    def test_qualification_rejects_comparison_wrong_scope_missing_optin_and_budget(self):
++        config = self.adopt()['contract']
++        sequence._qualification_tasks(self.program, self.project, config, self.step, [self.native()])
++        for changes in ({'native_purpose': 'comparison'}, {'research_scope': 'method'},
++                        {'qualification_authorization_ref': None}):
++            with self.subTest(changes=changes), self.assertRaises(ContractError):
++                sequence._qualification_tasks(self.program, self.project, config, self.step, [self.native(**changes)])
++        too_long = self.native()
++        too_long['max_seconds'] = 101
++        with self.assertRaises(ContractError):
++            sequence._qualification_tasks(self.program, self.project, config, self.step, [too_long])
++        with self.assertRaises(ContractError):
++            sequence._qualification_tasks(self.program, self.project, config, self.step, [self.native()] * 3)
++
++    def test_tampered_or_wrong_target_authorization_fails(self):
++        wrong = {**self.authorization, 'native_target_ref': self.instruction}
++        ref = save_artifact(self.root, 'wrong.json', wrong)
++        with self.assertRaises(ContractError):
++            self.program.authorize_b01_qualification('p', ref, expected_revision=7)
++        (self.root / self.auth_ref['path']).write_text('{}')
++        with self.assertRaises(ContractError):
++            self.adopt()

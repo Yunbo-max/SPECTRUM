@@ -1,0 +1,18 @@
+{
+  "kind": "cuda-precision-smoke",
+  "scientific_score": false,
+  "torch_version": "2.7.1+cu126",
+  "device": "Tesla T4",
+  "bf16_supported": true,
+  "fp32": {
+    "all_finite": true,
+    "max_abs_error": 0.0
+  },
+  "fp16": {
+    "all_finite": true,
+    "max_abs_error": 0.0
+  },
+  "peak_allocated_bytes": 9568256,
+  "status": "completed",
+  "elapsed_seconds": 2.4490301609039307
+}

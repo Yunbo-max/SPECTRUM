@@ -1,0 +1,58 @@
+{
+  "kind": "parent-authorized-host-qualification-observation",
+  "schema_version": 1,
+  "observed_at_utc": "2026-10-18T10:20:16.339431+00:00",
+  "authority": "User explicitly requested B01 tests on the existing GPU and code optimization, then direct SSH continuation.",
+  "host_alias": "spectrum-harness-gpu",
+  "purpose": "infrastructure capability only; not a benchmark score or B01 acceptance",
+  "namespace_probe": {
+    "argv": [
+      "timeout",
+      "10",
+      "unshare",
+      "--user",
+      "--map-root-user",
+      "--net",
+      "--mount",
+      "--pid",
+      "--fork",
+      "/bin/true"
+    ],
+    "remote_inner_exit_code": 1,
+    "ssh_wrapper_exit_code": 0,
+    "result": "Operation not permitted"
+  },
+  "cuda_probe": {
+    "interpreter": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+    "timeout_seconds": 90,
+    "ssh_exit_code": 0,
+    "result": "FP32 and FP16 256x256 ones matmul finite and max_abs_error0; native BF16 false; emulation-inclusive query true"
+  },
+  "files": [
+    {
+      "path": "research-state/B01-native-probe-20261018/cuda-probe-v2.log",
+      "sha256": "9a215f32ea40938af899f34ab6bd6b9a7e64cfa819b46ce4b5395a1acb10b187",
+      "bytes": 481
+    },
+    {
+      "path": "research-state/B01-native-probe-20261018/cuda-probe.log",
+      "sha256": "b606076ee409e48db28dd21ceb6cdf79f89b5dac0c7d4e95b218f4b1bd731ea8",
+      "bytes": 383
+    },
+    {
+      "path": "research-state/B01-native-probe-20261018/cuda_probe.py",
+      "sha256": "9a009fc34fec07ed5b49a6aef15c3dd59981654a511237cf9e35f9c90fb80160",
+      "bytes": 857
+    },
+    {
+      "path": "research-state/B01-native-probe-20261018/cuda_probe_v2.py",
+      "sha256": "3d1b4f73a9696853a9a3559442d5340f00b737cedb6c9b756275d56cd2aba8f1",
+      "bytes": 1016
+    },
+    {
+      "path": "research-state/B01-native-probe-20261018/namespace-probe.log",
+      "sha256": "cb8a80ab1a428f0746670c40dffe69fa8cb50fa6ecaef3a8918d953d87a625ad",
+      "bytes": 136
+    }
+  ]
+}

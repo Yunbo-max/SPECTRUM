@@ -1,0 +1,9 @@
+# B01 parent-authorized host probes — 2026-10-18
+
+User explicitly asked to optimize runtime code and perform qualification on the authorized GPU. SSH connected directly. No model-generated or downloaded benchmark programs were executed by these probes.
+
+- `unshare --user --map-root-user --net --mount --pid --fork /bin/true` under10-second timeout returned1, Operation not permitted. SSH wrapper exited0 after printing the inner exit status; this is not isolation success. A restricted namespace operation failing is not a failed SSH connection. Other native isolation approaches remain unqualified, not presumed impossible.
+- Dedicated venv torch2.7.1+cu126 on TeslaT4 compute capability7.5 executed FP32 and FP16 256x256 matrix multiplications. Both finite, maximum absolute error0 against the known result256. About9.1MiB peak allocated;2.47seconds measured within Python. This is a tiny functional check, not throughput, model loading, training stability or benchmark qualification.
+- PyTorch default is_bf16_supported() returns true because it includes emulation. Explicit including_emulation=False returned false. Preserve that distinction; existing SPECTRUM modeling.py uses the default query and may admit BF16 despite lack of native support. No precision/model code was silently changed.
+
+Exact probe sources, output logs, file hashes and known exit codes are in research-state/B01-native-probe-20261018/receipt.json. Parent probes are outside the scientific task runner under explicit user authority; they must not be relabelled as a native_harness receipt, official replay, successful scorer or B01 acceptance. Reuse them to avoid repeated read-only capability checks. Independent model/generation work does not inherit a final scorer isolation dependency; actual score-consuming stages retain theirs.

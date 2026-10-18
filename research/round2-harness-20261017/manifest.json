@@ -342,5 +342,89 @@
   {
     "path": "reports/warning-continuation-20261018.md",
     "sha256": "fc337f54c4345c1490b5e5697af00219209e99efadd418d21542b68b2d5b0bb0"
+  },
+  {
+    "path": "reports/B01-native-route-hn01-20261018.md",
+    "sha256": "6cb3516d9aa3c3d5782126ef769ad542e63c0ae64088fd4a68caebae071645c8"
+  },
+  {
+    "path": "reports/B01-parent-native-probes-20261018.md",
+    "sha256": "4b8ca28ff57272c85bcec616a1ef94cf17deb70e78f10d9e1cf333b07a305454"
+  },
+  {
+    "path": "reports/B01-qualification-readiness-000006.md",
+    "sha256": "34edea782ca049d278816658eb6cb55cc65493611d64f095df06a6d533e8ac34"
+  },
+  {
+    "path": "research-state/gpu-switch-hn01-20261018.md",
+    "sha256": "72c73001be01af10e81daf2e379d3144d745a0aa933cf9032abb1ef77581a779"
+  },
+  {
+    "path": "research-state/native-gpu-target-hn01-20261018.json",
+    "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+  },
+  {
+    "path": "research-state/B01-qualification-authorization-20261018.json",
+    "sha256": "5711b6bb29256d2a5569abab781a7a264849727115f812fab4986893b4db83ab"
+  },
+  {
+    "path": "research-state/b01-hn01-source-target-adoption-20261018.json",
+    "sha256": "a7159ec6f235779420d31df77ad657e95f52796d947056a94e393c8557af4ec7"
+  },
+  {
+    "path": "research-state/harness/adoptions/b01-qualification-000090.json",
+    "sha256": "6f7f3f5ea453297de0fa5be55cba8d57199ef7a41314ae0f8703b51af20cac37"
+  },
+  {
+    "path": "research-state/B01-native-probe-20261018/cuda_probe_v2.py",
+    "sha256": "3d1b4f73a9696853a9a3559442d5340f00b737cedb6c9b756275d56cd2aba8f1"
+  },
+  {
+    "path": "research-state/B01-native-probe-20261018/cuda-probe-v2.log",
+    "sha256": "9a215f32ea40938af899f34ab6bd6b9a7e64cfa819b46ce4b5395a1acb10b187"
+  },
+  {
+    "path": "research-state/B01-native-probe-20261018/cuda-probe.log",
+    "sha256": "b606076ee409e48db28dd21ceb6cdf79f89b5dac0c7d4e95b218f4b1bd731ea8"
+  },
+  {
+    "path": "research-state/B01-native-probe-20261018/cuda_probe.py",
+    "sha256": "9a009fc34fec07ed5b49a6aef15c3dd59981654a511237cf9e35f9c90fb80160"
+  },
+  {
+    "path": "research-state/B01-native-probe-20261018/namespace-probe.log",
+    "sha256": "cb8a80ab1a428f0746670c40dffe69fa8cb50fa6ecaef3a8918d953d87a625ad"
+  },
+  {
+    "path": "research-state/B01-native-probe-20261018/receipt.json",
+    "sha256": "1aa18dbd5bd060df48c2cc37d234f28e2a23b43ae4aaf0881a0ea293ef8ca72a"
+  },
+  {
+    "path": "research-state/hn01-setup-20261018/b01-focused-tests.log",
+    "sha256": "aea2b4eb212c7e68cceea7b34128f16223b0000548ef55607e1f61fcb89d3412"
+  },
+  {
+    "path": "research-state/hn01-setup-20261018/system-cuda-probe.log",
+    "sha256": "2661ce2cef34b2f0612620df25d0f3bfe5617a328595214967509ee0a0988e1d"
+  },
+  {
+    "path": "research-state/hn01-setup-20261018/prepare_environment.py",
+    "sha256": "eb3b43c449ecd5676edc7f2fd923b1b2572f8677f57a11a098f747ef1f647943"
+  },
+  {
+    "path": "research-state/hn01-setup-20261018/b01-admission-baseline.log",
+    "sha256": "bedaee7c2df1075ae7d1e7bd699c75299249b1fcd0b1d42ef04e94b90b1fed9e"
+  },
+  {
+    "path": "research-state/hn01-setup-20261018/b01-runtime-tests-initial.log",
+    "sha256": "70f4676ecbeac771418686ed8332901a0914dc0c392d34568c3284088a1a47e3"
+  },
+  {
+    "path": "research-state/hn01-setup-20261018/cuda_probe.py",
+    "sha256": "0bdd34e09266130bb17da0e3a38ff47ed67d0a155fa6d425ff09b3455d8250f2"
+  },
+  {
+    "path": "runtime-fixes/b01-native-qualification.patch",
+    "sha256": "620ef169a869b1092451b1e290c64663245475d47c111f066c92c7f16b8b8d05"
   }
 ]

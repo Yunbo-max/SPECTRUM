@@ -1,0 +1,18 @@
+{
+  "kind": "research-b01-qualification-authorization",
+  "schema_version": 1,
+  "project_id": "spectrum-round2-work-harness",
+  "goal_id": "spectrum-round2",
+  "step_id": "B01",
+  "native_purpose": "qualification",
+  "instruction_ref": {
+    "path": "research-state/gpu-switch-hn01-20261018.md",
+    "sha256": "72c73001be01af10e81daf2e379d3144d745a0aa933cf9032abb1ef77581a779"
+  },
+  "native_target_ref": {
+    "path": "research-state/native-gpu-target-hn01-20261018.json",
+    "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+  },
+  "max_tasks": 1,
+  "max_task_seconds": 3600
+}

@@ -1,0 +1,127 @@
+test_adoption_rejects_stale_paused_and_inflight_programs (test_b01_qualification.B01QualificationTests.test_adoption_rejects_stale_paused_and_inflight_programs) ... ok
+test_adoption_retains_history_catalog_and_limits (test_b01_qualification.B01QualificationTests.test_adoption_retains_history_catalog_and_limits) ... ok
+test_batch_allowance_does_not_become_a_lifetime_cap (test_b01_qualification.B01QualificationTests.test_batch_allowance_does_not_become_a_lifetime_cap) ... ok
+test_default_off_and_only_b01_gets_qualification (test_b01_qualification.B01QualificationTests.test_default_off_and_only_b01_gets_qualification) ... ok
+test_failed_optin_does_not_modify_contract_or_history (test_b01_qualification.B01QualificationTests.test_failed_optin_does_not_modify_contract_or_history) ... ok
+test_qualification_rejects_comparison_wrong_scope_missing_optin_and_budget (test_b01_qualification.B01QualificationTests.test_qualification_rejects_comparison_wrong_scope_missing_optin_and_budget) ... ok
+test_tampered_or_wrong_target_authorization_fails (test_b01_qualification.B01QualificationTests.test_tampered_or_wrong_target_authorization_fails) ... ok
+test_action_filter_leaves_other_actions_pending_and_claims_matching_work (test_controller.ControllerTests.test_action_filter_leaves_other_actions_pending_and_claims_matching_work) ... ok
+test_action_filter_validates_known_unique_actions_before_reservation (test_controller.ControllerTests.test_action_filter_validates_known_unique_actions_before_reservation) ... ok
+test_admission_handler_errors_and_truthy_nonbooleans_are_denied (test_controller.ControllerTests.test_admission_handler_errors_and_truthy_nonbooleans_are_denied) ... ok
+test_atomic_multi_controller_claim_obeys_slot_limit (test_controller.ControllerTests.test_atomic_multi_controller_claim_obeys_slot_limit) ... ok
+test_changed_pinned_input_blocks_claim_without_reserving (test_controller.ControllerTests.test_changed_pinned_input_blocks_claim_without_reserving) ... ok
+test_cumulative_time_is_independent_of_reporting_cadence (test_controller.ControllerTests.test_cumulative_time_is_independent_of_reporting_cadence) ... ok
+test_dependency_validation_rejects_missing_and_self_links (test_controller.ControllerTests.test_dependency_validation_rejects_missing_and_self_links) ... ok
+test_dependency_waits_for_verified_parent_output (test_controller.ControllerTests.test_dependency_waits_for_verified_parent_output) ... ok
+test_expired_lease_requires_reconciliation_and_survives_restart (test_controller.ControllerTests.test_expired_lease_requires_reconciliation_and_survives_restart) ... ok
+test_explicit_overrun_ledger_preserves_integer_precision (test_controller.ControllerTests.test_explicit_overrun_ledger_preserves_integer_precision) ... ok
+test_explicit_overrun_reconciliation_accounts_real_usage_and_blocks_cap (test_controller.ControllerTests.test_explicit_overrun_reconciliation_accounts_real_usage_and_blocks_cap) ... ok
+test_instruction_order_is_part_of_immutable_contract (test_controller.ControllerTests.test_instruction_order_is_part_of_immutable_contract) ... ok
+test_invalid_project_limits_are_rejected (test_controller.ControllerTests.test_invalid_project_limits_are_rejected) ... ok
+test_invalid_task_contracts_never_enter_queue (test_controller.ControllerTests.test_invalid_task_contracts_never_enter_queue) ... ok
+test_maintenance_native_routing_requires_explicit_admission (test_controller.ControllerTests.test_maintenance_native_routing_requires_explicit_admission) ... ok
+test_nonstring_action_rejected_as_contract_error (test_controller.ControllerTests.test_nonstring_action_rejected_as_contract_error) ... ok
+test_priority_backend_and_capability_filtering (test_controller.ControllerTests.test_priority_backend_and_capability_filtering) ... ok
+test_reconciliation_requires_observed_reason (test_controller.ControllerTests.test_reconciliation_requires_observed_reason) ... ok
+test_registration_is_idempotent_but_conflicts_are_rejected (test_controller.ControllerTests.test_registration_is_idempotent_but_conflicts_are_rejected) ... ok
+test_reported_pending_overrun_blocks_even_free_new_claims (test_controller.ControllerTests.test_reported_pending_overrun_blocks_even_free_new_claims) ... ok
+test_running_recovery_cannot_resume_exhausted_reservation (test_controller.ControllerTests.test_running_recovery_cannot_resume_exhausted_reservation) ... ok
+test_running_recovery_enforces_cumulative_exposure_from_other_attempts (test_controller.ControllerTests.test_running_recovery_enforces_cumulative_exposure_from_other_attempts) ... ok
+test_running_recovery_overrun_persists_and_blocks_work_after_restart (test_controller.ControllerTests.test_running_recovery_overrun_persists_and_blocks_work_after_restart) ... ok
+test_running_recovery_rejects_malformed_usage_without_partial_write (test_controller.ControllerTests.test_running_recovery_rejects_malformed_usage_without_partial_write) ... ok
+test_running_recovery_usage_is_monotonic_across_unknown_lower_reports (test_controller.ControllerTests.test_running_recovery_usage_is_monotonic_across_unknown_lower_reports) ... ok
+test_scientific_admission_is_trusted_fail_closed_and_skill_pinned (test_controller.ControllerTests.test_scientific_admission_is_trusted_fail_closed_and_skill_pinned) ... ok
+test_stale_owner_or_fence_cannot_modify_attempt (test_controller.ControllerTests.test_stale_owner_or_fence_cannot_modify_attempt) ... ok
+test_status_events_and_cancel_preserve_records (test_controller.ControllerTests.test_status_events_and_cancel_preserve_records) ... ok
+test_tampered_task_does_not_starve_independent_ready_work (test_controller.ControllerTests.test_tampered_task_does_not_starve_independent_ready_work) ... ok
+test_trusted_new_adapter_name_can_be_registered_without_core_changes (test_controller.ControllerTests.test_trusted_new_adapter_name_can_be_registered_without_core_changes) ... ok
+test_uncertain_run_keeps_slot_until_real_reconciliation (test_controller.ControllerTests.test_uncertain_run_keeps_slot_until_real_reconciliation) ... ok
+test_unknown_reconciliation_never_discards_reported_overrun (test_controller.ControllerTests.test_unknown_reconciliation_never_discards_reported_overrun) ... ok
+test_unknown_usage_consumes_full_reservation_across_restart (test_controller.ControllerTests.test_unknown_usage_consumes_full_reservation_across_restart) ... ok
+test_unpinned_generated_input_cannot_be_registered (test_controller.ControllerTests.test_unpinned_generated_input_cannot_be_registered) ... ok
+test_unrepresentable_duration_rejected_as_contract_error (test_controller.ControllerTests.test_unrepresentable_duration_rejected_as_contract_error) ... ok
+test_usage_over_reservation_is_not_silently_settled (test_controller.ControllerTests.test_usage_over_reservation_is_not_silently_settled) ... ok
+test_web_role_cannot_execute_scientific_native_harness (test_controller.ControllerTests.test_web_role_cannot_execute_scientific_native_harness) ... ok
+test_worker_events_are_fenced_and_keep_usage_metadata (test_controller.ControllerTests.test_worker_events_are_fenced_and_keep_usage_metadata) ... ok
+test_cancel_preserves_contract_and_does_not_claim_run (test_command_receipt_preflight.RealControllerRecoveryTests.test_cancel_preserves_contract_and_does_not_claim_run) ... ok
+test_running_attempt_cannot_be_retired (test_command_receipt_preflight.RealControllerRecoveryTests.test_running_attempt_cannot_be_retired) ... ok
+test_proposal_rejects_before_materializing (test_command_receipt_preflight.ReceiptContractTests.test_proposal_rejects_before_materializing) ... ok
+test_receipt_selection (test_command_receipt_preflight.ReceiptContractTests.test_receipt_selection) ... ok
+test_legacy_bad_task_is_retired_without_agent_launch (test_command_receipt_preflight.ReceiptPreflightTests.test_legacy_bad_task_is_retired_without_agent_launch) ... ok
+test_admission_never_recovers_or_mutates_pending_scientific_transaction (test_admission.AdmissionTests.test_admission_never_recovers_or_mutates_pending_scientific_transaction) ... ok
+test_baseline_qualification_does_not_need_the_evidence_it_produces (test_admission.AdmissionTests.test_baseline_qualification_does_not_need_the_evidence_it_produces) ... FAIL
+test_changed_skill_and_unpinned_batch_denied (test_admission.AdmissionTests.test_changed_skill_and_unpinned_batch_denied) ... ok
+test_code_missing_method_prerequisite_denied (test_admission.AdmissionTests.test_code_missing_method_prerequisite_denied) ... ok
+test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes (test_admission.AdmissionTests.test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes) ... FAIL
+test_design_verified_does_not_authorize_scientific_verdict_task (test_admission.AdmissionTests.test_design_verified_does_not_authorize_scientific_verdict_task) ... ok
+test_local_admission_never_imports_unpinned_bytecode (test_admission.AdmissionTests.test_local_admission_never_imports_unpinned_bytecode) ... FAIL
+test_local_design_requires_actual_code_qualification (test_admission.AdmissionTests.test_local_design_requires_actual_code_qualification) ... FAIL
+test_new_treatment_requires_discovery_and_current_design_chain (test_admission.AdmissionTests.test_new_treatment_requires_discovery_and_current_design_chain) ... ok
+test_qualification_purpose_cannot_bypass_treatment_admission (test_admission.AdmissionTests.test_qualification_purpose_cannot_bypass_treatment_admission) ... FAIL
+test_remote_prelaunch_rechecks_host_current_project_gates (test_admission.AdmissionTests.test_remote_prelaunch_rechecks_host_current_project_gates) ... FAIL
+test_scientific_native_requires_separate_ssh_target (test_admission.AdmissionTests.test_scientific_native_requires_separate_ssh_target) ... FAIL
+test_source_read_needs_no_artificial_intake (test_admission.AdmissionTests.test_source_read_needs_no_artificial_intake) ... ok
+test_web_native_never_executes (test_admission.AdmissionTests.test_web_native_never_executes) ... ok
+
+======================================================================
+FAIL: test_baseline_qualification_does_not_need_the_evidence_it_produces (test_admission.AdmissionTests.test_baseline_qualification_does_not_need_the_evidence_it_produces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 125, in test_baseline_qualification_does_not_need_the_evidence_it_produces
+    self.assertTrue(self.a(self.p, t))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes (test_admission.AdmissionTests.test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 53, in test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes
+    self.assertTrue(self.check('candidate_code', ref))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_local_admission_never_imports_unpinned_bytecode (test_admission.AdmissionTests.test_local_admission_never_imports_unpinned_bytecode)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 183, in test_local_admission_never_imports_unpinned_bytecode
+    self.assertTrue(self.check('candidate_code',ref))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_local_design_requires_actual_code_qualification (test_admission.AdmissionTests.test_local_design_requires_actual_code_qualification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 62, in test_local_design_requires_actual_code_qualification
+    self.assertTrue(self.check('experiment_design', ref))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_qualification_purpose_cannot_bypass_treatment_admission (test_admission.AdmissionTests.test_qualification_purpose_cannot_bypass_treatment_admission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 94, in test_qualification_purpose_cannot_bypass_treatment_admission
+    self.assertTrue(self.a(self.p, t))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_remote_prelaunch_rechecks_host_current_project_gates (test_admission.AdmissionTests.test_remote_prelaunch_rechecks_host_current_project_gates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 132, in test_remote_prelaunch_rechecks_host_current_project_gates
+    t=self.native_task();self.assertTrue(self.a(self.p,t))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_scientific_native_requires_separate_ssh_target (test_admission.AdmissionTests.test_scientific_native_requires_separate_ssh_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 148, in test_scientific_native_requires_separate_ssh_target
+    t=self.native_task();self.assertTrue(self.a(self.p,t))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 64 tests in 13.658s
+
+FAILED (failures=7)

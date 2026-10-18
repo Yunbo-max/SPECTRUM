@@ -1,0 +1,77 @@
+test_admission_never_recovers_or_mutates_pending_scientific_transaction (test_admission.AdmissionTests.test_admission_never_recovers_or_mutates_pending_scientific_transaction) ... ok
+test_baseline_qualification_does_not_need_the_evidence_it_produces (test_admission.AdmissionTests.test_baseline_qualification_does_not_need_the_evidence_it_produces) ... FAIL
+test_changed_skill_and_unpinned_batch_denied (test_admission.AdmissionTests.test_changed_skill_and_unpinned_batch_denied) ... ok
+test_code_missing_method_prerequisite_denied (test_admission.AdmissionTests.test_code_missing_method_prerequisite_denied) ... ok
+test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes (test_admission.AdmissionTests.test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes) ... FAIL
+test_design_verified_does_not_authorize_scientific_verdict_task (test_admission.AdmissionTests.test_design_verified_does_not_authorize_scientific_verdict_task) ... ok
+test_local_admission_never_imports_unpinned_bytecode (test_admission.AdmissionTests.test_local_admission_never_imports_unpinned_bytecode) ... FAIL
+test_local_design_requires_actual_code_qualification (test_admission.AdmissionTests.test_local_design_requires_actual_code_qualification) ... FAIL
+test_new_treatment_requires_discovery_and_current_design_chain (test_admission.AdmissionTests.test_new_treatment_requires_discovery_and_current_design_chain) ... ok
+test_qualification_purpose_cannot_bypass_treatment_admission (test_admission.AdmissionTests.test_qualification_purpose_cannot_bypass_treatment_admission) ... FAIL
+test_remote_prelaunch_rechecks_host_current_project_gates (test_admission.AdmissionTests.test_remote_prelaunch_rechecks_host_current_project_gates) ... FAIL
+test_scientific_native_requires_separate_ssh_target (test_admission.AdmissionTests.test_scientific_native_requires_separate_ssh_target) ... FAIL
+test_source_read_needs_no_artificial_intake (test_admission.AdmissionTests.test_source_read_needs_no_artificial_intake) ... ok
+test_web_native_never_executes (test_admission.AdmissionTests.test_web_native_never_executes) ... ok
+
+======================================================================
+FAIL: test_baseline_qualification_does_not_need_the_evidence_it_produces (test_admission.AdmissionTests.test_baseline_qualification_does_not_need_the_evidence_it_produces)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 125, in test_baseline_qualification_does_not_need_the_evidence_it_produces
+    self.assertTrue(self.a(self.p, t))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes (test_admission.AdmissionTests.test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 53, in test_current_selection_allows_web_code_and_design_draft_but_tamper_revokes
+    self.assertTrue(self.check('candidate_code', ref))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_local_admission_never_imports_unpinned_bytecode (test_admission.AdmissionTests.test_local_admission_never_imports_unpinned_bytecode)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 183, in test_local_admission_never_imports_unpinned_bytecode
+    self.assertTrue(self.check('candidate_code',ref))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_local_design_requires_actual_code_qualification (test_admission.AdmissionTests.test_local_design_requires_actual_code_qualification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 62, in test_local_design_requires_actual_code_qualification
+    self.assertTrue(self.check('experiment_design', ref))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_qualification_purpose_cannot_bypass_treatment_admission (test_admission.AdmissionTests.test_qualification_purpose_cannot_bypass_treatment_admission)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 94, in test_qualification_purpose_cannot_bypass_treatment_admission
+    self.assertTrue(self.a(self.p, t))
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_remote_prelaunch_rechecks_host_current_project_gates (test_admission.AdmissionTests.test_remote_prelaunch_rechecks_host_current_project_gates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 132, in test_remote_prelaunch_rechecks_host_current_project_gates
+    t=self.native_task();self.assertTrue(self.a(self.p,t))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_scientific_native_requires_separate_ssh_target (test_admission.AdmissionTests.test_scientific_native_requires_separate_ssh_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-repair/tests/runtime/test_admission.py", line 148, in test_scientific_native_requires_separate_ssh_target
+    t=self.native_task();self.assertTrue(self.a(self.p,t))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 14 tests in 8.111s
+
+FAILED (failures=7)

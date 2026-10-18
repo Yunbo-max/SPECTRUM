@@ -1,0 +1,9 @@
+# Latest user authority — GPU switch and B01 tests, 2026-10-18
+
+User explicitly requested that B01 be tested on the GPU and authorized optimizing its code. Latest execution target replaces earlier sh02 and hz01 targets: SSH alias spectrum-harness-gpu-hn01, supplied directly by the user. User also requires subsequent code-related tests to run on the GPU server. Local Mac-specific service behavior necessarily stays on its actual Mac host; portable/runtime/scientific code tests run remotely. No new aggregate research limit was requested.
+
+Do not use earlier GPU targets for new work. Reconcile known operations before any retry. At migration boundary the controller has no nonterminal tasks/runs. Old sh02 and hz01 subsequently refused SSH; no training was started there by the parent, but connection refusal alone is not proof that every external process stopped.
+
+Latest target hardware observation: NVIDIA RTX4090,24564MiB, capability8.9, nativeBF16true. Systemtorch2.12.1+cu130 differs from projectconstraint; fixed projectvenv torch2.7.1 and dependencies install is separately tracked in setup/environment-status.json. Model/data revisions remain fixed; use Tsinghua PyPI and hf-mirror per prior user preference. Do not report downloaded, qualified, or trained before real receipts.
+
+B01 may request finite native qualification tasks under the explicit pinned authorization. One native task per proposal, serial execution, max3600seconds including transfer per task; this is a task reservation, not a lifetime/round cap. Existing v4diagnostic admission, no treatment jobs, independent review, output verification and full unresolved research coverage remain. Reuse actual parent probes; no repeated read-only search when same evidence is already exhausted. Parent-observed environment probes are not native_harness scientific receipts.

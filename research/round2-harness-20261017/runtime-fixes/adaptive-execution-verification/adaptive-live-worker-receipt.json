@@ -1,0 +1,25 @@
+{
+  "observed_at": 1792355928.076948,
+  "revision": 404,
+  "phase": "active",
+  "stage": "planner",
+  "step_id": "B02",
+  "policy": {
+    "edition": "autonomous-rsi-harness",
+    "skill_digest": "2f878f51257179958aa53d3d4819be43df6a165ee91dc834149b04e6493f57fd",
+    "source_revision": "486d8ec0c256a0b6e22527c8ebe836a35d468091",
+    "version": "0.4.0-harness.11"
+  },
+  "consumer_alive": true,
+  "consumer_heartbeat_recent": true,
+  "planner_task_id": "harness.planner.000149",
+  "active_tasks": [
+    {
+      "task_id": "harness.planner.000149",
+      "state": "running",
+      "run_id": "bd4521af3b0c415ca47835960977eb9d",
+      "adapter": "codex-local"
+    }
+  ],
+  "scientific_acceptance": false
+}

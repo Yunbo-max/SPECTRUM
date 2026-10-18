@@ -52,3 +52,6 @@ No new scientific baseline/treatment score or B02 acceptance is claimed by this
 maintenance. The worker must repair actual MBPP scoring and continue from these
 outputs rather than repeat installation or interpret passing software tests as
 research success. Larger models remain source/feasibility-driven research choices.
+
+Actual continuation observed: revision404, B02 worker harness.planner.000149
+running under .11, consumer lock/heartbeat live. No new science result is implied.

@@ -1,0 +1,20 @@
+{
+  "kind": "phase-freedom-live-worker-observation",
+  "version": "0.4.0-harness.10",
+  "worker_task_id": "harness.planner.000146",
+  "worker_run_id": "24f8d1fb3c124f8e812d359bfe10e5e8",
+  "native_task_id": "spectrum.C.prepare.e1.a14",
+  "native_run_id": "9bc92aa2378a43b6abe088fb51266a1f",
+  "transport": "controller-owned-mailbox",
+  "actual_native_receipt_ref": {
+    "path": "research-state/harness/receipts/9bc92aa2378a43b6abe088fb51266a1f.json",
+    "sha256": "2bca9472cd77345bac89b3748ffe1db4e08928a5339b63bc853ff79aaceafff6"
+  },
+  "native_terminal_state": "failed",
+  "native_exit_code": 2,
+  "actual_error": "ContractError: Adopted runtime changed",
+  "diagnosis": "Project stage adapter pins historical .7 Skill digest; .10 is now adopted. Current same worker is creating a versioned adapter from real GPU feedback.",
+  "scientific_result": false,
+  "research_phase": "C / B02",
+  "new_worker_for_code_fix": false
+}

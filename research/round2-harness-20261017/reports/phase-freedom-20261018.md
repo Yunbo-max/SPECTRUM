@@ -40,3 +40,10 @@ Main/private profiles installed and enabled;414 Skill files each and36 runtime m
 GPU Skill digest:304f296d806577b4c59c87d53e02d6d24f5f6614f6dcf761db7e3449fe52c84a.
 Adopted at revision392 with budget/accepted evidence preserved; resumed at393 in B02.
 Native research execution after resume is reported separately from passing software tests.
+
+Live .10 worker146 submitted the real preparation request and received the actual
+failed native receipt9bc92aa2378a43b6abe088fb51266a1f. Execution reached hn01;
+project adapter exited2 because it hard-coded historical .7 Skill bytes. The same
+worker diagnosed this from the GPU log and is creating a versioned adapter bound
+to adopted .10, retaining failure evidence. This confirms dispatch and readback,
+not successful preparation or a scientific result.

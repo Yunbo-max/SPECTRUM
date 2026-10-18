@@ -1,0 +1,17 @@
+{
+  "commit": "2637d2021f1bc523385b48a1f88ea9aa4812b0a9",
+  "files": {
+    "data_generation/generate.py": {
+      "sha256": "65d656b6c16394698748aa1cac9a3c84c7a960c2fdde084fd9f1e84636aa6a6e",
+      "bytes": 9725
+    },
+    "data_generation/config.yaml": {
+      "sha256": "5031a93d3ba2b1da8677b8cd15cc59cf442bd92cee6fb7dad734b1a89f1ee5b4",
+      "bytes": 432
+    }
+  },
+  "failed_metadata_requests": {
+    "hf-mirror_dataset_info": "HTTP403",
+    "hf-mirror_dataset_tree": "HTTP403"
+  }
+}

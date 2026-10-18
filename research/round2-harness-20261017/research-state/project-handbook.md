@@ -1,3 +1,11 @@
+## 训练来源边界核验（2026-10-18 23:52 UTC）
+
+原生LCB第一repeat进至52/131 prompts；runner65584的boot/start ticks仍匹配，尚无完整repeat或正确率。当前继续生成，无第二模型任务。
+
+审读SSD论文C.1与固定作者源码2637d202：论文描述约10,168条去重提示，公开生成脚本直接加载seed_sft、没有去重，默认T1.5并按字符长度过滤最短约10%；发布checkpoint card则训练T1.6。故示例脚本不是完整训练复现证据，不影响当前发布权重评测。rSTAR原论文报告16-gram去污染但评估LCBv5，不能替代对当前v6与确切SSD训练manifest的实际重叠检查。未发现或声称污染，未下载12.1GB seed_sft；hn01镜像metadata403已记录，不重试不变失败，也不阻塞当前模型程序。源码与分析见ssd-author-comparison-20261019/training-source-audit/review.md。后续训练如有科学必要再绑定实际提示、去重和过滤，不从公开例子推定checkpoint配方。
+
+已读取既有手册/记忆；继续等待原生配对结果判定C问题，不将来源缺口转成新方法主张。Harness未暂停，研究未完成。
+
 ## 十样本解释边界与续跑（2026-10-18 23:46 UTC）
 
 核对同一runner65584身份仍匹配，第一repeat最新39/131 prompts，无完整repeat或正确率。未重启、未并发其他模型，已完成的官方MBPP不重跑。

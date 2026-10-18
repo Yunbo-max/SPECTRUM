@@ -1,0 +1,13 @@
+{
+  "scope": "Text search of source/config/docs, not proof no external preprocessing occurred.",
+  "files_scanned": [
+    "README.md",
+    "data_generation/generate.py",
+    "data_generation/config.yaml",
+    "evaluation/livecodebench_utils.py",
+    "evaluation/__init__.py",
+    "evaluation/eval.py",
+    "evaluation/benchmark.py"
+  ],
+  "matches": []
+}

@@ -25,3 +25,6 @@ SSH 检查已取得 GPU/磁盘/解释器结果；完整探测 shell 最终 exit=
 
 ## GPU-first intake 插件更新
 Work Harness 已更新并安装为 0.4.0-harness.3：先确认/实测 GPU，再判断阶段可行性。85 项运行时测试与 34 项插件打包测试在 4090 服务器通过；当前研究 pins 保留。详见 reports/gpu-first-intake-20261018.md。
+
+## B01 配置阶段修正
+Work Harness .4 已安装并显式部署本轮运行时：起始时确定 GPU，B01 配置上游资源并检查真实启动，评分资格留到后续节点。详见 reports/b01-upstream-setup-20261018.md。

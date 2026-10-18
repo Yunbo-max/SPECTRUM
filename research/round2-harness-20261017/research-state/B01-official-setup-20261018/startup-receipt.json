@@ -1,0 +1,20 @@
+{
+  "kind": "parent-observed-remote-startup-receipt",
+  "target_ref": {
+    "path": "research-state/native-gpu-target-hn01-20261018.json",
+    "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+  },
+  "command": "/root/rivermind-data/spectrum-harness/venv/bin/python /root/rivermind-data/spectrum-harness/setup/b01_startup_probe.py",
+  "interpreter": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "exit_code": 0,
+  "output_ref": {
+    "path": "research-state/B01-official-setup-20261018/startup-output.json",
+    "sha256": "080b581c324cf241319b97f32f590a8a115d7d72034dfae24064f26d048dba16"
+  },
+  "script_ref": {
+    "path": "research-state/B01-official-setup-20261018/startup_probe.py",
+    "sha256": "629f33dd66cbc9783a2677af70f50ffc92b4862ba9285f1e2ce9d733eb5a6752"
+  },
+  "observed_at": 1792321824.7921631,
+  "scoring_executed": false
+}

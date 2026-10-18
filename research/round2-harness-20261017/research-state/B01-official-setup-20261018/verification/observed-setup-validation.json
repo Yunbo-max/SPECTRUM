@@ -1,0 +1,13 @@
+{
+  "actual_setup_report_validated": true,
+  "policy_ref": {
+    "path": "research-state/B01-official-setup-20261018/setup-policy.json",
+    "sha256": "f9ab4ab5b61b19fdd69520808958d11b14f96fd8c6f6fa052ce4e79f04496e70"
+  },
+  "report_ref": {
+    "path": "research-state/B01-official-setup-20261018/setup-report.json",
+    "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+  },
+  "mode": "configuration_only",
+  "scoring_status": "pending"
+}

@@ -1,0 +1,61 @@
+======================================================================
+ERROR: test_adoption_rejects_stale_paused_active_tasks_or_wrong_target (test_b01_setup.B01SetupTests.test_adoption_rejects_stale_paused_active_tasks_or_wrong_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 55, in test_adoption_rejects_stale_paused_active_tasks_or_wrong_target
+    self.program.adopt_b01_setup('p', self.policy_ref, expected_revision=6)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ResearchProgram' object has no attribute 'adopt_b01_setup'
+
+======================================================================
+ERROR: test_evaluation_identity_must_cite_actual_report (test_b01_setup.B01SetupTests.test_evaluation_identity_must_cite_actual_report)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 112, in test_evaluation_identity_must_cite_actual_report
+    from research_autopilot.b01_setup import require_report_evidence
+ModuleNotFoundError: No module named 'research_autopilot.b01_setup'
+
+======================================================================
+ERROR: test_exact_accepted_decision_retained_only_without_tasks_or_fresh_native (test_b01_setup.B01SetupTests.test_exact_accepted_decision_retained_only_without_tasks_or_fresh_native)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 83, in test_exact_accepted_decision_retained_only_without_tasks_or_fresh_native
+    adopted = self.adopt()
+              ^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 38, in adopt
+    return self.program.adopt_b01_setup('p', self.policy_ref, expected_revision=7)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ResearchProgram' object has no attribute 'adopt_b01_setup'
+
+======================================================================
+ERROR: test_invalid_evidence_or_false_official_not_accepted (test_b01_setup.B01SetupTests.test_invalid_evidence_or_false_official_not_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 95, in test_invalid_evidence_or_false_official_not_accepted
+    from research_autopilot.b01_setup import validate_policy
+ModuleNotFoundError: No module named 'research_autopilot.b01_setup'
+
+======================================================================
+ERROR: test_owner_adoption_preserves_history_budget_and_catalog (test_b01_setup.B01SetupTests.test_owner_adoption_preserves_history_budget_and_catalog)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 42, in test_owner_adoption_preserves_history_budget_and_catalog
+    adopted = self.adopt()
+              ^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 38, in adopt
+    return self.program.adopt_b01_setup('p', self.policy_ref, expected_revision=7)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ResearchProgram' object has no attribute 'adopt_b01_setup'
+
+======================================================================
+ERROR: test_setup_packet_same_requirements_both_roles_and_no_native (test_b01_setup.B01SetupTests.test_setup_packet_same_requirements_both_roles_and_no_native)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/b01-setup/tests/runtime/test_b01_setup.py", line 68, in test_setup_packet_same_requirements_both_roles_and_no_native
+    from research_autopilot.b01_setup import context
+ModuleNotFoundError: No module named 'research_autopilot.b01_setup'
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.792s
+
+FAILED (errors=6)

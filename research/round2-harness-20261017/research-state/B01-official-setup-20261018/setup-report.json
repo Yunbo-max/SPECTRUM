@@ -1,0 +1,64 @@
+{
+  "kind": "research-b01-setup-report",
+  "schema_version": 1,
+  "project_id": "spectrum-round2-work-harness",
+  "goal_id": "spectrum-round2",
+  "target_ref": {
+    "path": "research-state/native-gpu-target-hn01-20261018.json",
+    "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+  },
+  "dataset": {
+    "source": "https://huggingface.co/datasets/google-research-datasets/mbpp",
+    "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+    "configuration": "full",
+    "split": "test",
+    "evidence_refs": [
+      {
+        "path": "research-state/B01-official-setup-20261018/startup-output.json",
+        "sha256": "080b581c324cf241319b97f32f590a8a115d7d72034dfae24064f26d048dba16"
+      },
+      {
+        "path": "research-state/B01-scorer-source-binding-000003/google-README.md",
+        "sha256": "02d63a4ffdad806c3c87b5ea2aa91e946f6eec0c2869643b09831650883f41be"
+      }
+    ]
+  },
+  "executor": {
+    "source": "https://github.com/Yunbo-max/SPECTRUM",
+    "version": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+    "provenance": "project_custom",
+    "official": false,
+    "evidence_refs": [
+      {
+        "path": "research-state/B01-official-setup-20261018/startup-output.json",
+        "sha256": "080b581c324cf241319b97f32f590a8a115d7d72034dfae24064f26d048dba16"
+      },
+      {
+        "path": "research-state/B01-official-setup-20261018/configuration.json",
+        "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+      }
+    ]
+  },
+  "environment": {
+    "interpreter": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+    "configuration_ref": {
+      "path": "research-state/B01-official-setup-20261018/configuration.json",
+      "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+    }
+  },
+  "startup": {
+    "command": "/root/rivermind-data/spectrum-harness/venv/bin/python /root/rivermind-data/spectrum-harness/setup/b01_startup_probe.py",
+    "exit_code": 0,
+    "receipt_ref": {
+      "path": "research-state/B01-official-setup-20261018/startup-receipt.json",
+      "sha256": "f5a626b3a899d280a907c807ee3b91b58d25a53023abb3d841afcfe3801723bb"
+    }
+  },
+  "runtime_gaps": [
+    "MBPP author-provided executable scorer is not present in the retained upstream directory; existing executor is project_custom, not official.",
+    "Actual generated-program scoring and native isolation remain pending for scoring/B03.",
+    "MBPP full/test500 and MBPP+/sanitized remain distinct; installed EvalPlus does not change selected population.",
+    "Task367 setup and existing prompt differences are retained; startup does not establish scorer equivalence."
+  ],
+  "scoring_status": "pending"
+}

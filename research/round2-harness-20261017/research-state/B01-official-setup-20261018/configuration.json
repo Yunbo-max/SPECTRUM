@@ -1,0 +1,28 @@
+{
+  "benchmark": "MBPP",
+  "configuration": "full",
+  "split": "test",
+  "task_ids": [
+    11,
+    510
+  ],
+  "denominator": 500,
+  "dataset_revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+  "dataset_path": "/root/rivermind-data/spectrum-harness/cache/huggingface/hub/datasets--google-research-datasets--mbpp/snapshots/4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+  "model_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "model_path": "/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "source_commit": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+  "project_root": "/root/rivermind-data/spectrum-harness/SPECTRUM",
+  "interpreter": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "executor": "improving.verification",
+  "executor_provenance": "project_custom",
+  "official_dataset": true,
+  "official_executor_claimed": false,
+  "evalplus": {
+    "version": "0.3.1",
+    "installed": true,
+    "replaces_full_mbpp": false
+  },
+  "generated_code_execution_enabled": false,
+  "scoring_status": "pending"
+}

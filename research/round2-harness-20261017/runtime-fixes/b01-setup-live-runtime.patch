@@ -1,0 +1,664 @@
+diff --git a/src/research_autopilot/b01_setup.py b/src/research_autopilot/b01_setup.py
+new file mode 100644
+index 0000000..98b0499
+--- /dev/null
++++ b/src/research_autopilot/b01_setup.py
+@@ -0,0 +1,135 @@
++"""Owner-adopted B01 configuration criteria, never evaluator qualification."""
++from __future__ import annotations
++
++from .artifacts import verify_ref
++from .models import ContractError, fields, text, validate_ref
++
++REQUIREMENTS = [
++    {'id': 'task_endpoint', 'description': 'Fix task input/output, population, evaluation unit, endpoint, aggregation and split; preserve existing scientific limitations.'},
++    {'id': 'evaluation_identity', 'description': 'Verify the pinned upstream dataset and selected evaluator provenance/version, effective configuration, and successful real import/startup receipt on the authorized target. Label community/custom implementations accurately. Configuration readiness does not require historical author predictions, live scorer replay or baseline qualification.'},
++    {'id': 'measurement_fit', 'description': 'Explain which endpoint the configured metric measures and retain proxy limitations, unresolved scoring/qualification gaps and empirical obligations for their actual execution stages.'},
++]
++INSTRUCTIONS = """B01 uses the owner-adopted configuration_only criteria in b01_setup.
++Use b01_setup.requirements for this step's three existing requirement IDs. Read its
++pinned report and startup evidence. Configure the selected upstream evaluator and
++record its actual provenance; official is not a synonym for available or popular.
++A successful import/startup proves configuration readiness only. It is not scorer
++qualification or a scientific score. Preserve all pending scoring/baseline and
++historical evidence gaps for B03 and actual scoring; these are not B01 acceptance
++blockers. Do not repeat historical author-output searches or demand live replay
++for this setup-only step. Native execution and treatment work are not allowed in
++this mode. For tasks=[] retain the exact accepted decision reference; do not create
++an unrelated inquiry decision. Every normal evidence/coverage and independent
++review requirement still applies. Cite b01_setup.report_ref in evaluation_identity
++both in worker findings and independent review. Never auto-accept a failed or
++unobserved startup, missing configuration, changed target or false provenance.
++"""
++
++
++def _refs(root, values):
++    if not isinstance(values, list) or not values:
++        raise ContractError('B01 setup needs nonempty evidence references')
++    for value in values:
++        path = verify_ref(root, validate_ref(value))
++        if not path.stat().st_size:
++            raise ContractError('B01 setup evidence cannot be empty')
++
++
++def validate_policy(project, contract, *, historical=False):
++    config = contract.get('sequence', {})
++    if 'b01_setup_ref' not in config:
++        return None
++    from .program import read_json
++    reference = validate_ref(config['b01_setup_ref'])
++    root = project['root']
++    policy = read_json(root, reference)
++    fields(policy, {'kind', 'schema_version', 'project_id', 'goal_id', 'step_id',
++                    'instruction_ref', 'target_ref', 'report_ref'})
++    if (policy['kind'] != 'research-b01-setup-policy' or type(policy['schema_version']) is not int
++            or policy['schema_version'] != 1 or policy['project_id'] != project['project_id']
++            or policy['goal_id'] != contract['goal_id'] or policy['step_id'] != 'B01'
++            or (not historical and (contract.get('native_target_ref') is None
++                or policy['target_ref'] != contract['native_target_ref']))):
++        raise ContractError('B01 setup policy must bind the current goal and authorized target')
++    _refs(root, [policy['instruction_ref'], policy['target_ref'], policy['report_ref']])
++    report = read_json(root, policy['report_ref'])
++    fields(report, {'kind', 'schema_version', 'project_id', 'goal_id', 'target_ref',
++                    'dataset', 'executor', 'environment', 'startup', 'runtime_gaps', 'scoring_status'})
++    if (report['kind'] != 'research-b01-setup-report' or type(report['schema_version']) is not int
++            or report['schema_version'] != 1 or report['project_id'] != policy['project_id']
++            or report['goal_id'] != policy['goal_id'] or report['target_ref'] != policy['target_ref']
++            or report['scoring_status'] not in ('pending', 'not_requested')):
++        raise ContractError('B01 report must bind setup only, never scored/qualified results')
++    dataset = report['dataset']
++    fields(dataset, {'source', 'revision', 'configuration', 'split', 'evidence_refs'})
++    for key in ('source', 'revision', 'configuration', 'split'):
++        text(dataset[key], 'dataset ' + key)
++    _refs(root, dataset['evidence_refs'])
++    executor = report['executor']
++    fields(executor, {'source', 'version', 'provenance', 'official', 'evidence_refs'}, {'official_source_ref'})
++    for key in ('source', 'version'):
++        text(executor[key], 'executor ' + key)
++    if (executor['provenance'] not in ('benchmark_author', 'upstream_project', 'community', 'project_custom')
++            or type(executor['official']) is not bool):
++        raise ContractError('B01 executor provenance must identify its actual source')
++    _refs(root, executor['evidence_refs'])
++    if executor['official']:
++        if executor['provenance'] != 'benchmark_author' or 'official_source_ref' not in executor:
++            raise ContractError('official evaluator needs benchmark-author provenance and explicit source evidence')
++    if 'official_source_ref' in executor:
++        _refs(root, [executor['official_source_ref']])
++    environment, startup = report['environment'], report['startup']
++    fields(environment, {'interpreter', 'configuration_ref'})
++    fields(startup, {'command', 'exit_code', 'receipt_ref'})
++    text(environment['interpreter'], 'actual project interpreter')
++    text(startup['command'], 'actual startup command')
++    _refs(root, [environment['configuration_ref'], startup['receipt_ref']])
++    receipt = read_json(root, startup['receipt_ref'])
++    if (not isinstance(receipt, dict) or type(startup['exit_code']) is not int or startup['exit_code'] != 0
++            or type(receipt.get('exit_code')) is not int or receipt['exit_code'] != 0
++            or receipt.get('target_ref') != policy['target_ref']
++            or receipt.get('command') != startup['command']
++            or receipt.get('interpreter') != environment['interpreter']):
++        raise ContractError('B01 needs a successful startup receipt bound to this target, command and interpreter')
++    _refs(root, [receipt.get('output_ref')])
++    if not isinstance(report['runtime_gaps'], list):
++        raise ContractError('B01 runtime gaps must be an explicit list')
++    for gap in report['runtime_gaps']:
++        text(gap, 'pending runtime gap')
++    return {'reference': reference, **policy, 'report': report}
++
++
++def context(project, contract, step):
++    if step['id'] != 'B01':
++        return None
++    policy = validate_policy(project, contract)
++    if policy is None:
++        return None
++    return {'mode': 'configuration_only', 'policy_ref': policy['reference'],
++            'instruction_ref': policy['instruction_ref'], 'target_ref': policy['target_ref'],
++            'report_ref': policy['report_ref'], 'requirements': REQUIREMENTS,
++            'instructions': INSTRUCTIONS}
++
++
++def require_report_evidence(project, contract, step, rows):
++    ctx = context(project, contract, step)
++    if ctx is not None:
++        identity = next((row for row in rows if row['requirement_id'] == 'evaluation_identity'), None)
++        if identity is None or ctx['report_ref'] not in identity['evidence_refs']:
++            raise ContractError('B01 configuration identity must cite the actual adopted setup report')
++
++
++def retained_decision(project, prior, proposal, fresh):
++    """Return only already accepted pins; all other proposals use existing rules."""
++    state = prior['state']
++    if (state.get('sequence', {}).get('step_id') != 'B01'
++            or 'b01_setup_ref' not in prior['contract'].get('sequence', {})
++            or proposal.get('tasks') != [] or proposal.get('status') != 'wait'
++            or any(item['action'] == 'native_harness' for item in fresh)):
++        return None
++    validate_policy(project, prior['contract'])
++    accepted = state.get('accepted_decision_ref')
++    if accepted is None or proposal.get('decision_ref') != accepted:
++        return None
++    verify_ref(project['root'], accepted)
++    return [accepted]
+diff --git a/src/research_autopilot/program.py b/src/research_autopilot/program.py
+index 961b82c..95cf1d8 100644
+--- a/src/research_autopilot/program.py
++++ b/src/research_autopilot/program.py
+@@ -307,6 +307,55 @@ class ResearchProgram:
+                        (project_id, revision, 'b01_qualification_authorized', payload, time.time()))
+         return self.status(project_id)
+ 
++    def adopt_b01_setup(self, project_id, policy_ref, *, expected_revision):
++        """Owner-adopted configuration scope at a quiet B01 boundary, with CAS."""
++        from .b01_setup import validate_policy
++        from .skill_sequence import _cursor
++        validate_ref(policy_ref)
++        if type(expected_revision) is not int or expected_revision < 0:
++            raise ContractError('B01 setup adoption needs an exact expected revision')
++        prior = self.status(project_id)
++        project = self.controller.get_project(project_id)
++        if prior['revision'] != expected_revision:
++            raise ContractError('program changed before B01 setup adoption')
++        config, state = prior['contract'], prior['state']
++        if (config.get('schema_version') != 2 or state['phase'] != 'active'
++                or state['stage'] != 'decide' or state.get('staged_tasks')
++                or state.get('execution_task_ids')):
++            raise ContractError('B01 setup adoption requires an active quiet decision boundary')
++        self._policy(project, config)
++        _, step = _cursor(project, prior)
++        if step['id'] != 'B01' or 'b01_setup_ref' in config['sequence']:
++            raise ContractError('B01 setup scope may be adopted once, only at B01')
++        updated = strict_json(canonical_json(config))
++        updated['sequence']['b01_setup_ref'] = policy_ref
++        validate_policy(project, updated)
++        revision = expected_revision + 1
++        with self.controller._transaction() as db:
++            row = db.execute('SELECT revision,contract,state FROM research_programs WHERE project_id=?',
++                             (project_id,)).fetchone()
++            if (row is None or row['revision'] != expected_revision
++                    or row['contract'] != canonical_json(config) or row['state'] != canonical_json(state)):
++                raise ContractError('program changed concurrently before B01 setup adoption')
++            if (db.execute("SELECT 1 FROM tasks WHERE project_id=? AND state NOT IN ('completed','failed','cancelled') LIMIT 1",
++                           (project_id,)).fetchone()
++                    or db.execute("SELECT 1 FROM runs WHERE project_id=? AND state NOT IN ('completed','failed','cancelled') LIMIT 1",
++                                  (project_id,)).fetchone()):
++                raise ContractError('B01 setup adoption cannot replace pending, running or uncertain work')
++            receipt = save_artifact(project['root'],
++                f'research-state/harness/adoptions/b01-setup-{revision:06d}.json', {
++                    'kind': 'research-b01-setup-adoption', 'schema_version': 1,
++                    'project_id': project_id, 'previous_revision': expected_revision,
++                    'revision': revision, 'policy_ref': policy_ref,
++                    'previous_contract': config, 'previous_state': state, 'adopted_contract': updated})
++            new_state = {**state, 'b01_setup_adoption_ref': receipt}
++            payload = canonical_json(new_state)
++            db.execute('UPDATE research_programs SET contract=?,state=?,revision=? WHERE project_id=?',
++                       (canonical_json(updated), payload, revision, project_id))
++            db.execute('INSERT INTO research_program_events VALUES(?,?,?,?,?)',
++                       (project_id, revision, 'b01_setup_adopted', payload, time.time()))
++        return self.status(project_id)
++
+     def _update(self, prior, state, kind):
+         with self.controller._transaction() as db:
+             row = db.execute("SELECT revision FROM research_programs WHERE project_id=?", (prior["project_id"],)).fetchone()
+@@ -460,6 +509,10 @@ class ResearchProgram:
+         return decode_response(project["root"], ref), {**item, "response_ref": ref}
+ 
+     def _decision(self, prior, project, proposal, receipts):
++        from .b01_setup import retained_decision
++        retained = retained_decision(project, prior, proposal, receipts)
++        if retained is not None:
++            return retained
+         ref = proposal['decision_ref']
+         accepted = prior['state']['accepted_decision_ref']
+         if ref is None:
+diff --git a/src/research_autopilot/skill_sequence.py b/src/research_autopilot/skill_sequence.py
+index 278beb8..d12c145 100644
+--- a/src/research_autopilot/skill_sequence.py
++++ b/src/research_autopilot/skill_sequence.py
+@@ -15,6 +15,7 @@ import time
+ 
+ from .artifacts import canonical_json, digest_tree, pin_file, resolve_path, verify_ref
+ from .coverage import validate_coverage
++from . import b01_setup
+ from .models import (ACTIONS, ContractError, cumulative_time_limit, fields, identifier, json_data,
+                      relative_path, seconds, strings, text, validate_ref, validate_task)
+ from .scientific_closure import verify_scientific_closure
+@@ -120,8 +121,9 @@ def validate_sequence(project, contract):
+     if type(contract.get('schema_version')) is not int or contract['schema_version'] != 2:
+         raise ContractError('fixed Skill sequence requires program schema_version=2')
+     config = contract.get('sequence')
+-    fields(config, {'mode', 'scopes'}, {'qualification_authorization_ref'})
++    fields(config, {'mode', 'scopes'}, {'qualification_authorization_ref', 'b01_setup_ref'})
+     _qualification_authorization(project, contract)
++    b01_setup.validate_policy(project, contract)
+     if config['mode'] not in {'repeat', 'once'}:
+         raise ContractError('sequence mode must be repeat or once')
+     scopes = strings(config['scopes'], 'sequence scopes')
+@@ -189,8 +191,9 @@ def _cursor(project, prior):
+     step = _closure() if index == len(catalog['steps']) else catalog['steps'][index]
+     if step['id'] != selected['step_id']:
+         raise ContractError('sequence index and current step identity disagree')
+-    fields(config['sequence'], {'mode', 'scopes'}, {'qualification_authorization_ref'})
++    fields(config['sequence'], {'mode', 'scopes'}, {'qualification_authorization_ref', 'b01_setup_ref'})
+     _qualification_authorization(project, config)
++    b01_setup.validate_policy(project, config, historical=step['id'] != 'B01')
+     if config['sequence']['mode'] not in {'once', 'repeat'}:
+         raise ContractError('unknown fixed sequence mode')
+     scopes = strings(config['sequence']['scopes'], 'sequence scopes')
+@@ -251,6 +254,11 @@ def _refs(root, refs, label):
+ def _task(program, prior, project, role, packet):
+     task = program._agent_task(prior, project, role, packet)
+     task['parameters']['sequence_binding'] = binding(prior['state'])
++    setup = packet.get('b01_setup')
++    if setup is not None:
++        for key in ('policy_ref', 'instruction_ref', 'target_ref', 'report_ref'):
++            if setup[key] not in task['inputs']:
++                task['inputs'].append(setup[key])
+     authorization = packet.get('qualification_authorization')
+     if authorization is not None:
+         for ref in (authorization['reference'], authorization['instruction_ref'],
+@@ -388,6 +396,8 @@ def _qualification_tasks(program, project, contract, step, tasks):
+     native = [task for task in tasks if task['action'] == 'native_harness']
+     if not native:
+         return
++    if b01_setup.context(project, contract, step) is not None:
++        raise ContractError('B01 configuration-only mode does not authorize native execution')
+     authorization = _qualification_authorization(project, contract)
+     if authorization is None:
+         raise ContractError('B01 native qualification requires explicit pinned owner authorization')
+@@ -408,6 +418,8 @@ def _qualification_tasks(program, project, contract, step, tasks):
+ 
+ def _allowed_actions(program, project, state, step, contract=None):
+     allowed = (COMMON_ACTIONS | {step['action']}) - {'runtime_maintenance'}
++    if contract is not None and b01_setup.context(project, contract, step) is not None:
++        return allowed - {'native_harness', 'candidate_code', 'experiment_design'}
+     if (step['id'] == 'B01' and contract is not None
+             and _qualification_authorization(project, contract) is not None):
+         allowed |= {'native_harness'}
+@@ -484,7 +496,8 @@ def _audit_acceptances(program, prior, project, catalog):
+         record = _read(project['root'], ref)
+         fields(record, {'kind', 'schema_version', 'goal_id', 'sequence', 'disposition',
+                         'reason', 'previous_ref', 'result_ref', 'review_ref', 'proposal_ref',
+-                        'review_run_id', 'planner_task_id', 'reviewer_task_id'})
++                        'review_run_id', 'planner_task_id', 'reviewer_task_id'},
++                       {'b01_setup_ref', 'b01_setup_report_ref'})
+         step = catalog['steps'][position % count]
+         expected_cycle = position // count + 1
+         selected = binding({'sequence': record['sequence']})
+@@ -545,7 +558,19 @@ def _audit_acceptances(program, prior, project, catalog):
+                 raise ContractError('accepted step reviewer run identity changed')
+             audit_state = {**state, 'sequence': {**seq, **selected, 'result_ref': record['result_ref']},
+                            'proposal_ref': record['proposal_ref'], 'planner_task_id': record['planner_task_id']}
+-            approved, satisfied = _review(program, {'state': audit_state}, project,
++            audit_contract = json_data(prior['contract'])
++            audit_contract['sequence'].pop('b01_setup_ref', None)
++            if 'b01_setup_ref' in record or 'b01_setup_report_ref' in record:
++                if step['id'] != 'B01' or 'b01_setup_ref' not in record or 'b01_setup_report_ref' not in record:
++                    raise ContractError('setup acceptance evidence is exclusive to B01')
++                audit_contract['sequence']['b01_setup_ref'] = record['b01_setup_ref']
++                historical_policy = b01_setup.validate_policy(project, audit_contract, historical=True)
++                audit_contract['native_target_ref'] = historical_policy['target_ref']
++                setup = b01_setup.context(project, audit_contract, step)
++                if setup['report_ref'] != record['b01_setup_report_ref']:
++                    raise ContractError('B01 acceptance lost its adopted configuration report')
++                b01_setup.require_report_evidence(project, audit_contract, step, findings)
++            approved, satisfied = _review(program, {'state': audit_state, 'contract': audit_contract}, project,
+                 decode_response(project['root'], record['review_ref']), reviewer, step)
+             if not approved or not satisfied:
+                 raise ContractError('accepted step no longer has complete independent acceptance')
+@@ -586,6 +611,7 @@ def _result(program, prior, project, response, step, receipts):
+         seen.add(key)
+         text(finding['finding'], 'requirement finding')
+         evidence.extend(_refs(project['root'], finding['evidence_refs'], 'requirement finding'))
++    b01_setup.require_report_evidence(project, prior['contract'], step, findings)
+     fresh = [r for r in receipts if r['attempt_id'] not in state['consumed_runs']]
+     required_receipts = [r['receipt_ref'] for r in fresh if r['action'] == 'native_harness']
+     inspection = _inspection(program, project, state['sequence']['inspect_task_ids'], receipts)
+@@ -658,8 +684,9 @@ def _prepare_review(program, prior, project, step, result_ref, envelope_ref, env
+     packet = {'role': 'independent_step_reviewer', 'contract': prior['contract'],
+               **context, 'step': step, 'sequence': binding(state),
+               'allowed_actions': sorted(_allowed_actions(program, project, state, step, prior['contract'])),
++              'b01_setup': b01_setup.context(project, prior['contract'], step),
+               'qualification_authorization': (_qualification_authorization(project, prior['contract'])
+-                  if step['id'] == 'B01' else None),
++                  if step['id'] == 'B01' and b01_setup.context(project, prior['contract'], step) is None else None),
+               'result_ref': result_ref, 'proposal_ref': envelope_ref,
+               'proposal': envelope, 'coverage': {'reference': coverage['reference'],
+                   'report_ref': coverage_report_ref, 'coverage_complete': coverage['report']['coverage_complete'],
+@@ -704,6 +731,8 @@ def _review(program, prior, project, response, item, step):
+         text(row['reason'], 'requirement review rationale')
+         _refs(project['root'], row['evidence_refs'], 'independent review')
+         satisfied = satisfied and row['satisfied']
++    if 'contract' in prior:
++        b01_setup.require_report_evidence(project, prior['contract'], step, rows)
+     return response['approved'], satisfied
+ 
+ 
+@@ -726,6 +755,10 @@ def _advance(program, prior, project, catalog, step, *, item=None, not_applicabl
+         'review_run_id': None if item is None else item['attempt']['run_id'],
+         'planner_task_id': None if not_applicable else state['planner_task_id'],
+         'reviewer_task_id': None if not_applicable else state['reviewer_task_id']}
++    setup = b01_setup.context(project, prior['contract'], step)
++    if setup is not None and not not_applicable:
++        receipt['b01_setup_ref'] = setup['policy_ref']
++        receipt['b01_setup_report_ref'] = setup['report_ref']
+     ref = _save(project['root'], _step_prefix(state) + '/acceptance.json', receipt)
+     seq['accepted'].append(ref)
+     seq['index'] += 1
+@@ -771,8 +804,9 @@ def tick_sequence(program, prior, owner, dispatch):
+         packet = {'role': 'current_skill_step_worker', 'contract': config, **context,
+                   'step': step, 'sequence': binding(state),
+                   'allowed_actions': sorted(_allowed_actions(program, project, state, step, config)),
++                  'b01_setup': b01_setup.context(project, config, step),
+                   'qualification_authorization': (_qualification_authorization(project, config)
+-                      if step['id'] == 'B01' else None),
++                      if step['id'] == 'B01' and b01_setup.context(project, config, step) is None else None),
+                   'instructions': STEP_INSTRUCTIONS}
+         task = _task(program, prior, project, 'planner', packet)
+         for ref in (state['sequence']['accepted'][-1:] + state['sequence']['cycle_receipts'][-1:]):
+@@ -929,7 +963,10 @@ def tick_sequence(program, prior, owner, dispatch):
+     raise ContractError('unknown fixed-sequence research stage')
+ 
+ 
+-STEP_INSTRUCTIONS = """Execute only the program-selected canonical Skill step in step.
++STEP_INSTRUCTIONS = """When packet.b01_setup is present, its owner-adopted configuration_only
++requirements and instructions define B01 acceptance. Read and apply that scoped
++policy before historical qualification feedback; preserve later scientific gates.
++Execute only the program-selected canonical Skill step in step.
+ Read every injected current-step source, objective, prior accepted evidence, coverage,
+ actual receipts and independent-review feedback. The program fixes order and scope.
+ program/controller are bounded current summaries; history_ref retains the complete
+@@ -992,7 +1029,11 @@ Use the canonical sources to establish substantive requirements, not this transp
+ summary alone. A command adapter may wrap this object as serialized response text.
+ """
+ 
+-REVIEW_INSTRUCTIONS = """Independently review the exact current Skill step, its raw
++REVIEW_INSTRUCTIONS = """When packet.b01_setup is present, review its owner-adopted
++configuration_only criteria and real report for the existing three B01 requirement
++IDs. Do not demand historical author outputs, faithful live replay or baseline
++qualification at B01; retain those pending obligations for their execution stages.
++Independently review the exact current Skill step, its raw
+ result_ref and program-generated proposal_ref against every prescribed requirement
+ and actual pinned evidence. You cannot change step order, scopes, or completion.
+ Read coverage.report_ref and history_ref for the complete coverage report and
+diff --git a/tests/runtime/test_b01_setup.py b/tests/runtime/test_b01_setup.py
+new file mode 100644
+index 0000000..fe4fb4c
+--- /dev/null
++++ b/tests/runtime/test_b01_setup.py
+@@ -0,0 +1,276 @@
++"""B01 configuration acceptance; engineering fixtures never qualify a scorer."""
++import copy
++import unittest
++from unittest.mock import patch
++
++import test_b01_qualification as base
++from research_autopilot.artifacts import canonical_json
++from research_autopilot.models import ContractError
++from research_autopilot.program import save_artifact, read_json
++from research_autopilot import skill_sequence as sequence
++
++
++class B01SetupTests(unittest.TestCase):
++    def setUp(self):
++        base.B01QualificationTests.setUp(self)
++        self.output = save_artifact(self.root, 'startup-output.json', {'output': 'upstream version/import help'})
++        self.config_ref = save_artifact(self.root, 'eval-config.json', {'task': 'benchmark'})
++        self.receipt = save_artifact(self.root, 'startup.json', {
++            'target_ref': self.target, 'command': 'python -m upstream --help',
++            'interpreter': '/venv/bin/python', 'exit_code': 0, 'output_ref': self.output})
++        self.report = {'kind': 'research-b01-setup-report', 'schema_version': 1,
++            'project_id': 'p', 'goal_id': 'goal', 'target_ref': self.target,
++            'dataset': {'source': 'upstream dataset', 'revision': 'fixed commit',
++                'configuration': 'full', 'split': 'test', 'evidence_refs': [self.output]},
++            'executor': {'source': 'upstream implementation', 'version': 'fixed commit',
++                'provenance': 'community', 'official': False, 'evidence_refs': [self.output]},
++            'environment': {'interpreter': '/venv/bin/python', 'configuration_ref': self.config_ref},
++            'startup': {'command': 'python -m upstream --help', 'exit_code': 0, 'receipt_ref': self.receipt},
++            'runtime_gaps': ['Actual scoring and baseline qualification remain pending'],
++            'scoring_status': 'pending'}
++        self.report_ref = save_artifact(self.root, 'setup-report.json', self.report)
++        self.policy = {'kind': 'research-b01-setup-policy', 'schema_version': 1,
++            'project_id': 'p', 'goal_id': 'goal', 'step_id': 'B01',
++            'instruction_ref': self.instruction, 'target_ref': self.target, 'report_ref': self.report_ref}
++        self.policy_ref = save_artifact(self.root, 'setup-policy.json', self.policy)
++
++    def adopt(self):
++        return self.program.adopt_b01_setup('p', self.policy_ref, expected_revision=7)
++
++    def test_owner_adoption_preserves_history_budget_and_catalog(self):
++        budget = self.controller.status('p')['budget']
++        adopted = self.adopt()
++        self.assertEqual(adopted['revision'], 8)
++        self.assertEqual(adopted['contract']['sequence']['b01_setup_ref'], self.policy_ref)
++        state = copy.deepcopy(adopted['state'])
++        receipt = read_json(self.root, state.pop('b01_setup_adoption_ref'))
++        self.assertEqual(state, self.state)
++        self.assertEqual(receipt['previous_state'], self.state)
++        self.assertEqual(receipt['previous_contract'], self.contract)
++        self.assertEqual(self.controller.status('p')['budget'], budget)
++        with self.assertRaises(ContractError): self.adopt()
++
++    def test_adoption_rejects_stale_paused_active_tasks_or_wrong_target(self):
++        with self.assertRaises(ContractError):
++            self.program.adopt_b01_setup('p', self.policy_ref, expected_revision=6)
++        for change in ({'phase': 'paused'}, {'stage': 'planner'}, {'staged_tasks': [{}]},
++                       {'execution_task_ids': ['active']}):
++            with self.controller._transaction() as db:
++                db.execute('UPDATE research_programs SET state=?', (canonical_json({**self.state, **change}),))
++            with self.assertRaises(ContractError): self.adopt()
++        with self.controller._transaction() as db:
++            db.execute('UPDATE research_programs SET state=?', (canonical_json(self.state),))
++        from test_controller import task
++        self.controller.register_task('p', task('pending', action='source_read', adapter='codex'))
++        with self.assertRaises(ContractError): self.adopt()
++
++    def test_setup_packet_same_requirements_both_roles_and_no_native(self):
++        from research_autopilot.b01_setup import context
++        adopted = self.adopt()
++        ctx = context(self.project, adopted['contract'], self.step)
++        self.assertEqual(ctx['mode'], 'configuration_only')
++        self.assertEqual({r['id'] for r in ctx['requirements']}, {r['id'] for r in self.step['requirements']})
++        self.assertEqual(ctx['report_ref'], self.report_ref)
++        self.assertIsNone(context(self.project, adopted['contract'], {**self.step, 'id': 'B03'}))
++        config = copy.deepcopy(adopted['contract'])
++        config['sequence']['qualification_authorization_ref'] = self.auth_ref
++        allowed = sequence._allowed_actions(self.program, self.project, self.state, self.step, config)
++        self.assertNotIn('native_harness', allowed)
++        self.assertNotIn('candidate_code', allowed)
++        self.assertNotIn('experiment_design', allowed)
++
++    def test_exact_accepted_decision_retained_only_without_tasks_or_fresh_native(self):
++        adopted = self.adopt()
++        proposal = {'decision_ref': self.state['accepted_decision_ref'], 'tasks': [], 'status': 'wait'}
++        with patch('research_autopilot.program._run_canonical', side_effect=AssertionError('no inquiry rerun')):
++            self.assertEqual(self.program._decision(adopted, self.project, proposal, []), [proposal['decision_ref']])
++        for change, receipts in [({'tasks': [{}]}, []), ({'status': 'complete'}, []),
++                                 ({}, [{'action': 'native_harness'}]), ({'decision_ref': None}, [])]:
++            with self.subTest(change=change, receipts=receipts), self.assertRaises((ContractError, KeyError)):
++                self.program._decision(adopted, self.project, {**proposal, **change}, receipts)
++        (self.root / proposal['decision_ref']['path']).write_text('{}')
++        with self.assertRaises(ContractError): self.program._decision(adopted, self.project, proposal, [])
++
++    def test_invalid_evidence_or_false_official_not_accepted(self):
++        from research_autopilot.b01_setup import validate_policy
++        for key, value in [('target_ref', self.instruction), ('schema_version', True)]:
++            bad = {**self.policy, key: value}
++            ref = save_artifact(self.root, 'bad-policy-' + key + '.json', bad)
++            with self.assertRaises(ContractError):
++                validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': ref}})
++        for field, value in [('executor', {**self.report['executor'], 'official': True}),
++                             ('startup', {**self.report['startup'], 'exit_code': 1}),
++                             ('scoring_status', 'qualified')]:
++            ref = save_artifact(self.root, 'bad-report-' + field + '.json', {**self.report, field: value})
++            pol = save_artifact(self.root, 'bad-report-policy-' + field + '.json', {**self.policy, 'report_ref': ref})
++            with self.assertRaises(ContractError):
++                validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': pol}})
++        (self.root / self.output['path']).write_text('{}')
++        with self.assertRaises(ContractError): self.adopt()
++
++    def test_evaluation_identity_must_cite_actual_report(self):
++        from research_autopilot.b01_setup import require_report_evidence
++        adopted = self.adopt()
++        rows = [{'requirement_id': 'evaluation_identity', 'evidence_refs': [self.report_ref]}]
++        require_report_evidence(self.project, adopted['contract'], self.step, rows)
++        with self.assertRaises(ContractError):
++            require_report_evidence(self.project, adopted['contract'], self.step,
++                [{'requirement_id': 'evaluation_identity', 'evidence_refs': [self.output]}])
++
++    def test_real_worker_and_reviewer_packet_construction_includes_policy(self):
++        adopted = self.adopt()
++        adopted['state']['not_before'] = 0
++        adopted['contract']['max_rounds'] = None
++        for key in ('objective_ref', 'authorization_ref', 'agent_config_ref'):
++            adopted['contract'][key] = self.instruction
++        packets = []
++        def capture(program, prior, project, role, packet):
++            packets.append((role, packet))
++            return {'task_id': 'captured-' + role, 'inputs': []}
++        with patch.object(sequence, '_packet_context', return_value={}), \
++                patch.object(sequence, '_task', side_effect=capture), \
++                patch.object(self.program, '_snapshot', return_value=[]):
++            outcome = sequence.tick_sequence(self.program, adopted, 'test-worker', lambda *a: None)
++            self.assertEqual(outcome['status'], 'step_prepared')
++            sequence._prepare_review(self.program, outcome['program'], self.project, self.step,
++                self.output, self.output, {'tasks': []}, {'reference': self.output,
++                    'report': {'coverage_complete': False}, 'manifest': {'experiment_contracts': []}}, [])
++        self.assertEqual([role for role, packet in packets], ['planner', 'reviewer'])
++        for role, packet in packets:
++            self.assertEqual(packet['b01_setup']['mode'], 'configuration_only')
++            self.assertEqual(packet['b01_setup']['policy_ref'], self.policy_ref)
++            self.assertIsNone(packet['qualification_authorization'])
++            self.assertNotIn('native_harness', packet['allowed_actions'])
++
++    def test_setup_does_not_autoapprove_independent_review(self):
++        adopted = self.adopt()
++        state = adopted['state']
++        state.update(planner_task_id='planner', proposal_ref=self.output)
++        state['sequence']['result_ref'] = self.report_ref
++        response = {'kind': 'research-skill-step-review', 'schema_version': 1,
++            'goal_id': 'goal', 'sequence': sequence.binding(state), 'result_ref': self.report_ref,
++            'proposal_ref': self.output, 'approved': False, 'summary': 'review finds configuration mismatch',
++            'requirements': [{'requirement_id': r['id'], 'satisfied': False, 'reason': 'requires correction',
++                'evidence_refs': [self.report_ref]} for r in self.step['requirements']]}
++        with patch.object(self.controller, 'get_task', return_value={'attempt': {'run_id': 'planner', 'owner': 'one'}}):
++            approved, satisfied = sequence._review(self.program, adopted, self.project, response,
++                {'attempt': {'run_id': 'reviewer', 'owner': 'two'}}, self.step)
++        self.assertFalse(approved)
++        self.assertFalse(satisfied)
++        self.assertEqual(self.program.status('p')['state']['sequence']['step_id'], 'B01')
++
++    def test_acceptance_receipt_retains_setup_policy_and_report(self):
++        adopted = self.adopt()
++        adopted['state'].update(review_ref=self.output, proposal_ref=self.output,
++                                planner_task_id='planner', reviewer_task_id='reviewer')
++        adopted['state']['sequence']['result_ref'] = self.report_ref
++        catalog, _ = sequence._catalog(self.project)
++        outcome = sequence._advance(self.program, adopted, self.project, catalog, self.step,
++            item={'attempt': {'run_id': 'reviewer-run'}})
++        receipt = read_json(self.root, outcome['program']['state']['sequence']['accepted'][-1])
++        self.assertEqual(receipt['b01_setup_ref'], self.policy_ref)
++        self.assertEqual(receipt['b01_setup_report_ref'], self.report_ref)
++        self.assertEqual(receipt['disposition'], 'accepted')
++
++    def test_startup_receipt_identity_and_output_must_match(self):
++        from research_autopilot.b01_setup import validate_policy
++        for field, value in [('target_ref', self.instruction), ('interpreter', '/wrong/python'),
++                             ('command', 'different command'), ('exit_code', True), ('output_ref', None)]:
++            receipt = read_json(self.root, self.receipt)
++            ref = save_artifact(self.root, 'wrong-receipt-' + field + '.json', {**receipt, field: value})
++            report = {**self.report, 'startup': {**self.report['startup'], 'receipt_ref': ref}}
++            report_ref = save_artifact(self.root, 'wrong-receipt-report-' + field + '.json', report)
++            policy_ref = save_artifact(self.root, 'wrong-receipt-policy-' + field + '.json', {**self.policy, 'report_ref': report_ref})
++            with self.subTest(field=field), self.assertRaises(ContractError):
++                validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': policy_ref}})
++
++    def test_other_steps_and_child_tasks_keep_existing_decision_rules(self):
++        from research_autopilot.b01_setup import retained_decision
++        adopted = self.adopt()
++        proposal = {'decision_ref': self.state['accepted_decision_ref'], 'tasks': [], 'status': 'wait'}
++        for step_id in ('B03', 'E01', 'cycle-closure'):
++            prior = copy.deepcopy(adopted)
++            prior['state']['sequence']['step_id'] = step_id
++            self.assertIsNone(retained_decision(self.project, prior, proposal, []))
++        self.assertIsNone(retained_decision(self.project, adopted, {**proposal, 'tasks': [{}]}, []))
++        self.assertIsNone(retained_decision(self.project, adopted, proposal, [{'action': 'native_harness'}]))
++
++    def test_adoption_null_and_non_b01_are_rejected_without_mutation(self):
++        before = self.program.status('p')
++        with self.assertRaises(ContractError):
++            self.program.adopt_b01_setup('p', None, expected_revision=7)
++        self.assertEqual(before, self.program.status('p'))
++        from research_autopilot.b01_setup import validate_policy
++        with self.assertRaises(ContractError):
++            validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': None}})
++        with patch.object(sequence, '_cursor', return_value=({}, {**self.step, 'id': 'B03'})):
++            with self.assertRaises(ContractError): self.adopt()
++        self.assertEqual(before, self.program.status('p'))
++
++    def test_b03_and_child_tasks_actually_call_canonical_decision_check(self):
++        adopted = self.adopt()
++        decision_ref = save_artifact(self.root, 'real-decision-shape.json', {
++            'kind': 'research_decision', 'schema_version': 4, 'goal_id': 'goal'})
++        adopted['state']['accepted_decision_ref'] = decision_ref
++        proposal = {'decision_ref': decision_ref, 'tasks': [], 'status': 'wait'}
++        later = copy.deepcopy(adopted)
++        later['state']['sequence']['step_id'] = 'B03'
++        for prior, selected in [(later, proposal), (adopted, {**proposal, 'tasks': [{}]})]:
++            with patch('research_autopilot.program._run_canonical', return_value='[]') as check:
++                self.assertEqual(self.program._decision(prior, self.project, selected, []), [decision_ref])
++                check.assert_called_once()
++        with patch('research_autopilot.program._run_canonical', side_effect=ContractError('normal native gate')) as check:
++            with self.assertRaisesRegex(ContractError, 'normal native gate'):
++                self.program._decision(later, self.project, proposal, [{'action': 'native_harness'}])
++            check.assert_called_once()
++
++    def test_setup_acceptance_survives_audit_and_rejects_changed_report(self):
++        adopted = self.adopt()
++        state = adopted['state']
++        state['sequence'].update(index=0, accepted=[])
++        selected = sequence.binding(state)
++        result = {'kind': 'research-skill-step-result', 'schema_version': 1, 'goal_id': 'goal',
++            'sequence': selected, 'summary': 'configuration ready, qualification pending',
++            'findings': [{'requirement_id': r['id'], 'finding': 'observed setup only',
++                'evidence_refs': [self.report_ref]} for r in self.step['requirements']],
++            'decision_ref': state['accepted_decision_ref'], 'coverage_ref': state['coverage_ref'], 'tasks': []}
++        result_ref = save_artifact(self.root, 'final-result.json', result)
++        proposal_ref = save_artifact(self.root, 'final-proposal.json', {'status': 'wait', 'tasks': [],
++            'goal_id': 'goal', 'decision_ref': result['decision_ref'], 'coverage_ref': result['coverage_ref']})
++        review = {'kind': 'research-skill-step-review', 'schema_version': 1, 'goal_id': 'goal',
++            'sequence': selected, 'result_ref': result_ref, 'proposal_ref': proposal_ref,
++            'approved': True, 'summary': 'configuration confirmed; no scientific claim',
++            'requirements': [{'requirement_id': r['id'], 'satisfied': True, 'reason': 'observed setup',
++                'evidence_refs': [self.report_ref]} for r in self.step['requirements']]}
++        review_ref = save_artifact(self.root, 'final-review.json', review)
++        state.update(review_ref=review_ref, proposal_ref=proposal_ref, planner_task_id='planner', reviewer_task_id='reviewer')
++        state['sequence']['result_ref'] = result_ref
++        catalog = {'steps': [self.step]}
++        outcome = sequence._advance(self.program, adopted, self.project, catalog, self.step,
++            item={'attempt': {'run_id': 'reviewer-run'}})
++        items = {role: {'state': 'completed', 'attempt': {'run_id': role + '-run', 'owner': role},
++            'outputs': [ref], 'task': {'parameters': {'harness_role': role, 'sequence_binding': selected}}}
++            for role, ref in [('planner', result_ref), ('reviewer', review_ref)]}
++        with patch.object(self.controller, 'get_task', side_effect=lambda project_id, task_id: items[task_id]):
++            sequence._audit_acceptances(self.program, outcome['program'], self.project, catalog)
++            later = copy.deepcopy(outcome['program'])
++            later['contract']['native_target_ref'] = save_artifact(self.root, 'audit-later-target.json', {'host': 'new-gpu'})
++            sequence._audit_acceptances(self.program, later, self.project, catalog)
++            (self.root / self.report_ref['path']).write_text('{}')
++            with self.assertRaises(ContractError):
++                sequence._audit_acceptances(self.program, outcome['program'], self.project, catalog)
++
++    def test_later_target_change_preserves_history_but_not_current_b01_readiness(self):
++        adopted = self.adopt()
++        changed = copy.deepcopy(adopted)
++        changed['contract']['native_target_ref'] = save_artifact(self.root, 'later-target.json', {
++            'host': 'new-authorized-gpu', 'root': '/project', 'skill_root': '/skill', 'python': '/new/python'})
++        with self.assertRaises(ContractError): sequence._cursor(self.project, changed)
++        catalog, _ = sequence._catalog(self.project)
++        index = next(i for i, step in enumerate(catalog['steps']) if step['id'] == 'B03')
++        changed['state']['sequence'].update(index=index, step_id='B03', accepted=[self.output] * index)
++        _, step = sequence._cursor(self.project, changed)
++        self.assertEqual(step['id'], 'B03')
++
++
++if __name__ == '__main__': unittest.main()

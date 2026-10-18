@@ -1,0 +1,19 @@
+{
+  "kind": "research-b01-setup-policy",
+  "schema_version": 1,
+  "project_id": "spectrum-round2-work-harness",
+  "goal_id": "spectrum-round2",
+  "step_id": "B01",
+  "instruction_ref": {
+    "path": "research-state/B01-official-setup-20261018/user-instruction.md",
+    "sha256": "99e1fe9b9586fe284b0b9664165639cd5454415cfc42c377e4c27230e6be18bb"
+  },
+  "target_ref": {
+    "path": "research-state/native-gpu-target-hn01-20261018.json",
+    "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+  },
+  "report_ref": {
+    "path": "research-state/B01-official-setup-20261018/setup-report.json",
+    "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "kind": "benchmark-setup-startup-observation",
+  "observed_at": 1792321824.7921631,
+  "interpreter": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "packages": {
+    "torch": "2.7.1",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "accelerate": "1.6.0",
+    "datasets": "3.5.1",
+    "evalplus": "0.3.1"
+  },
+  "project_commit": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+  "dataset": {
+    "repo_id": "google-research-datasets/mbpp",
+    "repo_type": "dataset",
+    "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+    "path": "/root/rivermind-data/spectrum-harness/cache/huggingface/hub/datasets--google-research-datasets--mbpp/snapshots/4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+    "config": "full",
+    "split": "test",
+    "count": 500,
+    "ids": [
+      11,
+      510
+    ],
+    "parquet_sha256": "566fd53060ffba5766dace1d1e2f4c38906781526de222b0dfbdbc325b696c77",
+    "setup_task_ids": [
+      367
+    ]
+  },
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "repo_type": "model",
+    "revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "path": "/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "config_present": true,
+    "weight_files": [
+      "model.safetensors"
+    ]
+  },
+  "modules": {
+    "torch": {
+      "path": "/root/rivermind-data/spectrum-harness/venv/lib/python3.12/site-packages/torch/__init__.py",
+      "file_sha256": "9801e75447c7f585545f989f8a21940b60e0c4cc888effb2f08e739664b4b904"
+    },
+    "transformers": {
+      "path": "/root/rivermind-data/spectrum-harness/venv/lib/python3.12/site-packages/transformers/__init__.py",
+      "file_sha256": "c2d0df5eda0841cd18fd46dd0e869fb8b5373a4f97fb166ac4698bce5e3c9e4c"
+    },
+    "peft": {
+      "path": "/root/rivermind-data/spectrum-harness/venv/lib/python3.12/site-packages/peft/__init__.py",
+      "file_sha256": "80a877bcbbf8344ff411835d5051f2be411a83c93e3e77ff577b3adbab73c2b8"
+    },
+    "accelerate": {
+      "path": "/root/rivermind-data/spectrum-harness/venv/lib/python3.12/site-packages/accelerate/__init__.py",
+      "file_sha256": "af723ea40aec40af59ac7dd78278de0a85e8e25f831053964218e3dc182e4d97"
+    },
+    "datasets": {
+      "path": "/root/rivermind-data/spectrum-harness/venv/lib/python3.12/site-packages/datasets/__init__.py",
+      "file_sha256": "2a75b6c572fe43e4858acbb79b16ff0db44ee7649b4a5eac1d547bd06a1ddb57"
+    },
+    "evalplus": {
+      "path": "/root/rivermind-data/spectrum-harness/venv/lib/python3.12/site-packages/evalplus/__init__.py",
+      "file_sha256": "fd8bd103579e95d9a9114272caf122360d6957c5ee4d67dc047884fefe0c48c2"
+    },
+    "improving.data": {
+      "path": "/root/rivermind-data/spectrum-harness/SPECTRUM/src/improving/data.py",
+      "file_sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+    },
+    "improving.verification": {
+      "path": "/root/rivermind-data/spectrum-harness/SPECTRUM/src/improving/verification.py",
+      "file_sha256": "976ae4dbd7a6a69b065815e39722a002376c9a485272b3c0ac9b6bb41351468e"
+    }
+  },
+  "cli": {
+    "argv": [
+      "/root/rivermind-data/spectrum-harness/venv/bin/python",
+      "-m",
+      "improving",
+      "--help"
+    ],
+    "exit_code": 0,
+    "stdout": "usage: improving [-h]\n                 {doctor,formal,geometry,prepare,validate,run,calibrate,generate,train,verify,metrics,annotate,report,evalplus-export,evalplus-import}\n                 ...\n\nCommand line entrypoints. Dataset downloads and GPU work are explicit\ncommands.\n\npositional arguments:\n  {doctor,formal,geometry,prepare,validate,run,calibrate,generate,train,verify,metrics,annotate,report,evalplus-export,evalplus-import}\n    doctor              Inspect local dependencies and GPU; no downloads\n    formal              Formal Spectral-soft diversity experiments\n    geometry            Frozen-model correct-solution subspace study\n    prepare             Download and prepare a coding benchmark\n    verify              Run task tests; Docker by default\n    annotate            Join independently audited algorithm labels for\n                        evaluation only\n\noptions:\n  -h, --help            show this help message and exit\n"
+  },
+  "scoring_executed": false,
+  "candidate_code_executed": false,
+  "scoring_status": "pending"
+}

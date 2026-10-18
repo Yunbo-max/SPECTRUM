@@ -1,0 +1,2723 @@
+diff --git a/.codex-plugin/plugin.json b/.codex-plugin/plugin.json
+index d6a58b4..5d00972 100644
+--- a/.codex-plugin/plugin.json
++++ b/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.3",
++  "version": "0.4.0-harness.4",
+   "description": "Execute the existing Autopilot Skill in program-owned order with per-step evidence and independent acceptance.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/EDITION.json b/EDITION.json
+index 98b0837..161e883 100644
+--- a/EDITION.json
++++ b/EDITION.json
+@@ -3,7 +3,7 @@
+   "branch": "autonomous-rsi-harness",
+   "plugin_name": "research-autopilot",
+   "display_name": "Autopilot Work Harness 10.17",
+-  "plugin_version": "0.4.0-harness.3",
++  "plugin_version": "0.4.0-harness.4",
+   "round_selection": "machine",
+   "authoring_host": "local_agent",
+   "execution_host": "local_agent",
+diff --git a/EXPORT_MANIFEST.json b/EXPORT_MANIFEST.json
+index e7d361c..6b68f78 100644
+--- a/EXPORT_MANIFEST.json
++++ b/EXPORT_MANIFEST.json
+@@ -4,7 +4,7 @@
+   "skills": [
+     {
+       "name": "research-autopilot",
+-      "file_count": 360,
++      "file_count": 361,
+       "source_revision": "e05a999e058e0eda88379dd2f184f7f5b362f604",
+       "source_status": "derived_autonomous-rsi-harness; installation_unverified"
+     },
+@@ -47,16 +47,16 @@
+     "skills/designing-pipeline-figures/references/style-catalog.md": "ad4139c6fc721237c7b6cdd0c33c01f88a7bc34dd2c350c1cbd8f409c3fbc009",
+     "skills/designing-pipeline-figures/references/worked-example.md": "fb67b4b1fc6003d18f162cb49cf070f474cea1d10bc881da9f8acc84e5b571a9",
+     "skills/designing-pipeline-figures/scripts/validate_drawio.py": "dc8409ad3041aefe1184e40b57854d3745a50667736e0200ae36427e61850ae1",
+-    "skills/research-autopilot/SKILL.md": "6b6a370331cc37adc8884fc272bdf2b031783450680fcad2508df43551353b94",
++    "skills/research-autopilot/SKILL.md": "1fe9d48ddabb1b73827daad9b6858f43f51c2f329d8f7f77edc4f0220462f7f2",
+     "skills/research-autopilot/agents/openai.yaml": "8b11f2dbdaddfade9021fe29ab6c48d31a6c6e61f2d0ff1e100693523ca4e8e5",
+     "skills/research-autopilot/assets/examples/object-first/README.md": "26f8a08c68525d0c9cc5bce0b2009c74be71bf737f8bf8cc7303ac435ceaa1d8",
+     "skills/research-autopilot/assets/examples/object-first/setup.py": "1fbc84b25add3a323d5c4f6e17ec327d34ae403154a179b6c0e6417861765e8d",
+-    "skills/research-autopilot/assets/harness-policy.json": "34ea860d9a715ef6bb4459417dd453122e28fafdedf7fdf3176379eee5eec300",
++    "skills/research-autopilot/assets/harness-policy.json": "940be80bb3ccdb000091ba36124df18d1af1b45ecbf36656a985bb1d282ebf8e",
+     "skills/research-autopilot/assets/icon.svg": "83edb7ff1fcb54461e60f8bab4147bf6e24b4f9bb9e5d29283c614f40b811039",
+     "skills/research-autopilot/assets/licenses/scholar-skill-MIT.txt": "c115f24608ca19d44d8ba103ae52dff3dfcd4639ba548068a897f076bf5b8758",
+-    "skills/research-autopilot/assets/research-nodes.json": "f85089373e183ca8f1084876d657ccd75404bbbee6b63bd6c6c8cb880ab9fea0",
+-    "skills/research-autopilot/assets/runtime-guidance.json": "dcdb2af6087090c297be36de935a23b3ed48a3ee245773c56901e47717a75677",
+-    "skills/research-autopilot/assets/skill-sequence.json": "99ccd6f7be264083e55b509bc6d4076ffce2a0ca43902dae6ae4b0217b461cfb",
++    "skills/research-autopilot/assets/research-nodes.json": "9392d99ab24be4620e298706059fac7db5ca7b6c7498a92debf4970a00d9a9c8",
++    "skills/research-autopilot/assets/runtime-guidance.json": "4d48eadbeebeda15589b77fb8d171acce8aeda522d5bf8ed7c7a2a8a2bded1f2",
++    "skills/research-autopilot/assets/skill-sequence.json": "11af1da42c62021c2530ef0afb5de70f093a579a5c7cc6b8e9e9a37da01ca5d4",
+     "skills/research-autopilot/assets/templates/adaptive-trajectory.json": "b7e634f5f1677a3a38edfbca5d496674a4486a25cab018e8569228807771c246",
+     "skills/research-autopilot/assets/templates/chat-cycle.json": "247f6fbc5ee00fe94e5b9726405de0ea8f222de1e018ebfa15495ae6fa1ba811",
+     "skills/research-autopilot/assets/templates/experiment-design-contract.json": "1b3c9717f55d3f967e7e6d2b9b25ea0f150c9b13c98626763f4f96fc8f4c1199",
+@@ -75,6 +75,7 @@
+     "skills/research-autopilot/assets/templates/xiaohongshu-lead.md": "868892b185e749a409adec1ac38e910402c7243d6c09e0acd9fdd26442f735ea",
+     "skills/research-autopilot/references/artifact-contracts.md": "23317e57bc9ac6faf690a4a2bcd53faf1d9dd92d4f6570cd78857428cefaf61a",
+     "skills/research-autopilot/references/autonomous-rsi.md": "763a4afae0123a74b0922a87477a56454c139a4f7e308fb617b1f952fbcd48ca",
++    "skills/research-autopilot/references/b01-upstream-setup.md": "7595dc66c26d9252372b5ea48e1ac199c5be7d160f60c91c24d2bd94256e476b",
+     "skills/research-autopilot/references/background-exception-reporting.md": "2ca1f8ea2b7354db96f708ee9c8cad223edb6ca2cf8a660035068837f8f70ba3",
+     "skills/research-autopilot/references/benchmark-discovery.md": "efb4ce8e9574ee8c29328bdb0b4a132bc6e6b96b02d39460534b42b735d7d389",
+     "skills/research-autopilot/references/canonical-literature.md": "4c1a8f13dcdd482c040c4725f31974c4d8981a00d3da609740bc68aaaa99b09a",
+@@ -90,8 +91,8 @@
+     "skills/research-autopilot/references/dependency-resource-scheduling.md": "b5944b3c42d6b7bc33fb77fe9364956a6042cd43edff268666e02669f3f8a478",
+     "skills/research-autopilot/references/development-and-execution.md": "dfeef268fdc25e5692aa648eb8302027f799c4ab97722df8dd1326ffa195ca5f",
+     "skills/research-autopilot/references/editable-writing-artifacts.md": "4b8d8eb55089fddc42559e326b4860ec1cd80b498988c9494504ad132ca20bf1",
+-    "skills/research-autopilot/references/edition-policy.md": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd",
+-    "skills/research-autopilot/references/evaluation-and-assets.md": "3c929923061b4cb76a4a583a27a4d3e93ee3d59395b2a4f005e5edf4ca91acbb",
++    "skills/research-autopilot/references/edition-policy.md": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b",
++    "skills/research-autopilot/references/evaluation-and-assets.md": "e21adf082defd9bd3853b37f5a9a6dc26880c6aec5a3f511052f02194012b9f8",
+     "skills/research-autopilot/references/execution-and-handoffs.md": "e161aa072114df6aebb9947e55636d744cfbc69a88ca6927d4906cb6df4f4ac0",
+     "skills/research-autopilot/references/full-validation-and-review.md": "8cd1e8c1d4d89428c3840f364d360961921102de831be21d54126b2d46f26811",
+     "skills/research-autopilot/references/gate-a.md": "3521c306dc72c42ecdb305326a5afcfbe75301904e277ec34ed3f610274b8d9c",
+@@ -133,7 +134,7 @@
+     "skills/research-autopilot/references/nodes/A03.md": "5eb2dbec6232a95541ad9e6016f787420c6d8b40a098111f62c8933f07415021",
+     "skills/research-autopilot/references/nodes/A04.md": "cde8002c60b7ec5d139e8d0b44047260f50de3a19bcfe2cf5cab3e182b8dfd4a",
+     "skills/research-autopilot/references/nodes/A05.md": "18cad3e50f46a8288c28badcf3f820635bfee4a8109cc73794cc0958d9da0612",
+-    "skills/research-autopilot/references/nodes/B01.md": "9ef45aaeb061a3b9a2cb1633dc34e646f4287202662b758fa7c7d5e28c353410",
++    "skills/research-autopilot/references/nodes/B01.md": "bb2c84b12140533dea276cbf980d91534ae717b46df07176d03f1ede3ba97f2c",
+     "skills/research-autopilot/references/nodes/B02.md": "ffefad60fbf1e6ae1d0b7cb3b713b51403f5f1a11e1f38de05c78d14ba24a53f",
+     "skills/research-autopilot/references/nodes/B03.md": "b48fb2bccbd08e30dc286d2886d839904b9e3e2bc38674d3581f97a26cad0e0f",
+     "skills/research-autopilot/references/nodes/B04.md": "f67954c2639ed64f10c311298ccd5c5cf37357f53e2533765e1fbb033a9a719f",
+@@ -221,7 +222,7 @@
+     "skills/research-autopilot/references/release-and-promotion.md": "a233dd3d9ca6c5c30b4fde5a91b0d597fc2fff355cfc9229567373601d8ae61e",
+     "skills/research-autopilot/references/repository-round-trips.md": "3166fa9b612f593d0a0783843048d7f644750990287822dd7e1c1623c2fb0468",
+     "skills/research-autopilot/references/research-cycle.md": "98c3de0ac8b4be72518dce88e211ed722e27266f76a12860f11ad6ad6d734a54",
+-    "skills/research-autopilot/references/research-harness.md": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4",
++    "skills/research-autopilot/references/research-harness.md": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca",
+     "skills/research-autopilot/references/research-policy.md": "9c93b2cd8e3386f578c29b4e15279bfb932e416b26620e6e30bec7ad7a7de435",
+     "skills/research-autopilot/references/research-quality-bar.md": "5289770268053ec384d1635c01b5a6253f0ee1c31696580744e72c86477b3586",
+     "skills/research-autopilot/references/research-reasoning.md": "39f63fb6e7224b72d4282f6332e14e17d23a53d6f4f7772e62c5d1454629303e",
+@@ -419,12 +420,12 @@
+     "skills/writing-top-tier-papers/references/visual-orchestration.md": "a2a7d2acd566a19170aee6c997e206ad7b80f4e758e3a58d9d1ffc5779585f23"
+   },
+   "source_note": "Original per-skill revisions and exported_at retain export ancestry. Shared scientific helpers are imported from the source recorded in SOURCE_PUBLICATION.json. Exact delivered bytes are pinned below; no installed or live-project parity is asserted.",
+-  "research_skill_digest": "1775fa9d59aa47bd22ad8c70a2bdca91b106248d9761ca5fc48141589e1cc029",
++  "research_skill_digest": "e765a6e11daeebeb83c62c705c323db47acfb9c9c0c866138ecbaedfb307f73a",
+   "runtime_source_revision": "80d99dfd4b6d44ca51c2fb13239334fc08e6a69d",
+   "runtime_files": {
+     "docs/AUTONOMOUS.zh-CN.md": "0665ef54169aa4453ae6ba1f5dbda9a914333ce8648666ec0970c356522f39f8",
+     "docs/PROGRESS.zh-CN.md": "eadc02e32c56ee161fc63409476e8ae16ed5cff1c264e73310f0eadc7313ac9e",
+-    "docs/SKILL_SEQUENCE.md": "3dfc69957248c008970bdadfefcec435b094b3dd844d21b1057df4aaa3f8e911",
++    "docs/SKILL_SEQUENCE.md": "a87f333171d448e1e942c5633ae8b43866c33b5bd0093c3c99e24602aa729631",
+     "docs/architecture/fixed-skill-loop.md": "0daaa29909c5340130207501d66bf106517caae62a449675e0409697d12da256",
+     "docs/architecture/skill-sequence-catalog.md": "88d6621a0ad39a4224137c413843553540644b02e6cce58435f6b0223000bdeb",
+     "docs/validation/autonomous-rsi.md": "7582d46c6fc128b08aace47cf66f24023f49df2c6917307b0d2cd37a4ee5359b",
+@@ -446,6 +447,7 @@
+     "src/research_autopilot/admission.py": "e0a3cf61661a3fa0f44aa100671f8247d5cb2d15ea8f0554512eb0b440b09c8c",
+     "src/research_autopilot/artifacts.py": "5ccbda60012fc75e4d5d3b4c1a8f2d8713b396b48d545a3b60608501c8624a88",
+     "src/research_autopilot/autonomy.py": "b4ebb8a23b4e4f822a225121084594bcd47d610aceae1608e9b013080ffef557",
++    "src/research_autopilot/b01_setup.py": "8677792427dd0dbdeaa9ef099f52018a5c9f93a03102583433042694ae75a930",
+     "src/research_autopilot/cli.py": "ed65d052fb8f1521249fc9f27fa7b171a78e2f2ab56cb3a900f222953eb33c3f",
+     "src/research_autopilot/closure_worker.py": "d035238b7892a696f1b43eda5ef475edbcb46fd96a241e182d4d12cbc1db0803",
+     "src/research_autopilot/command_contract.py": "c70eb094e79df691fe112d05927cac1874e54a20afc89d05f8dcba50fb93bffb",
+@@ -457,12 +459,12 @@
+     "src/research_autopilot/mcp.py": "1f5a7a09921a238730a14f04e3c53b85b9a98a641ab78bc26ad76200c49fa122",
+     "src/research_autopilot/models.py": "12fb3cbe2f3cb08537b85bd42216dce7a09f7c38bc11646ec70fa1261b485eb9",
+     "src/research_autopilot/native_artifacts.py": "0a651cce13d3f7e0791c095c40690172438c70c1ec8954ef89dfd205e995beb2",
+-    "src/research_autopilot/program.py": "5a6c50201f5b0394bbbcb0ac271217da8f8001d5425a1c1d6e915b1ee8ee2b42",
++    "src/research_autopilot/program.py": "bb4a365f1ffbd919b9eb910c9826d3b4fb97ac649c3ac8bda6aac0fd732f2971",
+     "src/research_autopilot/program_cli.py": "81b789ddbbcac328bfc66ab940c513a73075e6fbc4b40acf294c387e11ca6ab7",
+     "src/research_autopilot/remote.py": "de1af3aa8c398f11ca96cef7e8dda5598e941c7b5f2a9bbeeab449afb57b3097",
+     "src/research_autopilot/scientific_closure.py": "834f6eb1eee618bd84ded37da35ba5cc4086bac69b0e618d9eae7ef32ccafda6",
+     "src/research_autopilot/skill_registry.py": "a0b4b3ab6390db88a2d248bad2b4e0aa98108aaa7c7995016bcbce61e8175d8b",
+-    "src/research_autopilot/skill_sequence.py": "a7cc1f1ee01872fca6194691345700cae0481ca289ec9b3cab3e323849267576",
++    "src/research_autopilot/skill_sequence.py": "4656a49b7fa1ab31eb5f42657375f4dd40f4cff270f83c4941bdf8cd73c96ad0",
+     "src/research_autopilot/supervisor.py": "7084191247baef5167c64e4b6839f3ddf90e552ff4b9347ef4c8be980a600cb5",
+     "src/research_autopilot/worker.py": "653f0bd274a2c3fe15131f0111b433c39d36a917edffc734589ab63e313e5ef0",
+     "tests/runtime/fixtures/acp_agent.py": "1a5c80a5a14342bbc14096aca258de69f20386ca672cbe6062684f2ba0cb1f93",
+@@ -473,6 +475,8 @@
+     "tests/runtime/test_autonomous_supervisor.py": "a948b93bb19d09d81e151e1de3fdfcafdb68cc9c41436c593910c341deabf5e5",
+     "tests/runtime/test_autonomy.py": "46348840746a184867c0b98298cf81d52400be9c5afc7609df633191f8e90d27",
+     "tests/runtime/test_b01_qualification.py": "3ccc0247e41ed88d3b0665c4547ef417d68b8dee00fcd1da14f63a71a3f9f85b",
++    "tests/runtime/test_b01_setup.py": "ca463e75881582fd65db793277ebd1bbc508f639bf1bc9142f205f811d3a8b62",
++    "tests/runtime/test_b01_setup_guidance.py": "55c0774ce1a1ca80ab4d1ac2640308abff417d5a3080a545b64a7c9c95232bed",
+     "tests/runtime/test_cli.py": "0072f975d8dca5203e458d34b0ad3b1a93c420071630f017029a77ba076c66f1",
+     "tests/runtime/test_command_receipt_preflight.py": "27344c1f5d9b365f4c6bc92bc5a682a89da87efb8c02484c9fe8a97cd271a9bb",
+     "tests/runtime/test_controller.py": "70effb6c2a1273bcf860ec366a51d4b33901b97acbb0230b51c653b1bbb9b9dc",
+@@ -488,7 +492,7 @@
+   "public_baseline_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+   "variant": {
+     "name": "autonomous-rsi-harness",
+-    "version": "0.4.0-harness.3",
++    "version": "0.4.0-harness.4",
+     "base_main_revision": "658a39f3f32bc6bddc6a27d7e845773964c8c962",
+     "personal_skill_updated": false,
+     "source_kind": "derived_repository_branch"
+@@ -496,7 +500,7 @@
+   "repository_update": {
+     "feature": "deterministic-autopilot-skill-loop",
+     "branch": "autonomous-rsi-harness",
+-    "base_repository_revision": "61b6e723501b301f37e0daed5ec83fa2d387573e",
++    "base_repository_revision": "067ec2866abc2912a8f718080f4275ae4c2a34db",
+     "personal_skill_updated": false,
+     "scope": "repository source; installation and live continuation require separate receipts"
+   }
+diff --git a/SOURCE_PUBLICATION.json b/SOURCE_PUBLICATION.json
+index ac866a9..afb901c 100644
+--- a/SOURCE_PUBLICATION.json
++++ b/SOURCE_PUBLICATION.json
+@@ -1,9 +1,9 @@
+ {
+   "schema_version": 1,
+   "branch": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.3",
+-  "base_commit": "61b6e723501b301f37e0daed5ec83fa2d387573e",
+-  "change": "GPU-first intake, native precision observation and stage-specific feasibility before implementation; existing live project pins retained",
++  "version": "0.4.0-harness.4",
++  "base_commit": "067ec2866abc2912a8f718080f4275ae4c2a34db",
++  "change": "B01 upstream configuration/startup acceptance separated from B03 scientific scorer qualification; explicit scoped adoption preserves historical pins",
+   "installation_updated": false,
+   "live_projects_migrated": false,
+   "research_schedulers_started": false,
+diff --git a/docs/SKILL_SEQUENCE.md b/docs/SKILL_SEQUENCE.md
+index 7426b5a..d36e4be 100644
+--- a/docs/SKILL_SEQUENCE.md
++++ b/docs/SKILL_SEQUENCE.md
+@@ -77,6 +77,22 @@ child work, with the existing v4 decision, coverage and independent review check
+ A negative scientific result alone does not authorize implementation repair or
+ a workflow jump.
+ 
++### B01 configuration-only acceptance
++
++The owner may adopt `sequence.b01_setup_ref` through
++`ResearchProgram.adopt_b01_setup(project_id, policy_ref, expected_revision=...)`
++at a quiet B01 boundary. This binds the instruction, target and real setup
++report, supplies identical setup criteria to worker and reviewer, and records
++the policy in acceptance. Dataset identity, executor provenance, environment
++configuration and a successful import/startup receipt complete setup; scientific
++scoring remains pending for B03/the scoring operation. See
++`skills/research-autopilot/references/b01-upstream-setup.md`.
++
++A setup-only result with no tasks retains the exact accepted decision rather
++than generating a new inquiry for configuration bookkeeping. No native result
++or new child work takes this shortcut. Later scientific admission is unchanged.
++Historical Skill/catalog bytes are retained when adopting this scoped policy.
++
+ ### Explicit B01 evaluator qualification
+ 
+ B01 normally remains source work. An owner may explicitly opt into bounded native
+diff --git a/plugin.json b/plugin.json
+index 56325bc..196a302 100644
+--- a/plugin.json
++++ b/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.3",
++  "version": "0.4.0-harness.4",
+   "description": "Execute the existing Autopilot Skill in program-owned order with per-step evidence and independent acceptance.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/skills/research-autopilot/SKILL.md b/skills/research-autopilot/SKILL.md
+index f63a869..a24a023 100644
+--- a/skills/research-autopilot/SKILL.md
++++ b/skills/research-autopilot/SKILL.md
+@@ -71,6 +71,13 @@ mode: independent training/prediction export can proceed with scoring pending.
+ Use a native scorer later; score feedback actually consumed by training remains
+ that stage's dependency. Keep unscored outputs and real results distinct.
+ 
++## B01 configuration before experiments
++
++Use [B01 upstream setup](references/b01-upstream-setup.md): configure the published
++assets and actual executor, verify imports/startup on the execution host, retain
++its provenance and outstanding scoring gaps, and submit setup acceptance.
++Do not turn this stage into repeated scientific scorer certification.
++
+ ## Experiment execution
+ 
+ Read [single-experiment batching](references/single-experiment-batching.md) before
+@@ -87,7 +94,7 @@ Read [edition-policy.md](references/edition-policy.md) and
+ [round-continuation.md](references/round-continuation.md) and
+ [resource-queue.md](references/resource-queue.md) first. They govern
+ decision ownership, execution host and continuation across every module below.
+-Version: `0.4.0-harness.3`; branch: `autonomous-rsi-harness`.
++Version: `0.4.0-harness.4`; branch: `autonomous-rsi-harness`.
+ Keep the current Codex or other supported local agent. This fifth Work-derived
+ edition adds a persistent whole-goal program with fixed Skill order: the
+ current-step worker, independently executed review, v4 decision admission,
+diff --git a/skills/research-autopilot/assets/harness-policy.json b/skills/research-autopilot/assets/harness-policy.json
+index 40bf5b7..858b526 100644
+--- a/skills/research-autopilot/assets/harness-policy.json
++++ b/skills/research-autopilot/assets/harness-policy.json
+@@ -1,4 +1,4 @@
+ {
+   "edition": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.3"
++  "version": "0.4.0-harness.4"
+ }
+diff --git a/skills/research-autopilot/assets/research-nodes.json b/skills/research-autopilot/assets/research-nodes.json
+index 6378c7e..bf7ec5e 100644
+--- a/skills/research-autopilot/assets/research-nodes.json
++++ b/skills/research-autopilot/assets/research-nodes.json
+@@ -721,7 +721,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -766,7 +766,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -1556,7 +1556,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -1601,7 +1601,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -2936,7 +2936,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -2981,7 +2981,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-root",
+@@ -3855,7 +3855,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -3900,7 +3900,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -5302,7 +5302,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5347,7 +5347,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-human-ai-supervision",
+@@ -5421,7 +5421,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5466,7 +5466,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -6423,7 +6423,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6468,7 +6468,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -6670,7 +6670,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6715,7 +6715,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -6834,7 +6834,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6879,7 +6879,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -7095,7 +7095,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7140,7 +7140,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7351,7 +7351,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7396,7 +7396,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7685,7 +7685,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7730,7 +7730,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -8059,7 +8059,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8104,7 +8104,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -8751,7 +8751,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8796,7 +8796,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -9039,7 +9039,7 @@
+    "name": "任务与指标契约",
+    "inputs": "真实任务及 evaluator",
+    "outputs": "输入输出、评价单位与终点",
+-   "acceptance": "已有 benchmark 须测到目标任务，数据与官方或已验证 evaluator 可用；代理指标不替代终点。",
++   "acceptance": "固定 benchmark 版本、数据与实际执行器来源，配置环境并取得真实导入/启动记录；评分资格留到 B03，代理指标不替代终点。",
+    "coverage": "detailed",
+    "sources": [
+     {
+@@ -9050,7 +9050,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9095,7 +9095,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -9110,7 +9110,7 @@
+     {
+      "source": "r-evaluation-and-assets",
+      "heading": "## B01 Exact task and metric contract",
+-     "sha256": "64be7fd03e4996d65578ac86cfc6d3118488e93c56121cf7147205732203361e"
++     "sha256": "9d6ba8387799f88760f9604efc169c43b8ec34d5af2400b88cfb2f01c0c46a0c"
+     },
+     {
+      "source": "r-research-quality-bar",
+@@ -9604,7 +9604,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9649,7 +9649,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10093,7 +10093,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10138,7 +10138,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10707,7 +10707,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10752,7 +10752,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -10846,7 +10846,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10891,7 +10891,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -10995,7 +10995,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -11040,7 +11040,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -12493,7 +12493,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -12538,7 +12538,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -13258,7 +13258,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -13303,7 +13303,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -14481,7 +14481,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14526,7 +14526,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-collision-audit",
+@@ -14640,7 +14640,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14685,7 +14685,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -14814,7 +14814,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14859,7 +14859,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -15739,7 +15739,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -15784,7 +15784,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -16694,7 +16694,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -16739,7 +16739,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -17188,7 +17188,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17233,7 +17233,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17362,7 +17362,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17407,7 +17407,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17531,7 +17531,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17576,7 +17576,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -18143,7 +18143,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18188,7 +18188,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -18380,7 +18380,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18425,7 +18425,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -18668,7 +18668,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18713,7 +18713,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -19217,7 +19217,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19262,7 +19262,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -19401,7 +19401,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19446,7 +19446,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -21147,7 +21147,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -21192,7 +21192,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22080,7 +22080,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22125,7 +22125,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22267,7 +22267,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22312,7 +22312,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -23354,7 +23354,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -23399,7 +23399,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -24075,7 +24075,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24120,7 +24120,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -24934,7 +24934,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24979,7 +24979,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -25522,7 +25522,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -25567,7 +25567,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-host-adapters",
+@@ -27153,7 +27153,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -27198,7 +27198,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -28392,7 +28392,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -28437,7 +28437,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -29532,7 +29532,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -29577,7 +29577,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30545,7 +30545,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30590,7 +30590,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30739,7 +30739,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30784,7 +30784,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30908,7 +30908,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30953,7 +30953,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31092,7 +31092,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31137,7 +31137,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31266,7 +31266,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31311,7 +31311,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31682,7 +31682,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31727,7 +31727,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -32283,7 +32283,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32328,7 +32328,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -32515,7 +32515,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32560,7 +32560,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -32732,7 +32732,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32777,7 +32777,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -32969,7 +32969,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33014,7 +33014,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -33256,7 +33256,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33301,7 +33301,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -33508,7 +33508,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33553,7 +33553,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -33780,7 +33780,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33825,7 +33825,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -34017,7 +34017,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34062,7 +34062,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-output-contract",
+@@ -34461,7 +34461,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34506,7 +34506,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "p-root",
+@@ -34665,7 +34665,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34710,7 +34710,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "f-root",
+@@ -34937,7 +34937,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34982,7 +34982,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -35209,7 +35209,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35254,7 +35254,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -35461,7 +35461,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35506,7 +35506,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -35635,7 +35635,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35680,7 +35680,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -35812,7 +35812,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35857,7 +35857,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -36072,7 +36072,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36117,7 +36117,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-root",
+@@ -36319,7 +36319,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36364,7 +36364,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -36645,7 +36645,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36690,7 +36690,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -37779,7 +37779,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -37824,7 +37824,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -38416,7 +38416,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38461,7 +38461,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -38535,7 +38535,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38580,7 +38580,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-research-websites",
+@@ -38719,7 +38719,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38764,7 +38764,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -39040,7 +39040,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39085,7 +39085,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-research-websites",
+@@ -39179,7 +39179,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39224,7 +39224,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -39348,7 +39348,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39393,7 +39393,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39487,7 +39487,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39532,7 +39532,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39626,7 +39626,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39671,7 +39671,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39765,7 +39765,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39810,7 +39810,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -40056,7 +40056,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40101,7 +40101,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -40385,7 +40385,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40430,7 +40430,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -40836,7 +40836,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40881,7 +40881,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -41471,7 +41471,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41516,7 +41516,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-visual-map-maintenance",
+@@ -41785,7 +41785,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++     "sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41830,7 +41830,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++     "sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+     },
+     {
+      "source": "r-execution-and-handoffs",
+@@ -44108,7 +44108,7 @@
+   "r-evaluation-and-assets": {
+    "skill": "research-autopilot",
+    "path": "references/evaluation-and-assets.md",
+-   "audit_file_sha256": "3c929923061b4cb76a4a583a27a4d3e93ee3d59395b2a4f005e5edf4ca91acbb"
++   "audit_file_sha256": "e21adf082defd9bd3853b37f5a9a6dc26880c6aec5a3f511052f02194012b9f8"
+   },
+   "r-method-development-tree": {
+    "skill": "research-autopilot",
+@@ -44283,7 +44283,7 @@
+   "r-edition-policy": {
+    "skill": "research-autopilot",
+    "path": "references/edition-policy.md",
+-   "audit_file_sha256": "680e198e06805a1e5428918d03bf716bcdd8066c2471facd4a0d5989a05e53cd"
++   "audit_file_sha256": "c0781d1e6d469bcb7ec49b4aa1e03715f6b8b047c995e30cc7271c944b0e855b"
+   },
+   "r-round-continuation": {
+    "skill": "research-autopilot",
+@@ -44328,7 +44328,7 @@
+   "r-research-harness": {
+    "skill": "research-autopilot",
+    "path": "references/research-harness.md",
+-   "audit_file_sha256": "268b43e47529802ea32475f28bc8678949954813060548813edd66a7a5e554d4"
++   "audit_file_sha256": "7e9bcee9d3218dadc322ea077cdb3ccd822e04faab8109d4b4752bc46b2a4aca"
+   },
+   "r-skill-sequence": {
+    "skill": "research-autopilot",
+diff --git a/skills/research-autopilot/assets/runtime-guidance.json b/skills/research-autopilot/assets/runtime-guidance.json
+index ead370a..a428553 100644
+--- a/skills/research-autopilot/assets/runtime-guidance.json
++++ b/skills/research-autopilot/assets/runtime-guidance.json
+@@ -8,6 +8,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -31,6 +32,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -57,6 +59,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -81,6 +84,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -104,6 +108,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -128,6 +133,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -158,6 +164,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -184,6 +191,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+@@ -208,6 +216,7 @@
+       "references/round-continuation.md",
+       "references/local-execution.md",
+       "references/gpu-intake-feasibility.md",
++      "references/b01-upstream-setup.md",
+       "references/research-cycle.md",
+       "references/benchmark-discovery.md",
+       "references/research-reasoning.md",
+diff --git a/skills/research-autopilot/assets/skill-sequence.json b/skills/research-autopilot/assets/skill-sequence.json
+index a867d86..abb7d67 100644
+--- a/skills/research-autopilot/assets/skill-sequence.json
++++ b/skills/research-autopilot/assets/skill-sequence.json
+@@ -496,7 +496,8 @@
+         "references/research-cycle.md",
+         "references/nodes/B01.md",
+         "references/evaluation-and-assets.md",
+-        "references/native-evaluation.md"
++        "references/native-evaluation.md",
++        "references/b01-upstream-setup.md"
+       ],
+       "requirements": [
+         {
+@@ -505,7 +506,7 @@
+         },
+         {
+           "id": "evaluation_identity",
+-          "description": "Bind published benchmark/version/split and official or qualified faithful scorer, or the supported formal contract for a theory claim."
++          "description": "Bind published benchmark/version/split, actual executor provenance and configured environment with real import/startup evidence. Prefer author-provided implementation; label community/custom tools honestly. Record pending scientific scoring/qualification for B03; setup does not certify scores. For a theory-only claim, bind its supported formal contract instead; executable setup is not required."
+         },
+         {
+           "id": "measurement_fit",
+diff --git a/skills/research-autopilot/references/b01-upstream-setup.md b/skills/research-autopilot/references/b01-upstream-setup.md
+new file mode 100644
+index 0000000..d4a13f8
+--- /dev/null
++++ b/skills/research-autopilot/references/b01-upstream-setup.md
+@@ -0,0 +1,47 @@
++# B01 upstream configuration and startup
++
++B01 establishes the task/metric contract and configures existing benchmark assets.
++For a theory-only claim, retain the supported formal contract alternative; do not
++require a dataset, executable evaluator or GPU startup for formal-only work.
++Prefer the benchmark authors' implementation and documented settings. Pin the
++published repository/package revision, dataset configuration/split, dependency
++versions, data/model paths, selected interpreter and actual invocation. Reuse
++already supplied SSH authority and confirmed resources. Define the GPU and execution
++environment at intake and reuse that target throughout the run; machine migration
++is not part of the normal B01 flow. Revisit the target only on an explicit user
++change or an observed loss of access.
++
++Perform one real import/configuration/entrypoint startup check on the authorized
++execution server. Read its exit code and retained output. Fix an actual dependency
++or invocation error if observed. Once these checks pass, submit B01 setup evidence
++for independent acceptance and continue the prescribed sequence. Do not request
++repeated literature searches, custom correctness proofs or fabricated incorrect
++samples just to configure a published tool. Recheck only changed components or
++an actual new failure.
++
++Preserve the original task population, setup code, prompts, metric and denominator.
++An upstream package being installed does not authorize replacing MBPP full/test
++with MBPP+ or a sanitized subset. Record such differences. If authors provide
++data and evaluation instructions but no executable scorer, state that fact and
++name the actual community/project executor honestly; never relabel it official.
++Lack of an author-provided executable is an outstanding scoring integration fact,
++not a reason to repeat B01 indefinitely after its configuration work is complete.
++
++Startup success proves only configuration/startup. Baseline runs, scorer behavior,
++adaptation/parity checks and generated-program isolation belong to B03/the actual
++scoring stage. Retain those obligations and unscored outputs. No automatic
++scientific PASS, threshold changes, test removal or native-admission exemption
++follows from B01 acceptance.
++
++For an existing pinned Work Harness, the owner can adopt a scoped B01 setup policy
++with `ResearchProgram.adopt_b01_setup(project_id, policy_ref,
++expected_revision=...)` at a quiet B01 decision boundary. The policy pins the user
++instruction, exact execution target and observed setup report. Runtime supplies
++the same effective criteria to both worker and reviewer and records the policy
++with acceptance; historical catalog and accepted-step pins stay intact.
++
++For setup-only acceptance (`tasks=[]`), retain the exact accepted scientific
++decision reference instead of inventing a new inquiry/frame merely to acknowledge
++an import. Fresh native scientific receipts or new child work retain their normal
++decision and review requirements. Existing coverage and future scoring obligations
++cannot be erased. The setup report identifies pending scoring explicitly.
+diff --git a/skills/research-autopilot/references/edition-policy.md b/skills/research-autopilot/references/edition-policy.md
+index bc39bdd..1562fb6 100644
+--- a/skills/research-autopilot/references/edition-policy.md
++++ b/skills/research-autopilot/references/edition-policy.md
+@@ -2,7 +2,7 @@
+ 
+ This edition policy, skill-sequence.md, research-harness.md and round-continuation.md take precedence
+ over inherited routing, candidate quotas and round-end defaults throughout this package.
+-This checkout is autonomous-rsi-harness, version 0.4.0-harness.2: the fifth,
++This checkout is autonomous-rsi-harness, version 0.4.0-harness.4: the fifth,
+ Work-derived edition, keeping existing Codex and other local agents.
+ Scientific evidence requirements still apply to the actual claim.
+ 
+diff --git a/skills/research-autopilot/references/evaluation-and-assets.md b/skills/research-autopilot/references/evaluation-and-assets.md
+index 8e5a724..063dc41 100644
+--- a/skills/research-autopilot/references/evaluation-and-assets.md
++++ b/skills/research-autopilot/references/evaluation-and-assets.md
+@@ -23,6 +23,12 @@ certificates. Read their current actual task/config and retain its version.
+ 
+ ## B01 Exact task and metric contract
+ 
++For Work Harness, apply [B01 upstream setup](b01-upstream-setup.md). This node
++configures and identifies the existing upstream assets and checks startup.
++Actual scorer qualification belongs to B03 and the scoring stage; a successful
++import is not a scientific score. Do not repeat source audits once the same
++versions/configuration are recorded and startup evidence is available.
++
+ Freeze population, endpoint, input/output, information allowed, evaluation unit,
+ data/split/revision, prompt/chat template, few-shot examples, answer extraction,
+ normalization, scorer version, direction, aggregation and exclusions. Save
+diff --git a/skills/research-autopilot/references/nodes/B01.md b/skills/research-autopilot/references/nodes/B01.md
+index 2f7cef0..a60f56f 100644
+--- a/skills/research-autopilot/references/nodes/B01.md
++++ b/skills/research-autopilot/references/nodes/B01.md
+@@ -7,7 +7,7 @@
+ - 内容状态：自有规范详细覆盖。
+ - 输入：真实任务及 evaluator
+ - 输出：输入输出、评价单位与终点
+-- 验收：已有 benchmark 须测到目标任务，数据与官方或已验证 evaluator 可用；代理指标不替代终点。
++- 验收：固定 benchmark 版本、数据与实际执行器来源，配置环境并取得真实导入/启动记录；评分资格留到 B03，代理指标不替代终点。
+ - 版本：1.8.5
+ 
+ ## 使用自有规范
+diff --git a/skills/research-autopilot/references/research-harness.md b/skills/research-autopilot/references/research-harness.md
+index df49796..b04665e 100644
+--- a/skills/research-autopilot/references/research-harness.md
++++ b/skills/research-autopilot/references/research-harness.md
+@@ -2,7 +2,7 @@
+ 
+ Read this at startup, every actual agent invocation, after a terminal result, and
+ before reporting completion or unattended continuation. This is the fifth edition,
+-`autonomous-rsi-harness`, version `0.4.0-harness.3`. Preserve the original Work
++`autonomous-rsi-harness`, version `0.4.0-harness.4`. Preserve the original Work
+ scientific method and the user's existing Codex or other supported local agent.
+ 
+ ## What the harness adds
+diff --git a/src/research_autopilot/b01_setup.py b/src/research_autopilot/b01_setup.py
+new file mode 100644
+index 0000000..98b0499
+--- /dev/null
++++ b/src/research_autopilot/b01_setup.py
+@@ -0,0 +1,135 @@
++"""Owner-adopted B01 configuration criteria, never evaluator qualification."""
++from __future__ import annotations
++
++from .artifacts import verify_ref
++from .models import ContractError, fields, text, validate_ref
++
++REQUIREMENTS = [
++    {'id': 'task_endpoint', 'description': 'Fix task input/output, population, evaluation unit, endpoint, aggregation and split; preserve existing scientific limitations.'},
++    {'id': 'evaluation_identity', 'description': 'Verify the pinned upstream dataset and selected evaluator provenance/version, effective configuration, and successful real import/startup receipt on the authorized target. Label community/custom implementations accurately. Configuration readiness does not require historical author predictions, live scorer replay or baseline qualification.'},
++    {'id': 'measurement_fit', 'description': 'Explain which endpoint the configured metric measures and retain proxy limitations, unresolved scoring/qualification gaps and empirical obligations for their actual execution stages.'},
++]
++INSTRUCTIONS = """B01 uses the owner-adopted configuration_only criteria in b01_setup.
++Use b01_setup.requirements for this step's three existing requirement IDs. Read its
++pinned report and startup evidence. Configure the selected upstream evaluator and
++record its actual provenance; official is not a synonym for available or popular.
++A successful import/startup proves configuration readiness only. It is not scorer
++qualification or a scientific score. Preserve all pending scoring/baseline and
++historical evidence gaps for B03 and actual scoring; these are not B01 acceptance
++blockers. Do not repeat historical author-output searches or demand live replay
++for this setup-only step. Native execution and treatment work are not allowed in
++this mode. For tasks=[] retain the exact accepted decision reference; do not create
++an unrelated inquiry decision. Every normal evidence/coverage and independent
++review requirement still applies. Cite b01_setup.report_ref in evaluation_identity
++both in worker findings and independent review. Never auto-accept a failed or
++unobserved startup, missing configuration, changed target or false provenance.
++"""
++
++
++def _refs(root, values):
++    if not isinstance(values, list) or not values:
++        raise ContractError('B01 setup needs nonempty evidence references')
++    for value in values:
++        path = verify_ref(root, validate_ref(value))
++        if not path.stat().st_size:
++            raise ContractError('B01 setup evidence cannot be empty')
++
++
++def validate_policy(project, contract, *, historical=False):
++    config = contract.get('sequence', {})
++    if 'b01_setup_ref' not in config:
++        return None
++    from .program import read_json
++    reference = validate_ref(config['b01_setup_ref'])
++    root = project['root']
++    policy = read_json(root, reference)
++    fields(policy, {'kind', 'schema_version', 'project_id', 'goal_id', 'step_id',
++                    'instruction_ref', 'target_ref', 'report_ref'})
++    if (policy['kind'] != 'research-b01-setup-policy' or type(policy['schema_version']) is not int
++            or policy['schema_version'] != 1 or policy['project_id'] != project['project_id']
++            or policy['goal_id'] != contract['goal_id'] or policy['step_id'] != 'B01'
++            or (not historical and (contract.get('native_target_ref') is None
++                or policy['target_ref'] != contract['native_target_ref']))):
++        raise ContractError('B01 setup policy must bind the current goal and authorized target')
++    _refs(root, [policy['instruction_ref'], policy['target_ref'], policy['report_ref']])
++    report = read_json(root, policy['report_ref'])
++    fields(report, {'kind', 'schema_version', 'project_id', 'goal_id', 'target_ref',
++                    'dataset', 'executor', 'environment', 'startup', 'runtime_gaps', 'scoring_status'})
++    if (report['kind'] != 'research-b01-setup-report' or type(report['schema_version']) is not int
++            or report['schema_version'] != 1 or report['project_id'] != policy['project_id']
++            or report['goal_id'] != policy['goal_id'] or report['target_ref'] != policy['target_ref']
++            or report['scoring_status'] not in ('pending', 'not_requested')):
++        raise ContractError('B01 report must bind setup only, never scored/qualified results')
++    dataset = report['dataset']
++    fields(dataset, {'source', 'revision', 'configuration', 'split', 'evidence_refs'})
++    for key in ('source', 'revision', 'configuration', 'split'):
++        text(dataset[key], 'dataset ' + key)
++    _refs(root, dataset['evidence_refs'])
++    executor = report['executor']
++    fields(executor, {'source', 'version', 'provenance', 'official', 'evidence_refs'}, {'official_source_ref'})
++    for key in ('source', 'version'):
++        text(executor[key], 'executor ' + key)
++    if (executor['provenance'] not in ('benchmark_author', 'upstream_project', 'community', 'project_custom')
++            or type(executor['official']) is not bool):
++        raise ContractError('B01 executor provenance must identify its actual source')
++    _refs(root, executor['evidence_refs'])
++    if executor['official']:
++        if executor['provenance'] != 'benchmark_author' or 'official_source_ref' not in executor:
++            raise ContractError('official evaluator needs benchmark-author provenance and explicit source evidence')
++    if 'official_source_ref' in executor:
++        _refs(root, [executor['official_source_ref']])
++    environment, startup = report['environment'], report['startup']
++    fields(environment, {'interpreter', 'configuration_ref'})
++    fields(startup, {'command', 'exit_code', 'receipt_ref'})
++    text(environment['interpreter'], 'actual project interpreter')
++    text(startup['command'], 'actual startup command')
++    _refs(root, [environment['configuration_ref'], startup['receipt_ref']])
++    receipt = read_json(root, startup['receipt_ref'])
++    if (not isinstance(receipt, dict) or type(startup['exit_code']) is not int or startup['exit_code'] != 0
++            or type(receipt.get('exit_code')) is not int or receipt['exit_code'] != 0
++            or receipt.get('target_ref') != policy['target_ref']
++            or receipt.get('command') != startup['command']
++            or receipt.get('interpreter') != environment['interpreter']):
++        raise ContractError('B01 needs a successful startup receipt bound to this target, command and interpreter')
++    _refs(root, [receipt.get('output_ref')])
++    if not isinstance(report['runtime_gaps'], list):
++        raise ContractError('B01 runtime gaps must be an explicit list')
++    for gap in report['runtime_gaps']:
++        text(gap, 'pending runtime gap')
++    return {'reference': reference, **policy, 'report': report}
++
++
++def context(project, contract, step):
++    if step['id'] != 'B01':
++        return None
++    policy = validate_policy(project, contract)
++    if policy is None:
++        return None
++    return {'mode': 'configuration_only', 'policy_ref': policy['reference'],
++            'instruction_ref': policy['instruction_ref'], 'target_ref': policy['target_ref'],
++            'report_ref': policy['report_ref'], 'requirements': REQUIREMENTS,
++            'instructions': INSTRUCTIONS}
++
++
++def require_report_evidence(project, contract, step, rows):
++    ctx = context(project, contract, step)
++    if ctx is not None:
++        identity = next((row for row in rows if row['requirement_id'] == 'evaluation_identity'), None)
++        if identity is None or ctx['report_ref'] not in identity['evidence_refs']:
++            raise ContractError('B01 configuration identity must cite the actual adopted setup report')
++
++
++def retained_decision(project, prior, proposal, fresh):
++    """Return only already accepted pins; all other proposals use existing rules."""
++    state = prior['state']
++    if (state.get('sequence', {}).get('step_id') != 'B01'
++            or 'b01_setup_ref' not in prior['contract'].get('sequence', {})
++            or proposal.get('tasks') != [] or proposal.get('status') != 'wait'
++            or any(item['action'] == 'native_harness' for item in fresh)):
++        return None
++    validate_policy(project, prior['contract'])
++    accepted = state.get('accepted_decision_ref')
++    if accepted is None or proposal.get('decision_ref') != accepted:
++        return None
++    verify_ref(project['root'], accepted)
++    return [accepted]
+diff --git a/src/research_autopilot/program.py b/src/research_autopilot/program.py
+index 961b82c..95cf1d8 100644
+--- a/src/research_autopilot/program.py
++++ b/src/research_autopilot/program.py
+@@ -307,6 +307,55 @@ class ResearchProgram:
+                        (project_id, revision, 'b01_qualification_authorized', payload, time.time()))
+         return self.status(project_id)
+ 
++    def adopt_b01_setup(self, project_id, policy_ref, *, expected_revision):
++        """Owner-adopted configuration scope at a quiet B01 boundary, with CAS."""
++        from .b01_setup import validate_policy
++        from .skill_sequence import _cursor
++        validate_ref(policy_ref)
++        if type(expected_revision) is not int or expected_revision < 0:
++            raise ContractError('B01 setup adoption needs an exact expected revision')
++        prior = self.status(project_id)
++        project = self.controller.get_project(project_id)
++        if prior['revision'] != expected_revision:
++            raise ContractError('program changed before B01 setup adoption')
++        config, state = prior['contract'], prior['state']
++        if (config.get('schema_version') != 2 or state['phase'] != 'active'
++                or state['stage'] != 'decide' or state.get('staged_tasks')
++                or state.get('execution_task_ids')):
++            raise ContractError('B01 setup adoption requires an active quiet decision boundary')
++        self._policy(project, config)
++        _, step = _cursor(project, prior)
++        if step['id'] != 'B01' or 'b01_setup_ref' in config['sequence']:
++            raise ContractError('B01 setup scope may be adopted once, only at B01')
++        updated = strict_json(canonical_json(config))
++        updated['sequence']['b01_setup_ref'] = policy_ref
++        validate_policy(project, updated)
++        revision = expected_revision + 1
++        with self.controller._transaction() as db:
++            row = db.execute('SELECT revision,contract,state FROM research_programs WHERE project_id=?',
++                             (project_id,)).fetchone()
++            if (row is None or row['revision'] != expected_revision
++                    or row['contract'] != canonical_json(config) or row['state'] != canonical_json(state)):
++                raise ContractError('program changed concurrently before B01 setup adoption')
++            if (db.execute("SELECT 1 FROM tasks WHERE project_id=? AND state NOT IN ('completed','failed','cancelled') LIMIT 1",
++                           (project_id,)).fetchone()
++                    or db.execute("SELECT 1 FROM runs WHERE project_id=? AND state NOT IN ('completed','failed','cancelled') LIMIT 1",
++                                  (project_id,)).fetchone()):
++                raise ContractError('B01 setup adoption cannot replace pending, running or uncertain work')
++            receipt = save_artifact(project['root'],
++                f'research-state/harness/adoptions/b01-setup-{revision:06d}.json', {
++                    'kind': 'research-b01-setup-adoption', 'schema_version': 1,
++                    'project_id': project_id, 'previous_revision': expected_revision,
++                    'revision': revision, 'policy_ref': policy_ref,
++                    'previous_contract': config, 'previous_state': state, 'adopted_contract': updated})
++            new_state = {**state, 'b01_setup_adoption_ref': receipt}
++            payload = canonical_json(new_state)
++            db.execute('UPDATE research_programs SET contract=?,state=?,revision=? WHERE project_id=?',
++                       (canonical_json(updated), payload, revision, project_id))
++            db.execute('INSERT INTO research_program_events VALUES(?,?,?,?,?)',
++                       (project_id, revision, 'b01_setup_adopted', payload, time.time()))
++        return self.status(project_id)
++
+     def _update(self, prior, state, kind):
+         with self.controller._transaction() as db:
+             row = db.execute("SELECT revision FROM research_programs WHERE project_id=?", (prior["project_id"],)).fetchone()
+@@ -460,6 +509,10 @@ class ResearchProgram:
+         return decode_response(project["root"], ref), {**item, "response_ref": ref}
+ 
+     def _decision(self, prior, project, proposal, receipts):
++        from .b01_setup import retained_decision
++        retained = retained_decision(project, prior, proposal, receipts)
++        if retained is not None:
++            return retained
+         ref = proposal['decision_ref']
+         accepted = prior['state']['accepted_decision_ref']
+         if ref is None:
+diff --git a/src/research_autopilot/skill_sequence.py b/src/research_autopilot/skill_sequence.py
+index 278beb8..d12c145 100644
+--- a/src/research_autopilot/skill_sequence.py
++++ b/src/research_autopilot/skill_sequence.py
+@@ -15,6 +15,7 @@ import time
+ 
+ from .artifacts import canonical_json, digest_tree, pin_file, resolve_path, verify_ref
+ from .coverage import validate_coverage
++from . import b01_setup
+ from .models import (ACTIONS, ContractError, cumulative_time_limit, fields, identifier, json_data,
+                      relative_path, seconds, strings, text, validate_ref, validate_task)
+ from .scientific_closure import verify_scientific_closure
+@@ -120,8 +121,9 @@ def validate_sequence(project, contract):
+     if type(contract.get('schema_version')) is not int or contract['schema_version'] != 2:
+         raise ContractError('fixed Skill sequence requires program schema_version=2')
+     config = contract.get('sequence')
+-    fields(config, {'mode', 'scopes'}, {'qualification_authorization_ref'})
++    fields(config, {'mode', 'scopes'}, {'qualification_authorization_ref', 'b01_setup_ref'})
+     _qualification_authorization(project, contract)
++    b01_setup.validate_policy(project, contract)
+     if config['mode'] not in {'repeat', 'once'}:
+         raise ContractError('sequence mode must be repeat or once')
+     scopes = strings(config['scopes'], 'sequence scopes')
+@@ -189,8 +191,9 @@ def _cursor(project, prior):
+     step = _closure() if index == len(catalog['steps']) else catalog['steps'][index]
+     if step['id'] != selected['step_id']:
+         raise ContractError('sequence index and current step identity disagree')
+-    fields(config['sequence'], {'mode', 'scopes'}, {'qualification_authorization_ref'})
++    fields(config['sequence'], {'mode', 'scopes'}, {'qualification_authorization_ref', 'b01_setup_ref'})
+     _qualification_authorization(project, config)
++    b01_setup.validate_policy(project, config, historical=step['id'] != 'B01')
+     if config['sequence']['mode'] not in {'once', 'repeat'}:
+         raise ContractError('unknown fixed sequence mode')
+     scopes = strings(config['sequence']['scopes'], 'sequence scopes')
+@@ -251,6 +254,11 @@ def _refs(root, refs, label):
+ def _task(program, prior, project, role, packet):
+     task = program._agent_task(prior, project, role, packet)
+     task['parameters']['sequence_binding'] = binding(prior['state'])
++    setup = packet.get('b01_setup')
++    if setup is not None:
++        for key in ('policy_ref', 'instruction_ref', 'target_ref', 'report_ref'):
++            if setup[key] not in task['inputs']:
++                task['inputs'].append(setup[key])
+     authorization = packet.get('qualification_authorization')
+     if authorization is not None:
+         for ref in (authorization['reference'], authorization['instruction_ref'],
+@@ -388,6 +396,8 @@ def _qualification_tasks(program, project, contract, step, tasks):
+     native = [task for task in tasks if task['action'] == 'native_harness']
+     if not native:
+         return
++    if b01_setup.context(project, contract, step) is not None:
++        raise ContractError('B01 configuration-only mode does not authorize native execution')
+     authorization = _qualification_authorization(project, contract)
+     if authorization is None:
+         raise ContractError('B01 native qualification requires explicit pinned owner authorization')
+@@ -408,6 +418,8 @@ def _qualification_tasks(program, project, contract, step, tasks):
+ 
+ def _allowed_actions(program, project, state, step, contract=None):
+     allowed = (COMMON_ACTIONS | {step['action']}) - {'runtime_maintenance'}
++    if contract is not None and b01_setup.context(project, contract, step) is not None:
++        return allowed - {'native_harness', 'candidate_code', 'experiment_design'}
+     if (step['id'] == 'B01' and contract is not None
+             and _qualification_authorization(project, contract) is not None):
+         allowed |= {'native_harness'}
+@@ -484,7 +496,8 @@ def _audit_acceptances(program, prior, project, catalog):
+         record = _read(project['root'], ref)
+         fields(record, {'kind', 'schema_version', 'goal_id', 'sequence', 'disposition',
+                         'reason', 'previous_ref', 'result_ref', 'review_ref', 'proposal_ref',
+-                        'review_run_id', 'planner_task_id', 'reviewer_task_id'})
++                        'review_run_id', 'planner_task_id', 'reviewer_task_id'},
++                       {'b01_setup_ref', 'b01_setup_report_ref'})
+         step = catalog['steps'][position % count]
+         expected_cycle = position // count + 1
+         selected = binding({'sequence': record['sequence']})
+@@ -545,7 +558,19 @@ def _audit_acceptances(program, prior, project, catalog):
+                 raise ContractError('accepted step reviewer run identity changed')
+             audit_state = {**state, 'sequence': {**seq, **selected, 'result_ref': record['result_ref']},
+                            'proposal_ref': record['proposal_ref'], 'planner_task_id': record['planner_task_id']}
+-            approved, satisfied = _review(program, {'state': audit_state}, project,
++            audit_contract = json_data(prior['contract'])
++            audit_contract['sequence'].pop('b01_setup_ref', None)
++            if 'b01_setup_ref' in record or 'b01_setup_report_ref' in record:
++                if step['id'] != 'B01' or 'b01_setup_ref' not in record or 'b01_setup_report_ref' not in record:
++                    raise ContractError('setup acceptance evidence is exclusive to B01')
++                audit_contract['sequence']['b01_setup_ref'] = record['b01_setup_ref']
++                historical_policy = b01_setup.validate_policy(project, audit_contract, historical=True)
++                audit_contract['native_target_ref'] = historical_policy['target_ref']
++                setup = b01_setup.context(project, audit_contract, step)
++                if setup['report_ref'] != record['b01_setup_report_ref']:
++                    raise ContractError('B01 acceptance lost its adopted configuration report')
++                b01_setup.require_report_evidence(project, audit_contract, step, findings)
++            approved, satisfied = _review(program, {'state': audit_state, 'contract': audit_contract}, project,
+                 decode_response(project['root'], record['review_ref']), reviewer, step)
+             if not approved or not satisfied:
+                 raise ContractError('accepted step no longer has complete independent acceptance')
+@@ -586,6 +611,7 @@ def _result(program, prior, project, response, step, receipts):
+         seen.add(key)
+         text(finding['finding'], 'requirement finding')
+         evidence.extend(_refs(project['root'], finding['evidence_refs'], 'requirement finding'))
++    b01_setup.require_report_evidence(project, prior['contract'], step, findings)
+     fresh = [r for r in receipts if r['attempt_id'] not in state['consumed_runs']]
+     required_receipts = [r['receipt_ref'] for r in fresh if r['action'] == 'native_harness']
+     inspection = _inspection(program, project, state['sequence']['inspect_task_ids'], receipts)
+@@ -658,8 +684,9 @@ def _prepare_review(program, prior, project, step, result_ref, envelope_ref, env
+     packet = {'role': 'independent_step_reviewer', 'contract': prior['contract'],
+               **context, 'step': step, 'sequence': binding(state),
+               'allowed_actions': sorted(_allowed_actions(program, project, state, step, prior['contract'])),
++              'b01_setup': b01_setup.context(project, prior['contract'], step),
+               'qualification_authorization': (_qualification_authorization(project, prior['contract'])
+-                  if step['id'] == 'B01' else None),
++                  if step['id'] == 'B01' and b01_setup.context(project, prior['contract'], step) is None else None),
+               'result_ref': result_ref, 'proposal_ref': envelope_ref,
+               'proposal': envelope, 'coverage': {'reference': coverage['reference'],
+                   'report_ref': coverage_report_ref, 'coverage_complete': coverage['report']['coverage_complete'],
+@@ -704,6 +731,8 @@ def _review(program, prior, project, response, item, step):
+         text(row['reason'], 'requirement review rationale')
+         _refs(project['root'], row['evidence_refs'], 'independent review')
+         satisfied = satisfied and row['satisfied']
++    if 'contract' in prior:
++        b01_setup.require_report_evidence(project, prior['contract'], step, rows)
+     return response['approved'], satisfied
+ 
+ 
+@@ -726,6 +755,10 @@ def _advance(program, prior, project, catalog, step, *, item=None, not_applicabl
+         'review_run_id': None if item is None else item['attempt']['run_id'],
+         'planner_task_id': None if not_applicable else state['planner_task_id'],
+         'reviewer_task_id': None if not_applicable else state['reviewer_task_id']}
++    setup = b01_setup.context(project, prior['contract'], step)
++    if setup is not None and not not_applicable:
++        receipt['b01_setup_ref'] = setup['policy_ref']
++        receipt['b01_setup_report_ref'] = setup['report_ref']
+     ref = _save(project['root'], _step_prefix(state) + '/acceptance.json', receipt)
+     seq['accepted'].append(ref)
+     seq['index'] += 1
+@@ -771,8 +804,9 @@ def tick_sequence(program, prior, owner, dispatch):
+         packet = {'role': 'current_skill_step_worker', 'contract': config, **context,
+                   'step': step, 'sequence': binding(state),
+                   'allowed_actions': sorted(_allowed_actions(program, project, state, step, config)),
++                  'b01_setup': b01_setup.context(project, config, step),
+                   'qualification_authorization': (_qualification_authorization(project, config)
+-                      if step['id'] == 'B01' else None),
++                      if step['id'] == 'B01' and b01_setup.context(project, config, step) is None else None),
+                   'instructions': STEP_INSTRUCTIONS}
+         task = _task(program, prior, project, 'planner', packet)
+         for ref in (state['sequence']['accepted'][-1:] + state['sequence']['cycle_receipts'][-1:]):
+@@ -929,7 +963,10 @@ def tick_sequence(program, prior, owner, dispatch):
+     raise ContractError('unknown fixed-sequence research stage')
+ 
+ 
+-STEP_INSTRUCTIONS = """Execute only the program-selected canonical Skill step in step.
++STEP_INSTRUCTIONS = """When packet.b01_setup is present, its owner-adopted configuration_only
++requirements and instructions define B01 acceptance. Read and apply that scoped
++policy before historical qualification feedback; preserve later scientific gates.
++Execute only the program-selected canonical Skill step in step.
+ Read every injected current-step source, objective, prior accepted evidence, coverage,
+ actual receipts and independent-review feedback. The program fixes order and scope.
+ program/controller are bounded current summaries; history_ref retains the complete
+@@ -992,7 +1029,11 @@ Use the canonical sources to establish substantive requirements, not this transp
+ summary alone. A command adapter may wrap this object as serialized response text.
+ """
+ 
+-REVIEW_INSTRUCTIONS = """Independently review the exact current Skill step, its raw
++REVIEW_INSTRUCTIONS = """When packet.b01_setup is present, review its owner-adopted
++configuration_only criteria and real report for the existing three B01 requirement
++IDs. Do not demand historical author outputs, faithful live replay or baseline
++qualification at B01; retain those pending obligations for their execution stages.
++Independently review the exact current Skill step, its raw
+ result_ref and program-generated proposal_ref against every prescribed requirement
+ and actual pinned evidence. You cannot change step order, scopes, or completion.
+ Read coverage.report_ref and history_ref for the complete coverage report and
+diff --git a/tests/runtime/test_b01_setup.py b/tests/runtime/test_b01_setup.py
+new file mode 100644
+index 0000000..fe4fb4c
+--- /dev/null
++++ b/tests/runtime/test_b01_setup.py
+@@ -0,0 +1,276 @@
++"""B01 configuration acceptance; engineering fixtures never qualify a scorer."""
++import copy
++import unittest
++from unittest.mock import patch
++
++import test_b01_qualification as base
++from research_autopilot.artifacts import canonical_json
++from research_autopilot.models import ContractError
++from research_autopilot.program import save_artifact, read_json
++from research_autopilot import skill_sequence as sequence
++
++
++class B01SetupTests(unittest.TestCase):
++    def setUp(self):
++        base.B01QualificationTests.setUp(self)
++        self.output = save_artifact(self.root, 'startup-output.json', {'output': 'upstream version/import help'})
++        self.config_ref = save_artifact(self.root, 'eval-config.json', {'task': 'benchmark'})
++        self.receipt = save_artifact(self.root, 'startup.json', {
++            'target_ref': self.target, 'command': 'python -m upstream --help',
++            'interpreter': '/venv/bin/python', 'exit_code': 0, 'output_ref': self.output})
++        self.report = {'kind': 'research-b01-setup-report', 'schema_version': 1,
++            'project_id': 'p', 'goal_id': 'goal', 'target_ref': self.target,
++            'dataset': {'source': 'upstream dataset', 'revision': 'fixed commit',
++                'configuration': 'full', 'split': 'test', 'evidence_refs': [self.output]},
++            'executor': {'source': 'upstream implementation', 'version': 'fixed commit',
++                'provenance': 'community', 'official': False, 'evidence_refs': [self.output]},
++            'environment': {'interpreter': '/venv/bin/python', 'configuration_ref': self.config_ref},
++            'startup': {'command': 'python -m upstream --help', 'exit_code': 0, 'receipt_ref': self.receipt},
++            'runtime_gaps': ['Actual scoring and baseline qualification remain pending'],
++            'scoring_status': 'pending'}
++        self.report_ref = save_artifact(self.root, 'setup-report.json', self.report)
++        self.policy = {'kind': 'research-b01-setup-policy', 'schema_version': 1,
++            'project_id': 'p', 'goal_id': 'goal', 'step_id': 'B01',
++            'instruction_ref': self.instruction, 'target_ref': self.target, 'report_ref': self.report_ref}
++        self.policy_ref = save_artifact(self.root, 'setup-policy.json', self.policy)
++
++    def adopt(self):
++        return self.program.adopt_b01_setup('p', self.policy_ref, expected_revision=7)
++
++    def test_owner_adoption_preserves_history_budget_and_catalog(self):
++        budget = self.controller.status('p')['budget']
++        adopted = self.adopt()
++        self.assertEqual(adopted['revision'], 8)
++        self.assertEqual(adopted['contract']['sequence']['b01_setup_ref'], self.policy_ref)
++        state = copy.deepcopy(adopted['state'])
++        receipt = read_json(self.root, state.pop('b01_setup_adoption_ref'))
++        self.assertEqual(state, self.state)
++        self.assertEqual(receipt['previous_state'], self.state)
++        self.assertEqual(receipt['previous_contract'], self.contract)
++        self.assertEqual(self.controller.status('p')['budget'], budget)
++        with self.assertRaises(ContractError): self.adopt()
++
++    def test_adoption_rejects_stale_paused_active_tasks_or_wrong_target(self):
++        with self.assertRaises(ContractError):
++            self.program.adopt_b01_setup('p', self.policy_ref, expected_revision=6)
++        for change in ({'phase': 'paused'}, {'stage': 'planner'}, {'staged_tasks': [{}]},
++                       {'execution_task_ids': ['active']}):
++            with self.controller._transaction() as db:
++                db.execute('UPDATE research_programs SET state=?', (canonical_json({**self.state, **change}),))
++            with self.assertRaises(ContractError): self.adopt()
++        with self.controller._transaction() as db:
++            db.execute('UPDATE research_programs SET state=?', (canonical_json(self.state),))
++        from test_controller import task
++        self.controller.register_task('p', task('pending', action='source_read', adapter='codex'))
++        with self.assertRaises(ContractError): self.adopt()
++
++    def test_setup_packet_same_requirements_both_roles_and_no_native(self):
++        from research_autopilot.b01_setup import context
++        adopted = self.adopt()
++        ctx = context(self.project, adopted['contract'], self.step)
++        self.assertEqual(ctx['mode'], 'configuration_only')
++        self.assertEqual({r['id'] for r in ctx['requirements']}, {r['id'] for r in self.step['requirements']})
++        self.assertEqual(ctx['report_ref'], self.report_ref)
++        self.assertIsNone(context(self.project, adopted['contract'], {**self.step, 'id': 'B03'}))
++        config = copy.deepcopy(adopted['contract'])
++        config['sequence']['qualification_authorization_ref'] = self.auth_ref
++        allowed = sequence._allowed_actions(self.program, self.project, self.state, self.step, config)
++        self.assertNotIn('native_harness', allowed)
++        self.assertNotIn('candidate_code', allowed)
++        self.assertNotIn('experiment_design', allowed)
++
++    def test_exact_accepted_decision_retained_only_without_tasks_or_fresh_native(self):
++        adopted = self.adopt()
++        proposal = {'decision_ref': self.state['accepted_decision_ref'], 'tasks': [], 'status': 'wait'}
++        with patch('research_autopilot.program._run_canonical', side_effect=AssertionError('no inquiry rerun')):
++            self.assertEqual(self.program._decision(adopted, self.project, proposal, []), [proposal['decision_ref']])
++        for change, receipts in [({'tasks': [{}]}, []), ({'status': 'complete'}, []),
++                                 ({}, [{'action': 'native_harness'}]), ({'decision_ref': None}, [])]:
++            with self.subTest(change=change, receipts=receipts), self.assertRaises((ContractError, KeyError)):
++                self.program._decision(adopted, self.project, {**proposal, **change}, receipts)
++        (self.root / proposal['decision_ref']['path']).write_text('{}')
++        with self.assertRaises(ContractError): self.program._decision(adopted, self.project, proposal, [])
++
++    def test_invalid_evidence_or_false_official_not_accepted(self):
++        from research_autopilot.b01_setup import validate_policy
++        for key, value in [('target_ref', self.instruction), ('schema_version', True)]:
++            bad = {**self.policy, key: value}
++            ref = save_artifact(self.root, 'bad-policy-' + key + '.json', bad)
++            with self.assertRaises(ContractError):
++                validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': ref}})
++        for field, value in [('executor', {**self.report['executor'], 'official': True}),
++                             ('startup', {**self.report['startup'], 'exit_code': 1}),
++                             ('scoring_status', 'qualified')]:
++            ref = save_artifact(self.root, 'bad-report-' + field + '.json', {**self.report, field: value})
++            pol = save_artifact(self.root, 'bad-report-policy-' + field + '.json', {**self.policy, 'report_ref': ref})
++            with self.assertRaises(ContractError):
++                validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': pol}})
++        (self.root / self.output['path']).write_text('{}')
++        with self.assertRaises(ContractError): self.adopt()
++
++    def test_evaluation_identity_must_cite_actual_report(self):
++        from research_autopilot.b01_setup import require_report_evidence
++        adopted = self.adopt()
++        rows = [{'requirement_id': 'evaluation_identity', 'evidence_refs': [self.report_ref]}]
++        require_report_evidence(self.project, adopted['contract'], self.step, rows)
++        with self.assertRaises(ContractError):
++            require_report_evidence(self.project, adopted['contract'], self.step,
++                [{'requirement_id': 'evaluation_identity', 'evidence_refs': [self.output]}])
++
++    def test_real_worker_and_reviewer_packet_construction_includes_policy(self):
++        adopted = self.adopt()
++        adopted['state']['not_before'] = 0
++        adopted['contract']['max_rounds'] = None
++        for key in ('objective_ref', 'authorization_ref', 'agent_config_ref'):
++            adopted['contract'][key] = self.instruction
++        packets = []
++        def capture(program, prior, project, role, packet):
++            packets.append((role, packet))
++            return {'task_id': 'captured-' + role, 'inputs': []}
++        with patch.object(sequence, '_packet_context', return_value={}), \
++                patch.object(sequence, '_task', side_effect=capture), \
++                patch.object(self.program, '_snapshot', return_value=[]):
++            outcome = sequence.tick_sequence(self.program, adopted, 'test-worker', lambda *a: None)
++            self.assertEqual(outcome['status'], 'step_prepared')
++            sequence._prepare_review(self.program, outcome['program'], self.project, self.step,
++                self.output, self.output, {'tasks': []}, {'reference': self.output,
++                    'report': {'coverage_complete': False}, 'manifest': {'experiment_contracts': []}}, [])
++        self.assertEqual([role for role, packet in packets], ['planner', 'reviewer'])
++        for role, packet in packets:
++            self.assertEqual(packet['b01_setup']['mode'], 'configuration_only')
++            self.assertEqual(packet['b01_setup']['policy_ref'], self.policy_ref)
++            self.assertIsNone(packet['qualification_authorization'])
++            self.assertNotIn('native_harness', packet['allowed_actions'])
++
++    def test_setup_does_not_autoapprove_independent_review(self):
++        adopted = self.adopt()
++        state = adopted['state']
++        state.update(planner_task_id='planner', proposal_ref=self.output)
++        state['sequence']['result_ref'] = self.report_ref
++        response = {'kind': 'research-skill-step-review', 'schema_version': 1,
++            'goal_id': 'goal', 'sequence': sequence.binding(state), 'result_ref': self.report_ref,
++            'proposal_ref': self.output, 'approved': False, 'summary': 'review finds configuration mismatch',
++            'requirements': [{'requirement_id': r['id'], 'satisfied': False, 'reason': 'requires correction',
++                'evidence_refs': [self.report_ref]} for r in self.step['requirements']]}
++        with patch.object(self.controller, 'get_task', return_value={'attempt': {'run_id': 'planner', 'owner': 'one'}}):
++            approved, satisfied = sequence._review(self.program, adopted, self.project, response,
++                {'attempt': {'run_id': 'reviewer', 'owner': 'two'}}, self.step)
++        self.assertFalse(approved)
++        self.assertFalse(satisfied)
++        self.assertEqual(self.program.status('p')['state']['sequence']['step_id'], 'B01')
++
++    def test_acceptance_receipt_retains_setup_policy_and_report(self):
++        adopted = self.adopt()
++        adopted['state'].update(review_ref=self.output, proposal_ref=self.output,
++                                planner_task_id='planner', reviewer_task_id='reviewer')
++        adopted['state']['sequence']['result_ref'] = self.report_ref
++        catalog, _ = sequence._catalog(self.project)
++        outcome = sequence._advance(self.program, adopted, self.project, catalog, self.step,
++            item={'attempt': {'run_id': 'reviewer-run'}})
++        receipt = read_json(self.root, outcome['program']['state']['sequence']['accepted'][-1])
++        self.assertEqual(receipt['b01_setup_ref'], self.policy_ref)
++        self.assertEqual(receipt['b01_setup_report_ref'], self.report_ref)
++        self.assertEqual(receipt['disposition'], 'accepted')
++
++    def test_startup_receipt_identity_and_output_must_match(self):
++        from research_autopilot.b01_setup import validate_policy
++        for field, value in [('target_ref', self.instruction), ('interpreter', '/wrong/python'),
++                             ('command', 'different command'), ('exit_code', True), ('output_ref', None)]:
++            receipt = read_json(self.root, self.receipt)
++            ref = save_artifact(self.root, 'wrong-receipt-' + field + '.json', {**receipt, field: value})
++            report = {**self.report, 'startup': {**self.report['startup'], 'receipt_ref': ref}}
++            report_ref = save_artifact(self.root, 'wrong-receipt-report-' + field + '.json', report)
++            policy_ref = save_artifact(self.root, 'wrong-receipt-policy-' + field + '.json', {**self.policy, 'report_ref': report_ref})
++            with self.subTest(field=field), self.assertRaises(ContractError):
++                validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': policy_ref}})
++
++    def test_other_steps_and_child_tasks_keep_existing_decision_rules(self):
++        from research_autopilot.b01_setup import retained_decision
++        adopted = self.adopt()
++        proposal = {'decision_ref': self.state['accepted_decision_ref'], 'tasks': [], 'status': 'wait'}
++        for step_id in ('B03', 'E01', 'cycle-closure'):
++            prior = copy.deepcopy(adopted)
++            prior['state']['sequence']['step_id'] = step_id
++            self.assertIsNone(retained_decision(self.project, prior, proposal, []))
++        self.assertIsNone(retained_decision(self.project, adopted, {**proposal, 'tasks': [{}]}, []))
++        self.assertIsNone(retained_decision(self.project, adopted, proposal, [{'action': 'native_harness'}]))
++
++    def test_adoption_null_and_non_b01_are_rejected_without_mutation(self):
++        before = self.program.status('p')
++        with self.assertRaises(ContractError):
++            self.program.adopt_b01_setup('p', None, expected_revision=7)
++        self.assertEqual(before, self.program.status('p'))
++        from research_autopilot.b01_setup import validate_policy
++        with self.assertRaises(ContractError):
++            validate_policy(self.project, {**self.contract, 'sequence': {**self.contract['sequence'], 'b01_setup_ref': None}})
++        with patch.object(sequence, '_cursor', return_value=({}, {**self.step, 'id': 'B03'})):
++            with self.assertRaises(ContractError): self.adopt()
++        self.assertEqual(before, self.program.status('p'))
++
++    def test_b03_and_child_tasks_actually_call_canonical_decision_check(self):
++        adopted = self.adopt()
++        decision_ref = save_artifact(self.root, 'real-decision-shape.json', {
++            'kind': 'research_decision', 'schema_version': 4, 'goal_id': 'goal'})
++        adopted['state']['accepted_decision_ref'] = decision_ref
++        proposal = {'decision_ref': decision_ref, 'tasks': [], 'status': 'wait'}
++        later = copy.deepcopy(adopted)
++        later['state']['sequence']['step_id'] = 'B03'
++        for prior, selected in [(later, proposal), (adopted, {**proposal, 'tasks': [{}]})]:
++            with patch('research_autopilot.program._run_canonical', return_value='[]') as check:
++                self.assertEqual(self.program._decision(prior, self.project, selected, []), [decision_ref])
++                check.assert_called_once()
++        with patch('research_autopilot.program._run_canonical', side_effect=ContractError('normal native gate')) as check:
++            with self.assertRaisesRegex(ContractError, 'normal native gate'):
++                self.program._decision(later, self.project, proposal, [{'action': 'native_harness'}])
++            check.assert_called_once()
++
++    def test_setup_acceptance_survives_audit_and_rejects_changed_report(self):
++        adopted = self.adopt()
++        state = adopted['state']
++        state['sequence'].update(index=0, accepted=[])
++        selected = sequence.binding(state)
++        result = {'kind': 'research-skill-step-result', 'schema_version': 1, 'goal_id': 'goal',
++            'sequence': selected, 'summary': 'configuration ready, qualification pending',
++            'findings': [{'requirement_id': r['id'], 'finding': 'observed setup only',
++                'evidence_refs': [self.report_ref]} for r in self.step['requirements']],
++            'decision_ref': state['accepted_decision_ref'], 'coverage_ref': state['coverage_ref'], 'tasks': []}
++        result_ref = save_artifact(self.root, 'final-result.json', result)
++        proposal_ref = save_artifact(self.root, 'final-proposal.json', {'status': 'wait', 'tasks': [],
++            'goal_id': 'goal', 'decision_ref': result['decision_ref'], 'coverage_ref': result['coverage_ref']})
++        review = {'kind': 'research-skill-step-review', 'schema_version': 1, 'goal_id': 'goal',
++            'sequence': selected, 'result_ref': result_ref, 'proposal_ref': proposal_ref,
++            'approved': True, 'summary': 'configuration confirmed; no scientific claim',
++            'requirements': [{'requirement_id': r['id'], 'satisfied': True, 'reason': 'observed setup',
++                'evidence_refs': [self.report_ref]} for r in self.step['requirements']]}
++        review_ref = save_artifact(self.root, 'final-review.json', review)
++        state.update(review_ref=review_ref, proposal_ref=proposal_ref, planner_task_id='planner', reviewer_task_id='reviewer')
++        state['sequence']['result_ref'] = result_ref
++        catalog = {'steps': [self.step]}
++        outcome = sequence._advance(self.program, adopted, self.project, catalog, self.step,
++            item={'attempt': {'run_id': 'reviewer-run'}})
++        items = {role: {'state': 'completed', 'attempt': {'run_id': role + '-run', 'owner': role},
++            'outputs': [ref], 'task': {'parameters': {'harness_role': role, 'sequence_binding': selected}}}
++            for role, ref in [('planner', result_ref), ('reviewer', review_ref)]}
++        with patch.object(self.controller, 'get_task', side_effect=lambda project_id, task_id: items[task_id]):
++            sequence._audit_acceptances(self.program, outcome['program'], self.project, catalog)
++            later = copy.deepcopy(outcome['program'])
++            later['contract']['native_target_ref'] = save_artifact(self.root, 'audit-later-target.json', {'host': 'new-gpu'})
++            sequence._audit_acceptances(self.program, later, self.project, catalog)
++            (self.root / self.report_ref['path']).write_text('{}')
++            with self.assertRaises(ContractError):
++                sequence._audit_acceptances(self.program, outcome['program'], self.project, catalog)
++
++    def test_later_target_change_preserves_history_but_not_current_b01_readiness(self):
++        adopted = self.adopt()
++        changed = copy.deepcopy(adopted)
++        changed['contract']['native_target_ref'] = save_artifact(self.root, 'later-target.json', {
++            'host': 'new-authorized-gpu', 'root': '/project', 'skill_root': '/skill', 'python': '/new/python'})
++        with self.assertRaises(ContractError): sequence._cursor(self.project, changed)
++        catalog, _ = sequence._catalog(self.project)
++        index = next(i for i, step in enumerate(catalog['steps']) if step['id'] == 'B03')
++        changed['state']['sequence'].update(index=index, step_id='B03', accepted=[self.output] * index)
++        _, step = sequence._cursor(self.project, changed)
++        self.assertEqual(step['id'], 'B03')
++
++
++if __name__ == '__main__': unittest.main()
+diff --git a/tests/runtime/test_b01_setup_guidance.py b/tests/runtime/test_b01_setup_guidance.py
+new file mode 100644
+index 0000000..65605eb
+--- /dev/null
++++ b/tests/runtime/test_b01_setup_guidance.py
+@@ -0,0 +1,28 @@
++"""Configuration-stage wording preserves the formal-research alternative."""
++import json
++from pathlib import Path
++import unittest
++
++SKILL = Path(__file__).resolve().parents[2] / 'skills/research-autopilot'
++
++
++class B01SetupGuidanceTests(unittest.TestCase):
++    def test_catalog_keeps_formal_contract_and_exact_requirement_ids(self):
++        catalog = json.loads((SKILL / 'assets/skill-sequence.json').read_text())
++        step = next(s for s in catalog['steps'] if s['id'] == 'B01')
++        self.assertEqual([r['id'] for r in step['requirements']],
++                         ['task_endpoint', 'evaluation_identity', 'measurement_fit'])
++        requirement = next(r for r in step['requirements'] if r['id'] == 'evaluation_identity')
++        self.assertIn('formal contract', requirement['description'])
++        self.assertIn('setup is not required', requirement['description'])
++        self.assertIn('references/b01-upstream-setup.md', step['sources'])
++
++    def test_shared_guidance_preserves_configuration_scoring_boundary(self):
++        guide = (SKILL / 'references/b01-upstream-setup.md').read_text()
++        self.assertIn('Startup success proves only configuration/startup', guide)
++        self.assertIn('scoring stage', guide)
++        self.assertIn('formal-only', guide)
++
++
++if __name__ == '__main__':
++    unittest.main()

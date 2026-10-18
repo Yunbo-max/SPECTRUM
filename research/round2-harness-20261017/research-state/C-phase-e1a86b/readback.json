@@ -1,0 +1,37 @@
+{
+  "question": "B02：在采样、过滤及信息输入改变时，自蒸馏更新与后续准确率/多样性变化能否由简单替代解释？",
+  "reused_memory": "现有SSD/SDPO-CL代码审计和SPD实现缺口保持；本次不宣称新增全文阅读或已复现强方法。",
+  "finding": "prepare实际完成；原始374训练样本去除3个测试prompt重叠，371分为291训练/50校准/30验证。测试500全部保留。",
+  "scientific_acceptance": false,
+  "scoring": "pending",
+  "evidence_refs": [
+    {
+      "path": "research-state/C-phase-e1a14/method-basis-v3.md",
+      "sha256": "c0be7b4f73968448a2a70c38e9215b004cf02f18d9bfe9f5ca8c610578eeb02a"
+    },
+    {
+      "path": "research-state/community/20261018-6accce440000000015013c77.json",
+      "sha256": "a53481001a5058cf90170810d8d00cd7cd0551c716b4562f5e4e464a2b99252f"
+    },
+    {
+      "path": "research-state/community/20261018-69d5a7af000000001a0203ed.json",
+      "sha256": "cdb2ac9aa571f50c2d80f2e730ed66d6510f95c6ed779aced2c49be0c592afce"
+    },
+    {
+      "path": "research-state/harness/receipts/70b3fef870224b6aa2d732c6699374ad.json",
+      "sha256": "c1d2b55e910d0fcc0b2080dcbd269dd46e498e0fac7a3f6d496c595a95e4abfa"
+    },
+    {
+      "path": "research-state/harness/receipts/8a95ed560f384e939ea5d8b5948e6afd.json",
+      "sha256": "181c2bd55acbdf40da3c73af6a20a4746ee8d7d0ac39417e653513b3318365fe"
+    },
+    {
+      "path": "runs/stage-outputs/spectrum-C-prepare-e1a86b/preparation_manifest.jsonl",
+      "sha256": "aa2a95d9499c1922e79f24cd4d3638b3853fc364f45eb83a370bc3ada8c1dbb3"
+    },
+    {
+      "path": "runs/stage-outputs/spectrum-C-prepare-e1a86b/stage-summary.json",
+      "sha256": "f77e18cd4f2607ed194913bdf1c17f3de6996028d35aea09a9804183ae85421c"
+    }
+  ]
+}

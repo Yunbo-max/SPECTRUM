@@ -1,0 +1,44 @@
+{
+  "schema_id": "harness-plan",
+  "schema_version": "1.0.0",
+  "batch_id": "spectrum-C-calibrate64-e1a86b",
+  "output_root": "runs/harness",
+  "pool_dir": "/root/rivermind-data/spectrum-harness/project/research-state/native-resource-pool",
+  "tasks": [
+    {
+      "task_id": "calibrate64",
+      "idea_id": "spectrum-plain-transfer-diagnosis",
+      "plan_ref": {
+        "path": "research-state/C-phase-e1a86b/plans/calibrate64-native-plan.json",
+        "sha256": "9a273526a2d61f12e3c1ae09059f66e30dce2fd593ddc21a7ac26bd287a47d53"
+      },
+      "depends_on": [],
+      "priority": 0,
+      "resources": {
+        "cpu_cores": 2,
+        "ram_mib": 8192,
+        "gpu_count": 1,
+        "gpu_peak_mib": 22000,
+        "allow_gpu_share": false,
+        "memory_profile_ref": null,
+        "exclusive_keys": [
+          "spectrum-b02-experiment"
+        ]
+      }
+    }
+  ],
+  "limits": {
+    "window_seconds": 1020,
+    "total_wall_seconds": 1020,
+    "max_parallel_tasks": 1,
+    "cpu_cores": 2,
+    "ram_mib": 8192,
+    "max_gpu_task_seconds": 1020
+  },
+  "gpus": {
+    "uuids": [],
+    "safety_margin_mib": 1024,
+    "max_tasks_per_gpu": 1
+  },
+  "plan_digest": "9e60992ee35c071762130080167b12b0a40abd3c9192b83e0dc7ced1e89c9114"
+}

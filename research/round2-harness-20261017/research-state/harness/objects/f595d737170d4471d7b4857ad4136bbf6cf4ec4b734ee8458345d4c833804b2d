@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/base-assets.json",
+      "sha256": "727c2bafbcabde663e129594247399434a0f888a1a9c67b04b13d2e666201896",
+      "size": 1577
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/calibration.jsonl",
+      "sha256": "759b2e6bccd216f6e2cef3a7ba352e89c401aca03e3da637e94963da691b5ba5",
+      "size": 56054
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/eval.jsonl",
+      "sha256": "cf5b851a5ee74e02ad0bf692f9229074fe7e2dbbe175f26aa88bdf001b6207b9",
+      "size": 564682
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/preparation_manifest.jsonl",
+      "sha256": "aa2a95d9499c1922e79f24cd4d3638b3853fc364f45eb83a370bc3ada8c1dbb3",
+      "size": 11975
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/source_fields.jsonl",
+      "sha256": "9084294a5fc14b02fe59245ef2a4baae958b694ece2ebf94a73a0df0ff013430",
+      "size": 557597
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/task-manifest.json",
+      "sha256": "f047b18835339e3c828f7302db214cb0aea1852b1e18de2dedd2ab4ea2461a26",
+      "size": 7990
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/train.jsonl",
+      "sha256": "949be6f7037d3c30e51c4a07aad31802ec18f4efffbe7d3f8f76551b0cfa80af",
+      "size": 324049
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/validation.jsonl",
+      "sha256": "0a9c788c67c6bbbb4b6658732ee25753730d9612b4ab1fcbd71b08d5c0e9f50b",
+      "size": 34719
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/receipt-1792353427453877637.json",
+      "sha256": "dfc0cd8bbfa06d48edf33e75c7c90686476c20b9debe608d42a6a207d5f5e4a5",
+      "size": 7324
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/receipt.json",
+      "sha256": "dfc0cd8bbfa06d48edf33e75c7c90686476c20b9debe608d42a6a207d5f5e4a5",
+      "size": 7324
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/request.json",
+      "sha256": "67e508676c6e369bdc498f4185260f78e97f16c285709f03f7d8001c16df5a14",
+      "size": 10311
+    }
+  ],
+  "partial": false
+}

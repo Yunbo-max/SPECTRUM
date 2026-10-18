@@ -1,0 +1,16 @@
+test_truthy_scaleup_flag_does_not_bypass_legacy_discovery (test_scaleup_stages.LegacyScaleupSpoofTests.test_truthy_scaleup_flag_does_not_bypass_legacy_discovery) ... ok
+test_accepted_handoff_is_required_even_for_software_repair (test_scaleup_stages.ScaleupStageTests.test_accepted_handoff_is_required_even_for_software_repair) ... ok
+test_actual_operational_code_may_change_but_not_claim_confirmation (test_scaleup_stages.ScaleupStageTests.test_actual_operational_code_may_change_but_not_claim_confirmation) ... ok
+test_adaptation_requires_actual_pins_and_cannot_declare_new_method_or_approval (test_scaleup_stages.ScaleupStageTests.test_adaptation_requires_actual_pins_and_cannot_declare_new_method_or_approval) ... ok
+test_all_operational_stage_kinds_use_real_admission_after_scaleup (test_scaleup_stages.ScaleupStageTests.test_all_operational_stage_kinds_use_real_admission_after_scaleup) ... ok
+test_exact_and_operationally_adapted_formal_methods_pass_canonical_admission (test_scaleup_stages.ScaleupStageTests.test_exact_and_operationally_adapted_formal_methods_pass_canonical_admission) ... ok
+test_formal_purpose_cannot_reuse_operational_stage (test_scaleup_stages.ScaleupStageTests.test_formal_purpose_cannot_reuse_operational_stage) ... ok
+test_later_development_uses_coverage_without_formal_experiment_bindings (test_scaleup_stages.ScaleupStageTests.test_later_development_uses_coverage_without_formal_experiment_bindings) ... ok
+test_online_quality_selection_and_forged_predecessor_still_rejected (test_scaleup_stages.ScaleupStageTests.test_online_quality_selection_and_forged_predecessor_still_rejected) ... ok
+test_real_native_worker_executes_later_stage_without_scientific_acceptance (test_scaleup_stages.ScaleupStageTests.test_real_native_worker_executes_later_stage_without_scientific_acceptance) ... ok
+test_scaleup_program_cannot_change_accepted_method_identity (test_scaleup_stages.ScaleupStageTests.test_scaleup_program_cannot_change_accepted_method_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 16.426s
+
+OK

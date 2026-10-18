@@ -1,0 +1,44 @@
+{
+  "schema_id": "harness-plan",
+  "schema_version": "1.0.0",
+  "batch_id": "spectrum-C-prepare-e1a86",
+  "output_root": "runs/harness",
+  "pool_dir": "/root/rivermind-data/spectrum-harness/project/research-state/native-resource-pool",
+  "tasks": [
+    {
+      "task_id": "prepare",
+      "idea_id": "spectrum-plain-transfer-diagnosis",
+      "plan_ref": {
+        "path": "research-state/C-phase-e1a86/plans/prepare-native-plan.json",
+        "sha256": "9a8d632047addf80ba8ad22e85dc8a559b95d8ae6cec59879fa60d4966629604"
+      },
+      "depends_on": [],
+      "priority": 0,
+      "resources": {
+        "cpu_cores": 2,
+        "ram_mib": 4096,
+        "gpu_count": 0,
+        "gpu_peak_mib": null,
+        "allow_gpu_share": false,
+        "memory_profile_ref": null,
+        "exclusive_keys": [
+          "spectrum-b02-experiment"
+        ]
+      }
+    }
+  ],
+  "limits": {
+    "window_seconds": 1020,
+    "total_wall_seconds": 1020,
+    "max_parallel_tasks": 1,
+    "cpu_cores": 2,
+    "ram_mib": 4096,
+    "max_gpu_task_seconds": 0
+  },
+  "gpus": {
+    "uuids": [],
+    "safety_margin_mib": 1024,
+    "max_tasks_per_gpu": 1
+  },
+  "plan_digest": "9eb9b165d466ced00e2adac9d4f3d773902b363fdadecc59b3e73f0fe935c330"
+}

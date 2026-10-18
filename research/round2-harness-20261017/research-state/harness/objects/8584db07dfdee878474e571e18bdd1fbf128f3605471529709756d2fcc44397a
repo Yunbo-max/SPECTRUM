@@ -1,0 +1,262 @@
+{
+  "context": {
+    "attempt_id": "prepare-a1-87a1ded78b454c8f94854c4fd42d71af",
+    "controller": {
+      "fence": 1,
+      "owner": "spectrum-guarded.planner.native",
+      "run_id": "8a95ed560f384e939ea5d8b5948e6afd",
+      "task_id": "spectrum.C.prepare.e1.a86b"
+    },
+    "dispatch_identity_sha256": "b1377975f4d70aa8b00904e5f6b485ded27978230783f0ecd0fd09c0fed5d997",
+    "harness_context_ref": {
+      "path": "runs/harness/spectrum-C-prepare-e1a86b/tasks/prepare/execution-context.json",
+      "sha256": "b5663d22014339c406c9a892cabb049979c1c53d0b87db008315a0ff4697bd0b"
+    },
+    "kind": "research-native-stage-context",
+    "native_stage_ref": {
+      "path": "research-state/C-phase-e1a86b/plans/prepare-stage.json",
+      "sha256": "b1b6fe0b90020559c683631a8970e4c86b6891459f417f0a7a712a5d6e05747f"
+    },
+    "plan_digest": "c219192218eac468ba7602372f4dbef34e2e9bc44045553ea61b217cfbf2a19d",
+    "project_root": "/root/rivermind-data/spectrum-harness/project",
+    "protocol_ref": {
+      "path": "research-state/C-phase-e1a86b/plans/stage-program.json",
+      "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+    },
+    "run_id": "spectrum-C-prepare-e1a86b",
+    "schema_version": 1,
+    "scientific_verified": false,
+    "stage_id": "prepare",
+    "stage_kind": "prepare",
+    "trial_id": "prepare",
+    "workspace_root": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace"
+  },
+  "mappings": [
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-00.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-00.bin",
+        "sha256": "2a6b7cfd70562bac249478aa2fd6450951f1d3021885fc227a656d1f82adbfac",
+        "size": 1621816
+      },
+      "sha256": "2a6b7cfd70562bac249478aa2fd6450951f1d3021885fc227a656d1f82adbfac"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-01.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-01.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-02.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-02.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-03.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-03.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-04.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-04.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-05.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-05.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-06.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-06.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-07.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-07.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-index.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/archive-index.json",
+        "sha256": "8d00036a6ab244af8fc0ed4c9b92bd5cc4a1d199aec7a640e7f0f88e730e7bb1",
+        "size": 10626
+      },
+      "sha256": "8d00036a6ab244af8fc0ed4c9b92bd5cc4a1d199aec7a640e7f0f88e730e7bb1"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/base-assets.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/base-assets.json",
+        "sha256": "727c2bafbcabde663e129594247399434a0f888a1a9c67b04b13d2e666201896",
+        "size": 1577
+      },
+      "sha256": "727c2bafbcabde663e129594247399434a0f888a1a9c67b04b13d2e666201896"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/calibration.jsonl",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/calibration.jsonl",
+        "sha256": "759b2e6bccd216f6e2cef3a7ba352e89c401aca03e3da637e94963da691b5ba5",
+        "size": 56054
+      },
+      "sha256": "759b2e6bccd216f6e2cef3a7ba352e89c401aca03e3da637e94963da691b5ba5"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/checkpoint-inventory.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/checkpoint-inventory.json",
+        "sha256": "dc4ef572bdefbc55b4d0866b40c9da8e488f6785d3d8d9f7446751e4ddde95d8",
+        "size": 41
+      },
+      "sha256": "dc4ef572bdefbc55b4d0866b40c9da8e488f6785d3d8d9f7446751e4ddde95d8"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/driver-receipt.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/receipt.json",
+        "sha256": "dfc0cd8bbfa06d48edf33e75c7c90686476c20b9debe608d42a6a207d5f5e4a5",
+        "size": 7324
+      },
+      "sha256": "dfc0cd8bbfa06d48edf33e75c7c90686476c20b9debe608d42a6a207d5f5e4a5"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/driver-request.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/request.json",
+        "sha256": "67e508676c6e369bdc498f4185260f78e97f16c285709f03f7d8001c16df5a14",
+        "size": 10311
+      },
+      "sha256": "67e508676c6e369bdc498f4185260f78e97f16c285709f03f7d8001c16df5a14"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/eval.jsonl",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/eval.jsonl",
+        "sha256": "cf5b851a5ee74e02ad0bf692f9229074fe7e2dbbe175f26aa88bdf001b6207b9",
+        "size": 564682
+      },
+      "sha256": "cf5b851a5ee74e02ad0bf692f9229074fe7e2dbbe175f26aa88bdf001b6207b9"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/inventory.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/inventory.json",
+        "sha256": "f595d737170d4471d7b4857ad4136bbf6cf4ec4b734ee8458345d4c833804b2d",
+        "size": 2888
+      },
+      "sha256": "f595d737170d4471d7b4857ad4136bbf6cf4ec4b734ee8458345d4c833804b2d"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/preparation_manifest.jsonl",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/preparation_manifest.jsonl",
+        "sha256": "aa2a95d9499c1922e79f24cd4d3638b3853fc364f45eb83a370bc3ada8c1dbb3",
+        "size": 11975
+      },
+      "sha256": "aa2a95d9499c1922e79f24cd4d3638b3853fc364f45eb83a370bc3ada8c1dbb3"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/resource-observation.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/resource-observation.json",
+        "sha256": "366d82d257bc1bb1a3ce6d6ecd6f75a2f0d3ca37a41f1fcf239b66b9ff187adb",
+        "size": 8583
+      },
+      "sha256": "366d82d257bc1bb1a3ce6d6ecd6f75a2f0d3ca37a41f1fcf239b66b9ff187adb"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/source_fields.jsonl",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/source_fields.jsonl",
+        "sha256": "9084294a5fc14b02fe59245ef2a4baae958b694ece2ebf94a73a0df0ff013430",
+        "size": 557597
+      },
+      "sha256": "9084294a5fc14b02fe59245ef2a4baae958b694ece2ebf94a73a0df0ff013430"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/stage-summary.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/seal/stage-summary.json",
+        "sha256": "f77e18cd4f2607ed194913bdf1c17f3de6996028d35aea09a9804183ae85421c",
+        "size": 21863
+      },
+      "sha256": "f77e18cd4f2607ed194913bdf1c17f3de6996028d35aea09a9804183ae85421c"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/stderr.log",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/stderr.log",
+        "sha256": "a91d921730ef3e55f4454f7006d5a781460ca6b23457569dae72ad7051d7810c",
+        "size": 1940
+      },
+      "sha256": "a91d921730ef3e55f4454f7006d5a781460ca6b23457569dae72ad7051d7810c"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/stdout.log",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/stdout.log",
+        "sha256": "1ab22cdfec4009f5689c141c21d83402b7a0eef0cf4c9ef83915d07840092a6c",
+        "size": 6462
+      },
+      "sha256": "1ab22cdfec4009f5689c141c21d83402b7a0eef0cf4c9ef83915d07840092a6c"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/task-manifest.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/task-manifest.json",
+        "sha256": "f047b18835339e3c828f7302db214cb0aea1852b1e18de2dedd2ab4ea2461a26",
+        "size": 7990
+      },
+      "sha256": "f047b18835339e3c828f7302db214cb0aea1852b1e18de2dedd2ab4ea2461a26"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/train.jsonl",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/train.jsonl",
+        "sha256": "949be6f7037d3c30e51c4a07aad31802ec18f4efffbe7d3f8f76551b0cfa80af",
+        "size": 324049
+      },
+      "sha256": "949be6f7037d3c30e51c4a07aad31802ec18f4efffbe7d3f8f76551b0cfa80af"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-prepare-e1a86b/prepare-a1-87a1ded78b454c8f94854c4fd42d71af/workspace/runs/stage-outputs/spectrum-C-prepare-e1a86b/validation.jsonl",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/outputs/validation.jsonl",
+        "sha256": "0a9c788c67c6bbbb4b6658732ee25753730d9612b4ab1fcbd71b08d5c0e9f50b",
+        "size": 34719
+      },
+      "sha256": "0a9c788c67c6bbbb4b6658732ee25753730d9612b4ab1fcbd71b08d5c0e9f50b"
+    }
+  ],
+  "publication_owner": "trusted native runner; adapter writes workspace only"
+}

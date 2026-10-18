@@ -1,0 +1,205 @@
+{
+  "status": "completed",
+  "result": {
+    "config_sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+    "batch_settings": {
+      "batch_size": 16,
+      "task_batch_size": 4,
+      "sequence_batch_size": 64
+    },
+    "sequence_batch_size": 64,
+    "actual_source_interface": "generate_to_file batch_size/task_batch_size/sequence_batch_size",
+    "actual_bound_shape": [
+      64,
+      613
+    ],
+    "max_real_prompt_tokens": 101,
+    "forced_output_tokens": 512,
+    "formal_samples": 16,
+    "pilot_samples": 64,
+    "elapsed_seconds": 30.690096742939204,
+    "pilot_tokens_per_second_including_bound_probe": 1067.7059858906719,
+    "peak_allocated_bytes": 4828112384,
+    "peak_reserved_bytes": 5402263552,
+    "total_vram_bytes": 25250627584,
+    "free_before_bytes": 21551054848,
+    "free_after_bytes": 19351142400,
+    "headroom_bytes": 19351142400,
+    "finite": true,
+    "eligible": true,
+    "prepared_receipt_ref": {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/receipt.json",
+      "sha256": "dfc0cd8bbfa06d48edf33e75c7c90686476c20b9debe608d42a6a207d5f5e4a5"
+    },
+    "qualification_scope": "BF16 native inference; worst actual prompt + forced512; no score",
+    "training_qualified": false
+  },
+  "outputs": [
+    {
+      "path": "pilot.jsonl",
+      "sha256": "44de2494232685064df4f05e7081063c1c97727f6aa3e3e0cab18de0db55705a",
+      "bytes": 336484
+    },
+    {
+      "path": "pilot.jsonl.budget.json",
+      "sha256": "9e38cb3a51ede1c51315e47311805ce5122699c9ebcf426160b05b1db7407a24",
+      "bytes": 652
+    },
+    {
+      "path": "pilot.jsonl.parts/1207bc7b0036c6fb127e4f68.000000.json",
+      "sha256": "683faf44809dea5fb69729259ea2e3c3c188d9c0e9d33c71f0d912cf447b2875",
+      "bytes": 137808
+    },
+    {
+      "path": "pilot.jsonl.parts/165bc30061439ad04d584de2.000000.json",
+      "sha256": "3eb755eef3d6610c8d0d324ec994fd34208e997654f509d94a114c0de1241b4c",
+      "bytes": 133187
+    },
+    {
+      "path": "pilot.jsonl.parts/21037c48bd08d45b6a1400db.000000.json",
+      "sha256": "c7a319f736837f325c0f6067903f576ed842db09be9edffbb7912483e79b5827",
+      "bytes": 131188
+    },
+    {
+      "path": "pilot.jsonl.parts/c79cf1a7526544d089278089.000000.json",
+      "sha256": "547a780797e59535f57d687e0ae7e4d1ca9c5f57394ff7844835cf88caa354cd",
+      "bytes": 134825
+    },
+    {
+      "path": "pilot.jsonl.parts/manifest.json",
+      "sha256": "1be95c9a12d5160a664642b5e4a28d912c9eda16d2d0c8788faf407b75b0b507",
+      "bytes": 479
+    },
+    {
+      "path": "profile.json",
+      "sha256": "39c22fbea9d816b787353a063311ecea09cb227d9a192875e3af8010398825c9",
+      "bytes": 1209
+    }
+  ],
+  "stage": "calibrate-inference-64",
+  "started_at_unix": 1792353675.828486,
+  "ended_at_unix": 1792353720.0735443,
+  "execution_identity": {
+    "task_id": "spectrum.C.calibrate64.e1.a86b",
+    "run_id": "spectrum-C-calibrate64-e1a86b",
+    "attempt_id": "calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce"
+  },
+  "host": "jupyter-8ib2rm29px4993t7",
+  "pid": 15828,
+  "argv": [
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+    "calibrate-inference",
+    "--batch",
+    "64",
+    "--config",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "--config-sha256",
+    "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+    "--protocol",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "--protocol-sha256",
+    "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f",
+    "--cd-evidence",
+    "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "--cd-evidence-sha256",
+    "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe",
+    "--deployment-manifest",
+    "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "--deployment-manifest-sha256",
+    "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4",
+    "--project-root",
+    "/root/rivermind-data/spectrum-harness/project",
+    "--run-root",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run",
+    "--goal-id",
+    "spectrum-round2",
+    "--candidate-id",
+    "spectrum-plain-transfer-diagnosis",
+    "--task-id",
+    "spectrum.C.calibrate64.e1.a86b",
+    "--run-id",
+    "spectrum-C-calibrate64-e1a86b",
+    "--attempt-id",
+    "calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce"
+  ],
+  "cwd": "/root/rivermind-data/spectrum-harness/project",
+  "config_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+  },
+  "protocol_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+  },
+  "cd_evidence_ref": {
+    "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+  },
+  "deployment_manifest_ref": {
+    "path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"
+  },
+  "process_max_rss_kib": 3795464,
+  "implementation_refs": [
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/stage_entry.py",
+      "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "environment": {
+    "torch": "2.7.1",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "numpy": "2.3.5",
+    "datasets": "3.5.1"
+  },
+  "cuda": {
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "peak_allocated_bytes": 4828112384,
+    "peak_reserved_bytes": 5402263552
+  }
+}

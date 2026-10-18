@@ -1,0 +1,14 @@
+{
+  "kind": "adaptive-execution-live-adoption",
+  "version": "0.4.0-harness.11",
+  "source_revision": "486d8ec0c256a0b6e22527c8ebe836a35d468091",
+  "skill_digest": "2f878f51257179958aa53d3d4819be43df6a165ee91dc834149b04e6493f57fd",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/adaptive-execution-000402.json",
+    "sha256": "1e86e279cb1b368d98731b345d2b49f5e98ffab96ef8b544572c6b9a64098267"
+  },
+  "revision": 402,
+  "phase": "paused",
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true
+}

@@ -1,0 +1,2204 @@
+{
+  "kind": "research-coverage",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "previous_ref": {
+    "path": "research-state/C-phase-e1a18/coverage-02.json",
+    "sha256": "917d817f4f3e2434741d5edea501a64e09b496d1029c05a9d41f8fdbcb6daa09"
+  },
+  "obligations": [
+    {
+      "id": "restore-evidence",
+      "description": "Recover SPECTRUM historical results, precise source identity, negative evidence, missing raw outputs and the user-authorized scope",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/P02-asset-inventory-attempt-000001.json",
+          "sha256": "a15b50b3d3ed85cdb52594f25b98c58416c744d6efeb8c9c046e6be2573616be"
+        },
+        {
+          "path": "research-state/P02-asset-status-attempt-000001.md",
+          "sha256": "e7d20df8b95a651d99f9f0fe71a1377861893af5fb987542b24cfb9933104f0b"
+        },
+        {
+          "path": "research-state/I01-entry-card-attempt-000001.md",
+          "sha256": "d444fa8f2ae35b8e247ba24b4a087fef329f93b394cc0fc0720816d5325223c6"
+        },
+        {
+          "path": "research-state/I01-evidence-readback-attempt-000001.json",
+          "sha256": "27ff08b1cf161a0943a8abf4c3188f58bdb20f6fd1d3bec2faf740ab2f8077bc"
+        },
+        {
+          "path": "research-state/I02-parent-problem-attempt-000001.md",
+          "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+        },
+        {
+          "path": "research-state/I02-evidence-readback-attempt-000001.json",
+          "sha256": "2b486685ca1937cf8497640389f37dcc204c1449d941896c54b46fce8c44543a"
+        },
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P04-resource-boundaries-attempt-000001.md",
+          "sha256": "d91132119fea973f63a253de6f43424f1eced6dc94c1df89e64198065973592d"
+        },
+        {
+          "path": "research-state/P04-resource-observation-attempt-000001.json",
+          "sha256": "4394483e087999c90afe5942d140253adbf8740a7037bd3ee548bd4e169946a1"
+        },
+        {
+          "path": "research-state/P04-evidence-readback-attempt-000001.json",
+          "sha256": "d7f6cde4c05ee9520c97b0eec78f602c4093189a77072af55d164f56a7426477"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        },
+        {
+          "path": "reports/X03-evidence-exploration-attempt-000001.md",
+          "sha256": "af6c898e918e1aecbf27a1dd28db66f8352a4a4db1b68bb64de3aaecdeae60ed"
+        },
+        {
+          "path": "research-state/X03-evidence-index-attempt-000001.json",
+          "sha256": "a560ac8fad5cdd0b0370cfa59a1ac8180fec860063ad120c32bfc669d4ce2c1a"
+        },
+        {
+          "path": "reports/L05-coverage-knowledge-attempt-000001.md",
+          "sha256": "96f3925af401a06b61ad2df1410d83c3af7dc5b88f83f54c8f4dee2524594067"
+        },
+        {
+          "path": "research-state/L05-evidence-snapshot-attempt-000001.json",
+          "sha256": "ec4bf8c8f4316ccee1a60ad2559e48323c5359fa094718433d90bd3488d7028e"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "research-state/E01-attempt-000001/evidence.json",
+          "sha256": "c8f3c35005a2733d250d6294a4c48ec6eb7d9967f9f4a91c00bba2b64d6223de"
+        },
+        {
+          "path": "reports/E01-environment-attempt-000001.md",
+          "sha256": "9ef39452552a38f942bd4a5722e967b6b848277f51d380bc8fc52afb6b9b35fe"
+        },
+        {
+          "path": "reports/E01-environment-attempt-000002.md",
+          "sha256": "ea4ef5d5e3123553200040ccc0b87fd75477c1228fd463f3792cd200f89de38f"
+        },
+        {
+          "path": "research-state/E01-attempt-000002/readback.json",
+          "sha256": "1eb6942f82f9d420b3674d6507d0c04cb80b5fd046d31c83c2309fed4b485837"
+        },
+        {
+          "path": "research-state/harness/round-000039/reviewer-rejection.json",
+          "sha256": "ee81fbc2681d7c917afd4ea20788ffbc7c02970ae054bfa358fa14e195051bb0"
+        },
+        {
+          "path": "research-state/harness/receipts/19d84b9027e14dde9188ec8f574a55bc.json",
+          "sha256": "12e4180f9fdae7056821b9eb2f1c36f7098b9156eb48be2836161de735938a65"
+        },
+        {
+          "path": "research-state/harness/receipts/e2660f7054964252b331912ed754829d.json",
+          "sha256": "3f0012faabb889384b0ece0974d9f2a94cf9b39756b021fe4a0650f89d28975a"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/E01/attempt-000002/planner-history.json",
+          "sha256": "444d756adc7e12161e70f31e4ec19498484031717be8c90f298ed2bd5ec57b71"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000003.md",
+          "sha256": "926b4a4f79c839a86ff1cd3359f26062147918b6053e184772b899fedbb076cd"
+        },
+        {
+          "path": "research-state/B02-attempt-000003/readback.json",
+          "sha256": "40139778a7dc16c64ab45063d1d2ab0470f2395d1190415591545b0c3f3e813a"
+        },
+        {
+          "path": "research-state/B02-attempt-000003/contract-source-observation.json",
+          "sha256": "18bd5424100b42281de03a7a398974d7c868054a3d479609f13ce6bb9a23cc26"
+        },
+        {
+          "path": "research-state/harness/round-000042/planner-rejection.json",
+          "sha256": "6ebb19cf9da7a21675f1b530781084396be00ef07154d3522edcbd05504b7c34"
+        },
+        {
+          "path": "research-state/harness/receipts/48f7b5cceed342029a02512431e996d1.json",
+          "sha256": "53fc64fe2a9d3fb772cbf21df53636388763694a0415fad18340907629044c1b"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "source-and-community",
+      "description": "Use primary papers/code and bounded authorized Xiaohongshu leads, with honest access limits",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B01.scorer-source-binding.000002",
+        "spectrum.B01.scorer-source-binding.000003",
+        "spectrum.B01.qualification-readiness.000006",
+        "spectrum.B01.published-output-provenance.000013"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        },
+        {
+          "path": "reports/L01-search-evidence-attempt-000001.md",
+          "sha256": "c59f80cde3cf23800736b1282c074cfca733b283e2712cc59b3a9cc94597568e"
+        },
+        {
+          "path": "research-state/L01-search-index-attempt-000001.json",
+          "sha256": "f3e7eb25d3db9c58bbbbd77e0259b76dcb0929b8af0b8ccd9e605904d2a5f325"
+        },
+        {
+          "path": "reports/L02-topic-map-attempt-000001.md",
+          "sha256": "a226680339dbf89e8cf26432b7f4da87cd83fc72c51f117cd7cfcfb65d22ec0f"
+        },
+        {
+          "path": "research-state/L02-evidence-index-attempt-000001.json",
+          "sha256": "003ef27911864d0299d8de02ca5a3e46599eea4c0181e7bb5cd485938773660e"
+        },
+        {
+          "path": "reports/L03-close-reading-attempt-000001.md",
+          "sha256": "cef7d18249a5cfa8226b5b7d658f1379a01ec5782550a84dd5004e1f4b20a0bf"
+        },
+        {
+          "path": "research-state/L03-evidence-index-attempt-000001.json",
+          "sha256": "25d21b8ff718af4b4b8b4b9070862b1d285cddd4fc9e7bb8c396fdccd6d6e295"
+        },
+        {
+          "path": "reports/X02-visual-observations-attempt-000001.md",
+          "sha256": "58de5c1c95f85c413db29b922f9caa2a44795bbd1cf6df94de1a0ef68cd274b5"
+        },
+        {
+          "path": "research-state/X02-evidence-index-attempt-000001.json",
+          "sha256": "095791c3eba08f5c20550838fad286de2c81400f1eb45e2675e5d5c552eba7b0"
+        },
+        {
+          "path": "reports/L04-parity-audit-attempt-000001.md",
+          "sha256": "c8a00be7821ccf63579a08e4de8417e7ad81e672111380f0981792e947e14be4"
+        },
+        {
+          "path": "research-state/L04-evidence-index-attempt-000001.json",
+          "sha256": "d5c6cdbdb7bfe2e42ef8179f12b430e972a1e93c6a297ec716a2369c91f6df19"
+        },
+        {
+          "path": "reports/X03-evidence-exploration-attempt-000001.md",
+          "sha256": "af6c898e918e1aecbf27a1dd28db66f8352a4a4db1b68bb64de3aaecdeae60ed"
+        },
+        {
+          "path": "research-state/X03-evidence-index-attempt-000001.json",
+          "sha256": "a560ac8fad5cdd0b0370cfa59a1ac8180fec860063ad120c32bfc669d4ce2c1a"
+        },
+        {
+          "path": "reports/L05-coverage-knowledge-attempt-000001.md",
+          "sha256": "96f3925af401a06b61ad2df1410d83c3af7dc5b88f83f54c8f4dee2524594067"
+        },
+        {
+          "path": "research-state/L05-evidence-snapshot-attempt-000001.json",
+          "sha256": "ec4bf8c8f4316ccee1a60ad2559e48323c5359fa094718433d90bd3488d7028e"
+        },
+        {
+          "path": "reports/B01-task-metric-contract-attempt-000002.md",
+          "sha256": "2e17ccd27353da427377e07c49948dfdb670f8ca6679d13281dab663858b2650"
+        },
+        {
+          "path": "research-state/B01-evidence-index-attempt-000002.json",
+          "sha256": "6a3a5645da5a399b8c8cc260ffeef77092566ec270e007aafc7b9d1b59fd15fc"
+        },
+        {
+          "path": "research-state/harness/cancellations/spectrum.B01.scorer-source-binding.000002.json",
+          "sha256": "18f4afebd4e7258e714cfdd39b75a64150028d14160c201848523f23f77ca2b6"
+        },
+        {
+          "path": "reports/B01-task-metric-contract-attempt-000003.md",
+          "sha256": "0919a1e489427d50805d0d054b9ac268e06d6a63f6589ae8b86d1acd76d39072"
+        },
+        {
+          "path": "research-state/B01-evidence-index-attempt-000003.json",
+          "sha256": "565fa5c718428bd4a94727b541012406bd704339f0c996039b546abf88a77f9f"
+        },
+        {
+          "path": "reports/B01-task-metric-contract-attempt-000006.md",
+          "sha256": "91f605b0aa2c76e1ed1f3cfb854fcefdf6771e7cbc48df3680ffbbb9a374c2bf"
+        },
+        {
+          "path": "research-state/B01-readback-attempt-000006.json",
+          "sha256": "acbe38a7bfc09746b7a067b68f8ba3e49cd8be05ad2d50a72913604420984f99"
+        },
+        {
+          "path": "reports/B01-scorer-source-binding-000003.md",
+          "sha256": "7a73b57e4d7137e9805a7269c28bf458b8873f909367da73352ae11808c5ef2f"
+        },
+        {
+          "path": "research-state/B01-scorer-source-binding-000003.json",
+          "sha256": "9d37b26c2081f730c7e2b23459f78d5b454df4aaf4291730d1d4d006095b131f"
+        },
+        {
+          "path": "research-state/B01-scorer-source-binding-000003-receipt.json",
+          "sha256": "381454fedf2da3b83465d2adca5f41a036c8f058115dba5c97983b8900a6abe3"
+        },
+        {
+          "path": "research-state/harness/receipts/41be177c038c4a6bbd8aca4bdf5d9442.json",
+          "sha256": "70de69ad1195d7a58aa94680e2bbb4f42a83f633092e347c632afd534998fb4d"
+        },
+        {
+          "path": "research-state/harness/round-000022/planner-rejection.json",
+          "sha256": "ab5fc718f9730161c1737243bebf6d3c79292d030a4eb6562ac94a18febb9ece"
+        },
+        {
+          "path": "research-state/harness/round-000023/planner-rejection.json",
+          "sha256": "f14917732d69b298439bbf8b1333fb3712059183a38b955b4efcc787cbbe5907"
+        },
+        {
+          "path": "research-state/harness/receipts/da1aa107cd054e84acd8ccd2500fc9dd.json",
+          "sha256": "efc8b4387e84e9f8f72483e11fd4057d97dc9b1b772936c08ff0495e4808ba57"
+        },
+        {
+          "path": "reports/B01-decision-repair-attempt-000013.md",
+          "sha256": "eb0f59ba9aa87c08061e9f9b82d66b197c7228c03a4e65b1ca6ad60a18b7878e"
+        },
+        {
+          "path": "research-state/B01-attempt-000013/readback.json",
+          "sha256": "c7977fafe60991ab0e818cbcbc3766d2597fc44365230088fbe5cac2aaab0278"
+        },
+        {
+          "path": "research-state/harness/round-000030/planner-rejection.json",
+          "sha256": "9d6c71e422c8a86ac940c5a73dc2b182ed7c814cca5bd5ceeb46d2c0ef71aa83"
+        },
+        {
+          "path": "reports/B01-configuration-readback-attempt-000016.md",
+          "sha256": "3a3e7077bd1d6fa7c31b10e51deb44cfae4ffc6ff6055023ef6c0c8866803f9b"
+        },
+        {
+          "path": "research-state/B01-attempt-000016/readback.json",
+          "sha256": "5f349a34a526fd75b109e7fd2b456864e0e01996efb58f4f9a3c59c5a9ed23ea"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/setup-report.json",
+          "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/startup-receipt.json",
+          "sha256": "f5a626b3a899d280a907c807ee3b91b58d25a53023abb3d841afcfe3801723bb"
+        },
+        {
+          "path": "research-state/harness/receipts/03792156de584310b8ed58afb85c183e.json",
+          "sha256": "b14a54810895fa75efe4e30b3dc2aa7a10aa6ad947f0ae71a9b2a9d6c6cb7998"
+        },
+        {
+          "path": "research-state/harness/receipts/e4b02c6916b8494fbf14f485bcd40db3.json",
+          "sha256": "bc3c2a91ed20666746b1dbc4a08f1a6d524e46d7130792deab95ba28aa68f366"
+        },
+        {
+          "path": "research-state/harness/receipts/7312f97e64a44661a4538af64e9de196.json",
+          "sha256": "6a0eb65146cce1364b0d83392885881f3d31c6c5e590438a5b21adf81ae22eca"
+        },
+        {
+          "path": "reports/S01-benchmark-matrix-attempt-000001.md",
+          "sha256": "bdca0f2f9d48d43596ea0e4016560a427633dddd341b00a238a6bca3301ab9b3"
+        },
+        {
+          "path": "research-state/S01-attempt-000001/evidence.json",
+          "sha256": "14e6fa238dbedd5b51898d449fbe7e0b6d3547cfb5fceb42b6f5c784c672a447"
+        },
+        {
+          "path": "reports/S01-repair-attempt-000002.md",
+          "sha256": "aede0d2bb479219c74d76dc778a25c8f24f198ea9cf97ec97f36a4711ee44192"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "second-round-inquiry",
+      "description": "Compare mechanisms, simple alternatives and conditional predictions; identify an appropriate decisive next check without starting experiments",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/I02-parent-problem-attempt-000001.md",
+          "sha256": "95d570a3aea43dfdaa5e113cd8bb44f7b0a053e978f70f535a938469632a02dd"
+        },
+        {
+          "path": "research-state/I02-evidence-readback-attempt-000001.json",
+          "sha256": "2b486685ca1937cf8497640389f37dcc204c1449d941896c54b46fce8c44543a"
+        },
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        },
+        {
+          "path": "reports/L01-search-evidence-attempt-000001.md",
+          "sha256": "c59f80cde3cf23800736b1282c074cfca733b283e2712cc59b3a9cc94597568e"
+        },
+        {
+          "path": "research-state/L01-search-index-attempt-000001.json",
+          "sha256": "f3e7eb25d3db9c58bbbbd77e0259b76dcb0929b8af0b8ccd9e605904d2a5f325"
+        },
+        {
+          "path": "reports/L02-topic-map-attempt-000001.md",
+          "sha256": "a226680339dbf89e8cf26432b7f4da87cd83fc72c51f117cd7cfcfb65d22ec0f"
+        },
+        {
+          "path": "research-state/L02-evidence-index-attempt-000001.json",
+          "sha256": "003ef27911864d0299d8de02ca5a3e46599eea4c0181e7bb5cd485938773660e"
+        },
+        {
+          "path": "reports/L03-close-reading-attempt-000001.md",
+          "sha256": "cef7d18249a5cfa8226b5b7d658f1379a01ec5782550a84dd5004e1f4b20a0bf"
+        },
+        {
+          "path": "research-state/L03-evidence-index-attempt-000001.json",
+          "sha256": "25d21b8ff718af4b4b8b4b9070862b1d285cddd4fc9e7bb8c396fdccd6d6e295"
+        },
+        {
+          "path": "reports/X02-visual-observations-attempt-000001.md",
+          "sha256": "58de5c1c95f85c413db29b922f9caa2a44795bbd1cf6df94de1a0ef68cd274b5"
+        },
+        {
+          "path": "research-state/X02-evidence-index-attempt-000001.json",
+          "sha256": "095791c3eba08f5c20550838fad286de2c81400f1eb45e2675e5d5c552eba7b0"
+        },
+        {
+          "path": "reports/L04-parity-audit-attempt-000001.md",
+          "sha256": "c8a00be7821ccf63579a08e4de8417e7ad81e672111380f0981792e947e14be4"
+        },
+        {
+          "path": "research-state/L04-evidence-index-attempt-000001.json",
+          "sha256": "d5c6cdbdb7bfe2e42ef8179f12b430e972a1e93c6a297ec716a2369c91f6df19"
+        },
+        {
+          "path": "reports/X03-evidence-exploration-attempt-000001.md",
+          "sha256": "af6c898e918e1aecbf27a1dd28db66f8352a4a4db1b68bb64de3aaecdeae60ed"
+        },
+        {
+          "path": "research-state/X03-evidence-index-attempt-000001.json",
+          "sha256": "a560ac8fad5cdd0b0370cfa59a1ac8180fec860063ad120c32bfc669d4ce2c1a"
+        },
+        {
+          "path": "reports/L05-coverage-knowledge-attempt-000001.md",
+          "sha256": "96f3925af401a06b61ad2df1410d83c3af7dc5b88f83f54c8f4dee2524594067"
+        },
+        {
+          "path": "research-state/L05-evidence-snapshot-attempt-000001.json",
+          "sha256": "ec4bf8c8f4316ccee1a60ad2559e48323c5359fa094718433d90bd3488d7028e"
+        },
+        {
+          "path": "reports/B01-task-metric-contract-attempt-000002.md",
+          "sha256": "2e17ccd27353da427377e07c49948dfdb670f8ca6679d13281dab663858b2650"
+        },
+        {
+          "path": "research-state/B01-evidence-index-attempt-000002.json",
+          "sha256": "6a3a5645da5a399b8c8cc260ffeef77092566ec270e007aafc7b9d1b59fd15fc"
+        },
+        {
+          "path": "reports/S01-benchmark-matrix-attempt-000001.md",
+          "sha256": "bdca0f2f9d48d43596ea0e4016560a427633dddd341b00a238a6bca3301ab9b3"
+        },
+        {
+          "path": "research-state/S01-attempt-000001/evidence.json",
+          "sha256": "14e6fa238dbedd5b51898d449fbe7e0b6d3547cfb5fceb42b6f5c784c672a447"
+        },
+        {
+          "path": "reports/S01-resubmission-attempt-000003.md",
+          "sha256": "b04cd76054c08ca9b6ce82a9ef0a698e14b753064d0df03b9afd9caefdd3149f"
+        },
+        {
+          "path": "research-state/S01-attempt-000003/evidence.json",
+          "sha256": "18702e1a73935c63dace9064ad82dffdc91f660bf91a1a1e09e8f55b56f48685"
+        },
+        {
+          "path": "research-state/harness/round-000036/reviewer-rejection.json",
+          "sha256": "3bd8e826ce02a11f47c0691eef6657d0ed07924021c60a89a0c812ea41d0de88"
+        },
+        {
+          "path": "research-state/harness/receipts/a798f0e44ef04739afe06b1b994e9a3f.json",
+          "sha256": "e71ad7da1e03c4ff6decefbb3f250ae8b12a627b5764fc5df4672bbae02ada47"
+        },
+        {
+          "path": "research-state/harness/receipts/316f11373e54483b9734e020921dcfb0.json",
+          "sha256": "4bb7d6e88c7b451b3ecacc0495bf29196cbacf788a91faf9818d54636fbeeb7c"
+        },
+        {
+          "path": "research-state/harness/round-000036/planner-response.json",
+          "sha256": "539c6b65997dad8e08e485deba39b6a597eeaf3f689506e5e8ffe10e1a1bae04"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/S01/attempt-000003/planner-history.json",
+          "sha256": "ca3562378e0e7b1f5bbbe05afebaed5b1349064a95b88604c5ca05f7415a276f"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "reports/S01-cd-epoch1-attempt1.md",
+          "sha256": "88208435a6d8c41392646ef6ad845c4cbca929277a3f93d418f016ccc78df790"
+        },
+        {
+          "path": "research-state/S01-cd-epoch1-attempt1/readback.json",
+          "sha256": "1cb720980a2c5f123947fcc3de2924af5871f22c404129e7bb50883c180e308a"
+        },
+        {
+          "path": "research-state/baseline-fairness-and-confirmation-20261018.md",
+          "sha256": "1072dfbe88ca1ca21eca70c4030f9f1c53bc6cfa6cefbb89de9eb1c2f0c14511"
+        },
+        {
+          "path": "research-state/harness/sequence/epoch-000001/cycle-000001/B01/attempt-000001/acceptance.json",
+          "sha256": "f2b29b87e92632c3c27aaf31293cd2193d9decd119c413e3cc89ac4ff00f0537"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "independent-review",
+      "description": "Obtain separate actual review of the evidence, candidate necessity and claim limits",
+      "kind": "review",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B01.qualification-route-review.000011"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        },
+        {
+          "path": "reports/B01-recovery-attempt-000011.md",
+          "sha256": "1aa006e99a0f21c03568321b6340e914bb46ae515387a9fa79292d9481fd4e5d"
+        },
+        {
+          "path": "research-state/harness/receipts/077ab97cd11542418414ee0b58e58e39.json",
+          "sha256": "b64408133d9a2888b7117b02f2a7b68e742875dcef4e529c97448104e7b31fe2"
+        },
+        {
+          "path": "research-state/harness/receipts/997b522da3e94006955e9db17de5c8cf.json",
+          "sha256": "c12e595cb2908234be0af9660ab9c37941d4950f6d8f070d2f49d30d920dba19"
+        },
+        {
+          "path": "reports/B01-qualification-route-review-000011.md",
+          "sha256": "22e313caa0044f70b5e0ce7b974995d1c5a23f3965df461f15a53e2e3ce0efe3"
+        },
+        {
+          "path": "reports/B01-decision-repair-attempt-000013.md",
+          "sha256": "eb0f59ba9aa87c08061e9f9b82d66b197c7228c03a4e65b1ca6ad60a18b7878e"
+        },
+        {
+          "path": "reports/S01-repair-attempt-000002.md",
+          "sha256": "aede0d2bb479219c74d76dc778a25c8f24f198ea9cf97ec97f36a4711ee44192"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "reports/S01-resubmission-attempt-000003.md",
+          "sha256": "b04cd76054c08ca9b6ce82a9ef0a698e14b753064d0df03b9afd9caefdd3149f"
+        },
+        {
+          "path": "research-state/S01-attempt-000003/evidence.json",
+          "sha256": "18702e1a73935c63dace9064ad82dffdc91f660bf91a1a1e09e8f55b56f48685"
+        },
+        {
+          "path": "research-state/harness/round-000036/reviewer-rejection.json",
+          "sha256": "3bd8e826ce02a11f47c0691eef6657d0ed07924021c60a89a0c812ea41d0de88"
+        },
+        {
+          "path": "research-state/harness/receipts/a798f0e44ef04739afe06b1b994e9a3f.json",
+          "sha256": "e71ad7da1e03c4ff6decefbb3f250ae8b12a627b5764fc5df4672bbae02ada47"
+        },
+        {
+          "path": "research-state/harness/receipts/316f11373e54483b9734e020921dcfb0.json",
+          "sha256": "4bb7d6e88c7b451b3ecacc0495bf29196cbacf788a91faf9818d54636fbeeb7c"
+        },
+        {
+          "path": "research-state/harness/round-000036/planner-response.json",
+          "sha256": "539c6b65997dad8e08e485deba39b6a597eeaf3f689506e5e8ffe10e1a1bae04"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/S01/attempt-000003/planner-history.json",
+          "sha256": "ca3562378e0e7b1f5bbbe05afebaed5b1349064a95b88604c5ca05f7415a276f"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "reports/E01-environment-attempt-000002.md",
+          "sha256": "ea4ef5d5e3123553200040ccc0b87fd75477c1228fd463f3792cd200f89de38f"
+        },
+        {
+          "path": "research-state/E01-attempt-000002/readback.json",
+          "sha256": "1eb6942f82f9d420b3674d6507d0c04cb80b5fd046d31c83c2309fed4b485837"
+        },
+        {
+          "path": "research-state/harness/round-000039/reviewer-rejection.json",
+          "sha256": "ee81fbc2681d7c917afd4ea20788ffbc7c02970ae054bfa358fa14e195051bb0"
+        },
+        {
+          "path": "research-state/harness/receipts/19d84b9027e14dde9188ec8f574a55bc.json",
+          "sha256": "12e4180f9fdae7056821b9eb2f1c36f7098b9156eb48be2836161de735938a65"
+        },
+        {
+          "path": "research-state/harness/receipts/e2660f7054964252b331912ed754829d.json",
+          "sha256": "3f0012faabb889384b0ece0974d9f2a94cf9b39756b021fe4a0650f89d28975a"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/E01/attempt-000002/planner-history.json",
+          "sha256": "444d756adc7e12161e70f31e4ec19498484031717be8c90f298ed2bd5ec57b71"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "reports/S01-cd-epoch1-attempt1.md",
+          "sha256": "88208435a6d8c41392646ef6ad845c4cbca929277a3f93d418f016ccc78df790"
+        },
+        {
+          "path": "research-state/S01-cd-epoch1-attempt1/readback.json",
+          "sha256": "1cb720980a2c5f123947fcc3de2924af5871f22c404129e7bb50883c180e308a"
+        },
+        {
+          "path": "research-state/baseline-fairness-and-confirmation-20261018.md",
+          "sha256": "1072dfbe88ca1ca21eca70c4030f9f1c53bc6cfa6cefbb89de9eb1c2f0c14511"
+        },
+        {
+          "path": "research-state/harness/sequence/epoch-000001/cycle-000001/B01/attempt-000001/acceptance.json",
+          "sha256": "f2b29b87e92632c3c27aaf31293cd2193d9decd119c413e3cc89ac4ff00f0537"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "deliver-research-decision",
+      "description": "Deliver a Chinese second-round decision report with source links, caveats, falsifier and next action",
+      "kind": "delivery",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/I04-exit-criteria-attempt-000001.md",
+          "sha256": "b6eb1cdd3c4a6006d57239aa01bb248c7955a39d3928dc60be307a4174ef85a7"
+        },
+        {
+          "path": "research-state/I04-evidence-readback-attempt-000001.json",
+          "sha256": "4312d8b114ac8632c034d5e298b62dfe6a05c5a67071f283818b0e0861ff58f0"
+        },
+        {
+          "path": "research-state/P03-priority-queue-attempt-000001.md",
+          "sha256": "44b99c2576795f77e6a3ebb997e6427f1717aec67a0aab297da8d1316f14ceeb"
+        },
+        {
+          "path": "research-state/P03-evidence-readback-attempt-000001.json",
+          "sha256": "1236515bc9855d8415d0f92bfa38136173fdb859934ef50283d05149cda7d44b"
+        },
+        {
+          "path": "reports/X01-position-attempt-000001.md",
+          "sha256": "05bce46458f07a34eedc215a9f5facda26feb8986f62fa3e92595389cc424aa6"
+        },
+        {
+          "path": "research-state/X01-evidence-readback-attempt-000001.json",
+          "sha256": "2825d9992be20e6d0d2493d67c6c3e3d511d8016597b8574873172ce7a791ece"
+        },
+        {
+          "path": "reports/S01-repair-attempt-000002.md",
+          "sha256": "aede0d2bb479219c74d76dc778a25c8f24f198ea9cf97ec97f36a4711ee44192"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "autonomous-experiment-design",
+      "description": "Produce independently reviewed paper-grounded designs and source/config mappings under program admission",
+      "kind": "implementation",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.cd-diagnostic-design.e1.a1",
+        "spectrum.B02.cd-diagnostic-code.e1.a2",
+        "spectrum.B02.cd-native-integration.e1.a5",
+        "spectrum.B02.cd-integration-code.e1.a6"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/autonomous-experiments-20261017.md",
+          "sha256": "95d596a851a3dafb0f5d693ab30e11dfa4dbac53223a754710760ecb720d9883"
+        },
+        {
+          "path": "reports/L04-parity-audit-attempt-000001.md",
+          "sha256": "c8a00be7821ccf63579a08e4de8417e7ad81e672111380f0981792e947e14be4"
+        },
+        {
+          "path": "research-state/L04-evidence-index-attempt-000001.json",
+          "sha256": "d5c6cdbdb7bfe2e42ef8179f12b430e972a1e93c6a297ec716a2369c91f6df19"
+        },
+        {
+          "path": "reports/X03-evidence-exploration-attempt-000001.md",
+          "sha256": "af6c898e918e1aecbf27a1dd28db66f8352a4a4db1b68bb64de3aaecdeae60ed"
+        },
+        {
+          "path": "research-state/X03-evidence-index-attempt-000001.json",
+          "sha256": "a560ac8fad5cdd0b0370cfa59a1ac8180fec860063ad120c32bfc669d4ce2c1a"
+        },
+        {
+          "path": "reports/L05-coverage-knowledge-attempt-000001.md",
+          "sha256": "96f3925af401a06b61ad2df1410d83c3af7dc5b88f83f54c8f4dee2524594067"
+        },
+        {
+          "path": "research-state/L05-evidence-snapshot-attempt-000001.json",
+          "sha256": "ec4bf8c8f4316ccee1a60ad2559e48323c5359fa094718433d90bd3488d7028e"
+        },
+        {
+          "path": "reports/S01-benchmark-matrix-attempt-000001.md",
+          "sha256": "bdca0f2f9d48d43596ea0e4016560a427633dddd341b00a238a6bca3301ab9b3"
+        },
+        {
+          "path": "research-state/S01-attempt-000001/evidence.json",
+          "sha256": "14e6fa238dbedd5b51898d449fbe7e0b6d3547cfb5fceb42b6f5c784c672a447"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "reports/S01-cd-epoch1-attempt1.md",
+          "sha256": "88208435a6d8c41392646ef6ad845c4cbca929277a3f93d418f016ccc78df790"
+        },
+        {
+          "path": "research-state/S01-cd-epoch1-attempt1/readback.json",
+          "sha256": "1cb720980a2c5f123947fcc3de2924af5871f22c404129e7bb50883c180e308a"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/baseline-fairness-and-confirmation-20261018.md",
+          "sha256": "1072dfbe88ca1ca21eca70c4030f9f1c53bc6cfa6cefbb89de9eb1c2f0c14511"
+        },
+        {
+          "path": "research-state/harness/sequence/epoch-000001/cycle-000001/B01/attempt-000001/acceptance.json",
+          "sha256": "f2b29b87e92632c3c27aaf31293cd2193d9decd119c413e3cc89ac4ff00f0537"
+        },
+        {
+          "path": "reports/B02-cd-epoch1-attempt1.md",
+          "sha256": "dcac583e677a8d819d55dac9c1ab2f3f0056f03eed0f3d876acceb6beb8a6528"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt1/experiment.json",
+          "sha256": "2cf6e16de34a977dfc0e8c0371aecf99ef24d230667945d7ffcada5b21cbfaaa"
+        },
+        {
+          "path": "research-state/harness/receipts/bb80c246199d480286345d34dfc27250.json",
+          "sha256": "8c87a21f5ed03610e1fb96ad96eeb92f11f8458334e4fd7373e4b9fe9737be38"
+        },
+        {
+          "path": "research-state/B02-cd-design-e1a1/design.json",
+          "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+        },
+        {
+          "path": "reports/B02-cd-design-readback-e1a2.md",
+          "sha256": "6394345e394e0b46b39d2a00681bdfa2c9a59e18091f4b7af313a172cb2ad53f"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt2/readback.json",
+          "sha256": "836a18fc1149f22c4dc5dda5dd22501a25d309b183cd58ad988f2042776438b5"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt2/decision.json",
+          "sha256": "af486194ced7d50fe3a5fdffdbc69beafc6ae3f22bcaf09a5023062b11598c05"
+        },
+        {
+          "path": "reports/B02-cd-recovery-e1a5.md",
+          "sha256": "bfec9f360a5252e9a7ba87fe5546b120fa8d534961bda50485cddfa99f0321ac"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt5/readback.json",
+          "sha256": "557b2bb8cba6abdd847381d6a2aa0d63d8a4352c058f4dc50a10cd2d447ea9f8"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/integration.json",
+          "sha256": "7534a1b71073e76d38a626b21bc9f67ac235e99352f02c51fb5dbf07ba990cc3"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/integration.md",
+          "sha256": "f3ebf4a4f70bf972386cb4a3648a3665aa8b340870dd7a3ba630a3c756fd10e8"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/command-receipt.json",
+          "sha256": "eebbf3db468a6cccd27a907211e5231241b723ae52b019eb07c0fa28596c8b6a"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/protocol-specification.json",
+          "sha256": "fa9dc76279896d0aacdb6a9df637e0f4f69ab09602828dd9b05deefbfa014025"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/stage-output-map.json",
+          "sha256": "af5b5ab7d76e595e637ed6bddf4dcfcbea5b3198d3f1b4fcd4027e1a52f46457"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/wrapper-specification.json",
+          "sha256": "95b4e26ff9ad7bb4518e9723269a922046736c5ed0d9b5b43d840830c128f697"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/declared-output-specification.json",
+          "sha256": "7c203ea2e9d7e9345a4fdbf423d4976375bfb4f6f01cadf294f5ae2e42d938a1"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/independent-interface-inspection.json",
+          "sha256": "1506e0a2cca1e76a36bead4d9279e07efc19dfcd162ded67a986a40091bced3f"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/source-index.json",
+          "sha256": "da2fa56a72d979f09a429aa3d26a161522d17983587a73472a06a5da6445af2a"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt6/readback.json",
+          "sha256": "eb9c9075785093b2011c3f10c9e420f22df25bcd382a55f5ace2a3769882f5a5"
+        },
+        {
+          "path": "reports/B02-cd-integration-readback-e1a6.md",
+          "sha256": "3d23a5ec40415b8332b86e5dcd0ab3d2c15cfa346e48b78abd84d4405b6edb44"
+        },
+        {
+          "path": "research-state/harness/receipts/2b98aaa06e4642aab20f10ec49679147.json",
+          "sha256": "c897ba4d18972e965954bf67904b32d290a77192f2060f8eb101c6eec80750f0"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "autonomous-native-execution",
+      "description": "Qualify authorized GPU environment, execute admitted serial native comparisons, inspect results and preserve debugging and replication obligations",
+      "kind": "experiment",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.upstream-inventory.e1.a7"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/autonomous-experiments-20261017.md",
+          "sha256": "95d596a851a3dafb0f5d693ab30e11dfa4dbac53223a754710760ecb720d9883"
+        },
+        {
+          "path": "reports/L04-parity-audit-attempt-000001.md",
+          "sha256": "c8a00be7821ccf63579a08e4de8417e7ad81e672111380f0981792e947e14be4"
+        },
+        {
+          "path": "research-state/L04-evidence-index-attempt-000001.json",
+          "sha256": "d5c6cdbdb7bfe2e42ef8179f12b430e972a1e93c6a297ec716a2369c91f6df19"
+        },
+        {
+          "path": "reports/X03-evidence-exploration-attempt-000001.md",
+          "sha256": "af6c898e918e1aecbf27a1dd28db66f8352a4a4db1b68bb64de3aaecdeae60ed"
+        },
+        {
+          "path": "research-state/X03-evidence-index-attempt-000001.json",
+          "sha256": "a560ac8fad5cdd0b0370cfa59a1ac8180fec860063ad120c32bfc669d4ce2c1a"
+        },
+        {
+          "path": "reports/L05-coverage-knowledge-attempt-000001.md",
+          "sha256": "96f3925af401a06b61ad2df1410d83c3af7dc5b88f83f54c8f4dee2524594067"
+        },
+        {
+          "path": "research-state/L05-evidence-snapshot-attempt-000001.json",
+          "sha256": "ec4bf8c8f4316ccee1a60ad2559e48323c5359fa094718433d90bd3488d7028e"
+        },
+        {
+          "path": "reports/B01-configuration-readback-attempt-000016.md",
+          "sha256": "3a3e7077bd1d6fa7c31b10e51deb44cfae4ffc6ff6055023ef6c0c8866803f9b"
+        },
+        {
+          "path": "research-state/B01-attempt-000016/readback.json",
+          "sha256": "5f349a34a526fd75b109e7fd2b456864e0e01996efb58f4f9a3c59c5a9ed23ea"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/setup-report.json",
+          "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/startup-receipt.json",
+          "sha256": "f5a626b3a899d280a907c807ee3b91b58d25a53023abb3d841afcfe3801723bb"
+        },
+        {
+          "path": "research-state/harness/receipts/03792156de584310b8ed58afb85c183e.json",
+          "sha256": "b14a54810895fa75efe4e30b3dc2aa7a10aa6ad947f0ae71a9b2a9d6c6cb7998"
+        },
+        {
+          "path": "research-state/harness/receipts/e4b02c6916b8494fbf14f485bcd40db3.json",
+          "sha256": "bc3c2a91ed20666746b1dbc4a08f1a6d524e46d7130792deab95ba28aa68f366"
+        },
+        {
+          "path": "research-state/harness/receipts/7312f97e64a44661a4538af64e9de196.json",
+          "sha256": "6a0eb65146cce1364b0d83392885881f3d31c6c5e590438a5b21adf81ae22eca"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "research-state/E01-attempt-000001/evidence.json",
+          "sha256": "c8f3c35005a2733d250d6294a4c48ec6eb7d9967f9f4a91c00bba2b64d6223de"
+        },
+        {
+          "path": "reports/E01-environment-attempt-000001.md",
+          "sha256": "9ef39452552a38f942bd4a5722e967b6b848277f51d380bc8fc52afb6b9b35fe"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "research-state/harness/receipts/024ff488050d43778f7bc08677b89abc.json",
+          "sha256": "a701216be86d5d09aa5017f46ddcf94f3428f7104242300afc9ff661f7287bac"
+        },
+        {
+          "path": "reports/B02-cd-code-readback-e1a7.md",
+          "sha256": "b0434d800275d0b6e84033406a16cf29473771eaefe15d54c8a6e47066013690"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt7/readback.json",
+          "sha256": "85cdf976767d6ce6935c8f12776eb9f46260905ba223da477cf2f963ecbde3d1"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt7/experiment.json",
+          "sha256": "87deaa9dd7870fcb3555d44739dfafade31b04a5d12ea6e66f6e7eb383aa8be9"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "autonomous-native-verification",
+      "description": "Verify real native scoring, E04, uncertainty and full frozen comparison coverage before scientific claims",
+      "kind": "review",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/autonomous-experiments-20261017.md",
+          "sha256": "95d596a851a3dafb0f5d693ab30e11dfa4dbac53223a754710760ecb720d9883"
+        },
+        {
+          "path": "reports/L04-parity-audit-attempt-000001.md",
+          "sha256": "c8a00be7821ccf63579a08e4de8417e7ad81e672111380f0981792e947e14be4"
+        },
+        {
+          "path": "research-state/L04-evidence-index-attempt-000001.json",
+          "sha256": "d5c6cdbdb7bfe2e42ef8179f12b430e972a1e93c6a297ec716a2369c91f6df19"
+        },
+        {
+          "path": "reports/X03-evidence-exploration-attempt-000001.md",
+          "sha256": "af6c898e918e1aecbf27a1dd28db66f8352a4a4db1b68bb64de3aaecdeae60ed"
+        },
+        {
+          "path": "research-state/X03-evidence-index-attempt-000001.json",
+          "sha256": "a560ac8fad5cdd0b0370cfa59a1ac8180fec860063ad120c32bfc669d4ce2c1a"
+        },
+        {
+          "path": "reports/L05-coverage-knowledge-attempt-000001.md",
+          "sha256": "96f3925af401a06b61ad2df1410d83c3af7dc5b88f83f54c8f4dee2524594067"
+        },
+        {
+          "path": "research-state/L05-evidence-snapshot-attempt-000001.json",
+          "sha256": "ec4bf8c8f4316ccee1a60ad2559e48323c5359fa094718433d90bd3488d7028e"
+        },
+        {
+          "path": "reports/B01-configuration-readback-attempt-000016.md",
+          "sha256": "3a3e7077bd1d6fa7c31b10e51deb44cfae4ffc6ff6055023ef6c0c8866803f9b"
+        },
+        {
+          "path": "research-state/B01-attempt-000016/readback.json",
+          "sha256": "5f349a34a526fd75b109e7fd2b456864e0e01996efb58f4f9a3c59c5a9ed23ea"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/setup-report.json",
+          "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/startup-receipt.json",
+          "sha256": "f5a626b3a899d280a907c807ee3b91b58d25a53023abb3d841afcfe3801723bb"
+        },
+        {
+          "path": "research-state/harness/receipts/03792156de584310b8ed58afb85c183e.json",
+          "sha256": "b14a54810895fa75efe4e30b3dc2aa7a10aa6ad947f0ae71a9b2a9d6c6cb7998"
+        },
+        {
+          "path": "research-state/harness/receipts/e4b02c6916b8494fbf14f485bcd40db3.json",
+          "sha256": "bc3c2a91ed20666746b1dbc4a08f1a6d524e46d7130792deab95ba28aa68f366"
+        },
+        {
+          "path": "research-state/harness/receipts/7312f97e64a44661a4538af64e9de196.json",
+          "sha256": "6a0eb65146cce1364b0d83392885881f3d31c6c5e590438a5b21adf81ae22eca"
+        },
+        {
+          "path": "reports/S01-benchmark-matrix-attempt-000001.md",
+          "sha256": "bdca0f2f9d48d43596ea0e4016560a427633dddd341b00a238a6bca3301ab9b3"
+        },
+        {
+          "path": "research-state/S01-attempt-000001/evidence.json",
+          "sha256": "14e6fa238dbedd5b51898d449fbe7e0b6d3547cfb5fceb42b6f5c784c672a447"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "research-state/E01-attempt-000001/evidence.json",
+          "sha256": "c8f3c35005a2733d250d6294a4c48ec6eb7d9967f9f4a91c00bba2b64d6223de"
+        },
+        {
+          "path": "reports/E01-environment-attempt-000001.md",
+          "sha256": "9ef39452552a38f942bd4a5722e967b6b848277f51d380bc8fc52afb6b9b35fe"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "autonomous-git-delivery",
+      "description": "Integrate reviewed milestones into authorized SPECTRUM branch and verify remote bytes",
+      "kind": "delivery",
+      "status": "pending",
+      "task_ids": [],
+      "evidence_refs": [
+        {
+          "path": "research-state/autonomous-experiments-20261017.md",
+          "sha256": "95d596a851a3dafb0f5d693ab30e11dfa4dbac53223a754710760ecb720d9883"
+        },
+        {
+          "path": "reports/S01-repair-attempt-000002.md",
+          "sha256": "aede0d2bb479219c74d76dc778a25c8f24f198ea9cf97ec97f36a4711ee44192"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "reports/S01-resubmission-attempt-000003.md",
+          "sha256": "b04cd76054c08ca9b6ce82a9ef0a698e14b753064d0df03b9afd9caefdd3149f"
+        },
+        {
+          "path": "research-state/S01-attempt-000003/evidence.json",
+          "sha256": "18702e1a73935c63dace9064ad82dffdc91f660bf91a1a1e09e8f55b56f48685"
+        },
+        {
+          "path": "research-state/harness/round-000036/reviewer-rejection.json",
+          "sha256": "3bd8e826ce02a11f47c0691eef6657d0ed07924021c60a89a0c812ea41d0de88"
+        },
+        {
+          "path": "research-state/harness/receipts/a798f0e44ef04739afe06b1b994e9a3f.json",
+          "sha256": "e71ad7da1e03c4ff6decefbb3f250ae8b12a627b5764fc5df4672bbae02ada47"
+        },
+        {
+          "path": "research-state/harness/receipts/316f11373e54483b9734e020921dcfb0.json",
+          "sha256": "4bb7d6e88c7b451b3ecacc0495bf29196cbacf788a91faf9818d54636fbeeb7c"
+        },
+        {
+          "path": "research-state/harness/round-000036/planner-response.json",
+          "sha256": "539c6b65997dad8e08e485deba39b6a597eeaf3f689506e5e8ffe10e1a1bae04"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/S01/attempt-000003/planner-history.json",
+          "sha256": "ca3562378e0e7b1f5bbbe05afebaed5b1349064a95b88604c5ca05f7415a276f"
+        },
+        {
+          "path": "reports/S01-record-repair-attempt-000004.md",
+          "sha256": "a606c7c9645ff4e5d457fbad58261e566f2c3986b6d47a40927f0bb4f4bcaf4f"
+        },
+        {
+          "path": "research-state/S01-attempt-000004/evidence.json",
+          "sha256": "603e6c7f5ca33480cd189ed173067fd2612933b2b10ecc65a408c00837a44003"
+        },
+        {
+          "path": "research-state/E01-attempt-000001/evidence.json",
+          "sha256": "c8f3c35005a2733d250d6294a4c48ec6eb7d9967f9f4a91c00bba2b64d6223de"
+        },
+        {
+          "path": "reports/E01-environment-attempt-000001.md",
+          "sha256": "9ef39452552a38f942bd4a5722e967b6b848277f51d380bc8fc52afb6b9b35fe"
+        },
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "reports/B02-repair-attempt-000007.md",
+          "sha256": "0d0de1f123620096ee923b2c646cb9ca6a8ade23a88e0524c03597b09b0a4a65"
+        },
+        {
+          "path": "research-state/B02-attempt-000007/readback.json",
+          "sha256": "3a4e664da038b350f50ffe0c47404e6d615457b57d6e110148ebadb9e030fe46"
+        },
+        {
+          "path": "research-state/baseline-fairness-and-confirmation-20261018.md",
+          "sha256": "1072dfbe88ca1ca21eca70c4030f9f1c53bc6cfa6cefbb89de9eb1c2f0c14511"
+        },
+        {
+          "path": "reports/S01-cd-epoch1-attempt1.md",
+          "sha256": "88208435a6d8c41392646ef6ad845c4cbca929277a3f93d418f016ccc78df790"
+        },
+        {
+          "path": "research-state/S01-cd-epoch1-attempt1/readback.json",
+          "sha256": "1cb720980a2c5f123947fcc3de2924af5871f22c404129e7bb50883c180e308a"
+        },
+        {
+          "path": "research-state/harness/sequence/epoch-000001/cycle-000001/B01/attempt-000001/acceptance.json",
+          "sha256": "f2b29b87e92632c3c27aaf31293cd2193d9decd119c413e3cc89ac4ff00f0537"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "B02-natural-census-evidence",
+      "description": "method/failure_census: obtain provenance-bound per-case base/generator/student programs, full inclusion denominator, native consequences and qualified strongest-alternative outcomes; historical aggregates alone remain inconclusive. AST scope is explicit; semantic claims need actual annotation. Narrow native collection waits for concrete reviewed protocol and scoring-stage prerequisites; do not rerun unchanged preparation.",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.cd-diagnostic-design.e1.a1",
+        "spectrum.B02.cd-diagnostic-code.e1.a2",
+        "spectrum.B02.cd-native-integration.e1.a5",
+        "spectrum.B02.cd-integration-code.e1.a6"
+      ],
+      "evidence_refs": [
+        {
+          "path": "reports/B02-natural-census-attempt-000001.md",
+          "sha256": "b9589b189dcbd265a226ec21574654180fd8a510be8a77e992a0a170fc1d1efd"
+        },
+        {
+          "path": "research-state/B02-attempt-000001/evidence.json",
+          "sha256": "913174154238a81091bc0d67a12d0730b68f676961a187048647244089fb31a5"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000002.md",
+          "sha256": "ea76f267b5a154c8952c14ac6552721afaf0665adca689d248c140f55e404db2"
+        },
+        {
+          "path": "research-state/B02-attempt-000002/readback.json",
+          "sha256": "64951a2f6b3f16acc7aa83c04a68323aff3b0efc2639a2b3052fe996acc1c820"
+        },
+        {
+          "path": "research-state/harness/round-000041/planner-rejection.json",
+          "sha256": "ddbeac2c2affdf68385750c923a6f30b79d2f120c0708f3627ac171189ea8692"
+        },
+        {
+          "path": "research-state/harness/receipts/14dee3d249bb413fa2b0798d0440acf2.json",
+          "sha256": "a48d35c961ab74ffd5fe88f9ee3f921997ea3a8b6c2e39c3361802e0ca37168a"
+        },
+        {
+          "path": "reports/B02-record-repair-attempt-000003.md",
+          "sha256": "926b4a4f79c839a86ff1cd3359f26062147918b6053e184772b899fedbb076cd"
+        },
+        {
+          "path": "research-state/B02-attempt-000003/readback.json",
+          "sha256": "40139778a7dc16c64ab45063d1d2ab0470f2395d1190415591545b0c3f3e813a"
+        },
+        {
+          "path": "research-state/B02-attempt-000003/contract-source-observation.json",
+          "sha256": "18bd5424100b42281de03a7a398974d7c868054a3d479609f13ce6bb9a23cc26"
+        },
+        {
+          "path": "research-state/harness/round-000042/planner-rejection.json",
+          "sha256": "6ebb19cf9da7a21675f1b530781084396be00ef07154d3522edcbd05504b7c34"
+        },
+        {
+          "path": "research-state/harness/receipts/48f7b5cceed342029a02512431e996d1.json",
+          "sha256": "53fc64fe2a9d3fb772cbf21df53636388763694a0415fad18340907629044c1b"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "reports/B02-readback-attempt-000005.md",
+          "sha256": "29bda321e7ac13c969fc274fd717a86aa4dd2843b70d940f69081fb89d1123cb"
+        },
+        {
+          "path": "research-state/B02-attempt-000005/source-task.md",
+          "sha256": "5b749d064a2ec8c7482ecf48b6ccaded2ce749908312a2fcc779a8287d5fba15"
+        },
+        {
+          "path": "reports/B02-plain-lineage-source-000004.md",
+          "sha256": "fdff41f71b9f137c0b8d1eb2d2e8d7d8e50a1c0b3c3a1464143cd7572fc6c8b6"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004.json",
+          "sha256": "0525554f7d64657a4998da305c77ffb302628849290f5f6eb2b41f994523e955"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004-receipt.json",
+          "sha256": "58f4be3a2c3858b66e747679339ae24d9a277bbb5cce55b8c40eecbf6c464882"
+        },
+        {
+          "path": "research-state/harness/receipts/23a250b85a684481ae7357172d171fff.json",
+          "sha256": "5f88c2df251048c17d023b1da2372bfd475291bbe031ada2f86a66c6ad9583cb"
+        },
+        {
+          "path": "research-state/harness/round-000044/reviewer-response.json",
+          "sha256": "c7ac2548cbd11ed9cb89a4d6cf8feaa2d982a521520793a3aefa074367d8f84d"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/configuration.json",
+          "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+        },
+        {
+          "path": "research-state/E01-attempt-000001/remote-status.json",
+          "sha256": "0e6ba843c6e219b22fe4e543a144c8d7da7d856731fcfcbfeaa6e7f9a73bcc25"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004/data.py",
+          "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "research-state/harness/cancellations/spectrum.B01.scorer-source-binding.000002.json",
+          "sha256": "18f4afebd4e7258e714cfdd39b75a64150028d14160c201848523f23f77ca2b6"
+        },
+        {
+          "path": "research-state/B02-attempt-000005/readback.json",
+          "sha256": "019f794780f0baa61155629c29f40f1ff9272de176d409028bb0109cd4f324bb"
+        },
+        {
+          "path": "reports/B02-repair-attempt-000007.md",
+          "sha256": "0d0de1f123620096ee923b2c646cb9ca6a8ade23a88e0524c03597b09b0a4a65"
+        },
+        {
+          "path": "research-state/B02-attempt-000007/readback.json",
+          "sha256": "3a4e664da038b350f50ffe0c47404e6d615457b57d6e110148ebadb9e030fe46"
+        },
+        {
+          "path": "research-state/baseline-fairness-and-confirmation-20261018.md",
+          "sha256": "1072dfbe88ca1ca21eca70c4030f9f1c53bc6cfa6cefbb89de9eb1c2f0c14511"
+        },
+        {
+          "path": "research-state/B02-attempt-000008/readback.json",
+          "sha256": "d9ee3b5bebca6e801420b54f9923c51f246b75e9eac6a65818327fcad5065a08"
+        },
+        {
+          "path": "reports/B02-repair-attempt-000008.md",
+          "sha256": "e65bc88abd1659cfdf077f40965a8740fb05b6dec9e14bd641fd423244bae7e1"
+        },
+        {
+          "path": "research-state/harness/round-000047/reviewer-rejection.json",
+          "sha256": "cd367b21f45c9e62f7ab4e65dd46161a85a6b49c532747a9aacbbaa0d553bd38"
+        },
+        {
+          "path": "research-state/harness/receipts/ba67e602320e438bb76aef3f827bbc3d.json",
+          "sha256": "8973c2f1dfa57d85e982ef1c75cac2ea020748b249d3fb3e04fc3ba88749387c"
+        },
+        {
+          "path": "research-state/harness/receipts/358207b9e44642d9864a6d138ebc06b6.json",
+          "sha256": "754f3c5825913bf417d267132ff0edca84d9d86248d623a0a0f16c9a345a97b3"
+        },
+        {
+          "path": "reports/B02-cd-epoch1-attempt1.md",
+          "sha256": "dcac583e677a8d819d55dac9c1ab2f3f0056f03eed0f3d876acceb6beb8a6528"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt1/experiment.json",
+          "sha256": "2cf6e16de34a977dfc0e8c0371aecf99ef24d230667945d7ffcada5b21cbfaaa"
+        },
+        {
+          "path": "research-state/harness/receipts/bb80c246199d480286345d34dfc27250.json",
+          "sha256": "8c87a21f5ed03610e1fb96ad96eeb92f11f8458334e4fd7373e4b9fe9737be38"
+        },
+        {
+          "path": "research-state/B02-cd-design-e1a1/design.json",
+          "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+        },
+        {
+          "path": "reports/B02-cd-design-readback-e1a2.md",
+          "sha256": "6394345e394e0b46b39d2a00681bdfa2c9a59e18091f4b7af313a172cb2ad53f"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt2/readback.json",
+          "sha256": "836a18fc1149f22c4dc5dda5dd22501a25d309b183cd58ad988f2042776438b5"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt2/decision.json",
+          "sha256": "af486194ced7d50fe3a5fdffdbc69beafc6ae3f22bcaf09a5023062b11598c05"
+        },
+        {
+          "path": "reports/B02-cd-recovery-e1a5.md",
+          "sha256": "bfec9f360a5252e9a7ba87fe5546b120fa8d534961bda50485cddfa99f0321ac"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt5/readback.json",
+          "sha256": "557b2bb8cba6abdd847381d6a2aa0d63d8a4352c058f4dc50a10cd2d447ea9f8"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/integration.json",
+          "sha256": "7534a1b71073e76d38a626b21bc9f67ac235e99352f02c51fb5dbf07ba990cc3"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/integration.md",
+          "sha256": "f3ebf4a4f70bf972386cb4a3648a3665aa8b340870dd7a3ba630a3c756fd10e8"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/command-receipt.json",
+          "sha256": "eebbf3db468a6cccd27a907211e5231241b723ae52b019eb07c0fa28596c8b6a"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/protocol-specification.json",
+          "sha256": "fa9dc76279896d0aacdb6a9df637e0f4f69ab09602828dd9b05deefbfa014025"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/stage-output-map.json",
+          "sha256": "af5b5ab7d76e595e637ed6bddf4dcfcbea5b3198d3f1b4fcd4027e1a52f46457"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/wrapper-specification.json",
+          "sha256": "95b4e26ff9ad7bb4518e9723269a922046736c5ed0d9b5b43d840830c128f697"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/declared-output-specification.json",
+          "sha256": "7c203ea2e9d7e9345a4fdbf423d4976375bfb4f6f01cadf294f5ae2e42d938a1"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/independent-interface-inspection.json",
+          "sha256": "1506e0a2cca1e76a36bead4d9279e07efc19dfcd162ded67a986a40091bced3f"
+        },
+        {
+          "path": "research-state/B02-cd-native-integration-e1a5/source-index.json",
+          "sha256": "da2fa56a72d979f09a429aa3d26a161522d17983587a73472a06a5da6445af2a"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt6/readback.json",
+          "sha256": "eb9c9075785093b2011c3f10c9e420f22df25bcd382a55f5ace2a3769882f5a5"
+        },
+        {
+          "path": "reports/B02-cd-integration-readback-e1a6.md",
+          "sha256": "3d23a5ec40415b8332b86e5dcd0ab3d2c15cfa346e48b78abd84d4405b6edb44"
+        },
+        {
+          "path": "research-state/harness/receipts/2b98aaa06e4642aab20f10ec49679147.json",
+          "sha256": "c897ba4d18972e965954bf67904b32d290a77192f2060f8eb101c6eec80750f0"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "B02-plain-lineage-source-dependency",
+      "description": "Acquire existing development ID manifest, Plain update-settings provenance and output linkage required for bounded per-case native collection; not empirical completion",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.plain-lineage-source.000004"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/B02-attempt-000004/readback.json",
+          "sha256": "67310959044943a4f84d42574558b4f5c02122f2a09c7f20b3a30359987565f9"
+        },
+        {
+          "path": "research-state/B02-attempt-000004/source-task.md",
+          "sha256": "c1cd004c21544cd6030db57d45d5e4d4f3c363c18902c9afbd25390c0fbab0ad"
+        },
+        {
+          "path": "reports/B02-dependency-proposal-attempt-000004.md",
+          "sha256": "fa485e261f3d90c3d15c5b047a0a688578d4bbbe71955f5dd5f61124bc8ac67a"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "reports/B02-readback-attempt-000005.md",
+          "sha256": "29bda321e7ac13c969fc274fd717a86aa4dd2843b70d940f69081fb89d1123cb"
+        },
+        {
+          "path": "research-state/B02-attempt-000005/source-task.md",
+          "sha256": "5b749d064a2ec8c7482ecf48b6ccaded2ce749908312a2fcc779a8287d5fba15"
+        },
+        {
+          "path": "reports/B02-plain-lineage-source-000004.md",
+          "sha256": "fdff41f71b9f137c0b8d1eb2d2e8d7d8e50a1c0b3c3a1464143cd7572fc6c8b6"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004.json",
+          "sha256": "0525554f7d64657a4998da305c77ffb302628849290f5f6eb2b41f994523e955"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004-receipt.json",
+          "sha256": "58f4be3a2c3858b66e747679339ae24d9a277bbb5cce55b8c40eecbf6c464882"
+        },
+        {
+          "path": "research-state/harness/receipts/23a250b85a684481ae7357172d171fff.json",
+          "sha256": "5f88c2df251048c17d023b1da2372bfd475291bbe031ada2f86a66c6ad9583cb"
+        },
+        {
+          "path": "research-state/harness/round-000044/reviewer-response.json",
+          "sha256": "c7ac2548cbd11ed9cb89a4d6cf8feaa2d982a521520793a3aefa074367d8f84d"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/configuration.json",
+          "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+        },
+        {
+          "path": "research-state/E01-attempt-000001/remote-status.json",
+          "sha256": "0e6ba843c6e219b22fe4e543a144c8d7da7d856731fcfcbfeaa6e7f9a73bcc25"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004/data.py",
+          "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "research-state/harness/cancellations/spectrum.B01.scorer-source-binding.000002.json",
+          "sha256": "18f4afebd4e7258e714cfdd39b75a64150028d14160c201848523f23f77ca2b6"
+        },
+        {
+          "path": "research-state/B02-attempt-000005/readback.json",
+          "sha256": "019f794780f0baa61155629c29f40f1ff9272de176d409028bb0109cd4f324bb"
+        },
+        {
+          "path": "reports/B02-repair-attempt-000007.md",
+          "sha256": "0d0de1f123620096ee923b2c646cb9ca6a8ade23a88e0524c03597b09b0a4a65"
+        },
+        {
+          "path": "research-state/B02-attempt-000007/readback.json",
+          "sha256": "3a4e664da038b350f50ffe0c47404e6d615457b57d6e110148ebadb9e030fe46"
+        },
+        {
+          "path": "research-state/baseline-fairness-and-confirmation-20261018.md",
+          "sha256": "1072dfbe88ca1ca21eca70c4030f9f1c53bc6cfa6cefbb89de9eb1c2f0c14511"
+        },
+        {
+          "path": "research-state/B02-attempt-000008/readback.json",
+          "sha256": "d9ee3b5bebca6e801420b54f9923c51f246b75e9eac6a65818327fcad5065a08"
+        },
+        {
+          "path": "reports/B02-repair-attempt-000008.md",
+          "sha256": "e65bc88abd1659cfdf077f40965a8740fb05b6dec9e14bd641fd423244bae7e1"
+        },
+        {
+          "path": "research-state/harness/round-000047/reviewer-rejection.json",
+          "sha256": "cd367b21f45c9e62f7ab4e65dd46161a85a6b49c532747a9aacbbaa0d553bd38"
+        },
+        {
+          "path": "research-state/harness/receipts/ba67e602320e438bb76aef3f827bbc3d.json",
+          "sha256": "8973c2f1dfa57d85e982ef1c75cac2ea020748b249d3fb3e04fc3ba88749387c"
+        },
+        {
+          "path": "research-state/harness/receipts/358207b9e44642d9864a6d138ebc06b6.json",
+          "sha256": "754f3c5825913bf417d267132ff0edca84d9d86248d623a0a0f16c9a345a97b3"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "B02-official-train-source-input",
+      "description": "Read already downloaded pinned official full/train raw rows with exact field/order provenance for subsequent preparation; not split materialization or census completion",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.raw-train-source.000009"
+      ],
+      "evidence_refs": [
+        {
+          "path": "reports/B02-readback-attempt-000005.md",
+          "sha256": "29bda321e7ac13c969fc274fd717a86aa4dd2843b70d940f69081fb89d1123cb"
+        },
+        {
+          "path": "research-state/B02-attempt-000005/source-task.md",
+          "sha256": "5b749d064a2ec8c7482ecf48b6ccaded2ce749908312a2fcc779a8287d5fba15"
+        },
+        {
+          "path": "reports/B02-plain-lineage-source-000004.md",
+          "sha256": "fdff41f71b9f137c0b8d1eb2d2e8d7d8e50a1c0b3c3a1464143cd7572fc6c8b6"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004.json",
+          "sha256": "0525554f7d64657a4998da305c77ffb302628849290f5f6eb2b41f994523e955"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004-receipt.json",
+          "sha256": "58f4be3a2c3858b66e747679339ae24d9a277bbb5cce55b8c40eecbf6c464882"
+        },
+        {
+          "path": "research-state/harness/receipts/23a250b85a684481ae7357172d171fff.json",
+          "sha256": "5f88c2df251048c17d023b1da2372bfd475291bbe031ada2f86a66c6ad9583cb"
+        },
+        {
+          "path": "research-state/harness/round-000044/reviewer-response.json",
+          "sha256": "c7ac2548cbd11ed9cb89a4d6cf8feaa2d982a521520793a3aefa074367d8f84d"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-response.json",
+          "sha256": "65d55bf7f7c1111bbeeccd10fac7f488da09a0b51ea506fc1772a58cabb229ef"
+        },
+        {
+          "path": "research-state/harness/round-000043/reviewer-rejection.json",
+          "sha256": "3e4657d3529549453a9aae1e343232958e67bb772d5bc454a81f4ea1d98863f1"
+        },
+        {
+          "path": "research-state/post-b01-evidence-reuse-20261018.md",
+          "sha256": "2ac30900ff2414f75e285b74a9f5c6164be55b536e3f1888750a8b0a601ea885"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/configuration.json",
+          "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+        },
+        {
+          "path": "research-state/E01-attempt-000001/remote-status.json",
+          "sha256": "0e6ba843c6e219b22fe4e543a144c8d7da7d856731fcfcbfeaa6e7f9a73bcc25"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004/data.py",
+          "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+        },
+        {
+          "path": "research-state/harness/sequence/cycle-000001/B01/attempt-000016/acceptance.json",
+          "sha256": "a3a5a6d5b88f6ad35827c34c9a10b12107295e1678e919359ecee6be47f52194"
+        },
+        {
+          "path": "research-state/harness/cancellations/spectrum.B01.scorer-source-binding.000002.json",
+          "sha256": "18f4afebd4e7258e714cfdd39b75a64150028d14160c201848523f23f77ca2b6"
+        },
+        {
+          "path": "research-state/B02-attempt-000005/readback.json",
+          "sha256": "019f794780f0baa61155629c29f40f1ff9272de176d409028bb0109cd4f324bb"
+        },
+        {
+          "path": "reports/B02-repair-attempt-000007.md",
+          "sha256": "0d0de1f123620096ee923b2c646cb9ca6a8ade23a88e0524c03597b09b0a4a65"
+        },
+        {
+          "path": "research-state/B02-attempt-000007/readback.json",
+          "sha256": "3a4e664da038b350f50ffe0c47404e6d615457b57d6e110148ebadb9e030fe46"
+        },
+        {
+          "path": "research-state/baseline-fairness-and-confirmation-20261018.md",
+          "sha256": "1072dfbe88ca1ca21eca70c4030f9f1c53bc6cfa6cefbb89de9eb1c2f0c14511"
+        },
+        {
+          "path": "research-state/B02-attempt-000008/readback.json",
+          "sha256": "d9ee3b5bebca6e801420b54f9923c51f246b75e9eac6a65818327fcad5065a08"
+        },
+        {
+          "path": "reports/B02-repair-attempt-000008.md",
+          "sha256": "e65bc88abd1659cfdf077f40965a8740fb05b6dec9e14bd641fd423244bae7e1"
+        },
+        {
+          "path": "research-state/harness/round-000047/reviewer-rejection.json",
+          "sha256": "cd367b21f45c9e62f7ab4e65dd46161a85a6b49c532747a9aacbbaa0d553bd38"
+        },
+        {
+          "path": "research-state/harness/receipts/ba67e602320e438bb76aef3f827bbc3d.json",
+          "sha256": "8973c2f1dfa57d85e982ef1c75cac2ea020748b249d3fb3e04fc3ba88749387c"
+        },
+        {
+          "path": "research-state/harness/receipts/358207b9e44642d9864a6d138ebc06b6.json",
+          "sha256": "754f3c5825913bf417d267132ff0edca84d9d86248d623a0a0f16c9a345a97b3"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "B02-deployment-binding-e1a9",
+      "description": "Bind observed upstream source and complete existing diagnostic code to stable deployment and updated stage output templates; does not qualify execution",
+      "kind": "implementation",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.deployment-binding.e1.a9"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/B02-cd-epoch1-attempt9/readback.json",
+          "sha256": "c8bf5c241f37822ce1c415007f2d122d870aa116f3923dc644a29a15b17b7d72"
+        },
+        {
+          "path": "reports/B02-cd-upstream-readback-e1a9.md",
+          "sha256": "8fc051e65f885e9a44d67d27af8827dcb5178a25ea2040375e52c97b438b181f"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt9/experiment.json",
+          "sha256": "bba0a0f100669ab2e7f022430bc7022dc6d5ca9eda60e1416e375199572d677d"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt9/design-task.md",
+          "sha256": "80c26aaf42970e704f0316c30181d38c287924f26f4af9675a97d2ae4478bc46"
+        },
+        {
+          "path": "research-state/B02-upstream-inventory-e1a7/upstream-inventory.json",
+          "sha256": "8f4abe4c33d665255843eb4bfcd773f9155fcedf72133884424c4d51db97bf54"
+        },
+        {
+          "path": "research-state/B02-upstream-inventory-e1a7/source-capture.json",
+          "sha256": "8161cad4acd336119b1b07defdb904991dd2c214edd7821ad8c3d8dafdfe1499"
+        },
+        {
+          "path": "research-state/B02-upstream-inventory-e1a7/observation.log",
+          "sha256": "2222a7f7a0647b7f1d34f7a3957627ee97b1adf7fd87fd413133ff5ae8cc884b"
+        },
+        {
+          "path": "research-state/B02-upstream-inventory-e1a7/report.md",
+          "sha256": "34a70caef1fda3f20cceb26f050f80aba0287636e71db5273c842fe0af13e1cd"
+        },
+        {
+          "path": "research-state/B02-upstream-inventory-e1a7/command-receipt.json",
+          "sha256": "8289dd0c30208844f02bc67d1684b2a3c4fe6b63a34bb4c8de740d2d938903a6"
+        },
+        {
+          "path": "research-state/harness/receipts/fe6ec6867d7440c5a14d480df777d147.json",
+          "sha256": "f026421262cdf13719d86ca1ffd93736c493322585eb798314d3f8a644e4a438"
+        },
+        {
+          "path": "research-state/harness/receipts/503daf2c32d94dafb56f813e0c6b80d5.json",
+          "sha256": "91b573257b596ca27989afb9a2bf151ffdf1432de32d2681dd92550098c4e5f7"
+        },
+        {
+          "path": "research-state/harness/round-000070/planner-rejection.json",
+          "sha256": "5abc673d6b75b93b793915ac74bf9b96f83e105d8d7bedd098280f37bc48b2c6"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "B02-native-stage-adapter-e1a12",
+      "description": "Implement versioned .7 context-consuming wrapper/entry, workspace-only outputs and concrete first-stage inputs for admitted hn01 execution; no scientific completion from code.",
+      "kind": "implementation",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.native-stage-adapter.e1.a12"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/B02-cd-epoch1-attempt12/code-task.md",
+          "sha256": "465819b61e51ce135a262af3d5a204be328d6be6f781f85475a3f5f8b2767f66"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt12/report.md",
+          "sha256": "8730461805ceecc531faa053224eaaf7a937ca70d8bbe94bff35add065e3ccfe"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "B02-native-stage-plans-e1a13",
+      "description": "Materialize exact .7 prepare program/descriptor/native/harness plans, synchronize immutable inputs and obtain actual hn01 new-adapter software checks; pending until inspected; not native experiment or scoring completion.",
+      "kind": "implementation",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.B02.native-stage-plans.e1.a13"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/B02-cd-epoch1-attempt13/readback.json",
+          "sha256": "ca63ee4ea0196c8bc7859c45d6dcce4fb66b1725a1394b70f17bd0cb3d7232c6"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+          "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt13/sample-manifest.json",
+          "sha256": "cf59b9b5e829b7b4f0a13b816dc2a5789f7b3c9e23541dc15cd2d77f957079f5"
+        },
+        {
+          "path": "reports/B02-native-stage-readback-e1a13.md",
+          "sha256": "1e71d832aed5ad26e7196432da7d147784bf340bfe8c62ea7f8b811720dd2511"
+        },
+        {
+          "path": "research-state/harness/receipts/39645137e56b4ff0848c41111df15c05.json",
+          "sha256": "f076ae6ed01399cdaf072137ffb135dcd02d7c2ff636f642a17a29393bddac8f"
+        }
+      ],
+      "blocking_reason": null
+    },
+    {
+      "id": "C-method-basis-phase-e1",
+      "description": "核对SSD/SPD及反馈型已知方法的原论文、真实代码、强对照适配、社区线索和运行资格，不能以项目F/P/A替代。",
+      "kind": "knowledge",
+      "status": "pending",
+      "task_ids": [
+        "spectrum.C.prepare.e1.a14",
+        "spectrum.C.prepare.e1.a84"
+      ],
+      "evidence_refs": [
+        {
+          "path": "research-state/C-phase-e1a14/method-basis.md",
+          "sha256": "52b1ae33a58d3fd8511b8488724c41b878d31ad9d7b0d2cc87dc4efda7cbd826"
+        },
+        {
+          "path": "research-state/C-phase-e1a14/sources/source-index.json",
+          "sha256": "02a8f327a5756a5939de59a726863a4c1e18d975c47e988f45455334df1738bb"
+        }
+      ],
+      "blocking_reason": null
+    }
+  ],
+  "experiment_contracts": []
+}

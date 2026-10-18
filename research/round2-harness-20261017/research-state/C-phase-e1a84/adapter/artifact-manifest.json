@@ -1,0 +1,138 @@
+{
+  "kind": "b02-native-stage-adapter-artifact-manifest",
+  "schema_version": 1,
+  "task_id": "spectrum.B02.native-stage-adapter.e1.a12",
+  "run_id": "39645137e56b4ff0848c41111df15c05",
+  "status": "authored_unexecuted",
+  "sequence_binding": {
+    "attempt": 12,
+    "catalog_sha256": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+    "cycle": 1,
+    "epoch": 1,
+    "flow_profile": "work-harness-cd-v1",
+    "problem_ref": null,
+    "scaleup_acceptance_ref": null,
+    "step_id": "B02",
+    "verified_ref": null
+  },
+  "files": [
+    {
+      "path": "research-state/C-phase-e1a84/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/config.json",
+      "sha256": "05dae78de1dc612068e7a50413432d6455d76edcbac90e6f14a56ecf76c9015b"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/dependency-analysis.md",
+      "sha256": "9c39fdfee235b20e9fd7e81b74a9f6614cff0c2a1cbf2c14c1142d86e97fe84f"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/deployment-manifest.json",
+      "sha256": "16cb9e005f94789f8386b92200971440f8d703746e597e5b229fe374215beb10"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/implementation.md",
+      "sha256": "64d2e916093bd67456bd23941d7b58564a6b6ddef41e1ca365e1d7575d2e0db4"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/stage-plan-inputs.json",
+      "sha256": "c87a7b3ae2b98502114fc2017d07668ff99639947bbef58edcece4b7c5b6a849"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/stage_entry.py",
+      "sha256": "3dd1c05dac7e45894987ff168f7484dfc9d060ebe3f1147e6da73a9de7855806"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "research-state/C-phase-e1a84/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "source_refs": [
+    {
+      "path": "research-state/B02-cd-epoch1-attempt12/code-task.md",
+      "sha256": "465819b61e51ce135a262af3d5a204be328d6be6f781f85475a3f5f8b2767f66"
+    },
+    {
+      "path": "research-state/B02-cd-epoch1-attempt12/native_stages.py",
+      "sha256": "fc7fba569c30d2ffa03398d81f3660ae7df6236a934aeccde4bfd2dd53210c28"
+    },
+    {
+      "path": "research-state/B02-cd-epoch1-attempt12/run_experiments.py",
+      "sha256": "799ac594087f7a745c1c82a5514c2dcf4e339321f02ff4957eac8e9b05c2f135"
+    },
+    {
+      "path": "research-state/B02-cd-epoch1-attempt12/cd-runtime-contracts.md",
+      "sha256": "1bd28b3141335e2e9882187281f45a584efdc2657ea815d329569d060057bf29"
+    },
+    {
+      "path": "research-state/B02-cd-epoch1-attempt12/experiment.json",
+      "sha256": "9371d4b87d89d156ed72a9bdc70691cde767d6fdea483adce794001b6a3c88c0"
+    },
+    {
+      "path": "research-state/B02-cd-epoch1-attempt12/decision.json",
+      "sha256": "a99c631b00687b2aac7397dc518893b58ae48fd78a8215f4a9474dea55aef88b"
+    }
+  ],
+  "metadata_readback": {
+    "unchanged_original_python_files": 10,
+    "configuration_change": "Only source_refs paths rebound; scientific fields unchanged",
+    "local_pin_occurrences_verified": 184,
+    "upstream_evidence": "Retained pinned observed source inventory; no fresh SSH observation",
+    "new_code_execution": "not_run",
+    "independent_review": "pending_existing_program"
+  },
+  "incident": {
+    "operation": "metadata plan generation",
+    "observation": "Initial FileNotFoundError from over-broad rebind of historical implementation.md; no child workload launched",
+    "repair": "Rebind only Python/config refs; preserve historical report pins; regenerated plan and verified existing pins"
+  },
+  "limitations": [
+    "No local import, compile, portable/scientific test or SSH execution performed",
+    "No native stage dispatched; no future execution context, checkpoint or receipt fabricated",
+    "software_check not exposed by adapter; exact hn01 unittest command supplied for separate reviewed task",
+    "Failed/OOM predecessor recovery remains unsupported by completed-only stage contract",
+    "B02/B03/S04/E04, scorer qualification, SSD/n64, independent training repeats and unexposed confirmation remain pending"
+  ],
+  "excluded_from_self_manifest": [
+    "artifact-manifest.json",
+    "command-receipt.json"
+  ]
+}

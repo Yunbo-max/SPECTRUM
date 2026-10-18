@@ -1,0 +1,1559 @@
+{
+  "status": "generated_unexecuted",
+  "source_commit": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+  "source_root": "/root/rivermind-data/spectrum-harness/SPECTRUM",
+  "interpreter": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "source_hashes": {
+    "src/improving/data.py": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c",
+    "src/improving/training.py": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7",
+    "src/improving/generation.py": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14",
+    "src/improving/modeling.py": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40",
+    "src/improving/utils.py": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b",
+    "src/improving/metrics.py": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+  },
+  "source_refs": [
+    {
+      "path": "research-state/B02-plain-lineage-source-000004/data.py",
+      "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+    },
+    {
+      "path": "research-state/B02-plain-lineage-source-000004/remote-training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    },
+    {
+      "path": "research-state/B02-plain-lineage-source-000004/generation.py",
+      "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "research-state/B01-scorer-source-binding-000003/spectrum-src__improving__metrics.py",
+      "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+    }
+  ],
+  "design_ref": {
+    "path": "research-state/B02-cd-design-e1a1/design.json",
+    "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+  },
+  "dataset_revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+  "model_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "model": {
+    "name": "/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "device": "cuda:0",
+    "dtype": "bfloat16",
+    "attn_implementation": "sdpa"
+  },
+  "train_source_ref": {
+    "path": "research-state/B02-raw-train-source-000009.json",
+    "sha256": "baca10f5ffb1dc8936f056ac891a72c3f2bc90a2cbc9ecdef1d97840471624e9"
+  },
+  "test_source_ref": {
+    "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+    "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+  },
+  "generated_code_execution_enabled": false,
+  "backend": "none",
+  "generation": {
+    "samples": 16,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 0,
+    "max_prompt_tokens": 1024,
+    "max_new_tokens": 512
+  },
+  "train": {
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "target_token_budget": 7200000,
+    "epochs": 1,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.03,
+    "max_grad_norm": 1.0,
+    "lora_rank": 8,
+    "lora_alpha": 8,
+    "lora_dropout": 0.05,
+    "gradient_checkpointing": true,
+    "loss_scope": "all",
+    "max_length": 1536
+  },
+  "calibration": {
+    "sequence_candidates": [
+      64,
+      32,
+      16,
+      8,
+      4,
+      2,
+      1
+    ],
+    "whole_calibration_seconds": 1800,
+    "candidate_seconds": 300,
+    "minimum_headroom_bytes": 2147483648,
+    "max_available_vram_fraction": 0.85
+  },
+  "stage_watchdogs": {
+    "prepare": 600,
+    "freeze-profile": 600,
+    "generate-train": 7200,
+    "generate-eval": 7200,
+    "calibrate-training": 1800,
+    "train": 14400
+  },
+  "scoring_status": "pending",
+  "evaluation_seeds": [
+    43,
+    45
+  ],
+  "training_seed": 44,
+  "split_seed": 42
+}
+{
+  "config_sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+  "protocol_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+  },
+  "implementation": [
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/stage_entry.py",
+      "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "cd_evidence_ref": {
+    "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+  },
+  "goal_id": "spectrum-round2",
+  "candidate_id": "spectrum-plain-transfer-diagnosis",
+  "deployment_manifest_ref": {
+    "path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"
+  },
+  "deployment_code_refs": [
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/config.json",
+      "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/stage_entry.py",
+      "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "upstream_code_refs": [
+    {
+      "path": "src/improving/__init__.py",
+      "sha256": "bcb5ecc8195d8fe7c6cac6b94ace1dc39924b108b6752a087c129d0bd8c1ec2a"
+    },
+    {
+      "path": "src/improving/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "path": "src/improving/benchmarks.py",
+      "sha256": "9529393c1bfbfc75b536b6277fc14b7e5f8b9e99f06f2a2a18e9907adefaaa64"
+    },
+    {
+      "path": "src/improving/calibration.py",
+      "sha256": "9039c10049ab43cc94f0c6ce1b59bcde00d44f45dd50565095cef917924c67de"
+    },
+    {
+      "path": "src/improving/cli.py",
+      "sha256": "809334344acf3ad95dada58b092de099834815898be548aa7e3faec0bae73ad1"
+    },
+    {
+      "path": "src/improving/data.py",
+      "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+    },
+    {
+      "path": "src/improving/final_data.py",
+      "sha256": "f03200b0aabd105c43613e8d618c757cdc050a937dd6fd5872e4c4a355d716f8"
+    },
+    {
+      "path": "src/improving/formal_reporting.py",
+      "sha256": "0efc7e4feae451dce8c9762e09afc7f7e8c84c99c78c16d6a57aa060a2b882d3"
+    },
+    {
+      "path": "src/improving/formal_statistics.py",
+      "sha256": "7ea00f596fe1a5a3e64614629a361f03f653fc7b0d047a3db6af9a88468e2f22"
+    },
+    {
+      "path": "src/improving/formal_study.py",
+      "sha256": "ea6f2eeb899f2595b2cf332f072f872e83e916a001dfed27651c4e7b5894ddf7"
+    },
+    {
+      "path": "src/improving/formal_transfer.py",
+      "sha256": "5690984298f38a018e3a7b645dfbff274154273e3b0cb0844dbb45a97d1d9769"
+    },
+    {
+      "path": "src/improving/generation.py",
+      "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+    },
+    {
+      "path": "src/improving/geometry.py",
+      "sha256": "672b5330faedb9f9a5d99fec2aceb803015284cdf383f071741e83bef8e8b9b5"
+    },
+    {
+      "path": "src/improving/geometry_analysis.py",
+      "sha256": "f86b4dbad7297e4e9629996265825639d1110ffab1f2ea8c71d8f4fd433665cc"
+    },
+    {
+      "path": "src/improving/geometry_extraction.py",
+      "sha256": "15866b1ccfc611d0b9f3045aea9d9306af2129c3e8712a103b702bdd297174d3"
+    },
+    {
+      "path": "src/improving/geometry_study.py",
+      "sha256": "cc8f8483d11c89688c6cf1cb23dd9a0c2aafe122b4a8e46c1fbfd2df8c463b41"
+    },
+    {
+      "path": "src/improving/longitudinal.py",
+      "sha256": "0b54acb3522a0328afb1ca58b1138d2c9f147216c2cd9969cd2eb8e5e47a78bf"
+    },
+    {
+      "path": "src/improving/metrics.py",
+      "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+    },
+    {
+      "path": "src/improving/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "src/improving/pipeline.py",
+      "sha256": "c1dab8671209ada9272989f4802ac9b1331ec1bef005c440c4be845cf8f05a6d"
+    },
+    {
+      "path": "src/improving/reporting.py",
+      "sha256": "effea212e1bbdce5fdf126e60abed107a2423ea791c78de34f4852dda1562dd3"
+    },
+    {
+      "path": "src/improving/spectral.py",
+      "sha256": "2b9f91d0edbb4b270c69ace605eb6ec6646861f28c702b114a4f86ebac0a9ced"
+    },
+    {
+      "path": "src/improving/training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    },
+    {
+      "path": "src/improving/ua_rl.py",
+      "sha256": "e4d0e1bd4283f1ee50c6640c5e9c3afe1bf04a7253ecdd3288fd8e27b7f4578d"
+    },
+    {
+      "path": "src/improving/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "src/improving/verification.py",
+      "sha256": "976ae4dbd7a6a69b065815e39722a002376c9a485272b3c0ac9b6bb41351468e"
+    }
+  ],
+  "source_root": "/root/rivermind-data/spectrum-harness/SPECTRUM",
+  "source_hashes": {
+    "src/improving/data.py": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c",
+    "src/improving/training.py": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7",
+    "src/improving/generation.py": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14",
+    "src/improving/modeling.py": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40",
+    "src/improving/utils.py": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b",
+    "src/improving/metrics.py": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+  }
+}
+{
+  "argv": [
+    "/root/rivermind-data/spectrum-harness/venv/bin/python",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+    "freeze-profile",
+    "--batch",
+    "64",
+    "--config",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "--config-sha256",
+    "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+    "--protocol",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "--protocol-sha256",
+    "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f",
+    "--cd-evidence",
+    "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "--cd-evidence-sha256",
+    "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe",
+    "--deployment-manifest",
+    "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "--deployment-manifest-sha256",
+    "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4",
+    "--project-root",
+    "/root/rivermind-data/spectrum-harness/project",
+    "--run-root",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run",
+    "--goal-id",
+    "spectrum-round2",
+    "--candidate-id",
+    "spectrum-plain-transfer-diagnosis",
+    "--task-id",
+    "spectrum.C.freeze.e1.a86b",
+    "--run-id",
+    "spectrum-C-freeze-e1a86b",
+    "--attempt-id",
+    "freeze-a1-16b51c1a789647c18912113bfa46e549"
+  ],
+  "pid": 16393,
+  "started_at_unix": 1792353850.6414754
+}
+{
+  "attempt_id": "freeze-a1-16b51c1a789647c18912113bfa46e549",
+  "controller": {
+    "fence": 1,
+    "owner": "spectrum-guarded.planner.native",
+    "run_id": "d394b5a512ad4e1f950dd3b316b8cc3c",
+    "task_id": "spectrum.C.freeze.e1.a86b"
+  },
+  "dispatch_identity_sha256": "6bb2c92dbb3fcae33df457ab258d863343bd54b8732c045ebffce93f42e5f488",
+  "harness_context_ref": {
+    "path": "runs/harness/spectrum-C-freeze-e1a86b/tasks/freeze/execution-context.json",
+    "sha256": "83605687901ea3e87fa3b26d53b1d02c49560715146500e3016172ec8159f666"
+  },
+  "kind": "research-native-stage-context",
+  "native_stage_ref": {
+    "path": "research-state/C-phase-e1a86b/plans/freeze-stage.json",
+    "sha256": "8f4a524025f7bc8846aac8df5d3b37f8c5d99c6e43b43d5fbbe139cf303a8eef"
+  },
+  "plan_digest": "9089dc7121e83e6519b7e93e3cb8ba4dc2a37790cdc16095cffa36be76db24e3",
+  "project_root": "/root/rivermind-data/spectrum-harness/project",
+  "protocol_ref": {
+    "path": "research-state/C-phase-e1a86b/plans/stage-program.json",
+    "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+  },
+  "run_id": "spectrum-C-freeze-e1a86b",
+  "schema_version": 1,
+  "scientific_verified": false,
+  "stage_id": "freeze-profile",
+  "stage_kind": "prepare",
+  "trial_id": "freeze",
+  "workspace_root": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-freeze-e1a86b/freeze-a1-16b51c1a789647c18912113bfa46e549/workspace"
+}
+{
+  "argv": [
+    "/root/rivermind-data/spectrum-harness/venv/bin/python",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+    "freeze-profile",
+    "--batch",
+    "64",
+    "--config",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "--config-sha256",
+    "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+    "--protocol",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "--protocol-sha256",
+    "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f",
+    "--cd-evidence",
+    "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "--cd-evidence-sha256",
+    "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe",
+    "--deployment-manifest",
+    "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "--deployment-manifest-sha256",
+    "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4",
+    "--project-root",
+    "/root/rivermind-data/spectrum-harness/project",
+    "--run-root",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run",
+    "--goal-id",
+    "spectrum-round2",
+    "--candidate-id",
+    "spectrum-plain-transfer-diagnosis",
+    "--task-id",
+    "spectrum.C.freeze.e1.a86b",
+    "--run-id",
+    "spectrum-C-freeze-e1a86b",
+    "--attempt-id",
+    "freeze-a1-16b51c1a789647c18912113bfa46e549"
+  ],
+  "context": {
+    "attempt_id": "freeze-a1-16b51c1a789647c18912113bfa46e549",
+    "controller": {
+      "fence": 1,
+      "owner": "spectrum-guarded.planner.native",
+      "run_id": "d394b5a512ad4e1f950dd3b316b8cc3c",
+      "task_id": "spectrum.C.freeze.e1.a86b"
+    },
+    "dispatch_identity_sha256": "6bb2c92dbb3fcae33df457ab258d863343bd54b8732c045ebffce93f42e5f488",
+    "harness_context_ref": {
+      "path": "runs/harness/spectrum-C-freeze-e1a86b/tasks/freeze/execution-context.json",
+      "sha256": "83605687901ea3e87fa3b26d53b1d02c49560715146500e3016172ec8159f666"
+    },
+    "kind": "research-native-stage-context",
+    "native_stage_ref": {
+      "path": "research-state/C-phase-e1a86b/plans/freeze-stage.json",
+      "sha256": "8f4a524025f7bc8846aac8df5d3b37f8c5d99c6e43b43d5fbbe139cf303a8eef"
+    },
+    "plan_digest": "9089dc7121e83e6519b7e93e3cb8ba4dc2a37790cdc16095cffa36be76db24e3",
+    "project_root": "/root/rivermind-data/spectrum-harness/project",
+    "protocol_ref": {
+      "path": "research-state/C-phase-e1a86b/plans/stage-program.json",
+      "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+    },
+    "run_id": "spectrum-C-freeze-e1a86b",
+    "schema_version": 1,
+    "scientific_verified": false,
+    "stage_id": "freeze-profile",
+    "stage_kind": "prepare",
+    "trial_id": "freeze",
+    "workspace_root": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-freeze-e1a86b/freeze-a1-16b51c1a789647c18912113bfa46e549/workspace"
+  },
+  "stable_identity": {
+    "candidate_id": "spectrum-plain-transfer-diagnosis",
+    "cd_evidence_ref": {
+      "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+      "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+    },
+    "config_ref": {
+      "path": "research-state/C-phase-e1a86b/adapter/config.json",
+      "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+    },
+    "deployment_manifest_ref": {
+      "path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+      "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"
+    },
+    "goal_id": "spectrum-round2",
+    "project_root": "/root/rivermind-data/spectrum-harness/project",
+    "protocol_ref": {
+      "path": "research-state/C-phase-e1a86b/plans/stage-program.json",
+      "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+    },
+    "run_root": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run",
+    "stable_code_root": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter"
+  }
+}
+{
+  "cpu": {
+    "affinity": {
+      "count": 128,
+      "ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127
+      ],
+      "source": "os.sched_getaffinity(0)",
+      "status": "observed"
+    },
+    "capacity_upper_bound": 15.0,
+    "cgroup": {
+      "cpu_quota_count_upper_bound": 15.0,
+      "cpuset_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127
+      ],
+      "hierarchy_complete": true,
+      "observations": [
+        {
+          "cpuset_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127
+          ],
+          "path": "/sys/fs/cgroup",
+          "period_us": 100000,
+          "quota_applicable": true,
+          "quota_count": 15.0,
+          "quota_state": "observed",
+          "quota_us": 1500000,
+          "sources": [
+            "/sys/fs/cgroup/cpu.max",
+            "/sys/fs/cgroup/cpuset.cpus.effective"
+          ],
+          "version": 2
+        }
+      ],
+      "scope": "Mapped membership through visible mount roots; hidden ancestors may impose tighter limits"
+    },
+    "logical_count": 128,
+    "note": "An observed upper bound, not dedicated cores, current idle capacity or authorization; unknown constraints may lower it",
+    "sources": {
+      "capacity_upper_bound": "Minimum of known logical count, affinity, intersected cpusets and ancestor quota/period",
+      "logical_count": "os.cpu_count()"
+    }
+  },
+  "diagnostics": [],
+  "disk_free_bytes": 42598490112,
+  "gpu_inventory_csv": "GPU-3350bcde-dd30-eb6c-2d75-1d6f7515fdb2, NVIDIA GeForce RTX 4090, 24564, 24081",
+  "gpu_processes_csv": "",
+  "harness_devices": [],
+  "harness_resources": {
+    "allow_gpu_share": false,
+    "cpu_cores": 2,
+    "exclusive_keys": [
+      "spectrum-b02-experiment"
+    ],
+    "gpu_count": 0,
+    "gpu_peak_mib": null,
+    "memory_profile_ref": null,
+    "ram_mib": 4096
+  },
+  "host": "jupyter-8ib2rm29px4993t7",
+  "memory": {
+    "cgroup_headroom_bytes": 99459469312,
+    "cgroup_limit_bytes": 107374182400,
+    "cgroup_observations": [
+      {
+        "current_bytes": 7914713088,
+        "headroom_bytes": 99459469312,
+        "limit_bytes": 107374182400,
+        "limit_state": "observed",
+        "path": "/sys/fs/cgroup",
+        "raw_limit": "107374182400",
+        "sources": [
+          "/sys/fs/cgroup/memory.max",
+          "/sys/fs/cgroup/memory.current"
+        ],
+        "version": 2
+      }
+    ],
+    "effective_total_bytes_upper_bound": 107374182400,
+    "mem_available_bytes": 1045856980992,
+    "mem_total_bytes": 1082016268288,
+    "note": "MemTotal may describe host RAM; cgroup headroom is instantaneous and shared, excludes future reclaim, and is not reserved memory",
+    "observed_headroom_bytes": 99459469312,
+    "sources": {
+      "cgroup_headroom_bytes": "Minimum max(0, limit-current) in cgroup_observations",
+      "cgroup_limit_bytes": "Minimum known limit in cgroup_observations",
+      "effective_total_bytes_upper_bound": "Minimum known MemTotal and cgroup limit",
+      "mem_available_bytes": "/proc/meminfo:MemAvailable",
+      "mem_total_bytes": "/proc/meminfo:MemTotal",
+      "observed_headroom_bytes": "Minimum known MemAvailable and current cgroup headroom"
+    }
+  },
+  "observed_at_unix": 1792353850.6383147,
+  "process_inventory": "      1       0 tini\n     56       1 bash\n     59       1 sshd\n     75       1 MainThread\n     76      56 bash\n     77      56 tail\n     78      76 jupyter-lab\n     97      75 MainThread\n  16373      59 sshd\n  16384   16373 python\n  16385   16384 python\n  16386   16385 python\n  16387   16386 python\n  16392   16387 ps\n"
+}
+{"status": "completed", "result": {"inference_receipt_ref": {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/calibrate-inference-64/receipt.json", "sha256": "b4fff4f9643f07d2827604581968554962806cd6c25a1ae3a96f5661f02ba4ee"}, "training_status": "pending"}, "outputs": [{"path": "profile.json", "sha256": "4e28532884e1d698b7eca6e45766fbe80e7f6c4ef3dfe2f26f81c09910e11390", "bytes": 1493}], "stage": "freeze-profile", "started_at_unix": 1792353850.9645255, "ended_at_unix": 1792353850.9676535, "execution_identity": {"task_id": "spectrum.C.freeze.e1.a86b", "run_id": "spectrum-C-freeze-e1a86b", "attempt_id": "freeze-a1-16b51c1a789647c18912113bfa46e549"}, "host": "jupyter-8ib2rm29px4993t7", "pid": 16393, "argv": ["/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py", "freeze-profile", "--batch", "64", "--config", "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json", "--config-sha256", "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e", "--protocol", "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json", "--protocol-sha256", "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f", "--cd-evidence", "research-state/B02-cd-epoch1-attempt13/experiment.json", "--cd-evidence-sha256", "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe", "--deployment-manifest", "research-state/C-phase-e1a86b/adapter/deployment-manifest.json", "--deployment-manifest-sha256", "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4", "--project-root", "/root/rivermind-data/spectrum-harness/project", "--run-root", "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run", "--goal-id", "spectrum-round2", "--candidate-id", "spectrum-plain-transfer-diagnosis", "--task-id", "spectrum.C.freeze.e1.a86b", "--run-id", "spectrum-C-freeze-e1a86b", "--attempt-id", "freeze-a1-16b51c1a789647c18912113bfa46e549"], "cwd": "/root/rivermind-data/spectrum-harness/project", "config_ref": {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json", "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"}, "protocol_ref": {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json", "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"}, "cd_evidence_ref": {"path": "research-state/B02-cd-epoch1-attempt13/experiment.json", "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"}, "deployment_manifest_ref": {"path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json", "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"}, "process_max_rss_kib": 32788, "implementation_refs": [{"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/analysis.py", "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py", "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/native_wrapper.py", "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/modeling.py", "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/utils.py", "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/stage_entry.py", "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_analysis.py", "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_diagnostic.py", "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_native_integration.py", "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_stage_entry.py", "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_training.py", "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"}, {"path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/training_instrumented.py", "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"}], "environment": {"torch": "2.7.1", "transformers": "4.51.3", "peft": "0.15.2", "numpy": "2.3.5", "datasets": "3.5.1"}}
+{
+  "config_sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+  "batch_settings": {
+    "batch_size": 16,
+    "task_batch_size": 4,
+    "sequence_batch_size": 64
+  },
+  "sequence_batch_size": 64,
+  "actual_source_interface": "generate_to_file batch_size/task_batch_size/sequence_batch_size",
+  "actual_bound_shape": [
+    64,
+    613
+  ],
+  "max_real_prompt_tokens": 101,
+  "forced_output_tokens": 512,
+  "formal_samples": 16,
+  "pilot_samples": 64,
+  "elapsed_seconds": 30.690096742939204,
+  "pilot_tokens_per_second_including_bound_probe": 1067.7059858906719,
+  "peak_allocated_bytes": 4828112384,
+  "peak_reserved_bytes": 5402263552,
+  "total_vram_bytes": 25250627584,
+  "free_before_bytes": 21551054848,
+  "free_after_bytes": 19351142400,
+  "headroom_bytes": 19351142400,
+  "finite": true,
+  "eligible": true,
+  "prepared_receipt_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/prepare/receipt.json",
+    "sha256": "dfc0cd8bbfa06d48edf33e75c7c90686476c20b9debe608d42a6a207d5f5e4a5"
+  },
+  "qualification_scope": "BF16 native inference; worst actual prompt + forced512; no score",
+  "training_qualified": false,
+  "status": "qualified",
+  "inference_receipt_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/calibrate-inference-64/receipt.json",
+    "sha256": "b4fff4f9643f07d2827604581968554962806cd6c25a1ae3a96f5661f02ba4ee"
+  }
+}
+{
+  "status": "completed",
+  "result": {
+    "inference_receipt_ref": {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/calibrate-inference-64/receipt.json",
+      "sha256": "b4fff4f9643f07d2827604581968554962806cd6c25a1ae3a96f5661f02ba4ee"
+    },
+    "training_status": "pending"
+  },
+  "outputs": [
+    {
+      "path": "profile.json",
+      "sha256": "4e28532884e1d698b7eca6e45766fbe80e7f6c4ef3dfe2f26f81c09910e11390",
+      "bytes": 1493
+    }
+  ],
+  "stage": "freeze-profile",
+  "started_at_unix": 1792353850.9645255,
+  "ended_at_unix": 1792353850.9676535,
+  "execution_identity": {
+    "task_id": "spectrum.C.freeze.e1.a86b",
+    "run_id": "spectrum-C-freeze-e1a86b",
+    "attempt_id": "freeze-a1-16b51c1a789647c18912113bfa46e549"
+  },
+  "host": "jupyter-8ib2rm29px4993t7",
+  "pid": 16393,
+  "argv": [
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+    "freeze-profile",
+    "--batch",
+    "64",
+    "--config",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "--config-sha256",
+    "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+    "--protocol",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "--protocol-sha256",
+    "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f",
+    "--cd-evidence",
+    "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "--cd-evidence-sha256",
+    "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe",
+    "--deployment-manifest",
+    "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "--deployment-manifest-sha256",
+    "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4",
+    "--project-root",
+    "/root/rivermind-data/spectrum-harness/project",
+    "--run-root",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run",
+    "--goal-id",
+    "spectrum-round2",
+    "--candidate-id",
+    "spectrum-plain-transfer-diagnosis",
+    "--task-id",
+    "spectrum.C.freeze.e1.a86b",
+    "--run-id",
+    "spectrum-C-freeze-e1a86b",
+    "--attempt-id",
+    "freeze-a1-16b51c1a789647c18912113bfa46e549"
+  ],
+  "cwd": "/root/rivermind-data/spectrum-harness/project",
+  "config_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+  },
+  "protocol_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+  },
+  "cd_evidence_ref": {
+    "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+  },
+  "deployment_manifest_ref": {
+    "path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"
+  },
+  "process_max_rss_kib": 32788,
+  "implementation_refs": [
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/stage_entry.py",
+      "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "environment": {
+    "torch": "2.7.1",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "numpy": "2.3.5",
+    "datasets": "3.5.1"
+  }
+}
+{
+  "status": "completed",
+  "result": {
+    "inference_receipt_ref": {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/calibrate-inference-64/receipt.json",
+      "sha256": "b4fff4f9643f07d2827604581968554962806cd6c25a1ae3a96f5661f02ba4ee"
+    },
+    "training_status": "pending"
+  },
+  "outputs": [
+    {
+      "path": "profile.json",
+      "sha256": "4e28532884e1d698b7eca6e45766fbe80e7f6c4ef3dfe2f26f81c09910e11390",
+      "bytes": 1493
+    }
+  ],
+  "stage": "freeze-profile",
+  "started_at_unix": 1792353850.9645255,
+  "ended_at_unix": 1792353850.9676535,
+  "execution_identity": {
+    "task_id": "spectrum.C.freeze.e1.a86b",
+    "run_id": "spectrum-C-freeze-e1a86b",
+    "attempt_id": "freeze-a1-16b51c1a789647c18912113bfa46e549"
+  },
+  "host": "jupyter-8ib2rm29px4993t7",
+  "pid": 16393,
+  "argv": [
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+    "freeze-profile",
+    "--batch",
+    "64",
+    "--config",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "--config-sha256",
+    "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+    "--protocol",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "--protocol-sha256",
+    "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f",
+    "--cd-evidence",
+    "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "--cd-evidence-sha256",
+    "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe",
+    "--deployment-manifest",
+    "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "--deployment-manifest-sha256",
+    "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4",
+    "--project-root",
+    "/root/rivermind-data/spectrum-harness/project",
+    "--run-root",
+    "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run",
+    "--goal-id",
+    "spectrum-round2",
+    "--candidate-id",
+    "spectrum-plain-transfer-diagnosis",
+    "--task-id",
+    "spectrum.C.freeze.e1.a86b",
+    "--run-id",
+    "spectrum-C-freeze-e1a86b",
+    "--attempt-id",
+    "freeze-a1-16b51c1a789647c18912113bfa46e549"
+  ],
+  "cwd": "/root/rivermind-data/spectrum-harness/project",
+  "config_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/config.json",
+    "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+  },
+  "protocol_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+  },
+  "cd_evidence_ref": {
+    "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+  },
+  "deployment_manifest_ref": {
+    "path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"
+  },
+  "process_max_rss_kib": 32788,
+  "implementation_refs": [
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/stage_entry.py",
+      "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "environment": {
+    "torch": "2.7.1",
+    "transformers": "4.51.3",
+    "peft": "0.15.2",
+    "numpy": "2.3.5",
+    "datasets": "3.5.1"
+  }
+}
+{
+  "config_sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e",
+  "protocol_ref": {
+    "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/plans/stage-program.json",
+    "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+  },
+  "implementation": [
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/stage_entry.py",
+      "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "cd_evidence_ref": {
+    "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+    "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+  },
+  "goal_id": "spectrum-round2",
+  "candidate_id": "spectrum-plain-transfer-diagnosis",
+  "deployment_manifest_ref": {
+    "path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+    "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"
+  },
+  "deployment_code_refs": [
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/analysis.py",
+      "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/config.json",
+      "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+      "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+      "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/stage_entry.py",
+      "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_analysis.py",
+      "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+      "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+      "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+      "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/test_training.py",
+      "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+      "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+    }
+  ],
+  "upstream_code_refs": [
+    {
+      "path": "src/improving/__init__.py",
+      "sha256": "bcb5ecc8195d8fe7c6cac6b94ace1dc39924b108b6752a087c129d0bd8c1ec2a"
+    },
+    {
+      "path": "src/improving/__main__.py",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+    },
+    {
+      "path": "src/improving/benchmarks.py",
+      "sha256": "9529393c1bfbfc75b536b6277fc14b7e5f8b9e99f06f2a2a18e9907adefaaa64"
+    },
+    {
+      "path": "src/improving/calibration.py",
+      "sha256": "9039c10049ab43cc94f0c6ce1b59bcde00d44f45dd50565095cef917924c67de"
+    },
+    {
+      "path": "src/improving/cli.py",
+      "sha256": "809334344acf3ad95dada58b092de099834815898be548aa7e3faec0bae73ad1"
+    },
+    {
+      "path": "src/improving/data.py",
+      "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+    },
+    {
+      "path": "src/improving/final_data.py",
+      "sha256": "f03200b0aabd105c43613e8d618c757cdc050a937dd6fd5872e4c4a355d716f8"
+    },
+    {
+      "path": "src/improving/formal_reporting.py",
+      "sha256": "0efc7e4feae451dce8c9762e09afc7f7e8c84c99c78c16d6a57aa060a2b882d3"
+    },
+    {
+      "path": "src/improving/formal_statistics.py",
+      "sha256": "7ea00f596fe1a5a3e64614629a361f03f653fc7b0d047a3db6af9a88468e2f22"
+    },
+    {
+      "path": "src/improving/formal_study.py",
+      "sha256": "ea6f2eeb899f2595b2cf332f072f872e83e916a001dfed27651c4e7b5894ddf7"
+    },
+    {
+      "path": "src/improving/formal_transfer.py",
+      "sha256": "5690984298f38a018e3a7b645dfbff274154273e3b0cb0844dbb45a97d1d9769"
+    },
+    {
+      "path": "src/improving/generation.py",
+      "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+    },
+    {
+      "path": "src/improving/geometry.py",
+      "sha256": "672b5330faedb9f9a5d99fec2aceb803015284cdf383f071741e83bef8e8b9b5"
+    },
+    {
+      "path": "src/improving/geometry_analysis.py",
+      "sha256": "f86b4dbad7297e4e9629996265825639d1110ffab1f2ea8c71d8f4fd433665cc"
+    },
+    {
+      "path": "src/improving/geometry_extraction.py",
+      "sha256": "15866b1ccfc611d0b9f3045aea9d9306af2129c3e8712a103b702bdd297174d3"
+    },
+    {
+      "path": "src/improving/geometry_study.py",
+      "sha256": "cc8f8483d11c89688c6cf1cb23dd9a0c2aafe122b4a8e46c1fbfd2df8c463b41"
+    },
+    {
+      "path": "src/improving/longitudinal.py",
+      "sha256": "0b54acb3522a0328afb1ca58b1138d2c9f147216c2cd9969cd2eb8e5e47a78bf"
+    },
+    {
+      "path": "src/improving/metrics.py",
+      "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+    },
+    {
+      "path": "src/improving/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "src/improving/pipeline.py",
+      "sha256": "c1dab8671209ada9272989f4802ac9b1331ec1bef005c440c4be845cf8f05a6d"
+    },
+    {
+      "path": "src/improving/reporting.py",
+      "sha256": "effea212e1bbdce5fdf126e60abed107a2423ea791c78de34f4852dda1562dd3"
+    },
+    {
+      "path": "src/improving/spectral.py",
+      "sha256": "2b9f91d0edbb4b270c69ace605eb6ec6646861f28c702b114a4f86ebac0a9ced"
+    },
+    {
+      "path": "src/improving/training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    },
+    {
+      "path": "src/improving/ua_rl.py",
+      "sha256": "e4d0e1bd4283f1ee50c6640c5e9c3afe1bf04a7253ecdd3288fd8e27b7f4578d"
+    },
+    {
+      "path": "src/improving/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "src/improving/verification.py",
+      "sha256": "976ae4dbd7a6a69b065815e39722a002376c9a485272b3c0ac9b6bb41351468e"
+    }
+  ],
+  "source_root": "/root/rivermind-data/spectrum-harness/SPECTRUM",
+  "source_hashes": {
+    "src/improving/data.py": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c",
+    "src/improving/training.py": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7",
+    "src/improving/generation.py": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14",
+    "src/improving/modeling.py": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40",
+    "src/improving/utils.py": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b",
+    "src/improving/metrics.py": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+  },
+  "stage": "freeze-profile",
+  "stage_parameters": {
+    "execution_identity": {
+      "task_id": "spectrum.C.freeze.e1.a86b",
+      "run_id": "spectrum-C-freeze-e1a86b",
+      "attempt_id": "freeze-a1-16b51c1a789647c18912113bfa46e549"
+    },
+    "batch": 64,
+    "arm": null,
+    "seed": null
+  }
+}

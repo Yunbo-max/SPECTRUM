@@ -1,0 +1,190 @@
+{
+  "context": {
+    "attempt_id": "calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce",
+    "controller": {
+      "fence": 1,
+      "owner": "spectrum-guarded.planner.native",
+      "run_id": "a5b3c5086b304e4ab2e3ab4e79446e0a",
+      "task_id": "spectrum.C.calibrate64.e1.a86b"
+    },
+    "dispatch_identity_sha256": "bdd3b161c4ded198d1f14e9b99d9c3836092cb9df776e692d1f0ee0c92ac5839",
+    "harness_context_ref": {
+      "path": "runs/harness/spectrum-C-calibrate64-e1a86b/tasks/calibrate64/execution-context.json",
+      "sha256": "275a691e2f4b09f8d7843b645a15818249e113c744e036d2c29ee895b7f689b5"
+    },
+    "kind": "research-native-stage-context",
+    "native_stage_ref": {
+      "path": "research-state/C-phase-e1a86b/plans/calibrate64-stage.json",
+      "sha256": "10510d8f439c6b739085ce21a70dc91eb8a1d0d86c8e1b6deb6343a0d9f50230"
+    },
+    "plan_digest": "c781f4d36682cef3211aca2a995b1c5bd47bb17bedb5331b7525d8c7b254a0f5",
+    "project_root": "/root/rivermind-data/spectrum-harness/project",
+    "protocol_ref": {
+      "path": "research-state/C-phase-e1a86b/plans/stage-program.json",
+      "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+    },
+    "run_id": "spectrum-C-calibrate64-e1a86b",
+    "schema_version": 1,
+    "scientific_verified": false,
+    "stage_id": "calibrate-inference-64",
+    "stage_kind": "calibrate",
+    "trial_id": "calibrate64",
+    "workspace_root": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace"
+  },
+  "mappings": [
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-00.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-00.bin",
+        "sha256": "1f2ea739f7447cb829307462fd498902b457d5417eb0ed937a182360178effae",
+        "size": 940514
+      },
+      "sha256": "1f2ea739f7447cb829307462fd498902b457d5417eb0ed937a182360178effae"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-01.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-01.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-02.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-02.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-03.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-03.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-04.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-04.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-05.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-05.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-06.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-06.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-07.bin",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-07.bin",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/archive-index.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/archive-index.json",
+        "sha256": "ff256df0aa60e9c96dbc634c42903b6f608b502ee4287acb7d1e8e84fc5f6d56",
+        "size": 10998
+      },
+      "sha256": "ff256df0aa60e9c96dbc634c42903b6f608b502ee4287acb7d1e8e84fc5f6d56"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/checkpoint-inventory.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/checkpoint-inventory.json",
+        "sha256": "dc4ef572bdefbc55b4d0866b40c9da8e488f6785d3d8d9f7446751e4ddde95d8",
+        "size": 41
+      },
+      "sha256": "dc4ef572bdefbc55b4d0866b40c9da8e488f6785d3d8d9f7446751e4ddde95d8"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/driver-receipt.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/calibrate-inference-64/receipt.json",
+        "sha256": "b4fff4f9643f07d2827604581968554962806cd6c25a1ae3a96f5661f02ba4ee",
+        "size": 8369
+      },
+      "sha256": "b4fff4f9643f07d2827604581968554962806cd6c25a1ae3a96f5661f02ba4ee"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/driver-request.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/calibrate-inference-64/request.json",
+        "sha256": "1bd6cbbc540e2176e617ec364c5aaf5d41ed45334e010c6d79b09d3709c942de",
+        "size": 10336
+      },
+      "sha256": "1bd6cbbc540e2176e617ec364c5aaf5d41ed45334e010c6d79b09d3709c942de"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/inventory.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/inventory.json",
+        "sha256": "8b848b90c28c96f8f88a8d427516727f27acee960c8852fb585277bac19dc32c",
+        "size": 3212
+      },
+      "sha256": "8b848b90c28c96f8f88a8d427516727f27acee960c8852fb585277bac19dc32c"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/resource-observation.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/resource-observation.json",
+        "sha256": "8a34f2041c92294cc49ecdc0fd00005192e70a8e7b20e3ef053c66c54f2f9286",
+        "size": 8631
+      },
+      "sha256": "8a34f2041c92294cc49ecdc0fd00005192e70a8e7b20e3ef053c66c54f2f9286"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/stage-summary.json",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/seal/stage-summary.json",
+        "sha256": "ffbcc5051a93ae7e0c075c91e907cccb23c760ff2daed44094f0da3a0a26e909",
+        "size": 23122
+      },
+      "sha256": "ffbcc5051a93ae7e0c075c91e907cccb23c760ff2daed44094f0da3a0a26e909"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/stderr.log",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/stderr.log",
+        "sha256": "590a1a2479537a360e17d5d10c2ce9dcad90bd5fdb19e3f81dc24be6fe5a0736",
+        "size": 107
+      },
+      "sha256": "590a1a2479537a360e17d5d10c2ce9dcad90bd5fdb19e3f81dc24be6fe5a0736"
+    },
+    {
+      "destination": "/root/rivermind-data/spectrum-harness/project/runs/attempts/spectrum-C-calibrate64-e1a86b/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/workspace/runs/stage-outputs/spectrum-C-calibrate64-e1a86b/stdout.log",
+      "origin": {
+        "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stage-entry-attempts/calibrate64-a1-1e536a65e14a48ab9ee3f2e15f0b87ce/stdout.log",
+        "sha256": "ae5f9fcf4ea813ff7a99d049f1cfbdee122b43d0aac0e12c204a97160695912a",
+        "size": 7437
+      },
+      "sha256": "ae5f9fcf4ea813ff7a99d049f1cfbdee122b43d0aac0e12c204a97160695912a"
+    }
+  ],
+  "publication_owner": "trusted native runner; adapter writes workspace only"
+}

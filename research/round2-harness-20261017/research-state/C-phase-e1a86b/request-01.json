@@ -1,0 +1,239 @@
+{
+  "request_id": "spectrum-C-e1a86b-prepare-01",
+  "task": {
+    "task_id": "spectrum.C.prepare.e1.a86b",
+    "action": "native_harness",
+    "adapter": "native",
+    "capabilities": [],
+    "dependencies": [],
+    "inputs": [
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/config.json",
+        "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/deployment-manifest.json",
+        "sha256": "fac97c0eb602d2d0ea0d628ff8cc647123c47699f01e95299884f15fa3c45af4"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/dependency-analysis.md",
+        "sha256": "9c39fdfee235b20e9fd7e81b74a9f6614cff0c2a1cbf2c14c1142d86e97fe84f"
+      },
+      {
+        "path": "research-state/B02-cd-design-e1a1/design.json",
+        "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+      },
+      {
+        "path": "research-state/B02-raw-train-source-000009.json",
+        "sha256": "baca10f5ffb1dc8936f056ac891a72c3f2bc90a2cbc9ecdef1d97840471624e9"
+      },
+      {
+        "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+        "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+      },
+      {
+        "path": "research-state/B02-plain-lineage-source-000004/data.py",
+        "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+      },
+      {
+        "path": "research-state/B02-plain-lineage-source-000004/remote-training.py",
+        "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+      },
+      {
+        "path": "research-state/B02-plain-lineage-source-000004/generation.py",
+        "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/source/modeling.py",
+        "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/source/utils.py",
+        "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+      },
+      {
+        "path": "research-state/B01-scorer-source-binding-000003/spectrum-src__improving__metrics.py",
+        "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+      },
+      {
+        "path": "research-state/B01-official-setup-20261018/configuration.json",
+        "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+      },
+      {
+        "path": "research-state/B01-official-setup-20261018/setup-report.json",
+        "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+      },
+      {
+        "path": "research-state/B02-attempt-000010/prospective-input-policy.json",
+        "sha256": "aabeccb2cb9886ebfb73ef1a4717315b48572928aece105d54a3f81e0d460939"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/stage-plan-inputs.json",
+        "sha256": "5a978bba0f97f60b90f5d537cb8ff17d99b73bee3c42a56cdb2ade136c2ec4fa"
+      },
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+        "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/plans/stage-program.json",
+        "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+      },
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/sample-manifest.json",
+        "sha256": "cf59b9b5e829b7b4f0a13b816dc2a5789f7b3c9e23541dc15cd2d77f957079f5"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/analysis.py",
+        "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+        "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+        "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/stage_entry.py",
+        "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/test_analysis.py",
+        "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/test_diagnostic.py",
+        "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/test_native_integration.py",
+        "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/test_stage_entry.py",
+        "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/test_training.py",
+        "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+        "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/plans/prepare-stage.json",
+        "sha256": "b1b6fe0b90020559c683631a8970e4c86b6891459f417f0a7a712a5d6e05747f"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/plans/prepare-native-plan.json",
+        "sha256": "fbd35b866ae2e5dae0df7ba7ef00cf811138670c949fa81a8fb082ea8a284adb"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/plans/prepare-harness-plan.json",
+        "sha256": "ba52e315b2b725d9e25b76f099d169e34e7aa7df73eb6cd2a5214c2e23f21e62"
+      },
+      {
+        "path": "research-state/native-gpu-target-hn01-20261018.json",
+        "sha256": "81dfec4e86b95d49c3935d38ebfe8db7cb2a6abaf2f91a7d1425bed4240a0391"
+      },
+      {
+        "path": "research-state/C-phase-e1a14/decision-01.json",
+        "sha256": "c12930892ea79c0a5a03e9f259d6c1e249062697d2071207a5b814852a9bbc37"
+      },
+      {
+        "path": "research-state/C-phase-e1a14/method-basis.md",
+        "sha256": "52b1ae33a58d3fd8511b8488724c41b878d31ad9d7b0d2cc87dc4efda7cbd826"
+      },
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/design-task.md",
+        "sha256": "662d199fe0bd267358054fb728d6ef4e5721ee4581e06f7e1aee75a065e9e6e4"
+      },
+      {
+        "path": "research-state/C-phase-e1a84/decision-01.json",
+        "sha256": "94ff665058b4ab39b00a4d51fe7927f9fa9c4d1d4d82f3084a90db1169e52a2e"
+      },
+      {
+        "path": "research-state/C-phase-e1a86/decision-01.json",
+        "sha256": "7ff3d4c35f0da4c75fb4cd21c980bc6d8273003616819f7ca49daf4a2075fad4"
+      },
+      {
+        "path": "research-state/C-phase-e1a86b/decision-01.json",
+        "sha256": "8da9dfff3ed25c42863db0d8539744021a9a914a273395fdc5bd08523665c171"
+      }
+    ],
+    "outputs": [
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/stage-summary.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/inventory.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/origin-map.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/stdout.log",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/stderr.log",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/checkpoint-inventory.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-index.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/resource-observation.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/driver-receipt.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/driver-request.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-00.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-01.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-02.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-03.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-04.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-05.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-06.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/archive-07.bin",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/train.jsonl",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/calibration.jsonl",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/validation.jsonl",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/eval.jsonl",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/source_fields.jsonl",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/preparation_manifest.jsonl",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/task-manifest.json",
+      "runs/stage-outputs/spectrum-C-prepare-e1a86b/base-assets.json",
+      "runs/attempts/spectrum-C-prepare-e1a86b/receipt.json"
+    ],
+    "instructions": [
+      {
+        "path": "research-state/B02-cd-epoch1-attempt13/design-task.md",
+        "sha256": "662d199fe0bd267358054fb728d6ef4e5721ee4581e06f7e1aee75a065e9e6e4"
+      }
+    ],
+    "parameters": {
+      "native_purpose": "development_stage",
+      "harness_plan_ref": {
+        "path": "research-state/C-phase-e1a86b/plans/prepare-harness-plan.json",
+        "sha256": "ba52e315b2b725d9e25b76f099d169e34e7aa7df73eb6cd2a5214c2e23f21e62"
+      },
+      "cd_evidence_ref": {
+        "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+        "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+      },
+      "research_scope": "diagnostic",
+      "goal_id": "spectrum-round2",
+      "candidate_id": "spectrum-plain-transfer-diagnosis",
+      "native_transfer_limits": {
+        "max_bytes": 4294967296,
+        "timeout_seconds": 600
+      },
+      "reasoning_ref": {
+        "path": "research-state/C-phase-e1a86b/decision-01.json",
+        "sha256": "8da9dfff3ed25c42863db0d8539744021a9a914a273395fdc5bd08523665c171"
+      }
+    },
+    "max_seconds": 1800,
+    "max_cost": 0,
+    "priority": 0,
+    "completion": {
+      "kind": "outputs_verified"
+    }
+  },
+  "decision_ref": {
+    "path": "research-state/C-phase-e1a86b/decision-01.json",
+    "sha256": "8da9dfff3ed25c42863db0d8539744021a9a914a273395fdc5bd08523665c171"
+  },
+  "coverage_ref": {
+    "path": "research-state/C-phase-e1a86b/coverage-01.json",
+    "sha256": "a8fe28ef39a2f04ed564167ec5bfbb9f5a6d75ee58cf4a80644c5cf88a030b0b"
+  }
+}

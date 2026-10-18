@@ -1,0 +1,25 @@
+{
+  "kind": "scoring-integration-dependency",
+  "scope": "B03 qualification and B05 scored_runs; independent export remains possible",
+  "observation": "Pinned stage program deliberately has scorer.status=pending_qualification, provenance=project_custom, backend_during_stage=none. _native_eval._scorer requires kind, identity, revision, source_refs, code_refs, command, cwd, output, denominator_path and kind official or faithful_harness. faithful_harness requires official replay identity. Existing setup report records no author-provided executable in inspected upstream source and pending native isolation.",
+  "not_observed": "No scoring execution or fresh canonical verifier rejection was performed in this invocation. This is actual source-contract inspection, not a test receipt. Absence is limited to retained inspected upstream version.",
+  "needed": "Supported truthful native MBPP scoring integration plus actual generated-code isolation/qualification on hn01. Preserve full/test500, original tests and project executor provenance. Runtime source/policy changes require owner quiet-boundary adoption, not a worker pin edit.",
+  "evidence_refs": [
+    {
+      "path": "research-state/B01-official-setup-20261018/setup-report.json",
+      "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+    },
+    {
+      "path": "research-state/B01-scorer-source-binding-000003/google-README.md",
+      "sha256": "02d63a4ffdad806c3c87b5ea2aa91e946f6eec0c2869643b09831650883f41be"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/native-eval-source-capture.py",
+      "sha256": "4adc1c57756e0c1d378bf11f9ab9607adc6d64fc5eb77ad8d74210e021286ee5"
+    },
+    {
+      "path": "research-state/C-phase-e1a86b/plans/stage-program.json",
+      "sha256": "17af7b112aca884f24045a8c0de7cfc165cc5327c0cd5596149242435de61a3f"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "status": "generated_unexecuted",
+  "source_commit": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+  "source_root": "/root/rivermind-data/spectrum-harness/SPECTRUM",
+  "interpreter": "/root/rivermind-data/spectrum-harness/venv/bin/python",
+  "source_hashes": {
+    "src/improving/data.py": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c",
+    "src/improving/training.py": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7",
+    "src/improving/generation.py": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14",
+    "src/improving/modeling.py": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40",
+    "src/improving/utils.py": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b",
+    "src/improving/metrics.py": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+  },
+  "source_refs": [
+    {
+      "path": "research-state/B02-plain-lineage-source-000004/data.py",
+      "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+    },
+    {
+      "path": "research-state/B02-plain-lineage-source-000004/remote-training.py",
+      "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+    },
+    {
+      "path": "research-state/B02-plain-lineage-source-000004/generation.py",
+      "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+    },
+    {
+      "path": "research-state/C-phase-e1a86/adapter/source/modeling.py",
+      "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+    },
+    {
+      "path": "research-state/C-phase-e1a86/adapter/source/utils.py",
+      "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+    },
+    {
+      "path": "research-state/B01-scorer-source-binding-000003/spectrum-src__improving__metrics.py",
+      "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+    }
+  ],
+  "design_ref": {
+    "path": "research-state/B02-cd-design-e1a1/design.json",
+    "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+  },
+  "dataset_revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+  "model_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "model": {
+    "name": "/root/rivermind-data/spectrum-harness/cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "device": "cuda:0",
+    "dtype": "bfloat16",
+    "attn_implementation": "sdpa"
+  },
+  "train_source_ref": {
+    "path": "research-state/B02-raw-train-source-000009.json",
+    "sha256": "baca10f5ffb1dc8936f056ac891a72c3f2bc90a2cbc9ecdef1d97840471624e9"
+  },
+  "test_source_ref": {
+    "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+    "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+  },
+  "generated_code_execution_enabled": false,
+  "backend": "none",
+  "generation": {
+    "samples": 16,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 0,
+    "max_prompt_tokens": 1024,
+    "max_new_tokens": 512
+  },
+  "train": {
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "target_token_budget": 7200000,
+    "epochs": 1,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.03,
+    "max_grad_norm": 1.0,
+    "lora_rank": 8,
+    "lora_alpha": 8,
+    "lora_dropout": 0.05,
+    "gradient_checkpointing": true,
+    "loss_scope": "all",
+    "max_length": 1536
+  },
+  "calibration": {
+    "sequence_candidates": [
+      64,
+      32,
+      16,
+      8,
+      4,
+      2,
+      1
+    ],
+    "whole_calibration_seconds": 1800,
+    "candidate_seconds": 300,
+    "minimum_headroom_bytes": 2147483648,
+    "max_available_vram_fraction": 0.85
+  },
+  "stage_watchdogs": {
+    "prepare": 600,
+    "freeze-profile": 600,
+    "generate-train": 7200,
+    "generate-eval": 7200,
+    "calibrate-training": 1800,
+    "train": 14400
+  },
+  "scoring_status": "pending",
+  "evaluation_seeds": [
+    43,
+    45
+  ],
+  "training_seed": 44,
+  "split_seed": 42
+}

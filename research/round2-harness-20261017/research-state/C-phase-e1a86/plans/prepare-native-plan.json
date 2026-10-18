@@ -1,0 +1,293 @@
+{
+  "schema_id": "experiment-run-plan",
+  "schema_version": "1.0.0",
+  "run_id": "spectrum-C-prepare-e1a86",
+  "purpose": "scientific",
+  "evidence_mode": "developmental",
+  "protocol_ref": {
+    "path": "research-state/C-phase-e1a86/plans/stage-program.json",
+    "sha256": "00eb2c981d28f552f6fcb5ea542b9a90e5c5f7c28d7f2cdd9315cb85f7661883"
+  },
+  "protocol_digest": "4cf787b969d5f24e0f90dc0a81f21d1d46076f1d6b6b7ed0e4855824e2ab6a11",
+  "output_root": "runs/attempts",
+  "limits": {
+    "max_retries_per_trial": 0,
+    "max_attempts": 1,
+    "max_development_trials": 1,
+    "max_confirmation_trials": 0,
+    "attempt_timeout_seconds": 960,
+    "wall_time_seconds": 1020
+  },
+  "jobs": [
+    {
+      "trial_id": "prepare",
+      "cwd": ".",
+      "seed": 0,
+      "group": "prerequisite",
+      "arm_role": "prerequisite",
+      "output_paths": [
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/stage-summary.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/inventory.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/origin-map.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/stdout.log",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/stderr.log",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/checkpoint-inventory.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-index.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/resource-observation.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/driver-receipt.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/driver-request.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-00.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-01.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-02.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-03.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-04.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-05.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-06.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/archive-07.bin",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/train.jsonl",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/calibration.jsonl",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/validation.jsonl",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/eval.jsonl",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/source_fields.jsonl",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/preparation_manifest.jsonl",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/task-manifest.json",
+        "runs/stage-outputs/spectrum-C-prepare-e1a86/base-assets.json"
+      ],
+      "command": [
+        "/root/rivermind-data/spectrum-harness/venv/bin/python",
+        "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a86/adapter/stage_entry.py",
+        "--native-stage-context",
+        "{NATIVE_STAGE_CONTEXT}",
+        "--binding-ref",
+        "research-state/C-phase-e1a86/adapter/stage-plan-inputs.json",
+        "--binding-sha256",
+        "dc773ffb643c87b1ee0aa4c88f0029eee7717d05d38afe6d54428a211bc77d11",
+        "--driver-stage",
+        "prepare"
+      ],
+      "input_refs": [
+        {
+          "path": "research-state/C-phase-e1a86/adapter/config.json",
+          "sha256": "f7ae3427ef0151ce9d7f551301df89bbf13a0a8f4ec9c7ec26b62034391d13d3"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/deployment-manifest.json",
+          "sha256": "73494dd407b14bf207084526b79cf11fee0a95020123f17447dd5458510068b8"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/dependency-analysis.md",
+          "sha256": "9c39fdfee235b20e9fd7e81b74a9f6614cff0c2a1cbf2c14c1142d86e97fe84f"
+        },
+        {
+          "path": "research-state/B02-cd-design-e1a1/design.json",
+          "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+        },
+        {
+          "path": "research-state/B02-raw-train-source-000009.json",
+          "sha256": "baca10f5ffb1dc8936f056ac891a72c3f2bc90a2cbc9ecdef1d97840471624e9"
+        },
+        {
+          "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+          "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004/data.py",
+          "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004/remote-training.py",
+          "sha256": "b90ecb43c95505573e9c73fdc1f0798cf258ad118cefc8f23b0a2e60d52aa4f7"
+        },
+        {
+          "path": "research-state/B02-plain-lineage-source-000004/generation.py",
+          "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/source/modeling.py",
+          "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/source/utils.py",
+          "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+        },
+        {
+          "path": "research-state/B01-scorer-source-binding-000003/spectrum-src__improving__metrics.py",
+          "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/configuration.json",
+          "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+        },
+        {
+          "path": "research-state/B01-official-setup-20261018/setup-report.json",
+          "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+        },
+        {
+          "path": "research-state/B02-attempt-000010/prospective-input-policy.json",
+          "sha256": "aabeccb2cb9886ebfb73ef1a4717315b48572928aece105d54a3f81e0d460939"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/stage-plan-inputs.json",
+          "sha256": "dc773ffb643c87b1ee0aa4c88f0029eee7717d05d38afe6d54428a211bc77d11"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+          "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/plans/stage-program.json",
+          "sha256": "00eb2c981d28f552f6fcb5ea542b9a90e5c5f7c28d7f2cdd9315cb85f7661883"
+        },
+        {
+          "path": "research-state/B02-cd-epoch1-attempt13/sample-manifest.json",
+          "sha256": "cf59b9b5e829b7b4f0a13b816dc2a5789f7b3c9e23541dc15cd2d77f957079f5"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/analysis.py",
+          "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/diagnostic_driver.py",
+          "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/native_wrapper.py",
+          "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/stage_entry.py",
+          "sha256": "fdf45649a683da97d7933fa6280a4f5807b6ccbf41bf7dd26f5d5bc0bcb6a855"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_analysis.py",
+          "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_diagnostic.py",
+          "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_native_integration.py",
+          "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_stage_entry.py",
+          "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_training.py",
+          "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/training_instrumented.py",
+          "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+        }
+      ],
+      "code_refs": [
+        {
+          "path": "research-state/C-phase-e1a86/adapter/analysis.py",
+          "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/diagnostic_driver.py",
+          "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/native_wrapper.py",
+          "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/source/modeling.py",
+          "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/source/utils.py",
+          "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/stage_entry.py",
+          "sha256": "fdf45649a683da97d7933fa6280a4f5807b6ccbf41bf7dd26f5d5bc0bcb6a855"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_analysis.py",
+          "sha256": "fe0312efdf36cc7374d733d0c4f4f25857fc57314833a60b91ff9f6b80ee1368"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_diagnostic.py",
+          "sha256": "859586cbe53ad5ebbb7ce97ce39e3a4ebbce67eb583542598cec4d2830677589"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_native_integration.py",
+          "sha256": "d82099f457f83c16df050194273891db804c0d20425ac5eccc609ab1e2c937a3"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_stage_entry.py",
+          "sha256": "eb27309021b47f5df9b21cc30f04e872e4560d71e2d0bd8679213cf8849debc1"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/test_training.py",
+          "sha256": "6b84dbf1662152d38cf46016dd394c0e003293a6d49dd40940ece31fa4d0ce35"
+        },
+        {
+          "path": "research-state/C-phase-e1a86/adapter/training_instrumented.py",
+          "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "git_revision": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+    "model_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "data_revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+    "environment_digest": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6",
+    "environment_refs": [
+      {
+        "path": "research-state/B01-official-setup-20261018/setup-report.json",
+        "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+      }
+    ],
+    "cd_evidence_ref": {
+      "path": "research-state/B02-cd-epoch1-attempt13/experiment.json",
+      "sha256": "63d6b9ea30acad86be1bfaffcad6c702fba2e3d1fc62d89ec83d912239e76afe"
+    },
+    "native_stage_ref": {
+      "path": "research-state/C-phase-e1a86/plans/prepare-stage.json",
+      "sha256": "4b1559d7c852ca0d1aa24ab46f276957cd98319d5a1b39d6d068498589617938"
+    },
+    "model_refs": [
+      {
+        "path": "research-state/B01-official-setup-20261018/configuration.json",
+        "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+      },
+      {
+        "path": "research-state/B01-official-setup-20261018/setup-report.json",
+        "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+      },
+      {
+        "path": "research-state/C-phase-e1a86/adapter/config.json",
+        "sha256": "f7ae3427ef0151ce9d7f551301df89bbf13a0a8f4ec9c7ec26b62034391d13d3"
+      }
+    ],
+    "data_refs": [
+      {
+        "path": "research-state/B02-raw-train-source-000009.json",
+        "sha256": "baca10f5ffb1dc8936f056ac891a72c3f2bc90a2cbc9ecdef1d97840471624e9"
+      },
+      {
+        "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+        "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+      }
+    ],
+    "selection_refs": [
+      {
+        "path": "research-state/B02-cd-design-e1a1/design.json",
+        "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+      },
+      {
+        "path": "research-state/B02-attempt-000010/prospective-input-policy.json",
+        "sha256": "aabeccb2cb9886ebfb73ef1a4717315b48572928aece105d54a3f81e0d460939"
+      }
+    ]
+  },
+  "plan_digest": "dffb4fb7257085faeeb6b221cd924655215d8e2911034b7969aed6fba9029fd2"
+}

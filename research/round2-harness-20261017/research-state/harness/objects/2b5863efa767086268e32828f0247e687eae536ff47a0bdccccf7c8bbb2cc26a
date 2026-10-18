@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/freeze-profile/outputs/profile.json",
+      "sha256": "4e28532884e1d698b7eca6e45766fbe80e7f6c4ef3dfe2f26f81c09910e11390",
+      "size": 1493
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/freeze-profile/receipt-1792353850980387314.json",
+      "sha256": "a806af0792592a7bb7c3217eb7aa6da9f535fb49fb392b238e7fd33d402418e4",
+      "size": 5981
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/freeze-profile/receipt.json",
+      "sha256": "a806af0792592a7bb7c3217eb7aa6da9f535fb49fb392b238e7fd33d402418e4",
+      "size": 5981
+    },
+    {
+      "path": "/root/rivermind-data/spectrum-harness/project/research-state/C-phase-e1a84/driver-run/stages/freeze-profile/request.json",
+      "sha256": "d008fdd14eeb335aadf030f2ebded1050bcac3a58495a9782d0d2ce617e53e8d",
+      "size": 10313
+    }
+  ],
+  "partial": false
+}

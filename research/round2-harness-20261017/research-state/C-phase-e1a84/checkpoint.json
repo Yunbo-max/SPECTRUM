@@ -1,0 +1,62 @@
+{
+  "kind": "research-phase-recovery-evidence",
+  "schema_version": 1,
+  "goal_id": "spectrum-round2",
+  "sequence": {
+    "attempt": 84,
+    "catalog_sha256": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+    "cycle": 1,
+    "epoch": 1,
+    "flow_profile": "work-harness-cd-v1",
+    "problem_ref": null,
+    "scaleup_acceptance_ref": null,
+    "step_id": "B02",
+    "verified_ref": null
+  },
+  "phase_progress": {
+    "decision_ref": {
+      "path": "research-state/C-phase-e1a84/decision-01.json",
+      "sha256": "94ff665058b4ab39b00a4d51fe7927f9fa9c4d1d4d82f3084a90db1169e52a2e"
+    },
+    "coverage_ref": {
+      "path": "research-state/C-phase-e1a84/coverage-01.json",
+      "sha256": "3e9875f9082e506ddf41db4b9244573542b4a4caaf30ac00cafd932f3f71fb96"
+    },
+    "scientific_acceptance": false
+  },
+  "failed_native_receipt_ref": {
+    "path": "research-state/harness/receipts/9bc92aa2378a43b6abe088fb51266a1f.json",
+    "sha256": "2bca9472cd77345bac89b3748ffe1db4e08928a5339b63bc853ff79aaceafff6"
+  },
+  "failed_stdout_ref": {
+    "path": "research-state/C-phase-e1a84/prepare-original-stdout.log",
+    "sha256": "78592d4bab5922f424efe169f7ca0ad1780c9906326b5bf15902d14827f7cc8f"
+  },
+  "request_ref": {
+    "path": "research-state/C-phase-e1a84/request-01.json",
+    "sha256": "14ae3c9760307507858a989c19a7870aecaad0ee66483cad4e89da4f72dafd12"
+  },
+  "mailbox_result_ref": {
+    "path": "research-state/C-phase-e1a84/mailbox-result-01.json",
+    "sha256": "29152079e3c6132d7e7508bd487489b835d75c3e44c0ceaf5b1724e811d386ed"
+  },
+  "reconciliation_ref": {
+    "path": "research-state/C-phase-e1a84/mailbox-reconcile-01.json",
+    "sha256": "29152079e3c6132d7e7508bd487489b835d75c3e44c0ceaf5b1724e811d386ed"
+  },
+  "remote_observation_ref": {
+    "path": "research-state/C-phase-e1a84/remote-observation.json",
+    "sha256": "c08cc05b60c20eb43c3a1ef405cac03d1675684b5c8967af2ef754e866f29410"
+  },
+  "unresolved_native_identity": {
+    "fence": 1,
+    "owner": "spectrum-guarded.planner.native",
+    "reason": "native identity exists or cannot be excluded before launch",
+    "run_id": "449fe9bbb55e429296bcc966c53d7698",
+    "state": "reconcile_required",
+    "task_id": "spectrum.C.prepare.e1.a84"
+  },
+  "blocker": "Current dispatcher retains prelaunch reconcile_required; read-only exact original identity probe returns absent. reconcile_native only settles completed/failed, not proven prelaunch absence. Worker cannot write DB/change adopted runtime or launch replacement while uncertain identity remains.",
+  "next_action": "Owner/controller reconcile original 449fe9bbb55e429296bcc966c53d7698 using actual event history and current target observation, then recover same phase; no duplicate launch or source repin. Review remote probe failure diagnostics before retry.",
+  "scientific_boundary": "Original prepare failed before data materialization on stale .7 Skill digest. Versioned adapter binds adopted .10; its execution remains unverified. No new benchmark result, baseline qualification or B05 support."
+}

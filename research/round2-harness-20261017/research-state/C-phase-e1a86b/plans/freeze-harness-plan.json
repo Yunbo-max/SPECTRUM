@@ -1,0 +1,44 @@
+{
+  "schema_id": "harness-plan",
+  "schema_version": "1.0.0",
+  "batch_id": "spectrum-C-freeze-e1a86b",
+  "output_root": "runs/harness",
+  "pool_dir": "/root/rivermind-data/spectrum-harness/project/research-state/native-resource-pool",
+  "tasks": [
+    {
+      "task_id": "freeze",
+      "idea_id": "spectrum-plain-transfer-diagnosis",
+      "plan_ref": {
+        "path": "research-state/C-phase-e1a86b/plans/freeze-native-plan.json",
+        "sha256": "4b06efafcf64cde7ee417c88390cd26850f1ddf0874f99d303de18524a00f594"
+      },
+      "depends_on": [],
+      "priority": 0,
+      "resources": {
+        "cpu_cores": 2,
+        "ram_mib": 4096,
+        "gpu_count": 0,
+        "gpu_peak_mib": null,
+        "allow_gpu_share": false,
+        "memory_profile_ref": null,
+        "exclusive_keys": [
+          "spectrum-b02-experiment"
+        ]
+      }
+    }
+  ],
+  "limits": {
+    "window_seconds": 1020,
+    "total_wall_seconds": 1020,
+    "max_parallel_tasks": 1,
+    "cpu_cores": 2,
+    "ram_mib": 4096,
+    "max_gpu_task_seconds": 0
+  },
+  "gpus": {
+    "uuids": [],
+    "safety_margin_mib": 1024,
+    "max_tasks_per_gpu": 1
+  },
+  "plan_digest": "b68ddaa092d306c7d35633529fdfcc3c614598345687e94676a4bb74f896437d"
+}

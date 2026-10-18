@@ -1,0 +1,13 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing /root/rivermind-data/spectrum-harness/code-tests/adaptive-execution
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: research-autopilot-runtime
+  Building wheel for research-autopilot-runtime (pyproject.toml): started
+  Building wheel for research-autopilot-runtime (pyproject.toml): finished with status 'done'
+  Created wheel for research-autopilot-runtime: filename=research_autopilot_runtime-0.4.0a2-py3-none-any.whl size=176068 sha256=5a40d51a2f5eec5a64564244008b55dad855fcfb5a5ea6a02fc6f1efeec28f57
+  Stored in directory: /root/.cache/pip/wheels/87/eb/0c/de4c6752734e320d918c94b5d194dbb6df0f69a0f4ab86e137
+Successfully built research-autopilot-runtime
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip

@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/ErfanBaghaei/Top-H-Decoding",
+  "commit": "8b94d62b238ed62793627f4a2556d90188560854",
+  "archive_sha256": "61364e0c8acbaf204c3d36a7a3c202726186e882d60ec61b31a28d262e668328",
+  "files": {
+    "README.md": "0e68c52ef06f19de913ab92ebbdc6ad2dd9b3cffed283154ed6e5869ad5b66c7",
+    "LICENSE": "97ca4ba71a75c9ea46fc67bf7ccbc02a4f0cec4852bbe2a51dd79a8c1aee86b2",
+    "logit_processor.py": "fe1a77888108599a42ad9f5ec0361c1b6bc9e8d6329112b1d55944c5faa97234"
+  },
+  "status": "Source inspection only; not a model comparison."
+}

@@ -1,0 +1,29 @@
+{
+  "software_only": true,
+  "device": "cpu on hn01; one Torch CPU thread, no model loaded",
+  "source_commit": "8b94d62b238ed62793627f4a2556d90188560854",
+  "cases": [
+    {
+      "case": "uniform-default-alpha",
+      "top_n": 100,
+      "alpha": 0.4,
+      "outcome": "returned",
+      "retained_tokens": 39
+    },
+    {
+      "case": "uniform-allowed-alpha-one",
+      "top_n": 100,
+      "alpha": 1.0,
+      "outcome": "returned",
+      "retained_tokens": 99
+    },
+    {
+      "case": "single-candidate",
+      "top_n": 1,
+      "alpha": 0.4,
+      "outcome": "IndexError",
+      "message": "index 1 is out of bounds for dimension 0 with size 1"
+    }
+  ],
+  "interpretation": "Boundary-condition integration checks of unchanged author processor, not model performance; default-alpha success does not validate a future vLLM port."
+}

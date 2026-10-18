@@ -1,3 +1,11 @@
+## Decoder对照源码核验（2026-10-18 23:41 UTC）
+
+原生LCB runner65584/start ticks144158755仍活动，第一repeat日志32/131 prompts，未产出完整repeat或正确率。保持单一程序，未恢复Apple下载或启动第二模型。上轮分析器及采样源码审计已交付666945a。
+
+B补查AdapT、AdaDec、Top-H作者论文/代码：自适应温度、熵支持选择、选择性lookahead均有先例；AdaDec另有标注校准与额外推理成本，不可混为无训练/等计算对照。hn01对未修改Top-H作者commit8b94d62的CPU软件探针发现与论文v2熵约束不一致：128等概率logits、alpha.4/default top_n100返回39 tokens，归一化熵5.2854 bits，高于2.8 bits上限；top_n1另触发IndexError。只说明该源码与该论文版本的契约差异，不是模型分数或新C gap。原源码、license、hash和探针结果见adaptive-decoder-source-review-20261019/review.md，未静默修补或采用为模型对照。
+
+后续仍先完成作者原生基座/SSD及解码交叉比较；若有残余条件失效，再用已核验的自适应控制区分机制。旧MBPP容量地板已否定；不将软件缺陷当作D创新。研究持续，Harness未暂停，恢复前先核对远端活跃身份和完成记录。
+
 ## 续研核对与B/C修正（2026-10-18 23:34 UTC）
 
 已核对runner65584的真实start ticks，仍为同一原生LCB基座程序。最新日志第一repeat已完成21/131 prompts，约61.8输出tokens/s；尚无完整repeat文件或正确率，不重启、不并发第二实验。旧资产下载保持中断，部分Apple权重保留，待当前条件释放锁再恢复。

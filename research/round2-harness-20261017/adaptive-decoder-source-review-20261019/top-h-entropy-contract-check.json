@@ -1,0 +1,13 @@
+{
+  "software_only": true,
+  "source_commit": "8b94d62b238ed62793627f4a2556d90188560854",
+  "paper": "https://arxiv.org/html/2509.02510v2#S5",
+  "input": "128 equal logits, T1, author default top_n100 and alpha0.4",
+  "executed_retained_tokens": 39,
+  "input_entropy_bits": 7.0,
+  "selected_normalized_entropy_bits": 5.285402218862249,
+  "paper_alpha_times_input_entropy_bits": 2.8000000000000003,
+  "satisfies_paper_ratio_constraint": false,
+  "maximum_uniform_support_under_paper_constraint": 6,
+  "scope": "Counterexample for the captured repository processor versus paper v2 Eq2/Algorithm1; not a model performance result or a claim about every Top-H implementation."
+}

@@ -1,0 +1,10 @@
+{
+  "stopped": [
+    {
+      "pid": 56258,
+      "pgid": 56258,
+      "command": "/opt/conda/bin/python -u /root/rivermind-data/spectrum-harness/project/research-state/mbpp-format-sensitivity-20261018/runner.py ",
+      "reason": "Explicit user stop: replace custom evaluator with upstream implementation"
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+diff --git a/.codex-plugin/plugin.json b/.codex-plugin/plugin.json
+index dd7c968..76e21d8 100644
+--- a/.codex-plugin/plugin.json
++++ b/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.16",
++  "version": "0.4.0-harness.17",
+   "description": "Harness manages long research tasks; GPT autonomously designs, runs and revises B/C/D/E experiments.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/EDITION.json b/EDITION.json
+index 713ae15..6fc5a12 100644
+--- a/EDITION.json
++++ b/EDITION.json
+@@ -3,7 +3,7 @@
+   "branch": "autonomous-rsi-harness",
+   "plugin_name": "research-autopilot",
+   "display_name": "Autopilot Work Harness",
+-  "plugin_version": "0.4.0-harness.16",
++  "plugin_version": "0.4.0-harness.17",
+   "round_selection": "agent",
+   "authoring_host": "local_agent",
+   "execution_host": "local_agent",
+diff --git a/EXPORT_MANIFEST.json b/EXPORT_MANIFEST.json
+index 0821888..0a5090c 100644
+--- a/EXPORT_MANIFEST.json
++++ b/EXPORT_MANIFEST.json
+@@ -1,5 +1,5 @@
+ {
+-  "version": "0.4.0-harness.16",
++  "version": "0.4.0-harness.17",
+   "active_entrypoint": "skills/research-autopilot/SKILL.md",
+   "phase_guides": [
+     "skills/research-autopilot/references/prompt-B.md",
+diff --git a/SOURCE_PUBLICATION.json b/SOURCE_PUBLICATION.json
+index 724c5e4..16b6ffa 100644
+--- a/SOURCE_PUBLICATION.json
++++ b/SOURCE_PUBLICATION.json
+@@ -1,8 +1,8 @@
+ {
+-  "version": "0.4.0-harness.16",
+-  "base_commit": "3a025585f42108d6bf712bd127df1d82a5e032c2",
+-  "change": "Restore Harness supervision with direct experiment sessions; other-stage routes retained",
+-  "runtime_changed": true,
++  "version": "0.4.0-harness.17",
++  "base_commit": "229993937586506bf76f5a14c5e0df0f91dbc6b4",
++  "change": "Clarify upstream implementation and evaluation guidance across BCDE",
++  "runtime_changed": false,
+   "tests_run": false,
+   "historical_publication": "docs/legacy-harness-014/SOURCE_PUBLICATION.json"
+ }
+diff --git a/plugin.json b/plugin.json
+index 257726b..92def2c 100644
+--- a/plugin.json
++++ b/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.16",
++  "version": "0.4.0-harness.17",
+   "description": "Harness manages long research tasks; GPT autonomously designs, runs and revises B/C/D/E experiments.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/skills/research-autopilot/SKILL.md b/skills/research-autopilot/SKILL.md
+index 5903ca7..8d0807a 100644
+--- a/skills/research-autopilot/SKILL.md
++++ b/skills/research-autopilot/SKILL.md
+@@ -5,7 +5,7 @@ description: Use for sustained research with GPT directly reading papers and cod
+ 
+ # Research Autopilot — prompt-guided research
+ 
+-Version: `0.4.0-harness.16`. Keep Work Harness for long-task supervision, persistent memory, pause/resume, automatic continuation and interruption recovery. GPT performs the scientific work. B/C/D/E experiment design and execution use the prompt guidance below rather than strict output/admission contracts. Installing a plugin alone does not start the supervisor.
++Version: `0.4.0-harness.17`. Keep Work Harness for long-task supervision, persistent memory, pause/resume, automatic continuation and interruption recovery. GPT performs the scientific work. B/C/D/E experiment design and execution use the prompt guidance below rather than strict output/admission contracts. Installing a plugin alone does not start the supervisor.
+ 
+ The restored `program_cli` supports an explicitly adopted `experiment_autonomy` transport for B/C/D/E. It reuses the existing single-consumer lock, heartbeat and program state, runs one GPT session, retains its ordinary prose/logs, and resumes the same conversation. No experiment proposal, mailbox or response schema is involved. Existing other-stage controller paths, prior accepted history and source files remain intact. Do not replace the whole Harness or migrate unrelated projects when relaxing experimental work.
+ 
+@@ -22,6 +22,10 @@ Read the relevant guidance as the scientific question requires:
+ 
+ B/C/D/E describe kinds of research, not fixed steps. Retrieve missing knowledge through B at any time. Let real experiments change the question, implementation, method or evaluation. Harness keeps a single sustained agent performing this loop and preserves progress across turns. Move into wider E evaluation when the mechanism and evidence justify it; revisit earlier work when they do not. Scientific criticism is part of thinking and analysis, not a compulsory reviewer service or software approval.
+ 
++## Official implementation and evaluation
++
++When using existing methods/evaluators or questioning code and results, consult the applicable author-maintained or author-recommended implementation and settings first. Read [official-code guidance](references/prompt-upstream-code.md) for B/C/D/E evaluation and code diagnosis. Reuse traceable source memory; distinguish upstream code, local adaptations and third-party evaluators. Establish whether a discrepancy is an implementation/evaluation artifact before calling it a model failure or research gap. Adapt and debug autonomously on the authorized host; this adds no execution admission or response format.
++
+ ## Execution freedom
+ 
+ Design, code, install needed dependencies, run, debug and analyze within the user's existing authorization. Prefer relevant official code and native evaluation; adapt them on the actual execution host. Practical scripts, notebooks and configuration files are chosen to suit the tools. A single baseline may be measured or scored independently; comparisons are needed to support comparative claims, not to authorize a command.
+diff --git a/skills/research-autopilot/assets/harness-policy.json b/skills/research-autopilot/assets/harness-policy.json
+index 92a123b..b0ef5d6 100644
+--- a/skills/research-autopilot/assets/harness-policy.json
++++ b/skills/research-autopilot/assets/harness-policy.json
+@@ -1,5 +1,5 @@
+ {
+   "edition": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.16",
++  "version": "0.4.0-harness.17",
+   "execution_mode": "supervised_experiment_autonomy"
+ }
+diff --git a/skills/research-autopilot/references/prompt-B.md b/skills/research-autopilot/references/prompt-B.md
+index 61e37ea..602da99 100644
+--- a/skills/research-autopilot/references/prompt-B.md
++++ b/skills/research-autopilot/references/prompt-B.md
+@@ -1,5 +1,7 @@
+ # B — 文献、代码与研究记忆
+ 
++遇到已有代码、evaluation 或结果疑点，按[官方实现优先](prompt-upstream-code.md)核对适用的上游代码和设置，并把可追溯来源写回记忆；已有源码依据足够时直接复用。
++
+ 围绕当前科学问题理解领域：最接近的论文怎么定义问题、默认哪些条件，官方代码实际做了什么，强方法和简单替代方案怎样比较。结合数学推导、实现细节和已有结果判断哪些解释值得检验。搜索范围由问题决定，不按固定论文数或表格字段凑材料。
+ 
+ 先读已有项目手册和来源记录，判断它们是否足以回答眼前的问题；不足、过时或互相矛盾时再搜索论文、官方代码、benchmark、模型和数据集。用户已授权的社区/小红书讨论可提供失败案例与实现 tricks；记录实际看到的内容，回到主来源或实验核验，不能把讨论热度当科学证据。
+diff --git a/skills/research-autopilot/references/prompt-C.md b/skills/research-autopilot/references/prompt-C.md
+index d62e620..95bf850 100644
+--- a/skills/research-autopilot/references/prompt-C.md
++++ b/skills/research-autopilot/references/prompt-C.md
+@@ -1,5 +1,7 @@
+ # C — 条件下的真实失效与不必要依赖
+ 
++诊断失效前按[官方实现优先](prompt-upstream-code.md)核对并按需复现相关上游行为，区分模型局限、条件变化和本地适配/评分伪影。旧项目代码产生的低分本身不能证明研究 gap。
++
+ 目的：在具体、值得研究的环境、约束或任务条件下，找出现有强方法的真实局限，或某条可以放宽的计算/信息依赖。不要预设原方法一定失败；边界可以是成本、延迟、质量、鲁棒性、信息保存或更新能力。
+ 
+ 从核心论文和官方代码出发，结合 B 的知识提出数学解释和可证伪预测。选择能区分解释的现有 benchmark、模型、数据和 evaluation，写代码并实际运行。可以从一个有辨识力的模型/数据集开始，但不能用随意玩具例子替代相关任务，不能因为已有缓存就默认选择小模型。
+diff --git a/skills/research-autopilot/references/prompt-D.md b/skills/research-autopilot/references/prompt-D.md
+index 7a2f6de..660b260 100644
+--- a/skills/research-autopilot/references/prompt-D.md
++++ b/skills/research-autopilot/references/prompt-D.md
+@@ -1,5 +1,7 @@
+ # D — 数学机制与可执行的新方法
+ 
++局部实验也遵循[官方实现优先](prompt-upstream-code.md)：从相关上游实现构造方法，在可比较的原生评测下检验机制；出现异常时先核对源码与协议，再决定修改方法或评测。
++
+ 根据 C 的条件、失效或不必要依赖构造方法。说明原结构的哪条条件可以放宽，利用了什么数学/数据规律，新信息流、状态更新或计算组织为何有效，以及它会引入什么新问题。区分有条件推导、直觉和需要实测的预测，不要求每个想法都有完整定理。
+ 
+ 把数学对象落到真实代码和可测量行为：它改变哪个算子、状态、目标或决策；哪些干预能验证机制；什么结果会说明机制错误。复用相关论文代码，允许在实际 GPU 上改实现、安装依赖和 debug，实验反馈也可以迫使公式与方法重写。
+diff --git a/skills/research-autopilot/references/prompt-E.md b/skills/research-autopilot/references/prompt-E.md
+index ab17492..d52e5d2 100644
+--- a/skills/research-autopilot/references/prompt-E.md
++++ b/skills/research-autopilot/references/prompt-E.md
+@@ -1,5 +1,7 @@
+ # E — 广泛、公平且可复现的正式实验
+ 
++正式评测遵循[官方实现优先](prompt-upstream-code.md)：优先用作者发布或推荐的 evaluator，记录实际版本、协议和适配差异。协议改变时判断旧输出是否兼容，不把自写评分器或不同任务集合的结果混称为官方结果。
++
+ 围绕拟提出的结论扩大验证：选择相关且有代表性的模型规模、任务、数据集、条件和强基线，覆盖机制有效及失效的边界。广度服务于结论，不是 benchmark 越多越好。C/D 的局部成功不代替 E 的公平比较与确认。
+ 
+ 明确比较所允许的信息、训练数据、参数、计算、调参、搜索/调用和推理预算。解释原论文设置的继承与必要修改。根据要回答的问题选择等成本或质量—成本曲线等比较方式，不能为了省事沿用弱基线。采用任务适合的原生指标，检查适配误差和数据泄漏。
+diff --git a/skills/research-autopilot/references/prompt-upstream-code.md b/skills/research-autopilot/references/prompt-upstream-code.md
+new file mode 100644
+index 0000000..f962a26
+--- /dev/null
++++ b/skills/research-autopilot/references/prompt-upstream-code.md
+@@ -0,0 +1,11 @@
++# 官方实现优先：评测与代码疑点
++
++B/C/D/E 中使用已有方法、benchmark 或评测代码，以及对已有代码、结果或实现结论产生疑问时，先查对应论文作者、模型作者或 benchmark 维护者发布或明确推荐的代码、文档和设置。项目旧代码、缓存配置和社区实现都需要核对；小红书等讨论是寻找线索的入口，不能替代上游依据。已有记忆包含适用且可追溯的源码版本时可直接复用，不必每次重新搜索。
++
++按疑点阅读和必要时运行官方实现，核对相关的数据版本与划分、任务集合、prompt/chat template、生成参数与截断、答案提取/清洗、测试执行、超时和指标计算。记录来源与实际 commit/tag、关键设置和本地修改即可，不要求固定表格或报告格式。官方数据、模型作者采用的第三方 evaluator、作者自己的 evaluator 应分别说明，不能把“使用官方数据的自写评分器”称为官方评测。
++
++优先直接使用适用的上游 evaluator 和原生指标。允许在授权 GPU 上自主安装、适配硬件/依赖、调 batch/并发并 debug；检查这些修改是否影响科学含义。不要悄悄重写提取或评分语义来让结果通过。如果疑似上游有 bug，定位问题并做针对性复现，保留上游原行为与修复差异；官方实现也可以被证据推翻。
++
++官方实现不存在、不可访问或与研究条件不兼容时，明确证据缺口和替代来源，采用有依据的最小适配继续诊断。未经核对的结果标为诊断性结果，不能据此断言模型失效、基线弱或新方法优越。涉及评分或协议变化时，保留旧输出和结果版本；只在输入、任务集合和协议确实兼容时复用生成结果，否则重新生成，不混合不同协议的数字。
++
++C 用这些检查区分真实失效与实现/评测伪影；D 的局部机制实验沿用可比较的上游评测；E 扩大验证时说明继承和修改的设置。证据不足就回 B 补来源或重设计实验。以上是研究判断和 debug 指导，不增加 Harness 数据库准入、审批、强制输出 schema 或每个命令的执行门槛。

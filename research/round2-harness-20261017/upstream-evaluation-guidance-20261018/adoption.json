@@ -1,0 +1,17 @@
+{
+  "source_revision": "3ea80875e492787217e4c1eb112bcbf4356be9dd",
+  "policy": {
+    "edition": "autonomous-rsi-harness",
+    "version": "0.4.0-harness.17",
+    "source_revision": "3ea80875e492787217e4c1eb112bcbf4356be9dd",
+    "skill_digest": "55b39db3968f6e90ad10cc10a1d2f5dde4fdff5f2621e4f4d8faabca43123a58"
+  },
+  "revision": 427,
+  "phase": "paused",
+  "instruction_ref": {
+    "path": "research-state/upstream-evaluation-handoff-20261018.md",
+    "sha256": "400fd096ee5c9151c71b31794da29cfd796fa1ec1a96152c5bbc884f0edbae3a"
+  },
+  "runtime_code_changed": false,
+  "experiments_started": false
+}

@@ -1,0 +1,46 @@
+{
+  "removed_active_custom_evaluator_files": [
+    {
+      "path": "research-state/C-phase-e1a87/mbpp_adapter.py",
+      "sha256": "181f8ab753b7448af41554922baf77187a4dece9dcb2efe187acb2d8b46c7d0a"
+    },
+    {
+      "path": "research-state/C-phase-e1a87/mbpp_adapter_v2.py",
+      "sha256": "18422bafeb9d744ddec055cbfaab5310dc72a86d7885df7b72c18c713200191b"
+    },
+    {
+      "path": "research-state/C-phase-e1a87/mbpp_adapter_v3.py",
+      "sha256": "adadf2d51ee025a2650a4aa28f7418da176e0814df5a7a2fb49ded909fa58fd2"
+    },
+    {
+      "path": "research-state/C-phase-e1a87/mbpp_adapter_v4.py",
+      "sha256": "1a3be872d1abac4988fbe49cecbc426bedd69c8ee46efe08706835bc23eec5c0"
+    },
+    {
+      "path": "research-state/C-phase-e1a87/scorer_cli.py",
+      "sha256": "09f75df40b0c21f6e0782ae80b699eb418c499e34f210ee795d9bd0ca4abc2cd"
+    },
+    {
+      "path": "research-state/C-phase-e1a87/scorer_cli_v4.py",
+      "sha256": "c910a98684c2f902e1559060698e8b8d126a93ae60bcfd899845a776e41c6d7f"
+    },
+    {
+      "path": "research-state/C-phase-e1a87/runtime_tree.py",
+      "sha256": "e955a720901fae78b6e7f3161a1a8d8adbfb405d168b0746b6e1405274622b31"
+    },
+    {
+      "path": "research-state/mbpp-format-sensitivity-20261018.py",
+      "sha256": "2a8dfa8ae2a19afd965df23d51da278d2b161d81759ab8e6dd01417d83639825"
+    },
+    {
+      "path": "research-state/mbpp-original-scoring-20261018/runner.py",
+      "sha256": "b55c898710ff095f72cef969a6f1cf6f33f1c41d9fdb82fbba5573ca2989edda"
+    },
+    {
+      "path": "research-state/mbpp-format-sensitivity-20261018/runner.py",
+      "sha256": "5f4cf8a1c9ea528efffa7f78d6f9a9cf0852764c2b02e8bf3945870855b0828e"
+    }
+  ],
+  "raw_predictions_and_results_preserved": true,
+  "scope": "Current round custom evaluator and launchers; historical controller archives and original training code retained"
+}

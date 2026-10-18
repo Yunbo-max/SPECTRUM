@@ -1,0 +1,1932 @@
+diff --git a/.codex-plugin/plugin.json b/.codex-plugin/plugin.json
+index 8cbad04..c04c716 100644
+--- a/.codex-plugin/plugin.json
++++ b/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.13",
++  "version": "0.4.0-harness.14",
+   "description": "Run mathematical diagnosis and code experiments through reviewed B/C/D research loops, then verified scale-up.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/EDITION.json b/EDITION.json
+index 7c6dc3e..088d7ce 100644
+--- a/EDITION.json
++++ b/EDITION.json
+@@ -3,7 +3,7 @@
+   "branch": "autonomous-rsi-harness",
+   "plugin_name": "research-autopilot",
+   "display_name": "Autopilot Work Harness 10.17",
+-  "plugin_version": "0.4.0-harness.13",
++  "plugin_version": "0.4.0-harness.14",
+   "round_selection": "machine",
+   "authoring_host": "local_agent",
+   "execution_host": "local_agent",
+diff --git a/EXPORT_MANIFEST.json b/EXPORT_MANIFEST.json
+index 4e7353d..bc3ea83 100644
+--- a/EXPORT_MANIFEST.json
++++ b/EXPORT_MANIFEST.json
+@@ -47,14 +47,14 @@
+     "skills/designing-pipeline-figures/references/style-catalog.md": "ad4139c6fc721237c7b6cdd0c33c01f88a7bc34dd2c350c1cbd8f409c3fbc009",
+     "skills/designing-pipeline-figures/references/worked-example.md": "fb67b4b1fc6003d18f162cb49cf070f474cea1d10bc881da9f8acc84e5b571a9",
+     "skills/designing-pipeline-figures/scripts/validate_drawio.py": "dc8409ad3041aefe1184e40b57854d3745a50667736e0200ae36427e61850ae1",
+-    "skills/research-autopilot/SKILL.md": "804965d51a110fb7fbe0f8000c8d6fe8389c0898da1ec83806e6ced0e9112833",
++    "skills/research-autopilot/SKILL.md": "c78b534078f28478a630961dfe8edffc38295c9487e77b9779fc5f8696d91066",
+     "skills/research-autopilot/agents/openai.yaml": "8b11f2dbdaddfade9021fe29ab6c48d31a6c6e61f2d0ff1e100693523ca4e8e5",
+     "skills/research-autopilot/assets/examples/object-first/README.md": "26f8a08c68525d0c9cc5bce0b2009c74be71bf737f8bf8cc7303ac435ceaa1d8",
+     "skills/research-autopilot/assets/examples/object-first/setup.py": "1fbc84b25add3a323d5c4f6e17ec327d34ae403154a179b6c0e6417861765e8d",
+-    "skills/research-autopilot/assets/harness-policy.json": "87e25bc7a6f71d5e0ee4fc91791add071a2be24036ae813d4c4d0ce6e48aef94",
++    "skills/research-autopilot/assets/harness-policy.json": "89d37544498fbbc65c10a7dd88c690c2dd87d243fed8e5e92ec5d47e9804d5b9",
+     "skills/research-autopilot/assets/icon.svg": "83edb7ff1fcb54461e60f8bab4147bf6e24b4f9bb9e5d29283c614f40b811039",
+     "skills/research-autopilot/assets/licenses/scholar-skill-MIT.txt": "c115f24608ca19d44d8ba103ae52dff3dfcd4639ba548068a897f076bf5b8758",
+-    "skills/research-autopilot/assets/research-nodes.json": "af74d123983d58893814778250de73ca98b21facd6dd0630f24aa6162deb2614",
++    "skills/research-autopilot/assets/research-nodes.json": "6b6f32d75aa7efc4a672a074516b651476d6dcdce9f4a721b6b7b66b117cbfc6",
+     "skills/research-autopilot/assets/runtime-guidance.json": "70889d6bb4cb51abd9b97d482a96d7cfe3cf7c2b273cb020755845babf962b15",
+     "skills/research-autopilot/assets/skill-sequence-cd-v1.json": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+     "skills/research-autopilot/assets/skill-sequence.json": "bff5e470610e016dc798cffa56cc7bdc62fdb21901835444aba9df34f4a9d971",
+@@ -82,7 +82,7 @@
+     "skills/research-autopilot/references/canonical-literature.md": "4c1a8f13dcdd482c040c4725f31974c4d8981a00d3da609740bc68aaaa99b09a",
+     "skills/research-autopilot/references/capability-source-catalog.md": "2efc74bca2034b06cf507fca76dea08820487a4e98c17ee38298574c519a421f",
+     "skills/research-autopilot/references/cd-math-code-loop.md": "32a4cb49b6cdbc1bc85b28929122cdd38ba9c86edfdb88cfcde04659fe8b38a3",
+-    "skills/research-autopilot/references/cd-runtime-contracts.md": "0ad525efdd639c6c4d8e89d30a10569c573b651a332f0cf18c1385f9302166a9",
++    "skills/research-autopilot/references/cd-runtime-contracts.md": "3789e2f8cb4d853c382dc3bcb2f3377dcdcc6e4ca5de67ff2c4ff54fc67e5162",
+     "skills/research-autopilot/references/chat-control-records.md": "930ab73a3dbf3b66d2f02a593b727278deade614a3a49be99c890a614606336a",
+     "skills/research-autopilot/references/chat-cycle-records.md": "9e21fbf73d14393ce56505fe4efdd5bee81e68aa92d8f6502a47fb433d0a6ecd",
+     "skills/research-autopilot/references/chat-execution.md": "221a64ff57ca9464e5b564c3b7fe2a5b3056bd04c9270debe7728cdbbded61ba",
+@@ -94,7 +94,7 @@
+     "skills/research-autopilot/references/dependency-resource-scheduling.md": "b5944b3c42d6b7bc33fb77fe9364956a6042cd43edff268666e02669f3f8a478",
+     "skills/research-autopilot/references/development-and-execution.md": "8b3dd620c7295e7c8d6bda755d88b108633801ee5f1117f59ceaf5d2b0037efb",
+     "skills/research-autopilot/references/editable-writing-artifacts.md": "4b8d8eb55089fddc42559e326b4860ec1cd80b498988c9494504ad132ca20bf1",
+-    "skills/research-autopilot/references/edition-policy.md": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b",
++    "skills/research-autopilot/references/edition-policy.md": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447",
+     "skills/research-autopilot/references/evaluation-and-assets.md": "973e306f649b2cedb8aa693c4b32035c435c45f2a726d790020d21172e47527e",
+     "skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md": "ff85cd0da0158c8060eeb716d459572289a2e7adfc7e1ccde61aca4863cc80ec",
+     "skills/research-autopilot/references/execution-and-handoffs.md": "e161aa072114df6aebb9947e55636d744cfbc69a88ca6927d4906cb6df4f4ac0",
+@@ -247,7 +247,7 @@
+     "skills/research-autopilot/references/release-and-promotion.md": "a233dd3d9ca6c5c30b4fde5a91b0d597fc2fff355cfc9229567373601d8ae61e",
+     "skills/research-autopilot/references/repository-round-trips.md": "3166fa9b612f593d0a0783843048d7f644750990287822dd7e1c1623c2fb0468",
+     "skills/research-autopilot/references/research-cycle.md": "2f109b446769975447da5e73bf8e3d729f545e856256a35f87bf659e18fa2cfd",
+-    "skills/research-autopilot/references/research-harness.md": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47",
++    "skills/research-autopilot/references/research-harness.md": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed",
+     "skills/research-autopilot/references/research-policy.md": "abec8588b84f368d3dcc08806a263d1734088404f40df78f6d4cf013a48f6d44",
+     "skills/research-autopilot/references/research-quality-bar.md": "5289770268053ec384d1635c01b5a6253f0ee1c31696580744e72c86477b3586",
+     "skills/research-autopilot/references/research-reasoning.md": "39f63fb6e7224b72d4282f6332e14e17d23a53d6f4f7772e62c5d1454629303e",
+@@ -306,7 +306,7 @@
+     "skills/research-autopilot/scripts/_evidence.py": "e509f50f617484ae15c1f8e8c6aae112ec56668b1de699c9a5756edae5d050ea",
+     "skills/research-autopilot/scripts/_importance.py": "f8a80d9006c06f15915f0f9da1cdcfeb6f4e7fcec11efacfc9450dbee9fd87d9",
+     "skills/research-autopilot/scripts/_literature.py": "0bc9044bdf96b20c08a9d57e9a26aa34b2464b679ff22aa3e2abc7ca14df1cee",
+-    "skills/research-autopilot/scripts/_native_eval.py": "4105a8d20000f289080290291cb64e4f6c9952a5cae1cc99c2631034364af5dc",
++    "skills/research-autopilot/scripts/_native_eval.py": "e5890771dfd3ba8f0cb23b00ec2b4b397693e8cf024a62b9467c4df8b2b1655a",
+     "skills/research-autopilot/scripts/_process_guard.py": "0c38bf499334ab72de229f750ca1191a16e594f9a630a726a9baad6f6fb14a79",
+     "skills/research-autopilot/scripts/_route_visuals.py": "1e8922b1bad1fcb4a047e57f2e33620e4c7cd11c7681b85090949087b6f6ee6d",
+     "skills/research-autopilot/scripts/_safety.py": "2f1750ed17e0fb87663c7de43b845bc82eec05928ffef5ee43a4db8bec3b24a8",
+@@ -325,7 +325,7 @@
+     "skills/research-autopilot/scripts/host_resources.py": "a56b8e17f53ffaa2ed7c947948a068437e5be6b85e6c898f5c6fa6f427acc3a6",
+     "skills/research-autopilot/scripts/init_project.py": "cf4b0dcb092eb913d178e9164abcf64f9e27d76f83ccaaae7837c6b6eaf58dee",
+     "skills/research-autopilot/scripts/migrate_state.py": "90da181591420ef8ee95587d1e682d85706e891105fda94121303f403924bf7b",
+-    "skills/research-autopilot/scripts/native_stages.py": "c325309622c79e924d16410be95224e65d8c695ab528b59aabbd007d5873bd50",
++    "skills/research-autopilot/scripts/native_stages.py": "83bf01f6dbe9349d53e4a33519e519177fcaa8b3682faa08e7ace02bdcb780c6",
+     "skills/research-autopilot/scripts/redact_artifact.py": "870cd8b1dcd95709824158b33bcea92a4798b0c1c6456b98346cf873ed3db7e4",
+     "skills/research-autopilot/scripts/replay_state.py": "2abc64627462699d0834d9ec377015f0ea70e35f8b9b1809f31e68b49a75adf3",
+     "skills/research-autopilot/scripts/research_cd.py": "1a525000ecad581be4a3eabdaa06ec2d035a9cccef5a6da43a5c7d9a36ca8c56",
+@@ -448,7 +448,7 @@
+     "skills/writing-top-tier-papers/references/visual-orchestration.md": "a2a7d2acd566a19170aee6c997e206ad7b80f4e758e3a58d9d1ffc5779585f23"
+   },
+   "source_note": "Original per-skill revisions and exported_at retain export ancestry. Shared scientific helpers are imported from the source recorded in SOURCE_PUBLICATION.json. Exact delivered bytes are pinned below; no installed or live-project parity is asserted.",
+-  "research_skill_digest": "fa932d66078a2b88190678d3ac2dc77b103b3bc37290a8c06ea2656c7e012162",
++  "research_skill_digest": "304da8648e362f263f92a1a95232390427e8f7b88ae949c94fb1635750a26732",
+   "runtime_source_revision": "80d99dfd4b6d44ca51c2fb13239334fc08e6a69d",
+   "runtime_files": {
+     "docs/AUTONOMOUS.zh-CN.md": "0665ef54169aa4453ae6ba1f5dbda9a914333ce8648666ec0970c356522f39f8",
+@@ -518,6 +518,7 @@
+     "tests/runtime/test_cli.py": "0072f975d8dca5203e458d34b0ad3b1a93c420071630f017029a77ba076c66f1",
+     "tests/runtime/test_command_receipt_preflight.py": "27344c1f5d9b365f4c6bc92bc5a682a89da87efb8c02484c9fe8a97cd271a9bb",
+     "tests/runtime/test_controller.py": "70effb6c2a1273bcf860ec366a51d4b33901b97acbb0230b51c653b1bbb9b9dc",
++    "tests/runtime/test_export_metadata.py": "44613728e4403a0f8c00b78f041aa309226e84251d243c1cc90dff9388c47032",
+     "tests/runtime/test_gpu_intake_guidance.py": "4140b361632a945b172c34c89d7e3f2ec045021610dc48a1a5ac9ccae03b5edb",
+     "tests/runtime/test_gpu_preflight.py": "44fc43c7338166f2065bb0cfc2f6183f71c2ebe3ad76606883679227b1f387cb",
+     "tests/runtime/test_mcp.py": "f07b51c5a345d939545e6dd774772d09708afb4c6fe38aac6ec4502c9765baf1",
+@@ -538,7 +539,7 @@
+   "public_baseline_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+   "variant": {
+     "name": "autonomous-rsi-harness",
+-    "version": "0.4.0-harness.13",
++    "version": "0.4.0-harness.14",
+     "base_main_revision": "658a39f3f32bc6bddc6a27d7e845773964c8c962",
+     "personal_skill_updated": false,
+     "source_kind": "derived_repository_branch"
+@@ -546,7 +547,7 @@
+   "repository_update": {
+     "feature": "deterministic-autopilot-skill-loop",
+     "branch": "autonomous-rsi-harness",
+-    "base_repository_revision": "7df65f88d1bc0eaa5ade738f5c2f6b3d8222622b",
++    "base_repository_revision": "a192921a695f9fabfd11060880587dd65aed1bfd",
+     "personal_skill_updated": false,
+     "scope": "repository source; installation and live continuation require separate receipts"
+   }
+diff --git a/plugin.json b/plugin.json
+index 7fbbf86..2d1690a 100644
+--- a/plugin.json
++++ b/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.13",
++  "version": "0.4.0-harness.14",
+   "description": "Run mathematical diagnosis and code experiments through reviewed B/C/D research loops, then verified scale-up.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/skills/research-autopilot/SKILL.md b/skills/research-autopilot/SKILL.md
+index 998df0f..8582c8d 100644
+--- a/skills/research-autopilot/SKILL.md
++++ b/skills/research-autopilot/SKILL.md
+@@ -161,7 +161,7 @@ Read [edition-policy.md](references/edition-policy.md) and
+ [round-continuation.md](references/round-continuation.md) and
+ [resource-queue.md](references/resource-queue.md) first. They govern
+ decision ownership, execution host and continuation across every module below.
+-Version: `0.4.0-harness.13`; branch: `autonomous-rsi-harness`.
++Version: `0.4.0-harness.14`; branch: `autonomous-rsi-harness`.
+ Keep the current Codex or other supported local agent. This fifth Work-derived
+ edition adds a persistent whole-goal program with fixed Skill order: the
+ current-step worker, independently executed review, v4 decision admission,
+diff --git a/skills/research-autopilot/assets/harness-policy.json b/skills/research-autopilot/assets/harness-policy.json
+index f83461f..1b5eace 100644
+--- a/skills/research-autopilot/assets/harness-policy.json
++++ b/skills/research-autopilot/assets/harness-policy.json
+@@ -1,4 +1,4 @@
+ {
+   "edition": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.13"
++  "version": "0.4.0-harness.14"
+ }
+diff --git a/skills/research-autopilot/assets/research-nodes.json b/skills/research-autopilot/assets/research-nodes.json
+index c27ba09..c056b01 100644
+--- a/skills/research-autopilot/assets/research-nodes.json
++++ b/skills/research-autopilot/assets/research-nodes.json
+@@ -726,7 +726,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -771,7 +771,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -1566,7 +1566,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -1611,7 +1611,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -2951,7 +2951,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -2996,7 +2996,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-root",
+@@ -3875,7 +3875,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -3920,7 +3920,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -5327,7 +5327,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5372,7 +5372,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-human-ai-supervision",
+@@ -5451,7 +5451,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5496,7 +5496,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -6458,7 +6458,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6503,7 +6503,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -6710,7 +6710,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6755,7 +6755,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -6879,7 +6879,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6924,7 +6924,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -7145,7 +7145,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7190,7 +7190,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7406,7 +7406,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7451,7 +7451,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7745,7 +7745,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7790,7 +7790,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -8124,7 +8124,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8169,7 +8169,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -8821,7 +8821,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8866,7 +8866,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -9125,7 +9125,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9170,7 +9170,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -9684,7 +9684,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9729,7 +9729,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10178,7 +10178,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10223,7 +10223,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10797,7 +10797,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10842,7 +10842,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -10941,7 +10941,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10986,7 +10986,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -11095,7 +11095,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -11140,7 +11140,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -12598,7 +12598,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -12643,7 +12643,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -13368,7 +13368,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -13413,7 +13413,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -14596,7 +14596,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14641,7 +14641,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-collision-audit",
+@@ -14760,7 +14760,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14805,7 +14805,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -14939,7 +14939,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14984,7 +14984,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -15869,7 +15869,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -15914,7 +15914,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -16829,7 +16829,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -16874,7 +16874,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -17328,7 +17328,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17373,7 +17373,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17507,7 +17507,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17552,7 +17552,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17681,7 +17681,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17726,7 +17726,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -18298,7 +18298,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18343,7 +18343,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -18540,7 +18540,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18585,7 +18585,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -18833,7 +18833,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18878,7 +18878,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -19387,7 +19387,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19432,7 +19432,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -19576,7 +19576,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19621,7 +19621,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -21327,7 +21327,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -21372,7 +21372,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22265,7 +22265,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22310,7 +22310,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22457,7 +22457,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22502,7 +22502,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -23549,7 +23549,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -23594,7 +23594,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -24275,7 +24275,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24320,7 +24320,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -25139,7 +25139,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -25184,7 +25184,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -25732,7 +25732,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -25777,7 +25777,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-host-adapters",
+@@ -27368,7 +27368,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -27413,7 +27413,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -28612,7 +28612,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -28657,7 +28657,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -29757,7 +29757,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -29802,7 +29802,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30775,7 +30775,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30820,7 +30820,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30974,7 +30974,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31019,7 +31019,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31148,7 +31148,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31193,7 +31193,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31337,7 +31337,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31382,7 +31382,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31516,7 +31516,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31561,7 +31561,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31937,7 +31937,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31982,7 +31982,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -32543,7 +32543,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32588,7 +32588,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -32780,7 +32780,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32825,7 +32825,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -33002,7 +33002,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33047,7 +33047,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -33244,7 +33244,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33289,7 +33289,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -33536,7 +33536,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33581,7 +33581,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -33793,7 +33793,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33838,7 +33838,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -34070,7 +34070,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34115,7 +34115,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -34312,7 +34312,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34357,7 +34357,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-output-contract",
+@@ -34761,7 +34761,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34806,7 +34806,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "p-root",
+@@ -34970,7 +34970,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35015,7 +35015,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "f-root",
+@@ -35247,7 +35247,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35292,7 +35292,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -35524,7 +35524,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35569,7 +35569,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -35781,7 +35781,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35826,7 +35826,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -35960,7 +35960,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36005,7 +36005,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -36142,7 +36142,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36187,7 +36187,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -36407,7 +36407,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36452,7 +36452,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-root",
+@@ -36659,7 +36659,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36704,7 +36704,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -36990,7 +36990,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -37035,7 +37035,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -38129,7 +38129,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38174,7 +38174,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -38771,7 +38771,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38816,7 +38816,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -38895,7 +38895,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38940,7 +38940,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-research-websites",
+@@ -39084,7 +39084,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39129,7 +39129,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -39410,7 +39410,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39455,7 +39455,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-research-websites",
+@@ -39554,7 +39554,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39599,7 +39599,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -39728,7 +39728,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39773,7 +39773,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39872,7 +39872,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39917,7 +39917,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -40016,7 +40016,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40061,7 +40061,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -40160,7 +40160,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40205,7 +40205,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -40456,7 +40456,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40501,7 +40501,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -40790,7 +40790,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40835,7 +40835,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -41246,7 +41246,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41291,7 +41291,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -41886,7 +41886,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41931,7 +41931,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-visual-map-maintenance",
+@@ -42205,7 +42205,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++     "sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -42250,7 +42250,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++     "sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+     },
+     {
+      "source": "r-execution-and-handoffs",
+@@ -44703,7 +44703,7 @@
+   "r-edition-policy": {
+    "skill": "research-autopilot",
+    "path": "references/edition-policy.md",
+-   "audit_file_sha256": "f7f13fc1161ec6755b82029d52513aa80f8905ec0a2df6b987f0bdfab2cbe55b"
++   "audit_file_sha256": "165426923826e04e203bcb741a066b9fed2787b8b039e4c2113a040857059447"
+   },
+   "r-round-continuation": {
+    "skill": "research-autopilot",
+@@ -44748,7 +44748,7 @@
+   "r-research-harness": {
+    "skill": "research-autopilot",
+    "path": "references/research-harness.md",
+-   "audit_file_sha256": "d1da9b914286776ec776b88bdd8ef115e57242e7a21a0f2dc911effc968f2a47"
++   "audit_file_sha256": "f880dd4962286035a7fd5e3432c0a7874a377da413b49b3a5db5fb3399e0f0ed"
+   },
+   "r-skill-sequence": {
+    "skill": "research-autopilot",
+diff --git a/skills/research-autopilot/references/cd-runtime-contracts.md b/skills/research-autopilot/references/cd-runtime-contracts.md
+index d6ff1ca..2ee3b2c 100644
+--- a/skills/research-autopilot/references/cd-runtime-contracts.md
++++ b/skills/research-autopilot/references/cd-runtime-contracts.md
+@@ -182,7 +182,7 @@ with native_stage_program_ref pointing to the generation program and
+ native_stage_exports entries `{native_stage_ref,execution_bindings}` for each
+ actual export. Keep benchmark revision/split, sample/label/selection, metrics,
+ format, sampling, budget, contrasts, code/arm requirements and evaluation seeds
+-identical. Actual prediction outputs must still join their completed collected
++identical, except the narrow metadata completion described below. Actual prediction outputs must still join their completed collected
+ export run. Changed execution bindings or unscored prerequisite outputs cannot
+ close the gate. Full official/faithful/benchmark-adapter validation and real replay remain.
+ 
+@@ -222,3 +222,31 @@ code and actual GPU check evidence. This records provenance and permits executio
+ it does not certify semantic equivalence. The phase reviewer inspects the patch
+ and checks. Changed objectives, information access or method semantics require
+ a scientific revisit; ordinary launch/dependency compatibility need not reopen D.
++
++## Legacy export metadata completion
++
++When delayed scoring encounters incomplete legacy export metadata, keep the original
++program, stage, predictions and controller receipts immutable. A successor scored
++protocol still points to native_stage_program_ref and exact native_stage_exports.
++The matcher permits only directional completion of a manifest: preserve every old
++field, exact ordered sample IDs and predictions_per_sample; fill absent benchmark
++identity, tests, sampling and budget directly from the original generation contract.
++A missing denominator can be completed only with explicit denominator_rule=sample_count
++and denominator=len(original sample_ids). This rule supports sample-count metrics
++only; source-backed benchmark definition and actual scorer must independently agree
++on that unit. Existing conflicting or null metadata cannot be overwritten. Preserve
++unknown fields. No selected subset on either side may use this completion path.
++
++Correct a stale contrast baseline/treatment label only to its original arm.name,
++keeping all roles, arm names/revisions/implementation refs and controls unchanged.
++Other scientific comparison fields still match exactly. For legacy selection:null,
++the effective-manifest helper treats null as no selection; omit selection in the
++new scored contract to satisfy the existing object-only schema. Do not treat false,
++arrays or other invalid selection values as absent.
++
++This computes metadata compatibility, not authorization or scientific acceptance.
++The existing lineage verifier still binds original prediction bytes/path, exact
++role/group/seed, completed native controller receipts and retained archives. Full
++benchmark_adapter/official scorer verification, all samples and actual scoring
++remain required. Correct the successor definition/split manifest bindings too; do
++not edit old pins, regenerate outputs or claim software probes are model scores.
+diff --git a/skills/research-autopilot/references/edition-policy.md b/skills/research-autopilot/references/edition-policy.md
+index 461f4f9..9729856 100644
+--- a/skills/research-autopilot/references/edition-policy.md
++++ b/skills/research-autopilot/references/edition-policy.md
+@@ -23,7 +23,7 @@ Installation alone does not migrate a running project or change another edition.
+ 
+ This edition policy, skill-sequence.md, research-harness.md and round-continuation.md take precedence
+ over inherited routing, candidate quotas and round-end defaults throughout this package.
+-This checkout is autonomous-rsi-harness, version 0.4.0-harness.13: the fifth,
++This checkout is autonomous-rsi-harness, version 0.4.0-harness.14: the fifth,
+ Work-derived edition, keeping existing Codex and other local agents.
+ Scientific evidence requirements still apply to the actual claim.
+ 
+diff --git a/skills/research-autopilot/references/research-harness.md b/skills/research-autopilot/references/research-harness.md
+index c00d617..effe66e 100644
+--- a/skills/research-autopilot/references/research-harness.md
++++ b/skills/research-autopilot/references/research-harness.md
+@@ -35,7 +35,7 @@ Installation alone does not migrate a running project or change another edition.
+ 
+ Read this at startup, every actual agent invocation, after a terminal result, and
+ before reporting completion or unattended continuation. This is the fifth edition,
+-`autonomous-rsi-harness`, version `0.4.0-harness.13`. Preserve the original Work
++`autonomous-rsi-harness`, version `0.4.0-harness.14`. Preserve the original Work
+ scientific method and the user's existing Codex or other supported local agent.
+ 
+ ## What the harness adds
+diff --git a/skills/research-autopilot/scripts/_native_eval.py b/skills/research-autopilot/scripts/_native_eval.py
+index 24816c0..8e23b6e 100644
+--- a/skills/research-autopilot/scripts/_native_eval.py
++++ b/skills/research-autopilot/scripts/_native_eval.py
+@@ -57,7 +57,10 @@ def _number(value, code="NATIVE_METRIC_NOT_NUMERIC"):
+ 
+ def sample_manifest_ref(contract):
+     """The effective released sample manifest, including a frozen native subset."""
+-    return contract.get("selection", {}).get("selected_manifest_ref", contract["sample_manifest_ref"])
++    selection = contract.get("selection")
++    if selection is None: return contract["sample_manifest_ref"]
++    if not isinstance(selection, dict): C.fail("NATIVE_SELECTION_INVALID")
++    return selection.get("selected_manifest_ref", contract["sample_manifest_ref"])
+ 
+ 
+ def _samples(root, contract):
+diff --git a/skills/research-autopilot/scripts/native_stages.py b/skills/research-autopilot/scripts/native_stages.py
+index 487e4b5..220505f 100644
+--- a/skills/research-autopilot/scripts/native_stages.py
++++ b/skills/research-autopilot/scripts/native_stages.py
+@@ -133,6 +133,42 @@ def context(root,plan,job,attempt,workspace):
+     with path.open('x') as f:f.write(C.canonical(value)+'\n')
+     return path
+ 
++def _completed_manifest(root,original,final):
++    """Directional metadata completion, never sample selection or correction."""
++    if original.get('selection') is not None or final.get('selection') is not None:return False
++    before=read(root,original['sample_manifest_ref']);after=read(root,final['sample_manifest_ref'])
++    if not isinstance(before,dict) or not isinstance(after,dict):return False
++    expected=dict(before)
++    ids=before.get('sample_ids')
++    if not isinstance(ids,list) or not ids or any(not isinstance(i,str) or not i for i in ids) or len(set(ids))!=len(ids):return False
++    for key in ('benchmark_id','benchmark_revision','split','labels_or_tests_ref','sampling','budget'):
++        if key not in original or final.get(key)!=original[key]:return False
++        if key in expected and expected[key]!=original[key]:return False
++        expected.setdefault(key,original[key])
++    if 'denominator' not in expected:
++        # Explicitly scoped to sample-count metrics. The native definition and
++        # actual scorer must still independently validate this declared unit.
++        if after.get('denominator_rule')!='sample_count':return False
++        if expected.get('denominator_rule','sample_count')!='sample_count':return False
++        expected['denominator_rule']='sample_count';expected['denominator']=len(ids)
++    if after!=expected:return False
++    import _native_eval as N
++    N._samples(root,final)
++    return True
++
++
++def _canonical_contrasts(contract):
++    """Only resolve stale display labels to the original unchanged arm names."""
++    value=contract.get('contrasts');arms=contract.get('arm_requirements',{})
++    if not isinstance(value,dict):return None
++    result=dict(value)
++    for role in ('baseline','treatment'):
++        name=arms.get(role,{}).get('name')
++        if not isinstance(name,str) or not name:return None
++        result[role]=name
++    return result
++
++
+ def matches_scored_protocol(root,generation_ref,scored_ref,stage_ref=None):
+     if generation_ref==scored_ref:return True
+     scored=read(root,scored_ref)
+@@ -143,7 +179,7 @@ def matches_scored_protocol(root,generation_ref,scored_ref,stage_ref=None):
+     if p['cd_development']['stage']=='scaleup' and scored.get('evidence_mode')!='developmental':return False
+     if stage_ref is None:return False
+     descriptor=read(root,stage_ref)
+-    if descriptor.get('stage_kind')!='export':return False
++    if descriptor.get('stage_kind')!='export' or descriptor.get('protocol_ref')!=generation_ref:return False
+     if {'native_stage_ref':stage_ref,'execution_bindings':descriptor.get('execution_bindings')} not in scored.get('native_stage_exports',[]):return False
+     # Scorer is separately verified by the unchanged scientific verifier.
+     if (scored.get('cd_development')!=p['cd_development'] or scored.get('required_groups')!=p['required_groups']
+@@ -153,7 +189,10 @@ def matches_scored_protocol(root,generation_ref,scored_ref,stage_ref=None):
+         final=N.contract_for_group(scored,g)
+         for key in ('benchmark_id','benchmark_revision','split','sample_manifest_ref','labels_or_tests_ref',
+                     'arm_requirements','selection','primary_metric','metrics','prediction_format','sampling','budget','contrasts'):
+-            if final.get(key)!=contract.get(key):return False
++            if final.get(key)==contract.get(key):continue
++            if key=='sample_manifest_ref' and _completed_manifest(root,contract,final):continue
++            if key=='contrasts' and final.get(key)==_canonical_contrasts(contract):continue
++            return False
+     return True
+ 
+ 
+diff --git a/tests/runtime/test_export_metadata.py b/tests/runtime/test_export_metadata.py
+new file mode 100644
+index 0000000..928ac8d
+--- /dev/null
++++ b/tests/runtime/test_export_metadata.py
+@@ -0,0 +1,74 @@
++"""Metadata compatibility regressions; synthetic fixtures, not scientific scores."""
++import copy,json,unittest
++import test_native_stages as base
++from fixtures import write,C
++import native_stages as NS
++import _native_eval as N
++
++class ExportMetadataTests(unittest.TestCase):
++    setUp=base.NativeStageTests.setUp
++    make=base.NativeStageTests.make
++    native=base.NativeStageTests.native
++    stage_task=base.NativeStageTests.stage_task
++    def setup_pair(self):
++        self.stage_task(export=True)
++        self.old=json.loads((self.f.root/self.native_plan['protocol_ref']['path']).read_text())
++        c=self.old['native_eval_contract'];full=NS.read(self.f.root,c['sample_manifest_ref'])
++        full['denominator_rule']='sample_count'
++        self.full=copy.deepcopy(full)
++        c['sample_manifest_ref']=write(self.f.root,'cd/legacy-samples.json',{k:full[k] for k in ('sample_ids','predictions_per_sample')})
++        c['selection']=None;c['contrasts']['baseline']='legacy-alias'
++        self.old['protocol_digest']=C.protocol_hash(self.old);self.gref=write(self.f.root,'cd/old-export.json',self.old)
++        stage=NS.read(self.f.root,self.native_plan['provenance']['native_stage_ref']);stage['protocol_ref']=self.gref
++        self.sref=write(self.f.root,'cd/old-export-stage.json',stage)
++        self.final=copy.deepcopy(self.old);self.final.update(native_stage_program_ref=self.gref,native_stage_exports=[{'native_stage_ref':self.sref,'execution_bindings':stage['execution_bindings']}])
++        f=self.final['native_eval_contract'];f['sample_manifest_ref']=write(self.f.root,'cd/completed-samples.json',full)
++        f['contrasts']['baseline']=c['arm_requirements']['baseline']['name']
++    def match(self):
++        self.final['protocol_digest']=C.protocol_hash(self.final)
++        ref=write(self.f.root,'cd/final-scored.json',self.final)
++        return NS.matches_scored_protocol(self.f.root,self.gref,ref,self.sref)
++    def test_null_selection_uses_full_manifest(self):
++        self.assertEqual(N.sample_manifest_ref({'selection':None,'sample_manifest_ref':'full'}),'full')
++    def test_missing_metadata_and_stale_contrast_alias_are_compatible(self):
++        self.setup_pair();self.assertTrue(self.match())
++        self.assertEqual(N._samples(self.f.root,self.final['native_eval_contract']),self.full)
++    def test_reordered_or_replaced_ids_and_multiplicity_rejected(self):
++        for key,value in [('sample_ids',['different']),('sample_ids','reverse'),('predictions_per_sample',99),('denominator',999)]:
++            with self.subTest(key=key,value=value):
++                self.setup_pair();m=copy.deepcopy(self.full);m[key]=list(reversed(self.full['sample_ids'])) if value=='reverse' else value
++                self.final['native_eval_contract']['sample_manifest_ref']=write(self.f.root,'cd/changed-samples.json',m)
++                self.assertFalse(self.match())
++    def test_scientific_contract_changes_rejected(self):
++        for key in ('labels_or_tests_ref','sampling','budget','metrics','prediction_format','seed_policy'):
++            with self.subTest(key=key):
++                self.setup_pair()
++                if key=='seed_policy':self.final[key]={'seeds':[999]}
++                else:self.final['native_eval_contract'][key]={'changed':True}
++                self.assertFalse(self.match())
++    def test_arm_implementation_or_name_replacement_rejected(self):
++        for key,value in [('name','replacement'),('revision','other'),('implementation_refs',[])]:
++            with self.subTest(key=key):
++                self.setup_pair();self.final['native_eval_contract']['arm_requirements']['baseline'][key]=value
++                self.assertFalse(self.match())
++    def test_arbitrary_alias_and_selection_rejected(self):
++        self.setup_pair();self.final['native_eval_contract']['contrasts']['baseline']='arbitrary';self.assertFalse(self.match())
++        self.setup_pair();self.final['native_eval_contract']['selection']={'rule':'quality'};self.assertFalse(self.match())
++    def test_existing_conflicting_metadata_cannot_be_overwritten(self):
++        self.setup_pair();c=self.old['native_eval_contract'];m=NS.read(self.f.root,c['sample_manifest_ref']);m['denominator']=99
++        c['sample_manifest_ref']=write(self.f.root,'cd/conflict.json',m);self.old['protocol_digest']=C.protocol_hash(self.old)
++        self.gref=write(self.f.root,'cd/conflicting-export.json',self.old);self.final['native_stage_program_ref']=self.gref
++        stage=NS.read(self.f.root,self.sref);stage['protocol_ref']=self.gref;self.sref=write(self.f.root,'cd/conflicting-stage.json',stage)
++        self.final['native_stage_exports']=[{'native_stage_ref':self.sref,'execution_bindings':stage['execution_bindings']}]
++        self.assertFalse(self.match())
++    def test_missing_export_binding_rejected(self):
++        self.setup_pair();self.final['native_stage_exports']=[];self.assertFalse(self.match())
++
++    def test_missing_denominator_needs_explicit_sample_count_unit(self):
++        self.setup_pair();m=copy.deepcopy(self.full);m.pop('denominator_rule')
++        self.final['native_eval_contract']['sample_manifest_ref']=write(self.f.root,'cd/no-unit.json',m)
++        self.assertFalse(self.match())
++    def test_invalid_falsey_selection_is_not_none(self):
++        for value in (False,[],0,''):
++            with self.subTest(value=value):
++                with self.assertRaises(Exception):N.sample_manifest_ref({'selection':value,'sample_manifest_ref':'full'})

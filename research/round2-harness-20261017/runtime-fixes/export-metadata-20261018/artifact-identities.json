@@ -1,0 +1,8 @@
+{
+  "version": "0.4.0-harness.14",
+  "source_revision": "f7771d4ff34c35c65a29536174a73bea850b819e",
+  "artifacts": {
+    "research-autopilot-harness-0.4.0-harness.14.zip": "6ea03411db5066c3a88692a136eddde50e831cb5d77502def9ab358c4383f673",
+    "research_autopilot_runtime-0.4.0a2-py3-none-any.whl": "27d0d3bad1de8658ef00e8e220ec909823fbe929fc9018b7f0dbcd7396e4a5c4"
+  }
+}

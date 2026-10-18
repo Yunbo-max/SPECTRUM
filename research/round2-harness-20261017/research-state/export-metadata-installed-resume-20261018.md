@@ -1,0 +1,9 @@
+# Resume after owner-authorized legacy export compatibility repair
+
+Continue the same C/B02 research after the owner's requested debugging. Read research-state/C-phase-e1a89/checkpoint.json and the actual metadata maintenance probe. Restore latest phase_progress; do not repeat generation or prior software checks.
+
+The adopted .14 native_stages matcher supports narrowly scoped metadata completion and correction of a stale contrast label to the unchanged original arm.name. Read references/cd-runtime-contracts.md, section Legacy export metadata completion. All old scientific comparison fields and arm implementations stay exact. New complete manifest must retain all prior fields/ordered IDs/multiplicity; a missing sample-count denominator requires explicit denominator_rule=sample_count, with source-backed native scorer agreement. Omit legacy selection:null in the scored successor to satisfy its schema. No arbitrary alias, selected subset, changed sampling/budget or overwritten old file is allowed.
+
+The actual 500x16 export passed _samples, _prediction_ids and compatibility matching with its original hash unchanged, using isolated maintenance source. These are compatibility checks only. The probe protocol remains an incomplete stage-program derivative, not a qualified scored protocol. Build the fully qualified successor definition/split/scorer/contract and bind original completed controller outputs; run actual scoring on the existing authorized GPU host. Fix ordinary adapter issues autonomously. Do not regenerate, fabricate scores, reinterpret software checks as scientific acceptance or require new owner approval.
+
+After this batch's genuine scoring, use capacity/truncation/task evidence to select the next scientifically informative experiment; old F/P/A is not mandated. Preserve budgets, source lineage and failed findings. Parent owns only Git maintenance delivery until export-metadata-delivery-completed-20261018.md exists.

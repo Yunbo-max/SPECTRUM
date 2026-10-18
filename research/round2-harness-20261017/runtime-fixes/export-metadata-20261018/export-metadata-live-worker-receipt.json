@@ -1,0 +1,29 @@
+{
+  "revision": 417,
+  "phase": "active",
+  "step": "B02",
+  "policy": {
+    "edition": "autonomous-rsi-harness",
+    "skill_digest": "304da8648e362f263f92a1a95232390427e8f7b88ae949c94fb1635750a26732",
+    "source_revision": "f7771d4ff34c35c65a29536174a73bea850b819e",
+    "version": "0.4.0-harness.14"
+  },
+  "active": [
+    {
+      "id": "harness.planner.000152",
+      "state": "running",
+      "run_id": "7b12feee89244463a265f49d1b1de084"
+    }
+  ],
+  "guard": {
+    "time": 1792359982.7319,
+    "event": "consumer_started",
+    "pid": 56907,
+    "snapshot": {
+      "pressure": 2,
+      "swap_bytes": 4312992317,
+      "disk_free": 28036030464,
+      "owned_rss": 0
+    }
+  }
+}

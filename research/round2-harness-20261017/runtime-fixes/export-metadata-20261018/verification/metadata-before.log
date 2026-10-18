@@ -1,0 +1,25 @@
+======================================================================
+ERROR: test_null_selection_uses_full_manifest (test_export_metadata.ExportMetadataTests.test_null_selection_uses_full_manifest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/export-metadata-repair/tests/runtime/test_export_metadata.py", line 31, in test_null_selection_uses_full_manifest
+    self.assertEqual(N.sample_manifest_ref({'selection':None,'sample_manifest_ref':'full'}),'full')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/code-tests/export-metadata-repair/skills/research-autopilot/scripts/_native_eval.py", line 60, in sample_manifest_ref
+    return contract.get("selection", {}).get("selected_manifest_ref", contract["sample_manifest_ref"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+
+======================================================================
+FAIL: test_missing_metadata_and_stale_contrast_alias_are_compatible (test_export_metadata.ExportMetadataTests.test_missing_metadata_and_stale_contrast_alias_are_compatible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/export-metadata-repair/tests/runtime/test_export_metadata.py", line 33, in test_missing_metadata_and_stale_contrast_alias_are_compatible
+    self.setup_pair();self.assertTrue(self.match())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.366s
+
+FAILED (failures=1, errors=1)

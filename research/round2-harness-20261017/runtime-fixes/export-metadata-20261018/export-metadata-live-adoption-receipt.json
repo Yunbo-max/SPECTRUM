@@ -1,0 +1,14 @@
+{
+  "kind": "export-metadata-live-adoption",
+  "version": "0.4.0-harness.14",
+  "source_revision": "f7771d4ff34c35c65a29536174a73bea850b819e",
+  "skill_digest": "304da8648e362f263f92a1a95232390427e8f7b88ae949c94fb1635750a26732",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/export-metadata-000415.json",
+    "sha256": "af60f76e9dadca71f021b68242a1561b071bef539528c3bdf53561ad0ef89952"
+  },
+  "revision": 415,
+  "phase": "paused",
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true
+}

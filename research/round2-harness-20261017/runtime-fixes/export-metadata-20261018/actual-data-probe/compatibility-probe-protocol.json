@@ -1,0 +1,257 @@
+{
+  "kind": "research-native-stage-program",
+  "stage_contract_version": 1,
+  "evidence_mode": "developmental",
+  "protocol_id": "spectrum-C-base-export-adapted-e1a87",
+  "goal_id": "spectrum-round2",
+  "candidate_id": "spectrum-plain-transfer-diagnosis",
+  "required_groups": [
+    "mbpp_full_test500"
+  ],
+  "seed_policy": {
+    "seeds": [
+      43,
+      45
+    ]
+  },
+  "native_eval_contract": {
+    "benchmark_id": "MBPP",
+    "benchmark_revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+    "split": "test",
+    "primary_metric": "pass@1",
+    "metrics": [
+      {
+        "name": "pass@1",
+        "output_path": [
+          "pass@1"
+        ]
+      }
+    ],
+    "prediction_format": {
+      "format": "jsonl",
+      "records_path": [],
+      "id_path": [
+        "task_id"
+      ]
+    },
+    "sampling": {
+      "policy": "full_test_no_quality_selection",
+      "parameters": {
+        "configuration": "full",
+        "sample_count": 500,
+        "samples_per_task": 16,
+        "evaluation_seeds": [
+          43,
+          45
+        ],
+        "generation": {
+          "samples": 16,
+          "temperature": 0.8,
+          "top_p": 0.95,
+          "top_k": 0,
+          "max_prompt_tokens": 1024,
+          "max_new_tokens": 512
+        }
+      }
+    },
+    "budget": {
+      "samples_per_task": 16,
+      "max_new_tokens": 512,
+      "max_prompt_tokens": 1024
+    },
+    "contrasts": {
+      "treatment": "P",
+      "baseline": "decoder-only",
+      "controls": [
+        "anchor_control"
+      ]
+    },
+    "arm_requirements": {
+      "baseline": {
+        "name": "decoder-only",
+        "revision": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+        "implementation_refs": [
+          {
+            "path": "research-state/C-phase-e1a87/export_base.py",
+            "sha256": "20fa9da84027ddf2bf1e2642f9e2fd65933db3aa1fba30f3bb3a4ed9e3c1318c"
+          },
+          {
+            "path": "research-state/C-phase-e1a87/basecode/data.py",
+            "sha256": "874e6d60bc8d930e63447b5228e723a5f08ae7d3ec02955a25ce7323afb8c06c"
+          },
+          {
+            "path": "research-state/C-phase-e1a87/basecode/generation.py",
+            "sha256": "d432df51de7ece188c603ab832e078217f21b7c42e23267283abd7e8fbe2bf14"
+          },
+          {
+            "path": "research-state/C-phase-e1a87/basecode/modeling.py",
+            "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+          },
+          {
+            "path": "research-state/C-phase-e1a87/basecode/utils.py",
+            "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+          }
+        ]
+      },
+      "treatment": {
+        "name": "P",
+        "revision": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+        "implementation_refs": [
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/analysis.py",
+            "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+            "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+            "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/source/modeling.py",
+            "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/source/utils.py",
+            "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/stage_entry.py",
+            "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+            "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+          }
+        ]
+      },
+      "anchor_control": {
+        "name": "anchor_control",
+        "revision": "bfc00951726a79b50fb8d75c16479903c9d3290e",
+        "implementation_refs": [
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/analysis.py",
+            "sha256": "c252d8e7a4e3ea8bb6c060ec32abd7f981992254759302782247e2554de5f4ed"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/diagnostic_driver.py",
+            "sha256": "be19d0c55a539fc76a887c9f6bd9cbb0c3dede68595cde63ce75f70857658083"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/native_wrapper.py",
+            "sha256": "ba59a826c1613a44c2952e87916fd5fe081f2a72449597d4b1e63ba06603a2a4"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/source/modeling.py",
+            "sha256": "dfd358726ec68b6507a238101f176d3e835fb4b26d91e0dd0345bf1f3c7a2e40"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/source/utils.py",
+            "sha256": "9c1a51237ecc940771db2213db3f942acf6b2d81c76bdc1ac2f5540c48de0c6b"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/stage_entry.py",
+            "sha256": "647bdf9c6d8e1dc7aa2a083c7122f19ed0e01f0f74c1788b23ce0733200ba9e4"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/training_instrumented.py",
+            "sha256": "259e4d7364bca28a1d2d7b2a5264c82e7b2d69d4f339eff8c9db15a20b26abab"
+          }
+        ]
+      }
+    },
+    "labels_or_tests_ref": {
+      "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+      "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+    },
+    "scorer": {
+      "status": "pending_qualification",
+      "provenance": "project_custom",
+      "code_refs": [
+        {
+          "path": "research-state/B02-plain-lineage-source-000004/remote-verification.py",
+          "sha256": "976ae4dbd7a6a69b065815e39722a002376c9a485272b3c0ac9b6bb41351468e"
+        }
+      ],
+      "backend_during_stage": "none"
+    },
+    "sample_manifest_ref": {
+      "path": "research-state/export-metadata-maintenance-20261018/completed-manifest.json",
+      "sha256": "b839cc71010fc01a19ab0b80939d2934fa97c2f4c2ecf3436d59807a0c787152"
+    }
+  },
+  "pending_scoring_obligations": [
+    "autonomous-native-verification",
+    "B02-natural-census-evidence"
+  ],
+  "cd_development": {
+    "flow_profile": "work-harness-cd-v1",
+    "stage": "diagnosis",
+    "cd_evidence_ref": {
+      "path": "research-state/C-phase-e1a87/export-experiment.json",
+      "sha256": "7cc5b8604bc50e0aab194487d1450f0caf6bdc0a64b8045f8730e2913f515402"
+    }
+  },
+  "protocol_digest": "d05eb7bdac4bf1385dd8879d70c4c9b183a74426555003a99560ddca7926e9af",
+  "native_stage_program_ref": {
+    "path": "research-state/C-phase-e1a87/export-program.json",
+    "sha256": "3e99fcdc91f00bc7bb4f1dbbe5a635d1500f83550b0c8d61c496dbcaba128294"
+  },
+  "native_stage_exports": [
+    {
+      "native_stage_ref": {
+        "path": "research-state/C-phase-e1a87/stage-05.json",
+        "sha256": "1e6015fa7e339578828f3f5e36ab622f3e2ae2231bfcfd18461d93d4d97df965"
+      },
+      "execution_bindings": {
+        "model_refs": [
+          {
+            "path": "research-state/B01-official-setup-20261018/configuration.json",
+            "sha256": "a1960e9c75de26f260205414abfe9e4637f72cdbad430b37f9443e9e8750e784"
+          },
+          {
+            "path": "research-state/B01-official-setup-20261018/setup-report.json",
+            "sha256": "c9b3f9ec0b3682e79a648c6cf5a60fe1ace9f38b3d0223eaa5cf7028901b13c6"
+          },
+          {
+            "path": "research-state/C-phase-e1a86b/adapter/config.json",
+            "sha256": "a788caf01caeea40390e341603b7436865009ecd2715c7b383eade20c801973e"
+          }
+        ],
+        "data_refs": [
+          {
+            "path": "research-state/B02-raw-train-source-000009.json",
+            "sha256": "baca10f5ffb1dc8936f056ac891a72c3f2bc90a2cbc9ecdef1d97840471624e9"
+          },
+          {
+            "path": "research-state/B01-scorer-source-binding-000003/hf-full-test-decoded.json",
+            "sha256": "02ec024e5ec83ab2e01d4f527ff6a80e431d83f39361d5754f8248830c292aaf"
+          },
+          {
+            "path": "runs/stage-outputs/spectrum-C-prepare-e1a86b/eval.jsonl",
+            "sha256": "cf5b851a5ee74e02ad0bf692f9229074fe7e2dbbe175f26aa88bdf001b6207b9"
+          }
+        ],
+        "selection_refs": [
+          {
+            "path": "research-state/B02-cd-design-e1a1/design.json",
+            "sha256": "7bf860aed5b310cd7ded25f9bd2663c7a045996fb2fce0b53dc6f5204ff3129f"
+          },
+          {
+            "path": "research-state/B02-attempt-000010/prospective-input-policy.json",
+            "sha256": "aabeccb2cb9886ebfb73ef1a4717315b48572928aece105d54a3f81e0d460939"
+          }
+        ]
+      }
+    }
+  ],
+  "contrasts": {
+    "treatment": "P",
+    "baseline": "decoder-only",
+    "controls": [
+      "anchor_control"
+    ]
+  }
+}

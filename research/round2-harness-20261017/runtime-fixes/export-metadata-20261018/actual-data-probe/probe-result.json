@@ -1,0 +1,31 @@
+{
+  "scope": "real export metadata equivalence and prediction identity checks; not scorer qualification or model scoring",
+  "compatible": true,
+  "samples": 500,
+  "predictions_per_sample": 16,
+  "predictions_ref": {
+    "path": "runs/stage-outputs/spectrum-C-base-export-e1a87/predictions.jsonl",
+    "sha256": "6b103c3a5855a195f9df478d6297970a4044f1048662fc19684b80cf016ab7f8"
+  },
+  "generation_ref": {
+    "path": "research-state/C-phase-e1a87/export-program.json",
+    "sha256": "3e99fcdc91f00bc7bb4f1dbbe5a635d1500f83550b0c8d61c496dbcaba128294"
+  },
+  "stage_ref": {
+    "path": "research-state/C-phase-e1a87/stage-05.json",
+    "sha256": "1e6015fa7e339578828f3f5e36ab622f3e2ae2231bfcfd18461d93d4d97df965"
+  },
+  "old_manifest_ref": {
+    "path": "research-state/B02-cd-epoch1-attempt13/sample-manifest.json",
+    "sha256": "cf59b9b5e829b7b4f0a13b816dc2a5789f7b3c9e23541dc15cd2d77f957079f5"
+  },
+  "new_manifest_ref": {
+    "path": "research-state/export-metadata-maintenance-20261018/completed-manifest.json",
+    "sha256": "b839cc71010fc01a19ab0b80939d2934fa97c2f4c2ecf3436d59807a0c787152"
+  },
+  "probe_protocol_ref": {
+    "path": "research-state/export-metadata-maintenance-20261018/compatibility-probe-protocol.json",
+    "sha256": "ddf010b6620e7e1bf7eb9f0272b2432a5b4e19cd297c6a2bb0a0ef15ccb3a288"
+  },
+  "scientific_verified": false
+}

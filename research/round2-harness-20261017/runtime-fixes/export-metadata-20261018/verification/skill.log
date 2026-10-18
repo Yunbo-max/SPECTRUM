@@ -1,0 +1,5 @@
+collector_failed_after_dispatch: OSError('injected state persistence failure after Popen')
+----------------------------------------------------------------------
+Ran 933 tests in 72.418s
+
+OK (skipped=9)

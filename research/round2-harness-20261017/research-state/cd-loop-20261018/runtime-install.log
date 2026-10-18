@@ -1,0 +1,24 @@
+Obtaining file:///Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source-cd-v1
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: research-autopilot-runtime
+  Building editable for research-autopilot-runtime (pyproject.toml): started
+  Building editable for research-autopilot-runtime (pyproject.toml): finished with status 'done'
+  Created wheel for research-autopilot-runtime: filename=research_autopilot_runtime-0.4.0a2-0.editable-py3-none-any.whl size=1916 sha256=cc80cfa51c834689df16e41dfd7b32dcb527f2726ab84259df01f39614753239
+  Stored in directory: /private/var/folders/_y/0xw7_0ss0s3f4kfhj9xl96zw0000gn/T/pip-ephem-wheel-cache-bdph7aik/wheels/b1/38/43/c86661fed016b88f0166f4be2b8befab9038d2a8f023e52a33
+Successfully built research-autopilot-runtime
+Installing collected packages: research-autopilot-runtime
+  Attempting uninstall: research-autopilot-runtime
+    Found existing installation: research-autopilot-runtime 0.4.0a2
+    Uninstalling research-autopilot-runtime-0.4.0a2:
+      Successfully uninstalled research-autopilot-runtime-0.4.0a2
+Successfully installed research-autopilot-runtime-0.4.0a2
+
+[notice] A new release of pip is available: 26.1.2 -> 26.2.1
+[notice] To update, run: /Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/venv/bin/python -m pip install --upgrade pip

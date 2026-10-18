@@ -1,0 +1,65 @@
+{
+  "kind": "work-harness-cd-live-readback",
+  "program_revision": 186,
+  "source_revision": "a99fff9ac79a318f2d269e993825fa0e0124d628",
+  "version": "0.4.0-harness.6",
+  "phase": "active",
+  "stage": "planner",
+  "round": 60,
+  "step_id": "B01",
+  "task_id": "harness.planner.000060",
+  "task_state": "running",
+  "attempt": {
+    "run_id": "a37f8683710b4c33a5f9e840a96969fa",
+    "project_id": "spectrum-round2-work-harness",
+    "task_id": "harness.planner.000060",
+    "owner": "spectrum-guarded.planner",
+    "fence": 1,
+    "adapter": "codex-local",
+    "state": "running",
+    "started_at": 1792330527.7251,
+    "lease_until": 1792330607.9727612,
+    "session_id": "command:a37f8683710b4c33a5f9e840a96969fa:12508",
+    "reserved_cost": 0,
+    "reserved_seconds": 1800.0,
+    "actual_cost": null,
+    "actual_seconds": null,
+    "reason": null
+  },
+  "sequence_binding": {
+    "attempt": 1,
+    "catalog_sha256": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+    "cycle": 1,
+    "epoch": 1,
+    "flow_profile": "work-harness-cd-v1",
+    "problem_ref": null,
+    "scaleup_acceptance_ref": null,
+    "step_id": "B01",
+    "verified_ref": null
+  },
+  "packet_ref": {
+    "path": "research-state/harness/round-000060/planner-input.json",
+    "sha256": "faa74497b24a6afbd551f4991e83b7547c284b8b801368709ce38d9c53207ff3"
+  },
+  "consumer": {
+    "alive": true,
+    "lock_held": true,
+    "heartbeat_recent": true,
+    "observation": "current_lock_and_heartbeat",
+    "record_path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/project/research-state/harness/consumers/d1bc6977631384d9dec129ed.json",
+    "last_record": {
+      "consumer_id": "6875b5116f82413eacce1cfd260080bc",
+      "db_path": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/runtime/controller.sqlite",
+      "heartbeat_at": 1792330562.521752,
+      "hostname": "yunbos-MacBook-Pro.local",
+      "last_outcome": "step_prepared",
+      "owner": "spectrum-guarded",
+      "pid": 12487,
+      "project_id": "spectrum-round2-work-harness",
+      "started_at": 1792330527.044548,
+      "status": "running"
+    },
+    "historical_program_consumer_is_liveness_proof": false
+  },
+  "scientific_verified": false
+}

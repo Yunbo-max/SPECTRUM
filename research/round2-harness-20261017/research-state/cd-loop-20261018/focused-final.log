@@ -1,0 +1,16 @@
+======================================================================
+ERROR: test_batch_allowance_does_not_become_a_lifetime_cap (test_b01_qualification.B01QualificationTests.test_batch_allowance_does_not_become_a_lifetime_cap)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/cd-flow/tests/runtime/test_b01_qualification.py", line 23, in setUp
+    self.controller.register_project(project(self.root, workflow_class='scientific_method',
+  File "/root/rivermind-data/spectrum-harness/code-tests/cd-flow/src/research_autopilot/controller.py", line 134, in register_project
+    self._check_pins(project)
+  File "/root/rivermind-data/spectrum-harness/code-tests/cd-flow/src/research_autopilot/controller.py", line 125, in _check_pins
+    raise ContractError("registered skill source changed")
+research_autopilot.models.ContractError: registered skill source changed
+
+----------------------------------------------------------------------
+Ran 70 tests in 57.924s
+
+FAILED (errors=1)

@@ -1,0 +1,16 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting numpy==2.3.5
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/b6/23/2a1b231b8ff672b4c450dac27164a8b2ca7d9b7144f9c02d2396518352eb/numpy-2.3.5-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.6/16.6 MB 454.3 kB/s eta 0:00:00
+Collecting scipy==1.17.0
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/d1/fe/66d73b76d378ba8cc2fe605920c0c75092e3a65ae746e1e767d9d020a75a/scipy-1.17.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.0/35.0 MB 317.1 kB/s eta 0:00:00
+Installing collected packages: numpy, scipy
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.5.4
+    Uninstalling numpy-2.5.4:
+      Successfully uninstalled numpy-2.5.4
+Successfully installed numpy-2.3.5 scipy-1.17.0
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip

@@ -48,6 +48,10 @@
     "sha256": "0570e337922e053365eb8c9403fd1e770f58dc6725fa6668edf04c5a015b9448"
   },
   {
+    "path": "reports/cd-math-code-loop-20261018.md",
+    "sha256": "e64f8caa47223ce67e274e76ea2834c42ded19ad024569a8e75d21caafe22f8f"
+  },
+  {
     "path": "reports/command-receipt-debug-20261018.md",
     "sha256": "499cbe1a6a99eebb230fff717391d6d70e8acb93b58ed04adeea6c94a5661423"
   },
@@ -352,6 +356,114 @@
     "sha256": "a7159ec6f235779420d31df77ad657e95f52796d947056a94e393c8557af4ec7"
   },
   {
+    "path": "research-state/cd-loop-20261018/2026-10-18-work-harness-c-d-math-code-loop-design.md",
+    "sha256": "2b6a2f98d153a1b2208990f39f63ee56719e3adb55eff7b8366625c687abaa47"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/2026-10-18-work-harness-cd-implementation-record.md",
+    "sha256": "64995edda29cd2443c3433ba9c9d5e3ffc2777be436f79ca9777596c34bbb3cf"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/2026-10-18-work-harness-cd-loop.md",
+    "sha256": "5a6843da9d1d3674c826f462c587e419d4369859eab10c0809a0931327563b65"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/baseline-runtime.log",
+    "sha256": "5615a8d68a855787bf757471fb11f511d48057b7203b01d74f3d83296ffc7e88"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/baseline-skill.log",
+    "sha256": "0b74c931cbcb58ca2c53eaa93bb00550fa15b5283d578aaa699e55cdfab0fd76"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/build-committed.log",
+    "sha256": "cb5dbbc5ab6077cf40798539369f81f8ffc9ca07614abd59b02f08b22ee8f496"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/build-final.log",
+    "sha256": "00d2d176e28f59256c8b17d8e6194c1122182f4681dd7fc51924d2d77bdafc0d"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/cd-000184.json",
+    "sha256": "dc957409b7e42b96ba19a67cf40118e81f5c3be08446d0ed02f971e6e47f4fcf"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/cd-install-receipt.json",
+    "sha256": "d683f7c2e8e7fd12bb3d1fac2f45470836dc31045f9545c622e2bfaf64734d78"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/cd-live-adoption-receipt.json",
+    "sha256": "e968807f6163065243bc61149ec337090751801f653bd25e0619d329b087d0ab"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/cd-upgrade-dispatch-hold.json",
+    "sha256": "f567c11204781f3fece184b31479db78f62a6a074809acf1789ae73dcffdee9b"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/cd-upgrade-quiet-boundary.json",
+    "sha256": "58f099226593391e3de6023f91c021b878691cf25b4cb1bc5b0a30836418f0de"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/cli-repeat.log",
+    "sha256": "a2938f28d9b1efbdba867b661910dd1825da9a22eabe2a1eb06f4a91a02a3298"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/first-new-profile-packet.json",
+    "sha256": "faa74497b24a6afbd551f4991e83b7547c284b8b801368709ce38d9c53207ff3"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/focused-final.log",
+    "sha256": "d7f24775828e357d6ceb9fe5f9aab3e359087158c71f2682522c803051b4e2a2"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/focused-stable-source.log",
+    "sha256": "89c510e4b52df71b0719c43cc8a44c345c67551c85854e561de213bfc08486cf"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/focused.log",
+    "sha256": "89e72cc62f9f71a922cedb71a2a5900bb75d40fea29eae514dde7bc7df9e0edc"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/live-readback.json",
+    "sha256": "09f1b536e89332c3ab657063c35f0b35919d78c5565e672d1d7abd654a7199a9"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/nodes-final.log",
+    "sha256": "b20399f1b8c3393d9b579d20c7e575c719b32727d3c3cc1c3c1ea010a66efed0"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/owner-instruction.md",
+    "sha256": "d91c9eb0aeddd13cfb6b1bf716f5e14317ce28e2fde20fb0577e1df743949a60"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/plugins-final.log",
+    "sha256": "068e295ec47b0bc9f043e4c45e879caf33cb77aa875a193c6b4a4f7c9c8c3214"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/research-autopilot-harness-0.4.0-harness.6.zip",
+    "sha256": "0acaf910acdebe134628d32f62af42bd49217e9a3f617faae0cb0524110b3d8a"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/runtime-full.log",
+    "sha256": "6846bcb50bbbef0751a20265adc5d54be851b70ab9a01b058eb6becb0b359589"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/runtime-install.log",
+    "sha256": "49716917bfb7e26ee88761de893ce89d7e77015eacfbb3c08d2060e821f7e982"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/skill-full.log",
+    "sha256": "67806c6f1e635a2e5ab2970dfd72fffd078cb63753f963da4139c4fb11eae2c1"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/statistics-final.log",
+    "sha256": "bdb5d1ab117627a16cb6b00eb4f8253b683025ca9a1ade33da79934bbc4de669"
+  },
+  {
+    "path": "research-state/cd-loop-20261018/test-dependencies.log",
+    "sha256": "f1790ff069a66ddca524ee663152c36be56ea79c8826e0ed9e0f8fdfd3758d68"
+  },
+  {
     "path": "research-state/community/20261017-6a126a17000000003502fc41.json",
     "sha256": "3e689c88a096474df23e59628f3840f1e2137fb574e8aa3ea7f1a026e69921ee"
   },
@@ -586,6 +698,10 @@
   {
     "path": "runtime-fixes/b01-upstream-setup.patch",
     "sha256": "666f5787c1f12be2183654d63ba55da1767cbb8cb5445409e2d41fcba067daf6"
+  },
+  {
+    "path": "runtime-fixes/cd-math-code-loop.patch",
+    "sha256": "a73c6c7d9b97d7d1dfe96e0dc257f2d6083b0d54e19b39119ea3cb156ace383c"
   },
   {
     "path": "runtime-fixes/command-receipt-preflight.patch",

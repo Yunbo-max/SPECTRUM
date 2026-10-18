@@ -1,0 +1,23 @@
+{
+  "source_revision": "a99fff9ac79a318f2d269e993825fa0e0124d628",
+  "version": "0.4.0-harness.6",
+  "revision": 185,
+  "flow_profile": "work-harness-cd-v1",
+  "step_id": "B01",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/cd-000184.json",
+    "sha256": "dc957409b7e42b96ba19a67cf40118e81f5c3be08446d0ed02f971e6e47f4fcf"
+  },
+  "quiet_boundary_ref": {
+    "path": "research-state/harness/adoptions/cd-upgrade-quiet-boundary.json",
+    "sha256": "58f099226593391e3de6023f91c021b878691cf25b4cb1bc5b0a30836418f0de"
+  },
+  "instruction_ref": {
+    "path": "research-state/cd-loop-adoption-owner-instruction-20261018.md",
+    "sha256": "d91c9eb0aeddd13cfb6b1bf716f5e14317ce28e2fde20fb0577e1df743949a60"
+  },
+  "not_before": 0,
+  "phase": "active",
+  "old_source_retained": "/Users/yunbo/Documents/ssdforever/harness-runs/spectrum-round2-20261017/source",
+  "remote_skill_backup": "/root/rivermind-data/spectrum-harness/skill-pre-cd-v1"
+}

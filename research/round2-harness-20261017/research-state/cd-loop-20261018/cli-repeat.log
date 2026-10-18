@@ -1,0 +1,11 @@
+test_acp_custom_command_and_default_hermes_configuration_are_usable (test_cli.CLITests.test_acp_custom_command_and_default_hermes_configuration_are_usable) ... ok
+test_actual_acp_worker_command_executes_peer_and_verifies_output (test_cli.CLITests.test_actual_acp_worker_command_executes_peer_and_verifies_output) ... ok
+test_executable_cpu_example_registers_dependencies_and_returns_accepted_outputs (test_cli.CLITests.test_executable_cpu_example_registers_dependencies_and_returns_accepted_outputs) ... ok
+test_full_native_cli_flow_register_enqueue_execute_status_events (test_cli.CLITests.test_full_native_cli_flow_register_enqueue_execute_status_events) ... ok
+test_invalid_contract_is_structured_error_and_no_claim (test_cli.CLITests.test_invalid_contract_is_structured_error_and_no_claim) ... ok
+test_native_cli_reconciliation_queries_same_identity_and_never_relaunches_absent_work (test_cli.CLITests.test_native_cli_reconciliation_queries_same_identity_and_never_relaunches_absent_work) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 14.702s
+
+OK

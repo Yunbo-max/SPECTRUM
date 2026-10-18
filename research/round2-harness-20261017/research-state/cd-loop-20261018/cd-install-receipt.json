@@ -1,0 +1,16 @@
+{
+  "kind": "work-harness-cd-local-install",
+  "source_revision": "a99fff9ac79a318f2d269e993825fa0e0124d628",
+  "version": "0.4.0-harness.6",
+  "plugin_id": "research-autopilot-harness@research-autopilot-six",
+  "installed_path": "/Users/yunbo/.codex/plugins/cache/research-autopilot-six/research-autopilot-harness/0.4.0-harness.6",
+  "verified_inventory_files": 482,
+  "other_plugin_manifests_unchanged": {
+    "research-autopilot-human-ai/.codex-plugin/plugin.json": true,
+    "research-autopilot-autonomous/.codex-plugin/plugin.json": true,
+    "research-autopilot-simple/.codex-plugin/plugin.json": true,
+    "research-autopilot-deepseek/.codex-plugin/plugin.json": true,
+    "research-autopilot-chat/.codex-plugin/plugin.json": true
+  },
+  "live_adoption": "pending_separate_receipt"
+}

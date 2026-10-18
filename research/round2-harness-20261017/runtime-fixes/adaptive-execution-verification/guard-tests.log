@@ -1,0 +1,24 @@
+test_critical (test_guard.GuardTests.test_critical) ... ok
+test_disk (test_guard.GuardTests.test_disk) ... ok
+test_existing_consumer_lock (test_guard.GuardTests.test_existing_consumer_lock) ... ok
+test_final_discovered_descendant_is_retained (test_guard.GuardTests.test_final_discovered_descendant_is_retained) ... ok
+test_hysteresis (test_guard.GuardTests.test_hysteresis) ... ok
+test_ledger_write_failure_still_stops_child (test_guard.GuardTests.test_ledger_write_failure_still_stops_child) ... ok
+test_memory (test_guard.GuardTests.test_memory) ... ok
+test_normal (test_guard.GuardTests.test_normal) ... ok
+test_observed_allowed_pressure_and_residual_swap_can_resume (test_guard.GuardTests.test_observed_allowed_pressure_and_residual_swap_can_resume) ... ok
+test_pressure_warning (test_guard.GuardTests.test_pressure_warning) ... ok
+test_reaped_root_pid_reuse_is_not_signalled (test_guard.GuardTests.test_reaped_root_pid_reuse_is_not_signalled) ... ok
+test_residual_swap_does_not_block_normal_low_load_resume (test_guard.GuardTests.test_residual_swap_does_not_block_normal_low_load_resume) ... ok
+test_swap (test_guard.GuardTests.test_swap) ... ok
+test_swap_units (test_guard.GuardTests.test_swap_units) ... ok
+test_tracked_exec_identity_survives (test_guard.GuardTests.test_tracked_exec_identity_survives) ... ok
+test_tracked_orphan_counts_and_pid_reuse_does_not (test_guard.GuardTests.test_tracked_orphan_counts_and_pid_reuse_does_not) ... ok
+test_tree_does_not_include_unrelated (test_guard.GuardTests.test_tree_does_not_include_unrelated) ... ok
+test_unknown_fails_closed (test_guard.GuardTests.test_unknown_fails_closed) ... ok
+test_unreadable_owned_pid_is_not_absent (test_guard.GuardTests.test_unreadable_owned_pid_is_not_absent) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.032s
+
+OK

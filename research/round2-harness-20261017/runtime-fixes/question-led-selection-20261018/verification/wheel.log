@@ -1,0 +1,17 @@
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing /root/rivermind-data/spectrum-harness/code-tests/question-led-selection
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: research-autopilot-runtime
+  Building wheel for research-autopilot-runtime (pyproject.toml): started
+  Building wheel for research-autopilot-runtime (pyproject.toml): finished with status 'done'
+  Created wheel for research-autopilot-runtime: filename=research_autopilot_runtime-0.4.0a2-py3-none-any.whl size=176970 sha256=be5a53539f7f1ce7c584fb23b7353c9513d747c7b49591928dba0396c2083ec9
+  Stored in directory: /root/.cache/pip/wheels/df/1f/0e/7e79c92042385afef189320ce478377934473364b8f652a52d
+Successfully built research-autopilot-runtime
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip

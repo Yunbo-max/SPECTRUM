@@ -1,0 +1,2844 @@
+diff --git a/.codex-plugin/plugin.json b/.codex-plugin/plugin.json
+index 144934b..298b286 100644
+--- a/.codex-plugin/plugin.json
++++ b/.codex-plugin/plugin.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.11",
++  "version": "0.4.0-harness.12",
+   "description": "Run mathematical diagnosis and code experiments through reviewed B/C/D research loops, then verified scale-up.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/EDITION.json b/EDITION.json
+index c1893f7..a51e079 100644
+--- a/EDITION.json
++++ b/EDITION.json
+@@ -3,7 +3,7 @@
+   "branch": "autonomous-rsi-harness",
+   "plugin_name": "research-autopilot",
+   "display_name": "Autopilot Work Harness 10.17",
+-  "plugin_version": "0.4.0-harness.11",
++  "plugin_version": "0.4.0-harness.12",
+   "round_selection": "machine",
+   "authoring_host": "local_agent",
+   "execution_host": "local_agent",
+diff --git a/EXPORT_MANIFEST.json b/EXPORT_MANIFEST.json
+index faa7f90..01f9179 100644
+--- a/EXPORT_MANIFEST.json
++++ b/EXPORT_MANIFEST.json
+@@ -4,7 +4,7 @@
+   "skills": [
+     {
+       "name": "research-autopilot",
+-      "file_count": 387,
++      "file_count": 388,
+       "source_revision": "e05a999e058e0eda88379dd2f184f7f5b362f604",
+       "source_status": "derived_autonomous-rsi-harness; installation_unverified"
+     },
+@@ -47,14 +47,14 @@
+     "skills/designing-pipeline-figures/references/style-catalog.md": "ad4139c6fc721237c7b6cdd0c33c01f88a7bc34dd2c350c1cbd8f409c3fbc009",
+     "skills/designing-pipeline-figures/references/worked-example.md": "fb67b4b1fc6003d18f162cb49cf070f474cea1d10bc881da9f8acc84e5b571a9",
+     "skills/designing-pipeline-figures/scripts/validate_drawio.py": "dc8409ad3041aefe1184e40b57854d3745a50667736e0200ae36427e61850ae1",
+-    "skills/research-autopilot/SKILL.md": "7ee4fdb91f4fa3cb077c573ac91f3e8648b8d19fa917ad62515473cda16ab2c2",
++    "skills/research-autopilot/SKILL.md": "d877181178384f3464d55a0c4c961073d304522774babfbc5604e3a24e122fed",
+     "skills/research-autopilot/agents/openai.yaml": "8b11f2dbdaddfade9021fe29ab6c48d31a6c6e61f2d0ff1e100693523ca4e8e5",
+     "skills/research-autopilot/assets/examples/object-first/README.md": "26f8a08c68525d0c9cc5bce0b2009c74be71bf737f8bf8cc7303ac435ceaa1d8",
+     "skills/research-autopilot/assets/examples/object-first/setup.py": "1fbc84b25add3a323d5c4f6e17ec327d34ae403154a179b6c0e6417861765e8d",
+-    "skills/research-autopilot/assets/harness-policy.json": "721174c0ae2f53dab0c80f7eaf285287d6fa9a583f4cec9a099b3a61dbf3d0e4",
++    "skills/research-autopilot/assets/harness-policy.json": "978f2f19ddc0243af97398b4109a39172d0a0e500e8006d9f18ce7d0341f6c4f",
+     "skills/research-autopilot/assets/icon.svg": "83edb7ff1fcb54461e60f8bab4147bf6e24b4f9bb9e5d29283c614f40b811039",
+     "skills/research-autopilot/assets/licenses/scholar-skill-MIT.txt": "c115f24608ca19d44d8ba103ae52dff3dfcd4639ba548068a897f076bf5b8758",
+-    "skills/research-autopilot/assets/research-nodes.json": "f1cf457d03d92232c938b8554f4d47810b4e5298984edd431f3994dd194b136c",
++    "skills/research-autopilot/assets/research-nodes.json": "2bfa90784ca9a92f6caf6eb351b59c0e1d22269a9f31fdda691c272277a1c6d3",
+     "skills/research-autopilot/assets/runtime-guidance.json": "70889d6bb4cb51abd9b97d482a96d7cfe3cf7c2b273cb020755845babf962b15",
+     "skills/research-autopilot/assets/skill-sequence-cd-v1.json": "6da061b19f7a9dd526e58a4d11b321f051f96d9d37f5f0f7623487b81c4ad792",
+     "skills/research-autopilot/assets/skill-sequence.json": "bff5e470610e016dc798cffa56cc7bdc62fdb21901835444aba9df34f4a9d971",
+@@ -81,7 +81,7 @@
+     "skills/research-autopilot/references/benchmark-discovery.md": "efb4ce8e9574ee8c29328bdb0b4a132bc6e6b96b02d39460534b42b735d7d389",
+     "skills/research-autopilot/references/canonical-literature.md": "4c1a8f13dcdd482c040c4725f31974c4d8981a00d3da609740bc68aaaa99b09a",
+     "skills/research-autopilot/references/capability-source-catalog.md": "2efc74bca2034b06cf507fca76dea08820487a4e98c17ee38298574c519a421f",
+-    "skills/research-autopilot/references/cd-math-code-loop.md": "43dd2716ba2448f34fc2f32dbb40b83fb890928ef2efa1be678bd0ab314ea9ab",
++    "skills/research-autopilot/references/cd-math-code-loop.md": "32a4cb49b6cdbc1bc85b28929122cdd38ba9c86edfdb88cfcde04659fe8b38a3",
+     "skills/research-autopilot/references/cd-runtime-contracts.md": "0ad525efdd639c6c4d8e89d30a10569c573b651a332f0cf18c1385f9302166a9",
+     "skills/research-autopilot/references/chat-control-records.md": "930ab73a3dbf3b66d2f02a593b727278deade614a3a49be99c890a614606336a",
+     "skills/research-autopilot/references/chat-cycle-records.md": "9e21fbf73d14393ce56505fe4efdd5bee81e68aa92d8f6502a47fb433d0a6ecd",
+@@ -94,15 +94,15 @@
+     "skills/research-autopilot/references/dependency-resource-scheduling.md": "b5944b3c42d6b7bc33fb77fe9364956a6042cd43edff268666e02669f3f8a478",
+     "skills/research-autopilot/references/development-and-execution.md": "8b3dd620c7295e7c8d6bda755d88b108633801ee5f1117f59ceaf5d2b0037efb",
+     "skills/research-autopilot/references/editable-writing-artifacts.md": "4b8d8eb55089fddc42559e326b4860ec1cd80b498988c9494504ad132ca20bf1",
+-    "skills/research-autopilot/references/edition-policy.md": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3",
++    "skills/research-autopilot/references/edition-policy.md": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656",
+     "skills/research-autopilot/references/evaluation-and-assets.md": "973e306f649b2cedb8aa693c4b32035c435c45f2a726d790020d21172e47527e",
+-    "skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md": "8c51ae7abfcb343f650de19732ce69e7251943198008f86ee7e1c7b9a6d6619b",
++    "skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md": "ff85cd0da0158c8060eeb716d459572289a2e7adfc7e1ccde61aca4863cc80ec",
+     "skills/research-autopilot/references/execution-and-handoffs.md": "e161aa072114df6aebb9947e55636d744cfbc69a88ca6927d4906cb6df4f4ac0",
+     "skills/research-autopilot/references/full-validation-and-review.md": "2fea5eb47f11916a75496fe4903f5af1fe6ad1da498f7e20bba0f2f3f8eb676f",
+     "skills/research-autopilot/references/gate-a.md": "9e27ba28e67452538a5a2dd3584ed7410143d2da7a3e2b0ac60eaec2762047c1",
+     "skills/research-autopilot/references/github-zip-fallback.md": "a0b3394d9206c574872bc0d9cce5f04307cffcb6c6c27760d9f9fc2cf715bb96",
+     "skills/research-autopilot/references/goal-linked-quality.md": "7aa23a3682ea91dc9f47f2487574ee68a282a73cd65085769ae66b7f3c0efebe",
+-    "skills/research-autopilot/references/gpu-adaptive-execution.md": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c",
++    "skills/research-autopilot/references/gpu-adaptive-execution.md": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4",
+     "skills/research-autopilot/references/gpu-host-runtime.md": "e9eb939da8c74f54f924336728342aeb80bec14275d9ca95acc86f54f35a2ed8",
+     "skills/research-autopilot/references/gpu-intake-feasibility.md": "bd4932c01c6ef4c63079242deaf6a7a5c722984243ded413f6b49d6c8cdd5a5e",
+     "skills/research-autopilot/references/host-adapters.md": "c1696de410660790bd520ee31a186add2e74065bcafd9f7c73e148aeef95c0c4",
+@@ -219,12 +219,12 @@
+     "skills/research-autopilot/references/nodes/X05.md": "90b60a1b5ac78a85b782cfa0a66488085f9f1a2f5d2cd1c6949b3328c3f2cf5a",
+     "skills/research-autopilot/references/nodes/X06.md": "db3f3863639b5cff7f9445b3dd4535f81f574909ba1137767df13f3bc20424bc",
+     "skills/research-autopilot/references/nodes/cd-v1/B01.md": "739e23ee73eeb165c8612ce01fd189238606c3a8489ca9a901d9e5498037a7ba",
+-    "skills/research-autopilot/references/nodes/cd-v1/B02.md": "bd293f7e8bf345d8c3b92aeab9ba88d97e14de36a4c303b92f9e7c119cfed6ae",
+-    "skills/research-autopilot/references/nodes/cd-v1/B03.md": "5a0f0734e1314223fd9802c135246a44e0caca7433f4567b30638ccc8ca7cce9",
++    "skills/research-autopilot/references/nodes/cd-v1/B02.md": "d7a976c93d72cf3ce875df1c653acbb42fb10cb617b4957a26d188b440d7e30a",
++    "skills/research-autopilot/references/nodes/cd-v1/B03.md": "45e68e5af818c2319113c3d8d8a66e052c4c414e5a4dd4da6f41f74081c3c1ce",
+     "skills/research-autopilot/references/nodes/cd-v1/B04.md": "f063774948b0a7edbeb5018e159e87ac9d29b483f730871a8e3c688862a387e7",
+     "skills/research-autopilot/references/nodes/cd-v1/B05.md": "b98271d73d93758f5e88db78d32fc7b43aecdd938887ec4c4996246ef902b6c3",
+     "skills/research-autopilot/references/nodes/cd-v1/E01.md": "ba252fe339f534221a05fd9f11f5cb8076c97e3dca3f9ad5796850824f2e8a69",
+-    "skills/research-autopilot/references/nodes/cd-v1/H01.md": "ebfc1401ad2cf7493222fc73131e629de38a94ee344426a495453fe4d1f461d1",
++    "skills/research-autopilot/references/nodes/cd-v1/H01.md": "734bb50f26415416de64e30377fa9c38bba9d6ca33dd81d08ae48bcada8ee3af",
+     "skills/research-autopilot/references/nodes/cd-v1/H02.md": "3e70260a643bfa6d5a4deb5a411bfa4d01cc41fb0d661596e08fe22ec697f627",
+     "skills/research-autopilot/references/nodes/cd-v1/H03.md": "946879b885c94387c8397642ccf56202fbd209517ce17e19a62c845460c4f169",
+     "skills/research-autopilot/references/nodes/cd-v1/H04.md": "ec759b586b8de77b83699b023e4bbad96bc624c5bed36fa430b615bfdb4e30f3",
+@@ -233,19 +233,20 @@
+     "skills/research-autopilot/references/nodes/cd-v1/M02.md": "1cae5be9d7f7037af6d95a2c96ff3cc7935072e038617c2dc47d3385fabcc812",
+     "skills/research-autopilot/references/nodes/cd-v1/M03.md": "5892aaae5e5cdc7a165143abe12e55d080a5bed57c0ceb1b4669c551f6d58caf",
+     "skills/research-autopilot/references/nodes/cd-v1/M04.md": "ba7797702e89f871986b1ca090d83921c1886bfe79d21540432ca9031a921782",
+-    "skills/research-autopilot/references/nodes/cd-v1/M05.md": "0a172da32a7694d74a1a7155f38905f0b579d49f6db98b0331211b0c11601e6d",
+-    "skills/research-autopilot/references/nodes/cd-v1/S01.md": "b8ca7e45f7f7123ee7d93ea6194e97a90c829628e09ca19124eecc32635e99e2",
++    "skills/research-autopilot/references/nodes/cd-v1/M05.md": "a99f4d3326a111d3f20048353d621bff33b86c8f2d0ff8d5a0b95e0d281179b6",
++    "skills/research-autopilot/references/nodes/cd-v1/S01.md": "f7b3bfdf56e513a05082dc184dfd3d8d2242f8a843cf5b1a13ab807bcd57cc1f",
+     "skills/research-autopilot/references/operational-recovery.md": "8065f60d6283a950c2971383682b9eec29e762596e27f40d730711b8cbdd4fc2",
+     "skills/research-autopilot/references/paper-grounded-experiment-design.md": "332a78a0126de0c41bb12791e52c87feec2d72973e76f19b4bc1b6313d361740",
+     "skills/research-autopilot/references/paper-knowledge-loop.md": "5eff0aa7517e4d503a56d69a2e8208c3c3f7ddca06a0a4a27dd90330bcfaac59",
+-    "skills/research-autopilot/references/phase-autonomy.md": "262834811530cde285cfacddc85de6cfd389079d5525fda0335a01c5beb4d35b",
++    "skills/research-autopilot/references/phase-autonomy.md": "bb97514ae5cc347c9c1074dfb1ab83de2acc9a3ff2a62b23d264c7c2bf647494",
+     "skills/research-autopilot/references/progress-observability.md": "f4ee68fa4d20e29adc95a8ccf1109082ccb2af85a9e6e6190242f026a3635157",
+     "skills/research-autopilot/references/project-chat-instructions.md": "65505a3d6cf7c3f822609a100f8f9120ade1908dcb76889a0da06fc6083c9901",
+     "skills/research-autopilot/references/project-cooperation.md": "46dc36a6d052ca8c3bcfd1b8d9999c5cd7f17e750d2b512b139174f40876ba3a",
++    "skills/research-autopilot/references/question-led-experiment-selection.md": "4364f11fad41fb85eadb9ed69765ba446a2cf74c35549744c71758188a9a4e91",
+     "skills/research-autopilot/references/release-and-promotion.md": "a233dd3d9ca6c5c30b4fde5a91b0d597fc2fff355cfc9229567373601d8ae61e",
+     "skills/research-autopilot/references/repository-round-trips.md": "3166fa9b612f593d0a0783843048d7f644750990287822dd7e1c1623c2fb0468",
+     "skills/research-autopilot/references/research-cycle.md": "2f109b446769975447da5e73bf8e3d729f545e856256a35f87bf659e18fa2cfd",
+-    "skills/research-autopilot/references/research-harness.md": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622",
++    "skills/research-autopilot/references/research-harness.md": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959",
+     "skills/research-autopilot/references/research-policy.md": "abec8588b84f368d3dcc08806a263d1734088404f40df78f6d4cf013a48f6d44",
+     "skills/research-autopilot/references/research-quality-bar.md": "5289770268053ec384d1635c01b5a6253f0ee1c31696580744e72c86477b3586",
+     "skills/research-autopilot/references/research-reasoning.md": "39f63fb6e7224b72d4282f6332e14e17d23a53d6f4f7772e62c5d1454629303e",
+@@ -446,7 +447,7 @@
+     "skills/writing-top-tier-papers/references/visual-orchestration.md": "a2a7d2acd566a19170aee6c997e206ad7b80f4e758e3a58d9d1ffc5779585f23"
+   },
+   "source_note": "Original per-skill revisions and exported_at retain export ancestry. Shared scientific helpers are imported from the source recorded in SOURCE_PUBLICATION.json. Exact delivered bytes are pinned below; no installed or live-project parity is asserted.",
+-  "research_skill_digest": "6afd37e550c64847a45da32c68cbc90b5e9526eb24158392223a4a33512fb7aa",
++  "research_skill_digest": "d2f2dc0e4042fddf637c67425cf13ddcf3a7ad7673bec02e2a4aee3c266d603b",
+   "runtime_source_revision": "80d99dfd4b6d44ca51c2fb13239334fc08e6a69d",
+   "runtime_files": {
+     "docs/AUTONOMOUS.zh-CN.md": "0665ef54169aa4453ae6ba1f5dbda9a914333ce8648666ec0970c356522f39f8",
+@@ -488,16 +489,16 @@
+     "src/research_autopilot/mcp.py": "1f5a7a09921a238730a14f04e3c53b85b9a98a641ab78bc26ad76200c49fa122",
+     "src/research_autopilot/models.py": "12fb3cbe2f3cb08537b85bd42216dce7a09f7c38bc11646ec70fa1261b485eb9",
+     "src/research_autopilot/native_artifacts.py": "0a651cce13d3f7e0791c095c40690172438c70c1ec8954ef89dfd205e995beb2",
+-    "src/research_autopilot/phase_autonomy.py": "61f5dc2e086c795a8ece20b803b2a60dfb4e048831e74a508d606c1cad4e2a03",
++    "src/research_autopilot/phase_autonomy.py": "5e029556253a4500547264cb38ee6c62510db0f6fe5f390d527c2408d6cb6bab",
+     "src/research_autopilot/phase_mailbox.py": "5edd0ad84017dbe9c8dde59407a3b56253f56df1f0203f7d57cbf0b51fed70b8",
+     "src/research_autopilot/phase_native.py": "3f6cd8f8cd9ec014db84f8b71cefd3a729bb22624c554dc5a92ff62e23a8c08f",
+     "src/research_autopilot/phase_wait.py": "100b109bbc02a68bbd3ddf88b9ace2251ae65dfe39d52288b141d1e5c664a453",
+-    "src/research_autopilot/program.py": "28b0fa49345a803602188074936f6be9053f7effff239860425507b24dabe19b",
++    "src/research_autopilot/program.py": "afd3760d13e734d8eea011e2c6ba1e423e08873b0842b0cda333442c1c98de88",
+     "src/research_autopilot/program_cli.py": "4c99bbab34f3a7f30ba6f1e02c1e63966745d96206d26c0b4d746538a58564ff",
+     "src/research_autopilot/remote.py": "de2fd42752393881a6197bcafa5e9e69951559a15ecd7d6333a2cbc264e69f3f",
+     "src/research_autopilot/scientific_closure.py": "834f6eb1eee618bd84ded37da35ba5cc4086bac69b0e618d9eae7ef32ccafda6",
+     "src/research_autopilot/skill_registry.py": "a0b4b3ab6390db88a2d248bad2b4e0aa98108aaa7c7995016bcbce61e8175d8b",
+-    "src/research_autopilot/skill_sequence.py": "9a358863c36e8b70c75889d8f2bfe5d7e4cce6c5f631fd6fdf2c81a87b6c32a2",
++    "src/research_autopilot/skill_sequence.py": "752138fffa7dfc81f44ffaf656179dfdc4120c6c5dc7e1c25895d25c7726e3ea",
+     "src/research_autopilot/supervisor.py": "7084191247baef5167c64e4b6839f3ddf90e552ff4b9347ef4c8be980a600cb5",
+     "src/research_autopilot/worker.py": "653f0bd274a2c3fe15131f0111b433c39d36a917edffc734589ab63e313e5ef0",
+     "tests/runtime/fixtures/acp_agent.py": "1a5c80a5a14342bbc14096aca258de69f20386ca672cbe6062684f2ba0cb1f93",
+@@ -536,7 +537,7 @@
+   "public_baseline_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+   "variant": {
+     "name": "autonomous-rsi-harness",
+-    "version": "0.4.0-harness.11",
++    "version": "0.4.0-harness.12",
+     "base_main_revision": "658a39f3f32bc6bddc6a27d7e845773964c8c962",
+     "personal_skill_updated": false,
+     "source_kind": "derived_repository_branch"
+@@ -544,7 +545,7 @@
+   "repository_update": {
+     "feature": "deterministic-autopilot-skill-loop",
+     "branch": "autonomous-rsi-harness",
+-    "base_repository_revision": "486d8ec0c256a0b6e22527c8ebe836a35d468091",
++    "base_repository_revision": "b5869c2467df0efaef96f3254852523c181a75b1",
+     "personal_skill_updated": false,
+     "scope": "repository source; installation and live continuation require separate receipts"
+   }
+diff --git a/plugin.json b/plugin.json
+index 62f34b6..4d1e147 100644
+--- a/plugin.json
++++ b/plugin.json
+@@ -1,7 +1,7 @@
+ {
+   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+   "name": "research-autopilot",
+-  "version": "0.4.0-harness.11",
++  "version": "0.4.0-harness.12",
+   "description": "Run mathematical diagnosis and code experiments through reviewed B/C/D research loops, then verified scale-up.",
+   "author": {
+     "name": "Yunbo Long",
+diff --git a/skills/research-autopilot/SKILL.md b/skills/research-autopilot/SKILL.md
+index 2d986b4..415c93f 100644
+--- a/skills/research-autopilot/SKILL.md
++++ b/skills/research-autopilot/SKILL.md
+@@ -5,6 +5,10 @@ description: "Use for sustained one-field research with existing local agents ex
+ 
+ # Research Autopilot
+ 
++## Question-led research selection
++
++Read [question-led experiment selection](references/question-led-experiment-selection.md) for B memory, C diagnosis, D mechanism development and E coverage. Reassess inherited hypotheses and choose informative models/data/conditions before reusing assets; old setup, cache and prior acceptance do not settle scientific fit. Worker and reviewer apply this within the existing phase, without another gate or model-size quota.
++
+ ## Official code and adaptive GPU execution
+ 
+ Read [official code and adaptive GPU execution](references/gpu-adaptive-execution.md) for every experimental stage. Reuse official code and the authorized GPU; install, adapt, debug and execute inside the sustained worker. Missing scorer integration is owned repair work, and blocks only work that consumes its scores.
+@@ -153,7 +157,7 @@ Read [edition-policy.md](references/edition-policy.md) and
+ [round-continuation.md](references/round-continuation.md) and
+ [resource-queue.md](references/resource-queue.md) first. They govern
+ decision ownership, execution host and continuation across every module below.
+-Version: `0.4.0-harness.11`; branch: `autonomous-rsi-harness`.
++Version: `0.4.0-harness.12`; branch: `autonomous-rsi-harness`.
+ Keep the current Codex or other supported local agent. This fifth Work-derived
+ edition adds a persistent whole-goal program with fixed Skill order: the
+ current-step worker, independently executed review, v4 decision admission,
+diff --git a/skills/research-autopilot/assets/harness-policy.json b/skills/research-autopilot/assets/harness-policy.json
+index a210593..a3d1f59 100644
+--- a/skills/research-autopilot/assets/harness-policy.json
++++ b/skills/research-autopilot/assets/harness-policy.json
+@@ -1,4 +1,4 @@
+ {
+   "edition": "autonomous-rsi-harness",
+-  "version": "0.4.0-harness.11"
++  "version": "0.4.0-harness.12"
+ }
+diff --git a/skills/research-autopilot/assets/research-nodes.json b/skills/research-autopilot/assets/research-nodes.json
+index ad66563..a07a325 100644
+--- a/skills/research-autopilot/assets/research-nodes.json
++++ b/skills/research-autopilot/assets/research-nodes.json
+@@ -716,7 +716,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -726,7 +726,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -771,7 +771,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -1556,7 +1556,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -1566,7 +1566,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -1611,7 +1611,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -2941,7 +2941,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -2951,7 +2951,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -2996,7 +2996,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-root",
+@@ -3865,7 +3865,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -3875,7 +3875,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -3920,7 +3920,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -5317,7 +5317,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -5327,7 +5327,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5372,7 +5372,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-human-ai-supervision",
+@@ -5441,7 +5441,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -5451,7 +5451,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -5496,7 +5496,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -6448,7 +6448,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -6458,7 +6458,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6503,7 +6503,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -6700,7 +6700,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -6710,7 +6710,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6755,7 +6755,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -6869,7 +6869,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -6879,7 +6879,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -6924,7 +6924,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -7135,7 +7135,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -7145,7 +7145,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7190,7 +7190,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7396,7 +7396,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -7406,7 +7406,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7451,7 +7451,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -7735,7 +7735,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -7745,7 +7745,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -7790,7 +7790,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -8114,7 +8114,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -8124,7 +8124,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8169,7 +8169,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -8811,7 +8811,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -8821,7 +8821,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -8866,7 +8866,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -9115,7 +9115,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -9125,7 +9125,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9170,7 +9170,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -9674,7 +9674,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -9684,7 +9684,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -9729,7 +9729,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10168,7 +10168,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -10178,7 +10178,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10223,7 +10223,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -10787,7 +10787,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -10797,7 +10797,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10842,7 +10842,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -10931,7 +10931,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -10941,7 +10941,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -10986,7 +10986,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -11085,7 +11085,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -11095,7 +11095,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -11140,7 +11140,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -12588,7 +12588,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -12598,7 +12598,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -12643,7 +12643,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -13358,7 +13358,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -13368,7 +13368,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -13413,7 +13413,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -14586,7 +14586,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -14596,7 +14596,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14641,7 +14641,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-collision-audit",
+@@ -14750,7 +14750,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -14760,7 +14760,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14805,7 +14805,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-importance-preserving-gate",
+@@ -14929,7 +14929,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -14939,7 +14939,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -14984,7 +14984,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -15859,7 +15859,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -15869,7 +15869,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -15914,7 +15914,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -16819,7 +16819,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -16829,7 +16829,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -16874,7 +16874,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -17318,7 +17318,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -17328,7 +17328,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17373,7 +17373,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17497,7 +17497,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -17507,7 +17507,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17552,7 +17552,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -17671,7 +17671,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -17681,7 +17681,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -17726,7 +17726,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -18288,7 +18288,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -18298,7 +18298,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18343,7 +18343,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -18530,7 +18530,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -18540,7 +18540,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18585,7 +18585,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -18823,7 +18823,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -18833,7 +18833,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -18878,7 +18878,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -19377,7 +19377,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -19387,7 +19387,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19432,7 +19432,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -19566,7 +19566,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -19576,7 +19576,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -19621,7 +19621,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -21317,7 +21317,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -21327,7 +21327,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -21372,7 +21372,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22255,7 +22255,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -22265,7 +22265,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22310,7 +22310,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -22447,7 +22447,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -22457,7 +22457,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -22502,7 +22502,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -23539,7 +23539,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -23549,7 +23549,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -23594,7 +23594,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -24265,7 +24265,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -24275,7 +24275,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -24320,7 +24320,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -25129,7 +25129,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -25139,7 +25139,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -25184,7 +25184,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -25722,7 +25722,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -25732,7 +25732,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -25777,7 +25777,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-host-adapters",
+@@ -27358,7 +27358,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -27368,7 +27368,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -27413,7 +27413,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -28602,7 +28602,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -28612,7 +28612,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -28657,7 +28657,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-artifact-contracts",
+@@ -29747,7 +29747,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -29757,7 +29757,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -29802,7 +29802,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30765,7 +30765,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -30775,7 +30775,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -30820,7 +30820,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -30964,7 +30964,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -30974,7 +30974,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31019,7 +31019,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31138,7 +31138,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -31148,7 +31148,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31193,7 +31193,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31327,7 +31327,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -31337,7 +31337,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31382,7 +31382,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31506,7 +31506,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -31516,7 +31516,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31561,7 +31561,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-gate-a",
+@@ -31927,7 +31927,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -31937,7 +31937,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -31982,7 +31982,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -32533,7 +32533,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -32543,7 +32543,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32588,7 +32588,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -32770,7 +32770,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -32780,7 +32780,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -32825,7 +32825,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -32992,7 +32992,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -33002,7 +33002,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33047,7 +33047,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -33234,7 +33234,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -33244,7 +33244,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33289,7 +33289,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -33526,7 +33526,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -33536,7 +33536,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33581,7 +33581,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -33783,7 +33783,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -33793,7 +33793,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -33838,7 +33838,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -34060,7 +34060,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -34070,7 +34070,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34115,7 +34115,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-ai-conference-mode",
+@@ -34302,7 +34302,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -34312,7 +34312,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34357,7 +34357,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-output-contract",
+@@ -34751,7 +34751,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -34761,7 +34761,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -34806,7 +34806,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "p-root",
+@@ -34960,7 +34960,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -34970,7 +34970,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35015,7 +35015,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "f-root",
+@@ -35237,7 +35237,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -35247,7 +35247,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35292,7 +35292,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -35514,7 +35514,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -35524,7 +35524,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35569,7 +35569,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -35771,7 +35771,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -35781,7 +35781,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -35826,7 +35826,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -35950,7 +35950,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -35960,7 +35960,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36005,7 +36005,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -36132,7 +36132,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -36142,7 +36142,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36187,7 +36187,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -36397,7 +36397,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -36407,7 +36407,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36452,7 +36452,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-root",
+@@ -36649,7 +36649,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -36659,7 +36659,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -36704,7 +36704,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -36980,7 +36980,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -36990,7 +36990,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -37035,7 +37035,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -38119,7 +38119,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -38129,7 +38129,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38174,7 +38174,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -38761,7 +38761,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -38771,7 +38771,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38816,7 +38816,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -38885,7 +38885,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -38895,7 +38895,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -38940,7 +38940,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-research-websites",
+@@ -39074,7 +39074,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -39084,7 +39084,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39129,7 +39129,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -39400,7 +39400,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -39410,7 +39410,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39455,7 +39455,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-research-websites",
+@@ -39544,7 +39544,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -39554,7 +39554,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39599,7 +39599,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "w-visual-orchestration",
+@@ -39718,7 +39718,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -39728,7 +39728,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39773,7 +39773,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -39862,7 +39862,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -39872,7 +39872,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -39917,7 +39917,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -40006,7 +40006,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -40016,7 +40016,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40061,7 +40061,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-release-and-promotion",
+@@ -40150,7 +40150,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -40160,7 +40160,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40205,7 +40205,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-state-and-routing",
+@@ -40446,7 +40446,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -40456,7 +40456,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40501,7 +40501,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-literature-evidence",
+@@ -40780,7 +40780,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -40790,7 +40790,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -40835,7 +40835,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-initial-intake",
+@@ -41236,7 +41236,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -41246,7 +41246,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41291,7 +41291,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-idea-generation",
+@@ -41876,7 +41876,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -41886,7 +41886,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -41931,7 +41931,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-visual-map-maintenance",
+@@ -42195,7 +42195,7 @@
+     {
+      "source": "r-gpu-adaptive-execution",
+      "heading": "# Official code and adaptive GPU execution",
+-     "sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++     "sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+     },
+     {
+      "source": "r-skill-sequence",
+@@ -42205,7 +42205,7 @@
+     {
+      "source": "r-research-harness",
+      "heading": "# Work Harness research program",
+-     "sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++     "sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+     },
+     {
+      "source": "r-single-experiment-batching",
+@@ -42250,7 +42250,7 @@
+     {
+      "source": "r-edition-policy",
+      "heading": "# Edition policy and decision ownership",
+-     "sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++     "sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+     },
+     {
+      "source": "r-execution-and-handoffs",
+@@ -44703,7 +44703,7 @@
+   "r-edition-policy": {
+    "skill": "research-autopilot",
+    "path": "references/edition-policy.md",
+-   "audit_file_sha256": "12b53c549bc3e415044cd88f45dbe15823f7f234471260dee6b4ae3f617d96d3"
++   "audit_file_sha256": "a159dba7ce42924c5e66ace5acdea8c67344ccbbf83ac21e70fd5d086eae2656"
+   },
+   "r-round-continuation": {
+    "skill": "research-autopilot",
+@@ -44748,7 +44748,7 @@
+   "r-research-harness": {
+    "skill": "research-autopilot",
+    "path": "references/research-harness.md",
+-   "audit_file_sha256": "66a5befaad76036731856a5db9d79ee2a8caeae88e45db08211cf93f8104a622"
++   "audit_file_sha256": "126a1dc5c870730fb1b33039bea6b7e3e7b5d4dc8f2205a1179b53199f553959"
+   },
+   "r-skill-sequence": {
+    "skill": "research-autopilot",
+@@ -44758,7 +44758,7 @@
+   "r-gpu-adaptive-execution": {
+    "skill": "research-autopilot",
+    "path": "references/gpu-adaptive-execution.md",
+-   "audit_file_sha256": "c891ddb8b820f85bfb48806e96579c5eca495926657724c4e398dc4062ccbd7c"
++   "audit_file_sha256": "95c455c761a41c60d82cc9c4280b622a387aae9f72e0f2eb53e0dbaba1d93aa4"
+   }
+  }
+ }
+diff --git a/skills/research-autopilot/references/cd-math-code-loop.md b/skills/research-autopilot/references/cd-math-code-loop.md
+index 63d7b41..b8adb93 100644
+--- a/skills/research-autopilot/references/cd-math-code-loop.md
++++ b/skills/research-autopilot/references/cd-math-code-loop.md
+@@ -1,5 +1,7 @@
+ # Work Harness C/D mathematical diagnosis and executable idea development
+ 
++Read [question-led experiment selection](question-led-experiment-selection.md) before scientific selection or phase acceptance. Reassess inherited problem framing and model/data choices; reuse assets only after establishing their relevance.
++
+ For Work Harness phase autonomy, apply [official code and adaptive GPU execution](gpu-adaptive-execution.md). It governs execution and repair across all experimental stages; inherited per-call gates below do not block ordinary installation, adaptation or debug.
+ 
+ ## Sustained phase mode (Work Harness)
+diff --git a/skills/research-autopilot/references/edition-policy.md b/skills/research-autopilot/references/edition-policy.md
+index dd9b1ff..2871ddf 100644
+--- a/skills/research-autopilot/references/edition-policy.md
++++ b/skills/research-autopilot/references/edition-policy.md
+@@ -23,7 +23,7 @@ Installation alone does not migrate a running project or change another edition.
+ 
+ This edition policy, skill-sequence.md, research-harness.md and round-continuation.md take precedence
+ over inherited routing, candidate quotas and round-end defaults throughout this package.
+-This checkout is autonomous-rsi-harness, version 0.4.0-harness.11: the fifth,
++This checkout is autonomous-rsi-harness, version 0.4.0-harness.12: the fifth,
+ Work-derived edition, keeping existing Codex and other local agents.
+ Scientific evidence requirements still apply to the actual claim.
+ 
+diff --git a/skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md b/skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md
+index 3bd9e40..4b0185d 100644
+--- a/skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md
++++ b/skills/research-autopilot/references/evidence-reuse-and-stage-dependencies.md
+@@ -1,5 +1,7 @@
+ # Reuse evidence and resolve dependencies at the consuming stage
+ 
++Read [question-led experiment selection](question-led-experiment-selection.md) before scientific selection or phase acceptance. Reassess inherited problem framing and model/data choices; reuse assets only after establishing their relevance.
++
+ For Work Harness phase autonomy, apply [official code and adaptive GPU execution](gpu-adaptive-execution.md). It governs execution and repair across all experimental stages; inherited per-call gates below do not block ordinary installation, adaptation or debug.
+ 
+ Apply this policy to both the current-step worker and independent reviewer at
+@@ -11,10 +13,12 @@ for examining evidence relevant to a changed claim.
+ 
+ ## S01: select a sufficient evaluation plan
+ 
+-Start with the project's existing benchmark, metric, split and baseline records.
+-When they cover the current prediction and strongest alternative, record the fit
+-and proceed to review. Search additional benchmarks only for an identified coverage
+-gap. Reuse unchanged source/configuration inspection; do not reopen exhaustive
++Start from the current scientific question and rival explanations, then assess the
++project's benchmark, metric, split and baseline records against them. Reconsider
++the question itself when inherited framing is unsupported or too narrow. When
++existing assets are suitable, record the fit and reuse them; otherwise select
++more informative published models/data/evaluation, without preserving a choice
++merely because setup is complete. Reuse unchanged source/configuration inspection; do not reopen exhaustive
+ literature discovery or require new baseline scores merely to accept a plan.
+ Pin the comparison, denominator, protocol, provenance and prospective resource cost.
+ Separate known future scoring/qualification work from dependencies required to
+@@ -44,9 +48,11 @@ Extract supported failures/tradeoffs with their population, denominator and scop
+ Do not rerun a complete historical matrix merely to enter the second research round.
+ Aggregate summaries cannot supply absent paired examples, failure frequencies or
+ semantic labels. Where such missing evidence is essential, name the exact artifact
+-and request the smallest relevant diagnostic on existing natural benchmark inputs,
++and choose a diagnostic with sufficient evidence to distinguish the explanations on
++scientifically suitable natural benchmark inputs,
+ with fixed inclusion IDs, outputs, scoring dependencies and explicit limited scope.
+-Retain stronger comparisons and confirmation obligations for their proper stage.
++Run strong comparisons in C when needed to resolve its explanations; retain
++broader generalization and independent confirmation obligations for E.
+ Once archive recovery is exhausted, repeat it only when a new concrete source lead
+ appears; otherwise collect the missing evidence through an admitted task.
+ 
+diff --git a/skills/research-autopilot/references/gpu-adaptive-execution.md b/skills/research-autopilot/references/gpu-adaptive-execution.md
+index c97e23c..6f51827 100644
+--- a/skills/research-autopilot/references/gpu-adaptive-execution.md
++++ b/skills/research-autopilot/references/gpu-adaptive-execution.md
+@@ -1,5 +1,7 @@
+ # Official code and adaptive GPU execution
+ 
++Read [question-led experiment selection](question-led-experiment-selection.md) before scientific selection or phase acceptance. Reassess inherited problem framing and model/data choices; reuse assets only after establishing their relevance.
++
+ Work Harness uses this policy across setup, C/D idea experiments, E execution,
+ scoring, ablations, robustness, transfer and later confirmation/debug work.
+ It overrides inherited per-edit approval, official-executable-only scoring and
+diff --git a/skills/research-autopilot/references/nodes/cd-v1/B02.md b/skills/research-autopilot/references/nodes/cd-v1/B02.md
+index bbd4e02..bb9fbb1 100644
+--- a/skills/research-autopilot/references/nodes/cd-v1/B02.md
++++ b/skills/research-autopilot/references/nodes/cd-v1/B02.md
+@@ -1,5 +1,7 @@
+ # B02 条件下的失效与依赖诊断
+ 
++Apply [question-led experiment selection](../../question-led-experiment-selection.md). Independently assess the inherited question and choose informative model/data/conditions; reuse, past acceptance and parameter count alone do not establish scientific fit. Explain the consequential choices in existing phase evidence, without a new per-call gate.
++
+ In Work Harness phase autonomy, follow [adaptive GPU execution](../../gpu-adaptive-execution.md). Installation, code adaptation, source refresh and debugging stay inside the sustained worker. Ordinary internal iteration needs no child agent or human approval; phase acceptance and reopening accepted scientific evidence retain their review.
+ 
+ ## Profile and precedence
+diff --git a/skills/research-autopilot/references/nodes/cd-v1/B03.md b/skills/research-autopilot/references/nodes/cd-v1/B03.md
+index 7dfc97e..168f535 100644
+--- a/skills/research-autopilot/references/nodes/cd-v1/B03.md
++++ b/skills/research-autopilot/references/nodes/cd-v1/B03.md
+@@ -1,5 +1,7 @@
+ # B03 强基线与诊断反事实
+ 
++Apply [question-led experiment selection](../../question-led-experiment-selection.md). Independently assess the inherited question and choose informative model/data/conditions; reuse, past acceptance and parameter count alone do not establish scientific fit. Explain the consequential choices in existing phase evidence, without a new per-call gate.
++
+ In Work Harness phase autonomy, follow [adaptive GPU execution](../../gpu-adaptive-execution.md). Installation, code adaptation, source refresh and debugging stay inside the sustained worker. Ordinary internal iteration needs no child agent or human approval; phase acceptance and reopening accepted scientific evidence retain their review.
+ 
+ ## Profile and precedence
+diff --git a/skills/research-autopilot/references/nodes/cd-v1/H01.md b/skills/research-autopilot/references/nodes/cd-v1/H01.md
+index 8574937..31fae7d 100644
+--- a/skills/research-autopilot/references/nodes/cd-v1/H01.md
++++ b/skills/research-autopilot/references/nodes/cd-v1/H01.md
+@@ -1,5 +1,7 @@
+ # H01 问题抽象与竞争机制
+ 
++Apply [question-led experiment selection](../../question-led-experiment-selection.md). Independently assess the inherited question and choose informative model/data/conditions; reuse, past acceptance and parameter count alone do not establish scientific fit. Explain the consequential choices in existing phase evidence, without a new per-call gate.
++
+ In Work Harness phase autonomy, follow [adaptive GPU execution](../../gpu-adaptive-execution.md). Installation, code adaptation, source refresh and debugging stay inside the sustained worker. Ordinary internal iteration needs no child agent or human approval; phase acceptance and reopening accepted scientific evidence retain their review.
+ 
+ ## Profile and precedence
+diff --git a/skills/research-autopilot/references/nodes/cd-v1/M05.md b/skills/research-autopilot/references/nodes/cd-v1/M05.md
+index 7323f80..23da312 100644
+--- a/skills/research-autopilot/references/nodes/cd-v1/M05.md
++++ b/skills/research-autopilot/references/nodes/cd-v1/M05.md
+@@ -1,5 +1,7 @@
+ # M05 局部验证验收与扩大实验交接
+ 
++Apply [question-led experiment selection](../../question-led-experiment-selection.md). Independently assess the inherited question and choose informative model/data/conditions; reuse, past acceptance and parameter count alone do not establish scientific fit. Explain the consequential choices in existing phase evidence, without a new per-call gate.
++
+ In Work Harness phase autonomy, follow [adaptive GPU execution](../../gpu-adaptive-execution.md). Installation, code adaptation, source refresh and debugging stay inside the sustained worker. Ordinary internal iteration needs no child agent or human approval; phase acceptance and reopening accepted scientific evidence retain their review.
+ 
+ ## Profile and precedence
+diff --git a/skills/research-autopilot/references/nodes/cd-v1/S01.md b/skills/research-autopilot/references/nodes/cd-v1/S01.md
+index 79648f5..cb0a690 100644
+--- a/skills/research-autopilot/references/nodes/cd-v1/S01.md
++++ b/skills/research-autopilot/references/nodes/cd-v1/S01.md
+@@ -1,5 +1,7 @@
+ # S01 条件与已有 Benchmark 对应
+ 
++Apply [question-led experiment selection](../../question-led-experiment-selection.md). Independently assess the inherited question and choose informative model/data/conditions; reuse, past acceptance and parameter count alone do not establish scientific fit. Explain the consequential choices in existing phase evidence, without a new per-call gate.
++
+ In Work Harness phase autonomy, follow [adaptive GPU execution](../../gpu-adaptive-execution.md). Installation, code adaptation, source refresh and debugging stay inside the sustained worker. Ordinary internal iteration needs no child agent or human approval; phase acceptance and reopening accepted scientific evidence retain their review.
+ 
+ ## Profile and precedence
+diff --git a/skills/research-autopilot/references/phase-autonomy.md b/skills/research-autopilot/references/phase-autonomy.md
+index 5861473..4009ba8 100644
+--- a/skills/research-autopilot/references/phase-autonomy.md
++++ b/skills/research-autopilot/references/phase-autonomy.md
+@@ -1,5 +1,7 @@
+ # Sustained phase execution and research iteration
+ 
++Read [question-led experiment selection](question-led-experiment-selection.md) before scientific selection or phase acceptance. Reassess inherited problem framing and model/data choices; reuse assets only after establishing their relevance.
++
+ For Work Harness phase autonomy, apply [official code and adaptive GPU execution](gpu-adaptive-execution.md). It governs execution and repair across all experimental stages; inherited per-call gates below do not block ordinary installation, adaptation or debug.
+ 
+ Select `sequence.execution_mode: phase_autonomy` together with
+diff --git a/skills/research-autopilot/references/question-led-experiment-selection.md b/skills/research-autopilot/references/question-led-experiment-selection.md
+new file mode 100644
+index 0000000..c44452d
+--- /dev/null
++++ b/skills/research-autopilot/references/question-led-experiment-selection.md
+@@ -0,0 +1,80 @@
++# Question-led experiment selection in B, C, D and E
++
++Work Harness applies this guidance to scientific selection and phase review.
++It complements phase-autonomy.md and overrides wording that treats existing
++models, datasets, configurations or previous conclusions as mandatory choices.
++Use the existing phase analysis and evidence records; no additional form, gate,
++per-experiment approval or fixed model matrix is introduced.
++
++## B memory is evidence to assess
++
++Restore the user's actual research objective and constraints. Separate that scope
++from inherited hypotheses, favored methods and experimental conveniences. B memory
++retains sources, code, observations, uncertainty and exposure history. Neither
++being remembered nor having passed an earlier review establishes applicability to
++a new question. Check whether the earlier framing, interpretation and selected
++population were wrong, incomplete or too narrow. Preserve valid knowledge while
++refreshing relevant primary papers, official code and checked discussion leads.
++Do not restart all literature work without a reason or treat cache availability,
++completed setup or past expenditure as scientific support.
++
++## C chooses the question and the informative setting
++
++First identify the claim and rival explanations, including that the apparent
++problem is absent or caused by the chosen model/task/protocol. Select the model
++family/scale, dataset, task conditions, strong/simple comparator and evaluation
++because their outcomes can distinguish those explanations. Explain consequential
++selection and exclusion choices in the existing research analysis. Assess model
++capability, task difficulty, floor/ceiling effects, population relevance, precision,
++truncation, sampling, training objective, legal information and comparison budgets
++when they can affect interpretation. Use actual hardware measurements for
++feasibility; do not let the first runnable configuration define the research.
++
++A small model can support a justified scoped claim. Low accuracy alone does not
++establish a method defect. If capacity, family or dataset choice could explain a
++finding, choose the comparison that resolves it, which may require another model
++or stronger setting during C rather than deferring it automatically to E. No
++universal minimum parameter count, seed count, dataset count or larger-is-better
++rule applies. Positive and negative findings both inform selection; do not search
++only for conditions where a preferred method wins or an existing method fails.
++
++Decide scientific fit before engineering reuse. Reuse compatible official code,
++environments, model/data caches and valid results after that decision. Acquire or
++adapt different assets when needed. Model, task and setting choices remain
++revisable within the authorized field and resources; changing them does not by
++itself require a new agent or owner approval.
++
++## D can revise C and abandon a favored mechanism
++
++Treat C's supported problem as a scoped, revisable premise. Derive a mechanism,
++map its mathematics to code and run meaningful experiments with strong/simple
++alternatives. Select interventions from conditional predictions and falsifiers.
++If the premise no longer fits or a simpler explanation suffices, return to the
++relevant B/C work, revise the question or archive the mechanism. Do not require
++a named project method, spectral idea or earlier proposal to succeed. Preserve
++contradictory results and failed attempts. Reopening accepted scientific gates
++uses the existing reviewed revisit route; ordinary unaccepted B/C/D reasoning
++stays within the same sustained worker.
++
++## E covers the surviving claim
++
++Expand model scales/families, tasks, populations, controls, replications and cost
++measurements to test the scope of the claim and its predicted boundaries. Breadth
++is justified by what it can establish, not by filling a large Cartesian matrix.
++Freeze confirmatory settings, retain fair information/tuning/compute budgets and
++report practical effects with uncertainty. Keep C/D development exposure visible:
++previously inspected test outcomes are not unseen independent confirmation merely
++because the phase is now E. Reserve appropriate unexposed evaluation evidence.
++E counterevidence can reopen C/D through the existing supported transition.
++
++## Independent phase review
++
++Review why the selected question and experimental objects are informative, not
++just whether code ran or old assets were reused. Challenge inherited framing,
++capacity/difficulty confounds, cherry-picked conditions, weak comparators and
++unwarranted generalization. A cached model or a larger model is not automatically
++adequate. Accept well-supported limited scope without imposing a model-count quota;
++require the discriminating evidence actually needed for the claimed conclusion.
++Keep scope changes inside the user's objective and authority. Preserve immutable
++active protocols, job identity, original results and cumulative usage; apply new
++selections to versioned successor work after reconciling existing jobs.
+diff --git a/skills/research-autopilot/references/research-harness.md b/skills/research-autopilot/references/research-harness.md
+index e2564f1..2a8ad58 100644
+--- a/skills/research-autopilot/references/research-harness.md
++++ b/skills/research-autopilot/references/research-harness.md
+@@ -35,7 +35,7 @@ Installation alone does not migrate a running project or change another edition.
+ 
+ Read this at startup, every actual agent invocation, after a terminal result, and
+ before reporting completion or unattended continuation. This is the fifth edition,
+-`autonomous-rsi-harness`, version `0.4.0-harness.11`. Preserve the original Work
++`autonomous-rsi-harness`, version `0.4.0-harness.12`. Preserve the original Work
+ scientific method and the user's existing Codex or other supported local agent.
+ 
+ ## What the harness adds
+diff --git a/src/research_autopilot/phase_autonomy.py b/src/research_autopilot/phase_autonomy.py
+index 253a834..ef85ad3 100644
+--- a/src/research_autopilot/phase_autonomy.py
++++ b/src/research_autopilot/phase_autonomy.py
+@@ -48,7 +48,7 @@ def expand(catalog, prior, step):
+         result.setdefault('milestone_ids', [step['id']])
+         result.setdefault('gate_step_id', step['id'])
+         result['requirements'] = [*result['requirements'], {'id': 'C.method_basis',
+-            'description': 'Ground C in core papers and their actual official code revisions, entry points and settings; identify task-relevant strong methods and simple controls with selection/exclusion reasons, benchmark/model/data/native-evaluation bindings. Cite pinned source/code evidence. Verify enabled Xiaohongshu implementation leads against primary sources/code; retain unavailable-access and reproduction gaps explicitly. Project self-training controls alone do not satisfy this requirement.'}]
++            'description': 'Ground C in core papers and their actual official code revisions, entry points and settings; identify task-relevant strong methods and simple controls with scientifically justified selection/exclusion reasons and benchmark/model/data/native-evaluation bindings. Reassess inherited framing; check whether model capability, task choice or protocol could explain the apparent problem. Existing cache/setup does not qualify scientific fit. Cite pinned source/code evidence. Verify enabled Xiaohongshu implementation leads against primary sources/code; retain unavailable-access and reproduction gaps explicitly. Project self-training controls alone do not satisfy this requirement.'}]
+     return result
+ 
+ 
+@@ -73,7 +73,9 @@ dispatcher owns database writes and execution. Do not call the direct DB CLI.
+ This routes through the fixed target, canonical admission,
+ actual NativeWorker and retained receipts. Never manufacture future run IDs,
+ receipts, reviews or successful observations. Synchronize pinned inputs to the
+-fixed GPU target before dispatch; use its existing environment/models/data. All
++fixed GPU target before dispatch. Reuse compatible environments/models/data only
++after independently establishing scientific fit; acquire different assets when the
++question requires them within existing authority. All
+ code tests and research computation run there, not on the supervisor computer.
+ Only one native experiment can run at a time. Inspect failures and repair within
+ this assignment; no separate model review for each edit, preparation or GPU call.
+@@ -115,6 +117,16 @@ B05 still requires actual problem evidence and scorer verification; M05 still
+ requires independent VERIFIED_FOR_SCALEUP acceptance. E retains protocol freeze,
+ fair comparison, broader validation and full execution. No arbitrary round cap.
+ 
++Read question-led-experiment-selection.md. B memory and previous acceptance are
++traceable evidence to reassess, not authority to preserve a question or model.
++C chooses a scientifically meaningful question and models/data/conditions that
++can distinguish rival explanations; cached setup and sunk effort do not select
++those objects. Neither small nor larger models are mandatory. Resolve consequential
++capacity, difficulty, sampling and truncation confounds at the stage needing them.
++D may revise or abandon C's premise and a favored mechanism. E expands the surviving
++claim with frozen fair comparisons and genuinely independent confirmation.
++Explain choices in existing phase evidence; add no form, count quota or per-call gate.
++
+ C starts with a concrete literature-to-code method basis: nearest core papers,
+ official repository revisions/entry points/settings, task-relevant strong methods,
+ benchmark/model/data/native evaluation, and verified discussion implementation
+diff --git a/src/research_autopilot/program.py b/src/research_autopilot/program.py
+index 1314e23..36fb32e 100644
+--- a/src/research_autopilot/program.py
++++ b/src/research_autopilot/program.py
+@@ -1156,6 +1156,12 @@ actual adaptations at the phase boundary; do not demand a separate review for ea
+ preparation/debug/development_stage call, including later experiment phases. Inspect any
+ cd_adaptation_ref and semantic-check evidence without assuming that successful execution
+ proves method equivalence. Formal scientific comparisons retain their frozen protocols.
++For Work Harness phase autonomy, apply question-led-experiment-selection.md:
++challenge inherited framing and whether the model/data/conditions distinguish
++rival explanations, including capacity and task-difficulty artifacts. Prior
++acceptance, cache/setup and size alone do not establish suitability. D may reopen
++C; E coverage follows the claim and preserves development exposure. Evaluate this
++inside existing requirements, with no extra form, size quota or per-call approval.
+ For non-phase execution, review proposed task commands before native dispatch;
+ require one program, unchanged effective batch semantics and no Docker. Do not create a
+ replacement experiment, change controller state or certify success from a worker's prose.
+diff --git a/src/research_autopilot/skill_sequence.py b/src/research_autopilot/skill_sequence.py
+index 6870255..e628002 100644
+--- a/src/research_autopilot/skill_sequence.py
++++ b/src/research_autopilot/skill_sequence.py
+@@ -1197,6 +1197,12 @@ satisfied (boolean), reason, evidence_refs (nonempty actual pinned refs).
+ For a concrete work request, approved authorizes only its stated current-step work;
+ requirements may remain unsatisfied until real results return for another review.
+ For tasks=[], approved plus every requirement satisfied is needed to advance.
++For Work Harness phase autonomy, apply question-led-experiment-selection.md:
++challenge inherited framing and whether the model/data/conditions distinguish
++rival explanations, including capacity and task-difficulty artifacts. Prior
++acceptance, cache/setup and size alone do not establish suitability. D may reopen
++C; E coverage follows the claim and preserves development exposure. Evaluate this
++inside existing requirements, with no extra form, size quota or per-call approval.
+ Challenge omitted controls, unjustified shortcuts, ignored failed/negative evidence,
+ invented scoring and incomplete experiment matrices. Empirical cycle closure needs
+ the actual builtin native verifier; its report is not a model-authored substitute.

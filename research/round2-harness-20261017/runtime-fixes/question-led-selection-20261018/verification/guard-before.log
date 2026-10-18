@@ -1,0 +1,20 @@
+======================================================================
+FAIL: test_resource_sample_keeps_rss_when_child_identity_is_unavailable (test_guard.GuardTests.test_resource_sample_keeps_rss_when_child_identity_is_unavailable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/question-led-guard/tests/test_guard.py", line 88, in test_resource_sample_keeps_rss_when_child_identity_is_unavailable
+    self.assertIsNotNone(observation)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_unknown_identity_rss_still_enforces_memory_limit (test_guard.GuardTests.test_unknown_identity_rss_still_enforces_memory_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/code-tests/question-led-guard/tests/test_guard.py", line 98, in test_unknown_identity_rss_still_enforces_memory_limit
+    self.assertIsNotNone(observation)
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.034s
+
+FAILED (failures=2)

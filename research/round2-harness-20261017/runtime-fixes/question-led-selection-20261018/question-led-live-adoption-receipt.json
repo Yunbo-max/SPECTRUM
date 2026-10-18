@@ -1,0 +1,14 @@
+{
+  "kind": "question-led-selection-live-adoption",
+  "version": "0.4.0-harness.12",
+  "source_revision": "7df65f88d1bc0eaa5ade738f5c2f6b3d8222622b",
+  "skill_digest": "d2f2dc0e4042fddf637c67425cf13ddcf3a7ad7673bec02e2a4aee3c266d603b",
+  "adoption_ref": {
+    "path": "research-state/harness/adoptions/question-led-selection-000406.json",
+    "sha256": "fc51f28484977b9a3729e1a8d4be82f7236089949d168c520a1864efe5b14f0b"
+  },
+  "revision": 406,
+  "phase": "paused",
+  "budget_preserved": true,
+  "accepted_evidence_preserved": true
+}

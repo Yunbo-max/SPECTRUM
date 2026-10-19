@@ -1,6 +1,6 @@
-## 当前续跑位置（2026-10-19 02:22 UTC）
+## 当前续跑位置（2026-10-19 02:25 UTC）
 
-runner65584的boot/start ticks仍匹配，seed1完整落盘，seed2继续推进（最近33/131）。当前完成2/10 repeats，无退出记录或正确率。第二轮131条任务/种子/提示绑定检查通过，全部stop、无length，292643 tokens，median1586、max9535，耗时4798.21秒。原作者提取后130条可解析，arc194_b单一代码块内残留无循环体的for草稿，与首轮围栏问题不同；未修改代码或评分器。详见ssd-author-comparison-20261019/second-repeat-observation.md及repeat-01*。原始输出和检查证据已同步本地。
+runner65584的boot/start ticks仍匹配，seed1完整落盘，seed2继续推进（最近39/131）。当前完成2/10 repeats，无退出记录或正确率。第二轮131条任务/种子/提示绑定检查通过，全部stop、无length，292643 tokens，median1586、max9535，耗时4798.21秒。原作者提取后130条可解析，arc194_b单一代码块内残留无循环体的for草稿，与首轮围栏问题不同；未修改代码或评分器。详见ssd-author-comparison-20261019/second-repeat-observation.md及repeat-01*。原始输出和检查证据已同步本地。
 
 原生成→隔离评分程序继续，未启动第二程序，未改实验或Harness runtime。此处仅为生成/格式观察，不是功能正确率或覆盖缺口。恢复时优先核对原进程和新落盘repeat；当前条件完成后读取真实评分，再继续模型/条件对照。研究未完成，Harness未暂停。
 

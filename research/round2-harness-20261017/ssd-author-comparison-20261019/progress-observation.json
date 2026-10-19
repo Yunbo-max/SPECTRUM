@@ -1,14 +1,14 @@
 {
-  "utc": "2026-10-19T02:09:28.973008+00:00",
+  "utc": "2026-10-19T02:12:57.943691+00:00",
   "runner_pid": 65584,
   "identity_matches": true,
-  "latest_progress": "Processed prompts:   1%|          | 1/131 [01:39<3:35:34, 99.49s/it, est. speed input: 8.02 toks/s, output: 60.29 toks/s]",
+  "latest_progress": "Processed prompts:   8%|\u258a         | 11/131 [05:45<37:20, 18.67s/it, est. speed input: 18.97 toks/s, output: 60.54 toks/s]",
   "completed_repeats": [
     "repeat-00.jsonl",
     "repeat-01.jsonl"
   ],
   "exit_records": [],
   "results_exists": false,
-  "project_volume_free_bytes": 29540048896,
+  "project_volume_free_bytes": 29540040704,
   "note": "Seeds0 and1 complete, seed2 generating. No correctness score yet; same active program."
 }

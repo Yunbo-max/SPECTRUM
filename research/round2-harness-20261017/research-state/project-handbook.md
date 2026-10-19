@@ -1,6 +1,10 @@
-## 活跃生成续跑位置（2026-10-19 00:29 UTC）
+## 首个原生repeat落盘与继续生成（2026-10-19 00:49 UTC）
 
-本轮连续观察第一repeat由88推进至94/131，约61.3 tokens/s；runner65584的boot/start ticks一致，无退出记录、完整repeat或评分结果。进度快照更新ssd-author-comparison-20261019/progress-observation.json。当前瓶颈是已启动的模型计算，不是外部依赖或旧接口，故保留程序继续运行，不暂停Harness、不启动重复任务。本轮无新科学结果；后续先检查原程序及落盘输出，再分析实际结果，勿为续研制造额外方法或重复协议审计。
+同一runner65584身份匹配，seed0的131条原始输出已完整保存并自动开始seed1；00:49 GPU负载72%、显存22087MiB。当前完成1/10 repeats，尚无正确率；不重复启动或提前进入并行评分。raw SHA256 de904a35d2c607c7bc5d59f59a7d972d42ba298e21ffed2f36ae646e2a273deb，已同步本地保留。
+
+seed0实际生成5032.90秒、307970 tokens，median1749、max8337；131条均stop，无length终止，任务顺序/seed/长度边界核对通过。作者原提取+静态ast检查130条可解析，唯一arc194_b因原输出未闭合围栏使正则取到说明文字；输出自然结束6299 tokens，不是截断。未修提取、未执行该代码、未声称修复后正确。51条单块、80条多块。详见ssd-author-comparison-20261019/first-repeat-observation.md及base-temperature-0.7/repeat-00*；均为生成/格式观察而非功能评分。
+
+原程序继续其余seed，完成后自动隔离评分。之后以完整条件结果重评C，再顺序恢复SSD资产和模型对照。研究未完成，Harness未暂停，不把首repeat完成当作研究结束。
 
 ## 原生失败语义与运行核对（2026-10-19 00:03 UTC）
 

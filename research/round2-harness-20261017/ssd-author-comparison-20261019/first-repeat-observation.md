@@ -1,0 +1,11 @@
+# First durable native baseline repeat, 2026-10-19 00:47 UTC
+
+The existing PID65584 program completed seed0 generation and automatically began seed1. It remains the sole model program. This is one of ten repeats, not a completed condition or research objective. Correctness evaluation has not yet run.
+
+The immutable repeat-00.jsonl contains 131 samples in the exact author task order; all have seed0 and fit the configured output/context limits. SHA256: de904a35d2c607c7bc5d59f59a7d972d42ba298e21ffed2f36ae646e2a273deb. Generation took 5,032.90 seconds and produced 307,970 tokens (median1,749, maximum8,337). All131 finish reasons are stop; none is length. This excludes observed output-cap termination for this repeat, but does not establish anything about correctness or the remaining seeds.
+
+Static checks used the unchanged author has_code and post_process_code followed by Python ast.parse on hn01. No generated code was executed. All131 outputs yield at least one code block:51 have one and80 have multiple. The selected final block parses for130 outputs; arc194_b has an unterminated string error in the selected text.
+
+Reading that raw output explains the format failure: it contains13 fence-marker lines. A Python opening fence at line78 remains unclosed before another Python opener at321. The author's non-nesting regex consumes the next opener as a closing delimiter and subsequently matches prose between later fences. Its selected last block is explanatory prose, despite a later final Python block in the raw text. The output ended naturally at6,299 tokens. This is a malformed-output/extraction interaction, not length truncation. No replacement extractor or repaired score was introduced. The final visible candidate's functional correctness and performance are untested; improved extraction would not by itself establish a recovered correct answer.
+
+Evidence is in base-temperature-0.7/repeat-00-generation-audit.json, repeat-00-format-audit.json, repeat-00-timing.json and the unmodified raw file. Native ten-repeat evaluation remains authoritative for this comparison; the isolated scoring stage will follow generation. Continue the active process and analyze the full condition when available, then resume the SSD asset download and sequential matched comparison.

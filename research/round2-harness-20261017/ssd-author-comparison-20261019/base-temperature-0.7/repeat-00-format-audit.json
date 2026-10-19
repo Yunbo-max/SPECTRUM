@@ -1,0 +1,29 @@
+{
+  "scope": "Static format diagnostics through unchanged author extraction; no generated code executed, no correctness score.",
+  "source_sha256": "de904a35d2c607c7bc5d59f59a7d972d42ba298e21ffed2f36ae646e2a273deb",
+  "samples": 131,
+  "code_block_counts": {
+    "1": 51,
+    "2": 42,
+    "7": 2,
+    "3": 20,
+    "5": 3,
+    "4": 6,
+    "6": 4,
+    "10": 1,
+    "9": 1,
+    "8": 1
+  },
+  "last_extracted_block_syntax": {
+    "parseable": 130,
+    "syntax_error": 1
+  },
+  "exceptions": [
+    {
+      "task_id": "arc194_b",
+      "kind": "syntax_error",
+      "line": 2,
+      "message": "unterminated string literal (detected at line 2)"
+    }
+  ]
+}

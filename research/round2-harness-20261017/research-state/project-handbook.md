@@ -1,3 +1,11 @@
+## 原生失败语义与运行核对（2026-10-19 00:03 UTC）
+
+同一runner65584身份匹配，第一repeat65/131 prompts，仍无完整repeat/正确率；00:01观察GPU负载66%、显存22087/24564MiB，无重启或第二程序。
+
+继续审读作者评分：首次失败即返回，lcb_run将所有未执行槽位补为失败且标Time out；因此num_tests_failed和补位文本不可解释为实际错误测试数或真实超时数。首失败输出也可能来自进程异常后的补位，不能只靠字符串定因。源码语义未改，分析器仅追加解释限制。hn01读取实际解码测试元数据：131题/4852 tests，最少1、median/max40，无零测试题；原生全completion join预算最大285秒，不是每测试固定6秒。证据见native-failure-semantics.md与native-timeout-budget-audit.json。这是协议审计，不是模型结果或新的C失效。
+
+当前继续原生生成→隔离评分，完成后读取真实结果再决定后续研究。无新增门槛，不重跑已完成官方MBPP，Harness未暂停。
+
 ## 配对分析绑定与续跑（2026-10-18 23:58 UTC）
 
 同一原生LCB runner65584身份匹配，首repeat61/131 prompts，约61.5 tokens/s，无完整repeat或正确率。未重启、不并发其他模型。

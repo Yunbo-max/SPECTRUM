@@ -1,0 +1,53 @@
+{
+  "scope": "Read-only metadata analysis of decoded author tests; no generated code executed.",
+  "tasks": 131,
+  "test_count": 4852,
+  "minimum_tests": 1,
+  "median_tests": 40,
+  "maximum_tests": 40,
+  "zero_test_tasks": 0,
+  "largest_native_timeout_budgets": [
+    {
+      "task_id": "abc391_d",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    },
+    {
+      "task_id": "abc391_f",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    },
+    {
+      "task_id": "abc391_a",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    },
+    {
+      "task_id": "abc391_e",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    },
+    {
+      "task_id": "abc391_g",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    },
+    {
+      "task_id": "abc391_b",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    },
+    {
+      "task_id": "abc392_a",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    },
+    {
+      "task_id": "abc392_g",
+      "tests": 40,
+      "native_join_timeout_seconds": 285
+    }
+  ],
+  "sum_native_join_budgets_all_ten_repeats_seconds": 346190,
+  "note": "Sum is serial join budgets only, not predicted wall time; two workers overlap, overhead is extra, and most code completes early."
+}

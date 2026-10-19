@@ -1,0 +1,27 @@
+{
+  "scope": "Static format diagnostics through unchanged author extraction; no generated code executed, no correctness score.",
+  "source_sha256": "b28f71d7f473e4e7bc0b9f353912104e23c2f3798b5eb7e2a3362090a18d038c",
+  "samples": 131,
+  "code_block_counts": {
+    "1": 45,
+    "2": 56,
+    "6": 4,
+    "7": 2,
+    "3": 17,
+    "5": 2,
+    "4": 4,
+    "10": 1
+  },
+  "last_extracted_block_syntax": {
+    "parseable": 130,
+    "syntax_error": 1
+  },
+  "exceptions": [
+    {
+      "task_id": "arc194_b",
+      "kind": "syntax_error",
+      "line": 269,
+      "message": "expected an indented block after 'for' statement on line 227"
+    }
+  ]
+}

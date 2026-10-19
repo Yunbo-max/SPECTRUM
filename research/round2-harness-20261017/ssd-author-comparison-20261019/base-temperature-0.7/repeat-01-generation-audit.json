@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-19T02:08:16.698941+00:00",
+  "scope": "Second completed generation repeat only; no correctness evaluation performed.",
+  "file": "repeat-01.jsonl",
+  "sha256": "b28f71d7f473e4e7bc0b9f353912104e23c2f3798b5eb7e2a3362090a18d038c",
+  "samples": 131,
+  "seed": 1,
+  "task_order_matches": true,
+  "prompt_hashes_and_token_ids_match_seed0": true,
+  "finish_reasons": {
+    "stop": 131
+  },
+  "output_tokens": {
+    "total": 292643,
+    "min": 94,
+    "median": 1586,
+    "max": 9535,
+    "mean": 2233.916030534351
+  },
+  "within_configured_token_limits": true,
+  "timing": {
+    "elapsed_seconds": 4798.210655372124,
+    "sampling_params": "SamplingParams(n=1, presence_penalty=0.0, frequency_penalty=0.0, repetition_penalty=1.0, temperature=0.7, top_p=0.8, top_k=20, min_p=0.0, seed=1, stop=[], stop_token_ids=[151645], bad_words=[], include_stop_str_in_output=False, ignore_eos=False, max_tokens=65536, min_tokens=0, logprobs=None, prompt_logprobs=None, skip_special_tokens=True, spaces_between_special_tokens=True, truncate_prompt_tokens=None, guided_decoding=None, extra_args=None)"
+  }
+}

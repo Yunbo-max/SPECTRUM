@@ -1,13 +1,14 @@
 {
-  "utc": "2026-10-19T02:01:59.334830+00:00",
+  "utc": "2026-10-19T02:09:28.973008+00:00",
   "runner_pid": 65584,
   "identity_matches": true,
-  "latest_progress": "Processed prompts:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 121/131 [1:14:52<04:59, 29.92s/it, est. speed input: 15.88 toks/s, output: 61.00 toks/s]",
+  "latest_progress": "Processed prompts:   1%|          | 1/131 [01:39<3:35:34, 99.49s/it, est. speed input: 8.02 toks/s, output: 60.29 toks/s]",
   "completed_repeats": [
-    "repeat-00.jsonl"
+    "repeat-00.jsonl",
+    "repeat-01.jsonl"
   ],
   "exit_records": [],
   "results_exists": false,
-  "project_volume_free_bytes": 29543161856,
-  "note": "Seed0 complete, seed1 generating. No correctness score yet; same active program."
+  "project_volume_free_bytes": 29540048896,
+  "note": "Seeds0 and1 complete, seed2 generating. No correctness score yet; same active program."
 }

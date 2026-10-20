@@ -8,8 +8,11 @@
   "last_durable_snapshot": "progress-observation.json",
   "new_program_launched": false,
   "remote_memory_synced": false,
-  "last_recheck_utc": "2026-10-20T06:47:42.747957+00:00",
-  "consecutive_blocked_turns": 7,
+  "last_recheck_utc": "2026-10-20T06:49:22.666909+00:00",
+  "consecutive_blocked_turns": 9,
   "required_external_change": "Restore configured SSH endpoint or provide updated authorized connection configuration",
-  "latest_ssh_exit_code": 255
+  "latest_ssh_exit_code": 255,
+  "configuration_checked_utc": "2026-10-20T06:50:18.735829+00:00",
+  "configuration_unchanged": true,
+  "new_network_attempt_this_turn": false
 }

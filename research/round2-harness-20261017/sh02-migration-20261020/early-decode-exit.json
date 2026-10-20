@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "/root/rivermind-data/spectrum-harness/project/research-state/ssd-author-comparison-20261019/isolate_ssd.py",
+    "--decode",
+    "--input",
+    "/root/rivermind-data/spectrum-harness/cache/lcb-0fe84c3/test6.jsonl",
+    "--output",
+    "examples.json"
+  ],
+  "returncode": 0,
+  "utc": "2026-10-20T10:39:26.050200+00:00"
+}

@@ -1,18 +1,3 @@
-Verified range 104656896 108851199
-Verified range 87879680 92073983
-Verified range 83685376 87879679
-Verified range 134017024 134303239
-curl: (28) SSL connection timeout
-curl: (28) SSL connection timeout
-Verified range 58519552 62713855
-curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
-curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
-curl: (28) SSL connection timeout
-curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
-Verified range 129822720 134017023
-curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
-Verified range 121434112 125628415
-curl: (28) SSL connection timeout
-curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
-curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
-Verified range 125628416 129822719
+curl: (22) The requested URL returned error: 429
+Verified range 108851200 113045503
+Pinned source and benchmark bytes verified.

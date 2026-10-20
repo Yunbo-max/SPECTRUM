@@ -9,3 +9,11 @@ LCB顺序下载和较慢官方中转已按身份停止并保留部分文件；�
 Resume record (2026-10-20 10:29 UTC): installation1276, ranged-data1863 and serial bootstrap1864 all match saved process identities; no bootstrap-error marker. Both model asset verification markers exist. Installation/data/integration completion markers are absent; GPU0MiB/0%. Preserve these running jobs. Next continuation should read their real logs and completion markers, debug any failed stage, and follow the same bootstrap into FP16 smoke then formal base. No new functional model result exists. Delivery uses isolated ../sh02-research-delivery because ../skill-policy-delivery contains pre-existing user edits; commit145850b is pushed. Do not overwrite the latter worktree's changes.
 
 2026-10-20 10:34 UTC continuation: observed actual curl56 connection resets and stalled transfers. Verified and stopped only downloader1863/its children, retained completed ranges and attempt1 logs, added retry-all-errors and 45s low-speed detection. Replacement downloader2438 is active; 23 segments verified, whole-file SHA not complete. Installation1276 and bootstrap1864 still match identities, no bootstrap error, GPU0MiB/0%. Installation continues downloading (scratch grew to2.8GB); do not duplicate/restart it merely for slowness. Postprocessor now accepts --root for SH02 conditions and rejects mixed dtype/runtime/host/seed/context/execution options; result/input hashes are checked when binding exists. GPU py_compile passed; functional analysis remains untested until real outputs exist. No new scientific result.
+
+## SH02 软件集成实际通过（2026-10-20 10:40 UTC）
+
+剩余4MiB分段在download=true传输URL重试后成功；LCB完整官方SHA校验通过，固定作者源码也核对通过。下载程序2701已完成退出，不需重启。原安装1276与bootstrap1864仍身份匹配，CUDA依赖继续下载，GPU0MiB/0%；尚未进入FP16推理。
+
+为避免等待大型CUDA包，复用uv已经完整下载的numpy2.2.6/pandas2.3.3及四个小依赖，复制到GPU持久cache，以基础Python3.12.13创建只读rootfs（未改base conda）。在pipeline.lock串行保护内实际执行原isolate_ssd.py：私测解码摘要d95cab6f...符合历史协议；UID61044、主机文件不可见、IP禁止、Unix IPC和只读运行库探针通过；五类作者软件测试预期全部通过（stdin/function正确为true，错误/异常/超时为false）。评分源码和边界没有改动。详见early-*-exit.json、early-software-validation.json、runtime-preparation.json及评测结果；这只是软件集成结果，不是模型性能。
+
+bootstrap后续会复用已完成rootfs/解码/软件探针；等待独立推理venv安装完成后检查实际版本，再FP16冒烟、恢复测试和正式基座。不要启动重复安装/模型程序；若安装或引擎出现真实错误，读取并修复。研究持续，旧BF16结果保持独立。

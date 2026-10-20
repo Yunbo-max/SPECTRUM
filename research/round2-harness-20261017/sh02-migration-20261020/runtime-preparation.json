@@ -1,0 +1,13 @@
+{
+  "rootfs": "/root/rivermind-data/spectrum-harness/project/research-state/ssd-author-comparison-20261019/evaluation-rootfs",
+  "stdlib": "/opt/conda/lib/python3.12",
+  "packages": {
+    "numpy": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/numpy/numpy/__init__.py",
+    "pandas": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/pandas/pandas/__init__.py",
+    "dateutil": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/dateutil/dateutil/__init__.py",
+    "six": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/six/six.py",
+    "pytz": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/pytz/pytz/__init__.py",
+    "tzdata": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/tzdata/tzdata/__init__.py"
+  },
+  "boundary": "existing isolate_ssd.py; uid61044; chroot; seccomp; read-only runtime"
+}

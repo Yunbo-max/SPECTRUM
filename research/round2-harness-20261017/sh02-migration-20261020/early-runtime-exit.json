@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "/root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020/prepare_runtime.py"
+  ],
+  "returncode": 0,
+  "pythonpath": [
+    "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/numpy",
+    "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/pandas",
+    "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/dateutil",
+    "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/six",
+    "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/pytz",
+    "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/tzdata"
+  ]
+}

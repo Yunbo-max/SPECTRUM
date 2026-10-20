@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-20T10:39:04.395671+00:00",
+  "mapping": {
+    "numpy": {
+      "completed_uv_archive": "/tmp/.tmp7HRSFB/archive-v0/YvdcZ4mOKhatHUXb",
+      "durable_copy": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/numpy"
+    },
+    "pandas": {
+      "completed_uv_archive": "/tmp/.tmp7HRSFB/archive-v0/Up7pUcgUEZWIALCA",
+      "durable_copy": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/pandas"
+    },
+    "dateutil": {
+      "completed_uv_archive": "/tmp/.tmp7HRSFB/archive-v0/H5fYVXaImrlNI8D8",
+      "durable_copy": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/dateutil"
+    },
+    "six": {
+      "completed_uv_archive": "/tmp/.tmp7HRSFB/archive-v0/vjNjcFXyDjd0QvxE",
+      "durable_copy": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/six"
+    },
+    "pytz": {
+      "completed_uv_archive": "/tmp/.tmp7HRSFB/archive-v0/vkWrB50vOnbOX0NV",
+      "durable_copy": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/pytz"
+    },
+    "tzdata": {
+      "completed_uv_archive": "/tmp/.tmp7HRSFB/archive-v0/NMUMlJ51vhzoEOf3",
+      "durable_copy": "/root/rivermind-data/spectrum-harness/cache/sh02-evaluation-dependencies/tzdata"
+    }
+  },
+  "purpose": "Run original isolated author software checks while CUDA packages download; same requested numpy2.2.6/pandas2.3.3 wheels."
+}

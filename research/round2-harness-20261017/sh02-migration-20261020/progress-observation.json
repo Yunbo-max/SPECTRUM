@@ -1,13 +1,13 @@
 {
-  "utc": "2026-10-20T10:34:35.266397+00:00",
+  "utc": "2026-10-20T10:40:39.760992+00:00",
   "processes": {
     "installation": {
       "pid": 1276,
       "identity_matches": true
     },
     "dataset-ranges": {
-      "pid": 2438,
-      "identity_matches": true
+      "pid": 2701,
+      "identity_matches": false
     },
     "bootstrap": {
       "pid": 1864,
@@ -15,13 +15,11 @@
     }
   },
   "markers": {
-    "base-assets-verified.json": true,
-    "ssd-assets-verified.json": true,
     "installation-exit.json": false,
-    "source-data-verification.json": false,
+    "source-data-verification.json": true,
+    "early-software-validation.json": true,
     "integration-completed.json": false,
     "bootstrap-error.json": false
   },
-  "verified_dataset_segments": 23,
   "gpu": "0 MiB, 0 %"
 }

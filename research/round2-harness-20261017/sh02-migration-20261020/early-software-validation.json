@@ -1,0 +1,52 @@
+{
+  "utc": "2026-10-20T10:40:09.401049+00:00",
+  "software_only": true,
+  "outcomes": {
+    "software-stdin-pass": true,
+    "software-functional-pass": true,
+    "software-incorrect": false,
+    "software-exception": false,
+    "software-timeout": false
+  },
+  "expected_outcomes_verified": true,
+  "examples_sha256": "d95cab6feef0bea860315bb3a2273641351da96cd43b657ac981f4e51053a73a",
+  "interpreter": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:20:58) [GCC 14.3.0]",
+  "runtime_packages": {
+    "numpy": [
+      {
+        "name": "numpy",
+        "version": "2.2.6"
+      }
+    ],
+    "pandas": [
+      {
+        "name": "pandas",
+        "version": "2.3.3"
+      }
+    ],
+    "dateutil": [
+      {
+        "name": "python-dateutil",
+        "version": "2.9.0.post0"
+      }
+    ],
+    "six": [
+      {
+        "name": "six",
+        "version": "1.17.0"
+      }
+    ],
+    "pytz": [
+      {
+        "name": "pytz",
+        "version": "2026.5"
+      }
+    ],
+    "tzdata": [
+      {
+        "name": "tzdata",
+        "version": "2026.5"
+      }
+    ]
+  }
+}

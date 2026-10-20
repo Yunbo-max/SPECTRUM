@@ -1,0 +1,18 @@
+{
+  "uid": 61044,
+  "host_files_absent": true,
+  "IP_network_denied": true,
+  "unix_IPC_enabled": true,
+  "runtime_readonly": true,
+  "software_probes": {
+    "pass": [
+      true
+    ],
+    "incorrect": [
+      false
+    ],
+    "exception": [
+      false
+    ]
+  }
+}

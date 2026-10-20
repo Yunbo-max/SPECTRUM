@@ -1,0 +1,48 @@
+Verified range 104656896 108851199
+Verified range 87879680 92073983
+Verified range 83685376 87879679
+Verified range 134017024 134303239
+curl: (28) SSL connection timeout
+curl: (28) SSL connection timeout
+Verified range 58519552 62713855
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+curl: (28) SSL connection timeout
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+Verified range 129822720 134017023
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+Verified range 121434112 125628415
+curl: (28) SSL connection timeout
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+Verified range 125628416 129822719
+curl: (28) SSL connection timeout
+Verified range 113045504 117239807
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+Verified range 41742336 45936639
+curl: (28) SSL connection timeout
+Traceback (most recent call last):
+  File "/root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020/fetch_dataset_ranges.py", line 70, in <module>
+    main()
+  File "/root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020/fetch_dataset_ranges.py", line 56, in main
+    fetched = list(pool.map(fetch, ranges))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/conda/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020/fetch_dataset_ranges.py", line 41, in fetch
+    subprocess.run(['curl', '-fLsS', '--connect-timeout', '30', '--max-time',
+  File "/opt/conda/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['curl', '-fLsS', '--connect-timeout', '30', '--max-time', '180', '--speed-limit', '1024', '--speed-time', '45', '--retry', '3', '--retry-all-errors', '--range', '108851200-113045503', '-D', '/root/rivermind-data/spectrum-harness/cache/lcb-0fe84c3/ranges/108851200-113045503.headers', '-o', '/root/rivermind-data/spectrum-harness/cache/lcb-0fe84c3/ranges/108851200-113045503.partial', 'https://hf-mirror.com/datasets/livecodebench/code_generation_lite/resolve/0fe84c3912ea0c4d4a78037083943e8f0c4dd505/test6.jsonl']' returned non-zero exit status 28.

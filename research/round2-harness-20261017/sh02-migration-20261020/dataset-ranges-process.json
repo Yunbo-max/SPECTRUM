@@ -1,6 +1,13 @@
 {
-  "pid": 2438,
-  "proc_stat": "2438 (python) R 2437 2438 2438 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 776230772 7303168 1 18446744073709551615 0 0 140732850355446 0 0 0 0 0 0 0 0 0 17 49 0 0 0 0 0 0 0 94804290195456 140732850355446 140732850355580 140732850355580 140732850355580 0\n",
+  "pid": 2701,
+  "proc_stat": "2701 (python) R 2700 2701 2701 0 -1 4194304 3 0 0 0 0 0 0 0 20 0 1 0 776254523 7278592 1 18446744073709551615 0 0 140726872476954 0 0 0 0 0 0 0 0 0 17 67 0 0 0 0 0 0 0 94071232520192 140726872476954 0 0 0 0\n",
   "boot_id": "9ae7a69f-cb04-4d67-9dac-158847aec768",
-  "utc": "2026-10-20T10:32:58.718190+00:00"
+  "utc": "2026-10-20T10:36:56.228194+00:00",
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "-c",
+    "import fetch_dataset_ranges as m; m.URL += '?download=true'; m.main()"
+  ],
+  "reason": "One remaining 4MiB range timed out; retry with download=true transport URL; retain all completed ranges and final digest verification."
 }

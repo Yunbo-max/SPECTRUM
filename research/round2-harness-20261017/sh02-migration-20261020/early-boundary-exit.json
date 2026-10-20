@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/opt/conda/bin/python",
+    "-u",
+    "/root/rivermind-data/spectrum-harness/project/research-state/ssd-author-comparison-20261019/isolate_ssd.py",
+    "--probe",
+    "--output",
+    "sh02-isolation-probe.json"
+  ],
+  "returncode": 0,
+  "utc": "2026-10-20T10:39:32.049898+00:00"
+}

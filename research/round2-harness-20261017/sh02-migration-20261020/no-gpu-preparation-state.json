@@ -1,5 +1,5 @@
 {
-  "observed_utc": "2026-10-20T11:26:06Z",
+  "observed_utc": "2026-10-20T11:28:04Z",
   "ssh_access": "password authentication succeeded after the previously configured public key was rejected",
   "kernel_boot_id": "9ae7a69f-cb04-4d67-9dac-158847aec768",
   "previous_installer_pid_6718": "not present",
@@ -12,9 +12,12 @@
   "model_weights_and_dataset": "previously verified markers remain on the persistent data volume",
   "preparation_launcher": {
     "installer_pid": 163,
+    "uv_child_pid": 168,
     "bootstrap_pid": 165,
     "installer_index": "https://pypi.tuna.tsinghua.edu.cn/simple",
     "resolved_packages": 202,
-    "state": "installer active; bootstrap waiting for installation-exit.json"
+    "state": "installer active and writing about 1.3 GB to its retained cache; bootstrap waiting for installation-exit.json",
+    "root_free_gib_approx": 24,
+    "data_volume_free_gib_approx": 23
   }
 }

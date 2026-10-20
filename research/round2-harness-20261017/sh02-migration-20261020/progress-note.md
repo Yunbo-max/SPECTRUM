@@ -63,3 +63,5 @@ inspect_environment.py在实际导入后增加pip check和完整分发版本记�
 为支持“先准备、由用户决定开始”，已修订并部署`bootstrap_and_base.py`、`inspect_environment.py`及显式入口：`start_preparation.py`仅恢复隔离环境安装和CPU/官方评测器准备；准备完成后停在`preparation-completed.json`。`start_fp16_smoke.py`仅在后续显式调用时运行T4 FP16冒烟/续跑检查；`start_formal_base.py --start`再显式启动正式基座。CPU-safe bootstrap不再自动跑smoke或131×10正式评测。改动已本地与SH02 Python 3.12 `py_compile`通过。
 
 11:26 UTC已启动无卡安全准备：环境安装PID163，bootstrap PID165。安装使用清华PyPI，解析202包并复用已保留uv缓存；安装仍在处理Torch/Triton/CUTLASS大包，bootstrap等待安装退出。此阶段不调用GPU，不产生模型分数。下次续跑先观察当前下载/安装实际进度和CPU-safe准备完成标记；只有用户明确开始后才运行GPU smoke。详见`no-gpu-preparation-state.json`及`SH02_PREP_GUIDE.md`。
+
+11:28 UTC观察：uv子进程PID168仍活跃，写入累计约1.3GB；清华源解析的202个依赖继续安装，根盘约24GiB、数据盘约23GiB可用。bootstrap PID165仍只等待安装标记；无GPU执行、无smoke和正式评测。

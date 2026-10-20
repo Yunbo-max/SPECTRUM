@@ -1,3 +1,9 @@
+## 当前续跑位置（2026-10-20：远端连接中断）
+
+本轮两次实际SSH连接均在认证前返回Connection refused，无法核对原runner65584、GPU、退出记录或结果。当前远端状态未知；2026-10-19 02:58的2/10 repeats、seed2 75/131仅为最后持久化历史快照，不是当前进度。已完成官方MBPP结果和本地两轮LCB原始输出继续保留，未重跑、未启动第二实验、未改变Harness runtime。
+
+连接恢复后先核对原进程身份、锁、完整repeat、stage退出及results，再分析已完成结果或处理真实报错，继续顺序模型/解码对照。当前不能声称LCB完成或失败；研究未完成。详见ssd-author-comparison-20261019/remote-access-interruption-20261020.md。本轮记忆保存在本地和Git，因SSH不可达尚未同步GPU。
+
 ## 当前续跑位置（2026-10-19 02:58 UTC）
 
 runner65584的boot/start ticks仍匹配，seed1完整落盘，seed2继续推进（最近75/131）。当前完成2/10 repeats，无退出记录或正确率。第二轮131条任务/种子/提示绑定检查通过，全部stop、无length，292643 tokens，median1586、max9535，耗时4798.21秒。原作者提取后130条可解析，arc194_b单一代码块内残留无循环体的for草稿，与首轮围栏问题不同；未修改代码或评分器。详见ssd-author-comparison-20261019/second-repeat-observation.md及repeat-01*。原始输出和检查证据已同步本地。

@@ -1,0 +1,9 @@
+# Remote access interruption — 2026-10-20
+
+Two direct SSH attempts using the authorized alias spectrum-harness-gpu-hn01 returned exit 255 with “Connection refused” on the configured port 30742. The second used BatchMode and a 15-second connection timeout. This happened before authentication or remote command execution. No remote process, filesystem, GPU state, or completion record could be inspected. The cause is unknown; this does not establish that the host is stopped or that the scientific program failed.
+
+The last durable observation is 2026-10-19 02:58:28 UTC: runner65584 identity matched, two complete repeats and seed2 at75/131, no results. A later session observation at03:00:43 reported78/131 but was not persisted as a remote snapshot. These are historical observations, not current progress. Both completed raw repeats and their audits remain local and in the delivery branch. The earlier official Qwen/EvalPlus MBPP evaluation remains completed and is not rerun.
+
+No duplicate program, download, scoring process, worker, or runtime change was launched. SSH access must recover before reconciling the existing runner, child, lock, stage exit files, repeat files and results. First inspect current remote evidence; if completed, run the existing analysis over native results. If failed, retain logs and debug the actual failure. Do not blindly relaunch or infer completion from elapsed time. Then continue the sequential SSD/base decoder comparison. Research remains incomplete.
+
+GitHub fetch succeeded and confirmed the local delivery HEAD equals the branch head bd392ba29a8dd39ae04f2010d7314b1900142073. The SSH interruption is therefore distinct from a total local network outage. No remote memory synchronization was possible in this turn; local memory and authorized Git delivery preserve the handoff.

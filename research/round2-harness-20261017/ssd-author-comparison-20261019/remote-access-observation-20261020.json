@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-20T06:41:44.892952+00:00",
+  "ssh_alias": "spectrum-harness-gpu-hn01",
+  "attempt_count": 2,
+  "ssh_exit_code": 255,
+  "error": "Connection refused",
+  "remote_state": "unknown",
+  "last_durable_snapshot": "progress-observation.json",
+  "new_program_launched": false,
+  "remote_memory_synced": false
+}

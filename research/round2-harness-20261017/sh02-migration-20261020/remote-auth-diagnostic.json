@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-20T11:22:45.480929+00:00",
+  "returncode": 255,
+  "stdout": "",
+  "authentication_events": [
+    "Authentications that can continue: publickey,password",
+    "client offered explicitly configured public key",
+    "Authentications that can continue: publickey,password",
+    "client offered explicitly configured public key",
+    "Authentications that can continue: publickey,password",
+    "root@sh02-ssh.gpuhome.cc: Permission denied (publickey,password)."
+  ],
+  "remote_process_state": "not reconciled"
+}

@@ -50,3 +50,8 @@ inspect_environment.py在实际导入后增加pip check和完整分发版本记�
 
 11:20:03别名连接从Connection refused变为Permission denied (publickey,password)。11:20:14显式指定原授权key、IdentitiesOnly=yes、BatchMode=yes再次认证失败；本地key存在且权限0600，未输出密钥内容。证据remote-access-recheck.json和remote-auth-recheck.json。无法读取boot ID或核对安装6718/bootstrap1864/下载6833；所有远端状态仍未知，不能推断主机重启、任务停止或完成。未启动替代实验，未修改SSH配置或Harness。需要SH02恢复原授权公钥登录后才能核对并继续；没有新增模型结果，研究未完成。
 
+连接复查 2026-10-20T11:21:42.200073+00:00：显式原授权密钥登录仍Permission denied (publickey,password)，exit255。远端进程未能核对，未启动新任务，无新模型结果。连接恢复后核对原boot/PID和完成marker；此轮仅更新本地恢复记忆，最近交付95d4256。
+
+认证诊断 2026-10-20 11:22:45 UTC：SSH verbose事件确认客户端实际提交公钥，服务端继续要求publickey/password并最终拒绝；没有Server accepts key事件。已仅保存过滤后的认证事件到remote-auth-diagnostic.json，不保存完整verbose日志或密钥指纹。故不是仅因未指定密钥而失败；服务端授权/账户/端点原因仍无法从客户端确定。需要恢复SH02原授权登录，才能核对原远端任务；不推断进程终止。无新增模型结果，未修改Harness。
+
+认证复查 2026-10-20T11:23:49.242202+00:00：原密钥仍被拒绝（exit255）；GPU执行当前受SSH认证阻塞，远端安装/下载/bootstrap状态未知。需要服务端恢复原授权公钥登录或提供更新后的连接信息；未更改Harness或启动替代任务，无新模型结果。

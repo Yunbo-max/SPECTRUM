@@ -65,3 +65,5 @@ inspect_environment.py在实际导入后增加pip check和完整分发版本记�
 11:26 UTC已启动无卡安全准备：环境安装PID163，bootstrap PID165。安装使用清华PyPI，解析202包并复用已保留uv缓存；安装仍在处理Torch/Triton/CUTLASS大包，bootstrap等待安装退出。此阶段不调用GPU，不产生模型分数。下次续跑先观察当前下载/安装实际进度和CPU-safe准备完成标记；只有用户明确开始后才运行GPU smoke。详见`no-gpu-preparation-state.json`及`SH02_PREP_GUIDE.md`。
 
 11:28 UTC观察：uv子进程PID168仍活跃，写入累计约1.3GB；清华源解析的202个依赖继续安装，根盘约24GiB、数据盘约23GiB可用。bootstrap PID165仍只等待安装标记；无GPU执行、无smoke和正式评测。
+
+11:39 UTC观察：uv PID168仍与清华PyPI保持连接；累计写入约2.3GB、接收约880MB。tokenspeed-triton、Triton及两套CUTLASS包已下载，Torch和其余安装仍在进行。根盘约24GiB、数据盘约22GiB可用；安装标记尚未出现，bootstrap仍等待。没有GPU或模型推理。

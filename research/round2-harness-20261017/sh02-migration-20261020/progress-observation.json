@@ -1,5 +1,5 @@
 {
-  "utc": "2026-10-20T10:26:10.162527+00:00",
+  "utc": "2026-10-20T10:29:06.304416+00:00",
   "processes": {
     "installation": {
       "pid": 1276,
@@ -19,6 +19,8 @@
     "ssd-assets-verified.json": true,
     "installation-exit.json": false,
     "source-data-verification.json": false,
-    "integration-completed.json": false
-  }
+    "integration-completed.json": false,
+    "bootstrap-error.json": false
+  },
+  "gpu": "0 MiB, 0 %"
 }

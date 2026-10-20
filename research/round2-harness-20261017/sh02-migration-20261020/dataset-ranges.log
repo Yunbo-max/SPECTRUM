@@ -11,3 +11,6 @@ Verified range 75296768 79491071
 Verified range 37548032 41742335
 Verified range 96268288 100462591
 Verified range 100462592 104656895
+curl: (28) SSL connection timeout
+curl: (28) SSL connection timeout
+Verified range 92073984 96268287

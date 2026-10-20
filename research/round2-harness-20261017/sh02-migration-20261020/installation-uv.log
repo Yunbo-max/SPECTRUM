@@ -112,3 +112,7 @@ Downloading setuptools (1.0MiB)
  Downloaded instanttensor
  Downloaded mistral-common
  Downloaded grpcio
+ Downloaded torchcodec
+ Downloaded torchvision
+ Downloaded pillow
+ Downloaded nvidia-cuda-cupti

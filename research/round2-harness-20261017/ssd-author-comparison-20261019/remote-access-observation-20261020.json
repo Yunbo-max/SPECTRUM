@@ -8,11 +8,16 @@
   "last_durable_snapshot": "progress-observation.json",
   "new_program_launched": false,
   "remote_memory_synced": false,
-  "last_recheck_utc": "2026-10-20T06:49:22.666909+00:00",
+  "last_recheck_utc": "2026-10-20T06:52:08.893220+00:00",
   "consecutive_blocked_turns": 9,
   "required_external_change": "Restore configured SSH endpoint or provide updated authorized connection configuration",
   "latest_ssh_exit_code": 255,
   "configuration_checked_utc": "2026-10-20T06:50:18.735829+00:00",
   "configuration_unchanged": true,
-  "new_network_attempt_this_turn": false
+  "new_network_attempt_this_turn": false,
+  "external_access_clarification_requested_utc": "2026-10-20T06:51:18.040533+00:00",
+  "awaiting": "Host access restoration information or updated local SSH configuration; research authorization already exists",
+  "research_execution_status": "blocked_external_access",
+  "status_recorded_utc": "2026-10-20T06:52:56.695526+00:00",
+  "scientific_objective_completed": false
 }

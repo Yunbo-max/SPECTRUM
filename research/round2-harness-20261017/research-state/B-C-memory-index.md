@@ -1,3 +1,9 @@
+## SH02 连接中断（2026-10-20 11:14 UTC）
+
+本轮先成功核对安装6718、bootstrap1864、Torch下载6833身份；随后实见4个Torch范围分段完成，wheel整体SHA尚未通过，尚无模型输出。之后SSH端口突然Connection refused；短暂等待后再次连接仍在认证前失败。当前三个远端进程状态未知，不能推断停止/完成，也不能重复启动。remote-access-interruption.json保存11:14:37 UTC实际错误。
+
+尝试同步最新观察/记忆时SSH失败，随后本地更新脚本因旧snapshot没有torch_completed_segments字段而KeyError；没有成功保存那次新远端snapshot，也没有把记忆同步GPU。此条明确替代把11:09旧snapshot当成当前状态的任何表述。恢复连接后先核对三个原身份、安装退出/torch验证marker和bootstrap日志，再继续；不回到hn01启动替代。研究未完成，Harness未更改。
+
 ## SH02 复用已核验 CUDA 依赖（2026-10-20 11:09 UTC）
 
 发现基础conda中15个NVIDIA分发满足Torch2.13及cuda-toolkit13.0.3声明约束，且无prefix外文件。reuse_cuda_packages.py逐文件验证原RECORD哈希，然后复制进独立venv；基础conda未修改。证据base-cuda-reuse-audit.json/cuda-packages-reused.json。先按身份暂停原安装/uv/等待中的bootstrap，将完整临时cache（含未完成部分）复制到cache/uv-sh02-retained，保留旧日志和进程记录，再结束旧1276/1289；新安装6718已运行，原bootstrap1864已SIGCONT恢复且状态S。无旧安装并行残留。新解析仍202packages，剩5大包（torch、triton、tokenspeed-triton、cutlass cu12/cu13），原完成下载从持久cache复用。

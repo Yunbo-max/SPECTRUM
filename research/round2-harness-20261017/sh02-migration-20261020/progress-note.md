@@ -37,3 +37,9 @@ bootstrap后续会复用已完成rootfs/解码/软件探针；等待独立推理
 另有Torch官方wheel分段下载6833（最多16连接），全文件官方SHA通过才写torch-wheel-verified.json。当前未完成，不能用于安装。若该marker先于安装完成出现，下一次先核对新installer/uv身份；保留持久cache和尝试日志，再安全重启安装，install_environment.py会自动将已核验Torch wheel作为直接输入。不要盲目终止已完成安装或已启动模型；若原uv先完成，取消多余下载并保留片段。torch源metadata在torch-wheel-source.json；分段在GPU cache/sh02-wheels/torch-ranges。当前下载仍有低速重试，尚无引擎或科学结果。
 
 inspect_environment.py在实际导入后增加pip check和完整分发版本记录，避免只记录Torch而漏掉复用CUDA依赖。GPU py_compile已通过，真实import/FP16引擎仍待剩余安装。隔离评分/数据/分析验证继续复用；旧BF16样本不混入。下一步读取真实下载/安装状态，调试实际错误，再FP16smoke及顺序研究。
+
+## SH02 连接中断（2026-10-20 11:14 UTC）
+
+本轮先成功核对安装6718、bootstrap1864、Torch下载6833身份；随后实见4个Torch范围分段完成，wheel整体SHA尚未通过，尚无模型输出。之后SSH端口突然Connection refused；短暂等待后再次连接仍在认证前失败。当前三个远端进程状态未知，不能推断停止/完成，也不能重复启动。remote-access-interruption.json保存11:14:37 UTC实际错误。
+
+尝试同步最新观察/记忆时SSH失败，随后本地更新脚本因旧snapshot没有torch_completed_segments字段而KeyError；没有成功保存那次新远端snapshot，也没有把记忆同步GPU。此条明确替代把11:09旧snapshot当成当前状态的任何表述。恢复连接后先核对三个原身份、安装退出/torch验证marker和bootstrap日志，再继续；不回到hn01启动替代。研究未完成，Harness未更改。

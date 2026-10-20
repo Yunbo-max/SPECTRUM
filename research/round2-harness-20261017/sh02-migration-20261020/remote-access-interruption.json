@@ -1,0 +1,7 @@
+{
+  "utc": "2026-10-20T11:14:37.573319+00:00",
+  "returncode": 255,
+  "stderr": "ssh: connect to host sh02-ssh.gpuhome.cc port 30112: Connection refused\n",
+  "remote_process_state": "unknown; connection refusal does not establish termination",
+  "last_success": "This turn observed installer6718/bootstrap1864/torch-download6833 identities, followed by4 verified Torch ranges. Latest attempted observation/sync failed before remote execution."
+}

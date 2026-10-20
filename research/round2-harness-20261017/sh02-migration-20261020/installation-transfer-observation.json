@@ -1,0 +1,235 @@
+{
+  "utc": "2026-10-20T10:46:10.909651+00:00",
+  "partial_packages": [
+    {
+      "directory": ".tmpdBcHZc",
+      "bytes": 200867634,
+      "largest": [
+        [
+          2932673,
+          "flashinfer/data/cutlass/include/cute/arch/mma_sm90_gmma_sparse_ext.hpp"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmprsfAZs",
+      "bytes": 138506920,
+      "largest": [
+        [
+          34690218,
+          "tilelang/lib/libtvm_compiler.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpUAa9y4",
+      "bytes": 136296585,
+      "largest": [
+        [
+          112474948,
+          "triton/_C/libtriton.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmp5w3F0O",
+      "bytes": 132491352,
+      "largest": [
+        [
+          43113310,
+          "torch/lib/libtorch_cpu.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpbrIyD6",
+      "bytes": 111741214,
+      "largest": [
+        [
+          111691523,
+          "tokenspeed_triton/_C/libtriton.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpRSJ6GY",
+      "bytes": 110849827,
+      "largest": [
+        [
+          47326176,
+          "nvidia/cu13/bin/nvlink"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpbEUNWQ",
+      "bytes": 90599252,
+      "largest": [
+        [
+          46805722,
+          "nvidia_cutlass_dsl/dsl_packages/cutlass/_mlir/_mlir_libs/_cutlass_ir.cu12.cpython-312-x86_64-linux-gnu.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpKZqVfk",
+      "bytes": 86283313,
+      "largest": [
+        [
+          86262619,
+          "nvidia/cu13/lib/libnvJitLink.so.13"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpSm6TXw",
+      "bytes": 84757643,
+      "largest": [
+        [
+          84721538,
+          "nvidia/cusparselt/lib/libcusparseLt.so.0"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpjUcCYn",
+      "bytes": 83961032,
+      "largest": [
+        [
+          81855960,
+          "nvidia/cu13/lib/libcurand.so.10"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmptHUS6f",
+      "bytes": 79598245,
+      "largest": [
+        [
+          43648040,
+          "nvidia_cutlass_dsl/cu13/lib/libcute_dsl_runtime.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpmbWy5R",
+      "bytes": 77758314,
+      "largest": [
+        [
+          68960387,
+          "nvidia/cu13/lib/libnvrtc.alt.so.13"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpC5Z2bE",
+      "bytes": 74401354,
+      "largest": [
+        [
+          74363585,
+          "llvmlite/binding/libllvmlite.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpQMRiHg",
+      "bytes": 68615691,
+      "largest": [
+        [
+          68603000,
+          "nvidia/cu13/lib/libnvvm.so.4"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmp0aQf3F",
+      "bytes": 65361964,
+      "largest": [
+        [
+          11709440,
+          "pynvvideocodec-2.0.4.data/data/external/ffmpeg/src/ffmpeg-8.1.1.tar.xz"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpdLFvt3",
+      "bytes": 64313434,
+      "largest": [
+        [
+          63788345,
+          "cv2/cv2.abi3.so"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpG2ggoP",
+      "bytes": 57847686,
+      "largest": [
+        [
+          57797625,
+          "nvidia/cu13/lib/libcufft.so.12"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpv60gSI",
+      "bytes": 47814182,
+      "largest": [
+        [
+          47514776,
+          "nvidia/cu13/lib/libcusparse.so.12"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpwp2DVa",
+      "bytes": 47489986,
+      "largest": [
+        [
+          31218648,
+          "nvidia/nvshmem/lib/libnvshmem_device.bc"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpvsdpe3",
+      "bytes": 42718559,
+      "largest": [
+        [
+          42462728,
+          "nvidia/cu13/lib/libcusolver.so.12"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmp6GZBIs",
+      "bytes": 42022829,
+      "largest": [
+        [
+          41515307,
+          "nvidia/cudnn/lib/libcudnn_adv.so.9"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpzQhMUH",
+      "bytes": 40902890,
+      "largest": [
+        [
+          40343849,
+          "nvidia/cu13/lib/libcublas.so.13"
+        ]
+      ]
+    },
+    {
+      "directory": ".tmpfTnTQ5",
+      "bytes": 34861780,
+      "largest": [
+        [
+          34344332,
+          "nvidia/nccl/lib/libnccl.so.2"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "utc": "2026-10-20T10:47:16.084441+00:00",
+  "filename": "torch-2.13.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+  "returncode": 28,
+  "transfer": "206 351442 14056",
+  "error": "curl: (28) Operation timed out after 25001 milliseconds with 351442 out of 1048576 bytes received\n"
+}

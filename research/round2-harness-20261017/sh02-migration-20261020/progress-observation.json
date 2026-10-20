@@ -1,5 +1,5 @@
 {
-  "utc": "2026-10-20T10:43:51.042292+00:00",
+  "utc": "2026-10-20T10:49:22.419993+00:00",
   "processes": {
     "installation": {
       "pid": 1276,
@@ -10,12 +10,7 @@
       "identity_matches": true
     }
   },
-  "markers": {
-    "installation-exit.json": false,
-    "source-data-verification.json": true,
-    "early-software-validation.json": true,
-    "comparison-analysis-validation.json": true,
-    "integration-completed.json": false,
-    "bootstrap-error.json": false
-  }
+  "installation_scratch": "3.9G\t/tmp/.tmp7HRSFB",
+  "installation_completed": false,
+  "bootstrap_error": false
 }

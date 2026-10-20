@@ -1,0 +1,7 @@
+{
+  "seconds": 65.87454354099464,
+  "returncode": 255,
+  "attempted_bytes": 1048576,
+  "completed_bytes": null,
+  "reason": "Stopped exact probe SSH process after more than60 seconds without completing1MiB. Not a completed transfer or throughput measurement."
+}

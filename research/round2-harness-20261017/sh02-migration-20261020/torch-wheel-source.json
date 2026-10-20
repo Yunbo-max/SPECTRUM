@@ -1,0 +1,10 @@
+{
+  "filename": "torch-2.13.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+  "url": "https://files.pythonhosted.org/packages/f3/82/fea946351658e6534db52d2cc12bc53087cbf87f9440c5f180f367c1950b/torch-2.13.0-cp312-cp312-manylinux_2_28_x86_64.whl",
+  "digests": {
+    "blake2b_256": "f382fea946351658e6534db52d2cc12bc53087cbf87f9440c5f180f367c1950b",
+    "md5": "c8e5d3f78b187dc085179b72a209fbe1",
+    "sha256": "796633c4cdf0fe2cdced72d8f88f22e73dbcfce83132763162f6d4bff13b820b"
+  },
+  "size": 526605292
+}

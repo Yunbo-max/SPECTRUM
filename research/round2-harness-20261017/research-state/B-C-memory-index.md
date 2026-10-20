@@ -1,3 +1,5 @@
+2026-10-20 10:44 UTC：原安装1276/uv1289与bootstrap1864持续运行，下载scratch约3.5GiB，新增z3-solver完成，无安装退出或引擎结果。LCB完整校验和隔离评分探针已经通过，不重跑。新增GPU后处理实测validate_analysis.py：使用这次真实软件探针结果，聚合一致，异dtype/host/dataset/prompt和tampered result均拒绝；comparison-analysis-validation.json保留证据。两个fixture条件相同，不是模型比较或科学零差异。下一步仍为安装完成后的原生FP16启动/容量/恢复smoke和正式基座；不可从准备结果声称C/D/E成立。
+
 ## SH02 软件集成实际通过（2026-10-20 10:40 UTC）
 
 剩余4MiB分段在download=true传输URL重试后成功；LCB完整官方SHA校验通过，固定作者源码也核对通过。下载程序2701已完成退出，不需重启。原安装1276与bootstrap1864仍身份匹配，CUDA依赖继续下载，GPU0MiB/0%；尚未进入FP16推理。

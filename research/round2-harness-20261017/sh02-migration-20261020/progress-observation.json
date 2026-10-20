@@ -1,13 +1,9 @@
 {
-  "utc": "2026-10-20T10:40:39.760992+00:00",
+  "utc": "2026-10-20T10:43:51.042292+00:00",
   "processes": {
     "installation": {
       "pid": 1276,
       "identity_matches": true
-    },
-    "dataset-ranges": {
-      "pid": 2701,
-      "identity_matches": false
     },
     "bootstrap": {
       "pid": 1864,
@@ -18,8 +14,8 @@
     "installation-exit.json": false,
     "source-data-verification.json": true,
     "early-software-validation.json": true,
+    "comparison-analysis-validation.json": true,
     "integration-completed.json": false,
     "bootstrap-error.json": false
-  },
-  "gpu": "0 MiB, 0 %"
+  }
 }

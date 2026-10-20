@@ -121,3 +121,4 @@ Downloading setuptools (1.0MiB)
  Downloaded nvidia-cudnn-frontend
  Downloaded numpy
  Downloaded nccl-extensions
+ Downloaded z3-solver

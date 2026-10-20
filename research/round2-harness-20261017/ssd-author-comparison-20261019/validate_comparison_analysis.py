@@ -7,7 +7,7 @@ rows=native['all_repeat_results'][0]
 cfg=json.loads((S/'base-temperature-0.7/config.json').read_text());cfg['n_repeat']=1;cfg['dataset_sha256']='software-fixture-only'
 checks={}
 with tempfile.TemporaryDirectory(prefix='ssd-comparison-analysis-') as temporary:
- root=pathlib.Path(temporary);mod.S=root
+ root=pathlib.Path(temporary);mod.S=root;mod.DATA=root/'dataset-resolution.json'
  (root/'dataset-resolution.json').write_text(json.dumps({'ordered_task_ids':[r['task_id'] for r in rows]}))
  for condition in ['first','second']:
   d=root/condition;d.mkdir();(d/'config.json').write_text(json.dumps(cfg));(d/'results.json').write_text(json.dumps(native))

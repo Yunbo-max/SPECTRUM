@@ -123,3 +123,4 @@ Downloading setuptools (1.0MiB)
  Downloaded nccl-extensions
  Downloaded z3-solver
  Downloaded flashinfer-python
+ Downloaded nvidia-nvjitlink

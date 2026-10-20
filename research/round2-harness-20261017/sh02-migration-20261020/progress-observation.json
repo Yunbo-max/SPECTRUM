@@ -1,5 +1,5 @@
 {
-  "utc": "2026-10-20T10:49:22.419993+00:00",
+  "utc": "2026-10-20T10:52:19.439610+00:00",
   "processes": {
     "installation": {
       "pid": 1276,
@@ -10,7 +10,7 @@
       "identity_matches": true
     }
   },
-  "installation_scratch": "3.9G\t/tmp/.tmp7HRSFB",
+  "installation_scratch": "4.2G\t/tmp/.tmp7HRSFB",
   "installation_completed": false,
   "bootstrap_error": false
 }

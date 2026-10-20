@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-20T10:51:57.402347+00:00",
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "layers": 36,
+  "kv_heads": 8,
+  "head_dimension": 128,
+  "dtype_bytes": 2,
+  "kv_bytes_per_token": 147456,
+  "dense_kv_gib_by_context": {
+    "17920": 2.4609375,
+    "67072": 9.2109375
+  },
+  "limitation": "Analytical dense K/V storage only; excludes weights, allocator rounding, activation peaks, workspace and runtime overhead. Not measured engine capacity."
+}

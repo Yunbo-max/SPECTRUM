@@ -1,12 +1,12 @@
 {
-  "utc": "2026-10-20T10:29:06.304416+00:00",
+  "utc": "2026-10-20T10:34:35.266397+00:00",
   "processes": {
     "installation": {
       "pid": 1276,
       "identity_matches": true
     },
     "dataset-ranges": {
-      "pid": 1863,
+      "pid": 2438,
       "identity_matches": true
     },
     "bootstrap": {
@@ -22,5 +22,6 @@
     "integration-completed.json": false,
     "bootstrap-error.json": false
   },
+  "verified_dataset_segments": 23,
   "gpu": "0 MiB, 0 %"
 }

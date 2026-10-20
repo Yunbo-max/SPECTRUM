@@ -1,16 +1,18 @@
-Verified range 29159424 33353727
-Verified range 33353728 37548031
-Verified range 50130944 54325247
-Verified range 45936640 50130943
-Verified range 54325248 58519551
-Verified range 66908160 71102463
-Verified range 62713856 66908159
-Verified range 24965120 29159423
-Verified range 71102464 75296767
-Verified range 75296768 79491071
-Verified range 37548032 41742335
-Verified range 96268288 100462591
-Verified range 100462592 104656895
+Verified range 104656896 108851199
+Verified range 87879680 92073983
+Verified range 83685376 87879679
+Verified range 134017024 134303239
 curl: (28) SSL connection timeout
 curl: (28) SSL connection timeout
-Verified range 92073984 96268287
+Verified range 58519552 62713855
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+curl: (28) SSL connection timeout
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+Verified range 129822720 134017023
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+Verified range 121434112 125628415
+curl: (28) SSL connection timeout
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+curl: (28) Operation too slow. Less than 1024 bytes/sec transferred the last 45 seconds
+Verified range 125628416 129822719

@@ -1,3 +1,5 @@
+2026-10-20 10:34 UTC continuation: observed actual curl56 connection resets and stalled transfers. Verified and stopped only downloader1863/its children, retained completed ranges and attempt1 logs, added retry-all-errors and 45s low-speed detection. Replacement downloader2438 is active; 23 segments verified, whole-file SHA not complete. Installation1276 and bootstrap1864 still match identities, no bootstrap error, GPU0MiB/0%. Installation continues downloading (scratch grew to2.8GB); do not duplicate/restart it merely for slowness. Postprocessor now accepts --root for SH02 conditions and rejects mixed dtype/runtime/host/seed/context/execution options; result/input hashes are checked when binding exists. GPU py_compile passed; functional analysis remains untested until real outputs exist. No new scientific result.
+
 最新核对：10:29 UTC 三个准备/串行进程身份仍匹配，GPU尚未推理；迁移代码已交付145850b。续跑先读sh02-migration-20261020/progress-note.md及实际日志，勿重复启动。
 
 ## SH02 实际续跑（2026-10-20 10:26 UTC）

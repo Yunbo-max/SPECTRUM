@@ -116,3 +116,6 @@ Downloading setuptools (1.0MiB)
  Downloaded torchvision
  Downloaded pillow
  Downloaded nvidia-cuda-cupti
+ Downloaded pandas
+ Downloaded transformers
+ Downloaded nvidia-cudnn-frontend

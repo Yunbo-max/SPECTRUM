@@ -39,7 +39,8 @@ def main():
             pending = part.with_suffix('.partial')
             headers = part.with_suffix('.headers')
             subprocess.run(['curl', '-fLsS', '--connect-timeout', '30', '--max-time',
-                            '600', '--retry', '2', '--range', f'{low}-{high}',
+                            '180', '--speed-limit', '1024', '--speed-time', '45',
+                            '--retry', '3', '--retry-all-errors', '--range', f'{low}-{high}',
                             '-D', str(headers), '-o', str(pending), URL], check=True)
             content_ranges = re.findall(r'(?im)^content-range:\s*bytes (\d+)-(\d+)/(\d+)',
                                         headers.read_text())

@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-20T10:32:47.645967+00:00",
+  "pids": [
+    1863,
+    1897,
+    1987,
+    2026,
+    2188,
+    2264
+  ],
+  "reason": "Observed curl56 connection resets are not covered by default retries; preserve completed segments and add retry-all-errors plus low-speed timeout."
+}

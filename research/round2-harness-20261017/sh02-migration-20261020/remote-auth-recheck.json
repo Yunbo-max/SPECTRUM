@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-20T11:20:14.369244+00:00",
+  "explicit_key_exists": true,
+  "explicit_key_mode": "0o600",
+  "returncode": 255,
+  "stdout": "",
+  "stderr": "root@sh02-ssh.gpuhome.cc: Permission denied (publickey,password).\n",
+  "remote_process_state": "not reconciled"
+}

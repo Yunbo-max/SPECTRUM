@@ -1,3 +1,10 @@
+## SH02 端口恢复但认证失败（2026-10-20 11:20 UTC）
+
+11:20:03别名连接从Connection refused变为Permission denied (publickey,password)。11:20:14显式指定原授权key、IdentitiesOnly=yes、BatchMode=yes再次认证失败；本地key存在且权限0600，未输出密钥内容。证据remote-access-recheck.json和remote-auth-recheck.json。无法读取boot ID或核对安装6718/bootstrap1864/下载6833；所有远端状态仍未知，不能推断主机重启、任务停止或完成。未启动替代实验，未修改SSH配置或Harness。需要SH02恢复原授权公钥登录后才能核对并继续；没有新增模型结果，研究未完成。
+
+
+连接复查 2026-10-20T11:19:10.383029+00:00：SSH再次在认证前Connection refused（exit 255）。安装6718、bootstrap1864和下载6833当前状态仍未知；未启动替代任务，无新模型结果。连接恢复后先核对boot/PID身份和完成marker。本地remote-access-recheck.json已保存；此更新尚不能同步GPU。
+
 ## SH02 连接中断（2026-10-20 11:14 UTC）
 
 本轮先成功核对安装6718、bootstrap1864、Torch下载6833身份；随后实见4个Torch范围分段完成，wheel整体SHA尚未通过，尚无模型输出。之后SSH端口突然Connection refused；短暂等待后再次连接仍在认证前失败。当前三个远端进程状态未知，不能推断停止/完成，也不能重复启动。remote-access-interruption.json保存11:14:37 UTC实际错误。

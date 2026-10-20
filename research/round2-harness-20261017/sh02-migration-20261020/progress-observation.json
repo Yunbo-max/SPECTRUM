@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-20T10:26:10.162527+00:00",
+  "processes": {
+    "installation": {
+      "pid": 1276,
+      "identity_matches": true
+    },
+    "dataset-ranges": {
+      "pid": 1863,
+      "identity_matches": true
+    },
+    "bootstrap": {
+      "pid": 1864,
+      "identity_matches": true
+    }
+  },
+  "markers": {
+    "base-assets-verified.json": true,
+    "ssd-assets-verified.json": true,
+    "installation-exit.json": false,
+    "source-data-verification.json": false,
+    "integration-completed.json": false
+  }
+}

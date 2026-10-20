@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-20T10:07:03.050208+00:00",
+  "reason": "pip dry-run downloads complete wheels; retain verified ZIPs and switch to actual isolated installation to avoid duplicate large downloads",
+  "saved_wheels": [
+    "huggingface_hub-2.2.0-py3-none-any.whl",
+    "transformers-5.19.0-py3-none-any.whl",
+    "psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl",
+    "tqdm-4.70.1-py3-none-any.whl",
+    "py_cpuinfo-9.0.0-py3-none-any.whl",
+    "numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "sentencepiece-0.2.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+    "blake3-1.0.11-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+    "vllm-0.32.0-cp38-abi3-manylinux_2_28_x86_64.whl",
+    "requests-2.34.2-py3-none-any.whl",
+    "cachetools-7.2.4-py3-none-any.whl",
+    "regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+  ],
+  "pid": 894
+}

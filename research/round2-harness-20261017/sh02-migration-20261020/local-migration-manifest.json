@@ -1,0 +1,957 @@
+[
+  {
+    "path": "upstreams/Qwen3-Coder/requirements.txt",
+    "size": 47,
+    "sha256": "f8ef6855421b002ac0ccc9f25dbe44ce04c62a2aa77f89d8df3e6f00f91f0f80"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwen3_coder_next_tech_report.pdf",
+    "size": 2647221,
+    "sha256": "a0a957439a2f069556b8f50b2e48630368014b507a6a8f9f8b6f233461efd252"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/README.md",
+    "size": 21967,
+    "sha256": "7553f06c6f17a7ce22a76995a210b07fb6724d32a0cdc7bd4961ed2866d80fd4"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/.gitignore",
+    "size": 3100,
+    "sha256": "0cb4b41e4c6481d98327cb5af3b0241008bae327a806815c497ab95eef838218"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/evaluate.sh",
+    "size": 915,
+    "sha256": "0577679779bcb21a8892672bbb37a129a530a4fac221f8400f005b24d45881f8"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/README.md",
+    "size": 6519,
+    "sha256": "3860c474438671517e95299e359ca7ee96dc05409c41ca61a26044f25b03d4bb"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/show_results.py",
+    "size": 2683,
+    "sha256": "98cab25cacbe6c5ac82887df18943d609cd0c0c5e11fc147b54ba59593e02e84"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/requirements.txt",
+    "size": 52,
+    "sha256": "b791653d6493e1deafa81d1226cefcf7f209311261852eb318f15c272d0e836d"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/generate.py",
+    "size": 7330,
+    "sha256": "decd6f5cf803ba905439f2766a6f64108bde48f1502a67ae14a6c24576c82b5b"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/convert_data.py",
+    "size": 14687,
+    "sha256": "ebfcbc6e157bafb9d66b8dafe6aac94d0a25e7ae741f1c4087cf3264af46dd67"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/model.py",
+    "size": 6838,
+    "sha256": "5daaff624619433ae2319234f4790082317a3e58a727e60d872e1a469ac75eec"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/readme.md",
+    "size": 763,
+    "sha256": "fe2b6a20a51448db7d60c1bee669c667f16abaf08073cb49fbf9f7fd8bd4c510"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/test.sh",
+    "size": 1641,
+    "sha256": "f6630cfc0e49bc9b36efe68626f58a7d8515cbc3c781a574b148ffce739c0558"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/data/HumanEvalPlus-v0.1.9.jsonl",
+    "size": 7829426,
+    "sha256": "50d50fda1ecf4c9168d762456ae29c1d8b8b922e68c66964f7891c98d93a04b7"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/data/HumanEval.jsonl",
+    "size": 214438,
+    "sha256": "1d49078ba3e2b196b9344535bef34a43021f038fad9561d6ee7c53450609a6a2"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/data/HumanEvalPlus-v0.1.10.jsonl",
+    "size": 7714666,
+    "sha256": "42526ec0e7d5f3ee0b06d6ced98f8c8bae3d76519151bfb3d36f79010645bd7f"
+  },
+  {
+    "path": "upstreams/Qwen3-Coder/qwencoder-eval/instruct/eval_plus/data/MbppPlus-v0.1.0.jsonl",
+    "size": 2761786,
+    "sha256": "a855b9de667baea8e2f8aa61f898767a7336872208a85222b35622545e819fe9"
+  },
+  {
+    "path": "upstreams/evalplus/LICENSE",
+    "size": 11558,
+    "sha256": "fcc1f77fe5443b21bfc4dfcc3d66f7654f599b91582df771850e5e876986a103"
+  },
+  {
+    "path": "upstreams/evalplus/requirements.txt",
+    "size": 93,
+    "sha256": "b3fb7bb21272603f21d20c63f6af3e8949416ce482cba69d529fa94a6b1ada31"
+  },
+  {
+    "path": "upstreams/evalplus/.pre-commit-config.yaml",
+    "size": 458,
+    "sha256": "8ad584562b51d480c821dab221c96bc4265593e92cc9233aab22bc7c09c8e313"
+  },
+  {
+    "path": "upstreams/evalplus/Dockerfile",
+    "size": 465,
+    "sha256": "ef2c3e64f5ce01128d064f48ff2be4bf24ab9f99b93b46d5e23c693b269ae9d4"
+  },
+  {
+    "path": "upstreams/evalplus/CITATION.cff",
+    "size": 827,
+    "sha256": "147dc2bfe7d1e2ed491459ce1f86066daea4c683bd215c7804459b02c111107e"
+  },
+  {
+    "path": "upstreams/evalplus/pyproject.toml",
+    "size": 246,
+    "sha256": "39083b726dc4b931974c3defb886352a23b1c1a887e36fdb025d138a2cf1ee81"
+  },
+  {
+    "path": "upstreams/evalplus/MANIFEST.in",
+    "size": 39,
+    "sha256": "9f06f082dc603b9c62beff69c94f73b19ce8ded114573178473cd31386740797"
+  },
+  {
+    "path": "upstreams/evalplus/README.md",
+    "size": 13295,
+    "sha256": "4409f8513561ba055e3b8289bc736104c1ba4617659ec826d3115089da2812ba"
+  },
+  {
+    "path": "upstreams/evalplus/.dockerignore",
+    "size": 3286,
+    "sha256": "55ab2dd5d7a28ab5d42e979437c1c58a2d2478bbed727722f1eade0a88879e57"
+  },
+  {
+    "path": "upstreams/evalplus/.gitignore",
+    "size": 3257,
+    "sha256": "38638b6558309bd4b3c65f469056a5c438c3ff461f5ecd5652775d729fb7fb4a"
+  },
+  {
+    "path": "upstreams/evalplus/release.sh",
+    "size": 593,
+    "sha256": "69e432f3a297f73b0e45b65583c7f187da04444c89d900d544c200407f5b963d"
+  },
+  {
+    "path": "upstreams/evalplus/setup.cfg",
+    "size": 1449,
+    "sha256": "3864b65f692d00546a4b73c4f9e20014afd640795ecbe0aef5e9e3edf6be603a"
+  },
+  {
+    "path": "upstreams/evalplus/requirements-evalperf.txt",
+    "size": 68,
+    "sha256": "0ece205394bb665d880eb9b67ec3436d935b3d980955d8d10966eeac9f0a151f"
+  },
+  {
+    "path": "upstreams/evalplus/tools/collect_valid_solutions.py",
+    "size": 6690,
+    "sha256": "2c5be121b60f5bccfd34f3ba6abaa237339245910f7bcd2b0e0f2d8d08e621b2"
+  },
+  {
+    "path": "upstreams/evalplus/tools/requirements.txt",
+    "size": 57,
+    "sha256": "ec24d498c96ca8baaf70ed3a9d79c5505fc50955d34a9bcad17daeb757d60c02"
+  },
+  {
+    "path": "upstreams/evalplus/tools/render.py",
+    "size": 6097,
+    "sha256": "8af0b9bcf4cb36f50012740e0d04915664c98a13fbb88dfc9f0708a49535839b"
+  },
+  {
+    "path": "upstreams/evalplus/tools/viz_passrate.py",
+    "size": 6856,
+    "sha256": "6ee2cabf61099cd7e9895671bcb7ef53583e349f4fd13d672e16a9c7287ee413"
+  },
+  {
+    "path": "upstreams/evalplus/tools/filter_inputs.py",
+    "size": 1598,
+    "sha256": "aea3bf50021839321358f13b9ea41b2f1574fff883813c2e2d97992f4d1e2bb8"
+  },
+  {
+    "path": "upstreams/evalplus/tools/stat_plus.py",
+    "size": 1219,
+    "sha256": "d7bee2963c337950e71bd525e4e326e3bb6b1ec19d3f01ca2a51d7f675d23607"
+  },
+  {
+    "path": "upstreams/evalplus/tools/merge_dataset.py",
+    "size": 1340,
+    "sha256": "696f74aab87ca8ae175a674332d14615b7ec543c7d435f441e90869c36849829"
+  },
+  {
+    "path": "upstreams/evalplus/tools/sanitize.py",
+    "size": 155,
+    "sha256": "2af2987fcf1ba53339a97348203df95f0310de80752f10e469e9adc450cb2398"
+  },
+  {
+    "path": "upstreams/evalplus/tools/checker.py",
+    "size": 155,
+    "sha256": "2af2987fcf1ba53339a97348203df95f0310de80752f10e469e9adc450cb2398"
+  },
+  {
+    "path": "upstreams/evalplus/tools/zip_solutions.py",
+    "size": 1833,
+    "sha256": "872d248b3caad9ebe4aa5493f278fe4c5d2806a44bc391239ac9967f8379cc35"
+  },
+  {
+    "path": "upstreams/evalplus/gallary/render.gif",
+    "size": 403455,
+    "sha256": "ee670af6341d78d2482934ac81043b22b89beab6e33adc1eaa17eba50e22c9f1"
+  },
+  {
+    "path": "upstreams/evalplus/gallary/overview.png",
+    "size": 100686,
+    "sha256": "9176f2d9362c5d41c7d8e31ac68bc91a6d174381d61690ab2fe2a77c9ea8884b"
+  },
+  {
+    "path": "upstreams/evalplus/tests/requirements.txt",
+    "size": 7,
+    "sha256": "8004a972c3d5c274d8c808e8d8afe03b9aca8af8eebf3df4298f114d8008b754"
+  },
+  {
+    "path": "upstreams/evalplus/tests/test_legacy_sanitizer.py",
+    "size": 854,
+    "sha256": "4f64e55b09cce8f686a2b3bb9d08c458ddf69ff9b75167bddd8db301c37aa581"
+  },
+  {
+    "path": "upstreams/evalplus/tests/test_treesitter_sanitizer.py",
+    "size": 4003,
+    "sha256": "05175d517ea055ffc53b9e2bc5d28512259d2ebe44debe08f55c4f4686f81116"
+  },
+  {
+    "path": "upstreams/evalplus/codegen/requirements.txt",
+    "size": 63,
+    "sha256": "fc7569b1035139f51f64495377f80f695c0838c6914987716aa614eb94ec197b"
+  },
+  {
+    "path": "upstreams/evalplus/codegen/generate.py",
+    "size": 5567,
+    "sha256": "3805cea4d0b32d12be4979b19e1d92e4580c01a61769bb5c77c0aa46ca342431"
+  },
+  {
+    "path": "upstreams/evalplus/codegen/model.py",
+    "size": 14161,
+    "sha256": "2eec57dfe6d476c917265428d135b403c3e31ed955b319a6cc0f63c8a319c556"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/syncheck.py",
+    "size": 3599,
+    "sha256": "3f9309720878e5bbed17ba5c75f8634cd28b0f7ddda69fb515b083fd5a64610e"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/__init__.py",
+    "size": 120,
+    "sha256": "fd8bd103579e95d9a9114272caf122360d6957c5ee4d67dc047884fefe0c48c2"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/lecacy_sanitize.py",
+    "size": 5817,
+    "sha256": "1057b91df273e115e04ba8db3464ae9cb745b9f408d9617ba92991904bef849d"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/evaluate.py",
+    "size": 12718,
+    "sha256": "40698c51923e5774bed05d3929ebf472450d014173c0e230b3c755a8df9f2684"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/inputgen.py",
+    "size": 3991,
+    "sha256": "3f28bb97c43feec4d61d091d23a8d5184d52da88f506ec0758a8c14d5814566b"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/sanitize.py",
+    "size": 7634,
+    "sha256": "0a93a25f22bf3f46ecedd62a9bdd5414cc54ca069dab188267201924fbb0a0a7"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/evalperf.py",
+    "size": 12613,
+    "sha256": "daf368bb91b4111fa2d4ac2c30dc48ca6549a5b0a6996b4f594ca531e8634515"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v018.py",
+    "size": 2836,
+    "sha256": "1ec0e8e3169280c7d1020682c4ad33b34bcf7d43ce3eb87210a8a6d86b08673b"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v019.py",
+    "size": 1275,
+    "sha256": "c61d0d7412e280769410242984bdce1f69bb98d29e7d0eedceab7c61bb31f801"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/init_plus.py",
+    "size": 3378,
+    "sha256": "145b20e16d4767f3bd65d28c1ef5e69cc8f62bd5dc96107ddd500c54b68ec87f"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_utils.py",
+    "size": 1599,
+    "sha256": "7b58644d59fa3b25f93951f68bf5acab6f3085b8016bfbc89c60261feb841beb"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v016.py",
+    "size": 1123,
+    "sha256": "5f57978933a784f30ce4963c1a55518963c80c608ae47524014a011a9694ee22"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v012.py",
+    "size": 2930,
+    "sha256": "31f50af86476f66fca68230c3d0e1e916a15067e3d703af194b8994b7f163d67"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v013.py",
+    "size": 1162,
+    "sha256": "e30db0787a5e56f9b3767201180f0083739eedaad7ce32e035ef899cb5445f6c"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v017.py",
+    "size": 1905,
+    "sha256": "61aeb654e1028b9bf4d19bbe07c77e90199f5823afa29d06a075d14a78a1ae3d"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/filter_extreme.py",
+    "size": 2552,
+    "sha256": "9e4bdb442f1f6b34cd751ac367fc76a9b04591abbd6a748b0a8e89935d2ffddf"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v014.py",
+    "size": 2454,
+    "sha256": "f8bf1328692cb0c5f4ad046fde78c7827e3d5e3ad5b6a85b9b76b5097df7cd00"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v015.py",
+    "size": 1585,
+    "sha256": "0ced83ade4b87bcb72f85aa11bb9b2589dd5f8fd1028071cf1513df510554b62"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/fix_v011.py",
+    "size": 2236,
+    "sha256": "45b8858a752802403880a15b3f527645aa123f947cea71e72bdafcc448748d1f"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/init_ground_truth.py",
+    "size": 854,
+    "sha256": "abacba89427d758bb25e327d1fdec03a180b1ef46028aa7e759910896712ec4b"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/check_ground_truth.py",
+    "size": 1099,
+    "sha256": "e1070f636680b3024c54bb295cf8b2ef1e53e46f163654304fa408559ede47e6"
+  },
+  {
+    "path": "upstreams/evalplus/tools/humaneval/to_original_fmt.py",
+    "size": 6169,
+    "sha256": "61303f2e09e2a392fc6c8d10c0c9fc1206973272015449dba65e6c5bfbe800d6"
+  },
+  {
+    "path": "upstreams/evalplus/tools/_experimental/type_mut_for_eff.py",
+    "size": 15797,
+    "sha256": "42589f6c238a44853c783f1e8ba5d3154d76597826abf81f4f764e477050f6b2"
+  },
+  {
+    "path": "upstreams/evalplus/tools/_experimental/evaluate_coverage.py",
+    "size": 5966,
+    "sha256": "925316732d92c9af08f159883e80cea570211290ac5cbc32b1eb6b7bd7ab6708"
+  },
+  {
+    "path": "upstreams/evalplus/tools/_experimental/set_cover.py",
+    "size": 3238,
+    "sha256": "925b79c25734ab07549fd738d5e255246916bfc23f0d94d22dd94250d23a92f6"
+  },
+  {
+    "path": "upstreams/evalplus/tools/_experimental/evaluate_runtime.py",
+    "size": 3620,
+    "sha256": "4709632f436578d4aa4c2f1c2a34963ec886fc160a6696fe8995ff00617c61e9"
+  },
+  {
+    "path": "upstreams/evalplus/tools/_experimental/topset_distill.py",
+    "size": 2405,
+    "sha256": "175a56c261673f2fefa21e5a49f9446bee35474932a5bd13a346a4b7ae2ec591"
+  },
+  {
+    "path": "upstreams/evalplus/tools/_experimental/generate_big_input.py",
+    "size": 2124,
+    "sha256": "2564bbd510b77095a7c80bce67ba6720db325ddd39ae74a1e4b4b36258fe4c3f"
+  },
+  {
+    "path": "upstreams/evalplus/tools/_experimental/README.md",
+    "size": 33,
+    "sha256": "57051a1f0fad71b7ef063ad38ebf4c3fe31ef61d91ed84d131ce08571ecc523d"
+  },
+  {
+    "path": "upstreams/evalplus/tools/mbpp/init_plus.py",
+    "size": 5755,
+    "sha256": "de65c26d78021dd8cc7bea1eae05a460ee8aa9456482d37f766a70af681a8f69"
+  },
+  {
+    "path": "upstreams/evalplus/tools/mbpp/filter_extreme.py",
+    "size": 1844,
+    "sha256": "295118dca06e0ac361bd018c9cd9e28eda76a120a6cc331c7646edfcef50a269"
+  },
+  {
+    "path": "upstreams/evalplus/tools/mbpp/fix_v010.py",
+    "size": 6090,
+    "sha256": "566ce8f29f552948426c974eb65c3e62b4b0070b208a2e73498e13cc40073502"
+  },
+  {
+    "path": "upstreams/evalplus/tools/mbpp/init_ground_truth.py",
+    "size": 927,
+    "sha256": "802479e78f97c6e9a2741cbfd933cf224bcfce32008721a33d900deaa0951f39"
+  },
+  {
+    "path": "upstreams/evalplus/tools/mbpp/check_ground_truth.py",
+    "size": 727,
+    "sha256": "ef1199b01b93d4dc469e955307bb630a5cbbbb69f9d35e12337d06eccbd8989a"
+  },
+  {
+    "path": "upstreams/evalplus/tools/mbpp/to_original_fmt.py",
+    "size": 7896,
+    "sha256": "3207df9f35574467b4916867b4779366742978d26d15ead30f816bb512e37d88"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/run.py",
+    "size": 1852,
+    "sha256": "c965d4d8ccf81d958a307fd998dc5de48e487e610cde0ba1688de249fafd076e"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/requirements.txt",
+    "size": 28,
+    "sha256": "4de7f3e5472ec9524e201c070e7ffbbc40a0cac9952554b821be8d2f443f742c"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/__init__.py",
+    "size": 63,
+    "sha256": "014cf2420565832daf7ded37574f3365100f1adc05a520dfc5d47896099111a0"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/README.md",
+    "size": 1545,
+    "sha256": "e3baa30bab73b560cd56b9472037df8e08e58d5beeff8279bffca59da16d759c"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/.gitignore",
+    "size": 9,
+    "sha256": "d58c770bd028bee080c6ad4d22b6afa102226625320db1f16d0fb0bd54e47873"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/utils.py",
+    "size": 865,
+    "sha256": "f2b215c7c62c90054868b73c624da71dfdba9ed8ec6d07a7bcc5b7483c2adfdb"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/sample_init.py",
+    "size": 2308,
+    "sha256": "5c8534e8b4e5589416148867ad09625675cd64797479985e52c8e06b428a7d65"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/minimization.py",
+    "size": 8705,
+    "sha256": "8883024898c7da8233191855deaa00b3f5d5ca4b4bdcfae88fcfef20204870c8"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/coverage_init.py",
+    "size": 3869,
+    "sha256": "517fa9a1c29bcfd7c02ce468df2c3dbbb533b222d55763a47be328d6058782f1"
+  },
+  {
+    "path": "upstreams/evalplus/tools/tsr/mutation_init.py",
+    "size": 3812,
+    "sha256": "886cacddc67ec9193b6e1f601873e170185f9c9068eec935423b89ff32de0b8c"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/gen/__init__.py",
+    "size": 753,
+    "sha256": "7952440f3bd47b4f97f628b3d529dab58e57c42766f9e0594b4d4ccf55882dbb"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/gen/mut_gen.py",
+    "size": 1052,
+    "sha256": "04e1301f25c3404ddcaca2d749fdd97afc3209e8666014ac773f34407abf518a"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/gen/chatgpt_gen.py",
+    "size": 3141,
+    "sha256": "6327209793ec8802291d5c2d2653c8f52e10340e09d5c2440c94fcfb5222b73f"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/gen/type_mut.py",
+    "size": 10914,
+    "sha256": "c64277f00930c122d1adf86c39a735286aa2581952a454c27c424afe7d0eeddb"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/eval/__init__.py",
+    "size": 9516,
+    "sha256": "aa380338803bde3e647bb873f6ee219c3b2d349c63d31697b5eaab4ad607b7ca"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/eval/utils.py",
+    "size": 5110,
+    "sha256": "0aec25f437dbc7637219ba749ba71921670e71cd2e70b1cc23988896c0754bb1"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/eval/_special_oracle.py",
+    "size": 961,
+    "sha256": "0656d9d7dc1574162bdf15d702774be4d0745d2d79ef263a2de09a7410c51c20"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/perf/select_pe_inputs.py",
+    "size": 4137,
+    "sha256": "5e9400648de848fafd9062f92a63e57d1b70f912dd4338740206559855924979"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/perf/sas.py",
+    "size": 4971,
+    "sha256": "80c538c46fb6fd7a18928716db718eeb3b8e5625af8902b5e5ba07ef7611c564"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/perf/config.py",
+    "size": 231,
+    "sha256": "2d9b774d29b78965a97942dec48b11099df9acfe0d23ea59f9d283f581b41e6d"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/perf/profile.py",
+    "size": 3903,
+    "sha256": "827ba093504ea59e72e425102abc499401832addcacca506e0d6058c4ead2713"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/perf/__init__.py",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/perf/sampling.py",
+    "size": 10699,
+    "sha256": "c3e4ddab64f869d64aa2ea16fd899850e85d56c2755636fb3c044890c986f0fa"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/perf/select_pe_tasks.py",
+    "size": 8035,
+    "sha256": "01352a7afd5a014895ff9f674e1f5a232402baca0ead2bec4c72af69d3d32874"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/data/mbpp.py",
+    "size": 5504,
+    "sha256": "186e09b7b14dcf12ed259dfca1d6644a1c266c1bbac41c917fd3c0449a734b24"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/data/__init__.py",
+    "size": 224,
+    "sha256": "fdeb541cd9b454e59296087629917fe27c2c81599056ec54f018a72cd127b3bf"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/data/utils.py",
+    "size": 6105,
+    "sha256": "15dc36203f078cdf6c213b5ff55469e23e166e4fe898d46e7287fa4a0e100fbc"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/data/humaneval.py",
+    "size": 3454,
+    "sha256": "105969e0c700fa77f18b1ae7dd06230e22f81540cf030ddca2cbfeb2630055b4"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/gen/util/__init__.py",
+    "size": 953,
+    "sha256": "81a7f0ee32dda4b5794f9645cc1199dc4b5ad8f187c6bd36fca32892ac2b8eef"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/gen/util/anthropic_request.py",
+    "size": 1439,
+    "sha256": "15396e5f07e050a3faf4cb06916fd6fc98d9d8caf056c3f09b2c3e5771465069"
+  },
+  {
+    "path": "upstreams/evalplus/evalplus/gen/util/openai_request.py",
+    "size": 1813,
+    "sha256": "812ff78a2551d2543e0d4fdac6c8c48df5bf28ebf37fb51fddfc7c772a3d2b47"
+  },
+  {
+    "path": "upstreams/evalplus/.github/ISSUE_TEMPLATE/buggy_test.yml",
+    "size": 1461,
+    "sha256": "acebe9fc267590c93dcd6f59f76b8371a8c5bb541476ba0b29b982979a319ec9"
+  },
+  {
+    "path": "upstreams/evalplus/.github/ISSUE_TEMPLATE/buggy_contract.yml",
+    "size": 1396,
+    "sha256": "642011305162b0f1e8f43a44677c181f0af2bda8fe0d39f052996684d101538f"
+  },
+  {
+    "path": "upstreams/evalplus/.github/ISSUE_TEMPLATE/model_eval_request.yml",
+    "size": 2488,
+    "sha256": "32154cfef63a1c0571b80c5e0c939f18f749727bcaf075912d3f9f60d7e092df"
+  },
+  {
+    "path": "upstreams/evalplus/.github/ISSUE_TEMPLATE/config.yml",
+    "size": 27,
+    "sha256": "13064e7bea658e01e718b414fbb7b3b244f36411fe25ee2055c151f7b534547a"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/second-repeat-observation.md",
+    "size": 1538,
+    "sha256": "bcfcf463ff9cb19cd61ba608c413ee3866ad6ce9adca6f98b261b41d36a01ff1"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/source-manifest.json",
+    "size": 406,
+    "sha256": "a8bbf22c566a0733f07a63cb9c00ca98630e0cd65f7c20740c2e235c22e3888c"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/research-decision.md",
+    "size": 5364,
+    "sha256": "f1144b0de0fab21d29861855f660d44fe30fdddfb683a1cf43abbcb4d760df9a"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/native-failure-semantics.md",
+    "size": 2494,
+    "sha256": "39f202607554d8a85e24358bf878c675c1f162e47c63bdeeca2087a308b563e2"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/integration-status.json",
+    "size": 1279,
+    "sha256": "bd4a7311d026916761c63a6c29116306ec7fa4effaf151a4645fe4eadfde69b9"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/finite-sample-reference.json",
+    "size": 3193,
+    "sha256": "107541ed651387d5b9c4be54305062545b611835317da8fd0c8735d3b8fd20b4"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/finite-sample-review-runtime.json",
+    "size": 314,
+    "sha256": "c5f6179abe8fb0eeb01e81b4aea0d9eb992699ab0d4f8557029fad9dd08a85a2"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/remote-access-observation-20261020.json",
+    "size": 1143,
+    "sha256": "ed2b58f7b0e305e62d7708cb30de6c165b61e56e4c65679908a5d5600a6482c4"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-audit.md",
+    "size": 1801,
+    "sha256": "d98cf89876eddfc41b65e2156c40afd3f61098d9557cb0822983fb1e2fc5b470"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/analyze_condition.py",
+    "size": 7806,
+    "sha256": "57eb49cb23c999357a7024cb7d689cfba3a770b737f1635d55c04beea35684b8"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/dataset-resolution.json",
+    "size": 2498,
+    "sha256": "c60efd15bf625d3c083eab057cf5299d834bf75d9b52d299a6fdb3789f44c6aa"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/generate_condition.py",
+    "size": 6410,
+    "sha256": "f7c262c12d4ebc417b9357e2c4a9f8c132aee6bddc9feed5a6df44285a84d180"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/comparison-analysis-validation.json",
+    "size": 1311,
+    "sha256": "fc641e33d71efdca8af8c56779eb5d3b55b5bf98ceaa72a95e68e2211421ef90"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/UPSTREAM-LICENSE",
+    "size": 2317,
+    "sha256": "27eb5d4005ca4ad8862417a009c16b89b76541be99fe862f7d9c164fd2f3a078"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/lcb-upstream-README.md",
+    "size": 3390,
+    "sha256": "fbf0df23c9fb430778f037691bd191ece41d49373c0695151d87549b6f45d809"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/comparison-analysis-runtime.json",
+    "size": 324,
+    "sha256": "a791cd22ea91e9c207c40bd471f1c9b5a952a8fe811d98385bd5fd7229e20f12"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/isolation-probe.json",
+    "size": 268,
+    "sha256": "3910770aec56c9859f71ff59fa1ff1409e92791c2a9d91bf9579a798c43c5595"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/first-repeat-observation.md",
+    "size": 2287,
+    "sha256": "35e4b205e37d20f44a654da1e696a00dbe670a5fc99390f5de11b030248dbc59"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/isolate_ssd.py",
+    "size": 7238,
+    "sha256": "20497a8c56c09045b8cc7f10baf1aa1c7a6cb6b8944afe36a763777ded7c9a95"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/validate_comparison_analysis.py",
+    "size": 2711,
+    "sha256": "01b505def771bfb5c5d04f12e18ba2765e6e54ee2b7fb55ea5fd452b1ee24f10"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/prompt-capacity-profile.json",
+    "size": 3880,
+    "sha256": "486fc21abb3daee4c5c4f5bf2236736c5c2702001a80ee5db2ebd1efb1becea7"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/finite-sample-interpretation.md",
+    "size": 3652,
+    "sha256": "4a7efed4dc696cccf6cd6ef6ba5ad9a6497bbc672bd60edd1c783d371184b3b1"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/remote-access-interruption-20261020.md",
+    "size": 2424,
+    "sha256": "bac70f1294b321b660dc39ff42d8295ce69ae07b93aa0f08c62da22c8946f42b"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/software-probe-results.json",
+    "size": 4057,
+    "sha256": "90365131b95442a672d38dbb689c1c8d4a070453bfca9074afa673231410f9e4"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/run_condition.py",
+    "size": 2821,
+    "sha256": "0e855d9066c9088080cb553734ada8dea284f024b9f249f0cc17a4bf0871d4ad"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/profile_prompts.py",
+    "size": 1915,
+    "sha256": "7d7c72b323cba9e2b396874d6a29f49a0bad39f75cbe10a1e510a47180acd09f"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/benchmark-capacity-and-recording.patch",
+    "size": 2378,
+    "sha256": "0336474586c5d637ac2107754efc0d2d0ad934bcfd1f857dd641da4a4542bf87"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/progress-observation.json",
+    "size": 545,
+    "sha256": "a1e7608e4defc69802d386f803332f5234bb7dd79f991e35f198c3da953c66a5"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/analysis-software-validation.json",
+    "size": 571,
+    "sha256": "5243b915b6713d0ee64f0515a4ca532d770116c8f210fa9dd4e23011a4e2f965"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/native-timeout-budget-audit.json",
+    "size": 1288,
+    "sha256": "077c888a5686a2066a0ed1015cecdcb80f34b5da0ef6bb9b94a178c7acd5c84c"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/native-failure-review-runtime.json",
+    "size": 326,
+    "sha256": "c56714839daa55c414606f58c93aec752319b35bf7023a6ceccda6f45c83ff31"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/prepare_upstream.py",
+    "size": 1959,
+    "sha256": "bfbd45957fbe7db830437481a952da2ec006f984cce7df313178820d822aac25"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/software-probe-summary.json",
+    "size": 254,
+    "sha256": "5c8fb62831dd83c8afb31ba2685c0608498fb4f163769af521c1ac26040c7e4f"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/decoder-null-and-novelty.md",
+    "size": 3891,
+    "sha256": "58c589235dbdc347f41445a77d525281096fadb6d83bb0feae5beafafbf31eb7"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/software-probe-inputs.json",
+    "size": 2458,
+    "sha256": "dab8970e603822b6752ae9ef4e0a923d8723b247e828d04d19bbc52efb3efd6e"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-00-generation-audit.json",
+    "size": 1055,
+    "sha256": "3325df928d87fe9874f566bb3aeac288339f88bcea360c1580a1b7ccc4f014da"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/generate-attempt-1-command.json",
+    "size": 254,
+    "sha256": "62d3177cc427e0dcde6cc0ee446d7e907a413e50a75688a03b54a57a8dad94ff"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-00.jsonl",
+    "size": 3245972,
+    "sha256": "de904a35d2c607c7bc5d59f59a7d972d42ba298e21ffed2f36ae646e2a273deb"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/engine-initialized.json",
+    "size": 308,
+    "sha256": "b51a063879d13eb2be9daacd3e9381823c29e4a21edb93c20fd7126062230b34"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-01-timing.json",
+    "size": 512,
+    "sha256": "ff5ee3f741a0696300cbafbcea8e528bc639dfd24b46bb4195c29dbdba8b6eea"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/config.json",
+    "size": 719,
+    "sha256": "4b3b204a555073dfc1f717626a6df657433226efe32177b426110e53b90fe2a2"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/pipeline.log",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-01.jsonl",
+    "size": 3100307,
+    "sha256": "b28f71d7f473e4e7bc0b9f353912104e23c2f3798b5eb7e2a3362090a18d038c"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/generate-attempt-1.log",
+    "size": 6640,
+    "sha256": "4ff901c5b040081b2566c483cea8deb0e294bf7528cbe6fc93ead6ffa6b316ae"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-01-generation-audit.json",
+    "size": 1106,
+    "sha256": "7924d073ab63714a9c0800c52f1536f50a2dc7e89a41af88df2413a83e6140a7"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-00-format-audit.json",
+    "size": 651,
+    "sha256": "52a1ea5a6f66cdfb6427ddb7faa88e2ee4e3e77d6da1f2d592cf16afd43e4c86"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-01-format-audit.json",
+    "size": 641,
+    "sha256": "ec21d2138730c5693a41f6f571ea5e17f997bcd3bc8eaf9218e8bd6f9d8caa1c"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/process.json",
+    "size": 590,
+    "sha256": "8d6125741d18a0fca3e05e4c48bbb5d376f32567dafbaa2a6a080026d67ad943"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/active-stage.json",
+    "size": 359,
+    "sha256": "ba4c55971a88f855d141744d4d7634f06c4dda2d13209cf1569e7df41d6ea1ad"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-00-timing.json",
+    "size": 513,
+    "sha256": "e919a4db48f869d8ecf078b2205538ded784d26f5514651076bc84406d2dd58b"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/selected-functions.patch",
+    "size": 3577,
+    "sha256": "f310f826394faa09f7c56f659c1047cd47c468f47a5bcb0e2c19a77fa58dbfe3"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/retrieval-notes.txt",
+    "size": 156,
+    "sha256": "5037906765be3e9f8913c78bd32312c90239472a683206f097620e05df476d06"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/UPSTREAM-LICENSE",
+    "size": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/paper-ops--topk_topp_sampler.py",
+    "size": 11625,
+    "sha256": "536ed05e4cbf2eef8817d57c04fd0e424441f4b05ee5282cf072722d2592b203"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/comparison.json",
+    "size": 943,
+    "sha256": "0032fd37635253b872a439b4627dd9217c8b79aadc58e9fdba819c675480c6fc"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/paper-sampler.py",
+    "size": 11400,
+    "sha256": "3720fbfd59c1f064a62b8e0489ec0436468188b69f8b8eb84d2d62eba31f3912"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/installed-sampler.py",
+    "size": 9064,
+    "sha256": "db2dd76516188d5ccde26eb2856f363ddbd5910d84b821eebc5a1b119e3ceeae"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/sampler-source-audit/installed-ops--topk_topp_sampler.py",
+    "size": 11303,
+    "sha256": "445cf48ead6ef4f8ac78be0df75a30fa5145c2f1076af2456a98b35ba38fea2d"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/logs/isolation-probe.log",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/logs/software-e2e-probe.log",
+    "size": 62,
+    "sha256": "f4f0cfb646f81ea3e0d461b4d6805d7930c6271b01835e680f5b144fc7e6cc0e"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/logs/isolation-prepare.log",
+    "size": 1189,
+    "sha256": "d5d4761fa6b6da06db796a043cb0edb50cd6473883d16ba51181d36641119a2e"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/logs/isolation-prepare-2.log",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/logs/decode.log",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/logs/prompt-profile.log",
+    "size": 926,
+    "sha256": "2434bf6d651c109dff2f67a286821f007a79f7860e3d2eb765d49b23bbb54ff0"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/training-source-audit/source-hashes.json",
+    "size": 489,
+    "sha256": "dd65be6e851033cccde7d4a4e69c35c443f8a14b65bab870de9c78de14d7831e"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/training-source-audit/generate.py",
+    "size": 9725,
+    "sha256": "65d656b6c16394698748aa1cac9a3c84c7a960c2fdde084fd9f1e84636aa6a6e"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/training-source-audit/config.yaml",
+    "size": 432,
+    "sha256": "5031a93d3ba2b1da8677b8cd15cc59cf442bd92cee6fb7dad734b1a89f1ee5b4"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/training-source-audit/runtime-observation.json",
+    "size": 319,
+    "sha256": "769f99212c1b55b0ae709068fd0970e72d4111d94950365c1feac67aafaebd84"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/training-source-audit/dedup-source-search.json",
+    "size": 355,
+    "sha256": "da7ad1067bdc7648d92ae3da5ce7fcd8d2f9680fcd8ff48641f6956bc209ad01"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/training-source-audit/review.md",
+    "size": 3959,
+    "sha256": "ad8856d2b92623915a76e5e786b2795daf26b7777d6e965e3774a56cbb280d43"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/adapted/evaluation/benchmark.py",
+    "size": 16616,
+    "sha256": "503ba5a98d7486a6bbc934afbf63dca232159d3b91f2159b7d369031b3ea60ae"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/adapted/evaluation/__init__.py",
+    "size": 104,
+    "sha256": "8ca8ed7f11eb9ee6d627843d7e4610d0d679c7ecccc6a0e426645e6040982eba"
+  },
+  {
+    "path": "research-state/ssd-author-comparison-20261019/adapted/evaluation/livecodebench_utils.py",
+    "size": 25378,
+    "sha256": "44a6c24188c789af5f61cdc7be04daf8b0ce981309ac1ee510dfafc0fb703ecf"
+  }
+]

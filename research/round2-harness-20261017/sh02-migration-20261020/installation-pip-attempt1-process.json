@@ -1,0 +1,19 @@
+{
+  "pid": 1152,
+  "proc_stat": "1152 (python) R 1151 1152 1152 0 -1 4194304 4 0 0 0 0 0 0 0 20 0 1 0 776075205 7303168 1 18446744073709551615 0 0 140721967178320 0 0 0 0 0 0 0 0 0 17 28 0 0 0 0 0 94580470909584 94580472891568 94580996898816 140721967184986 140721967185237 140721967185237 140721967185853 0\n",
+  "command": [
+    "/root/rivermind-data/spectrum-harness/venv-sh02/bin/python",
+    "-m",
+    "pip",
+    "install",
+    "--no-cache-dir",
+    "--index-url",
+    "https://pypi.tuna.tsinghua.edu.cn/simple",
+    "--find-links",
+    "/root/rivermind-data/spectrum-harness/cache/sh02-wheels",
+    "vllm==0.32.0",
+    "numpy==2.2.6",
+    "pandas==2.3.3"
+  ],
+  "utc": "2026-10-20T10:07:03.051277+00:00"
+}

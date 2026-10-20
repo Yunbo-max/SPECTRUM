@@ -1,0 +1,49 @@
+{
+  "old_host": "hn01",
+  "remote_process_status": "unknown",
+  "reuse_in_new_conditions": false,
+  "old_configuration": {
+    "model_path": "/root/rivermind-data/spectrum-harness/cache/modelscope-author-pair-20261018/Qwen--Qwen3-4B-Instruct-2507",
+    "model": "base",
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "n_repeat": 10,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "max_tokens": 65536,
+    "max_model_len": 67072,
+    "tensor_parallel_size": 1,
+    "dtype": "bfloat16",
+    "max_num_seqs": 1,
+    "max_num_batched_tokens": 4096,
+    "gpu_memory_utilization": 0.9,
+    "enforce_eager": true,
+    "enable_chunked_prefill": true,
+    "dataset_sha256": "d95cab6feef0bea860315bb3a2273641351da96cd43b657ac981f4e51053a73a",
+    "source_commit": "2637d2021f1bc523385b48a1f88ea9aa4812b0a9"
+  },
+  "durable_raw_files": [
+    {
+      "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-00.jsonl",
+      "size": 3245972,
+      "sha256": "de904a35d2c607c7bc5d59f59a7d972d42ba298e21ffed2f36ae646e2a273deb"
+    },
+    {
+      "path": "research-state/ssd-author-comparison-20261019/base-temperature-0.7/repeat-01.jsonl",
+      "size": 3100307,
+      "sha256": "b28f71d7f473e4e7bc0b9f353912104e23c2f3798b5eb7e2a3362090a18d038c"
+    }
+  ]
+}

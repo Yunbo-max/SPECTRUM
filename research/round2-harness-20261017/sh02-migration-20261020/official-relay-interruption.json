@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-20T10:24:48.104550+00:00",
+  "reason": "Official relay slower than mirror; preserve partial and switch to verified ranged mirror transfer.",
+  "pids": [
+    43924,
+    44374
+  ]
+}

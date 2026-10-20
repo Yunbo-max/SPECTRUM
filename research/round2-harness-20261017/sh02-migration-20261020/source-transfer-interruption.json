@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-20T10:24:52.139788+00:00",
+  "reason": "Preserve sequential partial; use bounded ranged transfer after 206 verification.",
+  "pids": [
+    1239,
+    1242
+  ]
+}

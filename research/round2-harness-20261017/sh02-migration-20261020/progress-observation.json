@@ -1,16 +1,24 @@
 {
-  "utc": "2026-10-20T10:52:19.439610+00:00",
+  "utc": "2026-10-20T11:09:02.513047+00:00",
   "processes": {
     "installation": {
-      "pid": 1276,
-      "identity_matches": true
+      "pid": 6718,
+      "identity_matches": true,
+      "state": "S"
     },
     "bootstrap": {
       "pid": 1864,
-      "identity_matches": true
+      "identity_matches": true,
+      "state": "S"
+    },
+    "torch-ranges": {
+      "pid": 6833,
+      "identity_matches": true,
+      "state": "S"
     }
   },
-  "installation_scratch": "4.2G\t/tmp/.tmp7HRSFB",
   "installation_completed": false,
-  "bootstrap_error": false
+  "bootstrap_error": false,
+  "cuda_reused_distributions": 15,
+  "torch_wheel_verified": false
 }

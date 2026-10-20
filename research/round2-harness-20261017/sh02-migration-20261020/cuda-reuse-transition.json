@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-20T11:06:11.829586+00:00",
+  "preserved_cache": "/root/rivermind-data/spectrum-harness/cache/uv-sh02-retained",
+  "old_installer": 1276,
+  "old_uv": 1289,
+  "bootstrap_temporarily_stopped": 1864,
+  "reason": "Exact base CUDA package constraints match; preserve all cache and reuse RECORD-verified files without changing base conda."
+}

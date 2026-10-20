@@ -1,0 +1,134 @@
+COMMAND ['/root/rivermind-data/spectrum-harness/venv-sh02/bin/python', '-m', 'pip', 'install', '--no-cache-dir', '--index-url', 'https://pypi.tuna.tsinghua.edu.cn/simple', 'uv']
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Collecting uv
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/7e/fa/45e1751beda39226d5472e6bb068747115a06f19c2559a8810aac9b881b7/uv-0.13.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.3/17.3 MB 11.4 MB/s eta 0:00:00
+Installing collected packages: uv
+Successfully installed uv-0.13.3
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: python -m pip install --upgrade pip
+COMMAND ['/root/rivermind-data/spectrum-harness/venv-sh02/bin/uv', 'pip', 'install', '--python', '/root/rivermind-data/spectrum-harness/venv-sh02/bin/python', '--no-cache', '--index-url', 'https://pypi.tuna.tsinghua.edu.cn/simple', '/root/rivermind-data/spectrum-harness/cache/sh02-wheels/vllm-0.32.0-cp38-abi3-manylinux_2_28_x86_64.whl', 'numpy==2.2.6', 'pandas==2.3.3']
+Using Python 3.12.13 environment at: rivermind-data/spectrum-harness/venv-sh02
+Resolved 202 packages in 12.83s
+Downloading torch (502.2MiB)
+Downloading nvidia-cudnn-cu13 (349.2MiB)
+Downloading nvidia-cublas (403.5MiB)
+Downloading nvidia-cufft (204.2MiB)
+Downloading nvidia-nccl-cu13 (196.4MiB)
+Downloading nvidia-cusolver (191.6MiB)
+Downloading nvidia-cusparselt-cu13 (162.3MiB)
+Downloading triton (188.6MiB)
+Downloading nvidia-cusparse (139.2MiB)
+Downloading tokenspeed-triton (89.0MiB)
+Downloading nvidia-cutlass-dsl-libs-cu13 (87.7MiB)
+Downloading nvidia-cutlass-dsl-libs-cu12 (87.5MiB)
+Downloading nvidia-cuda-nvrtc (86.0MiB)
+Downloading nvidia-nvvm (69.2MiB)
+Downloading opencv-python-headless (58.4MiB)
+Downloading nvidia-nvshmem-cu13 (57.6MiB)
+Downloading nvidia-curand (56.8MiB)
+Downloading llvmlite (53.7MiB)
+Downloading tilelang (48.2MiB)
+Downloading nvidia-cuda-nvcc (45.5MiB)
+Downloading pynvvideocodec (41.2MiB)
+Downloading nvidia-nvjitlink (40.5MiB)
+Downloading flashinfer-python (32.1MiB)
+Downloading z3-solver (27.9MiB)
+Downloading nccl-extensions (21.5MiB)
+Downloading numpy (15.8MiB)
+Downloading transformers (12.0MiB)
+Downloading pandas (11.8MiB)
+Downloading nvidia-cuda-cupti (10.2MiB)
+Downloading nvidia-cudnn-frontend (9.7MiB)
+Downloading torchcodec (9.5MiB)
+Downloading pycountry (7.7MiB)
+Downloading torchvision (7.3MiB)
+Downloading cuda-bindings (6.8MiB)
+Downloading grpcio (6.8MiB)
+Downloading pillow (6.8MiB)
+Downloading cuda-core (6.3MiB)
+Downloading mistral-common (6.3MiB)
+Downloading instanttensor (6.2MiB)
+Downloading sympy (6.0MiB)
+Downloading cryptography (4.5MiB)
+Downloading uvloop (4.3MiB)
+Downloading hf-xet (4.0MiB)
+Downloading nvidia-cuda-cccl (3.7MiB)
+Downloading numba (3.6MiB)
+Downloading nccl4py (3.5MiB)
+Downloading oss-harmony (3.4MiB)
+Downloading tokenizers (3.2MiB)
+Downloading llguidance (2.9MiB)
+Downloading nvidia-cutlass-dsl-libs-base (2.9MiB)
+ Downloaded nccl4py
+Downloading fastsafetensors (2.6MiB)
+ Downloaded fastsafetensors
+Downloading apache-tvm-ffi (2.6MiB)
+ Downloaded apache-tvm-ffi
+Downloading outlines-core (2.2MiB)
+ Downloaded outlines-core
+Downloading openai (2.2MiB)
+ Downloaded openai
+Downloading nvidia-cuda-runtime (2.1MiB)
+ Downloaded nvidia-cuda-runtime
+Downloading pydantic-core (2.1MiB)
+ Downloaded pydantic-core
+Downloading networkx (2.0MiB)
+ Downloaded networkx
+Downloading anthropic (2.0MiB)
+ Downloaded anthropic
+Downloading aiohttp (1.8MiB)
+ Downloaded aiohttp
+Downloading torchaudio (1.7MiB)
+ Downloaded torchaudio
+Downloading nvidia-cutlass-dsl-libs-core (1.6MiB)
+ Downloaded nvidia-cutlass-dsl-libs-core
+Downloading sentencepiece (1.3MiB)
+ Downloaded sentencepiece
+Downloading xgrammar (1.3MiB)
+ Downloaded xgrammar
+Downloading pygments (1.2MiB)
+ Downloaded pygments
+Downloading nvidia-cufile (1.2MiB)
+ Downloaded nvidia-cufile
+Downloading tiktoken (1.1MiB)
+ Downloaded tiktoken
+Downloading setuptools (1.0MiB)
+ Downloaded setuptools
+ Downloaded tokenizers
+ Downloaded oss-harmony
+ Downloaded cryptography
+ Downloaded nvidia-cutlass-dsl-libs-base
+ Downloaded nvidia-cuda-cccl
+ Downloaded hf-xet
+ Downloaded llguidance
+ Downloaded numba
+ Downloaded uvloop
+ Downloaded cuda-bindings
+ Downloaded sympy
+ Downloaded cuda-core
+ Downloaded pycountry
+ Downloaded instanttensor
+ Downloaded mistral-common
+ Downloaded grpcio
+ Downloaded torchcodec
+ Downloaded torchvision
+ Downloaded pillow
+ Downloaded nvidia-cuda-cupti
+ Downloaded pandas
+ Downloaded transformers
+ Downloaded nvidia-cudnn-frontend
+ Downloaded numpy
+ Downloaded nccl-extensions
+ Downloaded z3-solver
+ Downloaded flashinfer-python
+ Downloaded nvidia-nvjitlink
+ Downloaded pynvvideocodec
+ Downloaded tilelang
+ Downloaded nvidia-cuda-nvcc
+ Downloaded llvmlite
+ Downloaded nvidia-curand
+ Downloaded nvidia-nvshmem-cu13
+ Downloaded opencv-python-headless
+ Downloaded nvidia-nvvm

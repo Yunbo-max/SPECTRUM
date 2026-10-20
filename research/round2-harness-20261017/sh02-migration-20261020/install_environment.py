@@ -11,11 +11,19 @@ WHEEL = pathlib.Path('/root/rivermind-data/spectrum-harness/cache/sh02-wheels/vl
 MIRROR = 'https://pypi.tuna.tsinghua.edu.cn/simple'
 
 def main():
+    wheels = [str(WHEEL)]
+    if (STATE/'torch-wheel-verified.json').exists():
+        from fetch_assets import sha
+        meta = json.loads((STATE/'torch-wheel-verified.json').read_text())
+        torch_wheel = WHEEL.parent/meta['filename']
+        assert torch_wheel.stat().st_size == meta['size']
+        assert sha(torch_wheel) == meta['digests']['sha256']
+        wheels.append(str(torch_wheel))
     commands = [
         [str(VENV/'bin/python'), '-m', 'pip', 'install', '--no-cache-dir',
          '--index-url', MIRROR, 'uv'],
         [str(VENV/'bin/uv'), 'pip', 'install', '--python', str(VENV/'bin/python'),
-         '--no-cache', '--index-url', MIRROR, str(WHEEL), 'numpy==2.2.6', 'pandas==2.3.3'],
+         '--cache-dir', str(VENV.parent/'cache/uv-sh02-retained'), '--index-url', MIRROR, *wheels, 'numpy==2.2.6', 'pandas==2.3.3'],
     ]
     records = []
     for command in commands:

@@ -1,0 +1,16 @@
+[
+  {
+    "command": [
+      "/root/rivermind-data/spectrum-harness/venv-sh02/bin/python",
+      "-m",
+      "pip",
+      "install",
+      "--no-cache-dir",
+      "--index-url",
+      "https://pypi.tuna.tsinghua.edu.cn/simple",
+      "uv"
+    ],
+    "returncode": 0,
+    "elapsed_seconds": 7.03051754180342
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "name": "nvidia-cudnn-cu13",
+    "version": "9.20.0.48",
+    "files": 28,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cusparselt-cu13",
+    "version": "0.8.1",
+    "files": 8,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-nccl-cu13",
+    "version": "2.29.7",
+    "files": 58,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-nvshmem-cu13",
+    "version": "3.4.5",
+    "files": 65,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cublas",
+    "version": "13.1.1.3",
+    "files": 15,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cuda-nvrtc",
+    "version": "13.0.88",
+    "files": 11,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cuda-runtime",
+    "version": "13.0.96",
+    "files": 100,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cufft",
+    "version": "12.0.0.61",
+    "files": 12,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-nvjitlink",
+    "version": "13.0.88",
+    "files": 8,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cufile",
+    "version": "1.15.1.6",
+    "files": 9,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cuda-cupti",
+    "version": "13.0.85",
+    "files": 48,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-curand",
+    "version": "10.4.0.35",
+    "files": 24,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cusolver",
+    "version": "12.0.4.66",
+    "files": 14,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-cusparse",
+    "version": "12.6.3.3",
+    "files": 9,
+    "source_RECORD_verified": true
+  },
+  {
+    "name": "nvidia-nvtx",
+    "version": "13.0.85",
+    "files": 42,
+    "source_RECORD_verified": true
+  }
+]

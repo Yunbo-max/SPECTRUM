@@ -1,3 +1,11 @@
+## SH02 复用已核验 CUDA 依赖（2026-10-20 11:09 UTC）
+
+发现基础conda中15个NVIDIA分发满足Torch2.13及cuda-toolkit13.0.3声明约束，且无prefix外文件。reuse_cuda_packages.py逐文件验证原RECORD哈希，然后复制进独立venv；基础conda未修改。证据base-cuda-reuse-audit.json/cuda-packages-reused.json。先按身份暂停原安装/uv/等待中的bootstrap，将完整临时cache（含未完成部分）复制到cache/uv-sh02-retained，保留旧日志和进程记录，再结束旧1276/1289；新安装6718已运行，原bootstrap1864已SIGCONT恢复且状态S。无旧安装并行残留。新解析仍202packages，剩5大包（torch、triton、tokenspeed-triton、cutlass cu12/cu13），原完成下载从持久cache复用。
+
+另有Torch官方wheel分段下载6833（最多16连接），全文件官方SHA通过才写torch-wheel-verified.json。当前未完成，不能用于安装。若该marker先于安装完成出现，下一次先核对新installer/uv身份；保留持久cache和尝试日志，再安全重启安装，install_environment.py会自动将已核验Torch wheel作为直接输入。不要盲目终止已完成安装或已启动模型；若原uv先完成，取消多余下载并保留片段。torch源metadata在torch-wheel-source.json；分段在GPU cache/sh02-wheels/torch-ranges。当前下载仍有低速重试，尚无引擎或科学结果。
+
+inspect_environment.py在实际导入后增加pip check和完整分发版本记录，避免只记录Torch而漏掉复用CUDA依赖。GPU py_compile已通过，真实import/FP16引擎仍待剩余安装。隔离评分/数据/分析验证继续复用；旧BF16样本不混入。下一步读取真实下载/安装状态，调试实际错误，再FP16smoke及顺序研究。
+
 2026-10-20 10:52 UTC：原安装1276和bootstrap1864身份仍匹配，scratch4.2GiB，安装未完成、无bootstrap错误。对已下载vLLM0.32.0实际源码/二进制审计：核心_C_stable_libtorch包含sm_75 cubin（cuobjdump成功）；CudaPlatform在CC<80支持FP16/FP32，FlashAttention backend要求SM80，Triton backend允许CC7.5候选。这不是引擎成功证据，仍须实际初始化。Qwen配置36层、8KV heads、head_dim128，FP16 dense K/V每token147456bytes；context17920仅KV约2.461GiB，旧67072约9.211GiB，均不含权重/激活/工作区。保存vllm-t4-source-binary-audit.json、vllm-core-cuda-objects.log与fp16-kv-storage-estimate.json。继续原安装后FP16smoke与正式顺序研究；没有模型分数。
 
 2026-10-20 10:49 UTC：原安装1276与bootstrap1864身份匹配，scratch增长到3.9GiB，flashinfer-python新完成；没有安装退出或bootstrap错误。实际传输诊断：GPU访问PyPI元数据TLS超时；官方torch wheel CDN1MiB分段只传351442bytes/25秒后超时；本地同段0.142秒，但SSH上传1MiB超过60秒仍未完成，按精确PID停止测速，未替换原安装。故不因本地CDN快就改成慢SSH中转，也不重启有进展的uv。官方文件摘要和探针保留在*-probe.json、torch-wheel-source.json、installation-transfer-observation.json。当前仍无模型结果；等待同一安装完成后由原串行程序进入FP16引擎/恢复测试及正式条件，已通过的隔离和分析验证不重跑。

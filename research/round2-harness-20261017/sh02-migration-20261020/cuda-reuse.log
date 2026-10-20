@@ -1,0 +1,15 @@
+Reused nvidia-cudnn-cu13 9.20.0.48
+Reused nvidia-cusparselt-cu13 0.8.1
+Reused nvidia-nccl-cu13 2.29.7
+Reused nvidia-nvshmem-cu13 3.4.5
+Reused nvidia-cublas 13.1.1.3
+Reused nvidia-cuda-nvrtc 13.0.88
+Reused nvidia-cuda-runtime 13.0.96
+Reused nvidia-cufft 12.0.0.61
+Reused nvidia-nvjitlink 13.0.88
+Reused nvidia-cufile 1.15.1.6
+Reused nvidia-cuda-cupti 13.0.85
+Reused nvidia-curand 10.4.0.35
+Reused nvidia-cusolver 12.0.4.66
+Reused nvidia-cusparse 12.6.3.3
+Reused nvidia-nvtx 13.0.85

@@ -8,7 +8,8 @@
   "last_durable_snapshot": "progress-observation.json",
   "new_program_launched": false,
   "remote_memory_synced": false,
-  "last_recheck_utc": "2026-10-20T06:44:59+00:00",
-  "consecutive_blocked_turns": 4,
-  "required_external_change": "Restore configured SSH endpoint or provide updated authorized connection configuration"
+  "last_recheck_utc": "2026-10-20T06:47:42.747957+00:00",
+  "consecutive_blocked_turns": 7,
+  "required_external_change": "Restore configured SSH endpoint or provide updated authorized connection configuration",
+  "latest_ssh_exit_code": 255
 }

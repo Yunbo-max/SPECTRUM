@@ -1,5 +1,7 @@
 ## 当前续跑位置（2026-10-20：远端连接中断）
 
+2026-10-20 06:42:41 UTC再次实连：同一SSH端口仍返回Connection refused（认证前）；远端状态仍未知。已复核官方MBPP报告并将source-notes.md中的早期暂停/未完成表述明确标为历史状态，防止误重跑。没有新增模型结果，后续实验仍需先恢复连接并核对原任务。
+
 本轮两次实际SSH连接均在认证前返回Connection refused，无法核对原runner65584、GPU、退出记录或结果。当前远端状态未知；2026-10-19 02:58的2/10 repeats、seed2 75/131仅为最后持久化历史快照，不是当前进度。已完成官方MBPP结果和本地两轮LCB原始输出继续保留，未重跑、未启动第二实验、未改变Harness runtime。
 
 连接恢复后先核对原进程身份、锁、完整repeat、stage退出及results，再分析已完成结果或处理真实报错，继续顺序模型/解码对照。当前不能声称LCB完成或失败；研究未完成。详见ssd-author-comparison-20261019/remote-access-interruption-20261020.md。本轮记忆保存在本地和Git，因SSH不可达尚未同步GPU。

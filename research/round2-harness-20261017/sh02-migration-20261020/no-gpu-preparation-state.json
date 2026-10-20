@@ -1,0 +1,20 @@
+{
+  "observed_utc": "2026-10-20T11:26:06Z",
+  "ssh_access": "password authentication succeeded after the previously configured public key was rejected",
+  "kernel_boot_id": "9ae7a69f-cb04-4d67-9dac-158847aec768",
+  "previous_installer_pid_6718": "not present",
+  "previous_torch_ranges_pid_6833": "not present",
+  "previous_bootstrap_pid_1864": "not present",
+  "gpu_device_nodes": [],
+  "nvidia_smi_path": "/usr/bin/nvidia-smi",
+  "nvidia_smi_size_bytes": 0,
+  "gpu_scoring_started": false,
+  "model_weights_and_dataset": "previously verified markers remain on the persistent data volume",
+  "preparation_launcher": {
+    "installer_pid": 163,
+    "bootstrap_pid": 165,
+    "installer_index": "https://pypi.tuna.tsinghua.edu.cn/simple",
+    "resolved_packages": 202,
+    "state": "installer active; bootstrap waiting for installation-exit.json"
+  }
+}

@@ -1,7 +1,7 @@
-"""Serial migration integration checks followed by the new FP16 base condition.
+"""Prepare the SH02 runtime and evaluator, then stop before using a GPU.
 
-Preparation is not a scientific result. Any failed stage stops this program with
-its log retained for the same research worker to debug. No Harness state changes.
+GPU smoke and formal scoring have separate explicit entry points. This script
+must remain safe to run while the instance has no GPU attached.
 """
 import datetime
 import fcntl
@@ -72,46 +72,17 @@ def main():
         atomic_json(STATE/'software-validation.json', {
             'software_only': True, 'outcomes': outcomes, 'expected_outcomes_verified': True,
         })
-        smoke = 'smoke-base-fp16-2048'
-        command = [PYTHON, '-u', str(STATE/'run_condition.py'), '--model', 'base',
-                   '--temperature', '0.7', '--max-tokens', '2048',
-                   '--max-model-len', '17920', '--name', smoke, '--smoke-tasks', '3']
-        run('smoke', command)
-        raw = STATE/smoke/'repeat-00.jsonl'
-        native_smoke = json.loads((STATE/smoke/'results.json').read_text())['all_repeat_results']
-        assert len(native_smoke) == 1 and len(native_smoke[0]) == 3
-        before = digest(raw)
-        next_generate_attempt = len(list((STATE/smoke).glob('generate-attempt-*-command.json')))+1
-        run('resume', command)
-        assert digest(raw) == before
-        log = (STATE/smoke/f'generate-attempt-{next_generate_attempt}.log').read_text()
-        assert log.count('Reusing ') == 3 and 'Saved ' not in log
-        incompatible = [PYTHON, '-u', str(STATE/'generate_condition.py'),
-                        '--model', 'base', '--temperature', '0.7', '--max-tokens', '2049',
-                        '--max-model-len', '17920', '--name', smoke, '--smoke-tasks', '3']
-        run('reject-incompatible-resume', incompatible, expected=1)
-        rejection_logs = sorted((STATE/'integration').glob('reject-incompatible-resume-*.log'),
-                                key=lambda path: path.stat().st_mtime_ns)
-        assert 'Condition configuration changed' in rejection_logs[-1].read_text()
-        assert digest(raw) == before
-        atomic_json(STATE/'integration-completed.json', {
+        environment = json.loads((STATE/'environment.json').read_text())
+        atomic_json(STATE/'preparation-completed.json', {
             'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            'smoke_samples': 3, 'raw_sha256': before, 'resume_reused_samples': 3,
-            'incompatible_config_rejected': True, 'scientific_result': False,
-            'formal_budget': {
-                'max_tokens': 16384, 'max_model_len': 17920, 'dtype': 'float16',
-                'rationale': 'Same engine context successfully initialized in smoke; full task prompt maximum is 1410 tokens, below the 1536-token reserve.',
-                'limitation': 'Shorter than author 65536 output budget; report length termination and optimistic truncation bounds. Not full-budget reproduction.',
-            },
-        })
-        run('formal-base', [PYTHON, '-u', str(STATE/'run_condition.py'),
-                            '--model', 'base', '--temperature', '0.7',
-                            '--max-tokens', '16384', '--max-model-len', '17920',
-                            '--name', 'base-fp16-t0.7-cap16384'])
-        atomic_json(STATE/'base-stage-completed.json', {
-            'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            'research_complete': False,
-            'next': 'Inspect actual native results and truncation, then continue matched SSD comparison.',
+            'scientific_result': False,
+            'python_environment_installed': True,
+            'official_evaluator_and_data_prepared': True,
+            'software_validation_passed': True,
+            'gpu_available_during_preparation': environment['gpu_available'],
+            'gpu_smoke_started': False,
+            'formal_scoring_started': False,
+            'next': 'Attach/enable the intended GPU, then explicitly run start_fp16_smoke.py.',
         })
 
 if __name__ == '__main__':

@@ -55,3 +55,11 @@ inspect_environment.py在实际导入后增加pip check和完整分发版本记�
 认证诊断 2026-10-20 11:22:45 UTC：SSH verbose事件确认客户端实际提交公钥，服务端继续要求publickey/password并最终拒绝；没有Server accepts key事件。已仅保存过滤后的认证事件到remote-auth-diagnostic.json，不保存完整verbose日志或密钥指纹。故不是仅因未指定密钥而失败；服务端授权/账户/端点原因仍无法从客户端确定。需要恢复SH02原授权登录，才能核对原远端任务；不推断进程终止。无新增模型结果，未修改Harness。
 
 认证复查 2026-10-20T11:23:49.242202+00:00：原密钥仍被拒绝（exit255）；GPU执行当前受SSH认证阻塞，远端安装/下载/bootstrap状态未知。需要服务端恢复原授权公钥登录或提供更新后的连接信息；未更改Harness或启动替代任务，无新模型结果。
+
+## SH02 无卡准备恢复（2026-10-20 11:26 UTC）
+
+经用户提供的现有SSH登录方式重新连入。远端`/root/rivermind-data`仍在，模型/数据校验标记和已通过的软件评分探针都保留。旧安装PID6718、Torch分段下载PID6833及bootstrap PID1864均已不在；当前boot ID与旧进程记录相同，说明此前进程在同一内核实例中消失，不能声称安装完成。当前无`/dev/nvidia*`设备节点，`/usr/bin/nvidia-smi`为0字节空文件，未提供可用GPU。没有运行模型推理。
+
+为支持“先准备、由用户决定开始”，已修订并部署`bootstrap_and_base.py`、`inspect_environment.py`及显式入口：`start_preparation.py`仅恢复隔离环境安装和CPU/官方评测器准备；准备完成后停在`preparation-completed.json`。`start_fp16_smoke.py`仅在后续显式调用时运行T4 FP16冒烟/续跑检查；`start_formal_base.py --start`再显式启动正式基座。CPU-safe bootstrap不再自动跑smoke或131×10正式评测。改动已本地与SH02 Python 3.12 `py_compile`通过。
+
+11:26 UTC已启动无卡安全准备：环境安装PID163，bootstrap PID165。安装使用清华PyPI，解析202包并复用已保留uv缓存；安装仍在处理Torch/Triton/CUTLASS大包，bootstrap等待安装退出。此阶段不调用GPU，不产生模型分数。下次续跑先观察当前下载/安装实际进度和CPU-safe准备完成标记；只有用户明确开始后才运行GPU smoke。详见`no-gpu-preparation-state.json`及`SH02_PREP_GUIDE.md`。

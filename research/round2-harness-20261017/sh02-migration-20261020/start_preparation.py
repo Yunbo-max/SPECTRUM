@@ -88,6 +88,17 @@ def main():
         atomic_json(STATE/'preparation-launch-observation.json', result)
         print(json.dumps(result, indent=2), flush=True)
 
+        watcher = active_script('run_when_gpu_ready.py')
+        if watcher:
+            result['gpu_auto_runner'] = {'status': 'already_running', 'pid': watcher[0]}
+        elif not (STATE/'base-stage-completed.json').exists():
+            result['gpu_auto_runner'] = {
+                'status': 'started',
+                'pid': launch('gpu-auto-runner', 'run_when_gpu_ready.py'),
+            }
+        atomic_json(STATE/'preparation-launch-observation.json', result)
+        print(json.dumps({'gpu_auto_runner': result['gpu_auto_runner']}, indent=2), flush=True)
+
 
 if __name__ == '__main__':
     main()

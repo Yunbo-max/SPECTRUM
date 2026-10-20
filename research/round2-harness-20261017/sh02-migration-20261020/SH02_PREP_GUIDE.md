@@ -22,7 +22,23 @@ official evaluator/runtime and confirms the fixed dataset selection. It writes
 The environment report records whether a GPU was attached; no-GPU startup is a
 valid preparation state.
 
-## Start only when ready
+## Automatic continuation when GPU appears
+
+Run the continuation watcher after preparation. It waits at a 60-second interval
+for CUDA to expose the intended T4, then runs the FP16 smoke checks and, if they
+pass, starts formal base scoring. It records state under
+`gpu-auto-runner.json` and logs under `integration/auto-*.log`.
+
+```bash
+cd /root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020
+/opt/conda/bin/python start_preparation.py
+```
+
+`start_preparation.py` also ensures one watcher is active. If the instance
+reboots, rerun that command to resume preparation and restart the watcher; the
+watcher is a process on the instance and does not survive a reboot.
+
+## Manual execution (optional)
 
 After attaching the intended T4, run the FP16 engine, three-sample, resume, and
 configuration-rejection smoke checks explicitly:
@@ -32,8 +48,8 @@ cd /root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-2
 /root/rivermind-data/spectrum-harness/venv-sh02/bin/python start_fp16_smoke.py
 ```
 
-The smoke script never starts formal scoring. After it passes, formal base
-scoring requires a separate explicit invocation:
+The smoke script never starts formal scoring. If running manually, after it
+passes, start formal base scoring with:
 
 ```bash
 /root/rivermind-data/spectrum-harness/venv-sh02/bin/python start_formal_base.py --start

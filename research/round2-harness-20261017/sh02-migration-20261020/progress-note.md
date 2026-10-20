@@ -67,3 +67,8 @@ inspect_environment.py在实际导入后增加pip check和完整分发版本记�
 11:28 UTC观察：uv子进程PID168仍活跃，写入累计约1.3GB；清华源解析的202个依赖继续安装，根盘约24GiB、数据盘约23GiB可用。bootstrap PID165仍只等待安装标记；无GPU执行、无smoke和正式评测。
 
 11:39 UTC观察：uv PID168仍与清华PyPI保持连接；累计写入约2.3GB、接收约880MB。tokenspeed-triton、Triton及两套CUTLASS包已下载，Torch和其余安装仍在进行。根盘约24GiB、数据盘约22GiB可用；安装标记尚未出现，bootstrap仍等待。没有GPU或模型推理。
+## SH02 自动续接已部署（2026-10-20 11:53 UTC）
+
+清华源依赖安装、模型/数据标记、官方评分器准备及软件探针均已在远端完成；`pip check`通过。当前实例仍未暴露CUDA设备（`torch.cuda.is_available() == False`，无`/dev/nvidia*`），因此没有启动推理或评分。
+
+为按用户最新要求在环境/模型/数据准备后自动接续，部署`run_when_gpu_ready.py`并启动远端PID639。它每60秒检查GPU；CUDA设备出现后将核对预期T4，然后依序执行FP16三题冒烟/恢复与不兼容配置检查，成功后自动启动正式基座。状态记录在`gpu-auto-runner.json`，重启实例后可运行`start_preparation.py`恢复并重启watcher。当前watcher记录`waiting-for-gpu`；无科学结果。

@@ -9,3 +9,5 @@ No duplicate program, download, scoring process, worker, or runtime change was l
 GitHub fetch succeeded and confirmed the local delivery HEAD equals the branch head bd392ba29a8dd39ae04f2010d7314b1900142073. The SSH interruption is therefore distinct from a total local network outage. No remote memory synchronization was possible in this turn; local memory and authorized Git delivery preserve the handoff.
 
 Follow-up at 2026-10-20 06:42:41 UTC: a fresh SSH attempt again returned Connection refused before authentication. No remote state was obtained. Reviewed the completed MBPP report and clarified obsolete paused/uncompleted wording in source-notes.md; this is documentation reconciliation, not a new experimental result.
+
+2026-10-20 06:43:55 UTC: same refusal on the third consecutive continuation turn. External access remains blocked; restoration of the configured SSH endpoint or updated authorized connection configuration is required. No remote state or new scientific result is available.

@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-21T14:10:53.227101+00:00",
+  "returncode": 255,
+  "stdout": "",
+  "stderr": "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\nIT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!\nSomeone could be eavesdropping on you right now (man-in-the-middle attack)!\nIt is also possible that a host key has just been changed.\nThe fingerprint for the ED25519 key sent by the remote host is\nSHA256:u1vPsq3oZJFNIp4O3T2wFQLTXqBDLRhR8QmjJ9cw4VA.\nPlease contact your system administrator.\nAdd correct host key in /Users/yunbo/.ssh/known_hosts to get rid of this message.\nOffending ED25519 key in /Users/yunbo/.ssh/known_hosts:43\nHost key for [sh02-ssh.gpuhome.cc]:30112 has changed and you have requested strict checking.\nHost key verification failed.\n",
+  "remote_process_state": "not reconciled",
+  "new_experiment_launched": false,
+  "new_model_results": false,
+  "next_action": "Independently verify changed SH02 ED25519 host key through provider console or administrator before updating known_hosts; then reconcile boot identity, original processes and completion markers."
+}

@@ -236,3 +236,7 @@ worker 先核验本手册和当前实际进度，补充选择依据、数学预�
 已采用.14；hn01真实任务f110f40063164e21813388631b78aa1c完成正式协议验证、原export兼容匹配和四类live scorer探针，均通过。见reports/C-phase-e1a90-scoring-route.md及其原始回执。没有模型成绩。普通development单角色评分请求被实际拒绝：development requires actual control comparison。下一步需要受控已导出单角色offline scoring路径；不把模型评分伪装软件检查、不重跑生成、不执行旧P/A凑角色。原8000预测hash保持不变。
 
 恢复后先评分以判断当前配置的容量/截断/任务辨识力，再选模型/条件和强对照。协议pass@1>0仅检查全错地板，不能证明强基线资格；B03调优/公平与独立确认等仍pending。评分资源单位为程序，串行2CPU/4GiB、每程序3秒，未发生新模型显存测量。
+
+
+### SH02 host identity change — 2026-10-21 14:09 UTC
+SSH now reaches an endpoint, but strict verification rejects a changed ED25519 host key. No remote command executed. New presented fingerprint: `SHA256:u1vPsq3oZJFNIp4O3T2wFQLTXqBDLRhR8QmjJ9cw4VA`. This does not establish a reboot, replacement, or termination of prior jobs. Original known_hosts entry and credentials remain unchanged. Require independent provider-console/administrator verification before accepting the new key; afterward reconcile boot identity, original process identities, markers, GPU and disk before any launch. Latest evidence: sh02-migration-20261020/remote-host-key-change.json. No new experiment or model result.

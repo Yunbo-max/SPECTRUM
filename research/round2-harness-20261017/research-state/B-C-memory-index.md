@@ -234,3 +234,7 @@ reported separately.
 - reports/C-phase-e1a90-scoring-route.md：真实通过后继协议、export匹配及四类软件探针；未评分模型。
 - research-state/C-phase-e1a90/readback.json：真实controller输出pin、原预测及拒绝回执。
 - research-state/C-phase-e1a90/checkpoint.json：同一C阶段，单角色离线评分实际准入拒绝；不以缓存、旧F/P/A或软件通过代替问题选择和科学接受。
+
+
+### SH02 host identity change — 2026-10-21 14:09 UTC
+SSH now reaches an endpoint, but strict verification rejects a changed ED25519 host key. No remote command executed. New presented fingerprint: `SHA256:u1vPsq3oZJFNIp4O3T2wFQLTXqBDLRhR8QmjJ9cw4VA`. This does not establish a reboot, replacement, or termination of prior jobs. Original known_hosts entry and credentials remain unchanged. Require independent provider-console/administrator verification before accepting the new key; afterward reconcile boot identity, original process identities, markers, GPU and disk before any launch. Latest evidence: sh02-migration-20261020/remote-host-key-change.json. No new experiment or model result.

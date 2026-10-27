@@ -1,19 +1,25 @@
-# SPECTRUM agent entry
+# SPECTRUM current agent entry
 
-Before setup, acceptance, execution or repair, read
-[LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md) and
-[the current Web handoff](rounds/20261027-validation/WEB_HANDOFF.md) at the delivered commit.
-The [download section](LOCAL_AGENT_RUNBOOK.md#download-datasets-and-models) and
-[calibration/debug section](LOCAL_AGENT_RUNBOOK.md#calibrate-debug-then-dispatch) are part of this entry.
+Read [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md), then
+[the current handoff](rounds/20261027-multidomain/WEB_HANDOFF.md) at the delivered commit.
+The acquisition and qualification sections are part of the entry.
 
-- Current delivery is `generated_unexecuted`: source review is not a test or scientific PASS.
-- Preserve all historical results, existing private randomization, active plans and sealed outputs.
-  Never substitute MBPP500, MBPP+378, author LCB131 or adapted LCB200 for one another.
-- Keep numerical random seeds in private artifacts; public reports use replicate labels.
-- Native Conda is the current host route. No automatic container fallback. Generated code
-  needs a qualified OS isolation boundary; Conda and `allow_unsafe_local` are not that boundary.
-- Executable research work belongs to the admitted Local harness on the restored GPU host.
-  Resolve real process/lock/resource state before resuming. `start_preparation.py` on the
-  research branch can start a watcher that later launches inference; it is not read-only setup.
-- Do not add winner-dependent repeats, change tests, weaken checks, or omit unfavorable cells.
-  Publish source fixes with expected-head readback, preserving concurrent work and pinned runs.
+- Current scope: code on Qwen2.5-Coder7B, Llama3.1-8B and DeepSeekCoder6.7B;
+  independent math/QA/ARC-AGI-3 on the same original Qwen3.8-27B checkpoint.
+- One training trajectory per method; no mandatory temperature/training-seed
+  sweeps. The old40-job/1.5B matrix is historical, not the default new queue.
+- Delivery is generated_unexecuted. Source review/authored tests are not actual
+  software acceptance or scientific PASS. Qualify on the real native host.
+- Separate legacy-code and27B native Conda environments. No container/unsafe-local
+  fallback. Program/math scoring uses the qualified native bubblewrap boundary.
+- Preserve historical data/results, running checkouts, sealed protocols, private
+  randomization and unfavorable outcomes. Never conflate MBPP500, MBPP+378,
+  HumanEval+164 or the historical author-LCB protocols.
+- Qwen3.8 is hybrid: explicit full-attention K/V targets only; this is not GDN or
+  vision adaptation. ARC uses deterministic all-frame text observations.
+- ARC calibration requires real successful independent-game trajectories and native
+  replay. Heldout games never supply training/calibration references.
+- Restore actual SSH/GPU/process/lease state before native Local-harness execution.
+  Do not infer liveness from saved status or restart unknown historical watchers.
+- Return raw receipts/outputs/native replay. Keep secrets, bulk gated data/model
+  weights and seed values out of public Git. Publish with expected-head readback.

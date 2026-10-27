@@ -160,6 +160,8 @@ def _local_wrapper(mode, output, settings, samples=None):
 
 def _wrapper(mode, output, settings, samples=None):
     """Run the default container evaluator or an explicitly authorized local fallback."""
+    if settings.get('backend') == 'bwrap':
+        return _bwrap_wrapper(mode, output, settings, samples)
     if settings.get('backend', 'docker') == 'local':
         return _local_wrapper(mode, output, settings, samples)
     command = ["bash", str(WRAPPER), mode, "humaneval"]
@@ -176,6 +178,48 @@ def _wrapper(mode, output, settings, samples=None):
               "SAMPLE_MB": settings.get("sample_memory_mb", 2048)}
     environment.update({"IMPROVING_EVALPLUS_" + name: str(value) for name, value in values.items()})
     subprocess.run(command, check=True, env=environment)
+
+
+def _bwrap_runtime_manifest(settings):
+    from .native_sandbox import qualify_sandbox
+    directory = Path(settings['prepared_dataset_dir'])
+    fixture = directory / 'HumanEvalPlus.jsonl'
+    metadata = _json(directory / 'dataset_metadata.json')
+    release = metadata.get('datasets', {}).get('HumanEvalPlus', {})
+    if (metadata.get('evalplus_version') != '0.3.1' or release.get('version') != VERSION
+            or release.get('task_count') != TASK_COUNT or file_sha(fixture) != release.get('sha256')):
+        raise ValueError('Native EvalPlus requires the prepared complete HumanEvalPlus.jsonl fixture')
+    runtime = _local_runtime_manifest()
+    if runtime['evalplus_version'] != '0.3.1':
+        raise ValueError('Native EvalPlus requires evalplus==0.3.1')
+    return {**runtime, 'native_sandbox': qualify_sandbox()['identity'],
+            'worker_sha256': file_sha(REPO / 'scripts/evalplus_native_worker.py'),
+            'dataset_sha256': file_sha(fixture),
+            'metadata_sha256': file_sha(directory / 'dataset_metadata.json')}
+
+
+def _bwrap_wrapper(mode, output, settings, samples=None):
+    from .native_sandbox import run_python, PROCESS_FILTER_SOURCE
+    if mode != 'evaluate' or samples is None:
+        raise ValueError('Prepare native HumanEval+ with run_crossfamily_study.py prepare before evaluation')
+    actual = _bwrap_runtime_manifest(settings)
+    if stable_hash(settings.get('runtime_identity', actual)) != stable_hash(actual):
+        raise ValueError('Native EvalPlus runtime/dataset/worker changed after evaluator identity was frozen')
+    directory = Path(settings['prepared_dataset_dir'])
+    source = PROCESS_FILTER_SOURCE + (REPO / 'scripts/evalplus_native_worker.py').read_text()
+    result = run_python(source, [str(int(settings.get('parallel', 2)))],
+        readonly={'/input/HumanEvalPlus.jsonl': directory / 'HumanEvalPlus.jsonl',
+                  '/input/dataset_metadata.json': directory / 'dataset_metadata.json',
+                  '/input/samples.jsonl': Path(samples)}, output_dir=output,
+        environment={'HUMANEVAL_OVERRIDE_PATH': '/input/HumanEvalPlus.jsonl',
+                     'EVALPLUS_MAX_MEMORY_BYTES': str(int(settings.get('sample_memory_mb', 2048)) * 2**20)},
+        timeout=int(settings.get('walltime', 7200)), memory_mb=int(settings.get('memory_mb', 8192)),
+        pids_limit=int(settings.get('pids', 256)), file_bytes=2**30, tmpfs_mb=1024,
+        identity=actual['native_sandbox'], allow_processes=True, trusted_guarded_coordinator=True)
+    (Path(output) / 'native-stdout.log').write_bytes(result.stdout)
+    if result.returncode:
+        raise RuntimeError(f'Native official EvalPlus failed with code {result.returncode}; retained native-stdout.log')
+    atomic_json(Path(output) / 'native-runtime.json', actual)
 
 
 def _attempt(directory):
@@ -338,6 +382,9 @@ def _evaluate_output(output, samples, dataset, count, sample_count, *, backend='
             or metadata.get("task_count") != count or metadata.get("sample_count") != sample_count
             or metadata.get("protocol") != "official-base-and-plus-tests-no-sanitization"
             or (backend == 'local' and metadata.get('execution_backend') != 'local-unsafe')
+            or (backend == 'bwrap' and metadata.get('execution_backend') != 'bwrap')
+            or (backend == 'bwrap' and metadata.get('candidate_process_guard_probe') != 'passed')
+            or (backend == 'bwrap' and not (output / 'native-runtime.json').is_file())
             or not payload.get("hash") or metadata.get("dataset_hash") != payload["hash"]):
         raise ValueError("Official EvalPlus output provenance does not match exported samples/dataset")
     return metadata
@@ -373,6 +420,9 @@ def run_transfer(config: dict, source_jobs: list[dict], *, resume=True) -> dict:
             raise ValueError('Local EvalPlus requires allow_unsafe_local=True')
         settings['runtime_identity'] = _local_runtime_manifest()
         settings['image_identity'] = 'local-unsafe:' + stable_hash(settings['runtime_identity'])
+    elif backend == 'bwrap':
+        settings['runtime_identity'] = _bwrap_runtime_manifest(settings)
+        settings['image_identity'] = 'bwrap:' + stable_hash(settings['runtime_identity'])
     elif backend == 'docker':
         settings["image_identity"] = _image_identity(settings.get("image", "improving-evalplus:0.3.1"))
     else:

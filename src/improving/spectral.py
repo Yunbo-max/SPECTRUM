@@ -130,6 +130,45 @@ def _native_linear(model: nn.Module, name: str) -> nn.Linear:
     return module
 
 
+def decoder_attention_layout(model: nn.Module) -> tuple[str, int, list[int]]:
+    """Resolve only inspected native decoder layouts, excluding vision and GDN.
+
+    The result is (layer-list path, total decoder layers, full-attention indices).
+    It is topology validation, not a runtime or scientific qualification.
+    """
+    config = getattr(model, 'config', None)
+    config = getattr(config, 'text_config', config)
+    count = getattr(config, 'num_hidden_layers', None)
+    if not isinstance(count, Integral) or isinstance(count, bool) or count <= 0:
+        raise ValueError('text config num_hidden_layers must be a positive integer')
+    prefixes = []
+    for prefix in ('model.layers', 'model.language_model.layers', 'language_model.model.layers'):
+        try:
+            layers = model.get_submodule(prefix)
+        except AttributeError:
+            continue
+        if len(layers) != count:
+            raise ValueError(f'{prefix} length disagrees with the text configuration')
+        prefixes.append(prefix)
+    if len(prefixes) != 1:
+        raise ValueError('Expected one supported native language decoder layer path')
+    layer_types = getattr(config, 'layer_types', None)
+    if layer_types is None:
+        full = list(range(count))
+    else:
+        if len(layer_types) != count or any(
+                kind not in {'full_attention', 'linear_attention', 'sliding_attention'}
+                for kind in layer_types):
+            raise ValueError('Unsupported decoder layer_types')
+        # Sliding-attention families are not qualified by this extension.
+        if 'sliding_attention' in layer_types:
+            raise ValueError('Sliding-attention models need a separately qualified adapter')
+        full = [i for i, kind in enumerate(layer_types) if kind == 'full_attention']
+    if not full:
+        raise ValueError('No native full-attention layers are available for SPECTRUM')
+    return prefixes[0], int(count), full
+
+
 def target_modules(
     model: nn.Module,
     layers: Sequence[int] | None = None,
@@ -142,9 +181,9 @@ def target_modules(
     subsequent key normalization; interventions after those operations differ.
     Unsupported model topologies fail instead of guessing projection paths.
     """
-    count = getattr(getattr(model, "config", None), "num_hidden_layers", None)
-    if not isinstance(count, Integral) or count <= 0:
-        raise ValueError("model.config.num_hidden_layers must be a positive integer")
+    prefix, count, full_attention = decoder_attention_layout(model)
+    if layers is None and len(full_attention) != count:
+        raise ValueError('Hybrid models require explicit spectral.layers containing full-attention indices')
     selected = [count // 2, count - 1] if layers is None else list(layers)
     if not selected:
         raise ValueError("at least one layer is required")
@@ -153,7 +192,9 @@ def target_modules(
         raise ValueError(f"layers must be integer indices in [0, {count})")
     if not projections or any(projection not in {"k_proj", "v_proj"} for projection in projections):
         raise ValueError("projections must contain k_proj and/or v_proj")
-    names = [f"model.layers.{layer}.self_attn.{projection}"
+    if any(layer not in full_attention for layer in selected):
+        raise ValueError('SPECTRUM targets must be full-attention layers; GDN is not a K/V projection adapter')
+    names = [f"{prefix}.{layer}.self_attn.{projection}"
              for layer in dict.fromkeys(selected) for projection in dict.fromkeys(projections)]
     for name in names:
         _native_linear(model, name)

@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "date": "2026-10-27",
+  "status": "generated_unexecuted",
+  "parent_commit": "1bb86ee5b19d23056c8c5332c7ad8c600e1c4aa6",
+  "destination": "Yunbo-max/SPECTRUM:main",
+  "user_decisions": [
+    "Current code main is 7B Instruct; use three different released model families",
+    "Use same original approximately27B model for independent math, QA and ARC-AGI-3",
+    "One training trajectory per method; no mandatory temperature or training-seed sweep",
+    "Deliver actual preparation, training, native scoring and resume source on GitHub"
+  ],
+  "models": {
+    "code": [
+      "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "meta-llama/Llama-3.1-8B-Instruct",
+      "deepseek-ai/deepseek-coder-6.7b-instruct"
+    ],
+    "reasoning": {
+      "repo": "Qwen/Qwen3.8-27B",
+      "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "loader": "qwen3_5_text",
+      "spectral_layers": [
+        31,
+        63
+      ]
+    }
+  },
+  "static_checks": {
+    "python_ast_parsed": true,
+    "json_parsed": true,
+    "project_imports_executed": false,
+    "project_tests_executed": false,
+    "scientific_assets_downloaded": false,
+    "model_or_experiments_executed": false
+  },
+  "remaining_native_checks": [
+    "Real host resource and namespace qualification",
+    "Dependency installation and model/data access + complete verified acquisition",
+    "Official native scorer replay and complete-denominator validation",
+    "Real27B generation/calibration/fold/LoRA/reload qualification",
+    "ARC deterministic replay and actual successful independent calibration trajectory",
+    "Complete base and all method-round outcomes, including failures"
+  ],
+  "scope_notes": [
+    "Historical numerical results and dataset files unchanged",
+    "ARC default three public game families: train/development ls20, calibration ft09, heldout vc33; not full competition score",
+    "Qwen3.8 intervention is full-attention-only, not GDN/vision adaptation",
+    "SSD is the declared fixed-decoder common-loop adaptation",
+    "One trajectory uncertainty does not estimate across-training variance"
+  ],
+  "files": {
+    "AGENTS.md": {
+      "sha256": "a1c39b06b697833d981f0f593d187b55b99a54cea101cbd16f7d62afa187c447",
+      "bytes": 1728
+    },
+    "LOCAL_AGENT_RUNBOOK.md": {
+      "sha256": "e6d13b9106b2686a354402f36de3713f3cabc28e2f679fa127870f483ab02536",
+      "bytes": 11958
+    },
+    "README.md": {
+      "sha256": "4467f44120fdab39de139275c93617798a4d40a594a8d319105b1957ea64dd1e",
+      "bytes": 9851
+    },
+    "configs/crossfamily/assets.json": {
+      "sha256": "8a1dad65f33bc85164f708f915b1fcf1f91759aef58ef080fc417ff86dd57e98",
+      "bytes": 1487
+    },
+    "configs/crossfamily/protocol.json": {
+      "sha256": "673cead79c3b6e562d07c08de8f4044d3cb9184182d7544459a5f7bee7adaa20",
+      "bytes": 2011
+    },
+    "configs/multidomain/arc3.json": {
+      "sha256": "f3260c5ea0a8f02166c6b758f39da3f3e9750a241fa3cae9a1754a26a09d5c06",
+      "bytes": 1713
+    },
+    "configs/multidomain/text_math.json": {
+      "sha256": "b9a9f36883a25f0561cd5e79edaa9e20828e2b0afd6f629762bf581925f82df5",
+      "bytes": 1726
+    },
+    "configs/multidomain/text_qa.json": {
+      "sha256": "4b9419c2f2f755214b8c755e5b499efb9dfe8ed2bd6a0063155eaf7dd29e1591",
+      "bytes": 1666
+    },
+    "docs/ARC_AGI3.md": {
+      "sha256": "0a0c0ab74be26a9b5196fcc71fbe66d4cdcd98707f5ba9e9329e919febcf4b3b",
+      "bytes": 12065
+    },
+    "docs/CROSSFAMILY_CODE.md": {
+      "sha256": "0662ef825fd877532559a389dcb69c477ad95207120ee2db4706fb465129f118",
+      "bytes": 8862
+    },
+    "docs/FINAL_EXPERIMENTS.md": {
+      "sha256": "d84bfe07b6399bd6fd16019271d7bafa187d3d4cb8f1e27445c318b193cbfe0d",
+      "bytes": 9827
+    },
+    "docs/MODEL_COMPATIBILITY_27B.md": {
+      "sha256": "3c103b875f0bd6d0f633dbc2a7ea37d8d0e4b68c8691816813e706c2fd5fe96f",
+      "bytes": 8056
+    },
+    "docs/NATIVE_SCORING.md": {
+      "sha256": "380db0b279a413edc674ec90e8fc4b6a6a6ad2fff7c92b70c1c87225adf71bbe",
+      "bytes": 4305
+    },
+    "docs/RUN_FINAL_ZH.md": {
+      "sha256": "18682f537294866dcf9bb016f882becec3c01b9ad2b2a57a40c73c0e7f8879d8",
+      "bytes": 8171
+    },
+    "docs/TEXT_TASKS.md": {
+      "sha256": "5035a14fa3d9ba045634d881c3d970168a42e20b12d4ad6bb70f4d98f3a46637",
+      "bytes": 10695
+    },
+    "docs/VALIDATION_20261027_ZH.md": {
+      "sha256": "4db458df56cdcf37aff2776ed320aac7ed5d03eae5893190b916075f4ec0a8ce",
+      "bytes": 12033
+    },
+    "requirements/arc3.txt": {
+      "sha256": "d7b21eec6b79c227d565b0f63a5b4f3df1cdf64159ad4db90e9674fa28aeeab7",
+      "bytes": 299
+    },
+    "requirements/multidomain-27b.txt": {
+      "sha256": "f037e651fb4019a498a100361b742d21433f35f24b6f8c602ee3394df9f1a835",
+      "bytes": 643
+    },
+    "rounds/20261027-multidomain/WEB_HANDOFF.md": {
+      "sha256": "f700988b6b2ee0e4c5a6e1b95ea5d431f2a9d97e02850a6eb976176af2599f81",
+      "bytes": 3498
+    },
+    "scripts/check_native_sandbox.py": {
+      "sha256": "2983b3c05df4e9d5a4720f76c04e2560c5906d8c42a12cf97472df9840c53bbc",
+      "bytes": 831
+    },
+    "scripts/evalplus_native_worker.py": {
+      "sha256": "6ab5a1aea5a975ce0022044cbb5813cb516a6e6ea4793fa55e6da88769a07353",
+      "bytes": 5895
+    },
+    "scripts/prepare_arc3.py": {
+      "sha256": "9d022d24de28a4c55f71a0423af793db76eca3fb95a0021e42a63b76d7b9f6e0",
+      "bytes": 1840
+    },
+    "scripts/prepare_reasoning_model.py": {
+      "sha256": "90bbccea2e8bea71ed6ca7e8ad53ab00282134126697b5fac46224674fcc96ed",
+      "bytes": 8753
+    },
+    "scripts/prepare_text_data.py": {
+      "sha256": "20047beeeec8c07ca8c0e40d9f29c581c4511c62882555276e8fb79890acc794",
+      "bytes": 762
+    },
+    "scripts/qualify_reasoning_model.py": {
+      "sha256": "9be62cfec7bf5b2f021c6f9ebdb4bfaa636b0f5061ff5c4e75fb260f5a0531c9",
+      "bytes": 11641
+    },
+    "scripts/run_arc3_study.py": {
+      "sha256": "ea0fcd3e7ed21535cbd35aab57ec807c4f6483fd30630f10392dd146eba08188",
+      "bytes": 2331
+    },
+    "scripts/run_crossfamily_study.py": {
+      "sha256": "3fb997b1f741db0f08494b051f2ad122aef5bcc7cfff6e08854fbe3b45422e72",
+      "bytes": 22088
+    },
+    "scripts/run_text_study.py": {
+      "sha256": "bbf0ddaacddd990215b5fe838ac51bfcbbcc4606ee45c8cd7b6fe306267109e8",
+      "bytes": 1412
+    },
+    "src/improving/arc3.py": {
+      "sha256": "dda08581c052fecf6d3d38291e6018af9f17eaf8ff04e7208c53b43d42e84dfb",
+      "bytes": 13024
+    },
+    "src/improving/arc3_study.py": {
+      "sha256": "cf454d8e7a721d0c9d03e5bac03ec23a602c722b7db0cd9b8bd45953998e1c19",
+      "bytes": 29006
+    },
+    "src/improving/benchmarks.py": {
+      "sha256": "d3486dbe0872003c5d926f17c3c3aca96bb49b75b86c93e179c628b32b616afc",
+      "bytes": 33003
+    },
+    "src/improving/cli.py": {
+      "sha256": "d68beae81900fdcd3c0b7942699c1db8ad1954345fcc65180c8ffb7b53ab8a8a",
+      "bytes": 13079
+    },
+    "src/improving/formal_transfer.py": {
+      "sha256": "570ca7cd872368a835b941a81dbd03fa55303bf3fd352932009f9e2b6629fd5f",
+      "bytes": 30517
+    },
+    "src/improving/modeling.py": {
+      "sha256": "f777fee4e6afd1981ee9bbe9ba9af59911c32794942c48595b428519d5e6ab2c",
+      "bytes": 8311
+    },
+    "src/improving/native_sandbox.py": {
+      "sha256": "0ffc56e951849b2cb899116af4491815d4a55e3416f9eedc94cc18feeec4590f",
+      "bytes": 15215
+    },
+    "src/improving/pipeline.py": {
+      "sha256": "5c41c41db6cb490e13f2bd412ff117f8ec223e8f93bb0d9da87f3e9a2f7c1807",
+      "bytes": 43917
+    },
+    "src/improving/spectral.py": {
+      "sha256": "4330ea85a76292a11adcdd5fcc4e1b4912915f8530324c9506f558411777672c",
+      "bytes": 12638
+    },
+    "src/improving/text_study.py": {
+      "sha256": "8baa169cb24feafe5f5168fe5101970f08a40ab163c0dfe4acc3fe0eae89ecf4",
+      "bytes": 21509
+    },
+    "src/improving/text_tasks.py": {
+      "sha256": "e1da84ab02226e2f1c031e839dc455b0690530c4dd1c9db25b3d71f116c970a3",
+      "bytes": 23560
+    },
+    "src/improving/training.py": {
+      "sha256": "19d548b2fb9c35d16993e909752e1253f4e1af930af5e87b2fa5aca6fcb09436",
+      "bytes": 13229
+    },
+    "src/improving/verification.py": {
+      "sha256": "de244e55fea7c53b11a0107120e054d57fc4517af0e97a0b5b53100f062c660b",
+      "bytes": 29680
+    },
+    "tests/test_arc3_contracts.py": {
+      "sha256": "7c4d5fe3c313d3d516539aa52d6dbc38a0358f3560459881ea2720ec5fad82ec",
+      "bytes": 4217
+    },
+    "tests/test_crossfamily_study.py": {
+      "sha256": "bc272e3a02582d58ab228ed452ffdc2b23cb7298c050ef114230a8543d591227",
+      "bytes": 4953
+    },
+    "tests/test_multidomain_modeling.py": {
+      "sha256": "8150df474eb359fef93e6b26529d92f896f1e292a8da7f42613d705dd4820762",
+      "bytes": 5390
+    },
+    "tests/test_native_sandbox.py": {
+      "sha256": "33e485d98d641592808ada712b2f9de3bfe6be5389d2af90ea1b0b0b4cb4e8b2",
+      "bytes": 2145
+    },
+    "tests/test_text_contracts.py": {
+      "sha256": "03d16308eadb569b648ad9abb7e6b21eb6c04cf0a2ec2762ab18334f7b6c44c9",
+      "bytes": 5280
+    }
+  }
+}

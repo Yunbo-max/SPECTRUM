@@ -1,238 +1,208 @@
-# Local Codex: start here
+# Current Local runbook: three code families and one 27B reasoning model
 
-Current round: [20261027-validation](rounds/20261027-validation/WEB_HANDOFF.md).
-Status: `generated_unexecuted`; this Web delivery has not run project code, tests,
-inference or training. Read [the complete design](docs/VALIDATION_20261027_ZH.md)
-and [evidence inventory](rounds/20261027-validation/evidence.json) before acting.
-The existing [release contract](docs/FINAL_EXPERIMENTS.md) still defines all40 jobs.
+Decision: 27 October 2026. Repo: **Yunbo-max/SPECTRUM**, branch **main**.
+Read [the current handoff](rounds/20261027-multidomain/WEB_HANDOFF.md) at the delivered commit.
+Status: **generated_unexecuted**. Web prepared/reviewed source, but did not run
+project tests, download scientific assets, load models, train or score experiments.
 
-## Restore the project and actual host
+This is the current entry. The old40-job plan, three-training-seed core,
+temperature scans and1.5B main model are **not the default queue**.
+Their files/results remain historical. The former runbook is available
+[at its original commit](https://github.com/Yunbo-max/SPECTRUM/blob/1bb86ee5b19d23056c8c5332c7ad8c600e1c4aa6/LOCAL_AGENT_RUNBOOK.md).
+Preserve existing running jobs, checkouts, environments, data and randomization.
 
-The user's Local controller owns SSH and the authenticated delivery checkout.
-The GPU host owns native Conda environments, inputs, workloads and raw outputs.
-No remote Codex or GitHub token is needed. Do not copy private credentials into this repository.
+## Experiment matrix
 
-| Fact | Source/status | Action before an affected launch |
-|---|---|---|
-| main code audited | `5b8c3f93d1c0122006d8c1c9c42379bb31f2f694` | Use the delivered commit in a separate checkout; preserve active run sources |
-| newer research evidence | `923e84ca9b92d111535ae245e137601b8856bbf8` | Read its pinned records, not main's older Oct17 state |
-| historical SH02 project | `/root/rivermind-data/spectrum-harness/project` | Confirm actual path, content and ownership after reconnecting |
-| historical SH02 interpreter | `/root/rivermind-data/spectrum-harness/venv-sh02/bin/python` | Read actual `environment.json`; do not replace with base Conda blindly |
-| current SSH alias/access, GPU allocation/UUID/VRAM/CPU/RAM/disk | unresolved in this Web session; Oct27 auth failed | Restore locally and record actual inventory; no guessed GPU count/profile |
-| former hn01 | BF16/RTX4090 evidence, old partial samples | Reconcile process/output state if reachable; do not assume still running |
-| SH02 latest persisted state | preparation complete, no GPU, watcher waiting | Inspect boot/process/start identity, locks and output hashes before resume |
+| Block | Initial model(s) | Data and outcomes | Detail |
+|---|---|---|---|
+| Code | Qwen2.5-Coder-7B-Instruct; Llama-3.1-8B-Instruct; DeepSeek-Coder-6.7B-Instruct | MBPP500 main; HumanEval+164 transfer | [Code guide](docs/CROSSFAMILY_CODE.md) |
+| Math | Qwen3.8-27B text decoder | Full MATH500, accuracy/pass@k | [Text guide](docs/TEXT_TASKS.md) |
+| QA | Same original Qwen3.8-27B | Full MMLU-Pro12032 and GPQA Diamond198, accuracy | [Text guide](docs/TEXT_TASKS.md) |
+| Interactive | Same original Qwen3.8-27B | ARC-AGI-3 public holdout, native scorecard/levels/actions/tokens/time | [ARC guide](docs/ARC_AGI3.md) |
 
-Never decide from a stale PID alone. Inspect `gpu-auto-runner.json`, installation,
-preparation, smoke and condition markers together with live processes. The research
-branch's `start_preparation.py` also starts a watcher that can run formal inference
-when a GPU appears; it is **not** a read-only or preparation-only command.
+Every trained arm starts from its own common initial checkpoint: Vanilla SD
+(`plain`), fixed-decoder SSD adaptation (`ssd`), SPECTRUM (`spectral_soft`);
+five rounds, **one training trajectory per arm**, no temperature/seed sweep.
+Multiple generated samples and rounds are not independent training repetitions.
+SSD's synthesis decoder defines that baseline; it is not a sweep. Retain round0.
 
-All executable project stages below are payloads for the existing admitted Local
-`run_harness.py` on the restored GPU host, not instructions to launch now from Web.
-Local resolves the installed harness path, actual working directory/interpreter,
-resource limits and plan digest from its existing controller records. A missing
-harness path or host fact remains pending; this document does not invent a new daemon.
-Git reading/staging and SSH inventory are controller operations. Keep the original
-research branch checkout separate from the newly delivered main checkout.
+The code models are different released families, although Llama/DeepSeek use
+related decoder implementations. Math and QA independently start from the same
+original27B weights. ARC uses that original model with a fixed interactive wrapper.
+Public three-game ARC evaluation is not the full competition or hidden test.
+
+Qwen3.8-27B pin: `1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0`.
+SPECTRUM targets raw K/V in full-attention layers31/63, before normalization/RoPE;
+LoRA targets Q/K/V/O in the16 full-attention layers. GDN is outside this intervention.
+See [model compatibility](docs/MODEL_COMPATIBILITY_27B.md).
+
+## Restore host and prepare environments
+
+The Local controller owns SSH/authenticated checkout. Native scientific commands
+run on the actual allocated Linux GPU host through the existing admitted harness.
+Restore real SSH alias, checkout/Conda paths, GPU UUID/VRAM, CPU/RAM/disk and live
+process/lock ownership. These host facts were unavailable to Web. No allocation is
+assumed. Do not restart historical watchers or infer liveness from saved PIDs.
+
+All commands use the delivered repo root. Use **two separate native Conda environments**:
+
+```bash
+conda create -n spectrum-code-20261027 python=3.11 pip -y
+conda activate spectrum-code-20261027
+python -m pip install -e '.[train,evalplus,analysis,test]'
+mkdir -p runs/private
+python -m pip freeze > runs/private/code-environment.txt
+```
+
+```bash
+conda create -n spectrum-27b-20261027 python=3.12 pip -y
+conda activate spectrum-27b-20261027
+python -m pip install -r requirements/arc3.txt
+python -m pip install -e '.[test]'
+mkdir -p runs/private
+python -m pip freeze > runs/private/reasoning-environment.txt
+```
+
+Resolve a Torch build compatible with the actual CUDA driver before admission,
+then preserve exact installed packages. Never install legacy `[train]` in the27B
+environment: it pins a different Transformers generation. ARC Git dependencies need Git.
+Install Linux **bubblewrap and libseccomp** through the host native package manager.
+Qualify user/PID/network namespaces. Conda alone is not a sandbox; there is no
+Docker/unsafe-local fallback in this queue. See [native scoring](docs/NATIVE_SCORING.md).
+Use existing local authentication; no tokens in commands, receipts or GitHub.
 
 ## Download datasets and models
 
-Run input preparation as CPU tasks in the admitted native environment, with exclusive
-cache-write ownership. Reuse matching complete assets; preserve partial downloads.
-Before admission measure available disk and read required sizes from pinned source
-metadata. Download time, full-study checkpoint storage and current network access are
-not measured here. Never evict a live model/checkpoint to make room automatically.
-
-### Existing author-SimpleSD comparison
-
-Use the existing per-file ModelScope revision/size/SHA manifest at
-[`author-pair-file-manifest.json`](https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/upstream-evaluation-20261018/author-pair-file-manifest.json).
-The historical deployed fetcher verifies every required file, bounded curl resume,
-disk space and the shared pipeline lock. After resolving the historical path map,
-its exact source-inspected payloads are:
+Code environment, CPU preparation:
 
 ```bash
-cd /root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020
-/opt/conda/bin/python fetch_assets.py --model base
-/opt/conda/bin/python fetch_assets.py --model ssd
+python scripts/check_native_sandbox.py --output runs/private/native-sandbox-code.json
+python scripts/run_crossfamily_study.py init
+python scripts/run_crossfamily_study.py download --model all
+python scripts/run_crossfamily_study.py prepare
+python scripts/run_crossfamily_study.py plan
 ```
 
-These two tasks are sequential because they share a lock/cache. Each produces
-`base-assets-verified.json` or `ssd-assets-verified.json`; verify source identity before use.
-Do not replace these model bytes with current HF HEADs and label it a resume.
-Keep tokenizer/config/shard index and every shard, not weights alone.
+Pins: `configs/crossfamily/assets.json`. Llama needs existing official gated access.
+If unavailable, use `download --model qwen7b` and `--model deepseek6.7b`; only
+Llama remains pending. Download verifies indexed shards, tokenizer/config and LFS
+hashes. Preparation retains MBPP291/50/30/500 and all164 HumanEval+ tasks.
+The main protocol is original-tests MBPP500, not MBPP+378.
 
-The dataset is `test6.jsonl` at LCB revision
-`0fe84c3912ea0c4d4a78037083943e8f0c4dd505`, SHA256
-`bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5`.
-The existing data/source acquisition payload is:
+27B environment, shared model and independent data:
 
 ```bash
-cd /root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020
-/opt/conda/bin/python prepare_sources.py
+python scripts/prepare_reasoning_model.py --config configs/multidomain/text_math.json
+python scripts/prepare_reasoning_model.py --config configs/multidomain/text_math.json --verify-only
+python scripts/check_native_sandbox.py --output runs/private/native-sandbox-27b.json
+python scripts/prepare_text_data.py --config configs/multidomain/text_math.json
+python scripts/prepare_text_data.py --config configs/multidomain/text_qa.json
+python scripts/prepare_arc3.py --config configs/multidomain/arc3.json
+python scripts/prepare_arc3.py --config configs/multidomain/arc3.json --verify-only
 ```
 
-This restores the pinned author archive and 134,303,240-byte dataset using the
-recorded SHA256, then writes `source-data-verification.json`; it does not execute
-benchmark code. Preserve the source-resolution input and use one cache writer.
-Restore and verify the downloaded cache and prerequisite completion markers before
-bootstrapping: `installation-exit.json`, `base-assets-verified.json`,
-`ssd-assets-verified.json`, and `source-data-verification.json`. Missing prerequisites
-make bootstrap wait; it does not install dependencies or download inputs.
-The bootstrap performs environment inspection, protected test decoding, native software
-probes, date selection and preparation completion. Review the exact
-[`bootstrap_and_base.py`](https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/sh02-migration-20261020/bootstrap_and_base.py)
-before using this preparation-only entry (not `start_preparation.py`):
+The shared model downloads once to the normal HF cache, including all snapshot
+files, native tokenizer/chat template/generation config and indexed shards.
+`data/multidomain/reasoning-model.json` records bytes/hashes. Formal model loading
+is offline. GPQA may need existing dataset access. Math uses immutable PRM800K
+splits and the unchanged author grader inside the native sandbox. QA preserves
+test populations and declared author parsing/prompt adaptations. No heldout
+question provides a training/calibration label. The domain guides specify inputs,
+source pins, access routes and actual preparation outputs.
 
-```bash
-cd /root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020
-/root/rivermind-data/spectrum-harness/venv-sh02/bin/python bootstrap_and_base.py
-```
-
-It must finish its CPU preparation stage without scientific inference. Local checks
-the deployed bytes against the pinned source before admission, preserves old markers
-and confirms the decoder/test manifest hash listed in evidence.json. Do not run
-downloaded/generated programs outside the already qualified native OS boundary.
-
-### SPECTRUM release: four models and five datasets
-
-The complete inventory/pins/consumers are in
-[`configs/final/assets.json`](configs/final/assets.json) and
-[DATA_MODELS.md](docs/DATA_MODELS.md). Native Conda preparation uses the source-pinned
-Transformers4.51.3/PEFT0.15.2/Accelerate1.6.0/Datasets3.5.1/EvalPlus0.3.1 family;
-resolve a compatible permitted Torch build on the actual host, then export the
-installed Conda/pip environment before workloads. Do not mutate an active environment.
-The project entry is `python -m pip install -e '.[train,analysis,evalplus,test]'` from
-the delivered checkout. Requested version ranges are not a resolved environment lock.
-
-Model acquisition payload, from the delivered checkout in that environment:
-
-```bash
-python - <<'PY'
-import json
-from huggingface_hub import snapshot_download
-assets = json.load(open('configs/final/assets.json'))
-for alias in ('qwen1.5b', 'qwen3b', 'qwen7b', 'deepseek6.7b'):
-    model = assets['models'][alias]
-    snapshot_download(repo_id=model['repo_id'], revision=model['revision'])
-PY
-```
-
-No filters remove tokenizer/index/config/shard files. The fixed-revision HF cache
-preserves the canonical repo identity used by `run_release_study.py`; use that cache
-with `HF_HUB_OFFLINE=1` for admitted workloads after verifying completeness.
-Snapshot download is not a scientific result. Local records actual file sizes/hashes,
-matches available upstream LFS identities, and rejects missing shards, HTML or LFS-pointer files.
-The old planner's shared `/inspire/...` directory heuristic does not establish revision
-provenance and is overwritten by the release planner. Do not fix this by removing the
-pin or faking `_commit_hash`; an arbitrary shared export needs a separately verified
-canonical-revision/file manifest before an offline-path feature can be qualified.
-
-Dataset acquisition and native builder payloads, from the same delivered checkout:
-
-```bash
-python scripts/run_release_study.py init-seeds --output runs/private/seeds.json
-python scripts/prepare_final_data.py --assets configs/final/assets.json --output-dir data/final --seed-file runs/private/seeds.json
-```
-
-`init-seeds` is **new-study only**: preserve an existing private file and skip this
-command when restoring it. Do not print its numbers. `prepare_final_data.py` downloads
-the pinned original dataset splits and the EvalPlus fixture through the inspected
-native builders; no model is loaded. Required outputs are `data/final/assets.lock.json`,
-`benchmark_registry.json`, `contamination_audit.json`, the MBPP four JSONL splits,
-and each benchmark's `eval.jsonl`/`manifest.json`. Expected counts are291/50/30/500,
-164,200,165,200. Record all source and output hashes. A cached dataset repo alone does
-not prove these native outputs exist. Failures block their consumers, not an already
-qualified independent author-LCB task. Current planner requires all five prepared
-datasets even to freeze core: account for this existing dependency, do not forge a registry.
+ARC preparation downloads and initializes official game code on the native host;
+exact versions/source/human-baseline metadata are frozen. Default: training/dev
+ls20, calibration ft09, heldout vc33. Expand with an explicit `--split-file` in a
+new data directory. Preserve the shared private `runs/private/multidomain_seed.json`.
 
 ## Calibrate, debug, then dispatch
 
-### Ownership and finite development bounds
-
-One Local coordinator owns manifests/leases/result collection. One environment worker
-owns cache writes and native isolation. One independent reviewer checks scorer/protocol
-parity and report reconstruction. GPU workloads start exclusively on an actually allocated
-device; CPU preparation/scoring can overlap within measured RAM/CPU/I/O limits. Never
-infer three available GPUs from the three training repeats. Preserve harness-assigned
-device visibility. Same-card concurrency needs measured headroom and explicit admission.
-
-For this handoff's new operational qualification, allow at most three candidate settings
-per workload shape, one repair-and-recheck per identified cause, and at most two GPU hours
-total for new qualification. Record spent time and stop at the remaining bound. These are
-preparation caps, not estimates of the full study. Existing running contracts retain their
-own bounds. Use actual outer/inner timeout and remaining allocation; if missing, scientific
-dispatch stays pending. No new scientific repeats are authorized by these debugging limits.
-
-Release inference batch candidates are1,2,4, starting at1; freeze only a setting that fits
-representative published development examples including longest shapes. Measure throughput,
-GPU allocated/reserved/host peaks, wall time, truncation, CPU/RAM and disk. Keep main precision,
-sample IDs, task count, sampling policy, train microbatch1/accumulation16 and optimizer schedule
-fixed. Batch changes require checking per-case RNG/ordering; unproven equivalence means a new
-protocol identity. Never silently use FP16 for the BF16 SPECTRUM training path.
-
-### Ordered command cards
-
-| Stage | Actual payload / source | Output and acceptance |
-|---|---|---|
-| Source acceptance, delivered main | `python -m pytest tests/test_release_reporting.py tests/test_pipeline.py` | Through native harness only; save logs/exit; pipeline tests include tiny software model fixtures and generated fixture code, so require qualified containment. No benchmark claim |
-| Native scorer qualification | Restore the research branch's unchanged author scorer + protected wrapper; inspect `native-failure-semantics.md` and actual deployed sources | Released tasks, exact labels/tests, extraction and early-stop/timeout semantics; trusted native-output replay. Software probes alone do not establish model performance |
-| SH02 inference qualification | From historical SH02 state directory: `/root/rivermind-data/spectrum-harness/venv-sh02/bin/python start_fp16_smoke.py` | Software/import/generation/resume rejection logs; after live host/lock restoration; never main SPECTRUM BF16 qualification |
-| Author formal base | Same directory/interpreter, `start_formal_base.py --start` | Full131×10 generation + author scoring underFP16/16,384; no other live owner |
-| Remaining author conditions | Three exact cards below, one at a time | Full generation, native outputs and sealed config; preserve all signs |
-| Freeze SPECTRUM study | `scripts/run_release_study.py plan` with actual supported profile and native backend | **Pending native execution-boundary integration.** Existing local flag is not sandbox evidence. Do not default toDocker; do not invent a launch-ready command until wrapper/isolation is qualified |
-| Run an admitted release job | `python scripts/run_release_study.py run --manifest runs/spectrum_release_v1/plan/manifest.json --job core-qwen1.5b-r1` | Only after a newly qualified frozen plan; r2/r3 analogous, separate ownership. No `--block all` by default |
-| Monitor/report | `python scripts/run_release_study.py status --manifest runs/spectrum_release_v1/plan/manifest.json` and `python scripts/run_release_study.py report --manifest runs/spectrum_release_v1/plan/manifest.json` | Status is stored evidence, not fresh liveness. Rebuild all available and missing rows; preserve primary/secondary and four-wayeligibility |
-
-Historical SH02 payloads, only after source/path/identity/lock/environment qualification:
+Use real native development inputs before expensive jobs. Tests delivered here
+have not been executed. Run applicable tests from the delivered tree through the
+native harness; code/sandbox tests use the code environment, hybrid/domain tests
+the27B environment. Exact source-only test files are listed in the handoff.
 
 ```bash
-cd /root/rivermind-data/spectrum-harness/project/research-state/sh02-migration-20261020
-/root/rivermind-data/spectrum-harness/venv-sh02/bin/python run_condition.py --model ssd --temperature 1.1 --max-tokens 16384 --max-model-len 17920 --name ssd-fp16-t1.1-cap16384
-/root/rivermind-data/spectrum-harness/venv-sh02/bin/python run_condition.py --model base --temperature 1.1 --max-tokens 16384 --max-model-len 17920 --name base-fp16-t1.1-cap16384
-/root/rivermind-data/spectrum-harness/venv-sh02/bin/python run_condition.py --model ssd --temperature 0.7 --max-tokens 16384 --max-model-len 17920 --name ssd-fp16-t0.7-cap16384
+python scripts/check_native_sandbox.py --output runs/private/native-sandbox-qualified.json
+python scripts/qualify_reasoning_model.py --config configs/multidomain/text_math.json --output-dir runs/qualification/qwen38-27b-math
+python scripts/run_arc3_study.py --config configs/multidomain/arc3.json baseline
 ```
 
-These are three separately admitted tasks, not an unreviewed shell queue. A baseline
-truncation review records protocol limits; it does not select which unfavorable condition
-to omit. Use the existing analyzer after complete native results:
+The27B qualifier uses actual pinned weights and prepared development examples:
+finite K/V gradients, folded-forward/exact restoration, one LoRA update, saved
+merged checkpoint and reload. It creates a separate full checkpoint and measures
+resources. Its inputs do not establish worst-case capacity; inspect longer native
+development cases before formal dispatch. It never changes original cached weights.
+
+27B BF16 text weights alone are roughly54GB decimal. Actual peak also includes
+activations/KV/calibration; no80GB fit is guaranteed. Native folding does not permit
+silently switching to4-bit weights. Batch1 is the default. Capacity failures need
+a qualified new configuration/root, not silent truncation or a changed method budget.
+For operational qualification allow at most three batching candidates (1,2,4),
+one repair/recheck per identified cause and two GPU hours before review. Preserve
+effective training batch, precision and scientific sample budgets. Changed batching
+can change RNG: freeze a new root after qualification. This cap is setup only,
+not the complete experiment queue. Ready independent cells may continue.
+
+Code, one allocated GPU job at a time:
 
 ```bash
-cd /root/rivermind-data/spectrum-harness/project/research-state
-/root/rivermind-data/spectrum-harness/venv-sh02/bin/python ssd-author-comparison-20261019/analyze_condition.py --root sh02-migration-20261020 base-fp16-t0.7-cap16384 ssd-fp16-t1.1-cap16384
-/root/rivermind-data/spectrum-harness/venv-sh02/bin/python ssd-author-comparison-20261019/analyze_condition.py --root sh02-migration-20261020 base-fp16-t0.7-cap16384 ssd-fp16-t0.7-cap16384
-/root/rivermind-data/spectrum-harness/venv-sh02/bin/python ssd-author-comparison-20261019/analyze_condition.py --root sh02-migration-20261020 base-fp16-t1.1-cap16384 ssd-fp16-t1.1-cap16384
+python scripts/run_crossfamily_study.py run --model qwen7b
+python scripts/run_crossfamily_study.py run --model llama8b
+python scripts/run_crossfamily_study.py run --model deepseek6.7b
+python scripts/run_crossfamily_study.py status
 ```
 
-Analyzer compatibility checks remain enabled. This command family does not merge
-hn01BF16/65,536 with SH02FP16/16,384. Do not execute the bare upstream evaluator
-without the established containment wrapper.
-Successful condition evidence includes `results.json`, `results-binding.json`,
-`generation-completed.json` and `pipeline-completed.json`; a base-stage marker alone
-is insufficient. The analyzer writes `analysis.json` and `per-task-analysis.json`
-inside each condition, and `comparison-<first>-vs-<second>.json` at the SH02 state root.
+Math (repeat four method commands with `text_qa.json` for QA):
 
-### Failure routing
+```bash
+python scripts/run_text_study.py --config configs/multidomain/text_math.json --method base
+python scripts/run_text_study.py --config configs/multidomain/text_math.json --method plain
+python scripts/run_text_study.py --config configs/multidomain/text_math.json --method ssd
+python scripts/run_text_study.py --config configs/multidomain/text_math.json --method spectral_soft
+python scripts/run_text_study.py --config configs/multidomain/text_math.json --report
+```
 
-| Observation | Read / distinguish | Bounded repair and required recheck |
-|---|---|---|
-| Remote auth fails / GPU absent | Oct27 auth record, live access/allocation | Restore existing authorized local access; keep scientific state pending; no invented process status |
-| Missing model or wrongrevision | assets.json, actual HF cache snapshot, historical per-file manifests; `modeling.py` | Acquire only missing pinned input; hash all required files; arbitrary shared-copy provenance remains unresolved |
-| Bad format / score collapse | original prompt,raw/extracted code, native scorer output, MBPP635 history | Fix demonstrated interface defect; replay same predictions, retain old outcome; never tune extraction to success |
-| Native scoring unavailable | actual OS boundary and scorer entry | Block affected scoring; qualify native route; no unsafe-local/container fallback |
-| OOM / slow batches | recorded shape, VRAM/CPU/I/O and time | Within finite candidates adjust operational batch only, restore/reconcile failed attempt; no precision/budget change hidden |
-| Resume rejects new runtime | `pipeline.py` training_runtime/evaluation_runtime and old manifest | Use matching old environment or new run root; never rewrite a fingerprint to pass |
-| Primary count/eligibility wrong | reporter plus targeted tests; original per-task records | Source repair then targeted recheck; regenerate report, retain old export and diff |
-| Corrupt/missing scientific cell | marker/file hashes, task/sample multiplicity | Retain incomplete status; retry only supported interrupted work with matching identity, never score aszero |
+ARC obtains real calibration reference actions before SPECTRUM:
 
-## Collection and return
+```bash
+python scripts/run_arc3_study.py --config configs/multidomain/arc3.json collect-reference
+python scripts/run_arc3_study.py --config configs/multidomain/arc3.json run --method plain
+python scripts/run_arc3_study.py --config configs/multidomain/arc3.json run --method ssd
+python scripts/run_arc3_study.py --config configs/multidomain/arc3.json run --method spectral_soft
+python scripts/run_arc3_study.py --config configs/multidomain/arc3.json status
+```
 
-Actual harness attempt receipts determine stdout/stderr/context/status paths; retain them,
-not guessed UUIDs. Collect through existing SSH, check file identities on both ends, and
-write the return packet specified in [WEB_HANDOFF.md](rounds/20261027-validation/WEB_HANDOFF.md).
-Include every trial, outcome, unfinished condition and actual cumulative costs. Recompute
-native scores from saved predictions on the qualified host, rebuild reports, compare to
-sealed summaries, and retain discrepancies. Static booleans are not fresh scorer replay.
-Current destination is `Yunbo-max/SPECTRUM`; no new HF output target is inferred. Keep bulk
-models/private data/seed values outside public source. Push only authorized scoped changes
-with expected-parent protection and exact-head readback. Do not mutate a running revision.
+If collection does not yield a replay-verified WIN, use the documented
+`import-reference` with a genuine successful calibration-game recording.
+Vanilla/SSD and other domains remain independent. No fabricated success or heldout
+game becomes calibration. All synthetic training actions, including failures and
+malformed outputs, remain in action-only SFT.
+
+Math/QA/ARC require `--resume`; code commands resume compatible sealed work
+automatically. Reconcile live host/lock/attempt identity first. Changed source,
+model, data, decoder or runtime needs a new output root. Latest-checkpoint retention
+removes only already replaced same-lineage weights after successor sealing.
+Raw predictions/statistics/hashes remain. Budget disk for three retained students
+per domain, transient replacements, original snapshots and qualification checkpoint.
+
+## Diagnose and return
+
+| Observation | Inspect and act |
+|---|---|
+| Access/download/weights | Verify official pins, manifest and local authentication; acquire missing authorized bytes |
+| Sandbox/namespace | Inspect qualification stderr; fix native setup, no unsafe fallback or wrong-answer substitution |
+| Hybrid load/topology | Preserve loader report; qualify official text extraction and exact full-attention modules |
+| OOM/context overflow | Inspect development IDs/tokens/peaks; qualify a new resource/configuration profile |
+| ARC no progress/invalid actions | Inspect raw frames/action feedback on training/dev game; preserve failures |
+| ARC no reference | Import an actual replay-verified calibration recording; other cells stay independent |
+| Resume mismatch | Restore exact sealed identity or start new root; never rewrite fingerprint |
+| Score/denominator anomaly | Replay pinned native scorer on saved predictions; retain original and correction |
+
+Return execution commit/dirty patch, actual environment/resources/attempt receipts,
+private randomization identity (not its number), frozen inputs/checkpoint hashes,
+raw native outputs, scorer replay, all rounds/methods including failures, reports
+and costs. Status is saved state, not fresh liveness or scientific verification.
+Publish scoped return packets under `research/multidomain-20261027/returns/` in
+this repo. Keep weights, gated datasets, credentials and seed values out of Git.
+No new HF output destination is assumed.

@@ -1,5 +1,10 @@
 # 当前入口提示（2026-10-27）
 
+> Historical protocol. The current user-approved three-family code +27B math/QA/ARC
+> entry is [LOCAL_AGENT_RUNBOOK.md](../LOCAL_AGENT_RUNBOOK.md). Its single-trajectory
+> fixed-decoder queue supersedes this document's default40-job/repeat/sweep plan.
+> Historical results and running jobs retain their original protocol.
+
 当前执行入口为 [LOCAL_AGENT_RUNBOOK.md](../LOCAL_AGENT_RUNBOOK.md) 与
 [实验补充设计](VALIDATION_20261027_ZH.md)。本文保留原版release的操作记录；
 其中Docker和直接启动示例不是当前native Conda主机的准入指令。

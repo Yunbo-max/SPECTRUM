@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "protocol": "spectrum-crossfamily-code-v1",
+  "models": ["qwen7b", "llama8b", "deepseek6.7b"],
+  "methods": ["plain", "ssd", "spectral_soft"],
+  "rounds": 5,
+  "independent_training_trajectories": 1,
+  "temperature_sweep": false,
+  "checkpoint_retention": "latest",
+  "generation": {
+    "train_samples": 16,
+    "eval_samples": 64,
+    "batch_size": 1,
+    "task_batch_size": 1,
+    "sequence_batch_size": 1,
+    "max_new_tokens": 512,
+    "max_prompt_tokens": 1024,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 0
+  },
+  "calibration": {
+    "max_examples": 50,
+    "max_length": 1536,
+    "span_mode": "completion",
+    "rank_fraction": 0.5,
+    "tau": 1.0,
+    "rho": 0.5,
+    "reestimate_each_round": true
+  },
+  "train": {
+    "epochs": 1,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "max_length": 1536,
+    "learning_rate": 0.00001,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.03,
+    "max_grad_norm": 1.0,
+    "lora_rank": 8,
+    "lora_alpha": 8,
+    "lora_dropout": 0.05,
+    "gradient_checkpointing": true,
+    "loss_scope": "all"
+  },
+  "evaluation": {
+    "backend": "bwrap",
+    "code_extraction": "first_fence",
+    "workers": 4,
+    "timeout": 5,
+    "memory_mb": 512,
+    "pids_limit": 64,
+    "ks": [1, 4, 8, 16, 32, 64],
+    "correct_budget": 4,
+    "correct_budgets": [4, 8, 16],
+    "bootstrap_samples": 2000
+  },
+  "transfer": {
+    "benchmark": "humanevalplus",
+    "round": 5,
+    "samples": 64,
+    "max_prompt_tokens": 4096,
+    "max_new_tokens": 1024,
+    "sequence_batch_size": 1,
+    "parallel": 4,
+    "bootstrap_samples": 2000
+  },
+  "diagnostics": {"evaluate_generation_policy": false},
+  "primary_metrics": ["pass@1", "pass@64", "C64", "D4"],
+  "ssd_label": "Repository SSD adaptation: synthesis decoder 1.5/0.8/20, common student evaluation decoder; not author released checkpoint replication",
+  "uncertainty_scope": "Task bootstrap conditional on one trained trajectory; no claim of across-training-run variance"
+}

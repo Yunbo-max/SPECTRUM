@@ -504,7 +504,7 @@ def make_humanevalplus_evaluator(tasks_path: str | Path, settings: Mapping[str, 
     Defaults to the existing bounded Docker bridge. The explicitly enabled
     local fallback retains its ``local-unsafe`` label in all output provenance.
     """
-    from .formal_transfer import (_attempt, _evaluate_output, _image_identity,
+    from .formal_transfer import (_attempt, _evaluate_output, _image_identity, _bwrap_runtime_manifest,
         _local_runtime_manifest, _validate_dataset, _wrapper)
     from .metrics import summarize_records
     from .verification import export_evalplus, import_evalplus_results
@@ -524,14 +524,18 @@ def make_humanevalplus_evaluator(tasks_path: str | Path, settings: Mapping[str, 
             raise ValueError("Local EvalPlus requires explicit allow_unsafe_local=True")
         evaluator_settings["runtime_identity"] = _local_runtime_manifest()
         evaluator_settings["image_identity"] = "local-unsafe:" + stable_hash(evaluator_settings["runtime_identity"])
+    elif backend == "bwrap":
+        evaluator_settings.setdefault("prepared_dataset_dir", str(path.parent.resolve()))
+        evaluator_settings["runtime_identity"] = _bwrap_runtime_manifest(evaluator_settings)
+        evaluator_settings["image_identity"] = "bwrap:" + stable_hash(evaluator_settings["runtime_identity"])
     else:
-        raise ValueError("Official EvalPlus backend must be docker or explicitly enabled local")
+        raise ValueError("Official EvalPlus backend must be docker, bwrap or explicitly enabled local")
     prepared_tasks_hash = stable_hash(tasks)
     repo = Path(__file__).resolve().parents[2]
     identity = {"backend": "official-evalplus", "package_version": EVALPLUS_VERSION,
         "release": release, "tasks_sha256": _sha(path), "metadata_sha256": _sha(metadata_path),
         "settings": evaluator_settings,
-        "wrapper_sha256": _sha(repo / "scripts" / "evalplus_docker.sh"),
+        "wrapper_sha256": _sha(repo / "scripts" / ("evalplus_native_worker.py" if backend == "bwrap" else "evalplus_docker.sh")),
         "bridge_sha256": _sha(Path(__file__).with_name("formal_transfer.py"))}
 
     def evaluate(task_rows, records, output_path, evaluation_settings, *, expected_samples, seed=42):

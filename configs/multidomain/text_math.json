@@ -1,0 +1,68 @@
+{
+  "protocol": "spectrum-crossdomain-math-v1",
+  "domain": "math",
+  "model": {
+    "name": "Qwen/Qwen3.8-27B",
+    "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+    "loader": "qwen3_5_text",
+    "dtype": "bfloat16",
+    "device": "cuda",
+    "attn_implementation": "sdpa",
+    "local_files_only": true
+  },
+  "data": {
+    "output_dir": "data/multidomain/math",
+    "train_size": 1024,
+    "calibration_size": 64,
+    "validation_size": 64
+  },
+  "seed_file": "runs/private/multidomain_seed.json",
+  "output_dir": "runs/multidomain/math-qwen38-27b",
+  "rounds": 5,
+  "checkpoint_retention": "latest",
+  "synthesis": {
+    "samples": 1,
+    "batch_size": 1,
+    "task_batch_size": 1,
+    "sequence_batch_size": 1,
+    "max_new_tokens": 4096,
+    "max_prompt_tokens": 4096,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20
+  },
+  "ssd_synthesis": {"temperature": 1.5, "top_p": 0.8, "top_k": 20},
+  "evaluation": {
+    "samples": 16,
+    "batch_size": 1,
+    "task_batch_size": 1,
+    "sequence_batch_size": 1,
+    "max_new_tokens": 4096,
+    "max_prompt_tokens": 8192,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20
+  },
+  "calibration": {
+    "layers": [31, 63],
+    "max_examples": 64,
+    "max_length": 8192,
+    "span_mode": "completion",
+    "tau": 1.0,
+    "rank_fraction": 0.5
+  },
+  "train": {
+    "epochs": 1,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "max_length": 8192,
+    "loss_scope": "completion",
+    "learning_rate": 0.00001,
+    "lora_rank": 8,
+    "lora_alpha": 8,
+    "lora_dropout": 0.05,
+    "lora_target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
+    "gradient_checkpointing": true
+  },
+  "math_sandbox": {"timeout": 10, "memory_mb": 2048}
+}

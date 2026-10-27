@@ -1,5 +1,10 @@
 # 2026-10-27：把实验结论做实
 
+> Historical protocol. The current user-approved three-family code +27B math/QA/ARC
+> entry is [LOCAL_AGENT_RUNBOOK.md](../LOCAL_AGENT_RUNBOOK.md). Its single-trajectory
+> fixed-decoder queue supersedes this document's default40-job/repeat/sweep plan.
+> Historical results and running jobs retain their original protocol.
+
 状态：`generated_unexecuted`。这是在读完 main `5b8c3f93d1c0122006d8c1c9c42379bb31f2f694`
 及研究分支 `923e84ca9b92d111535ae245e137601b8856bbf8` 后制定的实验与分析补充。
 本次没有启动训练、生成、评分或项目测试；没有修改历史数据、模型定义或已冻结实验。

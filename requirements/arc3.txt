@@ -1,0 +1,4 @@
+# Native ARC SDK requires Python >=3.12. Install in the separate 27B environment.
+-r multidomain-27b.txt
+arcengine @ git+https://github.com/arcprize/ARCEngine.git@b495c6acaf253c9681cd7b75c4299d352e9ce6f8
+arc-agi @ git+https://github.com/arcprize/ARC-AGI.git@f12822c4d550121c35a275008d964afbbed47d2f

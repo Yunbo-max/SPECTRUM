@@ -11,8 +11,26 @@ import tempfile
 import torch
 from torch.utils.data import DataLoader, Subset
 
-from .modeling import autocast_for, collate_examples, encode_example, render_prompt, seed_everything
+from .modeling import (autocast_for, collate_examples, encode_example, render_prompt,
+                       seed_everything, set_use_cache)
+from .spectral import decoder_attention_layout, _native_linear
 from .utils import stable_hash
+
+
+def attention_lora_targets(model, projections=None):
+    """Qualify exact native full-attention paths before PEFT matches any modules."""
+    projections = ['q_proj', 'k_proj', 'v_proj', 'o_proj'] if projections is None else projections
+    if (not isinstance(projections, list) or not projections
+            or any(not isinstance(name, str) for name in projections)
+            or len(projections) != len(set(projections))
+            or any(name not in {'q_proj', 'k_proj', 'v_proj', 'o_proj'} for name in projections)):
+        raise ValueError('lora_target_modules must be unique native attention q/k/v/o projection names')
+    layer_prefix, _, attention_layers = decoder_attention_layout(model)
+    targets = [f'{layer_prefix}.{layer}.self_attn.{projection}'
+               for layer in attention_layers for projection in projections]
+    for name in targets:
+        _native_linear(model, name)
+    return targets, attention_layers
 
 
 def plan_token_exposure(target_counts, target_token_budget, *, seed=42):
@@ -109,13 +127,14 @@ def train_on_records(model, tokenizer, tasks, records, settings, output_dir, *, 
     loader = DataLoader(dataset, batch_size=batch_size, shuffle=target_budget is None,
                         generator=torch.Generator().manual_seed(seed),
                         collate_fn=lambda xs: collate_examples(xs, tokenizer.pad_token_id))
+    lora_targets, attention_layers = attention_lora_targets(model, settings.get('lora_target_modules'))
     model = get_peft_model(model, LoraConfig(
         task_type='CAUSAL_LM', r=int(settings.get('lora_rank', 8)),
         lora_alpha=int(settings.get('lora_alpha', 8)),
         lora_dropout=float(settings.get('lora_dropout', .05)), bias='none',
-        target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj']
+        target_modules=lora_targets
     ))
-    model.config.use_cache = False
+    set_use_cache(model, False)
     if settings.get('gradient_checkpointing', True):
         # Non-reentrant checkpointing works with frozen embeddings; no input hooks.
         model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant': False})
@@ -128,7 +147,7 @@ def train_on_records(model, tokenizer, tasks, records, settings, output_dir, *, 
     )
     device = next(model.parameters()).device
     model.train()
-    losses, optimizer_steps = [], 0
+    losses, gradient_norms, optimizer_steps = [], [], 0
     optimizer.zero_grad(set_to_none=True)
     for _epoch in range(passes):
         for index, batch in enumerate(loader):
@@ -143,7 +162,11 @@ def train_on_records(model, tokenizer, tasks, records, settings, output_dir, *, 
             (loss / divisor).backward()
             losses.append(float(loss.detach().cpu()))
             if (index + 1) % accumulation == 0 or index + 1 == len(loader):
-                torch.nn.utils.clip_grad_norm_(model.parameters(), float(settings.get('max_grad_norm', 1.0)))
+                gradient_norm = torch.nn.utils.clip_grad_norm_(
+                    model.parameters(), float(settings.get('max_grad_norm', 1.0)))
+                if not torch.isfinite(gradient_norm):
+                    raise FloatingPointError('Nonfinite SFT gradient norm; checkpoint not saved')
+                gradient_norms.append(float(gradient_norm.detach().cpu()))
                 optimizer.step()
                 scheduler.step()
                 optimizer.zero_grad(set_to_none=True)
@@ -151,14 +174,19 @@ def train_on_records(model, tokenizer, tasks, records, settings, output_dir, *, 
     # A single merged checkpoint is the next round's model, never an adapter pool.
     model.gradient_checkpointing_disable()
     merged = model.merge_and_unload(safe_merge=True)
-    merged.config.use_cache = True
+    set_use_cache(merged, True)
     merged.eval()
     stats = {'examples': len(examples), 'optimizer_steps': optimizer_steps,
              'mean_loss': sum(losses) / len(losses), 'epochs': epochs if target_budget is None else None,
+             'gradient_norm_min': min(gradient_norms),
+             'gradient_norm_max': max(gradient_norms),
              'truncated_examples': sum(x['truncated_tokens'] > 0 for x in examples),
              'truncated_tokens': sum(x['truncated_tokens'] for x in examples),
              'supervised_tokens_per_epoch': sum(target_counts),
              'trainable_parameter_count': sum(p.numel() for group in optimizer.param_groups for p in group['params']),
+             'lora_target_modules': lora_targets,
+             'lora_attention_layers': attention_layers,
+             'lora_scope': 'native_full_attention_qkvo_only',
              'loss_scope': settings.get('loss_scope', 'all'), 'seed': seed,
              'training_budget_mode': 'fixed_epochs' if target_budget is None else 'target_tokens_whole_records',
              'configured_epochs': epochs, 'configured_epochs_applied': target_budget is None,

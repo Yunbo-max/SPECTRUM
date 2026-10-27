@@ -1,6 +1,6 @@
 """Bounded code checks and a lossless bridge to official EvalPlus 0.3.1.
 
-Docker is the default execution boundary. Local execution requires an explicit
+Docker is the historical default; new studies select native ``bwrap``. Local execution requires an explicit
 trust flag and is only a resource-limited subprocess, NOT a security sandbox.
 No verifier imports or calls EvalPlus's host-executing evaluator.
 
@@ -9,7 +9,7 @@ supported results format is the 0.3.1 ``*_eval_results.json`` object with an
 ``eval`` mapping to per-task lists sorted by input encounter order. That format
 omits completion IDs, so exact task counts, solution text, and manifest order
 are checked. Unknown/missing tasks, dropped samples, and absent plus results
-fail explicitly. Run the external evaluator in a separately managed container;
+fail explicitly. Run the external evaluator in its qualified native sandbox;
 full MBPP and MBPP+ have different task sets and cannot be silently equated.
 """
 
@@ -253,7 +253,7 @@ def _read_verification_error(output: Any, marker: str, returncode: int, status: 
         return unknown
 
 
-def _execute(code: str, tests: str, *, backend: str, timeout: float, memory_mb: int, pids_limit: int, docker_image: str, docker: str | None, error_details: dict[str, Any] | None = None) -> str:
+def _execute(code: str, tests: str, *, backend: str, timeout: float, memory_mb: int, pids_limit: int, docker_image: str, docker: str | None, error_details: dict[str, Any] | None = None, sandbox_identity: dict | None = None) -> str:
     """Preserve the status-string API, optionally filling failure diagnostics."""
     if error_details is not None:
         error_details.clear()
@@ -273,6 +273,16 @@ def _execute(code: str, tests: str, *, backend: str, timeout: float, memory_mb: 
         payload.write_text(json.dumps(dict(code=code, tests=tests, memory=memory_mb * 1024 * 1024, timeout=timeout, marker=marker)), encoding="utf-8")
         runner.chmod(0o444)
         payload.chmod(0o444)
+        if backend == "bwrap":
+            from .native_sandbox import run_python
+            try:
+                result = run_python(_RUNNER, ["/input/payload.json"],
+                    readonly={"/input/payload.json": payload}, timeout=timeout,
+                    memory_mb=memory_mb, pids_limit=pids_limit, output=output,
+                    identity=sandbox_identity)
+            except subprocess.TimeoutExpired:
+                return "timeout"
+            return read_result(output, result.returncode)
         if backend == "docker":
             name = f"improving-{uuid.uuid4().hex}"
             command = [docker, "run", "--rm", "--pull", "never", "--name", name,
@@ -329,8 +339,8 @@ def verify_completions(tasks: Iterable[Mapping[str, Any]], records: Iterable[Map
     rows = _validate_groups(task_rows, records, expected_samples)
     task_map = {task["task_id"]: task for task in task_rows}
     tests = {task["task_id"]: _test_code(task) for task in task_rows}
-    if backend not in {"docker", "local"}:
-        raise ValueError("backend must be 'docker' or 'local'")
+    if backend not in {"docker", "local", "bwrap"}:
+        raise ValueError("backend must be 'docker', 'bwrap' or 'local'")
     if backend == "local" and not allow_unsafe_local:
         raise ValueError("Local execution requires allow_unsafe_local=True and trusted code; it is not a security sandbox")
     if not math.isfinite(timeout) or timeout <= 0:
@@ -350,18 +360,23 @@ def verify_completions(tasks: Iterable[Mapping[str, Any]], records: Iterable[Map
         "pids_limit": pids_limit,
         "protocol_version": "task-tests-v2",
         "runner_sha256": hashlib.sha256(_RUNNER.encode("utf-8")).hexdigest(),
-        "local_python_version": sys.version if backend == "local" else None,
+        "local_python_version": sys.version if backend in {"local", "bwrap"} else None,
         "timeout": float(timeout),
     }
     docker = shutil.which("docker") if backend == "docker" else None
     if backend == "docker" and docker is None:
         raise RuntimeError("Docker is required by default; install/start Docker and prepare its Python image. Local trusted execution requires explicit allow_unsafe_local=True")
+    sandbox_identity = None
+    if backend == "bwrap":
+        from .native_sandbox import qualify_sandbox
+        sandbox_identity = qualify_sandbox()["identity"]
+        evaluation_provenance["native_sandbox"] = sandbox_identity
     def verify_one(row: dict[str, Any]) -> dict[str, Any]:
         code = _solution_code(task_map[row["task_id"]], row["completion"], code_extraction)
         error_details = _unknown_verification_error("No executable code after extraction.")
         status = "empty" if not code.strip() else _execute(code, tests[row["task_id"]], backend=backend,
             timeout=timeout, memory_mb=memory_mb, pids_limit=pids_limit, docker_image=docker_image, docker=docker,
-            error_details=error_details)
+            error_details=error_details, sandbox_identity=sandbox_identity)
         return {**row, "code": code, "correct": status == "passed", "status": status,
                 "verification_error": None if status == "passed" else error_details,
                 "code_extraction": code_extraction,

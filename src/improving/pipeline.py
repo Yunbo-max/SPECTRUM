@@ -72,6 +72,9 @@ def training_runtime_identity():
 def execution_runtime_identity(evaluation):
     """Local interpreter identity; Docker content is resolved by run preflight."""
     backend = evaluation.get('backend', 'docker')
+    if backend == 'bwrap':
+        from .native_sandbox import runtime_identity
+        return {'backend': backend, **_interpreter_identity(), 'native_sandbox': runtime_identity()}
     return {'backend': backend, **(_interpreter_identity() if backend == 'local' else {})}
 
 
@@ -174,8 +177,8 @@ def validate_config(config):
     if 'correct_budgets' in evaluation and (not evaluation['correct_budgets'] or any(
             type(k) is not int or not 1 <= k <= n for k in evaluation['correct_budgets'])):
         raise ValueError('All evaluation.correct_budgets must fit the declared per-task sample budget')
-    if evaluation.get('backend', 'docker') not in {'docker', 'local', 'none'}:
-        raise ValueError('evaluation.backend must be docker, local or none')
+    if evaluation.get('backend', 'docker') not in {'docker', 'local', 'bwrap', 'none'}:
+        raise ValueError('evaluation.backend must be docker, bwrap, local or none')
     if evaluation.get('backend') == 'local' and not evaluation.get('allow_unsafe_local', False):
         raise ValueError('Local generated-code execution requires explicit allow_unsafe_local')
     if evaluation.get('code_extraction', 'strict') not in {'strict', 'first_fence'}:
@@ -251,8 +254,9 @@ def _calibrate(model, tokenizer, tasks, settings, path, model_identity):
         'model_identity': model_identity,
         'task_ids': [task['task_id'] for task in selected], 'span_mode': span_mode,
         'reference_sha256': stable_hash([
-            {key: task.get(key) for key in ('task_id', 'prompt', 'reference', 'calibration_spans')}
+            {key: task.get(key) for key in ('task_id', 'prompt', 'reference', 'calibration_spans', 'chat_template_kwargs')}
             for task in selected]),
+        'rendered_prompts_sha256': stable_hash([render_prompt(tokenizer, task) for task in selected]),
         'location': 'native_linear_output_pre_rope_pre_normalization',
         'loss_definition': 'per_example_mean_selected_completion_next_token_nll',
         'moment_definition': 'uncentered_gradient_second_moment_all_nonpadding_positions',
@@ -491,6 +495,9 @@ def _validate_base_outputs(done, path, tasks, evaluation, expected_samples, seed
 
 
 def _preflight_verification(settings):
+    if settings.get('backend') == 'bwrap':
+        from .native_sandbox import qualify_sandbox
+        return {'native_sandbox': qualify_sandbox()['identity']}
     if settings.get('backend', 'docker') != 'docker':
         return {}
     if not shutil.which('docker'):

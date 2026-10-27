@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "protocol": "spectrum-crossfamily-code-v1",
+  "metadata_verified_utc": "2026-10-27",
+  "models": {
+    "qwen7b": {
+      "family": "Qwen",
+      "repo_id": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "revision": "c03e6d358207e414f1eca0bb1891e29f1db0e242",
+      "layers": [14, 27],
+      "trust_remote_code": false
+    },
+    "llama8b": {
+      "family": "Llama",
+      "repo_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+      "layers": [16, 31],
+      "trust_remote_code": false,
+      "access": "Requires existing approval of the official Meta Hugging Face repository"
+    },
+    "deepseek6.7b": {
+      "family": "DeepSeek",
+      "repo_id": "deepseek-ai/deepseek-coder-6.7b-instruct",
+      "revision": "e5d64addd26a6a1db0f9b863abf6ee3141936807",
+      "layers": [16, 31],
+      "trust_remote_code": false
+    }
+  },
+  "datasets": {
+    "mbpp": {
+      "repo_id": "google-research-datasets/mbpp",
+      "revision": "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "expected_split_counts": {"train": 291, "calibration": 50, "validation": 30, "eval": 500},
+      "evaluation_label": "MBPP500 original tests, repository function-interface protocol"
+    },
+    "humanevalplus": {
+      "repo_id": "evalplus/HumanEvalPlus",
+      "revision": "v0.1.10",
+      "expected_count": 164,
+      "evalplus_version": "0.3.1",
+      "evaluation_label": "HumanEval+ official EvalPlus base-and-plus tests"
+    }
+  }
+}

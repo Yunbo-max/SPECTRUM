@@ -52,7 +52,7 @@ def _parser():
     verify.add_argument('--tasks', required=True)
     verify.add_argument('--samples', required=True)
     verify.add_argument('--output', required=True)
-    verify.add_argument('--backend', choices=['docker', 'local'], default='docker')
+    verify.add_argument('--backend', choices=['docker', 'bwrap', 'local'], default='docker')
     verify.add_argument('--allow-unsafe-local', action='store_true')
     verify.add_argument('--timeout', type=float, default=5.0)
     verify.add_argument('--workers', type=int, default=4)

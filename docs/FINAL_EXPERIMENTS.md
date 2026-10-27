@@ -1,5 +1,10 @@
 # Final experimental contract
 
+> Historical protocol. The current user-approved three-family code +27B math/QA/ARC
+> entry is [LOCAL_AGENT_RUNBOOK.md](../LOCAL_AGENT_RUNBOOK.md). Its single-trajectory
+> fixed-decoder queue supersedes this document's default40-job/repeat/sweep plan.
+> Historical results and running jobs retain their original protocol.
+
 Current execution/interpretation supplement:
 [2026-10-27 validation design](VALIDATION_20261027_ZH.md) and
 [Local runbook](../LOCAL_AGENT_RUNBOOK.md). The matrix below remains unchanged;

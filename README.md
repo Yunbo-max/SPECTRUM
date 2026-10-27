@@ -2,20 +2,37 @@
 
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
-## Local Codex: start here
+## Current experiment entry — 27 October 2026
 
-Current entry: [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md)
-· [2026-10-27 Web handoff](rounds/20261027-validation/WEB_HANDOFF.md)
-· [实验设计与最新证据（中文）](docs/VALIDATION_20261027_ZH.md)
-· [Download datasets and models](LOCAL_AGENT_RUNBOOK.md#download-datasets-and-models)
-· [Calibrate, debug, then dispatch](LOCAL_AGENT_RUNBOOK.md#calibrate-debug-then-dispatch).
+[**Run the current study / 当前运行指南**](LOCAL_AGENT_RUNBOOK.md)
+· [Web → Local handoff](rounds/20261027-multidomain/WEB_HANDOFF.md)
+· [Code](docs/CROSSFAMILY_CODE.md) · [Math / QA](docs/TEXT_TASKS.md)
+· [ARC-AGI-3](docs/ARC_AGI3.md) · [27B model adapter](docs/MODEL_COMPATIBILITY_27B.md)
 
-The current delivery is **generated_unexecuted**. Newer research-branch records
-include an author-protocol MBPP+ baseline correction and partial LCB generation;
-they do not yet contain a completed new SPECTRUM comparison. See the pinned
-[evidence inventory](rounds/20261027-validation/evidence.json). This update preserves
-historical results and the finite release matrix. Local acceptance of the new
-reporting/runtime changes and current host qualification remain pending.
+| Experiment | Models | Evaluation |
+|---|---|---|
+| Cross-family code | **Qwen2.5-Coder-7B-Instruct**, **Llama-3.1-8B-Instruct**, **DeepSeek-Coder-6.7B-Instruct** | MBPP500 main + native HumanEval+164 transfer |
+| Mathematics | **Qwen3.8-27B** | Complete MATH500 |
+| QA | Same original **Qwen3.8-27B** | Complete MMLU-Pro + GPQA Diamond |
+| Interactive agents | Same original **Qwen3.8-27B** | ARC-AGI-3, frozen public game holdout |
+
+Base + Vanilla SD + SSD adaptation + SPECTRUM; five rounds and **one independent
+training trajectory per method**, with fixed decoding and no temperature/seed grid.
+Math, QA and ARC start independently from the same original27B checkpoint.
+The three code models are different families. Their parameters are approximately
+7–8B; Qwen3.8 uses an explicitly supported hybrid text decoder.
+
+The new source includes model/data acquisition and verification, recursive training,
+native scoring, raw result retention and bound resume. Delivery remains
+**generated_unexecuted**: source/static review is complete; project tests and actual
+GPU/native execution must be qualified on the user's host.
+ARC SPECTRUM additionally requires a real replay-verified successful calibration
+trajectory; collection/import commands are supplied. A27B model is not a guarantee
+of ARC success. Default public holdout results must not be called full competition scores.
+
+The [current runbook](LOCAL_AGENT_RUNBOOK.md) is the entry to use. The older release
+matrix below is retained as historical documentation, not the new default queue.
+Existing model results, data and active runs have not been rewritten.
 
 SPECTRUM studies what a model retains when it repeatedly learns from its own
 generated code. Each round estimates loss-sensitive key/value geometry using
@@ -29,7 +46,7 @@ or given quality-dependent loss weights. Evaluation tests are separate. The
 anchor-replay **control** deliberately uses the references as supervised training
 examples and is labeled separately.
 
-## Final release
+## Earlier release design (historical)
 
 This repository continues the implementation from
 [`yuhanlydia/improving`](https://github.com/yuhanlydia/improving) at commit
@@ -45,7 +62,7 @@ new experiment cells remain unrun until the commands below are executed.
 · [Existing evidence](docs/EXISTING_EVIDENCE.md)
 · [Related-work audit](docs/LITERATURE_AUDIT.md)
 
-### Four trained backbones
+### Earlier four-backbone plan
 
 | Alias | Hugging Face model | Main comparison | Independent training replicates |
 |---|---|---|---:|
@@ -74,7 +91,7 @@ correct-implementation metrics come from the same pool. The transfer benchmarks
 provide no training or calibration signal. The three adapted competition
 protocols are not official leaderboard reproductions.
 
-## Quick start
+## Earlier release execution notes (historical)
 
 Follow the [ordered Local command cards](LOCAL_AGENT_RUNBOOK.md#calibrate-debug-then-dispatch).
 The current host route is native Conda. The earlier release guide documents a Docker

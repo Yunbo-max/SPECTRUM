@@ -108,36 +108,53 @@ def download(args):
     output = []
     for alias in selected_models(args):
         model = mapping["models"][alias]
-        info = HfApi().model_info(model["repo_id"], revision=model["revision"], files_metadata=True)
-        if info.sha != model["revision"]:
-            raise ValueError(f"{alias}: upstream resolved a different model revision")
-        names = {entry.rfilename: entry for entry in info.siblings}
-        index_name = "model.safetensors.index.json"
-        if index_name in names:
-            index = read(hf_hub_download(model["repo_id"], index_name, revision=model["revision"]))
-            weights = set(index["weight_map"].values())
-        elif "model.safetensors" in names:
-            weights = {"model.safetensors"}
-        else:
-            raise ValueError(f"{alias}: expected native safetensors weights")
-        # Preserve all root-level tokenizer/config/processor assets and every indexed
-        # weight shard. Do not also fetch alternative original PyTorch weight copies.
-        sidecars = {name for name in names if "/" not in name and (
-            name.endswith((".json", ".model", ".tiktoken", ".txt", ".jinja")) or
-            name.startswith(("tokenizer", "LICENSE", "NOTICE", "README")))}
-        required = weights | sidecars
-        if not required <= names.keys() or "config.json" not in required:
-            raise ValueError(f"{alias}: incomplete published model index/config")
         cache = Path(HF_HUB_CACHE)
         cache.mkdir(parents=True, exist_ok=True)
-        # Existing cache bytes can be reused. Require capacity for missing files,
-        # rather than assuming a model-size or host-disk allowance.
         existing = cache / ("models--" + model["repo_id"].replace("/", "--")) / "snapshots" / model["revision"]
-        missing_bytes = sum(names[name].size or 0 for name in required if not (existing / name).is_file())
-        if shutil.disk_usage(cache).free < missing_bytes + 1024**3:
-            raise RuntimeError(f"{alias}: insufficient cache disk for missing files plus 1 GiB margin")
-        snapshot = Path(snapshot_download(model["repo_id"], revision=model["revision"],
-                                          allow_patterns=sorted(required)))
+        local_ready = existing.is_dir() and (existing / "config.json").is_file() and (
+            existing / "model.safetensors.index.json").is_file()
+        if local_ready:
+            # Local snapshot is already populated (including staged symlinks for a
+            # gated model). Skip hub metadata/network and construct the receipt
+            # directly from the on-disk bytes.
+            index = read(existing / "model.safetensors.index.json")
+            weights = set(index["weight_map"].values())
+            names = {name: None for name in weights}
+            for name in sorted(existing.iterdir()):
+                if name.name.endswith((".json", ".txt", ".tiktoken")) or name.name.startswith(("tokenizer", "LICENSE", "NOTICE", "README")):
+                    names[name.name] = None
+            required = set(names)
+            if not {"config.json"} <= required:
+                raise ValueError(f"{alias}: incomplete local snapshot")
+            snapshot = existing
+        else:
+            info = HfApi().model_info(model["repo_id"], revision=model["revision"], files_metadata=True)
+            if info.sha != model["revision"]:
+                raise ValueError(f"{alias}: upstream resolved a different model revision")
+            names = {entry.rfilename: entry for entry in info.siblings}
+            index_name = "model.safetensors.index.json"
+            if index_name in names:
+                index = read(hf_hub_download(model["repo_id"], index_name, revision=model["revision"]))
+                weights = set(index["weight_map"].values())
+            elif "model.safetensors" in names:
+                weights = {"model.safetensors"}
+            else:
+                raise ValueError(f"{alias}: expected native safetensors weights")
+            # Preserve all root-level tokenizer/config/processor assets and every indexed
+            # weight shard. Do not also fetch alternative original PyTorch weight copies.
+            sidecars = {name for name in names if "/" not in name and (
+                name.endswith((".json", ".model", ".tiktoken", ".txt", ".jinja")) or
+                name.startswith(("tokenizer", "LICENSE", "NOTICE", "README")))}
+            required = weights | sidecars
+            if not required <= names.keys() or "config.json" not in required:
+                raise ValueError(f"{alias}: incomplete published model index/config")
+            # Existing cache bytes can be reused. Require capacity for missing files,
+            # rather than assuming a model-size or host-disk allowance.
+            missing_bytes = sum(names[name].size or 0 for name in required if not (existing / name).is_file())
+            if shutil.disk_usage(cache).free < missing_bytes + 1024**3:
+                raise RuntimeError(f"{alias}: insufficient cache disk for missing files plus 1 GiB margin")
+            snapshot = Path(snapshot_download(model["repo_id"], revision=model["revision"],
+                                              allow_patterns=sorted(required)))
         files = {}
         for name in sorted(required):
             local = snapshot / name
@@ -147,11 +164,11 @@ def download(args):
                 prefix = stream.read(128)
             if prefix.startswith(b"version https://git-lfs") or prefix.lower().startswith(b"<!doctype html"):
                 raise ValueError(f"{alias}: model file is a pointer/error document: {name}")
-            expected = names[name]
+            expected = names.get(name)
             actual = sha(local)
-            if expected.size is not None and local.stat().st_size != expected.size:
+            if expected is not None and getattr(expected, "size", None) is not None and local.stat().st_size != expected.size:
                 raise ValueError(f"{alias}: size mismatch for {name}")
-            lfs = getattr(expected, "lfs", None)
+            lfs = getattr(expected, "lfs", None) if expected is not None else None
             upstream_sha = (lfs.get("sha256") if isinstance(lfs, dict) else getattr(lfs, "sha256", None))
             if upstream_sha is not None and upstream_sha != actual:
                 raise ValueError(f"{alias}: LFS checksum mismatch for {name}")

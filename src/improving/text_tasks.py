@@ -230,17 +230,23 @@ def prepare_text_data(config):
         auxiliary = load_dataset(HF_INPUTS['mmlu_aux']['repo_id'], 'all',
                                  revision=HF_INPUTS['mmlu_aux']['revision'], split='auxiliary_train')
         pro = load_dataset(HF_INPUTS['mmlu_pro']['repo_id'], revision=HF_INPUTS['mmlu_pro']['revision'])
-        gpqa_file = hf_hub_download(repo_type='dataset', filename='gpqa_diamond.csv', **HF_INPUTS['gpqa'])
-        diamond = load_dataset('csv', data_files=gpqa_file, split='train')
-        if len(pro['test']) != 12032 or len(pro['validation']) != 70 or len(diamond) != 198:
-            raise ValueError('Native MMLU-Pro/GPQA Diamond denominators changed')
+        if len(pro['test']) != 12032 or len(pro['validation']) != 70:
+            raise ValueError('Native MMLU-Pro denominator changed')
+        include_gpqa = bool(config.get('include_gpqa', False))
         pool = [_aux_task(row, i) for i, row in enumerate(auxiliary)]
         evaluation = [_mmlu_pro_task(row, pro['validation']) for row in pro['test']]
-        evaluation += [_gpqa_task(row, i, seed) for i, row in enumerate(diamond)]
-        sources = {'hf': HF_INPUTS, 'gpqa_file_sha256': file_sha(gpqa_file),
-                   'native_counts': {'auxiliary_train': len(auxiliary), 'mmlu_pro': 12032, 'gpqa_diamond': 198},
-                   'dataset_fingerprints': {'aux': auxiliary._fingerprint, 'pro': pro['test']._fingerprint,
-                                            'diamond': diamond._fingerprint}}
+        sources = {'hf': HF_INPUTS, 'native_counts': {'auxiliary_train': len(auxiliary), 'mmlu_pro': 12032},
+                   'dataset_fingerprints': {'aux': auxiliary._fingerprint, 'pro': pro['test']._fingerprint},
+                   'include_gpqa': include_gpqa}
+        if include_gpqa:
+            gpqa_file = hf_hub_download(repo_type='dataset', filename='gpqa_diamond.csv', **HF_INPUTS['gpqa'])
+            diamond = load_dataset('csv', data_files=gpqa_file, split='train')
+            if len(diamond) != 198:
+                raise ValueError('Native GPQA Diamond denominator changed')
+            evaluation += [_gpqa_task(row, i, seed) for i, row in enumerate(diamond)]
+            sources['gpqa_file_sha256'] = file_sha(gpqa_file)
+            sources['native_counts']['gpqa_diamond'] = 198
+            sources['dataset_fingerprints']['diamond'] = diamond._fingerprint
     else:
         raise ValueError('domain must be math or qa')
     splits, audit = _partition(pool, evaluation, config['data'], seed)

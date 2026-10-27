@@ -176,7 +176,12 @@ def validate_prepared_binding(config, data_manifest, seed):
     if (data_manifest['identity']['domain'] != config['domain']
             or data_manifest['identity']['data'] != config['data']):
         raise ValueError('Prepared domain/splits differ from the requested configuration')
-    expected_counts = {'math500': 500} if config['domain'] == 'math' else {'mmlu_pro': 12032, 'gpqa_diamond': 198}
+    if config['domain'] == 'math':
+        expected_counts = {'math500': 500}
+    else:
+        expected_counts = {'mmlu_pro': 12032}
+        if config.get('include_gpqa', False):
+            expected_counts['gpqa_diamond'] = 198
     if data_manifest['evaluation_counts'] != expected_counts:
         raise ValueError('Prepared evaluation does not contain the complete native populations')
     if data_manifest['identity']['builder_sha256'] != file_sha(Path(__file__).with_name('text_tasks.py')):

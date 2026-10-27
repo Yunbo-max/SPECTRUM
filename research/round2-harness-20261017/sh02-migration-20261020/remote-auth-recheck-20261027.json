@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-27T12:46:16.826210+00:00",
+  "returncode": 255,
+  "diagnostic_lines": [
+    "debug1: Server host key: ssh-ed25519 SHA256:+IZMFu9Xx6FSAhvQhtvZ3MpV70v2d+XNWcequAbsp+c",
+    "debug1: Host '[sh02-ssh.gpuhome.cc]:30112' is known and matches the ED25519 host key.",
+    "debug1: Authentications that can continue: publickey,password",
+    "debug1: Offering public key: /Users/yunbo/.ssh/research_spectrum_sh02_ed25519 ED25519 SHA256:2cT51Ig+QJNTo/Lu4zGJ4symnTQqO2g4yMcUyYi8k5U explicit",
+    "debug1: Authentications that can continue: publickey,password",
+    "root@sh02-ssh.gpuhome.cc: Permission denied (publickey,password)."
+  ],
+  "remote_command_executed": false
+}

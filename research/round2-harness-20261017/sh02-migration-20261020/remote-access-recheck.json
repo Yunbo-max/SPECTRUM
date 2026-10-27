@@ -1,7 +1,10 @@
 {
-  "utc": "2026-10-20T11:23:49.242202+00:00",
+  "utc": "2026-10-27T12:46:02.918377+00:00",
   "returncode": 255,
   "stdout": "",
   "stderr": "root@sh02-ssh.gpuhome.cc: Permission denied (publickey,password).\n",
-  "remote_process_state": "not reconciled"
+  "remote_process_state": "not reconciled",
+  "new_experiment_launched": false,
+  "new_model_results": false,
+  "next_action": "Restore acceptance of the authorized client public key on SH02 using provider console or administrator; then reconcile boot identity, original processes and completion markers. Strict host verification passed on this attempt; no known_hosts modification was made by this worker."
 }

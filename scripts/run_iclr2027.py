@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import shlex
 import shutil
@@ -24,6 +25,14 @@ MODELS = {
     "qwen7b": "Qwen/Qwen2.5-Coder-7B-Instruct",
     "deepseek6.7b": "deepseek-ai/deepseek-coder-6.7b-instruct",
 }
+# Offline hosts keep weights under a shared read-only model root instead of the
+# HF cache. When a local copy exists it is preferred so planning never relies
+# on network access; the HF id remains the canonical name in the plan digest.
+_LOCAL_MODEL_ROOTS = [
+    os.environ.get("INSPIRE_MODEL_ROOT", ""),
+    "/inspire/hdd/global_public/public_models",
+    "/inspire/hdd/global_public",
+]
 LABELS = {"plain": "Plain self-distillation", "ssd": "SSD",
           "spectral_soft": "SPECTRUM", "spd_hard": "Projection design ablation",
           "random_soft": "Random eigenbasis", "isotropic_soft": "Isotropic gain",
@@ -58,6 +67,22 @@ def csv_ints(value):
     return result
 
 
+def resolve_model_name(hf_name):
+    """Prefer a local read-only copy of a model over its Hugging Face id.
+
+    Offline execution cannot reach the hub, so `plan` writes a concrete local
+    path when a shared model root already contains the weights. The returned
+    path is used verbatim by ``improving run``; the HF id stays the label.
+    """
+    for root in _LOCAL_MODEL_ROOTS:
+        if not root:
+            continue
+        candidate = Path(root) / hf_name
+        if candidate.is_dir():
+            return str(candidate)
+    return hf_name
+
+
 def native_config(args, model_key, seed):
     # BF16 dense parameters are required by covariance extraction and weight folding.
     # These are conservative memory targets, not measured peak-memory guarantees.
@@ -67,7 +92,7 @@ def native_config(args, model_key, seed):
     batch = batches[model_key]
     return {
         "seed": seed, "data_seed": 42,
-        "model": {"name": MODELS[model_key], "device": "auto", "dtype": "bfloat16",
+        "model": {"name": resolve_model_name(MODELS[model_key]), "device": "auto", "dtype": "bfloat16",
                   "attn_implementation": "sdpa"},
         "data": {split: str(Path(args.data_root) / f"{split}.jsonl")
                  for split in ("train", "calibration", "validation", "eval")},

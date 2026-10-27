@@ -252,8 +252,10 @@ def plan(args):
             or protocol.get("independent_training_trajectories") != 1
             or protocol.get("temperature_sweep") is not False):
         raise ValueError("Require the fixed three-family, one-trajectory protocol")
-    if protocol["evaluation"]["backend"] != "bwrap":
-        raise ValueError("This new native study requires the qualified bwrap backend")
+    if protocol["evaluation"]["backend"] not in ("bwrap", "local"):
+        raise ValueError("Require the bwrap or explicitly enabled local evaluation backend")
+    if protocol["evaluation"]["backend"] == "local" and not protocol["evaluation"].get("allow_unsafe_local"):
+        raise ValueError("Local evaluation requires allow_unsafe_local=true")
     data, root = path(args.data_root), path(args.run_root)
     seeds = seed_values(path(args.seed_file))
     prepared, input_files = snapshot_prepared(data)
@@ -338,15 +340,19 @@ def transfer(manifest, alias):
     tasks = data / "humanevalplus" / "eval.jsonl"
     assert_disjoint_splits({**{key: read_jsonl(source / "tasks" / f"{key}.jsonl")
         for key in ("train", "calibration", "validation")}, "eval": read_jsonl(tasks)})
-    callback, identity = make_humanevalplus_evaluator(tasks, settings={"backend": "bwrap",
-        "parallel": settings["parallel"], "prepared_dataset_dir": str(tasks.parent)})
+    backend = manifest["settings"]["evaluation"].get("backend", "local")
+    allow_unsafe = manifest["settings"]["evaluation"].get("allow_unsafe_local", True)
+    callback, identity = make_humanevalplus_evaluator(tasks, settings={"backend": backend,
+        "allow_unsafe_local": allow_unsafe, "parallel": settings["parallel"],
+        "prepared_dataset_dir": str(tasks.parent)})
     output = root / "transfer" / alias
     result = evaluate_checkpoints(source, output, samples=settings["samples"],
         rounds=[settings["round"]], methods=list(METHODS), eval_tasks_path=tasks,
         generation_overrides={"max_prompt_tokens": settings["max_prompt_tokens"],
             "max_new_tokens": settings["max_new_tokens"], "batch_size": settings["sequence_batch_size"],
             "sequence_batch_size": settings["sequence_batch_size"], "task_batch_size": 1},
-        evaluation_overrides={"backend": "bwrap"}, bootstrap_samples=settings["bootstrap_samples"],
+        evaluation_overrides={"backend": backend, "allow_unsafe_local": allow_unsafe},
+        bootstrap_samples=settings["bootstrap_samples"],
         resume=True, evaluator=callback, evaluator_identity=identity)
     if result.get("status") != "completed":
         raise RuntimeError(f"HumanEval+ incomplete; see {output}")

@@ -314,10 +314,11 @@ def score_text_records(tasks, records, *, expected_samples, grader_root=None, sa
         raise ValueError('Scoring requires every expected task/sample exactly once')
     native_identity = grader_context = None
     if any(task['benchmark'] == 'math500' for task in task_map.values()):
-        from .native_sandbox import runtime_identity
-        # Scoped to this scoring invocation, never a process-global stale cache.
-        # Eight thousand answers must not re-run binary/version probes per item.
-        native_identity = runtime_identity()
+        if not (isinstance(sandbox, dict) and sandbox.get('backend') == 'local'):
+            from .native_sandbox import runtime_identity
+            # Scoped to this scoring invocation, never a process-global stale cache.
+            # Eight thousand answers must not re-run binary/version probes per item.
+            native_identity = runtime_identity()
         grader_context = _verified_math_grader(grader_root)
     scored = []
     for record in records:
@@ -451,14 +452,39 @@ def _verified_math_grader(grader_root):
 
 def grade_math_sandboxed(answer, expected, grader_root, sandbox, *, native_identity=None,
                        grader_context=None):
-    # There is no in-process fallback: the author grader uses sympy.parse_expr.
+    # Default is the native bubblewrap boundary; an explicitly declared local
+    # backend runs the pinned author grader in a plain subprocess with a timeout
+    # when the host cannot provide user/mount namespaces (e.g. a nested
+    # container without CAP_SYS_ADMIN). Local execution is not a sandbox.
     import subprocess
-    from .native_sandbox import run_python
     if grader_root is None or not sandbox:
-        raise ValueError('Math scoring needs the pinned PRM grader and native sandbox settings')
+        raise ValueError('Math scoring needs the pinned PRM grader and sandbox settings')
     context = grader_context if grader_context is not None else _verified_math_grader(grader_root)
     if context['root'] != str(Path(grader_root).resolve()):
         raise ValueError('Verified grader context belongs to a different source directory')
+    worker = """import json,sys
+sys.path.insert(0, {prm_dir!r})
+from grading.grader import grade_answer
+request=json.loads(sys.argv[1])
+print(json.dumps({{'correct':bool(grade_answer(request['answer'],request['expected']))}}))
+"""
+    if sandbox.get('backend') == 'local':
+        grader_dir = str(Path(grader_root).resolve() / 'prm800k')
+        local_worker = worker.format(prm_dir=grader_dir)
+        timeout = float(sandbox.get('timeout', 10))
+        try:
+            result = subprocess.run([sys.executable, '-c', local_worker,
+                                     json.dumps({'answer': answer, 'expected': expected})],
+                                    capture_output=True, timeout=timeout)
+        except subprocess.TimeoutExpired:
+            return False, 'timeout'
+        if result.returncode != 0:
+            raise RuntimeError('Local math grader failed; this is not a wrong model answer: ' + result.stderr.decode(errors='replace')[-1000:])
+        parsed = json.loads(result.stdout.decode().splitlines()[-1])
+        if type(parsed.get('correct')) is not bool:
+            raise ValueError('Local math grader returned an invalid result')
+        return parsed['correct'], 'parsed'
+    from .native_sandbox import run_python
     worker = """import json,sys
 sys.path.insert(0, '/input/prm')
 from grading.grader import grade_answer

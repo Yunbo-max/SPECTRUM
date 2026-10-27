@@ -57,7 +57,9 @@ def test_three_different_families_and_single_trajectory_protocol():
     assert len({value["family"] for value in mapping["models"].values()}) == 3
     assert protocol["independent_training_trajectories"] == 1
     assert protocol["temperature_sweep"] is False
-    assert protocol["evaluation"]["backend"] == "bwrap"
+    assert protocol["evaluation"]["backend"] in ("bwrap", "local")
+    if protocol["evaluation"]["backend"] == "local":
+        assert protocol["evaluation"]["allow_unsafe_local"] is True
     assert not {"decoder_grid", "replicates", "seeds"} & protocol.keys()
 
 

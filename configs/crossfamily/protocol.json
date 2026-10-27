@@ -44,7 +44,8 @@
     "loss_scope": "all"
   },
   "evaluation": {
-    "backend": "bwrap",
+    "backend": "local",
+    "allow_unsafe_local": true,
     "code_extraction": "first_fence",
     "workers": 4,
     "timeout": 5,

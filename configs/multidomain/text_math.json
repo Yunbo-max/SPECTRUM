@@ -2,7 +2,7 @@
   "protocol": "spectrum-crossdomain-math-v1",
   "domain": "math",
   "model": {
-    "name": "Qwen/Qwen2.5-Math-7B-Instruct",
+    "name": "/inspire/hdd/global_public/public_models/Qwen/Qwen2.5-Math-7B-Instruct",
     "loader": "causal_lm",
     "dtype": "bfloat16",
     "device": "cuda",
@@ -63,5 +63,5 @@
     "lora_target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
     "gradient_checkpointing": true
   },
-  "math_sandbox": {"timeout": 10, "memory_mb": 2048}
+  "math_sandbox": {"backend": "local", "timeout": 10, "memory_mb": 2048}
 }

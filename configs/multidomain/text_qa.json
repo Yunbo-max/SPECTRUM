@@ -2,7 +2,7 @@
   "protocol": "spectrum-crossdomain-qa-v1",
   "domain": "qa",
   "model": {
-    "name": "Qwen/Qwen2.5-7B-Instruct",
+    "name": "/inspire/hdd/global_public/public_models/Qwen/Qwen2.5-7B-Instruct",
     "loader": "causal_lm",
     "dtype": "bfloat16",
     "device": "cuda",

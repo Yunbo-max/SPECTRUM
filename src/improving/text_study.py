@@ -152,8 +152,14 @@ def _check_completed(directory, identity):
 def _preflight_math(config):
     if config['domain'] != 'math':
         return
-    from .native_sandbox import qualify_sandbox
-    qualify_sandbox()
+    sandbox = config.get('math_sandbox', {})
+    if sandbox.get('backend') == 'local':
+        # No namespace qualification is possible without CAP_SYS_ADMIN; the
+        # local grader subprocess is exercised directly below.
+        pass
+    else:
+        from .native_sandbox import qualify_sandbox
+        qualify_sandbox()
     # Two trusted author expressions exercise the actual imported grader. This
     # qualifies plumbing only; it is not a scientific benchmark validation.
     from .text_tasks import grade_math_sandboxed

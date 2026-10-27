@@ -177,11 +177,14 @@ def rollout(model, tokenizer, config, game_id, directory, *, seed, identity,
         atomic_json(directory / 'scorecard.json', scorecard)
         write_jsonl(directory / 'tasks.jsonl', [e['task'] for e in progress['events']])
         write_jsonl(directory / 'raw.jsonl', [e['record'] for e in progress['events']])
+        valid_actions = [json.dumps(e['action'], sort_keys=True, ensure_ascii=False)
+                         for e in progress['events'] if e['action'] is not None]
         result = {'status': status, 'game_id': game_id, 'episode': episode,
                   'native_score': scorecard['score'], 'levels_completed': current['levels_completed'],
                   'win_levels': current['win_levels'], 'environment_actions': successful_actions,
                   'model_decisions': len(progress['events']),
                   'invalid_outputs': sum(e['action'] is None for e in progress['events']),
+                  'valid_actions': valid_actions,
                   'prompt_tokens': sum(e['record']['prompt_tokens'] for e in progress['events']),
                   'generation_tokens': sum(e['record']['generation_tokens'] for e in progress['events']),
                   'elapsed_seconds': progress['elapsed_seconds'],
@@ -213,10 +216,24 @@ def evaluate(model, tokenizer, config, assets, root, *, identity, method, round_
     expected = len(assets['splits'][split]) * episodes
     if len(results) != expected:
         raise ValueError('Incomplete native ARC denominator')
+    # Action-sequence diversity: per-episode valid-action trajectories, distinct
+    # action types, and the realized sequence length. Action keys use a canonical
+    # JSON representation so distinct coordinates/arguments remain distinguishable.
+    action_sequences, distinct_actions, action_lengths = [], set(), []
+    for r in results:
+        episode_actions = r.get('valid_actions', [])
+        action_sequences.append(episode_actions)
+        distinct_actions.update(episode_actions)
+        action_lengths.append(len(episode_actions))
     summary = {'split': split, 'games': assets['splits'][split], 'episodes': expected,
                'mean_native_score': sum(r['native_score'] for r in results) / expected,
                'wins': sum(r['status'] == 'win' for r in results),
                'results': results, 'missing': [],
+               'action_diversity': {
+                   'distinct_action_types': len(distinct_actions),
+                   'mean_actions_per_episode': sum(action_lengths) / expected if expected else 0.0,
+                   'total_valid_actions': sum(action_lengths),
+                   'definition': 'distinct canonical actions across all episodes; sequence-level variety of valid native actions'},
                'score_scope': 'public game holdout; each episode uses its own native scorecard'}
     atomic_json(Path(root) / 'summary.json', summary)
     return all_tasks, all_records, summary

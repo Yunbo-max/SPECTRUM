@@ -37,13 +37,18 @@ def validate_text_config(config):
     if config.get('domain') not in ('math', 'qa') or int(config.get('rounds', 0)) < 1:
         raise ValueError('Expected math/qa domain and positive rounds')
     model = config['model']
-    if (model.get('loader') != 'qwen3_5_text' or model.get('name') != 'Qwen/Qwen3.8-27B'
-            or model.get('revision') != '1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0'):
-        raise ValueError('This protocol pins the official Qwen3.8-27B text backbone')
+    loader = model.get('loader', 'causal_lm')
+    if loader not in ('causal_lm', 'qwen3_5_text'):
+        raise ValueError('model.loader must be causal_lm or qwen3_5_text')
+    if loader == 'qwen3_5_text':
+        # The hybrid 27B backbone pins its official full-attention intervention layers.
+        if (model.get('name') != 'Qwen/Qwen3.8-27B'
+                or model.get('revision') != '1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0'):
+            raise ValueError('qwen3_5_text pins the official Qwen3.8-27B text backbone')
+        if config.get('calibration', {}).get('layers') != [31, 63]:
+            raise ValueError('Pinned hybrid model intervention uses full-attention layers 31 and 63')
     if model.get('dtype') != 'bfloat16' or not model.get('local_files_only'):
         raise ValueError('Use prepared unquantized BF16 weights with local_files_only=true')
-    if config.get('calibration', {}).get('layers') != [31, 63]:
-        raise ValueError('Pinned hybrid model intervention uses full-attention layers 31 and 63')
     for stage in ('synthesis', 'evaluation'):
         spec = config[stage]
         if min(int(spec[k]) for k in ('samples', 'max_new_tokens', 'max_prompt_tokens')) < 1:

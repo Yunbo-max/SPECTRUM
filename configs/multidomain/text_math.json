@@ -2,9 +2,8 @@
   "protocol": "spectrum-crossdomain-math-v1",
   "domain": "math",
   "model": {
-    "name": "Qwen/Qwen3.8-27B",
-    "revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
-    "loader": "qwen3_5_text",
+    "name": "Qwen/Qwen2.5-Math-7B-Instruct",
+    "loader": "causal_lm",
     "dtype": "bfloat16",
     "device": "cuda",
     "attn_implementation": "sdpa",
@@ -17,7 +16,7 @@
     "validation_size": 64
   },
   "seed_file": "runs/private/multidomain_seed.json",
-  "output_dir": "runs/multidomain/math-qwen38-27b",
+  "output_dir": "runs/multidomain/math-qwen25-7b",
   "rounds": 5,
   "checkpoint_retention": "latest",
   "synthesis": {
@@ -44,7 +43,7 @@
     "top_k": 20
   },
   "calibration": {
-    "layers": [31, 63],
+    "layers": [14, 27],
     "max_examples": 64,
     "max_length": 8192,
     "span_mode": "completion",

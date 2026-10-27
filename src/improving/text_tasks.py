@@ -377,7 +377,65 @@ def score_text_records(tasks, records, *, expected_samples, grader_root=None, sa
                 metrics[benchmark][f'pass@{budget}'] = sum(estimates.values()) / len(estimates)
                 metrics[benchmark][f'per_task_pass@{budget}'] = estimates
             metrics[benchmark]['coverage_definition'] = 'unbiased pass@k from 16 responses; task solving coverage, not semantic strategy diversity'
+            # Correct-answer lexical diversity: distinct final-box expressions and
+            # pairwise derivation-token Jaccard distance, computed per task then averaged.
+            unique_fractions, jaccards = [], []
+            for task_id, responses in per_task.items():
+                correct = [x for x in responses if x['correct']]
+                if not correct:
+                    continue
+                answers = [x.get('answer') for x in correct]
+                unique_fractions.append(len({a for a in answers if a is not None}) / len(correct))
+                completions = [x.get('completion', '') for x in correct]
+                distance = _pairwise_jaccard_distance(completions)
+                if distance is not None:
+                    jaccards.append(distance)
+            metrics[benchmark]['correct_answer_diversity'] = {
+                'unique_answer_fraction': sum(unique_fractions) / len(unique_fractions) if unique_fractions else None,
+                'pairwise_completion_jaccard_distance': sum(jaccards) / len(jaccards) if jaccards else None,
+                'eligible_tasks': len(unique_fractions),
+                'jaccard_eligible_tasks': len(jaccards),
+                'definition': 'correct responses only; distinct final-box expression fraction and derivation-token Jaccard distance'}
+        elif benchmark in ('mmlu_pro', 'gpqa_diamond'):
+            # Multiple-choice answer-distribution entropy over all samples.
+            answer_counter = {}
+            for row in population:
+                answer = row.get('answer')
+                answer_counter[answer] = answer_counter.get(answer, 0) + 1
+            metrics[benchmark]['answer_distribution_entropy'] = _entropy(list(answer_counter.values()))
+            metrics[benchmark]['answer_distribution'] = {str(k): v for k, v in sorted(
+                answer_counter.items(), key=lambda kv: (kv[0] is None, str(kv[0])))}
+            metrics[benchmark]['diversity_definition'] = 'answer-choice Shannon entropy; no semantic solution diversity claimed for multiple choice'
     return scored, metrics
+
+
+def _token_set(text):
+    """Whitespace-normalized token set for answer-expression lexical diversity."""
+    if not text:
+        return frozenset()
+    return frozenset(re.findall(r'[A-Za-z0-9_]+', text.lower()))
+
+
+def _pairwise_jaccard_distance(items):
+    """Mean pairwise Jaccard distance over token sets; None when fewer than two items."""
+    sets = [_token_set(x) for x in items]
+    pairs = [(a, b) for i, a in enumerate(sets) for b in sets[i + 1:]]
+    if not pairs:
+        return None
+    distances = []
+    for a, b in pairs:
+        union = a | b
+        if not union:
+            continue
+        distances.append(1.0 - len(a & b) / len(union))
+    return sum(distances) / len(distances) if distances else None
+
+
+def _entropy(counts):
+    total = sum(counts)
+    if total <= 0:
+        return 0.0
+    return -sum((c / total) * math.log(c / total) for c in counts if c > 0)
 
 
 def _verified_math_grader(grader_root):

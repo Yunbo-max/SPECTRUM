@@ -1,8 +1,11 @@
+import copy
 import json
+from types import SimpleNamespace
 import pytest
 from tests.helpers import tiny_model_and_tokenizer
 from improving.pipeline import (run_experiment, load_config, checkpoint_fingerprint,
                                 record_stage, evaluate_file, validate_config,
+                                training_runtime_identity, _preflight_verification,
                                 _diagnostic_protocol, _validate_base_outputs)
 from improving.data import read_jsonl, write_jsonl
 
@@ -64,6 +67,90 @@ def test_checkpoint_fingerprint_hashes_shard_contents_and_tokenizer(tmp_path):
     assert checkpoint_fingerprint(tmp_path) != second
 
 
+def test_training_runtime_captures_installed_versions_and_interpreter(tmp_path, monkeypatch):
+    executable = tmp_path / 'python-fixture'
+    executable.write_bytes(b'artificial interpreter identity')
+    monkeypatch.setattr('improving.pipeline.sys.executable', str(executable))
+    monkeypatch.setattr('improving.pipeline.importlib.metadata.version', lambda name: f'fixture-{name}')
+    monkeypatch.setattr('improving.pipeline.torch.version.cuda', 'fixture-cuda')
+    monkeypatch.setattr('improving.pipeline.torch.version.hip', None)
+    monkeypatch.setattr('improving.pipeline.torch.cuda.is_available', lambda: False)
+    monkeypatch.setattr('improving.pipeline.torch.backends.cudnn.version', lambda: 12345)
+    runtime = training_runtime_identity()
+    assert runtime['dependencies']['torch'] == 'fixture-torch'
+    assert runtime['dependencies']['numpy'] == 'fixture-numpy'
+    assert runtime['dependencies']['tokenizers'] == 'fixture-tokenizers'
+    assert runtime['dependencies']['safetensors'] == 'fixture-safetensors'
+    assert runtime['torch_cuda_version'] == 'fixture-cuda'
+    assert runtime['cudnn_version'] == 12345
+    assert runtime['cuda_available'] is False
+    assert runtime['python_executable'] == str(executable.resolve())
+    executable.write_bytes(b'changed artificial interpreter identity')
+    assert training_runtime_identity()['python_executable_sha256'] != runtime['python_executable_sha256']
+
+
+def test_docker_preflight_resolves_content_without_running_a_container(monkeypatch):
+    calls = []
+    image_id = 'sha256:' + 'a' * 64
+    monkeypatch.setattr('improving.pipeline.shutil.which', lambda _: '/fixture/docker')
+    def inspect(command, **kwargs):
+        calls.append(command)
+        return SimpleNamespace(returncode=0, stdout=image_id + '\n')
+    monkeypatch.setattr('improving.pipeline.subprocess.run', inspect)
+    assert _preflight_verification({'backend': 'docker', 'docker_image': 'fixture:tag'}) == {
+        'docker_image': 'fixture:tag', 'docker_image_id': image_id}
+    assert calls == [['docker', 'image', 'inspect', '--format', '{{.Id}}', 'fixture:tag']]
+    assert _preflight_verification({'backend': 'none'}) == {}
+    assert len(calls) == 1
+
+
+@pytest.mark.parametrize('returned_id', ['', 'fixture:tag', 'sha256:abcd', 'sha256:' + 'g' * 64])
+def test_docker_preflight_rejects_missing_content_identity(monkeypatch, returned_id):
+    monkeypatch.setattr('improving.pipeline.shutil.which', lambda _: '/fixture/docker')
+    monkeypatch.setattr('improving.pipeline.subprocess.run',
+                        lambda *args, **kwargs: SimpleNamespace(returncode=0, stdout=returned_id))
+    with pytest.raises(RuntimeError, match='immutable image content ID'):
+        _preflight_verification({'backend': 'docker'})
+
+
+def test_docker_run_pins_content_and_refuses_changed_tag_on_resume(tmp_path, monkeypatch):
+    paths = {}
+    for split in ('train', 'calibration', 'validation', 'eval'):
+        path = tmp_path / f'{split}.jsonl'
+        write_jsonl(path, [{'task_id': f'{split}/1', 'prompt': f'Unique {split} prompt',
+                            'source': 'fixture', 'split': split}])
+        paths[split] = str(path)
+    config = {'model': {'name': 'fixture'}, 'data': paths,
+              'output_dir': str(tmp_path / 'run'), 'methods': ['plain'],
+              'generation': {'eval_samples': 1},
+              'evaluation': {'backend': 'docker', 'docker_image': 'fixture:tag',
+                             'ks': [1], 'correct_budget': 1}}
+    current_id = ['sha256:' + 'a' * 64]
+    monkeypatch.setattr('improving.pipeline.shutil.which', lambda _: '/fixture/docker')
+    monkeypatch.setattr('improving.pipeline.subprocess.run',
+                        lambda *args, **kwargs: SimpleNamespace(returncode=0, stdout=current_id[0]))
+    monkeypatch.setattr('improving.pipeline.load_model',
+                        lambda _: (SimpleNamespace(config=SimpleNamespace(_commit_hash=None)), None))
+    monkeypatch.setattr('improving.pipeline.generate_to_file', lambda *args, **kwargs: [])
+    observed = []
+    def stop_before_candidate_execution(tasks, records, path, settings, **kwargs):
+        observed.append(dict(settings))
+        raise RuntimeError('fixture stops before candidate execution')
+    monkeypatch.setattr('improving.pipeline.evaluate_file', stop_before_candidate_execution)
+    with pytest.raises(RuntimeError, match='fixture stops'):
+        run_experiment(config)
+    assert observed[0]['docker_image'] == current_id[0]
+    assert config['evaluation']['docker_image'] == 'fixture:tag'
+    manifest_path = tmp_path / 'run' / 'manifest.json'
+    original = manifest_path.read_bytes()
+    assert json.loads(original)['evaluation_runtime']['docker_image_id'] == current_id[0]
+    current_id[0] = 'sha256:' + 'b' * 64
+    with pytest.raises(ValueError, match='runtime changed'):
+        run_experiment(config, resume=True)
+    assert manifest_path.read_bytes() == original
+    assert len(observed) == 1
+
+
 def test_stage_resume_preserves_actual_prior_compute_time(tmp_path, monkeypatch):
     values = iter([1.0, 4.0, 10.0, 11.0])
     monkeypatch.setattr('improving.pipeline.time.monotonic', lambda: next(values))
@@ -76,7 +163,7 @@ def test_stage_resume_preserves_actual_prior_compute_time(tmp_path, monkeypatch)
     assert len(record['attempts']) == 2
 
 
-def test_tiny_real_round_prunes_superseded_checkpoint_and_resumes(tmp_path):
+def test_tiny_real_round_prunes_superseded_checkpoint_and_resumes(tmp_path, monkeypatch):
     model, tok = tiny_model_and_tokenizer()
     model_dir = tmp_path / 'tiny'
     model.save_pretrained(model_dir)
@@ -105,6 +192,24 @@ def test_tiny_real_round_prunes_superseded_checkpoint_and_resumes(tmp_path):
     before = completed.read_bytes()
     run_experiment(config, resume=True)
     assert completed.read_bytes() == before
+    manifest_path = tmp_path / 'run' / 'manifest.json'
+    manifest_bytes = manifest_path.read_bytes()
+    manifest = json.loads(manifest_bytes)
+    assert manifest['training_runtime']['dependencies'] == manifest['dependencies']
+    # A CPU run with verification disabled still binds its training runtime.
+    for changed_field in ('dependencies', 'torch_version', 'torch_cuda_version',
+                          'cudnn_version', 'python_executable_sha256'):
+        changed = copy.deepcopy(manifest['training_runtime'])
+        if changed_field == 'dependencies':
+            changed['dependencies']['numpy'] = 'changed'
+        else:
+            changed[changed_field] = 'changed'
+        with monkeypatch.context() as changed_runtime:
+            changed_runtime.setattr('improving.pipeline.training_runtime_identity', lambda: changed)
+            with pytest.raises(ValueError, match='runtime changed'):
+                run_experiment(config, resume=True)
+        assert manifest_path.read_bytes() == manifest_bytes
+        assert completed.read_bytes() == before
     assert result['status'] == 'completed'
     assert not (first / 'model').exists()
     first_state = json.loads((first / 'complete.json').read_text())
@@ -219,7 +324,7 @@ def test_diagnostic_budget_real_training_and_verification_preserve_final_budget(
     with monkeypatch.context() as changed_runtime:
         changed_runtime.setattr('improving.pipeline.execution_runtime_identity',
                                 lambda _: {'backend': 'local', 'python_version': 'changed'})
-        with pytest.raises(ValueError, match='Configuration, dataset or implementation changed'):
+        with pytest.raises(ValueError, match='Configuration, dataset, implementation or runtime changed'):
             run_experiment(config, resume=True)
     run_experiment(config, resume=True)
     assert len(calls) == 4

@@ -2,6 +2,21 @@
 
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
+## Local Codex: start here
+
+Current entry: [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md)
+· [2026-10-27 Web handoff](rounds/20261027-validation/WEB_HANDOFF.md)
+· [实验设计与最新证据（中文）](docs/VALIDATION_20261027_ZH.md)
+· [Download datasets and models](LOCAL_AGENT_RUNBOOK.md#download-datasets-and-models)
+· [Calibrate, debug, then dispatch](LOCAL_AGENT_RUNBOOK.md#calibrate-debug-then-dispatch).
+
+The current delivery is **generated_unexecuted**. Newer research-branch records
+include an author-protocol MBPP+ baseline correction and partial LCB generation;
+they do not yet contain a completed new SPECTRUM comparison. See the pinned
+[evidence inventory](rounds/20261027-validation/evidence.json). This update preserves
+historical results and the finite release matrix. Local acceptance of the new
+reporting/runtime changes and current host qualification remain pending.
+
 SPECTRUM studies what a model retains when it repeatedly learns from its own
 generated code. Each round estimates loss-sensitive key/value geometry using
 the same fixed reference anchor, temporarily modulates the generator, and trains
@@ -23,7 +38,7 @@ definition and adds a fixed validation matrix, controls, pinned assets and a
 complete result exporter. Historical results are developmental evidence; the
 new experiment cells remain unrun until the commands below are executed.
 
-**Start here:** [完整运行指南（中文）](docs/RUN_FINAL_ZH.md)
+**Release reference:** [原版运行指南（中文）](docs/RUN_FINAL_ZH.md)
 · [Experiment contract](docs/FINAL_EXPERIMENTS.md)
 · [Exact models and datasets](docs/DATA_MODELS.md)
 · [Research audit](docs/AUTORESEARCH_CHECK.md)
@@ -61,23 +76,14 @@ protocols are not official leaderboard reproductions.
 
 ## Quick start
 
-Python 3.10+, CUDA-capable BF16 GPU, and Docker are required for the documented
-training/evaluation path. The implementation retains the `improving` import/CLI
-name for compatibility.
-
-```bash
-git clone https://github.com/Yunbo-max/SPECTRUM.git
-cd SPECTRUM
-python -m pip install -e '.[train,analysis,evalplus]'
-docker pull python:3.11-slim
-docker build -f docker/EvalPlus.Dockerfile -t improving-evalplus:0.3.1 .
-
-python scripts/run_release_study.py init-seeds
-python scripts/prepare_final_data.py --seed-file runs/private/seeds.json
-python scripts/run_release_study.py plan --profile 48gb
-python scripts/run_release_study.py run --block core
-python scripts/run_release_study.py report
-```
+Follow the [ordered Local command cards](LOCAL_AGENT_RUNBOOK.md#calibrate-debug-then-dispatch).
+The current host route is native Conda. The earlier release guide documents a Docker
+path; it is retained as historical implementation reference, not the current host's
+launch instruction. Native isolation/scorer integration must be qualified before
+release execution. `--allow-unsafe-local` does not establish isolation.
+The SPECTRUM training path requires a compatible BF16 GPU; the research branch's
+FP16 author-checkpoint evaluation is a different protocol. The `improving` import/CLI
+name is retained for compatibility.
 
 The private randomization file is generated once, is ignored by Git, and must be
 kept with local run artifacts. Public report tables use `r1/r2/r3` labels.
@@ -86,16 +92,9 @@ full-grid execution.** Use `run --block all` only to request the entire fixed
 matrix. Other blocks are `scale`, `mechanism`, `token_matched`, `diagnostic`,
 `transfer`, and `decoder`; transfer/decoder require their source students.
 
-Run independent core jobs on separate GPUs:
-
-```bash
-CUDA_VISIBLE_DEVICES=0 python scripts/run_release_study.py run --job core-qwen1.5b-r1
-CUDA_VISIBLE_DEVICES=1 python scripts/run_release_study.py run --job core-qwen1.5b-r2
-CUDA_VISIBLE_DEVICES=2 python scripts/run_release_study.py run --job core-qwen1.5b-r3
-```
-
-Issue those commands in separate terminals or your scheduler. Never give two
-processes the same job; file locks reject that conflict. Repeating a command
+Schedule the independent core jobs on the actual allocated devices through the
+Local harness; three replicates do not imply three available GPUs. Never give two
+processes the same job; file locks reject that conflict. Repeating a compatible command
 resumes sealed work. An interrupted SFT stage restarts that stage, rather than
 restoring optimizer steps. Do not change code, data, hardware profile or configs
 inside an active plan; create a new run root for changed conditions.
@@ -134,6 +133,14 @@ selection. Three independent core replicates and one replicate per scale model
 must not be pooled as if all tasks or training runs were independent.
 
 ## Verification status of this code release
+
+For the 2026-10-27 amendment, source review and static syntax/JSON checks are
+separate from pending Local tests. Primary metrics now follow the manifest;
+paired task eligibility is explicit; new run fingerprints bind installed training
+dependencies and runtime identity. These changes do not retroactively certify old
+runs or provide bitwise reproducibility across arbitrary hosts.
+
+The following describes the original release preparation:
 
 Source review, Python/JSON parsing and CLI help checks were performed. Regression
 test sources were added. In accordance with the request for code without running

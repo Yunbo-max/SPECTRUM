@@ -21,40 +21,48 @@ def reporter():
     return module
 
 
-def synthetic_stage(module, *, method="plain", replicate="r1", model="qwen1.5b", block="core", job="job-001"):
+def synthetic_stage(module, *, method="plain", replicate="r1", model="qwen1.5b", block="core", job="job-001",
+                    counts=(("a", 16), ("b", 8), ("c", 4))):
     from improving.metrics import summarize_records
+    tasks = [task for task, _ in counts]
     records = [{"task_id": task, "sample_id": sample, "correct": sample < count,
                 "code": f"def solve():\n return {sample % 4}",
                 "evaluation_provenance": {"backend": "docker", "protocol_version": "task-tests-v2",
                                           "code_extraction": "first_fence"}}
-               for task, count in (("a", 16), ("b", 8), ("c", 4)) for sample in range(64)]
+               for task, count in counts for sample in range(64)]
     summary = summarize_records(records, ks=(1, 8, 16, 32, 64), correct_budget=4,
                                 correct_budgets=(4, 8, 16), bootstrap_samples=0,
-                                expected_samples={task: 64 for task in ("a", "b", "c")})
-    summary["protocol"]["evaluation_task_harnesses"] = {task: "harness" for task in ("a", "b", "c")}
+                                expected_samples={task: 64 for task in tasks})
+    summary["protocol"]["evaluation_task_harnesses"] = {task: "harness" for task in tasks}
     return {"job_id": job, "block": block, "model_key": model, "replicate_id": replicate,
             "dataset": "mbpp", "method": method, "round": 5, "stage": "evaluation",
-            "samples_per_task": 64, "planned_tasks": 3, "status": "available", "reason": "",
+            "samples_per_task": 64, "planned_tasks": len(tasks), "status": "available", "reason": "",
             "summary": summary, "_seed": 987654321,
             "_budget": {"protocol": {"settings": {"samples": 64, "temperature": 0.8}, "seed": 987654321,
-                                      "format": "chat"}}, "_prompts": {task: "f" * 64 for task in ("a", "b", "c")}}
+                                      "format": "chat"}}, "_prompts": {task: "f" * 64 for task in tasks}}
 
 
 def test_paired_D_uses_common_cohort_not_marginal_difference():
     module = reporter()
-    reference = synthetic_stage(module)
+    reference = synthetic_stage(module, counts=(("a", 16), ("b", 8), ("c", 4), ("d", 0)))
     candidate = copy.deepcopy(reference)
     candidate["method"] = "spectral_soft"
     # Different correct-count eligibility makes the marginal difference wrong.
-    for stage, values in ((reference, {"a": 1.0, "b": 2.0, "c": None}),
-                          (candidate, {"a": 3.0, "b": None, "c": 8.0})):
+    for stage, values in ((reference, {"a": 1.0, "b": 2.0, "c": None, "d": None}),
+                          (candidate, {"a": 3.0, "b": None, "c": 8.0, "d": None})):
         for task, value in values.items():
             stage["summary"]["per_task"][task]["implementation_proxy"]["correct_matched_coverage_at_budgets"]["8"] = value
-    row = next(row for row in module._pair(reference, candidate, "same_round_method", bootstraps=100) if row["metric"] == "D8")
+    rows = module._pair(reference, candidate, "same_round_method", bootstraps=100)
+    row = next(row for row in rows if row["metric"] == "D8")
     assert row["mean"] == row["ci95_low"] == row["ci95_high"] == 2.0
     assert row["eligible_task_ids"] == ["a"]
-    assert row["eligible_tasks"] == 1 and row["total_tasks"] == 3
+    assert row["eligible_tasks"] == 1 and row["total_tasks"] == 4
     assert row["reference_eligible_tasks"] == row["candidate_eligible_tasks"] == 2
+    cohorts = ("common_eligible_tasks", "reference_only_eligible_tasks", "candidate_only_eligible_tasks", "neither_eligible_tasks")
+    assert [row[key] for key in cohorts] == [1, 1, 1, 1]
+    assert all(sum(item[key] for key in cohorts) == item["total_tasks"] for item in rows)
+    unconditional = next(item for item in rows if item["metric"] == "C64")
+    assert [unconditional[key] for key in cohorts] == [4, 0, 0, 0]
 
 
 def test_paired_effect_retains_negative_and_never_sets_success():
@@ -68,9 +76,29 @@ def test_paired_effect_retains_negative_and_never_sets_success():
     observed = next(row for row in rows if row["metric"] == "pass@1")
     assert observed["mean"] == pytest.approx(-0.05)
     assert observed["ci95_high"] < 0
-    primary = module._primary(rows)
+    primary = module._primary(rows, {"protocol": {"primary_metrics": ["pass@1", "pass@64", "C64", "D4"]}})
     assert all(row["decision"] == "not_thresholded" for row in primary)
     assert all("success" not in row for row in primary)
+
+
+def test_primary_selection_uses_manifest_and_preserves_secondary_and_pending_rows():
+    module = reporter()
+    rows = [{"block": "core", "round": 5, "kind": "same_round_method", "candidate": "spectral_soft",
+             "reference": reference, "metric": metric, "status": "pending", "mean": None}
+            for reference in ("plain", "ssd") for metric in module._metric_names()]
+    original = copy.deepcopy(rows)
+    # A subset different from today's fixed plan prevents a hard-coded fallback.
+    manifest = {"protocol": {"primary_metrics": ["C64", "D4"]}}
+    primary = module._primary(rows, manifest)
+    assert len(primary) == 2 * 2
+    assert {row["metric"] for row in primary} == {"C64", "D4"}
+    assert {row["reference"] for row in primary} == {"plain", "ssd"}
+    assert all(row["status"] == "pending" and row["mean"] is None for row in primary)
+    assert rows == original  # Secondary outcomes remain in the full paired export.
+    for metrics in (None, [], ["C64", "C64"], ["unknown"]):
+        old_or_invalid = {"protocol": {}} if metrics is None else {"protocol": {"primary_metrics": metrics}}
+        with pytest.raises(ValueError, match="protocol.primary_metrics"):
+            module._primary(rows, old_or_invalid)
 
 
 def test_retention_covers_C64_and_all_correct_budgets_on_own_base():
@@ -121,7 +149,8 @@ def test_missing_plan_retains_every_round_primary_arm_and_redacts_private_seeds(
              "output_dir": str(tmp_path / "runs" / f"private-seed-{987654321 + index}"),
              "methods": ["plain", "ssd", "spectral_soft"], "rounds": 5, "samples_per_task": 64, "task_count": 500}
             for index in range(3)]
-    manifest = {"jobs": jobs, "run_root": str(tmp_path / "runs"), "protocol": {"seed": 987654321}}
+    manifest = {"jobs": jobs, "run_root": str(tmp_path / "runs"),
+                "protocol": {"seed": 987654321, "primary_metrics": ["pass@1", "pass@64", "C64", "D4"]}}
     manifest_path = tmp_path / "private-manifest.json"
     manifest_path.write_text(json.dumps(manifest))
     runner = types.ModuleType("run_release_study")
@@ -136,8 +165,11 @@ def test_missing_plan_retains_every_round_primary_arm_and_redacts_private_seeds(
     assert len(report["endpoints"]) == 3 * 4
     assert len(report["trajectories"]) == 3 * 16 * 9
     assert len(report["retention"]) == 3 * 16 * 4
-    assert len(report["primary_comparisons"]) == 3 * 2 * 9
+    assert len(report["primary_comparisons"]) == 3 * 2 * 4
+    assert report["primary_metrics"] == ["pass@1", "pass@64", "C64", "D4"]
+    assert {row["metric"] for row in report["primary_comparisons"]} == set(report["primary_metrics"])
     assert {row["reference"] for row in report["primary_comparisons"]} == {"plain", "ssd"}
+    assert {row["metric"] for row in report["paired_differences"]} == set(module._metric_names())
     assert all(row["mean"] is None for row in report["trajectories"])
     assert all(row["replicate_count"] == 0 and row["planned_replicate_count"] == 3 for row in report["replicate_summary"])
     for path in output.iterdir():

@@ -309,14 +309,20 @@ def _pair(reference, candidate, kind, *, bootstraps=BOOTSTRAPS, aligned=False, s
         row = {**common, "metric": metric, "status": status, "reason": reason, **_empty(candidate)}
         if status == "available":
             left, right = _values(reference["summary"], metric), _values(candidate["summary"], metric)
+            reference_eligible = {task for task, value in left.items() if value is not None}
+            candidate_eligible = {task for task, value in right.items() if value is not None}
             # Bootstrap the paired common-eligible tasks directly. In particular,
             # never subtract marginal D means with different eligible cohorts.
             differences = {task: right[task] - left[task] for task in left
                            if left[task] is not None and right.get(task) is not None}
             row.update(_flat(_estimate(differences, candidate["_seed"], bootstraps)))
             row["total_tasks"] = candidate["planned_tasks"]
-            row["reference_eligible_tasks"] = sum(value is not None for value in left.values())
-            row["candidate_eligible_tasks"] = sum(value is not None for value in right.values())
+            row["reference_eligible_tasks"] = len(reference_eligible)
+            row["candidate_eligible_tasks"] = len(candidate_eligible)
+            row["common_eligible_tasks"] = len(reference_eligible & candidate_eligible)
+            row["reference_only_eligible_tasks"] = len(reference_eligible - candidate_eligible)
+            row["candidate_only_eligible_tasks"] = len(candidate_eligible - reference_eligible)
+            row["neither_eligible_tasks"] = len(set(left) - (reference_eligible | candidate_eligible))
             row["reference_common_mean"] = statistics.mean(left[task] for task in differences) if differences else None
             row["candidate_common_mean"] = statistics.mean(right[task] for task in differences) if differences else None
             if not differences:
@@ -502,11 +508,23 @@ def _auxiliary(stage, job):
     return resources, operators
 
 
-def _primary(pairs):
+def _primary_metrics(manifest):
+    protocol = manifest.get("protocol")
+    metrics = protocol.get("primary_metrics") if isinstance(protocol, dict) else None
+    if (not isinstance(metrics, list) or not metrics or
+            any(not isinstance(metric, str) or metric not in _metric_names() for metric in metrics) or
+            len(set(metrics)) != len(metrics)):
+        raise ValueError("Missing or invalid protocol.primary_metrics; primary endpoints must be declared in the manifest")
+    return list(metrics)
+
+
+def _primary(pairs, manifest):
+    metrics = _primary_metrics(manifest)
     return [{**row, "prospective": True, "endpoint": "round_5_native_student", "decision": "not_thresholded",
              "decision_reason": "No numerical success threshold or multiplicity-adjusted decision rule is registered"}
             for row in pairs if row["block"] == "core" and row["round"] == 5 and
-            row["kind"] == "same_round_method" and row["candidate"] == "spectral_soft" and row["reference"] in {"plain", "ssd"}]
+            row["kind"] == "same_round_method" and row["candidate"] == "spectral_soft" and
+            row["reference"] in {"plain", "ssd"} and row["metric"] in metrics]
 
 
 def _markdown(report):
@@ -516,6 +534,8 @@ def _markdown(report):
              "The prospective primary comparisons are round-5 native SPECTRUM versus Vanilla and versus SSD, separately, "
              "on the three-replicate core model. No automatic PASS threshold is defined. Scale models, mechanisms, "
              "token-matched training, diagnostics, and transfers remain separate experimental blocks.", "",
+             "The manifest-declared primary metrics are " + ", ".join(report["primary_metrics"]) +
+             ". Other metrics remain in the full paired and trajectory exports as secondary outcomes.", "",
              "C64 is correct Python AST richness at 64 total draws. D4/D8/D16 are correct-conditioned AST richness. "
              "These are implementation proxies, not algorithm identities. Paired effects use the same eligible tasks in both arms, "
              "with that cohort explicitly exported. Retention is a ratio of task-macro richness versus the same replicate's initial model, "
@@ -552,6 +572,7 @@ def build_report(manifest_path, output_dir=None, *, bootstrap_samples=BOOTSTRAPS
         raise ValueError("Bootstrap samples must be a nonnegative integer")
     manifest_path = Path(manifest_path).resolve()
     manifest = load_manifest(manifest_path, verify_inputs=False)
+    primary_metrics = _primary_metrics(manifest)
     jobs = _validate_jobs(manifest)
     output = _path(output_dir) if output_dir else _path(manifest.get("run_root") or manifest_path.parent) / "release_report"
     if any(output.is_relative_to(_path(job["output_dir"])) or _path(job["output_dir"]).is_relative_to(output) for job in jobs):
@@ -636,11 +657,12 @@ def build_report(manifest_path, output_dir=None, *, bootstrap_samples=BOOTSTRAPS
                        row["kind"] in {"same_round_method", "initial_model"}]
     report = {"schema_version": 1, "study": "SPECTRUM fixed release study", "manifest_sha256": _sha(manifest_path),
               "status": "completed" if all(row["status"] == "completed" for row in statuses) else "incomplete",
+              "primary_metrics": primary_metrics,
               "primary_decision": "not_thresholded", "bootstrap": {"samples": bootstrap_samples, "confidence": 0.95,
                   "unit": "tasks; common eligible paired tasks for differences", "multiplicity": "pointwise, not adjusted",
                   "training_replicate_uncertainty": False}, "jobs": statuses,
               "endpoints": endpoints, "trajectories": trajectories, "retention": retention,
-              "paired_differences": pairs, "primary_comparisons": _primary(pairs),
+              "paired_differences": pairs, "primary_comparisons": _primary(pairs, manifest),
               "replicate_summary": _replicate_rows(trajectories, pairs, stages, retention), "ablations": ablations,
               "decoder_effects": decoder_effects,
               "teacher_student": teacher_student, "errors": errors, "resources": resources, "operators": operators,

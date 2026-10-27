@@ -1,3 +1,12 @@
+# 当前入口提示（2026-10-27）
+
+当前执行入口为 [LOCAL_AGENT_RUNBOOK.md](../LOCAL_AGENT_RUNBOOK.md) 与
+[实验补充设计](VALIDATION_20261027_ZH.md)。本文保留原版release的操作记录；
+其中Docker和直接启动示例不是当前native Conda主机的准入指令。
+先核对现存进程、资产、环境、原生隔离与评分器，再使用冻结的新计划。
+
+---
+
 # SPECTRUM 最终实验运行指南
 
 这版只保留一个正式入口：`scripts/run_release_study.py`。历史代码保留以便

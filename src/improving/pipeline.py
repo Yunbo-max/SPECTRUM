@@ -48,15 +48,31 @@ def checkpoint_fingerprint(path):
     return stable_hash({p.name: file_sha(p) for p in sorted(assets)})
 
 
-def execution_runtime_identity(evaluation):
-    """Runtime identity needed to fail closed when unsafe local execution resumes."""
-    backend = evaluation.get('backend', 'docker')
-    if backend != 'local':
-        return {'backend': backend}
+def _interpreter_identity():
     executable = Path(sys.executable).resolve()
-    return {'backend': 'local', 'python_version': sys.version,
+    return {'python_version': sys.version,
+            'python_implementation': platform.python_implementation(),
             'python_executable': str(executable),
             'python_executable_sha256': file_sha(executable)}
+
+
+def training_runtime_identity():
+    """Bind actual installed training dependencies, including CPU-only runs."""
+    return {**_interpreter_identity(), 'schema_version': 1,
+            'torch_version': str(torch.__version__),
+            'torch_cuda_version': torch.version.cuda,
+            'torch_hip_version': torch.version.hip,
+            'cuda_available': torch.cuda.is_available(),
+            'cudnn_version': torch.backends.cudnn.version(),
+            'dependencies': {name: importlib.metadata.version(name) for name in
+                             ('torch', 'transformers', 'peft', 'accelerate', 'datasets',
+                              'numpy', 'safetensors', 'tokenizers', 'huggingface-hub', 'PyYAML')}}
+
+
+def execution_runtime_identity(evaluation):
+    """Local interpreter identity; Docker content is resolved by run preflight."""
+    backend = evaluation.get('backend', 'docker')
+    return {'backend': backend, **(_interpreter_identity() if backend == 'local' else {})}
 
 
 @contextmanager
@@ -476,13 +492,19 @@ def _validate_base_outputs(done, path, tasks, evaluation, expected_samples, seed
 
 def _preflight_verification(settings):
     if settings.get('backend', 'docker') != 'docker':
-        return
+        return {}
     if not shutil.which('docker'):
         raise RuntimeError('Docker is required for verification; install it or set backend: none and verify externally')
-    result = subprocess.run(['docker', 'image', 'inspect', settings.get('docker_image', 'python:3.11-slim')],
+    image = settings.get('docker_image', 'python:3.11-slim')
+    result = subprocess.run(['docker', 'image', 'inspect', '--format', '{{.Id}}', image],
                             capture_output=True, text=True, timeout=20)
     if result.returncode:
-        raise RuntimeError('Docker image unavailable. Run docker pull python:3.11-slim before the experiment')
+        raise RuntimeError(f'Docker image unavailable: {image}; prepare it before the experiment')
+    image_id = result.stdout.strip()
+    if (not image_id.startswith('sha256:') or len(image_id) != 71 or
+            any(c not in '0123456789abcdef' for c in image_id[7:])):
+        raise RuntimeError('Docker inspection did not return an immutable image content ID')
+    return {'docker_image': image, 'docker_image_id': image_id}
 
 
 def run_experiment(config, *, resume=False):
@@ -500,15 +522,21 @@ def run_experiment(config, *, resume=False):
         random.Random(config.get('data_seed', 42)).shuffle(ordered)
         splits[name] = ordered[:count]
     diagnostic_tasks, diagnostic_samples, diagnostic_evaluation = _diagnostic_protocol(config, splits['eval'])
-    evaluation = config.get('evaluation', {})
-    _preflight_verification(evaluation)
-    runtime_identity = execution_runtime_identity(evaluation)
+    evaluation = dict(config.get('evaluation', {}))
+    runtime_identity = {**execution_runtime_identity(evaluation),
+                        **_preflight_verification(evaluation)}
+    training_runtime = training_runtime_identity()
+    if runtime_identity.get('docker_image_id'):
+        # Execute the inspected content, even if its mutable tag moves mid-run.
+        evaluation['docker_image'] = runtime_identity['docker_image_id']
+        diagnostic_evaluation['docker_image'] = runtime_identity['docker_image_id']
     root = Path(config['output_dir'])
     source_hashes = {p.name: file_sha(p) for p in Path(__file__).parent.glob('*.py')}
     fingerprint = stable_hash({'config': config,
                                'data': {k: file_sha(p) for k, p in config['data'].items()},
                                'implementation': source_hashes,
-                               'evaluation_runtime': runtime_identity})
+                               'evaluation_runtime': runtime_identity,
+                               'training_runtime': training_runtime})
     manifest_path = root / 'manifest.json'
     local_base = Path(config['model']['name'])
     local_base_fingerprint = checkpoint_fingerprint(local_base) if local_base.is_dir() else None
@@ -517,16 +545,16 @@ def run_experiment(config, *, resume=False):
         if not resume:
             raise FileExistsError('Experiment exists; use --resume or a new output_dir')
         if json.loads(manifest_path.read_text())['fingerprint'] != fingerprint:
-            raise ValueError('Configuration, dataset or implementation changed; use a new output_dir')
+            raise ValueError('Configuration, dataset, implementation or runtime changed; use a new output_dir')
     else:
         if root.exists() and any(root.iterdir()):
             raise ValueError('Existing experiment directory has no manifest')
         atomic_json(manifest_path, {'fingerprint': fingerprint, 'config': config,
                     'implementation_hashes': source_hashes, 'python': platform.python_version(),
-                    'torch': torch.__version__, 'status': 'initialized',
+                    'torch': training_runtime['torch_version'], 'status': 'initialized',
                     'evaluation_runtime': runtime_identity,
-                    'dependencies': {p: importlib.metadata.version(p) for p in
-                                     ('transformers', 'peft', 'accelerate', 'datasets', 'numpy')},
+                    'training_runtime': training_runtime,
+                    'dependencies': training_runtime['dependencies'],
                     'selected_task_ids': {k: [t['task_id'] for t in rows] for k, rows in splits.items()},
                     'generation_diagnostic_task_ids': [t['task_id'] for t in diagnostic_tasks],
                     'generation_diagnostic_samples': diagnostic_samples,

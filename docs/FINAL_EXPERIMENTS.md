@@ -1,5 +1,10 @@
 # Final experimental contract
 
+Current execution/interpretation supplement:
+[2026-10-27 validation design](VALIDATION_20261027_ZH.md) and
+[Local runbook](../LOCAL_AGENT_RUNBOOK.md). The matrix below remains unchanged;
+newer author-protocol evidence is kept separate from prospective release results.
+
 Status: implemented experiment plan; execution and scientific conclusions pending.
 Planning seals the current source, prepared snapshots, asset revisions, private
 randomization and commands. Historical results stay separate from these runs.

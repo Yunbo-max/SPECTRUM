@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "round": "20261027-validation",
+  "status": "source_reviewed_generated_unexecuted",
+  "audited_main": "5b8c3f93d1c0122006d8c1c9c42379bb31f2f694",
+  "audited_research_branch": "923e84ca9b92d111535ae245e137601b8856bbf8",
+  "scope": "evidence audit, experimental design, bounded reporting/runtime source repairs; no experiment execution",
+  "sources": [
+    {
+      "id": "native_mbpp_baseline",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/upstream-evaluation-20261018/report.md",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/upstream-evaluation-20261018/report.md",
+      "sha256": "9b1a005d8a655a1bc1c4175c735402dd184b72d544cbbb11024293dfc70c46de",
+      "status": "completed_baseline_and_protocol_diagnostic"
+    },
+    {
+      "id": "mbpp_protocol_compatibility",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/upstream-evaluation-20261018/protocol-compatibility.json",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/upstream-evaluation-20261018/protocol-compatibility.json",
+      "sha256": "64e299a47c39e8cc4160ab0e48ab8d77d09089d885fd3d2994e5a6cf6c565382",
+      "status": "different_from_historical_500_protocol"
+    },
+    {
+      "id": "author_lcb_design",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/ssd-author-comparison-20261019/research-decision.md",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/ssd-author-comparison-20261019/research-decision.md",
+      "sha256": "f1144b0de0fab21d29861855f660d44fe30fdddfb683a1cf43abbcb4d760df9a",
+      "status": "four_condition_design_partial_generation"
+    },
+    {
+      "id": "author_lcb_progress",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/ssd-author-comparison-20261019/progress-observation.json",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/ssd-author-comparison-20261019/progress-observation.json",
+      "sha256": "a1e7608e4defc69802d386f803332f5234bb7dd79f991e35f198c3da953c66a5",
+      "status": "partial_generation_no_persisted_scores"
+    },
+    {
+      "id": "author_lcb_statistics",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/ssd-author-comparison-20261019/finite-sample-interpretation.md",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/ssd-author-comparison-20261019/finite-sample-interpretation.md",
+      "sha256": "4a7efed4dc696cccf6cd6ef6ba5ad9a6497bbc672bd60edd1c783d371184b3b1",
+      "status": "interpretation_constraints"
+    },
+    {
+      "id": "author_lcb_native_semantics",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/ssd-author-comparison-20261019/native-failure-semantics.md",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/ssd-author-comparison-20261019/native-failure-semantics.md",
+      "sha256": "39f202607554d8a85e24358bf878c675c1f162e47c63bdeeca2087a308b563e2",
+      "status": "source_and_software_qualification"
+    },
+    {
+      "id": "author_lcb_sources",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/ssd-author-comparison-20261019/source-manifest.json",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/ssd-author-comparison-20261019/source-manifest.json",
+      "sha256": "a8bbf22c566a0733f07a63cb9c00ca98630e0cd65f7c20740c2e235c22e3888c",
+      "status": "pinned_author_source_bytes"
+    },
+    {
+      "id": "author_models",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/upstream-evaluation-20261018/author-pair-file-manifest.json",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/upstream-evaluation-20261018/author-pair-file-manifest.json",
+      "sha256": "6e60efc75ad2bd36cd56e3317d0b63bca22f6ac2e443b140f94ae93c478b2c46",
+      "status": "historical_per_file_revisions_and_hashes"
+    },
+    {
+      "id": "base_assets",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/sh02-migration-20261020/base-assets-verified.json",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/sh02-migration-20261020/base-assets-verified.json",
+      "sha256": "75e321fc70c008855f5c2ba7793c2d45abdb61dead748de967361761f7c1d544",
+      "status": "historical_asset_verification"
+    },
+    {
+      "id": "ssd_assets",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/sh02-migration-20261020/ssd-assets-verified.json",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/sh02-migration-20261020/ssd-assets-verified.json",
+      "sha256": "15f98170f5e7b724916e9f4b7b8b2fe82d378e3df2ded5b117b3e176df6663ec",
+      "status": "historical_asset_verification"
+    },
+    {
+      "id": "training_recipe_limits",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/ssd-author-comparison-20261019/training-source-audit/review.md",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/ssd-author-comparison-20261019/training-source-audit/review.md",
+      "sha256": "ad8856d2b92623915a76e5e786b2795daf26b7777d6e965e3774a56cbb280d43",
+      "status": "not_full_training_reproduction"
+    },
+    {
+      "id": "remote_access",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/sh02-migration-20261020/remote-auth-recheck-20261027.json",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/sh02-migration-20261020/remote-auth-recheck-20261027.json",
+      "sha256": "89a15c07bbd5e4d84b0e22056f564819a679adf8f43ae61a76a5e01f07893d90",
+      "status": "authentication_failed_no_remote_command"
+    },
+    {
+      "id": "watcher_entry",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/sh02-migration-20261020/start_preparation.py",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/sh02-migration-20261020/start_preparation.py",
+      "sha256": "af0a511485a0027df82044bc14a20a4e30bcf042730891f79848cecb0fd1a26e",
+      "status": "may_start_future_formal_inference"
+    },
+    {
+      "id": "preparation_entry",
+      "repository": "Yunbo-max/SPECTRUM",
+      "commit": "923e84ca9b92d111535ae245e137601b8856bbf8",
+      "path": "research/round2-harness-20261017/sh02-migration-20261020/bootstrap_and_base.py",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/blob/923e84ca9b92d111535ae245e137601b8856bbf8/research/round2-harness-20261017/sh02-migration-20261020/bootstrap_and_base.py",
+      "sha256": "b74f90cffb33035660a37922ffbc5819fccb38d710259fad0807c8dbf564801f",
+      "status": "source_review_required_before_admission"
+    }
+  ],
+  "protocol_families": [
+    {
+      "id": "historical-mbpp500-n64",
+      "tasks": 500,
+      "samples_per_task": 64,
+      "training_repeats": "single historical trajectory",
+      "role": "exploratory evidence"
+    },
+    {
+      "id": "author-mbppplus378-greedy",
+      "tasks": 378,
+      "samples_per_task": 1,
+      "role": "completed base-model protocol diagnostic; no self-distillation effect"
+    },
+    {
+      "id": "author-lcb131-10",
+      "tasks": 131,
+      "samples_per_task": 10,
+      "conditions": 4,
+      "fresh_candidates": 5240,
+      "role": "released checkpoint baseline/decoder qualification",
+      "layers": [
+        {
+          "host_record": "hn01",
+          "dtype": "bfloat16",
+          "max_new_tokens": 65536,
+          "max_model_len": 67072,
+          "status": "partial persisted generation; current process unknown"
+        },
+        {
+          "host_record": "sh02",
+          "dtype": "float16",
+          "max_new_tokens": 16384,
+          "max_model_len": 17920,
+          "status": "preparation records; current access/GPU/process unknown"
+        }
+      ]
+    },
+    {
+      "id": "spectrum_release_v1",
+      "jobs": 40,
+      "training_jobs": 13,
+      "transfer_jobs": 24,
+      "decoder_jobs": 3,
+      "training_arm_rounds": 134,
+      "fresh_candidates": 7106080,
+      "role": "prospective finite study; retain full coverage"
+    }
+  ],
+  "author_lcb_identity": {
+    "upstream_repo": "apple-aiml-research/ml-ssd",
+    "source_revision": "2637d2021f1bc523385b48a1f88ea9aa4812b0a9",
+    "dataset_repo": "livecodebench/code_generation_lite",
+    "dataset_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+    "test6_sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5",
+    "ordered_decoded_examples_sha256": "d95cab6feef0bea860315bb3a2273641351da96cd43b657ac981f4e51053a73a",
+    "native_test_count": 4852,
+    "model_identity": "retain historical per-file revision/hash manifests; do not retrofit current HF heads"
+  },
+  "local_acceptance_pending": [
+    "current host allocation/access/process reconciliation",
+    "targeted code tests",
+    "native isolation and scorer qualification",
+    "pinned complete model/data inputs",
+    "new runtime-bound scientific plan",
+    "complete native results and raw-output replay"
+  ],
+  "scientific_results_modified": false,
+  "new_scientific_results": false,
+  "native_replay_pass_claimed": false
+}

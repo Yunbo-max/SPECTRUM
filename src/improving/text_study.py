@@ -9,6 +9,7 @@ import importlib.metadata
 import json
 from pathlib import Path
 import shutil
+import sys
 
 from .data import read_jsonl, write_jsonl
 from .text_tasks import (file_sha, private_seed, score_text_records,
@@ -76,14 +77,21 @@ def _source_identity():
 
 def _binding(config, data_manifest, seed):
     from .pipeline import training_runtime_identity
-    from .native_sandbox import runtime_identity
+    scoring_runtime = {'backend': 'pure_string_matching'}
+    if config['domain'] == 'math':
+        sandbox = config.get('math_sandbox', {})
+        if sandbox.get('backend') == 'local':
+            scoring_runtime = {'backend': 'local_subprocess', 'python': sys.version}
+        else:
+            from .native_sandbox import runtime_identity
+            scoring_runtime = runtime_identity()
     return {'schema': 1, 'config': config, 'data_manifest': data_manifest,
             'seed_sha256': stable_hash(seed), 'source_files': _source_identity(),
             'runtime': training_runtime_identity(),
             'scorer_dependencies': {name: importlib.metadata.version(name)
                                     for name in ('sympy', 'pylatexenc')}
             if config['domain'] == 'math' else {},
-            'scoring_runtime': runtime_identity() if config['domain'] == 'math' else {'backend': 'pure_string_matching'}}
+            'scoring_runtime': scoring_runtime}
 
 
 def _manifest(path, value, resume):

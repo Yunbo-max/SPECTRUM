@@ -105,11 +105,15 @@ def _manifest(path, value, resume):
 
 
 def _base_identity(config):
-    """Require an existing exact HF snapshot and bind its actual complete weights."""
-    from huggingface_hub import snapshot_download
+    """Require an existing exact model snapshot and bind its actual complete weights."""
     from .pipeline import checkpoint_fingerprint
-    snapshot = Path(snapshot_download(repo_id=config['model']['name'],
-                                     revision=config['model']['revision'], local_files_only=True))
+    name = config['model']['name']
+    if Path(name).is_dir():
+        snapshot = Path(name).resolve()
+    else:
+        from huggingface_hub import snapshot_download
+        snapshot = Path(snapshot_download(repo_id=name,
+                                          revision=config['model']['revision'], local_files_only=True))
     indices = list(snapshot.glob('*.safetensors.index.json'))
     if not indices:
         raise ValueError('Expected complete sharded official model snapshot')

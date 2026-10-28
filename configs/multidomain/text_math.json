@@ -2,7 +2,7 @@
   "protocol": "spectrum-crossdomain-math-v1",
   "domain": "math",
   "model": {
-    "name": "/inspire/hdd/global_public/public_models/Qwen/Qwen2.5-Math-7B-Instruct",
+    "name": "/inspire/hdd/global_public/public_models/Qwen/Qwen2.5-7B-Instruct",
     "loader": "causal_lm",
     "dtype": "bfloat16",
     "device": "cuda",
@@ -16,7 +16,7 @@
     "validation_size": 64
   },
   "seed_file": "runs/private/multidomain_seed.json",
-  "output_dir": "runs/multidomain/math-qwen25-7b",
+  "output_dir": "runs/multidomain/math-qwen25-7b-instruct",
   "rounds": 5,
   "checkpoint_retention": "latest",
   "synthesis": {

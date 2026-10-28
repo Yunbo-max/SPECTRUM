@@ -15,7 +15,7 @@
   },
   "chat_template_kwargs": {"enable_thinking": false},
   "games": {"train": ["ls20"], "calibration": ["ft09"], "eval": ["vc33"]},
-  "history_steps": 3,
+  "history_steps": 1,
   "rounds": 5,
   "methods": ["plain", "ssd", "spectral_soft"],
   "checkpoint_retention": "latest",

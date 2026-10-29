@@ -31,13 +31,13 @@
     "max_new_tokens": 256, "max_prompt_tokens": 32000,
     "batch_size": 1, "task_batch_size": 1, "sequence_batch_size": 1
   },
-  "calibration": {"layers": [31, 63], "max_examples": 32, "span_mode": "completion", "max_length": 32768},
+  "calibration": {"layers": [31, 63], "max_examples": 32, "span_mode": "completion", "max_length": 16384},
   "spectral": {"tau": 1.0},
   "train": {
     "loss_scope": "completion", "epochs": 1, "batch_size": 1,
     "gradient_accumulation_steps": 16, "learning_rate": 0.00001,
     "lora_rank": 8, "lora_alpha": 8, "lora_dropout": 0.05,
-    "gradient_checkpointing": true, "max_length": 32768,
+    "gradient_checkpointing": true, "max_length": 16384,
     "weight_decay": 0.01, "warmup_ratio": 0.03, "max_grad_norm": 1.0
   }
 }

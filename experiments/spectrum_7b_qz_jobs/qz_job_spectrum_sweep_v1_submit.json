@@ -1,0 +1,57 @@
+{
+  "ResponseMetadata": {
+    "Action": "CreateJob",
+    "Service": "train"
+  },
+  "Result": {
+    "auto_fault_tolerance": false,
+    "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz \u0026\u0026 bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_sweep_v1.sh \u003e /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectrum_7b_sweep_v1.log 2\u003e\u00261",
+    "dataset_info": [],
+    "description": "SPECTRUM operator sweep on Qwen2.5-Coder-7B-Instruct, 1 round, MBPP full eval (500 tasks x16). Three arms share one base eval: spectral_soft(tau=3), spd_hard(rank=256), residual_blend(rho=0.5). Zero-cost preview showed nonscalar_fraction 0.046-\u003e0.132/0.707/0.316 vs the tau=1 baseline, i.e. directional component rises from 4.6% to 13-71%. Not a final result; mechanism-activation scan.",
+    "enable_notification": false,
+    "enable_slow_detect": false,
+    "enable_troubleshoot": false,
+    "enable_vccl": false,
+    "envs": [],
+    "exclude_nodes": [],
+    "framework": "pytorch",
+    "framework_config": [
+      {
+        "cpu": 20,
+        "gpu_count": 1,
+        "image": "docker.sii.shaipower.online/inspire-studio/relay2:v2",
+        "image_type": "SOURCE_PRIVATE",
+        "instance_count": 1,
+        "mem_gi": 200,
+        "replicas_type": "REPLICA_TYPE_UNKNOWN",
+        "resource_spec_price": {
+          "cpu_count": 20,
+          "cpu_type": "",
+          "gpu_count": 1,
+          "gpu_type": "NVIDIA_H100_SXM_80G",
+          "logic_compute_group_id": "lcg-71b971a7-5bdd-4798-b5ba-08f1eabde49e",
+          "memory_size_gib": 200,
+          "quota_id": "79fe954a-be92-4772-ac0b-94ad8a79b7bb"
+        },
+        "shm_gi": 100
+      }
+    ],
+    "gpu_count": 0,
+    "is_change_priority": false,
+    "job_id": "job-26d13bb6-9562-4d8f-abb1-788289517fc0",
+    "logic_compute_group_id": "lcg-71b971a7-5bdd-4798-b5ba-08f1eabde49e",
+    "max_running_time_ms": "43200000",
+    "mounts": [],
+    "name": "spectrum-7b-sweep-v1",
+    "node_infos": [],
+    "pre_check_items": [],
+    "priority": 20,
+    "project_en_name": "aisystem-and-infra",
+    "project_id": "project-160ccb20-98ab-4538-a847-01d1f83d5b0f",
+    "queue_id": "",
+    "runtime_attributes": [],
+    "specified_nodes": [],
+    "task_priority": 4,
+    "workspace_id": "ws-9dcc0e1f-80a4-4af2-bc2f-0e352e7b17e6"
+  }
+}

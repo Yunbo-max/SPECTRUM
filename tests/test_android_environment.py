@@ -1,12 +1,14 @@
 """Contract tests use explicit fake native components; no emulator scores claimed."""
 from contextlib import contextmanager
 import dataclasses
+import hashlib
+import io
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import numpy as np
 
@@ -146,6 +148,71 @@ class ManifestTests(unittest.TestCase):
         with TemporaryDirectory() as directory, fake_native(Env(), {"FixedTask": FixedTask}):
             with self.assertRaisesRegex(ValueError, "disjoint"):
                 mod.prepare_manifest("unused", Path(directory)/"manifest.json", cfg)
+
+
+class SetupTests(unittest.TestCase):
+    settings = {"emulator_setup": True, "adb_path": "/sdk/platform-tools/adb",
+                "console_port": 5556, "adb_server_port": 5038}
+
+    def test_fresh_setup_installs_forwarder_before_native_launcher(self):
+        apk = b"test apk bytes"
+        calls = []
+
+        def run(command, **kwargs):
+            calls.append(command)
+            self.assertEqual(command[:5], ["/sdk/platform-tools/adb", "-P", "5038", "-s", "emulator-5556"])
+            self.assertTrue(kwargs["check"])
+            if command[5:] == ["get-state"]:
+                return SimpleNamespace(stdout="device\n")
+            if command[5:7] == ["install", "-r"]:
+                self.assertEqual(Path(command[-1]).read_bytes(), apk)
+                return SimpleNamespace(stdout="Performing Streamed Install\nSuccess\n")
+            self.assertEqual(command[5:], ["shell", "pm", "path", "com.google.androidenv.accessibilityforwarder"])
+            return SimpleNamespace(stdout="package:/data/app/forwarder/base.apk\n")
+
+        def launch(**kwargs):
+            self.assertEqual(len(calls), 3, "fresh setup must install the forwarder before starting its services")
+            self.assertTrue(kwargs["emulator_setup"])
+            return "native environment"
+
+        with patch("urllib.request.urlopen", return_value=io.BytesIO(apk)), \
+             patch.object(mod, "ACCESSIBILITY_FORWARDER_SHA256", hashlib.sha256(apk).hexdigest(), create=True), \
+             patch.object(mod.subprocess, "run", side_effect=run):
+            result = mod._open_env(SimpleNamespace(load_and_setup_env=launch), self.settings)
+        self.assertEqual(result, "native environment")
+        self.assertFalse(Path(calls[1][-1]).exists(), "downloaded installation temporary must be removed")
+
+    def test_bad_forwarder_digest_does_not_install_or_launch(self):
+        launch = Mock()
+        with patch("urllib.request.urlopen", return_value=io.BytesIO(b"unexpected apk")), \
+             patch.object(mod.subprocess, "run", return_value=SimpleNamespace(stdout="device\n")) as run:
+            with self.assertRaisesRegex(ValueError, "SHA256"):
+                mod._open_env(SimpleNamespace(load_and_setup_env=launch), self.settings)
+        self.assertFalse(any("install" in call.args[0] for call in run.call_args_list))
+        launch.assert_not_called()
+
+    def test_failed_install_does_not_start_environment(self):
+        apk = b"test apk bytes"
+        launch = Mock()
+
+        def run(command, **kwargs):
+            if "install" in command:
+                raise mod.subprocess.CalledProcessError(1, command, stderr="INSTALL_FAILED")
+            return SimpleNamespace(stdout="device\n")
+
+        with patch("urllib.request.urlopen", return_value=io.BytesIO(apk)), \
+             patch.object(mod, "ACCESSIBILITY_FORWARDER_SHA256", hashlib.sha256(apk).hexdigest(), create=True), \
+             patch.object(mod.subprocess, "run", side_effect=run):
+            with self.assertRaises(mod.subprocess.CalledProcessError):
+                mod._open_env(SimpleNamespace(load_and_setup_env=launch), self.settings)
+        launch.assert_not_called()
+
+    def test_normal_collection_never_installs_apk(self):
+        launch = Mock(return_value="native environment")
+        with patch("urllib.request.urlopen") as download, patch.object(mod.subprocess, "run") as adb:
+            self.assertEqual(mod._open_env(SimpleNamespace(load_and_setup_env=launch), {}), "native environment")
+        download.assert_not_called()
+        adb.assert_not_called()
 
 
 class CollectionTests(unittest.TestCase):

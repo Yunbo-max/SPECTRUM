@@ -21,12 +21,16 @@ import random
 import secrets
 import subprocess
 import sys
+import tempfile
 import time
 from typing import Any, Callable
+import urllib.request
 
 from .prompting import ActionParseError, action_description, build_messages, load_system_prompt, parse_mobile_action
 
 UPSTREAM_COMMIT = "67b65e2be093753ecaa2964f48739339b870813e"
+ACCESSIBILITY_FORWARDER_URL = "https://storage.googleapis.com/android_env-tasks/2024.05.13-accessibility_forwarder.apk"
+ACCESSIBILITY_FORWARDER_SHA256 = "97a56a544e44d79f9b3181fc7dbdd72cffa908efd3d53c82afad1773061a350a"
 _TYPE_TAG = "__android_type__"
 _ROW_TYPES = {"Expense", "Recipe", "CalendarEvent"}
 
@@ -244,6 +248,41 @@ def prepare_manifest(upstream_root: str | Path, output_path: str | Path, config:
     return result
 
 
+def _install_accessibility_forwarder(settings: dict) -> None:
+    """Bootstrap the pinned native a11y dependency on the selected emulator.
+
+    UI-Voyager's controller disables AndroidEnv's automatic APK installation,
+    yet immediately starts its accessibility services. A fresh AVD therefore
+    needs the APK before the launcher can create an environment or set up apps.
+    The native wrapper still owns service activation and tree-log permissions.
+    This runs only for the user's explicit environment-setup operation.
+    """
+    console = settings.get("console_port", 5554)
+    server = settings.get("adb_server_port", 5037)
+    if type(console) is not int or not 1 <= console < 65535 or type(server) is not int or not 1 <= server <= 65535:
+        raise ValueError("Android console and ADB server ports must be valid integers")
+    adb = os.path.expanduser(settings.get("adb_path", "~/android/platform-tools/adb"))
+    command = [adb, "-P", str(server), "-s", f"emulator-{console}"]
+    device = subprocess.run(command + ["get-state"], check=True, capture_output=True, text=True, timeout=30)
+    if device.stdout.strip() != "device":
+        raise RuntimeError(f"Configured emulator-{console} is not ready: {device.stdout.strip()}")
+    with urllib.request.urlopen(ACCESSIBILITY_FORWARDER_URL, timeout=60) as response:
+        apk = response.read(16 * 1024 * 1024)
+    if hashlib.sha256(apk).hexdigest() != ACCESSIBILITY_FORWARDER_SHA256:
+        raise ValueError("Accessibility forwarder APK SHA256 does not match the pinned native artifact")
+    with tempfile.TemporaryDirectory(prefix="android-accessibility-") as directory:
+        path = Path(directory) / "accessibility_forwarder.apk"
+        path.write_bytes(apk)
+        installed = subprocess.run(command + ["install", "-r", str(path)], check=True,
+                                   capture_output=True, text=True, timeout=120)
+        if "Success" not in installed.stdout.splitlines():
+            raise RuntimeError(f"ADB did not confirm accessibility forwarder installation: {installed.stdout.strip()}")
+    package = subprocess.run(command + ["shell", "pm", "path", "com.google.androidenv.accessibilityforwarder"],
+                             check=True, capture_output=True, text=True, timeout=30)
+    if not any(line.startswith("package:") for line in package.stdout.splitlines()):
+        raise RuntimeError("Accessibility forwarder package is absent after installation")
+
+
 def _open_env(launcher: Any, settings: dict) -> Any:
     kwargs = {"console_port": 5554, "grpc_port": 8554, "adb_server_port": 5037,
               "emulator_setup": False, "freeze_datetime": True}
@@ -251,6 +290,8 @@ def _open_env(launcher: Any, settings: dict) -> Any:
                 "adb_path", "emulator_path", "avd_name", "android_sdk_root", "android_avd_home"):
         if key in settings:
             kwargs[key] = os.path.expanduser(settings[key]) if isinstance(settings[key], str) else settings[key]
+    if kwargs["emulator_setup"]:
+        _install_accessibility_forwarder(kwargs)
     return launcher.load_and_setup_env(**kwargs)
 
 

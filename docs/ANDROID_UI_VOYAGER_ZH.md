@@ -13,7 +13,8 @@ LoRA、训练规模、动作长度、轮次和部分环境包装是本分支明�
 
 - CPU 上验证真实 tiny Qwen3-VL 的视觉前向、LoRA 梯度、冻结教师、模型合并和重载。
 - CPU 上验证固定版本作者 GRSD 算法、数据隔离、谱算子恢复和训练预算。
-- 实际测试结果和原生 registry 准备结果见 [验证记录](ANDROID_VALIDATION_20261028.md)。
+- 最新复查与 82 项测试结果见 [复查记录](ANDROID_REVIEW_20261029.md)，
+  初次验证和原生 registry 准备结果见 [验证记录](ANDROID_VALIDATION_20261028.md)。
 - **尚未运行真实 4B 模型、CUDA 训练或 Android emulator**。不把代码交付当作实验成功。
 - 默认单 GPU、BF16、microbatch 1、LoRA r16；4090 24GB 的实际峰值必须通过
   `qualify` 测量。没有声称单卡一定装得下最长上下文，也没有静默切到量化。
@@ -87,9 +88,12 @@ python scripts/run_android_study.py prepare
 python scripts/run_android_study.py plan
 ```
 
-`setup-env` 调用原生初始化安装任务 app 和权限；不是模型训练。
-`fetch` 下载一次固定版本模型并记录文件 SHA256。
+`setup-env` 先下载并校验原生 accessibility forwarder APK，安装到配置指定的
+emulator，再调用原生初始化安装任务 app 和权限。固定版本的 UI-Voyager 关闭了
+该 APK 的自动安装，因此全新 AVD 需要这一步；普通采集不会重新安装。
+`fetch` 下载一次固定版本模型并记录文件 SHA256，运行前按记录重新校验文件内容。
 `prepare` 生成私有固定实例，不启动模型；既有 manifest 不覆盖。
+正式运行和资格检查都先验证 manifest 内容哈希、上游版本和跨 split 实例唯一性。
 没有 API 调用费用，但模型约 4.4B 参数，需预留下载、多个完整合并 checkpoint 与截图空间。
 默认保留全部 checkpoint；建议至少预留约 150GB，再按实际产生的数据调整。
 
@@ -131,6 +135,7 @@ CUDA_VISIBLE_DEVICES=0 python scripts/run_android_study.py run --arm feedback_sp
 
 原生学生仅接收部署时可见的任务、截图、历史。冻结的输入 checkpoint 作为自教师，
 额外读取同一任务实例的已验证成功路径或实际动作错误信息。
+成功路径保留模型原始响应及其 0–999 坐标；执行器转换后的像素坐标不作为模型动作反馈。
 教师与学生使用同一条原生采样 continuation，在不同长度 prompt 后精确对齐。
 损失只有 response-token reverse KL，教师 detached；默认 exact-vocabulary KL，
 可选 top-k union+tail 是明确标注的粗粒化 KL。

@@ -4,6 +4,98 @@ import pytest
 from improving.android.study import validate_config, seal_study, summarize_episodes, read_complete_stage
 
 
+def frozen_manifest():
+    from improving.android.environment import UPSTREAM_COMMIT, _digest
+    splits = ('train', 'calibration', 'eval')
+    rows = []
+    for value, split in enumerate(splits):
+        params = {'value': value, 'seed': value + 10}
+        rows.append({'task_name': 'Task', 'params': params, 'goal': f'Find {value}',
+                     'initialization_seed': value + 20, 'split': split,
+                     'instance_id': _digest({'task_name': 'Task', 'params': {'value': value}})})
+    value = {'schema_version': 1, 'upstream_commit': UPSTREAM_COMMIT,
+             'protocol': 'parameter_disjoint_same_templates', 'seed': 91,
+             'registered_task_count': 1,
+             'selected_tasks': {split: ['Task'] for split in splits}, 'instances': rows}
+    value['manifest_hash'] = _digest(value)
+    return value
+
+
+def save_manifest(path, manifest, *, reseal=False):
+    if reseal:
+        from improving.android.environment import _digest
+        manifest['manifest_hash'] = _digest({k: v for k, v in manifest.items() if k != 'manifest_hash'})
+    path.write_text(json.dumps(manifest))
+    return path
+
+
+def test_frozen_manifest_loader_accepts_valid_instance_disjoint_data(tmp_path):
+    from improving.android.study import load_manifest
+    manifest = frozen_manifest()
+    assert load_manifest(save_manifest(tmp_path/'manifest.json', manifest)) == manifest
+
+
+def test_frozen_manifest_loader_rejects_modified_content(tmp_path):
+    from improving.android.study import load_manifest
+    manifest = frozen_manifest()
+    manifest['instances'][0]['goal'] = 'changed goal'
+    with pytest.raises(ValueError, match='hash'):
+        load_manifest(save_manifest(tmp_path/'manifest.json', manifest))
+
+
+def test_frozen_manifest_loader_rejects_rehashed_cross_split_collision(tmp_path):
+    from copy import deepcopy
+    from improving.android.study import load_manifest
+    manifest = frozen_manifest()
+    duplicate = deepcopy(manifest['instances'][0])
+    duplicate['split'] = 'eval'
+    duplicate['params']['seed'] = 999
+    duplicate['initialization_seed'] = 999
+    manifest['instances'][2] = duplicate
+    with pytest.raises(ValueError, match='Duplicate semantic instance'):
+        load_manifest(save_manifest(tmp_path/'manifest.json', manifest, reseal=True))
+
+
+@pytest.mark.parametrize('case,match', [
+    ('schema', 'schema'), ('upstream', 'upstream'), ('identity', 'fingerprint'),
+    ('missing_split', 'nonempty'), ('selection', 'selected_tasks'),
+])
+def test_frozen_manifest_loader_rejects_invalid_rehashed_metadata(tmp_path, case, match):
+    from improving.android.study import load_manifest
+    manifest = frozen_manifest()
+    if case == 'schema':
+        manifest['schema_version'] = 2
+    elif case == 'upstream':
+        manifest['upstream_commit'] = 'wrong'
+    elif case == 'identity':
+        manifest['instances'][0]['instance_id'] = 'wrong'
+    elif case == 'missing_split':
+        manifest['instances'] = manifest['instances'][:2]
+    else:
+        manifest['selected_tasks']['eval'] = ['OtherTask']
+    with pytest.raises(ValueError, match=match):
+        load_manifest(save_manifest(tmp_path/'manifest.json', manifest, reseal=True))
+
+
+@pytest.mark.parametrize('entrypoint', ['study', 'qualification'])
+def test_invalid_manifest_stops_before_checkpoint_resolution_or_study_seal(tmp_path, monkeypatch, entrypoint):
+    import importlib
+    module = importlib.import_module(f'improving.android.{entrypoint}')
+    manifest = frozen_manifest()
+    manifest['seed'] += 1
+    settings = config(tmp_path)
+    settings['manifest'] = str(save_manifest(tmp_path/'manifest.json', manifest))
+    settings['android'] = {'upstream_root': 'unused'}
+    monkeypatch.setattr(module, 'verify_upstream', lambda root: None)
+    def unexpected_checkpoint(config):
+        raise AssertionError('Checkpoint resolution preceded manifest validation')
+    monkeypatch.setattr(module, 'resolve_checkpoint', unexpected_checkpoint)
+    function = module.run_study if entrypoint == 'study' else module.qualify
+    with pytest.raises(ValueError, match='hash'):
+        function(settings)
+    assert not Path(settings['output_dir']).exists()
+
+
 def config(tmp_path):
     return {'output_dir':str(tmp_path/'runs'),'model':{'checkpoint':str(tmp_path/'model')},
             'study':{'warmup_rounds':3,'rounds':3,'group_size':4,'spectral_fraction':0.5},

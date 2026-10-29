@@ -96,4 +96,6 @@ def resolve_checkpoint(config: dict) -> str:
         target = path / name
         if not target.is_file() or target.stat().st_size != item["bytes"]:
             raise ValueError(f"Model asset missing or changed size: {name}")
+        if file_sha256(target) != item["sha256"]:
+            raise ValueError(f"Model asset hash differs from acquisition receipt: {name}")
     return str(path)

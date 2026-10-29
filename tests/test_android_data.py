@@ -79,6 +79,22 @@ def test_feedback_spectral_success_is_evidence_never_student():
     assert receipt["teacher_target_correctness_verified"] is False
 
 
+def test_success_feedback_preserves_model_action_schema_and_coordinates():
+    from improving.android.prompting import parse_mobile_action
+    native = episode()
+    source = episode("spectral", success=True, policy="spectral")
+    response = '<tool_call>{"name":"mobile_use","arguments":{"action":"click","coordinate":[999,999]}}</tool_call>'
+    source["steps"][0]["response"] = response
+    source["steps"][0]["action"] = parse_mobile_action(response, 1080, 2400)
+    assert source["steps"][0]["action"] == {"action_type": "click", "x": 1079, "y": 2399}
+    examples, _ = feedback_examples([native, source])
+    evidence = examples[0]["feedback"]
+    assert response in evidence
+    assert "original model response" in evidence.lower()
+    assert "1079" not in evidence and "2399" not in evidence
+    assert '"action_type"' not in evidence
+
+
 def test_binary_failure_is_not_rich_feedback_but_actual_error_is():
     native = episode()
     assert feedback_examples([native])[0] == []
@@ -93,6 +109,7 @@ def test_feedback_bounds_only_teacher_context_and_reports_truncation():
     native = episode()
     source = episode("source", success=True, policy="spectral")
     source["steps"][0]["action"] = {"text": "x" * 2000}
+    source["steps"][0]["response"] = "x" * 2000
     examples, receipt = feedback_examples([native, source], {"max_feedback_chars": 512})
     assert len(examples[0]["feedback"]) <= 512
     assert examples[0]["feedback"].endswith("[Evidence truncated]")

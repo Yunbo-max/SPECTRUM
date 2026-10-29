@@ -6,7 +6,6 @@ response or borrow an evaluation trajectory as training feedback.
 from __future__ import annotations
 
 import copy
-import json
 from collections import Counter, defaultdict
 from typing import Any, Iterable
 
@@ -100,11 +99,18 @@ def _error_feedback(step: dict) -> str:
 
 
 def _success_path(episode: dict) -> str:
+    """Keep evidence in the model's original action schema and coordinate units.
+
+    ``step.action`` is the native AndroidWorld command: its coordinates have
+    already been converted to screen pixels and some action names differ from
+    the mobile_use vocabulary. Reusing that command as unlabelled teacher
+    evidence would mix pixel coordinates with the model's [0,999] convention.
+    The original response also preserves unsuccessful steps within an
+    ultimately successful attempt without inventing a corrected action.
+    """
     lines = []
     for step in episode["steps"]:
-        action = step.get("action")
-        rendered = json.dumps(action, ensure_ascii=False, sort_keys=True) if action is not None else step["response"]
-        lines.append(f"Step {step['index']}: {rendered}")
+        lines.append(f"Step {step['index']} (original model response):\n{step['response']}")
     return "\n".join(lines)
 
 

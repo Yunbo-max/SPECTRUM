@@ -1,6 +1,5 @@
 """Small native-host acceptance run; never a benchmark result."""
 from copy import deepcopy
-import json
 from pathlib import Path
 
 from .assets import atomic_json, resolve_checkpoint, verify_upstream
@@ -14,7 +13,7 @@ def qualify(config: dict) -> dict:
     rather than fabricating a reference or accepting a dummy model test.
     """
     import torch
-    from .study import _collect, _instances, stage_config, study_lock
+    from .study import _collect, _instances, load_manifest, stage_config, study_lock
     from .data import success_examples, feedback_examples
     from .model import QwenPolicy
     from .geometry import collect_operators
@@ -22,8 +21,8 @@ def qualify(config: dict) -> dict:
     from ..spectral import folded_operators
 
     verify_upstream(config["android"]["upstream_root"])
+    manifest = load_manifest(config["manifest"])
     checkpoint = resolve_checkpoint(config)
-    manifest = json.loads(Path(config["manifest"]).read_text())
     settings = deepcopy(config)
     settings["runtime_seed"] = manifest["seed"]
     settings["train"]["max_updates"] = 1

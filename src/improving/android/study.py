@@ -61,6 +61,64 @@ def load_config(path: str | Path) -> dict:
     return config
 
 
+def load_manifest(path: str | Path) -> dict:
+    """Validate the whole frozen population before selecting any split.
+
+    Individual collectors check each instance fingerprint, but only the full
+    manifest can establish disjoint training/calibration/evaluation instances.
+    Rehashing a modified file does not make duplicate semantic instances valid.
+    """
+    from .environment import UPSTREAM_COMMIT, _digest, _semantic_params
+
+    manifest = json.loads(Path(path).expanduser().read_text())
+    if not isinstance(manifest, dict) or type(manifest.get("schema_version")) is not int or manifest["schema_version"] != 1:
+        raise ValueError("Unsupported Android manifest schema")
+    expected_hash = _digest({k: v for k, v in manifest.items() if k != "manifest_hash"})
+    if manifest.get("manifest_hash") != expected_hash:
+        raise ValueError("Frozen manifest hash mismatch")
+    if manifest.get("upstream_commit") != UPSTREAM_COMMIT:
+        raise ValueError("Frozen manifest upstream revision mismatch")
+    if manifest.get("protocol") != "parameter_disjoint_same_templates":
+        raise ValueError("Unsupported frozen manifest protocol")
+    if type(manifest.get("seed")) is not int or manifest["seed"] < 0:
+        raise ValueError("Frozen manifest seed must be a nonnegative integer")
+    splits = {"train", "calibration", "eval"}
+    rows = manifest.get("instances")
+    if not isinstance(rows, list) or not rows:
+        raise ValueError("Frozen manifest instances must be a nonempty list")
+    observed = {split: set() for split in splits}
+    seen = set()
+    for row in rows:
+        if not isinstance(row, dict) or not isinstance(row.get("split"), str) or row["split"] not in splits:
+            raise ValueError("Frozen manifest has an invalid instance split")
+        if any(not isinstance(row.get(key), str) or not row[key] for key in ("task_name", "goal")):
+            raise ValueError("Frozen manifest instance needs task_name and goal")
+        if not isinstance(row.get("params"), dict):
+            raise ValueError("Frozen manifest instance parameters must be an object")
+        if type(row.get("initialization_seed")) is not int or row["initialization_seed"] < 0:
+            raise ValueError("Frozen manifest initialization_seed must be a nonnegative integer")
+        actual_id = _digest({"task_name": row["task_name"], "params": _semantic_params(row["params"])})
+        if row.get("instance_id") != actual_id:
+            raise ValueError("Frozen manifest instance fingerprint mismatch")
+        if actual_id in seen:
+            raise ValueError("Duplicate semantic instance in frozen manifest; all splits must be disjoint")
+        seen.add(actual_id)
+        observed[row["split"]].add(row["task_name"])
+    if any(not names for names in observed.values()):
+        raise ValueError("Frozen manifest needs nonempty train, calibration and eval splits")
+    selected = manifest.get("selected_tasks")
+    if not isinstance(selected, dict) or set(selected) != splits:
+        raise ValueError("Frozen manifest selected_tasks must describe all three splits")
+    for split, names in selected.items():
+        if (not isinstance(names, list) or any(not isinstance(name, str) or not name for name in names)
+                or len(set(names)) != len(names) or set(names) != observed[split]):
+            raise ValueError(f"Frozen manifest selected_tasks mismatch for {split}")
+    count = manifest.get("registered_task_count")
+    if type(count) is not int or count < len(set().union(*observed.values())):
+        raise ValueError("Frozen manifest registered_task_count is inconsistent")
+    return manifest
+
+
 def source_fingerprint() -> str:
     here = Path(__file__).resolve().parent
     files = sorted(here.glob("*.py")) + [here.parent / "spectral.py"]
@@ -288,7 +346,7 @@ def _train(checkpoint: str, examples: list[dict], path: Path, config: dict, kind
 def run_study(config: dict, arm: str = "both", *, warmup_only: bool = False) -> dict:
     validate_config(config)
     verify_upstream(config["android"]["upstream_root"])
-    manifest = json.loads(Path(config["manifest"]).read_text())
+    manifest = load_manifest(config["manifest"])
     train_instances, eval_instances = _instances(manifest, "train"), _instances(manifest, "eval")
     initial = resolve_checkpoint(config)
     root = Path(config["output_dir"])

@@ -3,7 +3,7 @@
 ## This branch: Android experiment
 
 For `android-feedback-spectrum`, use [the Android runbook](docs/ANDROID_UI_VOYAGER_ZH.md)
-and [validation evidence](docs/ANDROID_VALIDATION_20261028.md). Scope: one Qwen3-VL-4B
+and [latest review evidence](docs/ANDROID_REVIEW_20261029.md). Scope: one Qwen3-VL-4B
 AndroidWorld study; shared RFT, UI-Voyager GRSD baseline, feedback-only spectral arm.
 Preserve old experiments and results. CPU tests/tiny models do not qualify real4B
 CUDA or emulator runs. Native-only Android setup, immutable upstream/model pins,

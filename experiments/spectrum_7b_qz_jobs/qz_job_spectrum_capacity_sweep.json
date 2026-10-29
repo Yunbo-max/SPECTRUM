@@ -5,7 +5,7 @@
   "name": "spectrum-7b-capacity-sweep",
   "description": "Capacity sweep for SPECTRUM spectral_soft(tau=1) on Qwen2.5-Coder-7B-Instruct, 1 round, MBPP full eval (500 tasks x16), seed 43. Sequential in one H100: train_samples {64,128} at rank=8, then LoRA rank {16,32,64} at train_samples=16. Prior result: all operators (soft/hard/blend, directional fraction 4.6%-71%) give nearly identical pass@k, so the operator is not the bottleneck; this sweeps data volume and LoRA capacity instead.",
   "framework": "pytorch",
-  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_capacity.sh > /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectrum_7b_capacity_sweep.log 2>&1",
+  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_capacity.sh > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectrum_7b_capacity_sweep.log 2>&1",
   "max_running_time_ms": "259200000",
   "task_priority": 4,
   "framework_config": [

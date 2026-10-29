@@ -16,5 +16,5 @@
   ],
   "name": "spectrum-7b-r10-plain",
   "description": "Baseline for the multi-round study: plain SFT self-distillation (no spectral operator), rounds=10, eval=64 (MBPP 500 x 64), seed 43, Qwen2.5-Coder-7B. Compare against spectral_soft r10 to test the looped-distillation claim.",
-  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_tau.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/configs/spectrum_7b_r10_plain.yaml > /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/plain_7b_r10.log 2>&1"
+  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_tau.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/configs/spectrum_7b/spectrum_7b_r10_plain.yaml > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/plain_7b_r10.log 2>&1"
 }

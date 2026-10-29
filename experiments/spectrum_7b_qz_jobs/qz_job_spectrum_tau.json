@@ -5,7 +5,7 @@
   },
   "Result": {
     "auto_fault_tolerance": false,
-    "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz \u0026\u0026 bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_tau.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/configs/spectrum_7b_tau100.yaml \u003e /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectrum_7b_tau100.log 2\u003e\u00261",
+    "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz \u0026\u0026 bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_tau.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/configs/spectrum_7b/spectrum_7b_tau100.yaml \u003e /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectrum_7b_tau100.log 2\u003e\u00261",
     "dataset_info": [],
     "description": "SPECTRUM spectral_soft tau=10.0 sweep on Qwen2.5-Coder-7B-Instruct, 1 round, MBPP full eval (500 tasks x16). Part of tau grid {1,1.5,2,3,5,10}; tau=1 done, tau=3 in sweep_v1. Mechanism scan to locate pass@k sweet spot.",
     "enable_notification": false,

@@ -16,5 +16,5 @@
   ],
   "name": "spectrum-7b-r10-spectral",
   "description": "Best-method arm of the multi-round study: spectral_soft(tau=1), rounds=10, eval=64 (MBPP 500 x 64), seed 43, Qwen2.5-Coder-7B. Prior 1-round result showed flat pass@k and slightly reduced diversity; this tests whether looping >1 round accumulates the diversity gain.",
-  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_tau.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/configs/spectrum_7b_r10_spectral.yaml > /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectral_soft_7b_r10.log 2>&1"
+  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_tau.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/configs/spectrum_7b/spectrum_7b_r10_spectral.yaml > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectral_soft_7b_r10.log 2>&1"
 }

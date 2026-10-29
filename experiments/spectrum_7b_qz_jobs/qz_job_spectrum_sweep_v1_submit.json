@@ -5,7 +5,7 @@
   },
   "Result": {
     "auto_fault_tolerance": false,
-    "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz \u0026\u0026 bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_sweep_v1.sh \u003e /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectrum_7b_sweep_v1.log 2\u003e\u00261",
+    "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz \u0026\u0026 bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_sweep_v1.sh \u003e /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectrum_7b_sweep_v1.log 2\u003e\u00261",
     "dataset_info": [],
     "description": "SPECTRUM operator sweep on Qwen2.5-Coder-7B-Instruct, 1 round, MBPP full eval (500 tasks x16). Three arms share one base eval: spectral_soft(tau=3), spd_hard(rank=256), residual_blend(rho=0.5). Zero-cost preview showed nonscalar_fraction 0.046-\u003e0.132/0.707/0.316 vs the tau=1 baseline, i.e. directional component rises from 4.6% to 13-71%. Not a final result; mechanism-activation scan.",
     "enable_notification": false,

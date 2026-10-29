@@ -16,5 +16,5 @@
   ],
   "name": "spectrum-7b-r10-spectral-resume",
   "description": "RESUME of spectrum-7b-r10-spectral (job-ff233dd0) after node qb-prod-gpu521 hardware fault killed it mid round-6 eval. Re-runs 'improving run --resume' on the same config/output_dir: skips base + completed rounds 1-5, resumes round 6 evaluation from saved .parts, then runs rounds 7-10. spectral_soft(tau=1), rounds=10, eval=64 (MBPP 500 x 64), seed 43, Qwen2.5-Coder-7B.",
-  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_tau_resume.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/configs/spectrum_7b_r10_spectral.yaml > /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectral_soft_7b_r10_resume.log 2>&1"
+  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_tau_resume.sh /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/configs/spectrum_7b/spectrum_7b_r10_spectral.yaml > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectral_soft_7b_r10_resume.log 2>&1"
 }

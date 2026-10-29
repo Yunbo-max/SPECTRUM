@@ -5,7 +5,7 @@
   "name": "spectrum-7b-sweep-v1",
   "description": "SPECTRUM operator sweep on Qwen2.5-Coder-7B-Instruct, 1 round, MBPP full eval (500 tasks x16). Three arms share one base eval: spectral_soft(tau=3), spd_hard(rank=256), residual_blend(rho=0.5). Zero-cost preview showed nonscalar_fraction 0.046->0.132/0.707/0.316 vs the tau=1 baseline, i.e. directional component rises from 4.6% to 13-71%. Not a final result; mechanism-activation scan.",
   "framework": "pytorch",
-  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_sweep_v1.sh > /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectrum_7b_sweep_v1.log 2>&1",
+  "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz && bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_sweep_v1.sh > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectrum_7b_sweep_v1.log 2>&1",
   "max_running_time_ms": "43200000",
   "task_priority": 4,
   "framework_config": [

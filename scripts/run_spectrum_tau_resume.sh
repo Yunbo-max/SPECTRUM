@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-REPO=/inspire/hdd/global_user/zhangjiaquan-253108540222/ICLR2027
+REPO=/inspire/hdd/global_user/zhangjiaquan-253108540222/backup
 P=$REPO/improving
 C=${1:?usage: run_spectrum_tau_resume.sh <config_abs_path>}
 SHARED=/inspire/hdd/global_user/zhangjiaquan-253108540222

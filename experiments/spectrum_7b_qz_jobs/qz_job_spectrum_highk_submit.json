@@ -5,7 +5,7 @@
   },
   "Result": {
     "auto_fault_tolerance": false,
-    "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz \u0026\u0026 bash /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/new/solution_coupling/scripts/run_spectrum_highk.sh \u003e /inspire/hdd/global_user/zhangjiaquan-253108540222/research/DiffRwkv/logs/qz/spectrum_7b_highk.log 2\u003e\u00261",
+    "command": "mkdir -p /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz \u0026\u0026 bash /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/scripts/run_spectrum_highk.sh \u003e /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectrum_7b_highk.log 2\u003e\u00261",
     "dataset_info": [],
     "description": "High-budget pass@k (32/64/128) re-run for SPECTRUM on Qwen2.5-Coder-7B-Instruct, 1 round, MBPP 500 tasks x 128 samples, seed 43. One config shares a single base@128 eval across four arms: plain (SFT baseline), spectral_soft(tau=1), spd_hard(rank=256), residual_blend(rho=0.5). ks=[1,4,8,16,32,64,128]. Purpose: check whether the diversity gain (flat +1pt at pass@16) widens at higher k. Train checkpoints from the earlier operator sweep were pruned to free disk, so these arms are re-trained.",
     "enable_notification": false,

@@ -11,7 +11,7 @@ data:
   calibration: data/mbpp/calibration.jsonl
   validation: data/mbpp/validation.jsonl
   eval: data/mbpp/eval.jsonl
-output_dir: /inspire/hdd/global_user/zhangjiaquan-253108540222/ICLR2027/improving/runs/spectrum_7b/spectral_soft_7b_rank32
+output_dir: /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/runs/spectrum_7b/spectral_soft_7b_rank32
 data_limits: {}
 methods:
 - spectral_soft

@@ -5,9 +5,9 @@
 set -u
 
 JOB_ID="${1:-job-02dc7f7e-da31-4536-81b9-81ccf9eff61b}"
-MAIN_LOG=/inspire/hdd/global_user/zhangjiaquan-253108540222/ICLR2027/logs/qz/spectrum_7b_all_operators.log
-MON_LOG=/inspire/hdd/global_user/zhangjiaquan-253108540222/ICLR2027/logs/qz/spectrum_7b_all_operators.monitor.log
-RUNS=/inspire/hdd/global_user/zhangjiaquan-253108540222/ICLR2027/new/solution_coupling/runs
+MAIN_LOG=/inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectrum_7b_all_operators.log
+MON_LOG=/inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/logs/qz/spectrum_7b_all_operators.monitor.log
+RUNS=/inspire/hdd/global_user/zhangjiaquan-253108540222/backup/improving/runs/spectrum_7b
 CHECK_INTERVAL="${2:-120}"
 
 while true; do

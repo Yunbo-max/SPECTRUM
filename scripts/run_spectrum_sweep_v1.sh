@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
-REPO=/inspire/hdd/global_user/zhangjiaquan-253108540222/ICLR2027
+REPO=/inspire/hdd/global_user/zhangjiaquan-253108540222/backup
 P=$REPO/improving
-C=$REPO/new/solution_coupling/configs/spectrum_7b_sweep_v1.yaml
+C=$REPO/improving/configs/spectrum_7b/spectrum_7b_sweep_v1.yaml
 SHARED=/inspire/hdd/global_user/zhangjiaquan-253108540222
 export HF_HOME=$SHARED/hf_cache
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false

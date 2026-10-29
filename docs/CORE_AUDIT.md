@@ -44,6 +44,16 @@ Default `calibration.reestimate_each_round: true` recalibrates the current unfur
 
 `calibration.reestimate_each_round: false` is the existing fixed-geometry control; no new method name was needed. It uses the base/round-one calibration. Release changes additionally persist the actual matrices in `round_1/fixed_operators.pt` and reload them unchanged each round. The cache validates method, seed, operator settings, calibration-file hash, tensor names, shapes, dtype, finiteness, and exact tensor hashes. Later rounds reject missing original matrices instead of rebuilding them. Each temporary intervention still acts on that round's current student and is restored before learning.
 
+## Per-round tau decay
+
+Public config: `calibration.tau_decay`; omit or set null for the historical constant-tau behaviour.
+
+With a fixed `tau`, each round folds the same-strength shrinkage into the current student's K/V weights, and the intervention compounds across rounds: measured 10-round `spectral_soft` runs grow longer, more repetitive and syntactically broken synthetic completions, and pass@1 collapses after round 5. `tau_decay` schedules the intervention strength so round `t` (1-based) uses
+
+`tau_t = tau * tau_decay^(t-1)`.
+
+`tau_decay == 1` is exactly the constant-tau behaviour; `tau_decay < 1` weakens the shrinkage each round, so a long loop converges back toward the natural generation distribution instead of compounding the intervention. `tau_decay` must lie in `(0, 1]` when set. It only affects the reestimated-geometry path (`reestimate_each_round: true`); fixed geometry keeps the round-1 operator and therefore keeps round-1 `tau`. Round provenance records the effective per-round `tau` and the configured `tau_decay`. This is a fixed, pre-declared schedule, not a per-round validation-selected hyperparameter.
+
 Calibration artifacts now include and validate ordered reference content hashes, reference task IDs, model identity, loss/moment definitions, max length, span mode, and native output location. Reused artifacts additionally validate current target projection dimensions. Round provenance records matrix hashes, matrix source, and generation-only lifetime. Legacy artifacts without the new metadata are rejected, consistently with the full-run implementation-fingerprint rule; use a new output directory for this release.
 
 ## Bounded token-exposure control

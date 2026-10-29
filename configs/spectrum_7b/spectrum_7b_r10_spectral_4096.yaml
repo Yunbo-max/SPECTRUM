@@ -22,14 +22,14 @@ checkpoint_retention: latest
 generation:
   train_samples: 16
   eval_samples: 64
-  batch_size: 8
+  batch_size: 16
   max_new_tokens: 4096
   max_prompt_tokens: 2048
   temperature: 0.8
   top_p: 0.95
   top_k: 0
-  task_batch_size: 8
-  sequence_batch_size: 8
+  task_batch_size: 16
+  sequence_batch_size: 128
 calibration:
   max_examples: 50
   max_length: 1536

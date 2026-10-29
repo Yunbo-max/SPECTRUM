@@ -27,9 +27,10 @@ and fixed reference-action corpus every round.
 
 The model receives lossless row run-length encodings of **all** frames returned
 for an action. Every color remains an integer in 0..15, coordinates remain exact,
-and frames are neither cropped nor interpreted by another model. The previous
-three decision contexts and responses are included. Prompts over 12,000 tokens
-fail explicitly; frames are never silently dropped. Outputs are at most256 tokens
+and frames are neither cropped nor interpreted by another model. The current
+configuration includes the previous **one** decision context and response
+(`history_steps: 1`) alongside the current observation. Prompts over **32,000**
+tokens fail explicitly; frames are never silently dropped. Outputs are at most256 tokens
 and must be one JSON action object. Malformed responses consume a model decision,
 are logged with interface feedback, and remain in training. Unavailable actions
 are not sent to the engine. No random fallback action is substituted.
@@ -41,6 +42,36 @@ actions, all model decisions, malformed outputs, tokens, time, completed levels
 and raw native scorecards are all retained. No locally reimplemented score formula
 is used. Mean native scores aggregate one independently scored episode per heldout
 game; this is not a full competition or official hidden-test result.
+
+## Current context-length blocker — 29 October 2026
+
+**Long-context recursive training is not qualified under the current configuration.**
+Both generation policies permit 32,000 prompt tokens plus 256 action tokens,
+but `train.max_length` and `calibration.max_length` are only **16,384 tokens**,
+including the prompt. A prompt accepted for inference can therefore be impossible
+to use for SFT or reference calibration. `encode_example()` rejects a prompt that
+already fills the training length. Calibration additionally rejects any truncated
+reference; shorter prompts near the limit can still lose action tokens during SFT.
+Increasing the action output limit cannot resolve this input-length mismatch.
+
+The repository records why these settings diverged:
+
+- [38dbed50](https://github.com/Yunbo-max/SPECTRUM/commit/38dbed50db75da814fd13c42a5033686964b9b3d)
+  reports that `ft09` returns five frames per observation: three history steps
+  produced about 51K tokens, while one history step still produced about 25K.
+- [74c2a1b3](https://github.com/Yunbo-max/SPECTRUM/commit/74c2a1b3a43103fb8f3e8af48b76ad7311c01950)
+  reduced calibration and training from 32,768 to 16,384 to fit 27B LoRA training
+  in 80GB. These are commit-reported observations; the source audit did not have
+  the original runtime logs or independently measure token counts or GPU memory.
+
+The reported 25K contexts exceed the current 16K encoding limit. Before admitting
+the recursive study, qualify a consistent observation/context and training-memory
+budget on the real development and calibration trajectories. Preserve all frames
+under the declared lossless protocol; do not silently truncate them to make a run
+pass. A changed wrapper, context limit or training configuration needs a new
+compatible study identity and output directory, with existing evidence retained.
+This blocker concerns the interface and training budget; it is not evidence that
+the 27B model lacks ARC reasoning ability or that SPECTRUM has failed on ARC.
 
 ## Games and calibration reference
 
@@ -114,7 +145,10 @@ data directory. Keep download/cache ownership exclusive.
 
 ## Qualification and execution
 
-Run from the delivered repository root through the admitted Local harness:
+The following are the implemented command interfaces, not an instruction to
+dispatch the recursive runs before the context-length blocker above is resolved.
+Run eligible qualification commands from the delivered repository root through
+the admitted Local harness:
 
 ```bash
 python scripts/run_arc3_study.py --config configs/multidomain/arc3.json baseline
@@ -133,8 +167,11 @@ choice, not a guarantee of ARC competence. If the native baseline never progress
 preserve that evidence and review the development protocol before investing in
 all rounds. Do not choose a wrapper using `vc33` outcomes.
 
-If `collect-reference` does not solve its calibration game, Vanilla/SSD can still
-run independently. SPECTRUM remains explicitly blocked on a real reference. Import
+If `collect-reference` does not solve its calibration game, Vanilla/SSD have no
+successful-reference dependency, but still require the same context-length and
+native training qualification. SPECTRUM additionally remains explicitly blocked
+on a genuine calibration-game WIN with valid actions and exact native replay.
+A failed attempt cannot supply the fixed successful-action labels. Import
 an actual existing successful recording using:
 
 ```bash
@@ -178,6 +215,17 @@ per-game native recordings and `evaluation/summary.json`. Round0 is the unadapte
 model under the identical evaluation wrapper. The separate reference-collection
 folder preserves calibration failures. Public reporting excludes private seed and
 credentials. `status` describes stored artifacts, not current process liveness.
+
+**Known, unaddressed action-diversity reporting issue:** `rollout()` currently
+stores `valid_actions` using only `event['action']`; it omits `action_data`,
+including ACTION6 click coordinates. Consequently `action_diversity` counts
+distinct action names and cannot distinguish clicks at different positions,
+despite the current source comment describing canonical actions with arguments.
+Native SDK scorecards, wins and completed-level counts are unaffected by this
+reporting issue. Full action arguments remain in `progress.json` events. Do not
+interpret the existing diversity field as coordinate-sensitive or sequence-level
+trajectory diversity; the implementation must be corrected before making such a
+claim. This documentation update does not change the scorer or repair that code.
 
 Official sources inspected for this implementation:
 

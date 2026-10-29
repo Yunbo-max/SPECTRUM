@@ -1,3 +1,64 @@
+# Current Local entry — 29 October 2026
+
+Repo: **Yunbo-max/SPECTRUM**, branch **main**. Read the delivered immutable revision.
+Current handoff: [4096-token repair](rounds/20261029-length4096/WEB_HANDOFF.md).
+Exact inputs, preparation, commands, qualification and result return:
+[4096-token guide](docs/SPECTRUM_4096_ZH.md), especially
+[model/data preparation](docs/SPECTRUM_4096_ZH.md#模型数据与执行).
+Status: **generated_unexecuted**, not a GPU qualification or scientific result.
+
+## Current task and ordered actions
+
+1. Restore the actual execution host, existing environment, GPU allocation, data,
+   model fingerprints and finite compute authorization. Keep live jobs on their
+   original pinned revision; stage this repair in a separate checkout.
+2. Reuse the complete Qwen2.5-Coder-7B-Instruct model and MBPP291/50/30/500 split.
+   Follow the linked guide's verified source interfaces if input assets are absent.
+3. On that host, run the guide's authored regression tests and native development
+   capacity checks for4096 generated /6144 total training tokens. No such tests
+   or memory measurements were executed by Web. Preserve both arms' sample counts.
+4. Run the explicit new entry after qualification:
+
+   ```bash
+   bash scripts/run_spectrum_r10_4096.sh plain
+   bash scripts/run_spectrum_r10_4096.sh spectral
+   ```
+
+   `both` is an explicit serial request; `--resume` is only for compatible new4096
+   runs. Old512 directories/configs/qz commands are not this repair's destinations.
+5. Return the guide's actual per-round results, raw outputs, configuration and
+   resource receipts. Keep missing/failed work visible. Longer completions alone
+   do not establish improved correctness or multi-round stability.
+
+## Actual broader configuration inventory
+
+| Block | Model | Default benchmark | Protocol |
+|---|---|---|---|
+| Immediate length diagnostic | Qwen2.5-Coder-7B-Instruct | MBPP500 | Plain/SPECTRUM,10 rounds,4096 output |
+| Cross-family | Qwen Coder7B /Llama8B /DeepSeek Coder6.7B | MBPP500 +HumanEval+164 | Three methods,5 rounds; unchanged512 main generation |
+| Math | Qwen2.5-7B-Instruct | MATH500 | Three methods,5 rounds;4096 output |
+| QA | Qwen2.5-7B-Instruct | MMLU-Pro12,032 | Three methods,5 rounds; GPQA not enabled |
+| ARC | Qwen3.8-27B text | ls20 /ft09 /vc33 | Three methods,5 rounds; context qualification blocked |
+
+Use the updated [code](docs/CROSSFAMILY_CODE.md), [text](docs/TEXT_TASKS.md)
+and [ARC](docs/ARC_AGI3.md) guides. In particular the current7B math/QA configs
+use local model paths and cannot be fed to the historical hybrid27B qualifier.
+Actual configs currently select local grading in several blocks; do not describe
+these as qualified bubblewrap runs. Restore and verify the real evaluator on host.
+
+ARC inference permits32000 prompt tokens while training/calibration allow16384;
+known multi-frame examples described in commits reach about25K. This is unresolved,
+not a27B capability verdict. A true calibration-game WIN is an additional SPECTRUM
+prerequisite. Do not silently drop frames, use heldout labels, or raise memory claims
+without evidence. This repair does not alter the ARC method or observation protocol.
+
+## Historical 27 October runbook — retained for provenance
+
+The text below is the original27B plan, **not current command cards**. Its shared27B
+math/QA model, GPQA default, hybrid qualification commands and sandbox assumptions
+were superseded by later configuration commits. Use the current entry and updated
+domain guides above. Preserve already-running attempts at their sealed versions.
+
 # Current Local runbook: three code families and one 27B reasoning model
 
 Decision: 27 October 2026. Repo: **Yunbo-max/SPECTRUM**, branch **main**.

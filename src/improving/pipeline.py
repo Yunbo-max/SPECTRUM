@@ -23,7 +23,7 @@ import yaml
 from .data import assert_disjoint_splits, read_jsonl, write_jsonl
 from .generation import atomic_json, generate_to_file, stable_hash
 from .modeling import collate_examples, encode_example, load_model, render_prompt
-from .training import train_on_records
+from .training import train_on_records, validate_full_completion_targets
 
 METHODS = {'plain', 'ssd', 'spd_hard', 'spectral_soft', 'residual_blend', 'random_hard',
            'random_soft', 'isotropic_soft', 'matched_blend'}
@@ -168,6 +168,7 @@ def validate_config(config):
                 or not math.isfinite(decay) or not 0 < decay <= 1):
             raise ValueError('calibration.tau_decay must be in (0, 1] or null')
     train = config.get('train', {})
+    validate_full_completion_targets(train, gen)
     target_budget = train.get('target_token_budget')
     if target_budget is not None and (type(target_budget) is not int or target_budget < 1):
         raise ValueError('train.target_token_budget must be a positive integer or null')
@@ -397,7 +398,7 @@ def _fixed_operators(covariances, method, settings, seed, path, calibration_path
     return operators
 
 
-def _operator_diagnostics(model, operators, covariances, method, settings):
+def _operator_diagnostics(model, operators, covariances, method, settings, *, round_index=1):
     """Record actual parameter effects as well as the operator matching contract."""
     from .spectral import make_operator
     matched = method in {'random_soft', 'isotropic_soft', 'matched_blend'}
@@ -407,7 +408,8 @@ def _operator_diagnostics(model, operators, covariances, method, settings):
         rank = settings.get('rank')
         if rank is None:
             rank = max(1, int(dimension * float(settings.get('rank_fraction', .5))))
-        reference = make_operator(covariances[name]['covariance'], tau=float(settings.get('tau', 1)))
+        reference_tau = _tau_for_round(settings, round_index)
+        reference = make_operator(covariances[name]['covariance'], tau=reference_tau)
         identity = torch.eye(dimension, dtype=op.dtype)
         distance = float(torch.linalg.vector_norm(op - identity))
         target = float(torch.linalg.vector_norm(reference - identity))
@@ -425,6 +427,7 @@ def _operator_diagnostics(model, operators, covariances, method, settings):
         nonscalar_norm = float(torch.linalg.vector_norm(op - scalar_gain * identity))
         diagnostics[name] = {
             'method': method, 'dimension': dimension, 'configured_hard_rank': rank,
+            'reference_tau': reference_tau,
             'eigenvalue_min': float(spectrum.min()), 'eigenvalue_max': float(spectrum.max()),
             'operator_eigenvalues': spectrum.tolist(),
             'mean_eigenvalue': scalar_gain,
@@ -690,7 +693,8 @@ def run_experiment(config, *, resume=False):
                         'intervention_lifetime': 'generation_only_restored_before_sft_and_native_evaluation',
                     })
                     atomic_json(directory / 'operator_diagnostics.json', _operator_diagnostics(
-                        model, operators, covariances, method, cal))
+                        model, operators, covariances, method, cal,
+                        round_index=round_index if reestimate else 1))
                 from .spectral import folded_operators
                 training_settings = dict(train_gen)
                 if method == 'ssd':

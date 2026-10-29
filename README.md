@@ -2,37 +2,42 @@
 
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
-## Current experiment entry — 27 October 2026
+## Current experiment entry — 29 October 2026
 
-[**Run the current study / 当前运行指南**](LOCAL_AGENT_RUNBOOK.md)
-· [Web → Local handoff](rounds/20261027-multidomain/WEB_HANDOFF.md)
-· [Code](docs/CROSSFAMILY_CODE.md) · [Math / QA](docs/TEXT_TASKS.md)
-· [ARC-AGI-3](docs/ARC_AGI3.md) · [27B model adapter](docs/MODEL_COMPATIBILITY_27B.md)
+[**Local: start here / 当前运行指南**](LOCAL_AGENT_RUNBOOK.md)
+· [4096-token repair and commands](docs/SPECTRUM_4096_ZH.md)
+· [Current handoff](rounds/20261029-length4096/WEB_HANDOFF.md)
+· [Inputs and preparation](docs/SPECTRUM_4096_ZH.md#模型数据与执行)
 
-| Experiment | Models | Evaluation |
+| Experiment | Actual configured models | Data / scope |
 |---|---|---|
-| Cross-family code | **Qwen2.5-Coder-7B-Instruct**, **Llama-3.1-8B-Instruct**, **DeepSeek-Coder-6.7B-Instruct** | MBPP500 main + native HumanEval+164 transfer |
-| Mathematics | **Qwen3.8-27B** | Complete MATH500 |
-| QA | Same original **Qwen3.8-27B** | Complete MMLU-Pro + GPQA Diamond |
-| Interactive agents | Same original **Qwen3.8-27B** | ARC-AGI-3, frozen public game holdout |
+| **Immediate 4096-token comparison** | **Qwen2.5-Coder-7B-Instruct** | MBPP291 train /50 anchor /30 development /500 test; Plain and SPECTRUM,10 rounds,64 evaluation samples per task |
+| Cross-family code | Qwen2.5-Coder-7B-Instruct; Llama-3.1-8B-Instruct; DeepSeek-Coder-6.7B-Instruct | MBPP500 + HumanEval+164; unchanged five-round512-token main protocol |
+| Mathematics | **Qwen2.5-7B-Instruct** | PRM-released MATH training pool → MATH500,16 samples per task |
+| QA | **Qwen2.5-7B-Instruct** | MMLU auxiliary training → MMLU-Pro12,032; GPQA Diamond is optional and disabled by default |
+| Interactive agents | **Qwen3.8-27B** text decoder | ARC-AGI-3: train ls20 /calibration ft09 /heldout vc33; long-context recursive qualification blocked |
 
-Base + Vanilla SD + SSD adaptation + SPECTRUM; five rounds and **one independent
-training trajectory per method**, with fixed decoding and no temperature/seed grid.
-Math, QA and ARC start independently from the same original27B checkpoint.
-The three code models are different families. Their parameters are approximately
-7–8B; Qwen3.8 uses an explicitly supported hybrid text decoder.
+The immediate repair uses4096 new tokens and6144 total SFT tokens with explicit
+rejection of additional training truncation. Both arms use fresh output roots;
+the old512-token configurations, archived qz payloads and historical results remain.
+Tau, sampling and training settings otherwise retain the old ten-round comparison.
+Longer generation is a diagnostic change, not a demonstrated cure for collapse.
 
-The new source includes model/data acquisition and verification, recursive training,
-native scoring, raw result retention and bound resume. Delivery remains
-**generated_unexecuted**: source/static review is complete; project tests and actual
-GPU/native execution must be qualified on the user's host.
-ARC SPECTRUM additionally requires a real replay-verified successful calibration
-trajectory; collection/import commands are supplied. A27B model is not a guarantee
-of ARC success. Default public holdout results must not be called full competition scores.
+The other three-method studies compare Vanilla SD, the repository SSD adaptation
+and SPECTRUM over five rounds, one training trajectory per method. Math and QA
+independently start from the same7B base; ARC uses a separate27B base.
+See [code](docs/CROSSFAMILY_CODE.md), [math/QA](docs/TEXT_TASKS.md),
+[ARC](docs/ARC_AGI3.md) and the [27B adapter](docs/MODEL_COMPATIBILITY_27B.md).
 
-The [current runbook](LOCAL_AGENT_RUNBOOK.md) is the entry to use. The older release
-matrix below is retained as historical documentation, not the new default queue.
-Existing model results, data and active runs have not been rewritten.
+ARC currently allows32K input but only16K training/calibration. Its SPECTRUM arm
+also needs a genuine replay-verified successful calibration trajectory. Neither
+blocker establishes model failure; the public heldout game is not the full leaderboard.
+
+This delivery is **generated_unexecuted**: source/configuration review and static
+syntax checks are distinct from pending Local tests, GPU capacity qualification,
+training and native scoring. Existing run status and success are not inferred from
+code or launch payloads. The [27 October handoff](rounds/20261027-multidomain/WEB_HANDOFF.md)
+and older release design below remain dated historical records.
 
 SPECTRUM studies what a model retains when it repeatedly learns from its own
 generated code. Each round estimates loss-sensitive key/value geometry using

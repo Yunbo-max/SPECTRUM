@@ -17,6 +17,32 @@ from .spectral import decoder_attention_layout, _native_linear
 from .utils import stable_hash
 
 
+def validate_full_completion_targets(settings, generation=None):
+    """Validate the opt-in no-SFT-truncation contract without changing legacy runs."""
+    required = settings.get('require_full_completion_targets', False)
+    if type(required) is not bool:
+        raise ValueError('train.require_full_completion_targets must be boolean')
+    if not required:
+        return False
+    max_length = settings.get('max_length', 1536)
+    if type(max_length) is not int or max_length < 1:
+        raise ValueError('train.max_length must be a positive integer')
+    if generation is not None:
+        limits = {}
+        for key, default in (('max_prompt_tokens', 1024), ('max_new_tokens', 512)):
+            value = generation.get(key, default)
+            if type(value) is not int or value < 1:
+                raise ValueError(f'generation.{key} must be a positive integer')
+            limits[key] = value
+        needed = limits['max_prompt_tokens'] + limits['max_new_tokens']
+        if max_length < needed:
+            raise ValueError(
+                'train.require_full_completion_targets requires train.max_length '
+                '>= generation.max_prompt_tokens + generation.max_new_tokens '
+                f'({max_length} < {needed}); increase the training context in a new run')
+    return True
+
+
 def attention_lora_targets(model, projections=None):
     """Qualify exact native full-attention paths before PEFT matches any modules."""
     projections = ['q_proj', 'k_proj', 'v_proj', 'o_proj'] if projections is None else projections
@@ -85,6 +111,7 @@ def plan_token_exposure(target_counts, target_token_budget, *, seed=42):
 
 
 def train_on_records(model, tokenizer, tasks, records, settings, output_dir, *, seed=42):
+    require_full_targets = validate_full_completion_targets(settings)
     from peft import LoraConfig, get_peft_model
     from transformers import get_cosine_schedule_with_warmup
     from .data import validate_tasks, validate_completions
@@ -112,6 +139,18 @@ def train_on_records(model, tokenizer, tasks, records, settings, output_dir, *, 
         loss_scope=settings.get('loss_scope', 'all'), completion_ids=r.get('completion_ids'),
         append_eos=r.get('completion_ids') is None and r.get('finish_reason') != 'length'
     ) for r in records]  # Deliberately no `correct`, strategy, length or AST filtering.
+    if require_full_targets:
+        truncated = [(record, example) for record, example in zip(records, examples)
+                     if example['truncated_tokens'] > 0]
+        if truncated:
+            record, example = truncated[0]
+            raise ValueError(
+                'train.require_full_completion_targets forbids SFT truncation: '
+                f'{len(truncated)} records exceed train.max_length; first task '
+                f'{record["task_id"]!r}, sample {record["sample_id"]}, '
+                f'dropped_tokens={example["truncated_tokens"]}. '
+                'No records were filtered and no adapter was created; '
+                'increase the training context in a new run.')
     batch_size = int(settings.get('batch_size', 1))
     accumulation = int(settings.get('gradient_accumulation_steps', 16))
     epochs = int(settings.get('epochs', 5))
@@ -197,8 +236,11 @@ def train_on_records(model, tokenizer, tasks, records, settings, output_dir, *, 
              'anchor_reference_records': anchor_count,
              'fixed_anchor_replay': bool(settings.get('fixed_anchor_replay', False)),
              'quality_filtering': False, 'budget_label_masking': False,
+             'require_full_completion_targets': require_full_targets,
              'target_token_definition': 'nonignored_causally_shifted_labels_after_max_length_encoding',
-             'truncation_policy': 'declared_max_length; dropped_token_counts_reported_per_record',
+             'truncation_policy': ('reject_any_sft_truncation; no_record_filtering'
+                                   if require_full_targets else
+                                   'declared_max_length; dropped_token_counts_reported_per_record'),
              'actual_supervised_target_tokens': sum(target_counts) * epochs,
              'record_exposures': len(examples) * epochs}
     if exposure is not None:

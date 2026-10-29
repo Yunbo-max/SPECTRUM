@@ -6,6 +6,17 @@ run software tests, train, or score programs. Run the commands below through the
 qualified Local native harness in the separate GPU checkout. Historical release
 plans and results remain unchanged.
 
+The immediate **29 October 7B length-budget diagnostic** has its own entry:
+[SPECTRUM 4,096-token guide](SPECTRUM_4096_ZH.md), with
+[`spectrum_7b_r10_plain_4096.yaml`](../configs/spectrum_7b/spectrum_7b_r10_plain_4096.yaml)
+and
+[`spectrum_7b_r10_spectral_4096.yaml`](../configs/spectrum_7b/spectrum_7b_r10_spectral_4096.yaml).
+That separate ten-round Plain/SPECTRUM pair uses fresh output directories and
+longer generation/training budgets. **It does not change the five-round
+cross-family protocol below**, which still has a 512-token MBPP output cap and
+1,536-token SFT context. Preserve existing 512-token runs and their sealed configs;
+do not resume them with the 4,096-token configuration.
+
 | Alias | Initial model | Role |
 |---|---|---|
 | `qwen7b` | `Qwen/Qwen2.5-Coder-7B-Instruct` | Current 7B main experiment |
@@ -67,15 +78,19 @@ Conda environment and preserve the actual resolved package/CUDA receipt:
 
 ```bash
 python -m pip install -e '.[train,evalplus,analysis,test]'
-python scripts/check_native_sandbox.py --output runs/private/native-sandbox.json
 python scripts/run_crossfamily_study.py init
 python scripts/run_crossfamily_study.py download --model all
 python scripts/run_crossfamily_study.py prepare
 python scripts/run_crossfamily_study.py plan
 ```
 
-The sandbox qualification must pass on the actual Linux host before candidate
-execution. There is no unsafe-local or Docker fallback in this new plan.
+The current `configs/crossfamily/protocol.json` explicitly selects
+`evaluation.backend: local` and `allow_unsafe_local: true`. This is local program
+execution, not evidence of Bubblewrap isolation. The earlier description of a
+mandatory Bubblewrap-only default is historical. If a separate amended protocol
+uses `bwrap`, run `python scripts/check_native_sandbox.py --output
+runs/private/native-sandbox.json` and qualify that boundary on the execution host
+before freezing its new run root. Keep the actual backend in all result receipts.
 
 `init` creates and preserves one private randomization file at
 `runs/private/crossfamily_code_v1.json`; it does not print numeric seeds.
@@ -97,8 +112,8 @@ or prepared file requires a new data directory; it is never silently overwritten
 `runs/crossfamily_code_v1/plan/manifest.json`. It neither downloads weights nor
 starts workloads. The defaults in
 [`configs/crossfamily/protocol.json`](../configs/crossfamily/protocol.json)
-use inference sequence batch 1, BF16 dense weights, training microbatch 1 and
-gradient accumulation 16. These are conservative starting settings, not measured
+use inference sequence batch 8, BF16 dense weights, training microbatch 1 and
+gradient accumulation 16. These are configured settings, not measured
 VRAM guarantees. Record actual host GPU/CPU/RAM/storage and qualify the native
 forward, covariance, fold/unfold and LoRA update before the full comparison.
 Use development/validation inputs for operational qualification. If an operational

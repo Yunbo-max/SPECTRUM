@@ -156,12 +156,17 @@ def validate_config(config):
                                                or calibration['rank'] < 0):
         raise ValueError('calibration.rank must be a nonnegative integer or null')
     for key, default, lower, upper in [('tau', 1.0, 0, math.inf), ('rho', .5, 0, 1),
-                                       ('rank_fraction', .5, 0, 1)]:
+                                        ('rank_fraction', .5, 0, 1)]:
         value = calibration.get(key, default)
         if (isinstance(value, bool) or not isinstance(value, (int, float))
                 or not math.isfinite(value) or not lower <= value <= upper
                 or (key == 'rank_fraction' and value == 0)):
                 raise ValueError(f'Invalid calibration.{key}')
+    if calibration.get('tau_decay') is not None:
+        decay = calibration['tau_decay']
+        if (isinstance(decay, bool) or not isinstance(decay, (int, float))
+                or not math.isfinite(decay) or not 0 < decay <= 1):
+            raise ValueError('calibration.tau_decay must be in (0, 1] or null')
     train = config.get('train', {})
     target_budget = train.get('target_token_budget')
     if target_budget is not None and (type(target_budget) is not int or target_budget < 1):
@@ -289,12 +294,29 @@ def _calibrate(model, tokenizer, tasks, settings, path, model_identity):
     return modules
 
 
-def _operators(covariances, method, settings, seed):
+def _tau_for_round(settings, round_index):
+    """Per-round intervention strength for the reestimated-geometry schedule.
+
+    ``tau`` stays constant unless ``tau_decay`` is set, in which case the round
+    ``t`` (1-based) uses ``tau * tau_decay**(t-1)``. Decay < 1 weakens the
+    spectral intervention each round so a long loop converges back toward the
+    natural generation distribution instead of compounding the shrinkage.
+    ``tau_decay == 1`` reproduces the historical constant-tau behaviour.
+    """
+    tau = float(settings.get('tau', 1))
+    decay = settings.get('tau_decay')
+    if decay is None:
+        return tau
+    return tau * (float(decay) ** (round_index - 1))
+
+
+def _operators(covariances, method, settings, seed, *, round_index=1):
     from .spectral import make_operator
     kinds = {'spd_hard': 'hard', 'spectral_soft': 'spectral_soft',
              'residual_blend': 'blend', 'random_hard': 'random',
              'random_soft': 'random_soft', 'isotropic_soft': 'isotropic_soft',
              'matched_blend': 'matched_blend'}
+    tau = _tau_for_round(settings, round_index)
     output = {}
     for name, record in covariances.items():
         dimension = record['covariance'].shape[0]
@@ -302,7 +324,7 @@ def _operators(covariances, method, settings, seed):
         if rank is None:
             rank = max(1, int(dimension * float(settings.get('rank_fraction', .5))))
         output[name] = make_operator(record['covariance'], kind=kinds[method], rank=rank,
-                                     tau=float(settings.get('tau', 1)), rho=float(settings.get('rho', .5)),
+                                     tau=tau, rho=float(settings.get('rho', .5)),
                                      seed=int(stable_hash([seed, name])[:8], 16))
     return output
 
@@ -646,9 +668,10 @@ def run_experiment(config, *, resume=False):
                         covariances = _calibrate(model, tokenizer, splits['calibration'], cal,
                                                  calibration_path, calibration_identity)
                     fixed_operator_path = root / method / 'round_1' / 'fixed_operators.pt'
-                    operators = (_operators(covariances, method, cal, seed) if reestimate else
+                    operators = (_operators(covariances, method, cal, seed,
+                                            round_index=round_index) if reestimate else
                                  _fixed_operators(covariances, method, cal, seed, fixed_operator_path,
-                                                  calibration_path, require_existing=round_index > 1))
+                                                   calibration_path, require_existing=round_index > 1))
                     atomic_json(directory / 'calibration_provenance.json', {
                         'mode': 'reestimated' if reestimate else 'fixed_round_1',
                         'calibration_round': round_index if reestimate else 1,
@@ -656,6 +679,8 @@ def run_experiment(config, *, resume=False):
                         'student_model_identity': identity,
                         'calibration_path': str(calibration_path.relative_to(root)),
                         'calibration_sha256': file_sha(calibration_path),
+                        'tau': _tau_for_round(cal, round_index) if reestimate else float(cal.get('tau', 1)),
+                        'tau_decay': cal.get('tau_decay'),
                         'method': method, 'seed': seed,
                         'calibration_task_ids': [task['task_id'] for task in splits['calibration'][:int(cal.get('max_examples', 50))]],
                         'reference_policy': 'same_fixed_training_reference_subset_every_round',

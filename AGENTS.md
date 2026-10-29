@@ -1,5 +1,18 @@
 # SPECTRUM current agent entry
 
+## This branch: Android experiment
+
+For `android-feedback-spectrum`, use [the Android runbook](docs/ANDROID_UI_VOYAGER_ZH.md)
+and [validation evidence](docs/ANDROID_VALIDATION_20261028.md). Scope: one Qwen3-VL-4B
+AndroidWorld study; shared RFT, UI-Voyager GRSD baseline, feedback-only spectral arm.
+Preserve old experiments and results. CPU tests/tiny models do not qualify real4B
+CUDA or emulator runs. Native-only Android setup, immutable upstream/model pins,
+private parameter manifests, real verifier, no fabricated reference trajectories.
+Do not install legacy `[train]` in the Android environment. Publish only this branch
+with expected-head readback; no main merge is authorized by this task.
+
+## Existing studies (unchanged)
+
 Read [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md), then
 [the current handoff](rounds/20261027-multidomain/WEB_HANDOFF.md) at the delivered commit.
 The acquisition and qualification sections are part of the entry.

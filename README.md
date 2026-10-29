@@ -2,6 +2,18 @@
 
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
+## Android experiment branch — 28 October 2026
+
+[**AndroidWorld / UI-Voyager 运行指南**](docs/ANDROID_UI_VOYAGER_ZH.md)
+· [Configuration](configs/android/ui_voyager_qwen4b.json)
+· [Validation](docs/ANDROID_VALIDATION_20261028.md)
+
+This branch adds one Qwen3-VL-4B study: shared RFT initialization, author-code
+GRSD comparison, and our feedback-only recursive spectral self-distillation.
+No GRSD loss is used in our arm. CPU contracts and tiny native visual/LoRA tests
+are distinct from pending full 4B GPU/emulator qualification. Existing studies
+and historical numerical results below are unchanged.
+
 ## Current experiment entry — 27 October 2026
 
 [**Run the current study / 当前运行指南**](LOCAL_AGENT_RUNBOOK.md)

@@ -1,0 +1,32 @@
+# Dedicated Python 3.11 environment. Do not install the legacy .[train] extra.
+# Install the matching CUDA torch/torchvision wheels first if your host requires
+# an explicit PyTorch wheel index. CPU tests alone do not qualify 4B GPU capacity.
+torch==2.8.0
+torchvision==0.23.0
+transformers==4.57.1
+peft==0.17.1
+accelerate==1.10.1
+huggingface-hub==0.36.2
+safetensors>=0.6,<0.9
+Pillow==11.3.0
+numpy==1.26.3
+opencv-python==4.10.0.84
+scikit-image==0.25.2
+PyYAML>=6,<7
+pytest>=8,<10
+# Matches the pinned upstream native AndroidWorld dependency contracts.
+absl-py==2.1.0
+android_env==1.2.3
+dm_env==1.6
+fuzzywuzzy==0.18.0
+grpcio-tools==1.71.0
+protobuf==5.29.5
+immutabledict==2.0.0
+jsonschema==4.17.3
+pandas==2.1.4
+IPython
+pydub
+python-Levenshtein
+requests
+tenacity
+termcolor

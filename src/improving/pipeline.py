@@ -167,6 +167,16 @@ def validate_config(config):
         if (isinstance(decay, bool) or not isinstance(decay, (int, float))
                 or not math.isfinite(decay) or not 0 < decay <= 1):
             raise ValueError('calibration.tau_decay must be in (0, 1] or null')
+    tau_mode = calibration.get('tau_mode')
+    if tau_mode is not None and tau_mode != 'adaptive':
+        raise ValueError("calibration.tau_mode must be 'adaptive' or null")
+    if tau_mode == 'adaptive':
+        if calibration.get('tau_decay') is not None:
+            raise ValueError('calibration.tau_mode=adaptive is mutually exclusive with tau_decay')
+        gamma = calibration.get('tau_gamma', 5.0)
+        if (isinstance(gamma, bool) or not isinstance(gamma, (int, float))
+                or not math.isfinite(gamma) or gamma <= 0):
+            raise ValueError('calibration.tau_gamma must be positive')
     train = config.get('train', {})
     validate_full_completion_targets(train, gen)
     target_budget = train.get('target_token_budget')
@@ -295,29 +305,62 @@ def _calibrate(model, tokenizer, tasks, settings, path, model_identity):
     return modules
 
 
-def _tau_for_round(settings, round_index):
-    """Per-round intervention strength for the reestimated-geometry schedule.
+def _spectral_entropy(covariances):
+    """Normalized spectral entropy of the gradient second moments, averaged over modules.
 
-    ``tau`` stays constant unless ``tau_decay`` is set, in which case the round
-    ``t`` (1-based) uses ``tau * tau_decay**(t-1)``. Decay < 1 weakens the
-    spectral intervention each round so a long loop converges back toward the
-    natural generation distribution instead of compounding the shrinkage.
-    ``tau_decay == 1`` reproduces the historical constant-tau behaviour.
+    The per-round calibration geometry ``C = mean(g g^T)`` becomes narrower as
+    the shrinkage compounds: its eigenvalues concentrate on fewer directions, so
+    the normalized entropy (in [0,1], 1 = fully spread spectrum) falls. That
+    fall is a state signal the gated tau uses to back off the intervention
+    before correctness collapses, without a preset decay schedule.
+    """
+    from .spectral import _covariance_eigh
+    entropies = []
+    for record in covariances.values():
+        _, eigenvalues, _ = _covariance_eigh(record['covariance'])
+        positive = eigenvalues[eigenvalues > 0]
+        if len(positive) < 2:
+            continue
+        p = positive / positive.sum()
+        p = p[p > 0]
+        h = -float((p * p.log()).sum())
+        entropies.append(h / math.log(len(positive)))
+    if not entropies:
+        return None
+    return sum(entropies) / len(entropies)
+
+
+def _tau_for_round(settings, round_index, *, entropy_ratio=None):
+    """Per-round intervention strength.
+
+    Modes (mutually exclusive):
+      - constant (default): ``tau`` every round.
+      - ``tau_decay``: ``tau * tau_decay**(t-1)``, a fixed schedule.
+      - ``tau_mode: adaptive``: ``tau * (H_t / H_ref)**tau_gamma``, where
+        ``H_t`` is the current round's normalized calibration spectral entropy
+        and ``H_ref`` the round-1 reference. When the geometry narrows (entropy
+        falls) the gate lowers tau; when it is still spread the gate keeps the
+        intervention near ``tau``. This is state-dependent, not a preset curve.
     """
     tau = float(settings.get('tau', 1))
+    if settings.get('tau_mode') == 'adaptive':
+        if entropy_ratio is None:
+            raise ValueError('adaptive tau requires the current/reference spectral entropy ratio')
+        gamma = float(settings.get('tau_gamma', 5.0))
+        return tau * (entropy_ratio ** gamma)
     decay = settings.get('tau_decay')
     if decay is None:
         return tau
     return tau * (float(decay) ** (round_index - 1))
 
 
-def _operators(covariances, method, settings, seed, *, round_index=1):
+def _operators(covariances, method, settings, seed, *, round_index=1, entropy_ratio=None):
     from .spectral import make_operator
     kinds = {'spd_hard': 'hard', 'spectral_soft': 'spectral_soft',
              'residual_blend': 'blend', 'random_hard': 'random',
              'random_soft': 'random_soft', 'isotropic_soft': 'isotropic_soft',
              'matched_blend': 'matched_blend'}
-    tau = _tau_for_round(settings, round_index)
+    tau = _tau_for_round(settings, round_index, entropy_ratio=entropy_ratio)
     output = {}
     for name, record in covariances.items():
         dimension = record['covariance'].shape[0]
@@ -670,9 +713,23 @@ def run_experiment(config, *, resume=False):
                     with record_stage(directory, 'calibration'):
                         covariances = _calibrate(model, tokenizer, splits['calibration'], cal,
                                                  calibration_path, calibration_identity)
+                    entropy_ratio = None
+                    if reestimate and cal.get('tau_mode') == 'adaptive':
+                        entropy_ref_path = root / method / 'spectral_entropy_ref.json'
+                        entropy_t = _spectral_entropy(covariances)
+                        if entropy_t is None:
+                            raise ValueError('adaptive tau requires a nonempty calibration spectrum')
+                        if round_index == 1:
+                            atomic_json(entropy_ref_path, {'spectral_entropy': entropy_t})
+                            entropy_ratio = 1.0
+                        else:
+                            if not entropy_ref_path.exists():
+                                raise ValueError('adaptive tau requires the saved round-1 spectral entropy reference')
+                            entropy_ref = json.loads(entropy_ref_path.read_text())['spectral_entropy']
+                            entropy_ratio = entropy_t / entropy_ref
                     fixed_operator_path = root / method / 'round_1' / 'fixed_operators.pt'
                     operators = (_operators(covariances, method, cal, seed,
-                                            round_index=round_index) if reestimate else
+                                            round_index=round_index, entropy_ratio=entropy_ratio) if reestimate else
                                  _fixed_operators(covariances, method, cal, seed, fixed_operator_path,
                                                    calibration_path, require_existing=round_index > 1))
                     atomic_json(directory / 'calibration_provenance.json', {
@@ -682,8 +739,10 @@ def run_experiment(config, *, resume=False):
                         'student_model_identity': identity,
                         'calibration_path': str(calibration_path.relative_to(root)),
                         'calibration_sha256': file_sha(calibration_path),
-                        'tau': _tau_for_round(cal, round_index) if reestimate else float(cal.get('tau', 1)),
+                        'tau': _tau_for_round(cal, round_index, entropy_ratio=entropy_ratio) if reestimate else float(cal.get('tau', 1)),
                         'tau_decay': cal.get('tau_decay'),
+                        'tau_mode': cal.get('tau_mode'),
+                        'spectral_entropy_ratio': entropy_ratio,
                         'method': method, 'seed': seed,
                         'calibration_task_ids': [task['task_id'] for task in splits['calibration'][:int(cal.get('max_examples', 50))]],
                         'reference_policy': 'same_fixed_training_reference_subset_every_round',

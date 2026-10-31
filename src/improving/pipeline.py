@@ -441,7 +441,8 @@ def _fixed_operators(covariances, method, settings, seed, path, calibration_path
     return operators
 
 
-def _operator_diagnostics(model, operators, covariances, method, settings, *, round_index=1):
+def _operator_diagnostics(model, operators, covariances, method, settings, *, round_index=1,
+                          entropy_ratio=None):
     """Record actual parameter effects as well as the operator matching contract."""
     from .spectral import make_operator
     matched = method in {'random_soft', 'isotropic_soft', 'matched_blend'}
@@ -451,7 +452,7 @@ def _operator_diagnostics(model, operators, covariances, method, settings, *, ro
         rank = settings.get('rank')
         if rank is None:
             rank = max(1, int(dimension * float(settings.get('rank_fraction', .5))))
-        reference_tau = _tau_for_round(settings, round_index)
+        reference_tau = _tau_for_round(settings, round_index, entropy_ratio=entropy_ratio)
         reference = make_operator(covariances[name]['covariance'], tau=reference_tau)
         identity = torch.eye(dimension, dtype=op.dtype)
         distance = float(torch.linalg.vector_norm(op - identity))
@@ -753,7 +754,8 @@ def run_experiment(config, *, resume=False):
                     })
                     atomic_json(directory / 'operator_diagnostics.json', _operator_diagnostics(
                         model, operators, covariances, method, cal,
-                        round_index=round_index if reestimate else 1))
+                        round_index=round_index if reestimate else 1,
+                        entropy_ratio=entropy_ratio))
                 from .spectral import folded_operators
                 training_settings = dict(train_gen)
                 if method == 'ssd':

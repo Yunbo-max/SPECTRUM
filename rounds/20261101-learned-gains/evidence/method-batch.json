@@ -1,0 +1,29 @@
+{
+  "kind": "method-verification-batch",
+  "version": "1.0.0",
+  "batch_id": "spectrum-learned-gains-20261101",
+  "pool_target": 1,
+  "selection_target": 1,
+  "target_override": "User explicitly selected this discussed full-spectrum learned-gain adaptation, after rejecting artificial two/three groups, and requested: 你觉得这个好的话请你更新下code我来测试. This narrows the task to one candidate and one selected method, rather than reopening a 20-to-15 discovery search. Exact relayed quotes and source are retained in scope-source.json.",
+  "candidates": [
+    {
+      "candidate_id": "spectrum-learned-gains-v1",
+      "math_card_ref": {
+        "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+        "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+      },
+      "math_review_ref": {
+        "path": "rounds/20261101-learned-gains/evidence/math-review.json",
+        "sha256": "763c145349ed80a59f084c7e96dd0b5ca191a8b57e2a2a120491220318e6041a"
+      }
+    }
+  ],
+  "selection_ref": {
+    "path": "rounds/20261101-learned-gains/evidence/selection.json",
+    "sha256": "b17c56425536ffb10839fd6003c6cb0fa7c144c5aaa0ae42b269e6dd49ab55c1"
+  },
+  "selection_review_ref": {
+    "path": "rounds/20261101-learned-gains/evidence/selection-review.json",
+    "sha256": "ad53bad4997d15316f68a87ee295ea94f053134ff9bae72b87326ae94c157f3a"
+  }
+}

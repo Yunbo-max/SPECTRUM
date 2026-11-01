@@ -1,0 +1,49 @@
+{
+  "kind": "method-selection",
+  "version": "1.0.0",
+  "batch_id": "spectrum-learned-gains-20261101",
+  "pool_target": 1,
+  "selection_target": 1,
+  "math_bindings": [
+    {
+      "candidate_id": "spectrum-learned-gains-v1",
+      "math_card_ref": {
+        "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+        "sha256": "1bb74c86e389ed8633081ee185674e27375b2e1a197b4c29ddd8e01400c1a3d7"
+      }
+    }
+  ],
+  "ranking": [
+    {
+      "candidate_id": "spectrum-learned-gains-v1",
+      "rationale": {
+        "problem_value": "The user reports decay outperforming the existing entropy adaptive controller and selected a replacement that measures actual reference response. This report motivates development, not a newly verified outcome.",
+        "mathematical_consequence": "Full-spectrum constrained gains replace one entropy-selected scalar with signed fit feedback and measured output KL, with explicit identity fallback and actual folded-model acceptance.",
+        "closest_work_delta": "The source-screen disposition is a user-requested adaptation of established ideas, not a novel-method claim. The existing SPECTRUM estimator/generation/SFT contract is directly pinned; literature coverage gaps remain explicit in source-screen.json.",
+        "distinguishing_prediction": "Identical spectral entropy no longer forces the same controller decision. Every deployed nonidentity operator must retain actual fit/guard/KL acceptance, while native recursive improvement remains falsifiable.",
+        "feasibility_and_cost": "No model-weight optimization is added during calibration, but full gains require model backward passes and repeated fit/probe forwards. Eight native probes of at most 128 tokens, finite iterations and backtracking bound work; 4090 feasibility is unmeasured. This one candidate is the complete user-scoped pool, so no fictional reserve ranking or optimality among unexamined methods is claimed."
+      }
+    }
+  ],
+  "selected_ids": [
+    "spectrum-learned-gains-v1"
+  ],
+  "pending_requirements": [
+    "Parent independent mathematical review must be created from actual review, then math_review_ref inserted in math_bindings before selection can be verified.",
+    "Parent independent selection review must bind the final selection bytes. No review or verified flag is authored here."
+  ],
+  "evidence_refs": [
+    {
+      "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+      "sha256": "1bb74c86e389ed8633081ee185674e27375b2e1a197b4c29ddd8e01400c1a3d7"
+    },
+    {
+      "path": "rounds/20261101-learned-gains/evidence/scope-source.json",
+      "sha256": "4030c746564fcc61392d6de51edd3e8a241373fc0c01fa41b2ac5788cb91861b"
+    },
+    {
+      "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+      "sha256": "cc3f7f78ba1bcc209ea7741c1b4ca2dd524033e026ddd9bb40c8d873707d470a"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "spectrum-learned-gains-v1",
+  "formal_object": "For each current-round native student theta_r and selected raw K/V projection m, construct C_m from the 40 fit references using the existing per-example mean completion-loss activation-gradient second moment. Freeze theta_r and an orthonormal eigenbasis U_m. Optimize T_m=U_m diag(a_m) U_m^T over positive nonexpansive gains with exact equal-eigenvalue tying, minimizing mean reference completion NLL subject to empirical full-vocabulary forward KL(native||steered) on fixed native training-rollout prefixes.",
+  "assumptions": [
+    "The unquantized native Linear targets, tokenizer/template and existing model topology are valid; nonfinite or zero-signal covariance is an explicit calibration error, not evidence of a method failure or successful identity fit.",
+    "The 50 calibration references are training-side data with unique disjoint task IDs, usable exact tokens and no silent truncation; deterministic first 40 fit and last 10 guard use no benchmark-evaluation labels.",
+    "Each C is built on fit references only. Model parameters and U remain fixed during each round of gain optimization; all gain-to-output computation paths stay differentiable.",
+    "A strictly positive a_min<1, finite delta>=0, finite optimization/backtracking limits and numerical acceptance tolerances are declared in configuration before the native run.",
+    "Exact repeated eigenvalues receive equal gains. Numerical near-degeneracy tying uses a recorded tolerance on lambda/lambda_max and is an approximation; no claim of basis invariance under arbitrary unequal eigenvalues is made.",
+    "The KL prefix law is empirical, frozen and built from eight distinct train prompts with native completions capped at 128 tokens. Both models use identical stored prefixes; full vocabulary raw-logit probabilities define KL. Native probabilities are detached and may be recomputed per example; full-corpus vocabulary-logit caching is not required.",
+    "Existence arguments use ideal continuous finite-input operations and a compact gain domain. Finite-precision forward evaluations and bounded solver outputs require actual checks and are not exact nonlinear optima.",
+    "Guard references never enter covariance, gradient updates, line-search choices or alternative-candidate selection. Their one final veto may be reused across rounds and therefore is not a fresh confirmation set.",
+    "BF16 folded inference must pass actual fit/guard/KL acceptance before generation. Raw generated data then receives ordinary SFT with restored native parameters and no new quality mask or reference replay."
+  ],
+  "operations": [
+    {
+      "id": "H06",
+      "input": "Current entropy rule tau_r=tau_0(H_r/H_1)^gamma and normalized covariance filter.",
+      "condition": "C_r=c C_1 with c>0, or orthogonal conjugation preserving eigenvalues; positive spectrum exists.",
+      "condition_status": "established",
+      "output": "Positive scaling leaves normalized C, H and the entropy-selected filter unchanged; rotations preserve H while changing the filter in activation coordinates. Entropy alone does not identify actual reference-loss/output effects."
+    },
+    {
+      "id": "H01",
+      "input": "C=U diag(lambda) U^T and independent gains within a repeated-eigenvalue eigenspace.",
+      "condition": "Eigenvectors within that eigenspace can be replaced by any orthogonal rotation.",
+      "condition_status": "established",
+      "output": "T is invariant to that arbitrary rotation only when the gain is scalar within the eigenspace; impose tied gains, including the nullspace. No hand-chosen spectral bands are required."
+    },
+    {
+      "id": "H04",
+      "input": "Gain domain A is a closed bounded box intersected with linear equality ties; K(1)=0.",
+      "condition": "Finite-dimensional model outputs on fixed finite inputs are continuous and reference/softmax probabilities remain finite.",
+      "condition_status": "conditional",
+      "output": "The feasible set is nonempty and compact, so continuous empirical F attains a minimum. This is existence only, not convexity or optimizer convergence."
+    },
+    {
+      "id": "H05",
+      "input": "Differentiable local intervention h_prime=T(a)h and reference loss F.",
+      "condition": "Current model/U frozen; full graph through all earlier gain interventions retained.",
+      "condition_status": "established",
+      "output": "dF/da_i=sum_t(u_i^T h_t)(u_i^T grad_h_prime F), with all shared occurrences summed. The finite implementation uses this signed gradient in projected proposals and actual F/KL acceptance."
+    },
+    {
+      "id": "F02",
+      "input": "Native row-output Linear h=xW^T+b followed by hT.",
+      "condition": "Same pre-RoPE/pre-normalization site and exact arithmetic.",
+      "condition_status": "established",
+      "output": "Fold equivalently as W_fold=T^T W and b_fold=T^T b. Original-dtype casting breaks exact numerical equality, requiring actual folded-model fit/guard/KL readback and exact restoration."
+    },
+    {
+      "id": "H03",
+      "input": "Empirical eight-prompt bounded-prefix KL and 40 fit / 10 guard reference losses.",
+      "condition": "These finite sets do not represent all deployment prefixes or answer modes.",
+      "condition_status": "established",
+      "output": "Acceptance establishes only measured feasibility on these retained inputs, not a population KL bound, answer correctness, diversity preservation or recursive improvement."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "D1-estimator-and-split",
+      "statement": "Retain the existing uncentered completion-loss gradient moment estimator but construct C on the deterministic 40 fit references only; hold 10 references out of basis construction and fitting.",
+      "justification": "The estimator follows actual collect_covariances source. Separating guard labels prevents their direct use in the operator gradient or chosen basis; it does not create independent scientific confirmation across adaptive rounds."
+    },
+    {
+      "id": "D2-full-spectrum-domain",
+      "statement": "Use full eigenbasis gains in [a_min,1] with tied equal-eigenvalue eigenspaces, refreshed every round.",
+      "justification": "Orthogonal diagonalization gives a symmetric positive-definite nonexpansive operator; a=1 is identity. Equal gains on degenerate eigenspaces remove arbitrary within-eigenspace basis dependence. General nonlinear network benefit does not follow."
+    },
+    {
+      "id": "D3-frozen-native-probe",
+      "statement": "Generate and retain exact native train prompt/completion IDs once per round; compute token-mean full-vocabulary forward KL on identical next-token prefixes with frozen native probabilities.",
+      "justification": "This is the actual conditional-distribution discrepancy for those prefixes, rather than a spectral entropy or activation-norm proxy. Freezing sampled prefixes defines a finite empirical surrogate and avoids pretending to differentiate through discrete sampling."
+    },
+    {
+      "id": "D4-objective-and-signed-gradient",
+      "statement": "Minimize per-example mean fit completion NLL over gains subject to the measured KL budget and gain domain, using the full signed intervention derivative.",
+      "justification": "Chain rule gives the signed product of activation projection and downstream loss-gradient projection. Identity proves feasibility; compactness/continuity imply an ideal optimum exists, but objective nonconvexity prevents claiming that the finite solver attains it."
+    },
+    {
+      "id": "D5-bounded-feasible-search",
+      "statement": "Represent a=B b with one gain per equal-eigenvalue eigenspace; use grad_b F=B^T grad_a F, summing its directional contributions. From b=1, make finite box-projected/backtracked proposals in b, retaining only actual fit-improving, KL-feasible candidates; stop on rejection/exhaustion. Apply one final guard veto and native identity fallback if needed.",
+      "justification": "This is projected gradient in reduced tied-gain coordinates, not expanded-a Euclidean projection. A common gradient normalization rescales the step size. Each accepted candidate has measured acceptance; finite search does not certify an exact optimum or convergence. Guard labels do not guide intermediate search."
+    },
+    {
+      "id": "D6-fold-readback-and-restoration",
+      "statement": "Audit actual float32-product/original-dtype folded fit/guard losses and native-relative probe KL; record activation-versus-folded fit-CE and probe-KL deltas. Reject to identity on fit/guard/KL violations and restore native parameters exactly before SFT/evaluation.",
+      "justification": "Folding is algebraically exact but not numerically identical in BF16. Actual model readback is required because activation-path acceptance cannot certify the folded generation model."
+    },
+    {
+      "id": "D7-isolated-recursive-training",
+      "statement": "Generate with the accepted operator, then train all ordinary raw records using unchanged SFT/LoRA settings; reestimate and recalibrate next round without weighted SFT or gold-reference replay.",
+      "justification": "This isolates the user-selected operator-controller modification in the existing recursive loop. Any empirical benefit remains a benchmark question; calibration CE is not a substitute outcome."
+    }
+  ],
+  "method_expression": "A_r={a: a_min<=a_m,i<=1 and equal-eigenvalue gains tied}. Minimize F_r(a)=mean_e in fit(mean selected completion NLL_e(theta_r,T(a))) subject to K_r(a)=mean_h in frozen native probe KL(p_native(.|h)||p_a(.|h))<=delta. Represent tied gains as a=B b, with one b per equal-eigenvalue eigenspace and gradient grad_b F=B^T grad_a F. Implement only a bounded box-projected-gradient line-search approximation in b coordinates with actual fit/KL acceptance, one final guard veto, then folded-forward fit/guard/KL readback; use exact native identity fallback if a candidate is rejected. Generation-only intervention is restored before unchanged SFT.",
+  "distinguishing_prediction": "Unlike entropy adaptive tau, the controller can choose different operators when spectra have identical entropy but signed reference response or actual probe KL differs. Every emitted nonidentity operator should have retained actual folded fit improvement, guard acceptance and prefix-KL feasibility; recursive native-score benefit is a separate testable hypothesis.",
+  "falsifier": "If native qualification finds an emitted nonidentity operator violating declared folded fit/guard/KL acceptance or failing exact restoration, implementation semantics are refuted. If complete native recursive comparisons show no useful benefit relative to the current decay/entropy/fixed controllers at disclosed extra cost, the proposed practical advantage is unsupported even when calibration objectives improve.",
+  "closest_alternative": "Current SPECTRUM fixed/decay/entropy-selected scalar tau is directly source-audited. General spectral coefficient fitting, reference guidance and KL constraints are established ideas; reported ASC/STS/Ren and SGL sources are explicitly attributed in source-screen.json with coverage limits. This is a scoped adaptation, not a novelty or priority claim; no missing upstream code is treated as absence of prior work.",
+  "decisive_comparison": "Prospective native benchmark comparison of the new gain controller with existing fixed, entropy-adaptive and decay controllers, preserving model, train/eval data, decoding, ordinary SFT and native scorer; disclose extra native-probe/calibration compute. A same-40-fit-basis comparison is necessary to isolate controller effects from changing the original 50-reference estimator. Retain all rounds, failures and identity fallbacks; no temperature or training-seed sweep is required. A complete frozen execution design is a later artifact, not supplied by this mathematical card.",
+  "source_refs": [
+    {
+      "path": "rounds/20261101-learned-gains/METHOD.md",
+      "sha256": "cf475b09120aca9c089235e15df3dbdd4514bf6037b28de998d71c6b93426d72"
+    },
+    {
+      "path": "rounds/20261101-learned-gains/evidence/baseline-source-snapshot.json",
+      "sha256": "26c36382eafec30189a429e830ffe5c3644edbb8aee222b1f99ae367d6d2fc90"
+    },
+    {
+      "path": "rounds/20261101-learned-gains/evidence/scope-source.json",
+      "sha256": "4030c746564fcc61392d6de51edd3e8a241373fc0c01fa41b2ac5788cb91861b"
+    },
+    {
+      "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+      "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+    }
+  ]
+}

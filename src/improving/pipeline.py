@@ -26,7 +26,7 @@ from .modeling import collate_examples, encode_example, load_model, render_promp
 from .training import train_on_records, validate_full_completion_targets
 
 METHODS = {'plain', 'ssd', 'spd_hard', 'spectral_soft', 'residual_blend', 'random_hard',
-           'random_soft', 'isotropic_soft', 'matched_blend'}
+           'random_soft', 'isotropic_soft', 'matched_blend', 'spectral_learned'}
 
 
 def file_sha(path):
@@ -177,6 +177,11 @@ def validate_config(config):
         if (isinstance(gamma, bool) or not isinstance(gamma, (int, float))
                 or not math.isfinite(gamma) or gamma <= 0):
             raise ValueError('calibration.tau_gamma must be positive')
+    if 'spectral_learned' in methods:
+        from .gain_pipeline import split_gain_settings
+        split_gain_settings(calibration)
+    elif 'gain_learning' in calibration:
+        raise ValueError('calibration.gain_learning requires the spectral_learned method')
     train = config.get('train', {})
     validate_full_completion_targets(train, gen)
     target_budget = train.get('target_token_budget')
@@ -442,7 +447,7 @@ def _fixed_operators(covariances, method, settings, seed, path, calibration_path
 
 
 def _operator_diagnostics(model, operators, covariances, method, settings, *, round_index=1,
-                          entropy_ratio=None):
+                          entropy_ratio=None, folding_applied=True):
     """Record actual parameter effects as well as the operator matching contract."""
     from .spectral import make_operator
     matched = method in {'random_soft', 'isotropic_soft', 'matched_blend'}
@@ -452,16 +457,18 @@ def _operator_diagnostics(model, operators, covariances, method, settings, *, ro
         rank = settings.get('rank')
         if rank is None:
             rank = max(1, int(dimension * float(settings.get('rank_fraction', .5))))
-        reference_tau = _tau_for_round(settings, round_index, entropy_ratio=entropy_ratio)
-        reference = make_operator(covariances[name]['covariance'], tau=reference_tau)
+        reference_tau = (None if method == 'spectral_learned' else
+                         _tau_for_round(settings, round_index, entropy_ratio=entropy_ratio))
+        reference = (None if method == 'spectral_learned' else
+                     make_operator(covariances[name]['covariance'], tau=reference_tau))
         identity = torch.eye(dimension, dtype=op.dtype)
         distance = float(torch.linalg.vector_norm(op - identity))
-        target = float(torch.linalg.vector_norm(reference - identity))
+        target = float(torch.linalg.vector_norm(reference - identity)) if reference is not None else None
         module = model.get_submodule(name)
         # Mirror folded_operators' actual float32 multiply and original-dtype cast.
         weight = module.weight.detach()
         transform = op.to(device=weight.device, dtype=torch.float32)
-        folded = (transform.T @ weight.float()).to(weight.dtype)
+        folded = (transform.T @ weight.float()).to(weight.dtype) if folding_applied else weight
         weight64 = weight.to(device='cpu', dtype=torch.float64)
         delta = folded.to(device='cpu', dtype=torch.float64) - weight64
         weight_norm = float(torch.linalg.vector_norm(weight64))
@@ -489,6 +496,7 @@ def _operator_diagnostics(model, operators, covariances, method, settings, *, ro
             'folded_weight_relative_delta': float(torch.linalg.vector_norm(delta)) / weight_norm
                 if weight_norm > 0 else None,
             'folding_arithmetic': 'float32_product_then_original_parameter_dtype',
+            'folding_applied': folding_applied,
             'projection_output_dimension': module.out_features,
             'projection_has_bias': module.bias is not None,
             'head_mixing': 'full_native_kv_projection_output_space',
@@ -499,7 +507,7 @@ def _operator_diagnostics(model, operators, covariances, method, settings, *, ro
             diagnostics[name]['isotropic_gain'] = float(op[0, 0])
         if module.bias is not None:
             bias = module.bias.detach()
-            folded_bias = (transform.T @ bias.float()).to(bias.dtype)
+            folded_bias = (transform.T @ bias.float()).to(bias.dtype) if folding_applied else bias
             diagnostics[name]['folded_bias_delta_frobenius'] = float(torch.linalg.vector_norm(
                 folded_bias.to(device='cpu', dtype=torch.float64) - bias.to(device='cpu', dtype=torch.float64)))
     return diagnostics
@@ -683,6 +691,12 @@ def run_experiment(config, *, resume=False):
             directory = root / method / f'round_{round_index}'
             marker = directory / 'complete.json'
             checkpoint = directory / 'model'
+            trained = (checkpoint / 'training_stats.json').exists()
+            if method == 'spectral_learned' and (marker.exists() or trained):
+                from .gain_pipeline import validate_saved_learned_round
+                validate_saved_learned_round(
+                    directory, identity, cal, splits['calibration'], splits['train'],
+                    seed=seed, round_index=round_index)
             if marker.exists():
                 state = json.loads(marker.read_text())
                 if any(not (directory / name).exists() or file_sha(directory / name) != digest
@@ -695,7 +709,11 @@ def run_experiment(config, *, resume=False):
                 continue
             directory.mkdir(parents=True, exist_ok=True)
             print(f'[{method}] round {round_index}: {"resume" if resume else "start"}', flush=True)
-            trained = (checkpoint / 'training_stats.json').exists()
+            if method == 'spectral_learned' and round_index > 1 and not trained:
+                expected_previous = root / method / f'round_{round_index - 1}' / 'model'
+                if previous_checkpoint != expected_previous or not expected_previous.is_dir():
+                    raise ValueError('Learned round requires its immediate native predecessor checkpoint; '
+                                     'restore the original checkpoint/completion receipt instead of restarting from base')
             if local_base_fingerprint and checkpoint_fingerprint(local_base) != local_base_fingerprint:
                 raise ValueError('Base model/tokenizer changed during this experiment')
             with record_stage(directory, 'model_loading'):
@@ -705,7 +723,33 @@ def run_experiment(config, *, resume=False):
                     (checkpoint / 'training_stats.json').read_text()))
             if not trained:
                 operators = None
-                if method not in {'plain', 'ssd'}:
+                selected_identity = False
+                if method == 'spectral_learned':
+                    from .gain_pipeline import calibrate_learned_round
+                    operators, covariances, gain_audit, gain_provenance = calibrate_learned_round(
+                        model, tokenizer, splits['calibration'], splits['train'], cal, gen,
+                        directory, identity, seed=seed, round_index=round_index, resume=resume)
+                    selected_identity = gain_audit['selected_identity']
+                    atomic_json(directory / 'calibration_provenance.json', {
+                        'mode': 'reestimated_fit_reference_learned_gains',
+                        'calibration_round': round_index, 'calibration_model_identity': identity,
+                        'student_model_identity': identity, 'method': method, 'seed': seed,
+                        'calibration_path': str((directory / 'calibration.pt').relative_to(root)),
+                        'calibration_sha256': gain_provenance['calibration_sha256'],
+                        'calibration_task_ids': gain_provenance['fit_task_ids'],
+                        'guard_task_ids': gain_provenance['guard_task_ids'],
+                        'reference_policy': gain_provenance['reference_policy'],
+                        'tau': None, 'tau_mode': None, 'tau_decay': None,
+                        'operator_source': 'current_round_full_spectrum_gain_fit',
+                        'operator_sha256': gain_provenance['operator_sha256'],
+                        'selected_identity': selected_identity,
+                        'gain_provenance_file': 'gain_provenance.json',
+                        'intervention_lifetime': gain_provenance['intervention_lifetime'],
+                    })
+                    atomic_json(directory / 'operator_diagnostics.json', _operator_diagnostics(
+                        model, operators, covariances, method, cal, round_index=round_index,
+                        folding_applied=not selected_identity))
+                elif method not in {'plain', 'ssd'}:
                     reestimate = cal.get('reestimate_each_round', True)
                     calibration_path = (directory if reestimate else root / method / 'round_1') / 'calibration.pt'
                     calibration_identity = identity if reestimate else base_identity
@@ -760,7 +804,8 @@ def run_experiment(config, *, resume=False):
                 training_settings = dict(train_gen)
                 if method == 'ssd':
                     training_settings.update({'temperature': 1.5, 'top_p': .8, 'top_k': 20})
-                with folded_operators(model, operators) if operators is not None else nullcontext():
+                with (folded_operators(model, operators)
+                      if operators is not None and not selected_identity else nullcontext()):
                     with record_stage(directory, 'training_generation'):
                         records = generate_to_file(model, tokenizer, splits['train'], directory / 'train.jsonl',
                                                     training_settings, seed=seed, model_identity=identity,

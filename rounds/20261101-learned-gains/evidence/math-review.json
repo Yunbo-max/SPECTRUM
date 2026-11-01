@@ -1,0 +1,113 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "spectrum-learned-gains-v1",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+    "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+  },
+  "reviewer": "/root (independent review of spectrum_selective_sft_math authored card)",
+  "reviewed_at": "2026-11-01T15:14:19.311274+00:00",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Verified dimensions and row-vector convention: per-module C is d by d, U orthogonal, T=U diag(Bb) U.T. The objective is fit-reference CE with empirical native-to-steered KL; it does not optimize benchmark correctness directly.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+          "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+          "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "Checked scaling invariance counterexample and eigenspace rotation invariance. Repeated-eigenvalue tying is required for basis-invariant T; near ties are explicitly a numerical approximation. Conditional compactness argument requires finite continuous model outputs and positive bounded gains.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+          "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+          "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Checked local chain-rule derivative and grouped-coordinate gradient B.T grad_a. Projected steps occur in b coordinates, not an incorrectly clipped Fisher solution. Generation folding W_new=T.T W and bias_new=T.T bias matches row activations only in exact arithmetic, so actual BF16 checks are required.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+          "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+          "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Checked fit/guard separation, fit-only covariance, native training-prefix probe, raw-logit full-vocabulary KL, exact generated IDs and no false EOS. Guard is a one-final-candidate veto reused across rounds, not an independent test. Model/basis freeze and state restoration are mandatory.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+          "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+          "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "Finite projected line search with measured fit decrease and KL acceptance is a coherent approximate solver. Identity is feasible and must be an exact bypass. The method does not assert convergence, full-distribution KL bounds, correct-step weights or learned SFT loss.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+          "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+          "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Controller feasibility and restoration are software-falsifiable. Actual recursive score/coverage at extra compute is a separate hypothesis; fit-loss improvement alone cannot qualify scientific success. Same-40-reference comparator is required to isolate the gain rule.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+          "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+          "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Reviewed existing b8 pipeline/calibration/spectral source and prior primary ASC/STS/Ren sources in the root thread. Known coefficient fitting and KL constraints are attributed; selection is scoped implementation of one user-chosen adaptation, not an originality or exhaustive-search finding.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-card.json",
+          "sha256": "010c54489fc5e81bd4866791a044da4cbf2480e0743c4e0caefb109eb22a0c0a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/source-screen.json",
+          "sha256": "ea7f2019992880159c27fe8e41ca1f19dbbe106559f3512d1039f0def3ae664b"
+        }
+      ]
+    }
+  }
+}

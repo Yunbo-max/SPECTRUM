@@ -1,4 +1,28 @@
-# Current Local entry — 29 October 2026
+# Current Local entry — 1 November 2026
+
+Repo: **Yunbo-max/SPECTRUM**, branch **main**. Read the delivered immutable revision,
+[learned-gain handoff](rounds/20261101-learned-gains/WEB_HANDOFF.md), then the
+[complete commands and acceptance guide](docs/SPECTRUM_LEARNED_GAINS_ZH.md).
+[Data/model acquisition](docs/SPECTRUM_LEARNED_GAINS_ZH.md#下载数据和模型) reuses the
+existing pinned MBPP and Qwen Coder7B inputs.
+
+The user selected one opt-in `spectral_learned` arm for Local testing: full-spectrum
+gains, current-round reference geometry, measured output KL, separate guard,
+folded-path verification and identity fallback. Ordinary SFT is unchanged.
+The setting is MBPP291/50/30/500, ten rounds, 16 training and 64 evaluation outputs
+per task, 4096 output / 6144 SFT tokens. Fixed/decay/adaptive baselines remain.
+
+Status: **generated_unexecuted**. Web did not execute project tests, model loading,
+training, inference or scoring. Restore actual host/environment/allocation and
+active jobs first; stage this change in a separate checkout. Follow the guide's
+software acceptance, native calibration qualification, explicit launch and return
+order. The guide separates a calibration-only check from a complete scientific run.
+
+Do not resume any historical run with the new source fingerprint or silently
+replace its configuration. No automatic GPU launch, baseline sweep or full study
+is authorized by reading this file. Preserve every failed/identity/negative case.
+
+# Previous Local entry — 29 October 2026
 
 Repo: **Yunbo-max/SPECTRUM**, branch **main**. Read the delivered immutable revision.
 Current handoff: [4096-token repair](rounds/20261029-length4096/WEB_HANDOFF.md).

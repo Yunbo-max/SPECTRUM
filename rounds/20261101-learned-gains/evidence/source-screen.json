@@ -1,0 +1,92 @@
+{
+  "kind": "candidate-source-screen",
+  "version": "1.0.0",
+  "candidate_id": "spectrum-learned-gains-v1",
+  "disposition": "A user-requested SPECTRUM adaptation of established spectral coefficient fitting and distribution-constrained optimization ideas; no originality/priority claim. Candidate implementation remains conditional on independent math/selection review.",
+  "baseline_ref": {
+    "path": "rounds/20261101-learned-gains/evidence/baseline-source-snapshot.json",
+    "sha256": "26c36382eafec30189a429e830ffe5c3644edbb8aee222b1f99ae367d6d2fc90"
+  },
+  "sources": [
+    {
+      "name": "SPECTRUM current native code",
+      "url": "https://github.com/Yunbo-max/SPECTRUM/tree/b8bcc68f87a2a216ac048bc7fb36365c2002e8b0",
+      "provenance": "Direct read and retained complete source snapshot in this task.",
+      "facts": [
+        "collect_covariances uses per-example selected-completion mean NLL, accumulates G.T@G at all nonpadding projection positions and divides by token count.",
+        "Current spectral_soft uses 1/(1+tau*(1-lambda/lambda_max)); adaptive uses tau*(H_r/H_1)^gamma, default gamma=5.",
+        "Calibration is reestimated each round by default on fixed reference tasks; current default max_examples is 50.",
+        "Folding performs float32 T.T@W then casts to parameter dtype and restores original tensors.",
+        "Current standard training uses model(**batch).loss; fixed_anchor_replay is a separate optional existing control and is excluded from this new arm."
+      ],
+      "delta": "Replace only generation operator selection with empirical reference-loss/KL constrained full-spectrum gain fitting; ordinary recursive SFT unchanged."
+    },
+    {
+      "name": "Uncovering the Gradient Geometry of Long CoT: A Spectral-guided Approach to Reasoning Distillation",
+      "url": "https://proceedings.mlr.press/v306/fan26e.html",
+      "provenance": "Parent and prior agents read PMLR full text; math author inspected the retained extracted text in this session.",
+      "retained_text_sha256": "415f1ecfc93fe29c0c2addd4626828e5056e30ba410986bb63b4246a2824003f",
+      "facts": [
+        "Uses spectral analysis of token hidden-state loss gradients and selection of supervised long-CoT steps.",
+        "It is a training loss-selection comparator; that mechanism is not implemented in this candidate."
+      ],
+      "coverage_gap": "No author implementation is asserted read by this mathematical card author.",
+      "delta": "Current candidate fits generation-time K/V gains on small references and keeps ordinary SFT unchanged."
+    },
+    {
+      "name": "ASC",
+      "url": "https://arxiv.org/pdf/2507.04742",
+      "provenance": "Parent reports prior primary-paper and author-source inspection; this card author has not independently re-read those remote sources.",
+      "locators": [
+        "Section 4 and Appendix A",
+        "author generate.py at blob bc95d5979af1eccbdb7d182653a3d69f2d261db0"
+      ],
+      "facts_from_parent": [
+        "Paper discusses a KL bound.",
+        "Inspected generate.py uses hardcoded gamma; no dynamic controller was found at that inspected location."
+      ],
+      "coverage_gap": "Source observations are delegated author-code review, not execution or a universal absence claim.",
+      "delta": "This construction measures full output forward KL on frozen native prefixes and fits full spectral gains rather than asserting that a parameter proxy is an exact output constraint.",
+      "author_code_url": "https://github.com/ArminAzizi98/ASC/blob/main/generate.py",
+      "author_code_blob_sha": "bc95d5979af1eccbdb7d182653a3d69f2d261db0"
+    },
+    {
+      "name": "STS",
+      "url": "https://arxiv.org/html/2511.09809v1",
+      "provenance": "Parent reports prior primary-paper inspection; this card author has not independently re-read the remote paper.",
+      "locators": [
+        "Section 3.2.2"
+      ],
+      "facts_from_parent": [
+        "Uses additive SVD coefficients for CLIP test-time adaptation.",
+        "Code was described as coming soon in the prior source review."
+      ],
+      "coverage_gap": "No unavailable implementation is treated as evidence against prior work.",
+      "delta": "Nonexpansive gains on reference-gradient K/V eigenspaces in recursive text generation differ in model, coordinate source, objective and downstream loop; coefficient learning itself is not claimed new."
+    },
+    {
+      "name": "Learning to Reweight Examples for Robust Deep Learning",
+      "url": "https://proceedings.mlr.press/v80/ren18a.html",
+      "author_code_url": "https://github.com/uber-research/learning-to-reweight-examples/blob/master/mnist/reweight.py",
+      "provenance": "Parent reports prior primary-paper and author implementation inspection; this card author has not independently re-read those remote sources.",
+      "facts_from_parent": [
+        "Fits example weights using clean validation information."
+      ],
+      "delta": "This candidate does not implement example reweighting or a meta-gradient through an SFT update; small clean reference guidance is established and disclosed.",
+      "author_code_blob_sha": "c3e15bc869af60f68362e8df975e2afb5bc9e089"
+    }
+  ],
+  "benchmark_contract": {
+    "source": "LOCAL_AGENT_RUNBOOK.md and rounds/20261029-length4096/WEB_HANDOFF.md read in the parent worktree",
+    "model": "Qwen2.5-Coder-7B-Instruct",
+    "native_benchmark": "Original-tests MBPP500, not MBPP+378 or a hand-built proxy",
+    "splits": "MBPP291 train / 50 calibration / 30 validation / 500 eval; new calibration partition 40 fit / 10 guard inside the existing 50 only",
+    "outcomes": "Preserve native pass@k/coverage and all round outputs; calibration CE/KL are controller diagnostics, not benchmark outcomes.",
+    "runtime_status": "No software, native scorer or GPU qualification executed by this task."
+  },
+  "known_open_questions": [
+    "No claim of an exhaustive novelty audit or cleared scientific execution gate.",
+    "Native-memory/cost feasibility, full-prefix KL measurements and BF16 folding drift remain to be tested on the actual host.",
+    "Few-reference fitting and repeated-round guard reuse can overfit; no population guarantee."
+  ]
+}

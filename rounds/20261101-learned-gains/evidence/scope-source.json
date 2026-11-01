@@ -1,0 +1,14 @@
+{
+  "kind": "scoped-user-request",
+  "version": "1.0.0",
+  "authoring_role": "web_source_author",
+  "delivery_source": "Parent /root relayed the latest user message and its immediate antecedent verbatim on 2026-11-01; not inferred from a repository permission file.",
+  "latest_user_quote": "你觉得这个好的话请你更新下code我来测试",
+  "antecedent_user_quote": "首版只学习 **2–3 个谱分组的增益**， 这里就两三个吗，我觉得很奇怪，也太工程了吧，我们是固定这个吗，然后我们现在的这个adaptive怎么改？",
+  "scope_interpretation": "User selected the discussed full-spectrum learned-gain modification and requests code for their testing. This is one specified method adaptation, not a request for a new 20-candidate search.",
+  "scope_boundaries": [
+    "No project tests, model inference, training, scoring or dataset/model downloads in this Web authoring task.",
+    "Ordinary SFT unchanged; weighted SFT is excluded.",
+    "One candidate and one selection; no claim of new-method priority or empirical success."
+  ]
+}

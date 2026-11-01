@@ -1,0 +1,37 @@
+{
+  "status": "static_checks_passed_runtime_unexecuted",
+  "checked_at": "2026-11-01T15:25:22.607978+00:00",
+  "parent_commit": "b8bcc68f87a2a216ac048bc7fb36365c2002e8b0",
+  "checks": {
+    "python_ast": [
+      "scripts/collect_learned_gains.py",
+      "scripts/qualify_learned_gains.py",
+      "src/improving/gain_pipeline.py",
+      "src/improving/learned_gains.py",
+      "src/improving/pipeline.py",
+      "tests/test_gain_pipeline.py",
+      "tests/test_learned_gains.py"
+    ],
+    "json_yaml_parse": true,
+    "shell_syntax": true,
+    "diff_whitespace": true,
+    "baseline_model_data_generation_sft_evaluation_preserved": true,
+    "matched_control_only_changes_anchor_count_and_output": true,
+    "local_markdown_links_resolve": true
+  },
+  "source_sha256": {
+    "scripts/collect_learned_gains.py": "c0c3cc36c7710364387e78a027361710f83a0379d43e602068c44c67e883c5c8",
+    "scripts/qualify_learned_gains.py": "d14203a1861b6c4b3702275817262c944a3736852cee0f085a45581283b62b85",
+    "src/improving/gain_pipeline.py": "88327d3d4049da4c6d6e6d4cfaa0a612b6426b36d911d52dd013e22b600f19f2",
+    "src/improving/learned_gains.py": "77ff563dc74ac3134bc0a833e39bc7957132f090cc8521218a71b58c35621bcf",
+    "src/improving/pipeline.py": "06654699c77a1f6518ace0a394e7e55b11fd5037b0ceb5f5d0755f2e58fc93df",
+    "tests/test_gain_pipeline.py": "8ce604999ab85a6f051e24ac7fc2a8918a916c4b127266888d2e934f82792be5",
+    "tests/test_learned_gains.py": "569ea1385243c3d6a49edf7b3b07039c9552633d778bc2466df772ac0eeb5b12"
+  },
+  "project_tests_executed": false,
+  "models_loaded": false,
+  "inference_or_training_executed": false,
+  "code_verified": false,
+  "native_qualification": "pending_user_host",
+  "scientific_effectiveness": "not_evaluated"
+}

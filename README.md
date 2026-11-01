@@ -2,7 +2,27 @@
 
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
-## Current experiment entry — 29 October 2026
+## Selected experiment — 1 November 2026
+
+[**Local: start here**](LOCAL_AGENT_RUNBOOK.md)
+· [Learned spectral gains: commands and acceptance](docs/SPECTRUM_LEARNED_GAINS_ZH.md)
+· [Current handoff](rounds/20261101-learned-gains/WEB_HANDOFF.md)
+· [Download data and model](docs/SPECTRUM_LEARNED_GAINS_ZH.md#下载数据和模型)
+
+The new opt-in `spectral_learned` text arm learns continuous gains in the current
+reference-gradient eigenbasis each round, with full-vocabulary native-to-steered
+KL checks, separate fit/guard references, and an identity fallback. It does not
+use hand-chosen two/three spectral bins. The generated corpus still receives
+ordinary LoRA SFT; step-weighted SFT is not implemented in this delivery.
+
+Scope: Qwen2.5-Coder-7B-Instruct, MBPP291/50/30/500, ten rounds, 4096 generated
+tokens and 6144 SFT tokens, with a new output root. Existing fixed/decay/adaptive
+arms and their archived results are retained. This is **generated_unexecuted**:
+software acceptance, native 7B capacity and scientific benefit remain unverified.
+Keep live experiments on their original pinned revision; do not resume old run
+directories with the changed source fingerprint.
+
+## Previous experiment entry — 29 October 2026
 
 [**Local: start here / 当前运行指南**](LOCAL_AGENT_RUNBOOK.md)
 · [4096-token repair and commands](docs/SPECTRUM_4096_ZH.md)

@@ -1,5 +1,30 @@
 # SPECTRUM current agent entry
 
+## Selected text extension — 1 November 2026
+
+For the user's learned-gain test, read [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md),
+[current handoff](rounds/20261101-learned-gains/WEB_HANDOFF.md), and the
+[exact guide](docs/SPECTRUM_LEARNED_GAINS_ZH.md), including its
+[input acquisition](docs/SPECTRUM_LEARNED_GAINS_ZH.md#下载数据和模型).
+
+- The new arm is `spectral_learned`, with a fresh run directory. Preserve all old
+  fixed/decay/entropy-adaptive configurations, results and running checkouts.
+- Same 50 reference answers: fixed 40 fit / 10 guard. Fit only supplies the
+  eigenspace and gain gradients; guard is final-only veto, not an independent test.
+  Native probe prefixes come only from training prompts, without answer scoring.
+- Learn full-spectrum gains; tie only numerically equal eigenvalues. Keep exact
+  token identities, actual folded-operator checks and identity fallback receipts.
+- Ordinary SFT remains unchanged. No step-weighted loss, raw-output correctness
+  filtering, external teacher, GUI modification or new test-label access is added.
+- This source delivery is generated_unexecuted. Local must run the authored
+  software checks, qualify native 7B memory, preserve failures and return actual
+  diagnostics. Do not interpret source review as passed tests or scientific gains.
+- An unchanged old algorithm does not imply an unchanged source fingerprint;
+  resume old runs only at their original revision. Do not delete manifests to
+  force compatibility. Use expected-head publication and exact readback.
+
+## Previous text entry — 29 October 2026
+
 Read [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md), then
 [the current handoff](rounds/20261029-length4096/WEB_HANDOFF.md) at the delivered commit.
 The acquisition and qualification sections are part of the entry.

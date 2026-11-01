@@ -1,0 +1,87 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "spectrum-learned-gains-20261101",
+  "scope": "selection",
+  "artifact_ref": {
+    "path": "rounds/20261101-learned-gains/evidence/selection.json",
+    "sha256": "b17c56425536ffb10839fd6003c6cb0fa7c144c5aaa0ae42b269e6dd49ab55c1"
+  },
+  "reviewer": "/root",
+  "reviewed_at": "2026-11-01T15:14:19.311274+00:00",
+  "outcome": "verified",
+  "checks": {
+    "structural_distinctness": {
+      "status": "verified",
+      "rationale": "There is exactly one explicitly user-selected controller adaptation. No artificial extra candidates, parameter sweeps or duplicate mechanisms count toward a discovery pool. The 1/1 override is bound to the recorded user request.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/selection.json",
+          "sha256": "b17c56425536ffb10839fd6003c6cb0fa7c144c5aaa0ae42b269e6dd49ab55c1"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-review.json",
+          "sha256": "763c145349ed80a59f084c7e96dd0b5ca191a8b57e2a2a120491220318e6041a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/scope-source.json",
+          "sha256": "4030c746564fcc61392d6de51edd3e8a241373fc0c01fa41b2ac5788cb91861b"
+        }
+      ]
+    },
+    "all_candidates_compared": {
+      "status": "verified",
+      "rationale": "The single scoped candidate was reviewed against the actual fixed/decay/entropy scalar controls and attributed KL/spectral-fitting precedents. Other approaches are comparators, not a fabricated ranked novel pool.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/selection.json",
+          "sha256": "b17c56425536ffb10839fd6003c6cb0fa7c144c5aaa0ae42b269e6dd49ab55c1"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-review.json",
+          "sha256": "763c145349ed80a59f084c7e96dd0b5ca191a8b57e2a2a120491220318e6041a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/scope-source.json",
+          "sha256": "4030c746564fcc61392d6de51edd3e8a241373fc0c01fa41b2ac5788cb91861b"
+        }
+      ]
+    },
+    "ranking_basis": {
+      "status": "verified",
+      "rationale": "Selection follows the specific user implementation request after review of mathematical coherence, old-controller blind spots, full-gain cost and overfitting risks. It does not claim empirical superiority over decay or prove a general ranking.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/selection.json",
+          "sha256": "b17c56425536ffb10839fd6003c6cb0fa7c144c5aaa0ae42b269e6dd49ab55c1"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-review.json",
+          "sha256": "763c145349ed80a59f084c7e96dd0b5ca191a8b57e2a2a120491220318e6041a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/scope-source.json",
+          "sha256": "4030c746564fcc61392d6de51edd3e8a241373fc0c01fa41b2ac5788cb91861b"
+        }
+      ]
+    },
+    "top_selection": {
+      "status": "verified",
+      "rationale": "Selected IDs exactly contain the one reviewed full-spectrum candidate. Code delivery is authorized as generated_unexecuted; software/native qualification and later scientific confirmation remain pending.",
+      "evidence_refs": [
+        {
+          "path": "rounds/20261101-learned-gains/evidence/selection.json",
+          "sha256": "b17c56425536ffb10839fd6003c6cb0fa7c144c5aaa0ae42b269e6dd49ab55c1"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/math-review.json",
+          "sha256": "763c145349ed80a59f084c7e96dd0b5ca191a8b57e2a2a120491220318e6041a"
+        },
+        {
+          "path": "rounds/20261101-learned-gains/evidence/scope-source.json",
+          "sha256": "4030c746564fcc61392d6de51edd3e8a241373fc0c01fa41b2ac5788cb91861b"
+        }
+      ]
+    }
+  }
+}

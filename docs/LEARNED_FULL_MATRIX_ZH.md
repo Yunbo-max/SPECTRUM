@@ -119,7 +119,14 @@ bash scripts/run_learned_full_matrix.sh prep-text
 bash scripts/run_learned_full_matrix.sh prep-code --model=qwen7b --execute
 bash scripts/run_learned_full_matrix.sh prep-text --execute
 
-# 先验收新代码和无模型协议
+# 先执行无依赖静态预检（无需 CUDA、下载或服务器环境）：
+
+```bash
+python scripts/preflight_learned_full_matrix.py
+bash -n scripts/run_learned_full_matrix.sh
+```
+
+先验收新代码和无模型协议
 python -m pytest tests/test_crossfamily_study.py tests/test_crossfamily_learned.py \
     tests/test_text_contracts.py tests/test_text_learned.py \
     tests/test_gain_pipeline.py tests/test_learned_gains.py \

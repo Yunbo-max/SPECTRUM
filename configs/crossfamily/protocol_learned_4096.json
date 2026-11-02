@@ -71,8 +71,8 @@
     "require_full_completion_targets": true
   },
   "evaluation": {
-    "backend": "local",
-    "allow_unsafe_local": true,
+    "backend": "docker",
+    "allow_unsafe_local": false,
     "code_extraction": "first_fence",
     "workers": 4,
     "timeout": 10,
@@ -92,7 +92,8 @@
       8,
       16
     ],
-    "bootstrap_samples": 2000
+    "bootstrap_samples": 2000,
+    "docker_image": "python:3.11-slim"
   },
   "transfer": {
     "benchmark": "humanevalplus",
@@ -119,7 +120,7 @@
   "study_notes": {
     "learned_fit": "40 reference solutions + 10 disjoint guard, 8 native train probes each round",
     "training": "all raw self-generated completions, no tests or reward used to select training data",
-    "evaluator": "original MBPP500 + HumanEval+164; APPS/CodeContests/LCB via separate frozen transfer suite",
+    "evaluator": "Docker-isolated MBPP/transfer native verification (verify container availability before dispatch); HumanEval+ official EvalPlus",
     "capacity": "full 4096-token completions, 6144 token SFT; qualify BF16 GPU before dispatch",
     "baseline": "all methods share the same 4096-token generation/SFT budget except SSD decoder distribution",
     "experiment_status": "generated_unexecuted"

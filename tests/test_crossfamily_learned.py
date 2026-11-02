@@ -28,6 +28,8 @@ def test_historical_protocol_unchanged_and_learned_only_additive():
     assert learned["calibration"]["gain_learning"]["guard_examples"] == 10
     assert learned["calibration"]["max_examples"] == 50
     assert learned["transfer"]["samples"] == 64
+    assert learned["evaluation"]["backend"] == "docker"
+    assert learned["evaluation"]["allow_unsafe_local"] is False
 
 def test_invalid_learned_reference_splits_rejected():
     r=runner()

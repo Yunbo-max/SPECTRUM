@@ -291,8 +291,8 @@ def plan(args):
             or protocol.get("independent_training_trajectories") != 1
             or protocol.get("temperature_sweep") is not False):
         raise ValueError("Require the fixed three-family, one-trajectory protocol")
-    if protocol["evaluation"]["backend"] not in ("bwrap", "local"):
-        raise ValueError("Require the bwrap or explicitly enabled local evaluation backend")
+    if protocol["evaluation"]["backend"] not in ("bwrap", "docker", "local"):
+        raise ValueError("Require a qualified docker/bwrap backend, or explicitly enabled unsafe local")
     if protocol["evaluation"]["backend"] == "local" and not protocol["evaluation"].get("allow_unsafe_local"):
         raise ValueError("Local evaluation requires allow_unsafe_local=true")
     data, root = path(args.data_root), path(args.run_root)

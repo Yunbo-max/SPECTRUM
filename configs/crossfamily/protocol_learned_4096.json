@@ -51,7 +51,8 @@
       "degeneracy_rtol": 1e-7,
       "degeneracy_atol": 1e-12,
       "kl_chunk_tokens": 32
-    }
+    },
+    "matched_reference_fit_examples": 40
   },
   "train": {
     "epochs": 1,

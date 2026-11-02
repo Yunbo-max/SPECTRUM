@@ -179,7 +179,14 @@ def validate_config(config):
             raise ValueError('calibration.tau_gamma must be positive')
     if 'spectral_learned' in methods:
         from .gain_pipeline import split_gain_settings
-        split_gain_settings(calibration)
+        _, integration = split_gain_settings(calibration)
+        matched_fit = calibration.get('matched_reference_fit_examples')
+        if matched_fit is not None:
+            if (type(matched_fit) is not int or
+                    matched_fit != calibration['max_examples'] - integration['guard_examples']):
+                raise ValueError('matched_reference_fit_examples must equal learned fit count')
+    elif 'matched_reference_fit_examples' in calibration:
+        raise ValueError('Matched fit references require spectral_learned in the same study')
     elif 'gain_learning' in calibration:
         raise ValueError('calibration.gain_learning requires the spectral_learned method')
     train = config.get('train', {})
@@ -655,6 +662,11 @@ def run_experiment(config, *, resume=False):
     eval_gen['samples'] = gen.get('eval_samples', 64)
     train_gen = {**eval_gen, 'samples': gen.get('train_samples', 1)}
     cal = config.get('calibration', {})
+    # Opt-in matched-reference comparison: classical soft spectrum sees the
+    # same fitted references as learned gains, never its separate guard answers.
+    fixed_cal = ({**cal, 'max_examples': cal['matched_reference_fit_examples']}
+                 if 'spectral_learned' in config['methods']
+                 and cal.get('matched_reference_fit_examples') is not None else cal)
     started = time.monotonic()
     base_path = root / 'base' / 'evaluation.jsonl'
     # Base evaluated once; the same completions form the reference for every arm.
@@ -756,7 +768,7 @@ def run_experiment(config, *, resume=False):
                     if not reestimate and round_index > 1 and not calibration_path.exists():
                         raise ValueError('Fixed geometry requires the saved round-1 calibration; do not fit it on a later checkpoint')
                     with record_stage(directory, 'calibration'):
-                        covariances = _calibrate(model, tokenizer, splits['calibration'], cal,
+                        covariances = _calibrate(model, tokenizer, splits['calibration'], fixed_cal,
                                                  calibration_path, calibration_identity)
                     entropy_ratio = None
                     if reestimate and cal.get('tau_mode') == 'adaptive':
@@ -773,9 +785,9 @@ def run_experiment(config, *, resume=False):
                             entropy_ref = json.loads(entropy_ref_path.read_text())['spectral_entropy']
                             entropy_ratio = entropy_t / entropy_ref
                     fixed_operator_path = root / method / 'round_1' / 'fixed_operators.pt'
-                    operators = (_operators(covariances, method, cal, seed,
+                    operators = (_operators(covariances, method, fixed_cal, seed,
                                             round_index=round_index, entropy_ratio=entropy_ratio) if reestimate else
-                                 _fixed_operators(covariances, method, cal, seed, fixed_operator_path,
+                                 _fixed_operators(covariances, method, fixed_cal, seed, fixed_operator_path,
                                                    calibration_path, require_existing=round_index > 1))
                     atomic_json(directory / 'calibration_provenance.json', {
                         'mode': 'reestimated' if reestimate else 'fixed_round_1',
@@ -789,7 +801,7 @@ def run_experiment(config, *, resume=False):
                         'tau_mode': cal.get('tau_mode'),
                         'spectral_entropy_ratio': entropy_ratio,
                         'method': method, 'seed': seed,
-                        'calibration_task_ids': [task['task_id'] for task in splits['calibration'][:int(cal.get('max_examples', 50))]],
+                        'calibration_task_ids': [task['task_id'] for task in splits['calibration'][:int(fixed_cal.get('max_examples', 50))]],
                         'reference_policy': 'same_fixed_training_reference_subset_every_round',
                         'operator_sha256': _operator_fingerprints(operators),
                         'operator_source': 'current_round_geometry' if reestimate else 'saved_round_1_matrices',

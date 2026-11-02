@@ -1,5 +1,19 @@
 # SPECTRUM
 
+## Full-spectrum Learned: multi-model and multi-domain experiment
+
+[New 2026-11-02 full-matrix runbook](docs/LEARNED_FULL_MATRIX_ZH.md) ·
+[Cross-family 4096-token config](configs/crossfamily/protocol_learned_4096.json) ·
+[Math config](configs/multidomain/text_math_learned.json) ·
+[QA config](configs/multidomain/text_qa_learned.json)
+
+The latest `spectral_learned` now has opt-in **Qwen/Llama/DeepSeek coding** and
+**MATH-500/MMLU-Pro** implementations, plus HumanEval+, APPS Intro,
+CodeContests, LiveCodeBench and optional GPQA evaluation. These are new frozen
+study roots; **native model/GPU/test benchmarks have not been executed**.
+Older studies and their result roots remain unchanged.
+
+
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
 ## Selected experiment — 1 November 2026

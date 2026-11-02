@@ -1,7 +1,7 @@
 # SPECTRUM Learned — 多模型／多任务全面实验（2026-11-02）
 
 状态：**代码与实验计划已提交，GPU 训练与原生 benchmark 尚未执行**。
-这是从 main 的 \`spectral_learned\` 直接扩展的独立研究分支，
+这是从 main 的 `spectral_learned` 直接扩展的独立研究分支，
 不是 Android GUI 分支。原来的单模型 10 轮 4096-token、512-token
 crossfamily、数学/QA、ARC 历史运行目录和结果都不覆盖。
 
@@ -18,7 +18,7 @@ crossfamily、数学/QA、ARC 历史运行目录和结果都不覆盖。
 
 **ARC-AGI-3 的 Qwen3.8-27B Learned 适配暂未实现或完成 GPU 验证**：
 它需要 native interactive action-prefix probe、独立参考 guard，以及完整
-16K/32K 长上下文资格检查；不能拿文本分类的 \`gain_pipeline\` 冒充已完成适配。
+16K/32K 长上下文资格检查；不能拿文本分类的 `gain_pipeline` 冒充已完成适配。
 当前仓库也**没有单独的 Physics 验证数据集**；GPQA 含物理类问题，
 但不能称作独立物理 benchmark。
 
@@ -50,7 +50,7 @@ T_r(a)=U_r\operatorname{diag}(a)U_r^\top,\quad a_{\min}\le a_j\le 1.
   它不读取训练题的参考答案，也不看 benchmark 结果。
 - 默认 gain optimization：最多 8 次梯度步、每步最多 8 次回溯、
   min_gain=0.1、KL budget=0.02 nat/target token。
-- \`spectral_learned\` 与 \`spectral_soft\` 之间最主要的数学区别是
+- `spectral_learned` 与 `spectral_soft` 之间最主要的数学区别是
   **连续独立增益优化**而不是固定 \(\tau=1\)。
   学习器出现 identity fallback 必须保留并报告。
 
@@ -58,10 +58,10 @@ T_r(a)=U_r\operatorname{diag}(a)U_r^\top,\quad a_{\min}\le a_j\le 1.
 
 纯静态预算：
 
-\`\`\`bash
+```bash
 python scripts/plan_learned_full_matrix.py
-bash scripts/run_learned_full_matrix.sh budget
-\`\`\`
+bash scripts/run_learned_full_matrix.sh budget --execute
+```
 
 此代码全矩阵**计划**生成约 **2,995,200 次 Coding completion**
 （含全部轮次 MBPP 的原生评测及 HumanEval+/三个额外迁移集；
@@ -81,7 +81,7 @@ guard/折叠代价与普通 baseline 不相等；报告 CUDA peak、时长、tok
 
 **不要在已经运行的 main 工作树直接 checkout 新源码**。新建独立工作树：
 
-\`\`\`bash
+```bash
 git fetch origin research/learned-multimodel-multidomain-20261102
 git worktree add ../SPECTRUM-learned origin/research/learned-multimodel-multidomain-20261102
 cd ../SPECTRUM-learned
@@ -91,26 +91,26 @@ python -m pip install 'sympy==1.13.3' 'pylatexenc==2.10'
 # 安全地执行生成代码所需的独立 Docker runner
 docker pull python:3.11-slim
 docker info
-\`\`\`
+```
 
-新 Coding 配置默认 \`evaluation.backend=docker\`，禁用不安全 local；
+新 Coding 配置默认 `evaluation.backend=docker`，禁用不安全 local；
 必须对 Docker namespace/network/PID/memory 限制在本机做预检。
 若宿主没有 Docker，不要在共享训练机上直接开启不受信任的生成代码；
 可以改用已通过验证的 bwrap，在**新输出根**冻结修改后的协议。
 
 Llama 官方 Hugging Face 权重需要用户自己的 Meta access approval，
-缺少授权可先单独跑 \`--model=qwen7b\` 或 DeepSeek。所有训练在本地
+缺少授权可先单独跑 `--model=qwen7b` 或 DeepSeek。所有训练在本地
 Transformers 完成，不需要付费 API。
 
 Qwen2.5-7B Math/QA 的配置默认模型路径是
-\`/inspire/hdd/global_public/public_models/Qwen/Qwen2.5-7B-Instruct\`；
+`/inspire/hdd/global_public/public_models/Qwen/Qwen2.5-7B-Instruct`；
 如不在该机器，需在**正式运行前**复制 JSON 到自己的专用配置并
 更新 model.name、新 output_dir，所有方法必须使用同一原始模型身份。
 训练中不能修改配置或重用不同源码的封存 checkpoint。
 
 ## 5. 分阶段启动（默认只打印，不执行）
 
-\`\`\`bash
+```bash
 # 看将执行哪些命令；无模型加载
 bash scripts/run_learned_full_matrix.sh prep-code --model=qwen7b
 bash scripts/run_learned_full_matrix.sh prep-text
@@ -148,31 +148,31 @@ bash scripts/run_learned_full_matrix.sh qa --execute
 # 可选：有 GPQA 访问授权才运行，使用独立数据与输出
 bash scripts/run_learned_full_matrix.sh prep-gpqa --execute
 bash scripts/run_learned_full_matrix.sh qa-gpqa --execute
-\`\`\`
+```
 
-\`qualify-code\` 只检验完整 Learned 校准及折叠路径，不会代替
+`qualify-code` 只检验完整 Learned 校准及折叠路径，不会代替
 6144-token LoRA SFT 的实际显存测量。正式大矩阵请先在新实验根做
 短样本训练／推理容量检查，检查 OOM、日志、模型版本、native evaluator。
 终端原样保存 stdout/stderr、运行 SHA、依赖及 Docker 镜像 ID。
 
-脚本 \`all --execute\` 是明确授权下的**顺序全矩阵**，但既无自动后台任务
+脚本 `all --execute` 是明确授权下的**顺序全矩阵**，但既无自动后台任务
 也不代替 GPU 预算、模型授权和数据准备。小规模验收后再用它；
 不建议第一次直接运行全部数百万候选。
 
 ## 6. 结果与验收
 
 Code:
-- \`runs/crossfamily_learned_r5_4096/jobs/{model}/\`：5 轮四方法 checkpoint、
+- `runs/crossfamily_learned_r5_4096/jobs/{model}/`：5 轮四方法 checkpoint、
   MBPP 所有原始输出/验证与 learned gain 接受、回退、KL、资源日志；
-- \`runs/crossfamily_learned_r5_4096/transfer/{model}/\`：
+- `runs/crossfamily_learned_r5_4096/transfer/{model}/`：
   HumanEval+ 官方 base+plus；
-- \`runs/crossfamily_learned_r5_4096/transfer_extra/{model}/{dataset}/\`：
+- `runs/crossfamily_learned_r5_4096/transfer_extra/{model}/{dataset}/`：
   额外三个冻结迁移数据集，记录适配验证定义；
-- \`runs/crossfamily_learned_r5_4096/jobs/{model}/longitudinal/\`：
+- `runs/crossfamily_learned_r5_4096/jobs/{model}/longitudinal/`：
   Pass@k、正确实现覆盖、匹配正确数量的丰富度及配对轨迹。
 
 Math/QA:
-- \`runs/multidomain/learned-r5/{domain}-qwen25-7b/\`：
+- `runs/multidomain/learned-r5/{domain}-qwen25-7b/`：
   Base/Plain/SSD/Fixed/Learned 各轮原生指标、
   fit/guard/probe/算子日志及 final paired confidence intervals。
 

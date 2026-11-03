@@ -1,5 +1,19 @@
 # SPECTRUM
 
+## New opt-in experiment: spectral-to-student transfer gap
+
+[Experimental protocol](docs/TRANSFER_GAP_EXPERIMENT.md) ·
+[10-round config](configs/spectrum_7b/transfer_gap_learned_4096.yaml) ·
+[Read-only results collector](scripts/report_transfer_gap.py)
+
+The new study instruments 30 held-out MBPP validation tasks at native
+pre-SFT, spectral pre-SFT and native post-SFT policy states. It adds AST
+C64/D4, paired task comparisons and every-round reference NLL transfer gaps,
+without changing the existing learned-gain solver or LoRA SFT. The
+latest historical run directories are not modified. New code is not
+GPU-executed or benchmark qualified in this authoring session.
+
+
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
 ## Selected experiment — 1 November 2026

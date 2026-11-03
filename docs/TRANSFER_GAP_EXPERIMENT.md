@@ -101,6 +101,16 @@ The final summaries live at
 and
     .../round_R/reference_transfer_nll.json
 
+A read-only post-run summary (it verifies each saved report checksum against
+the completed round receipt; no model, Docker or generation):
+
+    python scripts/plan_transfer_gap.py
+    python scripts/report_transfer_gap.py \
+      --run-dir runs/spectrum_transfer_gap_20261103/learned_7b_r10
+
+This outputs all ten rows, with uncompleted rounds marked missing. The
+unmeasured development rounds still have reference-fit/guard NLL gaps.
+
 ## Safety and failure policies
 
 Untrusted generated Python is executed only using an isolation-qualified

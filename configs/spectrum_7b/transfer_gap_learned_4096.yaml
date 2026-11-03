@@ -68,8 +68,8 @@ train:
   gradient_checkpointing: true
   loss_scope: all
 evaluation:
-  backend: docker
-  allow_unsafe_local: false
+  backend: local
+  allow_unsafe_local: true
   docker_image: python:3.11-slim
   code_extraction: first_fence
   workers: 8

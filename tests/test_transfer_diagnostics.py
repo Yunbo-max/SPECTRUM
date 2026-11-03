@@ -39,8 +39,13 @@ def test_transfer_settings_requires_heldout_full_dev_and_isolated_verifier():
             transfer_settings(invalid)
     invalid = copy.deepcopy(cfg)
     invalid["evaluation"]["backend"] = "local"
-    with pytest.raises(ValueError, match="isolated"):
+    invalid["evaluation"]["allow_unsafe_local"] = False
+    with pytest.raises(ValueError, match="allow_unsafe_local"):
         transfer_settings(invalid)
+    local = copy.deepcopy(cfg)
+    local["evaluation"]["backend"] = "local"
+    local["evaluation"]["allow_unsafe_local"] = True
+    assert transfer_settings(local)["samples"] == 64
 
 
 def task(label, split):
@@ -55,7 +60,7 @@ def test_dev_cannot_be_calibration_or_eval_or_train():
     test = [task("test", "eval")]
     validate_development_tasks(dev, train, cal, test)
     with pytest.raises(ValueError, match="validation"):
-        validate_development_tasks([*dev[:-1], test], train, cal, test)
+        validate_development_tasks([*dev[:-1], test[0]], train, cal, test)
     with pytest.raises(ValueError):
         validate_development_tasks(dev, train, [dev[0]], test)
 

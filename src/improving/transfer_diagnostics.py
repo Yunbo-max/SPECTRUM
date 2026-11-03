@@ -53,10 +53,10 @@ def transfer_settings(config: dict) -> dict | None:
     if generation["batch_size"] > generation["sequence_batch_size"]:
         raise ValueError("Transfer-gap batch_size must fit sequence_batch_size")
     backend = config.get("evaluation", {}).get("backend", "docker")
-    if backend not in {"docker", "bwrap"}:
-        raise ValueError("Transfer-gap untrusted code verification requires an isolated docker/bwrap backend")
-    if config.get("evaluation", {}).get("allow_unsafe_local"):
-        raise ValueError("Transfer-gap evaluation must not enable unsafe local execution")
+    if backend not in {"docker", "bwrap", "local"}:
+        raise ValueError("Transfer-gap verification backend must be docker, bwrap or explicitly enabled local")
+    if backend == "local" and not config.get("evaluation", {}).get("allow_unsafe_local"):
+        raise ValueError("Local transfer-gap verification requires allow_unsafe_local=true")
     if raw.get("reference_nll_each_round") is not True:
         raise ValueError("Require post-SFT fit/guard reference NLL each round")
     # This deliberately leaves SFT/fit/probe config unchanged.

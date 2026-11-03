@@ -204,6 +204,9 @@ def validate_config(config):
         raise ValueError('Local generated-code execution requires explicit allow_unsafe_local')
     if evaluation.get('code_extraction', 'strict') not in {'strict', 'first_fence'}:
         raise ValueError('evaluation.code_extraction must be strict or first_fence')
+    # Opt-in and no-op for the historical experiment configuration.
+    from .transfer_diagnostics import transfer_settings
+    transfer_settings(config)
     return config
 
 
@@ -605,6 +608,16 @@ def run_experiment(config, *, resume=False):
         ordered = sorted(splits[name], key=lambda row: row['task_id'])
         random.Random(config.get('data_seed', 42)).shuffle(ordered)
         splits[name] = ordered[:count]
+    from .transfer_diagnostics import (
+        transfer_settings, should_evaluate, validate_development_tasks,
+        evaluate_state, pre_stages_sealed, post_reference_nll,
+        collect_round_report,
+    )
+    transfer_diag = transfer_settings(config)
+    if transfer_diag is not None:
+        validate_development_tasks(
+            splits['validation'], splits['train'], splits['calibration'], splits['eval'],
+            expected=transfer_diag['validation_task_count'])
     diagnostic_tasks, diagnostic_samples, diagnostic_evaluation = _diagnostic_protocol(config, splits['eval'])
     evaluation = dict(config.get('evaluation', {}))
     runtime_identity = {**execution_runtime_identity(evaluation),
@@ -721,6 +734,13 @@ def run_experiment(config, *, resume=False):
             if trained and not (directory / 'training_stats.json').exists():
                 atomic_json(directory / 'training_stats.json', json.loads(
                     (checkpoint / 'training_stats.json').read_text()))
+            if trained and transfer_diag is not None and should_evaluate(config, round_index):
+                # A merged SFT checkpoint is NOT P_r/Q_r. Never recompute
+                # missing pre-training evidence from this current model.
+                pre_stages_sealed(
+                    directory / 'transfer_gap', config=config,
+                    tasks=splits['validation'], evaluation=evaluation,
+                    identity=identity, round_index=round_index, seed=seed)
             if not trained:
                 operators = None
                 selected_identity = False
@@ -801,6 +821,22 @@ def run_experiment(config, *, resume=False):
                         round_index=round_index if reestimate else 1,
                         entropy_ratio=entropy_ratio))
                 from .spectral import folded_operators
+                if transfer_diag is not None and should_evaluate(config, round_index):
+                    from .transfer_diagnostics import evaluate_state
+                    development = directory / 'transfer_gap'
+                    evaluate_state(
+                        model, tokenizer, splits['validation'], development / 'pre_native',
+                        config=config, evaluation=evaluation, identity=identity,
+                        role='pre_native', round_index=round_index, seed=seed, resume=resume)
+                    with (folded_operators(model, operators)
+                          if operators is not None and not selected_identity
+                          else nullcontext()):
+                        evaluate_state(
+                            model, tokenizer, splits['validation'],
+                            development / 'pre_spectral',
+                            config=config, evaluation=evaluation, identity=identity,
+                            role='pre_spectral', round_index=round_index,
+                            seed=seed, resume=resume)
                 training_settings = dict(train_gen)
                 if method == 'ssd':
                     training_settings.update({'temperature': 1.5, 'top_p': .8, 'top_k': 20})
@@ -848,6 +884,34 @@ def run_experiment(config, *, resume=False):
                     model, stats = train_on_records(model, tokenizer, sft_tasks, sft_records,
                                                     config.get('train', {}), checkpoint, seed=seed + round_index)
                 atomic_json(directory / 'training_stats.json', stats)
+            if transfer_diag is not None and method == 'spectral_learned':
+                # Cached round-local gain audit always belongs to the pre-SFT
+                # checkpoint and is separately verified during resume above.
+                gain_audit = json.loads((directory / 'learned_gains.json').read_text())
+                nll_path = directory / 'reference_transfer_nll.json'
+                if nll_path.is_file():
+                    reference_gap = json.loads(nll_path.read_text())
+                else:
+                    with record_stage(directory, 'post_reference_nll'):
+                        reference_gap = post_reference_nll(
+                            model, tokenizer, splits['calibration'], cal, gain_audit)
+                    atomic_json(nll_path, reference_gap)
+                if should_evaluate(config, round_index):
+                    dev_root = directory / 'transfer_gap'
+                    pre_stages_sealed(
+                        dev_root, config=config, tasks=splits['validation'],
+                        evaluation=evaluation, identity=identity,
+                        round_index=round_index, seed=seed)
+                    post_model_identity = stable_hash(
+                        [identity, method, round_index, checkpoint_fingerprint(checkpoint)])
+                    evaluate_state(
+                        model, tokenizer, splits['validation'],
+                        dev_root / 'post_native', config=config, evaluation=evaluation,
+                        identity=post_model_identity, role='post_native',
+                        round_index=round_index, seed=seed, resume=resume)
+                    collect_round_report(
+                        dev_root, reference_gap, seed=seed,
+                        bootstrap_samples=int(config.get('evaluation', {}).get('bootstrap_samples', 2000)))
             eval_path = directory / 'evaluation.jsonl'
             model_identity = stable_hash([identity, method, round_index, checkpoint_fingerprint(checkpoint)])
             with record_stage(directory, 'post_training_evaluation'):

@@ -278,7 +278,7 @@ def compare_three_states(summaries: dict[str, dict], *, seed: int,
     if set(summaries) != set(ROLES):
         raise ValueError("All three policy states are required")
     for data in summaries.values():
-        if "64" not in data["protocol"].get("ks", []):
+        if 64 not in data["protocol"].get("ks", []):
             raise ValueError("Three-state evidence must evaluate pass@64")
     # differences are always second minus first
     pairs = {

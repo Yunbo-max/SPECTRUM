@@ -67,8 +67,8 @@ def fake_summary(task_correct_counts):
             yes = i < correct
             rows.append({"task_id": task_id, "sample_id": i,
                          "correct": yes,
-                         "code": ("def f(x):\\n    return x" if i % 2 == 0
-                                  else "def f(x):\\n    return x+1"),
+                         "code": ("def f(x):\n    return x" if i % 2 == 0
+                                  else "def f(x):\n    return x+1"),
                          "completion": "program"})
     return summarize_records(rows, ks=[1, 4, 8, 16, 32, 64],
                              correct_budget=4, correct_budgets=[4, 8, 16, 32, 64],

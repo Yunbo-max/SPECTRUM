@@ -111,6 +111,42 @@ the completed round receipt; no model, Docker or generation):
 This outputs all ten rows, with uncompleted rounds marked missing. The
 unmeasured development rounds still have reference-fit/guard NLL gaps.
 
+## Interpretation rules and follow-up experiments
+
+The MBPP500 results helped motivate this hypothesis in the historical work.
+Therefore MBPP500 is NOT a newly untouched confirmation set for a redesigned
+SPECTRUM 2. Design hyperparameters with the existing dev set, freeze the method
+before new independent HumanEval+/APPS/LCB evaluations, and run independent
+training seeds for stronger evidence. Development effects on 30 tasks are
+exploratory and may be too noisy for effects of only a few percentage points.
+
+Predeclared decision matrix:
+- If pre_spectral > pre_native on native dev success metrics but post_native <
+  pre_spectral, the *observed* gap is in spectral-to-student transfer.
+- If pre_spectral is not better than pre_native, local fit-reference NLL is
+  a weak generator-selection proxy; do not blame SFT without stronger evidence.
+- If post_native > pre_spectral, do not claim a transfer problem; it may be
+  student generalization rather than copying the intervention.
+- If Pass@1 improves but AST-C64/D4 falls with stable common eligibility,
+  study mode/correct-set concentration; don't mistake Pass@64 for AST richness.
+- If any proposed comparison is non-inferior only on a changed eligibility
+  subset, report raw per-task counts and the paired common-eligible cohort.
+
+P1 (NOT implemented in this diagnostic): collect g_ref and g_SFT from the SAME
+initial LoRA trainable coordinates at pre-SFT theta_r for rounds 1/5/8/10;
+estimate alignment cos(g_ref,g_SFT) with frozen fit references and native/spectral
+training completions. Compare gradient sign and predicted first-order change
+against observed post-SFT fit/guard NLL. Repeat across 3 seeds. The
+Adam/LoRA multi-step optimizer means Taylor prediction is diagnostic, NOT an
+exact equality or theorem. Use fixed train-side inputs only for gradients.
+
+P2 (ONLY if P0/P1 support the hypothesis): introduce Transfer-Aware Gains
+with an auxiliary update-alignment term, while keeping the same reference
+fit/guard and token budgets. Compare:
+plain 4096, fixed tau with matched 40 reference examples, original learned,
+learned with additional student-transfer guard, and isotropic/random gain
+control. Hold out a fresh independent downstream benchmark for final evaluation.
+
 ## Safety and failure policies
 
 Untrusted generated Python is executed only using an isolation-qualified

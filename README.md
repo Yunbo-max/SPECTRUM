@@ -1,5 +1,34 @@
 # SPECTRUM
 
+## Research branch: calibration-label-free PI-SPECTRUM (3 November 2026)
+
+**Source-only implementation. No 7B GPU training, benchmark result, or scientific win is claimed.**
+
+New optional method: **spectral_pi**. The current 7B model acts as both Student
+and frozen Self-Teacher. It generates its own strategy plans, scores the same
+Student on-policy tokens with and without those unverified plans, derives K/V
+gradient second moments from privileged-information KL, and learns bounded
+full-spectrum gain operators. A separate unlabeled train-side guard and
+native-to-steered output-KL probe control fitting. Operators are only applied
+to generate training completions; the native weights are restored for
+ordinary LoRA SFT and benchmark evaluation.
+
+**There is no data.calibration split** in the new method's YAML, and no
+reference code, verifier, execution reward, 27B teacher, GDN memory or API
+input to PI fitting. The new method uses the same SSD generation settings
+as the matched SSD control. A smaller PI KL is not proof of correct code.
+
+[PI-SPECTRUM algorithm, runbook, limitations and attribution](docs/PI_SELFTEACHER_SPECTRUM_ZH.md)
+· [Standalone 7B ten-round YAML](configs/pi_spectrum/pi_selfteacher_7b_r10_4096.yaml)
+· [Plain/SSD controls](configs/pi_spectrum/matched_plain_ssd_7b_r10_4096.yaml)
+· [Core implementation](src/improving/pi_spectrum.py)
+· [CPU test source](tests/test_pi_spectrum.py)
+
+Historical main-branch reports and earlier learned-gains experiments below are
+retained unchanged and are NOT evidence for this new PI-SPECTRUM method.
+
+---
+
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
 ## Selected experiment — 1 November 2026

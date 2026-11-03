@@ -26,7 +26,7 @@ from .modeling import collate_examples, encode_example, load_model, render_promp
 from .training import train_on_records, validate_full_completion_targets
 
 METHODS = {'plain', 'ssd', 'spd_hard', 'spectral_soft', 'residual_blend', 'random_hard',
-           'random_soft', 'isotropic_soft', 'matched_blend', 'spectral_learned'}
+           'random_soft', 'isotropic_soft', 'matched_blend', 'spectral_learned', 'spectral_pi'}
 
 
 def file_sha(path):
@@ -127,9 +127,19 @@ def validate_config(config):
             raise ValueError(f'Missing configuration field: {key}')
     if not config['model'].get('name'):
         raise ValueError('model.name is required')
-    for key in ('train', 'calibration', 'validation', 'eval'):
-        if key not in config['data']:
-            raise ValueError(f'Missing data.{key} path')
+    if 'spectral_pi' in methods and methods != ['spectral_pi']:
+        raise ValueError('spectral_pi uses a separate label-free run root; run other arms separately')
+    pi_only = methods == ['spectral_pi']
+    required_data = {'train', 'validation', 'eval'} if pi_only else {
+        'train', 'calibration', 'validation', 'eval'
+    }
+    if set(config['data']) != required_data:
+        raise ValueError(f'data keys must be exactly {sorted(required_data)}')
+    if pi_only:
+        from .pi_spectrum import validate_pi_settings
+        validate_pi_settings(config.get('pi_spectrum', {}))
+        if config.get('train', {}).get('fixed_anchor_replay', False):
+            raise ValueError('spectral_pi forbids supervised anchor replay')
     if type(config.get('rounds', 1)) is not int or config.get('rounds', 1) < 1:
         raise ValueError('rounds must be a positive integer')
     checkpoint_retention = config.get('checkpoint_retention', 'all')
@@ -457,9 +467,9 @@ def _operator_diagnostics(model, operators, covariances, method, settings, *, ro
         rank = settings.get('rank')
         if rank is None:
             rank = max(1, int(dimension * float(settings.get('rank_fraction', .5))))
-        reference_tau = (None if method == 'spectral_learned' else
+        reference_tau = (None if method in {'spectral_learned', 'spectral_pi'} else
                          _tau_for_round(settings, round_index, entropy_ratio=entropy_ratio))
-        reference = (None if method == 'spectral_learned' else
+        reference = (None if method in {'spectral_learned', 'spectral_pi'} else
                      make_operator(covariances[name]['covariance'], tau=reference_tau))
         identity = torch.eye(dimension, dtype=op.dtype)
         distance = float(torch.linalg.vector_norm(op - identity))
@@ -594,11 +604,19 @@ def _preflight_verification(settings):
 def run_experiment(config, *, resume=False):
     validate_config(config)
     splits = {name: read_jsonl(path) for name, path in config['data'].items()}
-    if set(splits) != {'train', 'calibration', 'validation', 'eval'}:
-        raise ValueError('Use exactly train, calibration, validation and eval data paths')
+    pi_only = config['methods'] == ['spectral_pi']
+    required_splits = ({'train', 'validation', 'eval'} if pi_only else
+                       {'train', 'calibration', 'validation', 'eval'})
+    if set(splits) != required_splits:
+        raise ValueError('Declared data split keys do not match the selected method')
     assert_disjoint_splits(splits)
     if any(not rows for rows in splits.values()):
         raise ValueError('Every declared split must be nonempty')
+    if pi_only:
+        from .pi_spectrum import public_task
+        # Drop references/tests BEFORE passing train tasks to self-teacher or
+        # saving task snapshots. Original input-file SHA remains in the manifest.
+        splits['train'] = [public_task(task) for task in splits['train']]
     for name, count in config.get('data_limits', {}).items():
         if name not in splits or type(count) is not int or not 1 <= count <= len(splits[name]):
             raise ValueError(f'Invalid data_limits.{name}')
@@ -697,6 +715,11 @@ def run_experiment(config, *, resume=False):
                 validate_saved_learned_round(
                     directory, identity, cal, splits['calibration'], splits['train'],
                     seed=seed, round_index=round_index)
+            elif method == 'spectral_pi' and (marker.exists() or trained):
+                from .pi_spectrum import validate_saved_pi_round
+                validate_saved_pi_round(
+                    directory, identity, config.get('pi_spectrum', {}), splits['train'],
+                    seed=seed, round_index=round_index)
             if marker.exists():
                 state = json.loads(marker.read_text())
                 if any(not (directory / name).exists() or file_sha(directory / name) != digest
@@ -709,7 +732,7 @@ def run_experiment(config, *, resume=False):
                 continue
             directory.mkdir(parents=True, exist_ok=True)
             print(f'[{method}] round {round_index}: {"resume" if resume else "start"}', flush=True)
-            if method == 'spectral_learned' and round_index > 1 and not trained:
+            if method in {'spectral_learned', 'spectral_pi'} and round_index > 1 and not trained:
                 expected_previous = root / method / f'round_{round_index - 1}' / 'model'
                 if previous_checkpoint != expected_previous or not expected_previous.is_dir():
                     raise ValueError('Learned round requires its immediate native predecessor checkpoint; '
@@ -749,6 +772,31 @@ def run_experiment(config, *, resume=False):
                     atomic_json(directory / 'operator_diagnostics.json', _operator_diagnostics(
                         model, operators, covariances, method, cal, round_index=round_index,
                         folding_applied=not selected_identity))
+                elif method == 'spectral_pi':
+                    from .pi_spectrum import calibrate_pi_round
+                    operators, covariances, pi_audit, pi_provenance = calibrate_pi_round(
+                        model, tokenizer, splits['train'], config.get('pi_spectrum', {}),
+                        gen, directory, identity, seed=seed, round_index=round_index,
+                        resume=resume)
+                    selected_identity = pi_audit['identity_fallback']
+                    atomic_json(directory / 'calibration_provenance.json', {
+                        'mode': 'unlabeled_self_teacher_pi_spectrum',
+                        'method': method, 'round': round_index,
+                        'student_model_identity': identity,
+                        'teacher_identity': 'same_frozen_round_checkpoint',
+                        'reference_policy': 'no_calibration_set_no_reference_answers',
+                        'pi_provenance_file': 'pi_provenance.json',
+                        'pi_operators_file': 'pi_operators.pt',
+                        'operator_sha256': pi_provenance['operator_sha256'],
+                        'selected_identity': selected_identity,
+                        'intervention_lifetime': 'generation_only_restored_before_sft',
+                    })
+                    atomic_json(directory / 'operator_diagnostics.json',
+                                _operator_diagnostics(
+                                    model, operators, covariances, method,
+                                    config.get('pi_spectrum', {}),
+                                    round_index=round_index,
+                                    folding_applied=not selected_identity))
                 elif method not in {'plain', 'ssd'}:
                     reestimate = cal.get('reestimate_each_round', True)
                     calibration_path = (directory if reestimate else root / method / 'round_1') / 'calibration.pt'
@@ -802,7 +850,9 @@ def run_experiment(config, *, resume=False):
                         entropy_ratio=entropy_ratio))
                 from .spectral import folded_operators
                 training_settings = dict(train_gen)
-                if method == 'ssd':
+                if method in {'ssd', 'spectral_pi'}:
+                    # Matched sampling policy isolates extra PI-K/V intervention
+                    # from the strong, fixed-parameter SSD baseline.
                     training_settings.update({'temperature': 1.5, 'top_p': .8, 'top_k': 20})
                 with (folded_operators(model, operators)
                       if operators is not None and not selected_identity else nullcontext()):

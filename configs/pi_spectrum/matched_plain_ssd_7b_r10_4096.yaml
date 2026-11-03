@@ -1,0 +1,58 @@
+# Matched Plain/SSD controls. Legacy shared pipeline requires a calibration
+# split manifest, but plain and SSD do not consume its reference answers.
+seed: 43
+data_seed: 42
+model:
+  name: /inspire/hdd/global_public/public_models/Qwen/Qwen2.5-Coder-7B-Instruct
+  device: auto
+  dtype: bfloat16
+  attn_implementation: sdpa
+data:
+  train: data/mbpp/train.jsonl
+  calibration: data/mbpp/calibration.jsonl
+  validation: data/mbpp/validation.jsonl
+  eval: data/mbpp/eval.jsonl
+output_dir: runs/pi_spectrum/matched_plain_ssd_7b_r10_4096
+methods:
+  - plain
+  - ssd
+rounds: 10
+checkpoint_retention: all
+generation:
+  train_samples: 16
+  eval_samples: 64
+  batch_size: 16
+  max_new_tokens: 4096
+  max_prompt_tokens: 2048
+  temperature: 0.8
+  top_p: 0.95
+  top_k: 0
+  task_batch_size: 16
+  sequence_batch_size: 128
+train:
+  epochs: 1
+  batch_size: 1
+  gradient_accumulation_steps: 16
+  max_length: 6144
+  require_full_completion_targets: true
+  learning_rate: 0.00001
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_grad_norm: 1.0
+  lora_rank: 8
+  lora_alpha: 8
+  lora_dropout: 0.05
+  gradient_checkpointing: true
+  loss_scope: all
+evaluation:
+  backend: docker
+  docker_image: python:3.11-slim
+  code_extraction: first_fence
+  workers: 8
+  timeout: 5
+  ks: [1, 4, 8, 16, 32, 64]
+  correct_budget: 16
+  correct_budgets: [4, 8, 16, 32, 64]
+  bootstrap_samples: 2000
+diagnostics:
+  evaluate_generation_policy: false

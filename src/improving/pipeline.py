@@ -237,7 +237,10 @@ def _prune_completed_checkpoint(directory):
 
 def load_config(path):
     """Relative data/output paths are relative to the current working directory."""
-    with Path(path).open() as stream:
+    path = Path(path)
+    with path.open() as stream:
+        if path.suffix.lower() == '.json':
+            return validate_config(json.load(stream))
         return validate_config(yaml.safe_load(stream))
 
 

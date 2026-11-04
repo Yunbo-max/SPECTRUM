@@ -21,13 +21,11 @@ jobs:
       MKL_NUM_THREADS: '2'
     steps:
       - uses: actions/checkout@v4
-      - name: Record exact source and pinned integration input
+      - name: Record exact source
         run: |
           mkdir -p ci_artifacts
           git rev-parse HEAD > ci_artifacts/commit.txt
           git archive --format=tar.gz HEAD > ci_artifacts/source.tar.gz
-          git fetch --depth=1 origin da70329c3d1cb07bbd3380d563e2cc600541a8dc
-          git archive --format=tar.gz da70329c3d1cb07bbd3380d563e2cc600541a8dc > ci_artifacts/transfer-source.tar.gz
       - uses: actions/upload-artifact@v4
         with:
           name: rebuttal-source-${{ github.sha }}

@@ -161,9 +161,16 @@ def prepare(root, model, execute):
         return {'status': 'dry_run', 'action': 'download_pinned_models_and_prepare_shared_data',
                 'model': model, 'execute_required': True}
     initialize(root)
-    args = preparation_args(root, model)
-    cf.download(args)
-    return cf.prepare(args)
+    # Preserve the original upstream/hash receipt across partial-prepare retries.
+    # Re-downloading from an offline cache can omit upstream LFS metadata and
+    # must not replace the stronger immutable receipt from the first download.
+    mapping = cf.assets(ASSETS)
+    for alias in (cf.MODELS if model == 'all' else (model,)):
+        if (root/'assets'/f'{alias}.json').is_file():
+            cf.verify_model({'assets': mapping, 'run_root': str(root)}, alias)
+        else:
+            cf.download(preparation_args(root, alias))
+    return cf.prepare(preparation_args(root, model))
 
 
 def make_plan(root):

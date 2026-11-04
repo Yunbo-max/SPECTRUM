@@ -14,7 +14,7 @@ data:
   calibration: data/mbpp/calibration.jsonl
   validation: data/mbpp/validation.jsonl
   eval: data/mbpp/eval.jsonl
-output_dir: runs/spectrum_transfer_gap_20261103/learned_7b_r10
+output_dir: runs/spectrum_transfer_gap_20261103/learned_7b_r10_v2
 data_limits: {}
 methods:
 - spectral_learned

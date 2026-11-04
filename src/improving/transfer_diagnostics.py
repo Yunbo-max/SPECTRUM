@@ -206,7 +206,7 @@ def post_reference_nll(model, tokenizer, references: list[dict],
                        calibration_settings: dict, gain_audit: dict) -> dict:
     """Measure identical train-side fit/guard reference NLL AFTER SFT, not test NLL."""
     from .gain_pipeline import reference_batches, split_gain_references
-    from .learned_gains import _mean_nll
+    from .learned_gains import _examples, _mean_nll
 
     fit, guard = split_gain_references(references, calibration_settings)
     native = gain_audit["native"]
@@ -214,8 +214,8 @@ def post_reference_nll(model, tokenizer, references: list[dict],
     before = bool(model.training)
     try:
         model.eval()
-        after_fit = _mean_nll(model, reference_batches(tokenizer, fit, calibration_settings))
-        after_guard = _mean_nll(model, reference_batches(tokenizer, guard, calibration_settings))
+        after_fit = _mean_nll(model, _examples(reference_batches(tokenizer, fit, calibration_settings), 'fit'))
+        after_guard = _mean_nll(model, _examples(reference_batches(tokenizer, guard, calibration_settings), 'guard'))
     finally:
         model.train(before)
     return {

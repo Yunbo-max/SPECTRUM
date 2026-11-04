@@ -1,6 +1,9 @@
 """No-GPU tests of transfer-gap config, task isolation and three-state metrics."""
 import copy
 import pytest
+import torch
+from torch import nn
+from types import SimpleNamespace
 
 from improving.transfer_diagnostics import (
     ROLES, compare_three_states, transfer_settings, validate_development_tasks,
@@ -96,3 +99,55 @@ def test_three_state_telescoping_and_correct_ast_reallocation():
     assert result["observed_rare_correctness"]["spectral_correct_then_post_zero"] == ["dev/b"]
     assert result["states"]["pre_spectral"]["C64_AST"] is not None
     assert result["states"]["pre_native"]["D4_eligible_tasks"] == 1
+
+
+class _NLLModel(nn.Module):
+    """Tiny decoder whose logits keep every reference next-token target selectable."""
+
+    def __init__(self):
+        super().__init__()
+        self.embedding = nn.Embedding(64, 8)
+        self.config = SimpleNamespace(use_cache=True)
+        self.is_gradient_checkpointing = False
+
+    def get_input_embeddings(self):
+        return self.embedding
+
+    def forward(self, *, input_ids=None, attention_mask=None, use_cache=False):
+        assert use_cache is False
+        batch, sequence = input_ids.shape
+        return SimpleNamespace(logits=torch.zeros(batch, sequence, 64))
+
+
+class _Tokenizer:
+    pad_token_id = 0
+    eos_token_id = 1
+    chat_template = None
+
+    def encode(self, text, *, add_special_tokens=False):
+        assert add_special_tokens is False
+        return [ord(character) % 23 + 2 for character in text]
+
+
+def test_post_reference_nll_uses_selected_targets_without_target_mask_error():
+    from improving.transfer_diagnostics import post_reference_nll
+    from improving.gain_pipeline import split_gain_references
+
+    references = [{"task_id": f"cal/{i}", "prompt": f"p{i}", "reference": "abc",
+                   "source": "fixture", "split": "calibration"} for i in range(4)]
+    calibration = {"max_examples": 4, "max_length": 64, "span_mode": "completion",
+                   "gain_learning": {"guard_examples": 1}}
+    fit, guard = split_gain_references(references, calibration)
+    assert len(fit) == 3 and len(guard) == 1
+    audit = {
+        "native": {"fit_nll": 0.9, "guard_nll": 0.7},
+        "selected": {"fit_nll": 0.8, "guard_nll": 0.65},
+        "selected_identity": False,
+    }
+    result = post_reference_nll(_NLLModel().eval(), _Tokenizer(), references, calibration, audit)
+    assert isinstance(result["post_native_fit_nll"], float)
+    assert isinstance(result["post_native_guard_nll"], float)
+    assert result["fit_transfer_gap"] == pytest.approx(
+        result["post_native_fit_nll"] - result["pre_spectral_fit_nll"])
+    assert result["guard_transfer_gap"] == pytest.approx(
+        result["post_native_guard_nll"] - result["pre_spectral_guard_nll"])

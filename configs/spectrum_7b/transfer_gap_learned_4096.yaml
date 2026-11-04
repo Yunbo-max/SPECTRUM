@@ -14,7 +14,7 @@ data:
   calibration: data/mbpp/calibration.jsonl
   validation: data/mbpp/validation.jsonl
   eval: data/mbpp/eval.jsonl
-output_dir: runs/spectrum_transfer_gap_20261103/learned_7b_r10
+output_dir: runs/rebuttal_transfer_gap_standalone/learned_7b_r10
 data_limits: {}
 methods:
 - spectral_learned
@@ -68,8 +68,8 @@ train:
   gradient_checkpointing: true
   loss_scope: all
 evaluation:
-  backend: local
-  allow_unsafe_local: true
+  backend: docker
+  allow_unsafe_local: false
   docker_image: python:3.11-slim
   code_extraction: first_fence
   workers: 8

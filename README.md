@@ -1,5 +1,17 @@
 # SPECTRUM
 
+## ICLR rebuttal: frozen replications and transfer diagnostics
+
+[Runbook and exact commands](docs/ICLR_REBUTTAL_ZH.md) ·
+[Dry-run / execution driver](scripts/run_iclr_rebuttal.py)
+
+An isolated integration of the existing Learned multi-model code and three-state
+DEV diagnostics. Core: Qwen7B, three independent training seeds, ten rounds,
+Plain/SSD/original Fixed-soft/Learned; cross-family and mechanism/scope controls
+are separately labeled. No PI/GUI changes or new benchmark results are claimed.
+Use a NEW output root and pin the delivered commit; never mutate an active run.
+
+
 ## Full-spectrum Learned: multi-model and multi-domain experiment
 
 [New 2026-11-02 full-matrix runbook](docs/LEARNED_FULL_MATRIX_ZH.md) ·

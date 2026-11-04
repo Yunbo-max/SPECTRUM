@@ -26,8 +26,10 @@ def transfer_settings(config: dict) -> dict | None:
         return None
     if not isinstance(raw, Mapping) or raw.get("enabled") is not True:
         raise ValueError("diagnostics.transfer_gap requires enabled=true")
-    if config.get("methods") != ["spectral_learned"]:
-        raise ValueError("Transfer-gap instrumentation is initially restricted to spectral_learned-only runs")
+    from .pipeline import METHODS
+    methods = config.get("methods", [])
+    if not methods or any(method not in METHODS for method in methods):
+        raise ValueError("transfer_gap requires supported text self-distillation methods")
     rounds = raw.get("rounds")
     if (not isinstance(rounds, list) or not rounds or
             any(type(x) is not int or x < 1 or x > config["rounds"] for x in rounds) or
@@ -335,7 +337,8 @@ def collect_round_report(directory: str | Path, reference_nll: dict, *,
         path = directory / role / "evaluation.metrics.json"
         if not (directory / role / "complete.json").is_file():
             raise ValueError(f"Missing sealed transfer-gap {role} policy state")
-        summaries[role] = json.loads(path.read_text())
+        marker = json.loads((directory / role / "complete.json").read_text())
+        summaries[role] = _check_complete(directory / role, marker.get("binding"))
     result = compare_three_states(summaries, seed=seed, bootstrap_samples=bootstrap_samples)
     result["reference_nll"] = reference_nll
     atomic_json(directory / "report.json", result)

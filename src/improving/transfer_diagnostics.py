@@ -26,8 +26,8 @@ def transfer_settings(config: dict) -> dict | None:
         return None
     if not isinstance(raw, Mapping) or raw.get("enabled") is not True:
         raise ValueError("diagnostics.transfer_gap requires enabled=true")
-    if config.get("methods") != ["spectral_learned"]:
-        raise ValueError("Transfer-gap instrumentation is initially restricted to spectral_learned-only runs")
+    if config.get("methods") not in (["spectral_learned"], ["spectral_soft"]):
+        raise ValueError("Transfer-gap instrumentation supports spectral_learned or spectral_soft runs")
     rounds = raw.get("rounds")
     if (not isinstance(rounds, list) or not rounds or
             any(type(x) is not int or x < 1 or x > config["rounds"] for x in rounds) or

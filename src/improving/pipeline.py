@@ -884,18 +884,26 @@ def run_experiment(config, *, resume=False):
                     model, stats = train_on_records(model, tokenizer, sft_tasks, sft_records,
                                                     config.get('train', {}), checkpoint, seed=seed + round_index)
                 atomic_json(directory / 'training_stats.json', stats)
-            if transfer_diag is not None and method == 'spectral_learned':
-                # Cached round-local gain audit always belongs to the pre-SFT
-                # checkpoint and is separately verified during resume above.
-                gain_audit = json.loads((directory / 'learned_gains.json').read_text())
-                nll_path = directory / 'reference_transfer_nll.json'
-                if nll_path.is_file():
-                    reference_gap = json.loads(nll_path.read_text())
+            if transfer_diag is not None:
+                if method == 'spectral_learned':
+                    # Cached round-local gain audit always belongs to the pre-SFT
+                    # checkpoint and is separately verified during resume above.
+                    gain_audit = json.loads((directory / 'learned_gains.json').read_text())
+                    nll_path = directory / 'reference_transfer_nll.json'
+                    if nll_path.is_file():
+                        reference_gap = json.loads(nll_path.read_text())
+                    else:
+                        with record_stage(directory, 'post_reference_nll'):
+                            reference_gap = post_reference_nll(
+                                model, tokenizer, splits['calibration'], cal, gain_audit)
+                        atomic_json(nll_path, reference_gap)
                 else:
-                    with record_stage(directory, 'post_reference_nll'):
-                        reference_gap = post_reference_nll(
-                            model, tokenizer, splits['calibration'], cal, gain_audit)
-                    atomic_json(nll_path, reference_gap)
+                    reference_gap = {
+                        'method': method,
+                        'definition': 'no_learned_gain_audit',
+                        'note': 'reference_transfer_nll applies to learned gains; '
+                                'spectral_soft uses fixed/decayed tau and has no fit/guard NLL audit',
+                    }
                 if should_evaluate(config, round_index):
                     dev_root = directory / 'transfer_gap'
                     pre_stages_sealed(

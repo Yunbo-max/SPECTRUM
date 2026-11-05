@@ -12,3 +12,5 @@ checkpoints/
 .cache/
 .superpowers/
 .worktrees/
+
+.venv-rebuttal/

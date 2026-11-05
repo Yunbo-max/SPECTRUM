@@ -1,5 +1,19 @@
 # SPECTRUM current agent entry
 
+## ICLR rebuttal integration — 3 November 2026
+
+Read `docs/ICLR_REBUTTAL_ZH.md` before running the new foreground driver.
+Preserve original methods, main, historical output roots and active checkouts.
+The new pipeline guards immediate-predecessor recovery for EVERY arm and
+supports sealed three-state DEV diagnostics for all matched comparisons.
+Core retains ordinary all-token SFT; completion-only is a separate four-arm
+ablation, not a silent improvement to our method. No PI/GUI or SFT-KL merge.
+Three Qwen training seeds are private, new and frozen; same data across seeds.
+Report missing cells and failed outcomes. CPU regressions and generated launch
+configs are not GPU qualification or scientific gains. Cross-family uses the
+existing two-layer placement; Qwen native replication uses all layers.
+
+
 ## Selected text extension — 1 November 2026
 
 For the user's learned-gain test, read [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md),

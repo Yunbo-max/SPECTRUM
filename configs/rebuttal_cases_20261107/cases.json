@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "protocol": "SPECTRUM_ICLR2027_ISOLATED_CASES_V1",
+  "original_question": "Does fixed-reference gradient spectral orientation preserve correct-solution richness after repeated raw-output distillation?",
+  "cases": [
+    {
+      "id": "c00",
+      "title": "Plain SD original seed43",
+      "mode": "archive",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "purpose": "Historical five-round Plain; reuse original 64-draw evidence.",
+      "overrides": {}
+    },
+    {
+      "id": "c01",
+      "title": "Fixed SPECTRUM original seed43",
+      "mode": "archive",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "w3G2",
+        "FUKc",
+        "ygkV"
+      ],
+      "purpose": "Historical fixed tau=1 five-round result; preserve submitted result.",
+      "overrides": {}
+    },
+    {
+      "id": "c02",
+      "title": "SPD-hard original seed43",
+      "mode": "archive",
+      "model": "qwen1.5b",
+      "method": "spd_hard",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "Historical projection control; NOT a strength-matched directional control.",
+      "overrides": {}
+    },
+    {
+      "id": "c03",
+      "title": "SSD original seed43",
+      "mode": "archive",
+      "model": "qwen1.5b",
+      "method": "ssd",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "purpose": "Existing five rounds eval16; final n64 incomplete; report missing.",
+      "overrides": {}
+    },
+    {
+      "id": "c04",
+      "title": "Random basis same eigenvalue spectrum",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "random_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "5 rounds random eigenbasis with same soft gains; Frobenius-matched, output KL not matched.",
+      "overrides": {}
+    },
+    {
+      "id": "c05",
+      "title": "Isotropic soft full 5 rounds",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "isotropic_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "Only one-round isotropic historical; require full five-round comparison.",
+      "overrides": {}
+    },
+    {
+      "id": "c06",
+      "title": "Matched residual blend",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "matched_blend",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "Equal Frobenius displacement but not equal output KL.",
+      "overrides": {}
+    },
+    {
+      "id": "c07",
+      "title": "Reference-only supervised replay",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "purpose": "Plain plus same 50 reference solutions during SFT; extra supervised tokens, not compute-matched.",
+      "overrides": {
+        "fixed_anchor_replay": true
+      }
+    },
+    {
+      "id": "c08",
+      "title": "Fixed first-round geometry",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "w3G2"
+      ],
+      "purpose": "Reuses round-one geometry; distinguish spectral re-estimation from fixed operator.",
+      "overrides": {
+        "reestimate_each_round": false
+      }
+    },
+    {
+      "id": "c09",
+      "title": "Reference 40 vs 50 (fixed40)",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "purpose": "Fixed proximal using 40 of original 50 calibration examples.",
+      "overrides": {
+        "max_examples": 40
+      }
+    },
+    {
+      "id": "c10",
+      "title": "Tau half sensitivity (single-round)",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 1,
+      "priority": "p1",
+      "reviewers": [
+        "ygkV"
+      ],
+      "purpose": "Original 1.5B tau=0.5 sweep; weak-s43 one-round evidence exists.",
+      "overrides": {
+        "tau": 0.5
+      }
+    },
+    {
+      "id": "c11",
+      "title": "Plain SD original seed44",
+      "mode": "archive",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 44,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Historical completed Plain seed44.",
+      "overrides": {}
+    },
+    {
+      "id": "c12",
+      "title": "Fixed SPECTRUM seed44",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 44,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Recover failed spectral generation if source checkpoint/partial artifacts allow, else independent run.",
+      "overrides": {}
+    },
+    {
+      "id": "c13",
+      "title": "Plain SD original seed45",
+      "mode": "archive",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 45,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Historical completed Plain seed45.",
+      "overrides": {}
+    },
+    {
+      "id": "c14",
+      "title": "Fixed SPECTRUM seed45",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 45,
+      "rounds": 5,
+      "priority": "p0",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Verify historical status first; only train if verified fixed seed45 result missing.",
+      "overrides": {}
+    },
+    {
+      "id": "c15",
+      "title": "Qwen Coder 3B Plain",
+      "mode": "train",
+      "model": "qwen3b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p2",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Same Qwen family larger scale; compare to c16.",
+      "overrides": {}
+    },
+    {
+      "id": "c16",
+      "title": "Qwen Coder 3B Fixed SPECTRUM",
+      "mode": "train",
+      "model": "qwen3b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p2",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Same-family scale test; c15 matched.",
+      "overrides": {}
+    },
+    {
+      "id": "c17",
+      "title": "DeepSeek 6.7B Plain",
+      "mode": "archive",
+      "model": "deepseek6.7b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Existing 4096-context cross-family Plain partial at round4; resume only under frozen old config.",
+      "overrides": {}
+    },
+    {
+      "id": "c18",
+      "title": "DeepSeek 6.7B Fixed",
+      "mode": "archive",
+      "model": "deepseek6.7b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "FUKc"
+      ],
+      "purpose": "Existing 4096-context cross-family fixed round5; different from original 512-token protocol.",
+      "overrides": {}
+    },
+    {
+      "id": "c19",
+      "title": "Qwen 7B Fixed 5 rounds",
+      "mode": "archive",
+      "model": "qwen7b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "priority": "p1",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "purpose": "Archived 4096-token five-round cross-family result.",
+      "overrides": {}
+    },
+    {
+      "id": "c20",
+      "title": "Qwen 7B Learned 5/10 rounds",
+      "mode": "archive",
+      "model": "qwen7b",
+      "method": "spectral_learned",
+      "seed": 43,
+      "rounds": 10,
+      "priority": "p1",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "Learned extension archived; separate gain-fit/guard/probe information budget.",
+      "overrides": {}
+    },
+    {
+      "id": "c21",
+      "title": "Qwen 7B Random Basis @128",
+      "mode": "train",
+      "model": "qwen7b",
+      "method": "random_soft",
+      "seed": 43,
+      "rounds": 1,
+      "priority": "p1",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "One round 512 generation, native eval128; compare existing highk_v1 full records.",
+      "overrides": {
+        "eval_samples": 128
+      }
+    },
+    {
+      "id": "c22",
+      "title": "Qwen 7B Isotropic @128",
+      "mode": "train",
+      "model": "qwen7b",
+      "method": "isotropic_soft",
+      "seed": 43,
+      "rounds": 1,
+      "priority": "p1",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "One round 512 generation, native eval128; compare existing highk_v1.",
+      "overrides": {
+        "eval_samples": 128
+      }
+    },
+    {
+      "id": "c23",
+      "title": "Qwen 7B matched blend @128",
+      "mode": "train",
+      "model": "qwen7b",
+      "method": "matched_blend",
+      "seed": 43,
+      "rounds": 1,
+      "priority": "p2",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "purpose": "One round matched Frobenius and native eval128.",
+      "overrides": {
+        "eval_samples": 128
+      }
+    },
+    {
+      "id": "c24",
+      "title": "Original 1.5B tau=2",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 1,
+      "priority": "p1",
+      "reviewers": [
+        "ygkV"
+      ],
+      "purpose": "One round sensitivity; 7B tau sweep already completed.",
+      "overrides": {
+        "tau": 2
+      }
+    },
+    {
+      "id": "c25",
+      "title": "Original 1.5B synthesis T=0.6",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 1,
+      "priority": "p2",
+      "reviewers": [
+        "ygkV"
+      ],
+      "purpose": "Decoding-only exploration baseline training, same native evaluation decoder.",
+      "overrides": {
+        "temperature": 0.6
+      }
+    },
+    {
+      "id": "c26",
+      "title": "Original 1.5B synthesis T=1.0",
+      "mode": "train",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 1,
+      "priority": "p2",
+      "reviewers": [
+        "ygkV"
+      ],
+      "purpose": "Decoding-only exploration baseline training, same native evaluation decoder.",
+      "overrides": {
+        "temperature": 1
+      }
+    }
+  ],
+  "guardrails": {
+    "all_metrics": "Only native official complete.json/evaluation.metrics.json; no fabricated zeros",
+    "study_split": "MBPP 291 synthesis / 50 calibration / 30 dev / 500 test, data_seed42",
+    "generation": "Original 1.5B 512 output tokens, 16 train samples, 64 eval samples; c21-c23 7B eval128",
+    "student": "Plain single-adapter LoRA SFT on every raw completion; no GRPO, no best-test-round selection",
+    "new_experiments": "Only mode=train can execute; mode=archive is read-only evidence locator with explicit historical verifier",
+    "no_test_selection": true
+  }
+}

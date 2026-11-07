@@ -47,20 +47,22 @@ not all other causes of difference.
 on Qwen2.5-Coder-7B-Instruct.} MBPP500; 16 training completions
 per synthesis prompt per round; 4096 maximum new tokens,
 6144 SFT tokens, 64 native evaluation draws per task.
-Reported values are single-run point estimates. $C_{64}$
-is all-task correct AST richness and $D_4$ is the
-marginal mean over each method's eligible tasks; $D_4$ values
-are \emph{not} a common-eligible-task paired contrast.
-Learned has additional reference guard and KL-probe cost.}
+Reported values are single-run point estimates, not a
+statistical claim of method dominance. $C_{64}$ is the
+mean number of distinct correct AST structures across
+all 500 tasks. Learned has additional reference guard
+and KL-probe cost. Correct-count-matched $D_4$ is
+intentionally omitted until raw per-task records are
+revalidated against its occupancy definition.}
 \label{tab:postreview-gains}
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrrr}
 \toprule
-Synthesis policy & pass@1 (\%) & pass@64 (\%) & $C_{64}$ & $D_4$\\
+Synthesis policy & pass@1 (\%) & pass@64 (\%) & $C_{64}$\\
 \midrule
-Plain SD                & \textbf{59.90} & 82.40 & 9.174 & 0.615\\
-SSD decoding recipe     & 56.71 & 84.20 & 13.730 & 0.743\\
-Fixed proximal SPECTRUM & 56.85 & \textbf{84.80} & \textbf{14.570} & \textbf{0.779}\\
-Learned-gain extension  & 58.93 & 82.80 & 10.186 & 0.650\\
+Plain SD                & \textbf{59.90} & 82.40 & 9.174\\
+SSD decoding recipe     & 56.71 & 84.20 & 13.730\\
+Fixed proximal SPECTRUM & 56.85 & \textbf{84.80} & \textbf{14.570}\\
+Learned-gain extension  & 58.93 & 82.80 & 10.186\\
 \bottomrule
 \end{tabular}
 \end{table}

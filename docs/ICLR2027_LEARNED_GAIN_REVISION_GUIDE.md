@@ -25,17 +25,22 @@ Do not silently replace that method with the newer 7B Learned procedure.
 All Qwen2.5-Coder-7B / MBPP500 / 4096 maximum generated tokens /
 6144 SFT tokens / 64 native evaluation samples, single run:
 
-| Method | Pass@1 | Pass@64 | C64 | marginal D4 |
-|---|---:|---:|---:|---:|
-| Plain | 59.900% | 82.4% | 9.174 | 0.61503 |
-| SSD | 56.706% | 84.2% | 13.730 | 0.74343 |
-| Fixed proximal | 56.853% | 84.8% | 14.570 | 0.77890 |
-| Learned gains | 58.925% | 82.8% | 10.186 | 0.64970 |
+| Method | Pass@1 | Pass@64 | C64 |
+|---|---:|---:|---:|
+| Plain | 59.900% | 82.4% | 9.174 |
+| SSD | 56.706% | 84.2% | 13.730 |
+| Fixed proximal | 56.853% | 84.8% | 14.570 |
+| Learned gains | 58.925% | 82.8% | 10.186 |
 
 Learned minus Fixed: **+2.072 pp Pass@1**, **-2.0 pp Pass@64**,
-**-4.384 C64**. It is NOT a universal gain. The marginal D4 figures
-have method-specific eligible populations; paired common-eligible
-D4 effects must be computed from real per-task rows before inference.
+**-4.384 C64**. It is NOT a universal gain. **Metric audit warning:** the recovered CSV field named `D4_cond_cov`
+contains values such as 0.61503 and 0.77890. Those cannot be the
+unscaled correct-count-matched AST richness `D4` in the submitted
+paper, which is at least 1 on eligible tasks. They may be normalized
+diversity-like scores but are NOT yet identified. Therefore do NOT
+report that column as D4. Recompute actual D4 and eligible
+denominators from the original per-task program and verifier records
+before including it in any revised PDF.
 
 The one-round 7B \`tau\` sweep is a **different** 512-token / eval16
 protocol. Its completed \`tau\` set is {1, 1.5, 2, 3, 5, 10}.

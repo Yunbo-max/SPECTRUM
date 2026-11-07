@@ -187,6 +187,30 @@ def main(argv=None) -> int:
         result=paired(sources[left]["metric"],sources[right]["metric"],
                       nboot=args.bootstrap)
         results.append({"left":left,"right":right,"status":"paired_500_tasks",**result})
+    # Independent lineages are the units for across-run variation, not
+    # the five correlated distillation rounds or the 500 test questions.
+    completed = {(row["left"],row["right"]):row for row in results
+                 if row["status"] == "paired_500_tasks"}
+    fixed_plain_pairs = [("c36","c01"),("c06","c07"),("c08","c09")]
+    seed_variation = {}
+    for metric in ("pass@1","pass@64","C64","D4"):
+        values = []
+        for left,right in fixed_plain_pairs:
+            row = completed.get((left,right))
+            if row is not None and row[metric].get("estimate_right_minus_left") is not None:
+                values.append({"plain":left,"fixed":right,
+                               "delta_fixed_minus_plain":row[metric]["estimate_right_minus_left"],
+                               "common_eligible_tasks":row[metric]["eligible_both"]})
+        mean = sum(x["delta_fixed_minus_plain"] for x in values)/len(values) if values else None
+        variance = (sum((x["delta_fixed_minus_plain"]-mean)**2 for x in values)
+                    /(len(values)-1)) if len(values)>1 else None
+        seed_variation[metric] = {
+            "n_independent_training_pairs":len(values),
+            "planned_independent_pairs":3,
+            "per_seed":values,"mean_delta":mean,
+            "sample_standard_deviation":variance**.5 if variance is not None else None,
+            "unit":"paired_independent_training_lineage",
+        }
     out=Path(args.output_dir).expanduser().resolve()
     if out.exists() and any(out.iterdir()):
         raise FileExistsError("Use a fresh empty --output-dir; never overwrite prior evidence analysis")
@@ -195,6 +219,7 @@ def main(argv=None) -> int:
              "status":"observed_where_validated_not_imputed",
              "sources":{k:{k2:v2 for k2,v2 in v.items() if k2!="metric"} for k,v in sources.items()},
              "comparisons":results,
+             "independent_training_seed_summary":seed_variation,
              "limitations":["Within-run task bootstrap is not independent training variation.",
                             "Correct-conditioned D4 is evaluated on common eligible tasks only.",
                             "Different benchmark versions/generation policies cannot be combined."],

@@ -1,0 +1,129 @@
+% SPECTRUM ICLR 2027 -- OPTIONAL REVIEW-STAGE APPENDIX, 2026-11-07.
+% Do NOT replace the submitted fixed-tau method or the 1.5B five-round main table.
+% Source status: audited local native evaluator summaries; raw files are not
+% currently committed to GitHub. Verify original complete.json, model/config
+% identity, task/sample denominator, and evaluator receipts before submission.
+% This is a ready-to-integrate excerpt, not the current OpenReview PDF.
+%
+% Suggested ONE-LINE addition at the end of the RQ3 discussion in the main text:
+%   A separate, post-submission 7B analysis of gain design and spectral strength
+%   is reported in Appendix~\ref{app:postreview-gains}; its different model,
+%   generation budget, and calibration access prevent pooling it with our
+%   original 1.5B causal comparison.
+%
+% Append the following material AFTER \appendix and BEFORE \end{document}.
+
+\section{Additional spectral-gain design and strength controls}
+\label{app:postreview-gains}
+
+\paragraph{Scope and comparability.}
+The submitted primary method uses the fixed, proximal full-rank gain
+$s_j=[1+\tau(1-\mu_j)]^{-1}$, with $\tau=1$. Here we report additional
+native-student measurements recovered from a separately executed study
+on Qwen2.5-Coder-7B-Instruct. These measurements are a
+\emph{gain-design extension}, not a substitute for the submitted
+1.5B five-round result or a proof that reference-gradient eigenvectors
+are necessary. No evaluation outcome was used to select a generated
+training record. Results below use the native student after five
+updates and do not include generation-time spectral folding at test time.
+
+\paragraph{Fixed proximal gains versus learned gains.}
+The exploratory learned variant keeps the same loss-sensitive K/V
+eigenspaces but optimizes continuous gains $a_j\in[0.1,1]$ on reference
+completion likelihood. It validates a native-to-steered probe KL
+budget of $0.02$ nats/token, checks a held-out reference guard,
+and uses the accepted operator only for generation; the LoRA student
+still learns from unfiltered raw completions. The learned variant uses
+40 fit references, 10 independent guard references and 8 native
+training-side probes. Thus it has a larger calibration/checking budget
+than a fixed-gain implementation using 40 fit references, and
+additional optimization compute. This comparison isolates a
+\emph{family of gain choices} under a common backbone/benchmark,
+not all other causes of difference.
+
+\begin{table}[h]
+\centering\small
+\caption{\textbf{Exploratory five-round gain-design comparison
+on Qwen2.5-Coder-7B-Instruct.} MBPP500; 16 training completions
+per synthesis prompt per round; 4096 maximum new tokens,
+6144 SFT tokens, 64 native evaluation draws per task.
+Reported values are single-run point estimates. $C_{64}$
+is all-task correct AST richness and $D_4$ is the
+marginal mean over each method's eligible tasks; $D_4$ values
+are \emph{not} a common-eligible-task paired contrast.
+Learned has additional reference guard and KL-probe cost.}
+\label{tab:postreview-gains}
+\begin{tabular}{lrrrr}
+\toprule
+Synthesis policy & pass@1 (\%) & pass@64 (\%) & $C_{64}$ & $D_4$\\
+\midrule
+Plain SD                & \textbf{59.90} & 82.40 & 9.174 & 0.615\\
+SSD decoding recipe     & 56.71 & 84.20 & 13.730 & 0.743\\
+Fixed proximal SPECTRUM & 56.85 & \textbf{84.80} & \textbf{14.570} & \textbf{0.779}\\
+Learned-gain extension  & 58.93 & 82.80 & 10.186 & 0.650\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Relative to fixed gains, learned gains improve pass@1 by
+$2.07$ percentage points but reduce pass@64 by $2.0$ points
+and $C_{64}$ by $4.384$ correct AST classes. In this matched
+five-round setting, learning reference-likelihood-driven gains
+moves the observed operating point toward single-draw accuracy,
+rather than dominating fixed gains in correctness and structural
+breadth. This finding is consistent with a nontrivial
+accuracy--diversity trade-off, but it does \emph{not} establish
+a causal benefit of the calibrated eigenbasis: the requisite
+random-orientation and strength-matched isotropic training
+comparisons remain outstanding. Nor is the single observed
+trajectory evidence of across-training-seed stability.
+
+\paragraph{Spectral-strength sensitivity.}
+A separate \emph{single-round} Qwen2.5-Coder-7B study used a
+512-token generation cap and 16 evaluation draws per MBPP task.
+It must not be combined statistically with the five-round
+4096-token table above.
+
+\begin{table}[h]
+\centering\small
+\caption{\textbf{One-round fixed-gain strength sweep.}
+Qwen2.5-Coder-7B, MBPP500, at most 512 generated tokens,
+16 native evaluation draws per task. Values are unpaired
+point estimates from separately collected sample pools;
+no strength is selected as a new main result based on
+test-set outcomes.}
+\label{tab:postreview-tau}
+\begin{tabular}{lrrrrrr}
+\toprule
+$\tau$ & 1.0 & 1.5 & 2.0 & 3.0 & 5.0 & 10.0\\
+\midrule
+pass@1 (\%) & 56.74 & 56.44 & 56.79 & 56.74 & 56.33 & 56.48\\
+pass@16 (\%) & 76.60 & 76.40 & 77.20 & 76.60 & 75.60 & 77.40\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The single-round pass@16 estimates are not monotonic in $\tau$,
+and higher $\tau$ does not consistently improve pass@1.
+They demonstrate sensitivity to intervention strength, not
+an optimal long-run choice; they do not isolate reference
+information from geometric orientation. Separate ten-round
+4096-token fixed-strength, decayed-strength, adaptive and
+learned-gain experiments probe stability, but only the
+learned and $\tau$-decay $0.8$ trajectories have complete
+ten-round native receipts in the recovered audit.
+Incomplete round-nine/ten cells remain unreported rather
+than being inferred.
+
+\paragraph{What remains unproven.}
+Although one completed 1.5B single-round isotropic-gain
+control exists in the archived results, its matched reference
+is not an otherwise identical five-round fixed-$\tau=1$
+trajectory. A completed random-eigenbasis training control,
+anchor-only-information control, and complete multi-seed
+fixed-gain confirmation are not established by these
+supplementary results. Accordingly, we do not claim that
+calibrated orientation is necessary, that learned gains
+uniformly outperform the original fixed formulation, or
+that differences between the two generation policies
+come solely from gain adaptation.

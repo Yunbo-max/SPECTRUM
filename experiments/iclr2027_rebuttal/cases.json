@@ -590,6 +590,66 @@
       "max_new_tokens": 512,
       "calibration_examples": 50,
       "reestimate_each_round": false
+    },
+    {
+      "id": "c32",
+      "kind": "interpolate",
+      "priority": "P1",
+      "title": "Frozen plain student interpolated with base, alpha=0.5",
+      "reviewers": [
+        "ygkV",
+        "FUKc"
+      ],
+      "source_status": "not_run",
+      "method": "plain",
+      "alpha": 0.5,
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c33",
+      "kind": "interpolate",
+      "priority": "P1",
+      "title": "Frozen plain student interpolated with base, alpha=0.75",
+      "reviewers": [
+        "ygkV",
+        "FUKc"
+      ],
+      "source_status": "not_run",
+      "method": "plain",
+      "alpha": 0.75,
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c34",
+      "kind": "interpolate",
+      "priority": "P1",
+      "title": "Frozen spectral_soft student interpolated with base, alpha=0.5",
+      "reviewers": [
+        "ygkV",
+        "FUKc"
+      ],
+      "source_status": "not_run",
+      "method": "spectral_soft",
+      "alpha": 0.5,
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c35",
+      "kind": "interpolate",
+      "priority": "P1",
+      "title": "Frozen spectral_soft student interpolated with base, alpha=0.75",
+      "reviewers": [
+        "ygkV",
+        "FUKc"
+      ],
+      "source_status": "not_run",
+      "method": "spectral_soft",
+      "alpha": 0.75,
+      "round": 5,
+      "samples": 64
     }
   ]
 }

@@ -231,7 +231,7 @@ def test_source_generation_override_is_training_only_and_AST_valid():
     assert "training_decoder_overrides" in source
     assert "training_settings.update(gen['training_decoder_overrides'])" in source
     assert "Do not leak this control into held-out evaluation" in source
-    assert any(isinstance(x,ast.FunctionDef) and x.name=="validate_config" for x in tree)
+    assert any(isinstance(x,ast.FunctionDef) and x.name=="validate_config" for x in tree.body)
 
 
 def test_semantic_script_uses_blinded_ids_and_human_annotation():

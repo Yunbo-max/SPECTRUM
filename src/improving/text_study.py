@@ -17,6 +17,17 @@ from .text_tasks import (file_sha, private_seed, score_text_records,
 from .utils import atomic_json, stable_hash
 
 METHODS = ('base', 'plain', 'ssd', 'spectral_soft')
+LEARNED_METHODS = (*METHODS, 'spectral_learned')
+
+
+def methods_for_config(config):
+    """Preserve historical four-arm text configs; explicit learned study is opt-in."""
+    requested = config.get('methods')
+    if requested is None:
+        return METHODS
+    if requested != list(LEARNED_METHODS):
+        raise ValueError('Text learned study must append spectral_learned to the historical methods')
+    return LEARNED_METHODS
 
 
 @contextmanager
@@ -35,6 +46,14 @@ def _exclusive(path):
 
 
 def validate_text_config(config):
+    chosen = methods_for_config(config)
+    if 'spectral_learned' in chosen:
+        from .gain_pipeline import split_gain_settings
+        _, integration = split_gain_settings(config.get('calibration', {}))
+        cal = config['calibration']
+        if (cal.get('matched_reference_fit_examples')
+                != cal.get('max_examples') - integration['guard_examples']):
+            raise ValueError('matched_reference_fit_examples must equal the learned fit count')
     if config.get('domain') not in ('math', 'qa') or int(config.get('rounds', 0)) < 1:
         raise ValueError('Expected math/qa domain and positive rounds')
     model = config['model']
@@ -71,7 +90,8 @@ def validate_text_config(config):
 def _source_identity():
     root = Path(__file__).parent
     files = ('text_tasks.py', 'text_study.py', 'modeling.py', 'training.py', 'generation.py',
-             'calibration.py', 'spectral.py', 'pipeline.py', 'native_sandbox.py', 'data.py', 'utils.py')
+             'calibration.py', 'spectral.py', 'pipeline.py', 'gain_pipeline.py',
+             'learned_gains.py', 'native_sandbox.py', 'data.py', 'utils.py')
     return {name: file_sha(root / name) for name in files}
 
 
@@ -210,8 +230,8 @@ def run_text_study(config, method, *, resume=False, evaluate_only=False, checkpo
     from .generation import generate_to_file
 
     validate_text_config(config)
-    if method not in METHODS:
-        raise ValueError(f'Unknown method: {method}')
+    if method not in methods_for_config(config):
+        raise ValueError(f'Unknown/unconfigured method: {method}')
     if checkpoint and not evaluate_only:
         raise ValueError('--checkpoint is only for explicit transfer/evaluation mode')
     if evaluate_only and not checkpoint:
@@ -266,6 +286,14 @@ def run_text_study(config, method, *, resume=False, evaluate_only=False, checkpo
             checkpoint_receipt = directory / 'checkpoint.json'
             round_binding = stable_hash({'parent': parent_identity, 'round': round_index,
                                          'method': method, 'study': binding})
+            if method == 'spectral_learned' and (
+                    checkpoint_receipt.exists() or (directory / 'synthetic.jsonl').exists()
+                    or (directory / 'complete.json').exists()):
+                from .gain_pipeline import validate_saved_learned_round
+                validate_saved_learned_round(
+                    directory, parent_identity, config['calibration'],
+                    splits['calibration'], splits['train'], seed=seed,
+                    round_index=round_index)
             if _check_completed(directory, round_binding):
                 receipt = json.loads(checkpoint_receipt.read_text())
                 pruned = directory / 'checkpoint_pruned.json'
@@ -297,11 +325,29 @@ def run_text_study(config, method, *, resume=False, evaluate_only=False, checkpo
                     generation.update(config['ssd_synthesis'])
                 context = nullcontext()
                 if method == 'spectral_soft':
+                    cal = config['calibration']
+                    matched = cal.get('matched_reference_fit_examples')
+                    settings = ({**cal, 'max_examples': matched}
+                                if matched is not None and 'spectral_learned' in methods_for_config(config)
+                                else cal)
                     with record_stage(directory, 'calibration'):
-                        covariances = _calibrate(model, tokenizer, splits['calibration'], config['calibration'],
+                        covariances = _calibrate(model, tokenizer, splits['calibration'], settings,
                                                  directory / 'calibration.pt', parent_identity)
-                        operators = _operators(covariances, 'spectral_soft', config['calibration'], seed)
+                        operators = _operators(covariances, 'spectral_soft', settings, seed)
                     context = folded_operators(model, operators)
+                elif method == 'spectral_learned':
+                    if (directory / 'synthetic.jsonl').exists() and not (
+                            directory / 'learned_operators.pt').exists():
+                        raise ValueError('Committed learned generation data lacks spectral policy')
+                    from .gain_pipeline import calibrate_learned_round
+                    operators, _, gain_audit, gain_provenance = calibrate_learned_round(
+                        model, tokenizer, splits['calibration'], splits['train'],
+                        config['calibration'], config['synthesis'], directory,
+                        parent_identity, seed=seed, round_index=round_index, resume=resume)
+                    if gain_provenance['selected_identity'] != gain_audit['selected_identity']:
+                        raise ValueError('Learned operator acceptance/provenance mismatch')
+                    context = (nullcontext() if gain_audit['selected_identity']
+                               else folded_operators(model, operators))
                 with record_stage(directory, 'synthesis'), context:
                     records = generate_to_file(model, tokenizer, splits['train'], directory / 'synthetic.jsonl',
                                                generation, seed=seed, model_identity=parent_identity,
@@ -324,6 +370,10 @@ def run_text_study(config, method, *, resume=False, evaluate_only=False, checkpo
             hashes['checkpoint.json'] = file_sha(checkpoint_receipt)
             hashes['synthetic.jsonl'] = file_sha(directory / 'synthetic.jsonl')
             hashes['training_stats.json'] = file_sha(directory / 'training_stats.json')
+            if method == 'spectral_learned':
+                for name in ('calibration.pt', 'gain_probe.jsonl', 'gain_inputs.json',
+                             'learned_operators.pt', 'learned_gains.json', 'gain_provenance.json'):
+                    hashes[name] = file_sha(directory / name)
             atomic_json(directory / 'complete.json', {'identity': round_binding, 'output_hashes': hashes})
             if config.get('checkpoint_retention', 'all') == 'latest' and parent_path is not None:
                 previous = method_root / f'round_{round_index - 1}'
@@ -352,7 +402,7 @@ def text_report(config):
     if study_manifest.exists() and json.loads(study_manifest.read_text())['config'] != config:
         raise ValueError('Report config differs from the frozen cross-method study')
     rows = []
-    for method in METHODS:
+    for method in methods_for_config(config):
         rounds = [0] if method == 'base' else range(1, config['rounds'] + 1)
         for round_index in rounds:
             directory = root / method / f'round_{round_index}'
@@ -366,11 +416,17 @@ def text_report(config):
                          'metrics': json.loads(path.read_text()) if path.exists() else None})
     comparisons = []
     final = {r['method']: r for r in rows if r['status'] == 'completed' and r['round'] == config['rounds']}
-    candidate = final.get('spectral_soft')
-    if candidate:
+    # Compare both spectral controls with the same native task population.
+    # Learned vs classical spectrum isolates how gains are selected.
+    for candidate_name in ('spectral_soft', 'spectral_learned'):
+        candidate = final.get(candidate_name)
+        if candidate is None:
+            continue
         import numpy as np
         seed = private_seed(config['seed_file'])
-        for reference_name in ('plain', 'ssd'):
+        references = ('plain', 'ssd') if candidate_name == 'spectral_soft' else (
+            'plain', 'ssd', 'spectral_soft')
+        for reference_name in references:
             reference = final.get(reference_name)
             if reference is None:
                 continue
@@ -383,13 +439,14 @@ def text_report(config):
                     if set(candidate_tasks) != set(reference_tasks):
                         raise ValueError('Paired text report requires identical full task populations')
                     task_ids = sorted(candidate_tasks)
-                    difference = np.array([candidate_tasks[k] - reference_tasks[k] for k in task_ids])
-                    rng = np.random.default_rng(int(stable_hash([seed, benchmark, reference_name, metric_name])[:16], 16))
-                    replicates = np.array([rng.choice(difference, size=len(difference), replace=True).mean()
+                    differences = np.array([candidate_tasks[k] - reference_tasks[k] for k in task_ids])
+                    rng = np.random.default_rng(int(stable_hash([
+                        seed, benchmark, candidate_name, reference_name, metric_name])[:16], 16))
+                    replicates = np.array([rng.choice(differences, size=len(differences), replace=True).mean()
                                            for _ in range(1000)])
-                    comparisons.append({'candidate': 'spectral_soft', 'reference': reference_name,
+                    comparisons.append({'candidate': candidate_name, 'reference': reference_name,
                         'round': config['rounds'], 'benchmark': benchmark, 'metric': metric_name,
-                        'paired_difference': float(difference.mean()),
+                        'paired_difference': float(differences.mean()),
                         'task_bootstrap_ci95': [float(x) for x in np.quantile(replicates, [.025, .975])],
                         'tasks': len(task_ids), 'bootstrap_replicates': 1000,
                         'uncertainty_scope': 'paired tasks conditional on one trained trajectory; not training-run variability'})

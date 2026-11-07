@@ -140,6 +140,21 @@ def validate_config(config):
     if (type(n) is not int or n < 1 or type(gen.get('train_samples', 1)) is not int
             or gen.get('train_samples', 1) < 1):
         raise ValueError('Generation sample counts must be positive integers')
+    # Optional isolated rebuttal control: alter SYNTHESIS decoding only.
+    # Native evaluation remains at the common 0.8/.95/0 distribution.
+    synthesis = gen.get('training_decoder_overrides')
+    if synthesis is not None:
+        if not isinstance(synthesis, dict) or set(synthesis) != {'temperature', 'top_p', 'top_k'}:
+            raise ValueError('generation.training_decoder_overrides needs exact temperature/top_p/top_k')
+        if 'ssd' in methods:
+            raise ValueError('Do not override the declared SSD recipe')
+        temperature, top_p, top_k = (synthesis[x] for x in ('temperature', 'top_p', 'top_k'))
+        if (isinstance(temperature, bool) or not isinstance(temperature, (int, float))
+                or not math.isfinite(temperature) or temperature <= 0
+                or isinstance(top_p, bool) or not isinstance(top_p, (int, float))
+                or not math.isfinite(top_p) or not 0 < top_p <= 1
+                or type(top_k) is not int or top_k < 0):
+            raise ValueError('Invalid generation.training_decoder_overrides sampling values')
     diagnostics = config.get('diagnostics', {})
     if not isinstance(diagnostics, dict):
         raise ValueError('diagnostics must be a mapping')
@@ -179,7 +194,14 @@ def validate_config(config):
             raise ValueError('calibration.tau_gamma must be positive')
     if 'spectral_learned' in methods:
         from .gain_pipeline import split_gain_settings
-        split_gain_settings(calibration)
+        _, integration = split_gain_settings(calibration)
+        matched_fit = calibration.get('matched_reference_fit_examples')
+        if matched_fit is not None:
+            if (type(matched_fit) is not int or
+                    matched_fit != calibration['max_examples'] - integration['guard_examples']):
+                raise ValueError('matched_reference_fit_examples must equal learned fit count')
+    elif 'matched_reference_fit_examples' in calibration:
+        raise ValueError('Matched fit references require spectral_learned in the same study')
     elif 'gain_learning' in calibration:
         raise ValueError('calibration.gain_learning requires the spectral_learned method')
     train = config.get('train', {})
@@ -204,6 +226,10 @@ def validate_config(config):
         raise ValueError('Local generated-code execution requires explicit allow_unsafe_local')
     if evaluation.get('code_extraction', 'strict') not in {'strict', 'first_fence'}:
         raise ValueError('evaluation.code_extraction must be strict or first_fence')
+    from .transfer_diagnostics import transfer_settings
+    transfer_settings(config)
+    from .operator_probe import probe_settings
+    probe_settings(config)
     return config
 
 
@@ -230,7 +256,10 @@ def _prune_completed_checkpoint(directory):
 
 def load_config(path):
     """Relative data/output paths are relative to the current working directory."""
-    with Path(path).open() as stream:
+    path = Path(path)
+    with path.open() as stream:
+        if path.suffix.lower() == '.json':
+            return validate_config(json.load(stream))
         return validate_config(yaml.safe_load(stream))
 
 
@@ -591,6 +620,16 @@ def _preflight_verification(settings):
     return {'docker_image': image, 'docker_image_id': image_id}
 
 
+def require_predecessor(root, method, round_index, previous_checkpoint, *, trained):
+    """Every resumed arm starts from its immediate native predecessor."""
+    if round_index <= 1 or trained:
+        return
+    expected = Path(root) / method / f'round_{round_index - 1}' / 'model'
+    if previous_checkpoint is None or Path(previous_checkpoint) != expected or not expected.is_dir():
+        raise ValueError('Round requires its immediate native predecessor checkpoint; '
+                         'restore the original checkpoint/receipt rather than restarting from base')
+
+
 def run_experiment(config, *, resume=False, method=None, base_only=False):
     if base_only and method is not None:
         raise ValueError('base_only cannot select a training method')
@@ -611,6 +650,16 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
         ordered = sorted(splits[name], key=lambda row: row['task_id'])
         random.Random(config.get('data_seed', 42)).shuffle(ordered)
         splits[name] = ordered[:count]
+    from .transfer_diagnostics import (
+        transfer_settings, should_evaluate, validate_development_tasks,
+        evaluate_state, pre_stages_sealed, post_reference_nll,
+        collect_round_report,
+    )
+    transfer_diag = transfer_settings(config)
+    if transfer_diag is not None:
+        validate_development_tasks(
+            splits['validation'], splits['train'], splits['calibration'], splits['eval'],
+            expected=transfer_diag['validation_task_count'])
     diagnostic_tasks, diagnostic_samples, diagnostic_evaluation = _diagnostic_protocol(config, splits['eval'])
     evaluation = dict(config.get('evaluation', {}))
     runtime_identity = {**execution_runtime_identity(evaluation),
@@ -661,6 +710,11 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
     eval_gen['samples'] = gen.get('eval_samples', 64)
     train_gen = {**eval_gen, 'samples': gen.get('train_samples', 1)}
     cal = config.get('calibration', {})
+    # Opt-in matched-reference comparison: classical soft spectrum sees the
+    # same fitted references as learned gains, never its separate guard answers.
+    fixed_cal = ({**cal, 'max_examples': cal['matched_reference_fit_examples']}
+                 if 'spectral_learned' in config['methods']
+                 and cal.get('matched_reference_fit_examples') is not None else cal)
     started = time.monotonic()
     base_path = root / 'base' / 'evaluation.jsonl'
     # Base evaluated once; the same completions form the reference for every arm.
@@ -715,11 +769,7 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
                 continue
             directory.mkdir(parents=True, exist_ok=True)
             print(f'[{method}] round {round_index}: {"resume" if resume else "start"}', flush=True)
-            if method == 'spectral_learned' and round_index > 1 and not trained:
-                expected_previous = root / method / f'round_{round_index - 1}' / 'model'
-                if previous_checkpoint != expected_previous or not expected_previous.is_dir():
-                    raise ValueError('Learned round requires its immediate native predecessor checkpoint; '
-                                     'restore the original checkpoint/completion receipt instead of restarting from base')
+            require_predecessor(root, method, round_index, previous_checkpoint, trained=trained)
             if local_base_fingerprint and checkpoint_fingerprint(local_base) != local_base_fingerprint:
                 raise ValueError('Base model/tokenizer changed during this experiment')
             with record_stage(directory, 'model_loading'):
@@ -727,6 +777,15 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
             if trained and not (directory / 'training_stats.json').exists():
                 atomic_json(directory / 'training_stats.json', json.loads(
                     (checkpoint / 'training_stats.json').read_text()))
+            if trained and config.get('diagnostics', {}).get('operator_probe'):
+                from .operator_probe import validate_probe_receipt
+                validate_probe_receipt(directory, identity)
+            if trained and transfer_diag is not None and should_evaluate(config, round_index):
+                # The saved student cannot recreate its pre-SFT policy states.
+                pre_stages_sealed(
+                    directory / 'transfer_gap', config=config,
+                    tasks=splits['validation'], evaluation=evaluation,
+                    identity=identity, round_index=round_index, seed=seed)
             if not trained:
                 operators = None
                 selected_identity = False
@@ -762,7 +821,7 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
                     if not reestimate and round_index > 1 and not calibration_path.exists():
                         raise ValueError('Fixed geometry requires the saved round-1 calibration; do not fit it on a later checkpoint')
                     with record_stage(directory, 'calibration'):
-                        covariances = _calibrate(model, tokenizer, splits['calibration'], cal,
+                        covariances = _calibrate(model, tokenizer, splits['calibration'], fixed_cal,
                                                  calibration_path, calibration_identity)
                     entropy_ratio = None
                     if reestimate and cal.get('tau_mode') == 'adaptive':
@@ -779,9 +838,9 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
                             entropy_ref = json.loads(entropy_ref_path.read_text())['spectral_entropy']
                             entropy_ratio = entropy_t / entropy_ref
                     fixed_operator_path = root / method / 'round_1' / 'fixed_operators.pt'
-                    operators = (_operators(covariances, method, cal, seed,
+                    operators = (_operators(covariances, method, fixed_cal, seed,
                                             round_index=round_index, entropy_ratio=entropy_ratio) if reestimate else
-                                 _fixed_operators(covariances, method, cal, seed, fixed_operator_path,
+                                 _fixed_operators(covariances, method, fixed_cal, seed, fixed_operator_path,
                                                    calibration_path, require_existing=round_index > 1))
                     atomic_json(directory / 'calibration_provenance.json', {
                         'mode': 'reestimated' if reestimate else 'fixed_round_1',
@@ -795,7 +854,7 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
                         'tau_mode': cal.get('tau_mode'),
                         'spectral_entropy_ratio': entropy_ratio,
                         'method': method, 'seed': seed,
-                        'calibration_task_ids': [task['task_id'] for task in splits['calibration'][:int(cal.get('max_examples', 50))]],
+                        'calibration_task_ids': [task['task_id'] for task in splits['calibration'][:int(fixed_cal.get('max_examples', 50))]],
                         'reference_policy': 'same_fixed_training_reference_subset_every_round',
                         'operator_sha256': _operator_fingerprints(operators),
                         'operator_source': 'current_round_geometry' if reestimate else 'saved_round_1_matrices',
@@ -807,9 +866,32 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
                         round_index=round_index if reestimate else 1,
                         entropy_ratio=entropy_ratio))
                 from .spectral import folded_operators
+                if config.get('diagnostics', {}).get('operator_probe'):
+                    from .operator_probe import observe_operator_response
+                    observe_operator_response(
+                        model, tokenizer, splits['train'], operators, directory,
+                        config=config, identity=identity, method=method,
+                        round_index=round_index, seed=seed,
+                        selected_identity=selected_identity, resume=resume)
+                if transfer_diag is not None and should_evaluate(config, round_index):
+                    development = directory / 'transfer_gap'
+                    evaluate_state(
+                        model, tokenizer, splits['validation'], development / 'pre_native',
+                        config=config, evaluation=evaluation, identity=identity,
+                        role='pre_native', round_index=round_index, seed=seed, resume=resume)
+                    with (folded_operators(model, operators)
+                          if operators is not None and not selected_identity else nullcontext()):
+                        evaluate_state(
+                            model, tokenizer, splits['validation'], development / 'pre_spectral',
+                            config=config, evaluation=evaluation, identity=identity,
+                            role='pre_spectral', round_index=round_index, seed=seed, resume=resume)
                 training_settings = dict(train_gen)
                 if method == 'ssd':
                     training_settings.update({'temperature': 1.5, 'top_p': .8, 'top_k': 20})
+                elif gen.get('training_decoder_overrides') is not None:
+                    training_settings.update(gen['training_decoder_overrides'])
+                # Do not leak this control into held-out evaluation generation.
+                training_settings.pop('training_decoder_overrides', None)
                 with (folded_operators(model, operators)
                       if operators is not None and not selected_identity else nullcontext()):
                     with record_stage(directory, 'training_generation'):
@@ -854,6 +936,33 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
                     model, stats = train_on_records(model, tokenizer, sft_tasks, sft_records,
                                                     config.get('train', {}), checkpoint, seed=seed + round_index)
                 atomic_json(directory / 'training_stats.json', stats)
+            if transfer_diag is not None:
+                reference_gap = {'available': False, 'reason': 'not_a_learned_gain_arm'}
+                if method == 'spectral_learned':
+                    gain_audit = json.loads((directory / 'learned_gains.json').read_text())
+                    nll_path = directory / 'reference_transfer_nll.json'
+                    if nll_path.is_file():
+                        reference_gap = json.loads(nll_path.read_text())
+                    else:
+                        with record_stage(directory, 'post_reference_nll'):
+                            reference_gap = post_reference_nll(
+                                model, tokenizer, splits['calibration'], cal, gain_audit)
+                        atomic_json(nll_path, reference_gap)
+                if should_evaluate(config, round_index):
+                    dev_root = directory / 'transfer_gap'
+                    pre_stages_sealed(
+                        dev_root, config=config, tasks=splits['validation'],
+                        evaluation=evaluation, identity=identity,
+                        round_index=round_index, seed=seed)
+                    post_identity = stable_hash(
+                        [identity, method, round_index, checkpoint_fingerprint(checkpoint)])
+                    evaluate_state(
+                        model, tokenizer, splits['validation'], dev_root / 'post_native',
+                        config=config, evaluation=evaluation, identity=post_identity,
+                        role='post_native', round_index=round_index, seed=seed, resume=resume)
+                    collect_round_report(
+                        dev_root, reference_gap, seed=seed,
+                        bootstrap_samples=int(evaluation.get('bootstrap_samples', 2000)))
             eval_path = directory / 'evaluation.jsonl'
             model_identity = stable_hash([identity, method, round_index, checkpoint_fingerprint(checkpoint)])
             with record_stage(directory, 'post_training_evaluation'):

@@ -12,7 +12,7 @@ from improving.text_study import run_text_study, text_report
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', required=True)
-    parser.add_argument('--method', choices=['base', 'plain', 'ssd', 'spectral_soft'])
+    parser.add_argument('--method', choices=['base', 'plain', 'ssd', 'spectral_soft', 'spectral_learned'])
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--report', action='store_true')
     parser.add_argument('--evaluate-only', action='store_true')

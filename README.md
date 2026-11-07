@@ -1,5 +1,20 @@
 # SPECTRUM
 
+## ICLR 2027 reviewer cases — 7 November 2026
+
+[**Local Codex: start here**](LOCAL_AGENT_RUNBOOK.md#iclr-2027-final-rebuttal-cases)
+· [Final case guide](docs/ICLR2027_FINAL_CASES_ZH.md)
+· [Reviewer-to-evidence map](docs/ICLR2027_REVIEWER_COVERAGE_ZH.md)
+· [Round handoff](rounds/20261107-final-rebuttal/WEB_HANDOFF.md)
+· [Download datasets and models](docs/ICLR2027_FINAL_CASES_ZH.md#download-datasets-and-models)
+
+All 48 reviewer cases have a separate `scripts/rebuttal_cases/cNN.py` entry and
+immutable output directory. The original 1.5B/five-round/512-token protocol is
+separate from the 7B/ten-round/4096-token learned-gain extension. Historical
+evidence is reused only after its actual inputs and native receipts match.
+New source is **generated_unexecuted**; Local software and native qualification
+are pending, and no new training or evaluation has been launched by this handoff.
+
 ## Ten-round independent cases — 7 November 2026
 
 [Experiment list and run instructions](experiments/tenround_20261107/README.md)
@@ -8,11 +23,27 @@
 
 The new queue executes one method per training case for ten rounds, shares one
 initial evaluation per model/study, and explicitly gates final-checkpoint transfer.
-Software validation: **64 CPU tests passed**. Scientific status: **not started**;
+Historical software validation at main `5c8d1eb`: **64 CPU tests passed**.
+That record predates this rebuttal integration and is not acceptance of its new source.
+Scientific status for that queue: **not started**;
 the previous GPU processes were stopped at the user's request, with outputs retained.
 Historical Qwen/MBPP checkpoint requirements and ARC qualification blockers remain
 visible in the list. This entry supersedes the older five-round scheduling choice
 for the newly planned queue; it does not relabel historical results.
+
+## Full-spectrum Learned: multi-model and multi-domain experiment
+
+[New 2026-11-02 full-matrix runbook](docs/LEARNED_FULL_MATRIX_ZH.md) ·
+[Cross-family 4096-token config](configs/crossfamily/protocol_learned_4096.json) ·
+[Math config](configs/multidomain/text_math_learned.json) ·
+[QA config](configs/multidomain/text_qa_learned.json)
+
+The latest `spectral_learned` now has opt-in **Qwen/Llama/DeepSeek coding** and
+**MATH-500/MMLU-Pro** implementations, plus HumanEval+, APPS Intro,
+CodeContests, LiveCodeBench and optional GPQA evaluation. These are new frozen
+study roots; **native model/GPU/test benchmarks have not been executed**.
+Older studies and their result roots remain unchanged.
+
 
 **Proximal Spectral Modulation for Looped Self-Distillation**
 

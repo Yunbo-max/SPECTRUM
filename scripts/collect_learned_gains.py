@@ -14,6 +14,11 @@ EXACT_NAMES = {
     'learned_gains.json', 'gain_provenance.json', 'operator_diagnostics.json',
     'calibration_provenance.json', 'spectral_entropy_ref.json',
     'qualification_manifest.json', 'qualification_complete.json',
+    'plan.json', 'config.json', 'case_receipt.json', 'case_status.json',
+    'started.json', 'exit.json', 'operator_response.json', 'operator_probe_complete.json',
+    'operator_probe_binding.json', 'reference_transfer_nll.json', 'report.json',
+    'transfer_complete.json', 'decoder_complete.json', 'interpolation_complete.json',
+    'annotation_status.json', 'semantic_summary.json',
 }
 
 

@@ -1,0 +1,10 @@
+{
+  "scope": "read_only_source_syntax_JSON_inventory_and_links_no_project_execution",
+  "python_files_parsed": 175,
+  "json_files_parsed": 33,
+  "case_wrappers": 48,
+  "review_issue_mappings": 18,
+  "missing_links": [],
+  "project_tests_executed": false,
+  "model_or_benchmark_runs": false
+}

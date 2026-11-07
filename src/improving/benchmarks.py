@@ -22,6 +22,7 @@ from pathlib import Path
 import pickle
 import random
 import re
+import shutil
 from typing import Any
 import zlib
 
@@ -308,7 +309,8 @@ def _humanevalplus() -> tuple[list[dict[str, Any]], dict[str, Any]]:
             "prompt_protocol": "evalplus-original-0.3.1", "evaluation_backend": "evalplus",
             "evaluation_protocol": "official-base-and-plus-tests-no-sanitization"})
     return rows, {"evalplus_version": EVALPLUS_VERSION, "release": HUMANEVAL_RELEASE,
-                  "dataset_sha256": digest, "task_count": len(rows)}
+                  "dataset_sha256": digest, "task_count": len(rows),
+                  "native_fixture_path": str(fixture)}
 
 
 def _exclusion_index(paths: Sequence[str | Path]) -> tuple[dict[str, list[str]], list[dict[str, str]]]:
@@ -383,6 +385,7 @@ def prepare_benchmark(name: str, output_dir: str | Path, *, revision: str | None
     resolved = None if name == "humanevalplus" else _hf_revision(HF_REPOSITORIES[name], revision)
     exclusions: list[dict[str, Any]] = []
     source_metadata: dict[str, Any] = {}
+    native_fixture_path = None
     if name == "mbpp":
         splits = prepare_mbpp(output, seed, calibration_size, validation_size, resolved)
         source_metadata = read_jsonl(output / "preparation_manifest.jsonl")[0]
@@ -391,6 +394,9 @@ def prepare_benchmark(name: str, output_dir: str | Path, *, revision: str | None
         if revision not in (None, HUMANEVAL_RELEASE):
             raise ValueError(f"HumanEval+ uses the fixed release {HUMANEVAL_RELEASE}")
         rows, source_metadata = _humanevalplus()
+        # The path is an internal preparation input, not a portable dataset
+        # identity. Seal the actual official fixture bytes below for bwrap.
+        native_fixture_path = Path(source_metadata.pop("native_fixture_path"))
         source_count = len(rows)
         splits = {"eval": rows}
     elif name == "apps_intro":
@@ -479,6 +485,14 @@ def prepare_benchmark(name: str, output_dir: str | Path, *, revision: str | None
         path = output / "preparation_manifest.jsonl"
         output_files[path.name] = {"sha256": _sha(path), "count": 1, "bytes": path.stat().st_size}
     if name == "humanevalplus":
+        fixture = output / "HumanEvalPlus.jsonl"
+        if _sha(native_fixture_path) != source_metadata["dataset_sha256"]:
+            raise ValueError("Official HumanEval+ fixture changed during preparation")
+        shutil.copyfile(native_fixture_path, fixture)
+        if _sha(fixture) != source_metadata["dataset_sha256"]:
+            raise ValueError("Copied HumanEval+ fixture failed integrity")
+        output_files[fixture.name] = {"sha256": _sha(fixture), "count": 164,
+                                     "bytes": fixture.stat().st_size}
         path = output / "dataset_metadata.json"
         atomic_json(path, {"evalplus_version": EVALPLUS_VERSION, "datasets": {"HumanEvalPlus": {
             "version": HUMANEVAL_RELEASE, "task_count": len(clean),

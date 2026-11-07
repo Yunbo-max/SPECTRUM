@@ -22,7 +22,29 @@ import tempfile
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 MODELS = ("qwen7b", "llama8b", "deepseek6.7b")
-METHODS = ("plain", "ssd", "spectral_soft")
+METHODS = ("plain", "ssd", "spectral_soft")  # Historical v1 defaults.
+LEARNED_METHOD = "spectral_learned"
+SUPPORTED_METHODS = (*METHODS, LEARNED_METHOD)
+
+
+def methods_for_protocol(protocol):
+    """Only additive learned-gain expansion is supported; keep v1 immutable."""
+    methods = protocol.get("methods")
+    if methods not in (list(METHODS), list(SUPPORTED_METHODS)):
+        raise ValueError("Use the historical three methods or append spectral_learned")
+    if LEARNED_METHOD in methods:
+        cal = protocol.get("calibration", {})
+        gain = cal.get("gain_learning")
+        if (not isinstance(gain, dict) or
+                type(cal.get("max_examples")) is not int or
+                type(gain.get("guard_examples")) is not int or
+                type(gain.get("probe_examples")) is not int or
+                not 0 < gain["guard_examples"] < cal["max_examples"] or
+                gain["probe_examples"] < 1 or
+                cal.get("reestimate_each_round") is not True or
+                cal.get("tau_decay") is not None or cal.get("tau_mode") is not None):
+            raise ValueError("Learned protocol needs a valid fit/guard/probe split and per-round geometry")
+    return tuple(methods)
 COUNTS = {"train": 291, "calibration": 50, "validation": 30, "eval": 500}
 PROTOCOL = "spectrum-crossfamily-code-v1"
 
@@ -265,12 +287,12 @@ def snapshot_prepared(data):
 def plan(args):
     mapping, protocol = assets(path(args.assets)), read(path(args.protocol))
     if (protocol.get("protocol") != PROTOCOL or protocol.get("models") != list(MODELS)
-            or protocol.get("methods") != list(METHODS)
+            or not methods_for_protocol(protocol)
             or protocol.get("independent_training_trajectories") != 1
             or protocol.get("temperature_sweep") is not False):
         raise ValueError("Require the fixed three-family, one-trajectory protocol")
-    if protocol["evaluation"]["backend"] not in ("bwrap", "local"):
-        raise ValueError("Require the bwrap or explicitly enabled local evaluation backend")
+    if protocol["evaluation"]["backend"] not in ("bwrap", "docker", "local"):
+        raise ValueError("Require a qualified docker/bwrap backend, or explicitly enabled unsafe local")
     if protocol["evaluation"]["backend"] == "local" and not protocol["evaluation"].get("allow_unsafe_local"):
         raise ValueError("Local evaluation requires allow_unsafe_local=true")
     data, root = path(args.data_root), path(args.run_root)
@@ -278,6 +300,7 @@ def plan(args):
     prepared, input_files = snapshot_prepared(data)
     if prepared["assets_sha256"] != digest(mapping) or prepared["seed_file_sha256"] != sha(path(args.seed_file)):
         raise ValueError("Prepared data and requested assets/randomization differ")
+    methods = methods_for_protocol(protocol)
     configs = {}
     for alias in MODELS:
         model = mapping["models"][alias]
@@ -302,7 +325,9 @@ def plan(args):
         "jobs": [{"model": alias, "stages": ["train", "transfer"], "replicate": "r1"} for alias in MODELS]}
     save(root / "plan" / "manifest.json", manifest, immutable=True)
     return {"manifest": str(root / "plan" / "manifest.json"), "models": list(MODELS),
-            "training_arms": 9, "arm_rounds": 45, "transfer_model_conditions": 12,
+            "training_arms": len(MODELS) * len(methods),
+            "arm_rounds": len(MODELS) * len(methods) * protocol["rounds"],
+            "transfer_model_conditions": len(MODELS) * (len(methods) + 1),
             "temperature_sweep": False, "training_trajectories_per_model": 1}
 
 
@@ -364,7 +389,7 @@ def transfer(manifest, alias):
         "prepared_dataset_dir": str(tasks.parent)})
     output = root / "transfer" / alias
     result = evaluate_checkpoints(source, output, samples=settings["samples"],
-        rounds=[settings["round"]], methods=list(METHODS), eval_tasks_path=tasks,
+        rounds=[settings["round"]], methods=list(methods_for_protocol(manifest["settings"])), eval_tasks_path=tasks,
         generation_overrides={"max_prompt_tokens": settings["max_prompt_tokens"],
             "max_new_tokens": settings["max_new_tokens"], "batch_size": settings["sequence_batch_size"],
             "sequence_batch_size": settings["sequence_batch_size"], "task_batch_size": 1},
@@ -408,7 +433,8 @@ def status(args):
     for alias in MODELS:
         source = root / "jobs" / alias
         completed = {method: [number for number in range(1, manifest["settings"]["rounds"] + 1)
-            if (source / method / f"round_{number}" / "complete.json").is_file()] for method in METHODS}
+            if (source / method / f"round_{number}" / "complete.json").is_file()]
+            for method in methods_for_protocol(manifest["settings"])}
         rows.append({"model": alias, "base_marker": (source / "base/complete.json").is_file(),
             "round_markers": completed,
             "transfer_marker": (root / "transfer" / alias / "transfer_complete.json").is_file(),

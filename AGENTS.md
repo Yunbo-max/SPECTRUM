@@ -1,5 +1,34 @@
 # SPECTRUM current agent entry
 
+## ICLR 2027 final rebuttal cases — 7 November 2026
+
+Read [the final guide](docs/ICLR2027_FINAL_CASES_ZH.md),
+[reviewer coverage](docs/ICLR2027_REVIEWER_COVERAGE_ZH.md),
+[current handoff](rounds/20261107-final-rebuttal/WEB_HANDOFF.md), and
+[input acquisition](docs/ICLR2027_FINAL_CASES_ZH.md#download-datasets-and-models).
+
+- Current task is source preparation for the user's experiment confirmation;
+  no new GPU jobs, background queue or project tests were launched by Web.
+- Canonical cases are c00–c47 in `experiments/iclr2027_rebuttal/cases.json`.
+  Each has its own wrapper, frozen plan, output, process lock and attempt logs.
+  A different 27-case branch reuses IDs with different meanings; never mix it in.
+- Original 1.5B/five-round/512 study and 7B/ten-round/4096 extension remain
+  distinct. Preserve main's separate 72-case queue and all old configurations.
+- Reuse history only after actual source/data/decoder/native receipts match.
+  Resume old jobs only at their original source revision; do not remove seals.
+- Fixed remains the paper's method. Learned fits full-spectrum K/V gains,
+  uses ordinary raw-output LoRA SFT, unit adapter merge, no token-loss weights.
+- Use native bwrap scoring after host qualification. Fresh HumanEval+ data
+  must include the sealed official fixture, not prompts alone.
+- Status is generated_unexecuted. Source inspection and authored tests do not
+  establish runtime correctness, GPU capacity or scientific benefit. Run the
+  guide's Local gates before a separately admitted, bounded harness job.
+- Recover actual host/GPU/process/lease facts before choosing concurrency;
+  no capacity or runtime promise is inferred from the 24gb/80gb profile names.
+- Reviewer mapping covers 18 recovered summaries; original verbatim review
+  bodies have not been independently recovered. Human semantic labels and all
+  missing experiment results remain pending. Preserve adverse results.
+
 ## Selected text extension — 1 November 2026
 
 For the user's learned-gain test, read [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md),

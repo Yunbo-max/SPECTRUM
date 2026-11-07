@@ -1,4 +1,31 @@
-# Current Local entry — 1 November 2026
+# ICLR 2027 final rebuttal cases
+
+Current entry: **7 November 2026**, repository **Yunbo-max/SPECTRUM**, branch
+**main**, at the immutable delivered revision. The user requested the final
+experiment plan and code for confirmation; Web did not dispatch new research jobs.
+
+1. Read [the handoff](rounds/20261107-final-rebuttal/WEB_HANDOFF.md),
+   [full commands and inputs](docs/ICLR2027_FINAL_CASES_ZH.md),
+   [reviewer mapping](docs/ICLR2027_REVIEWER_COVERAGE_ZH.md) and
+   [input acquisition](docs/ICLR2027_FINAL_CASES_ZH.md#download-datasets-and-models).
+2. Restore actual host, environment, allocation, active jobs and preserved
+   datasets/model fingerprints. Use a new checkout for new source. Historical
+   partial runs stay at their own source revision and output root.
+3. Run the listed Local software checks and native scoring/memory qualification.
+   Source is generated_unexecuted; the old queue's 64-test result is not this gate.
+4. Recover admissible old evidence before authorizing repeats. Prepare only the
+   selected `cNN.py plan`; each `cNN.py run --execute` is one finite foreground
+   job under the existing local execution harness, with its actual resource plan.
+5. Return complete provenance, raw outputs, per-task metrics, logs, failures and
+   task/seed uncertainty. Audit/annotation-packet completion is not a new result.
+
+The 48-case ledger includes audits and evaluation-only jobs; it is not 48 new
+training jobs. c00–c36 retain their original catalog meanings, c37–c47 append
+controls. Preserve the separate 72-case ten-round multi-domain queue.
+Do not silently combine 512/4096 tokens, five/ten rounds, original MBPP500/MBPP+,
+adapted APPS/official leaderboard scores, or normalized historical D4/richness.
+
+# Previous Local entry — 1 November 2026
 
 Repo: **Yunbo-max/SPECTRUM**, branch **main**. Read the delivered immutable revision,
 [learned-gain handoff](rounds/20261101-learned-gains/WEB_HANDOFF.md), then the

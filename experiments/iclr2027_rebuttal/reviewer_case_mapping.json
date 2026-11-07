@@ -1,0 +1,333 @@
+{
+  "protocol": "iclr2027-spectrum-reviewer-case-mapping-v2",
+  "status": "generated_unexecuted_pending_local_evidence",
+  "note": "Causal claims require actual sealed independent training outcomes and matched protocols; negative results must be reported.",
+  "reviewers": [
+    {
+      "reviewer": "w3G2",
+      "review_score": 1,
+      "issues": [
+        {
+          "id": "W1",
+          "weakness": "Gradient geometry U versus ordinary attenuation a is not isolated",
+          "cases": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c27",
+            "c45"
+          ],
+          "answer": "Random basis, isotropic and matched residual controls; report matched strength and realized output KL. If no difference, withdraw orientation necessity.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "W2",
+          "weakness": "AST conditional richness does not establish repeatable correct-solution retention",
+          "cases": [
+            "c36",
+            "c01",
+            "c06",
+            "c07",
+            "c08",
+            "c09",
+            "c16",
+            "c26"
+          ],
+          "answer": "Three independent student lineages, common-eligible D4 and frozen HumanEval+, independently blinded algorithm family audit.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "W3",
+          "weakness": "Presentation/soundness/novelty concern",
+          "cases": [
+            "c00",
+            "c25",
+            "c45"
+          ],
+          "answer": "Clarify SPD reference-gradient ancestry, classical proximal operator, calibrated direction hypothesis and separate Learned extension.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        }
+      ]
+    },
+    {
+      "reviewer": "FUKc",
+      "review_score": 1,
+      "issues": [
+        {
+          "id": "F1",
+          "weakness": "One 1.5B model and one training seed",
+          "cases": [
+            "c36",
+            "c01",
+            "c06",
+            "c07",
+            "c08",
+            "c09",
+            "c14",
+            "c15",
+            "c18",
+            "c19"
+          ],
+          "answer": "Independent seed43-45 paired Plain/Fixed with across-run SD; trained second model family.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "F2",
+          "weakness": "50 reference solutions unavailable to Plain",
+          "cases": [
+            "c36",
+            "c01",
+            "c05",
+            "c27",
+            "c10",
+            "c11",
+            "c44"
+          ],
+          "answer": "Anchor replay baseline and 40/50 fit comparison; disclose extra supervised tokens and non-equivalent compute.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "F3",
+          "weakness": "Train tokens and calibration costs differ",
+          "cases": [
+            "c10",
+            "c11",
+            "c44",
+            "c05"
+          ],
+          "answer": "Plain/Fixed/Plain+50-reference replay share a 7.2M causally shifted supervised target-token minimum per round with bounded whole-record overshoot. Report actual counts and separate synthesis/calibration/SFT/evaluation costs; this is not exact token equality or equal FLOPs.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "F4",
+          "weakness": "Projection has unmatched attenuation strength",
+          "cases": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c45"
+          ],
+          "answer": "Same-norm soft spectrum, random basis and isotropic scale, and residual matched-blend; output KL not guaranteed equal.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "F5",
+          "weakness": "AST changes can be superficial; control-flow weak",
+          "cases": [
+            "c26",
+            "c00"
+          ],
+          "answer": "Report exact/AST/control-flow proxies and prospective blind manual semantic classes. Human annotation is still needed.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "F6",
+          "weakness": "Pass1 trade-off, transferred diversity does not consistently improve task success",
+          "cases": [
+            "c36",
+            "c01",
+            "c30",
+            "c45",
+            "c16",
+            "c17",
+            "c32",
+            "c33",
+            "c34",
+            "c35",
+            "c25",
+            "c37",
+            "c38",
+            "c39",
+            "c40",
+            "c41",
+            "c42",
+            "c43"
+          ],
+          "answer": "Report pass1/pass64/C64/frontier plus negative APPS and paired D4 with denominators.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        }
+      ]
+    },
+    {
+      "reviewer": "ygkV",
+      "review_score": 2,
+      "issues": [
+        {
+          "id": "Y1",
+          "weakness": "Tau=1 is near isotropic half-shrink; spectral orientation not established",
+          "cases": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c45"
+          ],
+          "answer": "Random eigenbasis with identical eigenvalues and Frobenius-matched isotropic, report actual probe KL caveat.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y2",
+          "weakness": "No tau, layer or geometry refresh sweep",
+          "cases": [
+            "c00",
+            "c01",
+            "c12",
+            "c13",
+            "c23",
+            "c24",
+            "c31"
+          ],
+          "answer": "Recovered completed 7B one-round tau grid, separate 1.5B multiround tau/layer/fixed-geometry controls.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y3",
+          "weakness": "Temperature/top-p controls and SSD strong frontier points",
+          "cases": [
+            "c20",
+            "c21",
+            "c22",
+            "c46",
+            "c28",
+            "c29",
+            "c47",
+            "c30",
+            "c38"
+          ],
+          "answer": "Separate frozen decoder evaluation from synthesis-only training; independent temperature and top-p controls plus bundled SSD recipe. c29 and repository c30 share a recipe and are not independent algorithmic baselines.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y4",
+          "weakness": "No weight interpolation or KL-to-initial baseline",
+          "cases": [
+            "c32",
+            "c33",
+            "c34",
+            "c35"
+          ],
+          "answer": "Use the weight-interpolation alternative: full-weight native alpha0.5/0.75 for both Plain and Fixed. This does not implement a training-time KL-to-initial baseline; check original wording if both were requested.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y5",
+          "weakness": "Plain does not use same 50 reference answers",
+          "cases": [
+            "c36",
+            "c01",
+            "c05",
+            "c27",
+            "c10",
+            "c11",
+            "c44"
+          ],
+          "answer": "Reference replay control, report extra supervised labels/compute; 40 versus 50 fixed spectrum.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y6",
+          "weakness": "Single family/seed and appendix initial-only matrix; pilot changed extraction",
+          "cases": [
+            "c00",
+            "c36",
+            "c01",
+            "c06",
+            "c07",
+            "c08",
+            "c09",
+            "c14",
+            "c15",
+            "c18",
+            "c19"
+          ],
+          "answer": "Trained replications and model family, source provenance and exclude post-hoc pilot from confirmatory table.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y7",
+          "weakness": "Transfer eligible populations small, negative APPS",
+          "cases": [
+            "c16",
+            "c17",
+            "c26"
+          ],
+          "answer": "Full HumanEval+ and adapted APPS frozen n64, matched correct eligible cohorts, no success overclaim.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y8",
+          "weakness": "AST retains literals and function names, control-flow result weak",
+          "cases": [
+            "c26"
+          ],
+          "answer": "Exact/AST/control-flow and blind human annotations, record disagreements; no semantic guarantee.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        },
+        {
+          "id": "Y9",
+          "weakness": "SSD sometimes higher diversity and Fixed lower Pass1",
+          "cases": [
+            "c36",
+            "c01",
+            "c30",
+            "c45",
+            "c25",
+            "c37",
+            "c38",
+            "c39",
+            "c40",
+            "c41",
+            "c42",
+            "c43"
+          ],
+          "answer": "Pareto tradeoff table and reproducible SSD native eval; explicitly present negative baselines.",
+          "verdict": "code_prepared_evidence_pending_or_historical_identity_pending"
+        }
+      ]
+    }
+  ],
+  "catalog_protocol": "iclr2027-spectrum-case-isolation-v2",
+  "case_count": 48,
+  "review_source": "Recovered project summaries for submission45902: w3G2/FUKc/ygkV. Original verbatim review bodies were not recovered in this authoring session; completeness applies to the known issue inventory.",
+  "extension": {
+    "cases": [
+      "c37",
+      "c38",
+      "c39",
+      "c40",
+      "c41",
+      "c42",
+      "c43"
+    ],
+    "primary_contrasts": [
+      [
+        "c37",
+        "c39"
+      ],
+      [
+        "c39",
+        "c40"
+      ],
+      [
+        "c39",
+        "c41"
+      ],
+      [
+        "c41",
+        "c42"
+      ],
+      [
+        "c41",
+        "c43"
+      ],
+      [
+        "c37",
+        "c38"
+      ]
+    ],
+    "scope": "7B ten rounds, 4096 output tokens; separate from original1.5B five-round512 claims",
+    "learned_parameters": "full-spectrum K/V gains only; ordinary SFT, LoRA update scale1, no token-loss reweighting"
+  }
+}

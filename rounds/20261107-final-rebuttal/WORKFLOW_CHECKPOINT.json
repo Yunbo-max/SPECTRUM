@@ -1,0 +1,32 @@
+{
+  "project": "SPECTRUM",
+  "round": "20261107-final-rebuttal",
+  "role": "web_supervisor",
+  "role_source": "existing AGENTS.md, learned-gains handoff and user request to prepare code for confirmation",
+  "scope": "existing-method reviewer evidence audit, case integration and source repair; no new method discovery",
+  "target_repository": "Yunbo-max/SPECTRUM",
+  "target_branch": "main",
+  "base_main": "5c8d1ebc587c57c84b6c0fb2ff7545fdade67117",
+  "case_source": "d033641eee45236477f05cd587bb992ad1a899df",
+  "other_case_source": "6f4d2a050ce6ea66e6d35f1077c94464558f73b7",
+  "audit_source": "9d9ff1dad6bfa5d337bceab82282f11a33858afd",
+  "method_source": "rounds/20261101-learned-gains/METHOD.md",
+  "entry_status": "generated_unexecuted",
+  "review_text_status": "prior issue summaries available; original review-note bodies not yet recovered",
+  "native_remote_inputs": "historical paths inventoried; raw GPU outputs not mounted in Web",
+  "host": {
+    "ssh_alias": null,
+    "gpu_model": null,
+    "vram": null,
+    "capacity_verified": false
+  },
+  "source_review": "completed_source_only_after_blocking_schema_and_identity_repairs",
+  "local_tests": "pending_not_executed_here",
+  "new_scientific_runs": "not_started",
+  "main_readback": "pending",
+  "next_action": "publish reviewed source to main; verify exact remote head; then user confirms Local experiment selection",
+  "skill_source": "e1/.runtime-sources/restored-research-baseline; workflow-harness, method-verification, full-validation-and-review, local-code-handoff, repository-round-trips read in this session",
+  "case_count": 48,
+  "review_issue_count": 18,
+  "source_inspection": "SOURCE_INSPECTION.json"
+}

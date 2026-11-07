@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "protocol": "spectrum-crossfamily-code-v1",
+  "models": [
+    "qwen7b",
+    "llama8b",
+    "deepseek6.7b"
+  ],
+  "methods": [
+    "plain",
+    "ssd",
+    "spectral_soft",
+    "spectral_learned"
+  ],
+  "rounds": 5,
+  "independent_training_trajectories": 1,
+  "temperature_sweep": false,
+  "checkpoint_retention": "latest",
+  "generation": {
+    "train_samples": 16,
+    "eval_samples": 64,
+    "batch_size": 1,
+    "task_batch_size": 1,
+    "sequence_batch_size": 1,
+    "max_new_tokens": 4096,
+    "max_prompt_tokens": 2048,
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 0
+  },
+  "calibration": {
+    "max_examples": 50,
+    "max_length": 1536,
+    "span_mode": "completion",
+    "rank_fraction": 0.5,
+    "tau": 1,
+    "rho": 0.5,
+    "reestimate_each_round": true,
+    "gain_learning": {
+      "guard_examples": 10,
+      "probe_examples": 8,
+      "probe_max_new_tokens": 128,
+      "max_steps": 8,
+      "learning_rate": 0.1,
+      "min_gain": 0.1,
+      "kl_budget": 0.02,
+      "max_backtracks": 8,
+      "backtrack_factor": 0.5,
+      "min_improvement": 1e-06,
+      "guard_tolerance": 0,
+      "degeneracy_rtol": 1e-07,
+      "degeneracy_atol": 1e-12,
+      "kl_chunk_tokens": 32
+    },
+    "matched_reference_fit_examples": 40
+  },
+  "train": {
+    "epochs": 1,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "max_length": 6144,
+    "learning_rate": 1e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.03,
+    "max_grad_norm": 1,
+    "lora_rank": 8,
+    "lora_alpha": 8,
+    "lora_dropout": 0.05,
+    "gradient_checkpointing": true,
+    "loss_scope": "all",
+    "require_full_completion_targets": true
+  },
+  "evaluation": {
+    "backend": "local",
+    "allow_unsafe_local": true,
+    "code_extraction": "first_fence",
+    "workers": 4,
+    "timeout": 10,
+    "memory_mb": 512,
+    "pids_limit": 64,
+    "ks": [
+      1,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "correct_budget": 4,
+    "correct_budgets": [
+      4,
+      8,
+      16
+    ],
+    "bootstrap_samples": 2000,
+    "docker_image": "python:3.11-slim"
+  },
+  "transfer": {
+    "benchmark": "humanevalplus",
+    "round": 5,
+    "samples": 64,
+    "max_prompt_tokens": 4096,
+    "max_new_tokens": 4096,
+    "sequence_batch_size": 1,
+    "parallel": 4,
+    "bootstrap_samples": 2000
+  },
+  "diagnostics": {
+    "evaluate_generation_policy": false
+  },
+  "primary_metrics": [
+    "pass@1",
+    "pass@64",
+    "C64",
+    "D4"
+  ],
+  "ssd_label": "Repository SSD adaptation: synthesis decoder 1.5/0.8/20, common student evaluation decoder; not author released checkpoint replication",
+  "uncertainty_scope": "Task bootstrap conditional on one trained trajectory; no claim of across-training-run variance",
+  "protocol_variant": "learned_fullspectrum_r5_4096_v2",
+  "study_notes": {
+    "learned_fit": "40 reference solutions + 10 disjoint guard, 8 native train probes each round",
+    "training": "all raw self-generated completions, no tests or reward used to select training data",
+    "evaluator": "Docker-isolated MBPP/transfer native verification (verify container availability before dispatch); HumanEval+ official EvalPlus",
+    "capacity": "full 4096-token completions, 6144 token SFT; qualify BF16 GPU before dispatch",
+    "baseline": "all methods share the same 4096-token generation/SFT budget except SSD decoder distribution",
+    "experiment_status": "generated_unexecuted"
+  }
+}

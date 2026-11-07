@@ -316,17 +316,23 @@ def inspect_training(plan: dict, case: dict, hashes: bool = False) -> dict:
             continue
         receipt = read_json(marker)
         files = receipt.get("files", {})
-        if (receipt.get("status") != "completed"
-                or "evaluation.metrics.json" not in files
-                or "evaluation.verified.jsonl" not in files):
-            status["issues"].append(f"Round {r}: invalid native verification receipt")
+        required = {"evaluation.metrics.json", "evaluation.verified.jsonl",
+                    "evaluation.jsonl", "train.jsonl", "training_stats.json",
+                    "model/config.json"}
+        weights = [name for name in files if name.startswith("model/") and name.endswith((".safetensors", ".bin"))]
+        if receipt.get("status") != "completed" or not required <= set(files) or not weights:
+            status["issues"].append(f"Round {r}: missing required sealed source, targets or checkpoint")
+            continue
+        if any(not (stage / name).is_file() for name in (*required, *weights)):
+            status["issues"].append(f"Round {r}: a sealed evaluator/model file is absent")
             continue
         if hashes and file_sha(metric) != files["evaluation.metrics.json"]:
             status["issues"].append(f"Round {r}: checksum mismatch")
             continue
         row = read_json(metric)
-        if row.get("task_count") != 500 or row.get("sample_count") != 32000:
-            status["issues"].append(f"Round {r}: not 500 x 64 verified samples")
+        if (row.get("task_count") != 500 or row.get("sample_count") != 32000
+                or len(row.get("per_task", {})) != 500):
+            status["issues"].append(f"Round {r}: not 500 x 64 verified task records")
             continue
         values = row.get("pass_at_k", {})
         ast = row.get("implementation_coverage_at_k", {})
@@ -345,8 +351,10 @@ def inspect_training(plan: dict, case: dict, hashes: bool = False) -> dict:
             }
         status["verified_rounds"] += 1
     base = root / "base" / "evaluation.metrics.json"
-    if not base.is_file() or read_json(base).get("sample_count") != 32000:
-        status["issues"].append("Base missing exact 500 x 64 evaluation")
+    if (not base.is_file() or read_json(base).get("sample_count") != 32000
+            or len(read_json(base).get("per_task", {})) != 500
+            or not (root / "base" / "complete.json").is_file()):
+        status["issues"].append("Base missing sealed exact 500 x 64 evaluation")
     if not status["issues"] and status["verified_rounds"] == case["rounds"]:
         status["state"] = "complete"
         status["integrity"] = "metric_hash_checked" if hashes else "native_receipt_and_denominator_checked"
@@ -365,8 +373,9 @@ def inspect_eval(plan: dict, case: dict, hashes: bool = False) -> dict:
         state["issues"].append("No evaluation completion summary")
         return state
     receipt = read_json(marker)
-    if receipt.get("status") != "completed":
-        state["issues"].append("Summary does not assert completed")
+    if (receipt.get("status") != "completed"
+            or receipt.get("source_run") != plan.get("source_run")):
+        state["issues"].append("Summary does not establish complete source-specific evaluation")
         return state
     stage = out / "base" / "evaluation.metrics.json"
     if not stage.is_file():
@@ -381,8 +390,16 @@ def inspect_eval(plan: dict, case: dict, hashes: bool = False) -> dict:
         if not (metric.is_file() and marker.is_file()):
             state["issues"].append(f"Missing evaluated source checkpoint: {name}")
             continue
+        seal = read_json(marker)
+        required = {"evaluation.metrics.json", "evaluation.verified.jsonl", "evaluation.jsonl"}
+        if (seal.get("status") != "completed"
+                or not required <= set(seal.get("files", {}))
+                or any(not (out / name / file).is_file() for file in required)):
+            state["issues"].append(f"Missing native evaluation verification receipt: {name}")
+            continue
         info = read_json(metric)
-        if info.get("sample_count") != len(manifest["protocol"]["task_ids"]) * case["samples"]:
+        if (info.get("sample_count") != len(manifest["protocol"]["task_ids"]) * case["samples"]
+                or len(info.get("per_task", {})) != len(manifest["protocol"]["task_ids"])):
             state["issues"].append(f"Incorrect eval population: {name}")
         else:
             state["stages"].append(name)

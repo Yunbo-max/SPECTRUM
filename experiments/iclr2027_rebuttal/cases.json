@@ -650,6 +650,26 @@
       "alpha": 0.75,
       "round": 5,
       "samples": 64
+    },
+    {
+      "id": "c36",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Original 1.5B Plain seed43 paired baseline (reuse preserved evidence)",
+      "reviewers": [
+        "FUKc",
+        "ygkV",
+        "w3G2"
+      ],
+      "source_status": "historical_complete",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
     }
   ]
 }

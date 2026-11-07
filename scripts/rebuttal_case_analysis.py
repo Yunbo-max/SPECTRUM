@@ -43,7 +43,31 @@ def metric_file(case_id, root: Path, cases: dict, explicit: dict) -> Path:
     return root / case_id / "run" / row["method"] / f"round_{row['rounds']}" / "evaluation.metrics.json"
 
 
-def load_metric(path: Path) -> dict:
+def load_metric(path: Path, case: dict) -> dict:
+    marker = path.parent / "complete.json"
+    if not marker.is_file():
+        raise ValueError(f"Unsealed metrics; require a native completed round: {path}")
+    seal = json.loads(marker.read_text(encoding="utf-8"))
+    if (seal.get("status") != "completed"
+            or seal.get("files", {}).get(path.name) != hash_file(path)
+            or not (path.parent / "evaluation.verified.jsonl").is_file()):
+        raise ValueError(f"Metrics hash/checkpoint receipt/verified outcomes missing: {path}")
+    source_manifest = path.parents[2] / "manifest.json"
+    if not source_manifest.is_file():
+        raise ValueError(f"Missing training provenance in {path.parents[2]}")
+    source = json.loads(source_manifest.read_text(encoding="utf-8"))["config"]
+    original = json.loads((ROOT/"configs/final/assets.json").read_text(encoding="utf-8"))["models"]
+    model_alias = original[case["model"]]["repo_id"]
+    if (not str(source["model"]["name"]).endswith(model_alias)
+            or source["model"].get("revision") not in (None,original[case["model"]]["revision"])
+            or int(source.get("seed", -1)) != case["seed"]
+            or source.get("generation", {}).get("train_samples") != case["train_samples"]
+            or source.get("generation", {}).get("max_new_tokens") != case["max_new_tokens"]
+            or source.get("generation", {}).get("eval_samples") != 64
+            or case["method"] not in source.get("methods", [])
+            or path.parent.parent.name != case["method"]
+            or path.parent.name != f"round_{case['rounds']}"):
+        raise ValueError(f"Claimed method/model/seed/sampling mismatch: {path}")
     obj = json.loads(path.read_text(encoding="utf-8"))
     protocol = obj.get("protocol", {})
     agg = obj.get("aggregate", {})
@@ -146,7 +170,7 @@ def main(argv=None) -> int:
             if not path.is_file():
                 sources[ident]={"status":"missing","path":str(path)}
                 continue
-            metric=load_metric(path)
+            metric=load_metric(path, cases[ident])
             sources[ident]={"status":"validated","path":str(path),
                             "sha256":hash_file(path),"metric":metric}
     results=[]

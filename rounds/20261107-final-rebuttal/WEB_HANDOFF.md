@@ -19,8 +19,9 @@ experiments, restart an old queue, schedule automation or submit a rebuttal.
    and [English response draft](../../docs/ICLR2027_REVIEWER_RESPONSES.md).
 3. [48-case catalog](../../experiments/iclr2027_rebuttal/cases.json) and
    [machine-readable mapping](../../experiments/iclr2027_rebuttal/reviewer_case_mapping.json).
-4. [Workflow checkpoint](WORKFLOW_CHECKPOINT.json) and
-   [source-review record](SOURCE_REVIEW.md).
+4. [Workflow checkpoint](WORKFLOW_CHECKPOINT.json),
+   [source-review record](SOURCE_REVIEW.md) and
+   [verified source publication receipt](PUBLISH_RECEIPT.json).
 
 ## Integration provenance
 
@@ -36,6 +37,12 @@ raw GPU directories were not mounted or reverified in Web.
 The final publication commit containing this file is the delivered source
 identity. Read its exact Git SHA on GitHub and pin the Local checkout to that
 revision. Never substitute a guessed commit or a previous branch SHA.
+
+The reviewed source was published to `main` as
+`67bfbad236888bfdacd18c611a56a538ed754d3b` and read back with exact tree
+`cdef7c093961dd8bf4f47518408da1bc39b537d7`. The subsequent publication-record
+commit changes only this handoff, the checkpoint and the receipt; it makes no
+scientific or test-execution claim.
 
 ## What changed
 

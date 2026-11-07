@@ -1,0 +1,29 @@
+{
+  "repository": "Yunbo-max/SPECTRUM",
+  "branch": "main",
+  "verified_at_utc": "2026-11-07T16:57:03Z",
+  "source_commit": "67bfbad236888bfdacd18c611a56a538ed754d3b",
+  "source_tree": "cdef7c093961dd8bf4f47518408da1bc39b537d7",
+  "previous_main": "5c8d1ebc587c57c84b6c0fb2ff7545fdade67117",
+  "second_parent": "d033641eee45236477f05cd587bb992ad1a899df",
+  "publication_method": "GitHub Git database API with expected-head non-force ref update",
+  "main_ref_readback": "matched_source_commit",
+  "remote_tree_matches_reviewed_local_tree": true,
+  "changed_files_against_previous_main": 108,
+  "essential_file_readback": [
+    "docs/ICLR2027_FINAL_CASES_ZH.md",
+    "docs/ICLR2027_REVIEWER_COVERAGE_ZH.md",
+    "docs/ICLR2027_REVIEWER_RESPONSES.md",
+    "experiments/iclr2027_rebuttal/cases.json",
+    "scripts/rebuttal_cases/c47.py"
+  ],
+  "case_count": 48,
+  "recorded_review_issue_count": 18,
+  "source_inspection": "SOURCE_INSPECTION.json",
+  "project_tests_executed": false,
+  "native_runtime_qualification": "pending_Local",
+  "new_scientific_runs_started": false,
+  "human_semantic_annotations": "pending",
+  "original_review_verbatim_audit": "pending_original_note_bodies",
+  "receipt_scope": "This receipt records the already-verified source commit. The later commit containing this receipt changes publication records only."
+}

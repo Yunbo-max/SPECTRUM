@@ -330,13 +330,16 @@ def inspect_training(plan: dict, case: dict, hashes: bool = False) -> dict:
             status["issues"].append(f"Round {r}: checksum mismatch")
             continue
         row = read_json(metric)
-        if (row.get("task_count") != 500 or row.get("sample_count") != 32000
-                or len(row.get("per_task", {})) != 500):
+        aggregate = row.get("aggregate", {})
+        if (aggregate.get("task_count") != 500 or aggregate.get("sample_count") != 32000
+                or len(row.get("per_task", {})) != 500
+                or row.get("protocol", {}).get("expected_samples") != 64):
             status["issues"].append(f"Round {r}: not 500 x 64 verified task records")
             continue
-        values = row.get("pass_at_k", {})
-        ast = row.get("implementation_coverage_at_k", {})
-        matched = row.get("correct_matched_coverage_at_budgets", {})
+        values = aggregate.get("pass_at_k", {})
+        proxy = aggregate.get("implementation_proxy", {})
+        ast = proxy.get("coverage_at_k", {})
+        matched = proxy.get("correct_matched_coverage_at_budgets", {})
         if not all(key in values for key in ("1", "16", "64")) or "64" not in ast:
             status["issues"].append(f"Round {r}: mandatory metrics missing")
             continue
@@ -351,7 +354,7 @@ def inspect_training(plan: dict, case: dict, hashes: bool = False) -> dict:
             }
         status["verified_rounds"] += 1
     base = root / "base" / "evaluation.metrics.json"
-    if (not base.is_file() or read_json(base).get("sample_count") != 32000
+    if (not base.is_file() or read_json(base).get("aggregate", {}).get("sample_count") != 32000
             or len(read_json(base).get("per_task", {})) != 500
             or not (root / "base" / "complete.json").is_file()):
         status["issues"].append("Base missing sealed exact 500 x 64 evaluation")
@@ -398,8 +401,9 @@ def inspect_eval(plan: dict, case: dict, hashes: bool = False) -> dict:
             state["issues"].append(f"Missing native evaluation verification receipt: {name}")
             continue
         info = read_json(metric)
-        if (info.get("sample_count") != len(manifest["protocol"]["task_ids"]) * case["samples"]
-                or len(info.get("per_task", {})) != len(manifest["protocol"]["task_ids"])):
+        if (info.get("aggregate", {}).get("sample_count") != len(manifest["protocol"]["task_ids"]) * case["samples"]
+                or len(info.get("per_task", {})) != len(manifest["protocol"]["task_ids"])
+                or info.get("protocol", {}).get("expected_samples") != case["samples"]):
             state["issues"].append(f"Incorrect eval population: {name}")
         else:
             state["stages"].append(name)

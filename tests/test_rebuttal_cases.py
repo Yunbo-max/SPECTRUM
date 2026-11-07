@@ -33,8 +33,8 @@ def args(tmp_path):
 def test_all_case_ids_have_independent_python_entrypoints():
     mod = runner()
     cases = mod.load_spec()["cases"]
-    assert len(cases) == 32
-    assert [x["id"] for x in cases] == [f"c{idx:02d}" for idx in range(32)]
+    assert len(cases) == 36
+    assert [x["id"] for x in cases] == [f"c{idx:02d}" for idx in range(36)]
     for x in cases:
         path = ROOT / "scripts/rebuttal_cases" / f"{x['id']}.py"
         assert path.is_file()
@@ -138,7 +138,7 @@ def test_corrupt_or_modified_plan_refused(tmp_path):
 
 def test_transfer_and_decoder_plan_requires_explicit_source(tmp_path):
     mod, a = runner(), args(tmp_path)
-    for ident in ("c16","c17","c20","c21","c22"):
+    for ident in ("c16","c17","c20","c21","c22","c32","c33","c34","c35"):
         with pytest.raises(ValueError, match="source-run"):
             mod.build_plan(mod.one_case(ident), a)
     a.source_run = str(tmp_path / "external_model_root")
@@ -149,6 +149,10 @@ def test_transfer_and_decoder_plan_requires_explicit_source(tmp_path):
     assert "scripts/rebuttal_decoder_eval.py" in two["command"]
     assert one["output"] != two["output"]
     assert one["samples"] == two["samples"] == 64
+    interp = mod.build_plan(mod.one_case("c32"), a)
+    assert "scripts/rebuttal_interpolation_eval.py" in interp["command"]
+    assert interp["source_methods"] == "plain"
+    assert interp["output"] not in {one["output"],two["output"]}
 
 
 def test_nontrain_audit_never_claims_new_results(tmp_path):
@@ -241,3 +245,23 @@ def test_semantic_script_uses_blinded_ids_and_human_annotation():
     assert "packet_created_no_human_labels" in text
     assert "semantic_effect_established" in text
     assert "private_method_key.jsonl" in text
+
+
+def test_interpolation_never_updates_student_weights_and_locks_alpha():
+    import ast
+    text = (ROOT/"scripts/rebuttal_interpolation_eval.py").read_text()
+    tree = ast.parse(text)
+    assert "training_performed" in text
+    assert "interpolate_native_parameters" in text
+    assert "alpha not in (0.5, 0.75)" in text
+    assert any(isinstance(x,ast.FunctionDef) and x.name=="main" for x in tree.body)
+
+
+def test_single_train_method_per_interpolation_source():
+    mod = runner()
+    for ident in ("c32", "c33", "c34", "c35"):
+        item = mod.one_case(ident)
+        assert item["kind"] == "interpolate"
+        assert item["round"] == 5 and item["samples"] == 64
+        assert item["method"] in {"plain","spectral_soft"}
+        assert item["alpha"] in (0.5,0.75)

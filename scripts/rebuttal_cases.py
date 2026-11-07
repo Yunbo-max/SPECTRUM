@@ -39,7 +39,7 @@ def load_spec() -> dict:
     ids = [row["id"] for row in rows]
     if len(ids) != len(set(ids)) or ids != [f"c{i:02d}" for i in range(len(rows))]:
         raise ValueError("Case IDs must be unique and consecutive c00..")
-    if any(row["kind"] not in {"train", "transfer", "decoder", "audit", "semantic"} for row in rows):
+    if any(row["kind"] not in {"train", "transfer", "decoder", "audit", "semantic", "interpolate"} for row in rows):
         raise ValueError("Unknown case kind")
     return spec
 
@@ -168,7 +168,7 @@ def build_plan(case: dict, args: argparse.Namespace) -> dict:
         plan["max_requested_native_eval_completions"] = 500 * case["eval_samples"] * (case["rounds"] + 1)
         # Check these against saved case settings, but do not require data/GPU at plan time.
         store_once(Path(plan["config_file"]), cfg)
-    elif case["kind"] in ("transfer", "decoder"):
+    elif case["kind"] in ("transfer", "decoder", "interpolate"):
         if not args.source_run:
             raise ValueError(f"{case['id']} needs --source-run pointing to an actual sealed training root")
         source = abs_path(args.source_run)
@@ -176,7 +176,16 @@ def build_plan(case: dict, args: argparse.Namespace) -> dict:
         plan["source_methods"] = args.source_methods or ""
         plan["round"] = case["round"]
         plan["samples"] = case["samples"]
-        if case["kind"] == "transfer":
+        if case["kind"] == "interpolate":
+            plan["source_methods"] = case["method"]
+            plan["command"] = [
+                sys.executable, "scripts/rebuttal_interpolation_eval.py",
+                "--run-dir", str(source), "--output-dir", str(run_root),
+                "--method", case["method"], "--alpha", str(case["alpha"]),
+                "--round", str(case["round"]), "--samples", str(case["samples"]),
+                "--resume",
+            ]
+        elif case["kind"] == "transfer":
             plan["benchmark_root"] = str(abs_path(args.benchmark_root))
             plan["command"] = [
                 sys.executable, "experiments/iclr2027/transfer.py",
@@ -412,6 +421,47 @@ def inspect_eval(plan: dict, case: dict, hashes: bool = False) -> dict:
     return state
 
 
+def inspect_interpolation(plan: dict, case: dict, hashes: bool = False) -> dict:
+    root = Path(plan["output"])
+    status = {"case": case["id"], "kind": "interpolate", "state": "pending",
+              "issues": []}
+    if not root.exists():
+        return status
+    status["state"] = "partial"
+    receipt = root / "interpolation_complete.json"
+    marker = root / "complete.json"
+    metric = root / "evaluation.metrics.json"
+    verified = root / "evaluation.verified.jsonl"
+    if not all(x.is_file() for x in (receipt, marker, metric, verified)):
+        status["issues"].append("Missing sealed interpolation metric/program/receipt")
+        return status
+    done = read_json(receipt)
+    seal = read_json(marker)
+    info = read_json(metric)
+    if (done.get("status") != "completed"
+            or done.get("source_run") != plan["source_run"]
+            or done.get("source_method") != case["method"]
+            or done.get("alpha") != case["alpha"]
+            or done.get("training_performed") is not False
+            or seal.get("status") != "completed"
+            or seal.get("files", {}).get("evaluation.metrics.json") is None
+            or seal.get("files", {}).get("evaluation.verified.jsonl") is None
+            or info.get("aggregate", {}).get("sample_count") != 32000
+            or len(info.get("per_task", {})) != 500
+            or info.get("protocol", {}).get("expected_samples") != 64):
+        status["issues"].append("Interpolation source, 500x64 denominator or seal mismatch")
+    elif hashes and file_sha(metric) != seal["files"]["evaluation.metrics.json"]:
+        status["issues"].append("Interpolation metrics SHA mismatch")
+    else:
+        status["state"] = "complete"
+        status["endpoints"] = {
+            "pass@1": info["aggregate"]["pass_at_k"]["1"]["mean"],
+            "pass@64": info["aggregate"]["pass_at_k"]["64"]["mean"],
+            "C64": info["aggregate"]["implementation_proxy"]["coverage_at_k"]["64"]["mean"],
+        }
+    return status
+
+
 def status_case(case: dict, args: argparse.Namespace) -> dict:
     try:
         plan = read_plan(case, args)
@@ -422,6 +472,8 @@ def status_case(case: dict, args: argparse.Namespace) -> dict:
         data = inspect_training(plan, case, hashes=args.verify_hashes)
     elif case["kind"] in ("transfer", "decoder"):
         data = inspect_eval(plan, case, hashes=args.verify_hashes)
+    elif case["kind"] == "interpolate":
+        data = inspect_interpolation(plan, case, hashes=args.verify_hashes)
     else:
         done = Path(plan["root"]) / "case_receipt.json"
         data = {"case": case["id"], "kind": case["kind"],
@@ -449,7 +501,7 @@ def execute_case(case: dict, args: argparse.Namespace) -> dict:
             state = inspect_training(plan, case, hashes=True)
             if state["state"] != "complete":
                 raise RuntimeError(f"Training returned but native verification incomplete: {state['issues']}")
-        elif case["kind"] in ("transfer", "decoder"):
+        elif case["kind"] in ("transfer", "decoder", "interpolate"):
             source = Path(plan["source_run"])
             if not (source / "manifest.json").is_file():
                 raise FileNotFoundError("Source training manifest missing")
@@ -458,7 +510,8 @@ def execute_case(case: dict, args: argparse.Namespace) -> dict:
                 if not (source / method / f"round_{case['round']}" / "model/config.json").is_file():
                     raise FileNotFoundError(f"Source checkpoint missing or pruned: {method}, round {case['round']}")
             subprocess.run(plan["command"], cwd=REPO, check=True)
-            state = inspect_eval(plan, case)
+            state = (inspect_interpolation(plan, case) if case["kind"] == "interpolate"
+                     else inspect_eval(plan, case))
             if state["state"] != "complete":
                 raise RuntimeError(f"Evaluation incomplete: {state['issues']}")
         elif case["kind"] == "audit":

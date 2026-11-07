@@ -1,0 +1,37 @@
+name: ICLR 2027 rebuttal case contracts (CPU only)
+
+on:
+  push:
+    branches:
+      - research/iclr2027-rebuttal-cases-20261107
+    paths:
+      - "experiments/iclr2027_rebuttal/**"
+      - "scripts/rebuttal_cases.py"
+      - "scripts/rebuttal_cases/**"
+      - "scripts/rebuttal_decoder_eval.py"
+      - "scripts/rebuttal_semantic_blind.py"
+      - "src/improving/pipeline.py"
+      - "tests/test_rebuttal_cases.py"
+      - ".github/workflows/iclr-rebuttal-cases-cpu.yml"
+  workflow_dispatch:
+
+jobs:
+  offline-case-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install pytest
+      - name: AST and immutable one-case contracts, no CUDA/model
+        run: python -m pytest tests/test_rebuttal_cases.py -q
+      - name: Enumerate every frozen rebuttal case
+        run: python scripts/rebuttal_cases.py list > /dev/null
+      - name: Plan several independent jobs without model downloads
+        run: |
+          python scripts/rebuttal_cases/c02.py plan --root /tmp/iclr-cases --data-root /tmp/prepared-mbpp
+          python scripts/rebuttal_cases/c03.py plan --root /tmp/iclr-cases --data-root /tmp/prepared-mbpp
+          python scripts/rebuttal_cases/c07.py plan --root /tmp/iclr-cases --data-root /tmp/prepared-mbpp
+          python scripts/rebuttal_cases.py report --root /tmp/iclr-cases

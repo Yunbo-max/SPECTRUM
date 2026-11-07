@@ -1,0 +1,595 @@
+{
+  "schema_version": 1,
+  "protocol": "iclr2027-spectrum-case-isolation-v1",
+  "authoritative_source": "original_1.5b_fixed_spectrum",
+  "data_split": "MBPP291_train_50_calibration_30_dev_500_test",
+  "evaluation": "original_mbpp_tests_64_draws",
+  "status": "planned_cases_do_not_constitute_completed_evidence",
+  "cases": [
+    {
+      "id": "c00",
+      "kind": "audit",
+      "priority": "P0",
+      "title": "Read-only recovered-results audit",
+      "reviewers": [
+        "w3G2",
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "available_audit",
+      "evidence": [
+        "research/audit-20261107/REBUTTAL_GAPS.md",
+        "research/audit-20261107/OPERATOR_ABLATION.csv",
+        "research/audit-20261107/TAU_SWEEP_RESULTS.csv"
+      ]
+    },
+    {
+      "id": "c01",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Original fixed spectral anchor (reproduce only if original evidence fails)",
+      "reviewers": [
+        "w3G2",
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "historical_complete",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c02",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Random eigenbasis with identical gain eigenvalues",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "random_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c03",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Isotropic scaling matched Frobenius norm",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "source_status": "one_round_only",
+      "model": "qwen1.5b",
+      "method": "isotropic_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c04",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Matched residual blend (continuous vs binary attenuation)",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "matched_blend",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c05",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Plain SD + same 50 reference answers supervised replay",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "anchor_replay": true
+    },
+    {
+      "id": "c06",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Plain SD independently trained with seed44",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "historical_complete",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 44,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c07",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Fixed SPECTRUM independently trained with seed44",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "failed_partial",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 44,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c08",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Plain SD independently trained with seed45",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "historical_complete",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 45,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c09",
+      "kind": "train",
+      "priority": "P0",
+      "title": "Fixed SPECTRUM independently trained with seed45",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "not_confirmed",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 45,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c10",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Matched supervised-token budget Plain SD",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "target_token_budget": 7200000
+    },
+    {
+      "id": "c11",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Matched supervised-token budget Fixed SPECTRUM",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "target_token_budget": 7200000
+    },
+    {
+      "id": "c12",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Five-round tau sensitivity 0.5",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "one_round_1p5b_existing",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "tau": 0.5
+    },
+    {
+      "id": "c13",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Five-round tau sensitivity 2",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "one_round_7b_existing",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "tau": 2
+    },
+    {
+      "id": "c14",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Cross-family 6.7B Plain SD",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "different_protocol_partial",
+      "model": "deepseek6.7b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c15",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Cross-family 6.7B Fixed SPECTRUM",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "different_protocol_available",
+      "model": "deepseek6.7b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c16",
+      "kind": "transfer",
+      "priority": "P1",
+      "title": "HumanEval+ native frozen-checkpoint transfer at 64 draws",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "historical_eval16_only",
+      "benchmark": "humanevalplus",
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c17",
+      "kind": "transfer",
+      "priority": "P1",
+      "title": "APPS Intro adapted frozen-checkpoint transfer at 64 draws",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "historical_eval16_only",
+      "benchmark": "apps_intro",
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c18",
+      "kind": "train",
+      "priority": "P2",
+      "title": "Scale 3B Plain SD",
+      "reviewers": [
+        "FUKc"
+      ],
+      "source_status": "not_confirmed",
+      "model": "qwen3b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c19",
+      "kind": "train",
+      "priority": "P2",
+      "title": "Scale 3B Fixed SPECTRUM",
+      "reviewers": [
+        "FUKc"
+      ],
+      "source_status": "not_confirmed",
+      "model": "qwen3b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c20",
+      "kind": "decoder",
+      "priority": "P1",
+      "title": "Frozen-checkpoint cooler evaluation T=0.6",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "decoder": "cool",
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c21",
+      "kind": "decoder",
+      "priority": "P1",
+      "title": "Frozen-checkpoint warmer evaluation T=1.0",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "decoder": "warm",
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c22",
+      "kind": "decoder",
+      "priority": "P1",
+      "title": "Frozen-checkpoint SSD decoder evaluation 1.5/.8/20",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "decoder": "ssd_recipe",
+      "round": 5,
+      "samples": 64
+    },
+    {
+      "id": "c23",
+      "kind": "train",
+      "priority": "P2",
+      "title": "Layer-only intervention: final attention layer",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "layers": [
+        27
+      ]
+    },
+    {
+      "id": "c24",
+      "kind": "train",
+      "priority": "P2",
+      "title": "Layer-only intervention: middle attention layer",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "layers": [
+        14
+      ]
+    },
+    {
+      "id": "c25",
+      "kind": "audit",
+      "priority": "P0",
+      "title": "Learned-gain and ten-round stability evidence (extension only)",
+      "reviewers": [
+        "w3G2",
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "available_audit",
+      "evidence": [
+        "research/audit-20261107/REBUTTAL_GAPS.md",
+        "research/audit-20261107/OPERATOR_ABLATION.csv",
+        "research/audit-20261107/TAU_SWEEP_RESULTS.csv"
+      ]
+    },
+    {
+      "id": "c26",
+      "kind": "semantic",
+      "priority": "P1",
+      "title": "Blinded strategy-level annotation sampling from verified programs",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "task_count": 40,
+      "per_arm_correct": 8
+    },
+    {
+      "id": "c27",
+      "kind": "train",
+      "priority": "P1",
+      "title": "50 vs 40 reference control: fixed gain with 40 references",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 40
+    },
+    {
+      "id": "c28",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Plain SD with warmer training-only decoder T=1.0",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "training_decoder_overrides": {
+        "temperature": 1,
+        "top_p": 0.95,
+        "top_k": 0
+      }
+    },
+    {
+      "id": "c29",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Plain SD with stronger training-only decoder 1.5/0.8/20",
+      "reviewers": [
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "plain",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "training_decoder_overrides": {
+        "temperature": 1.5,
+        "top_p": 0.8,
+        "top_k": 20
+      }
+    },
+    {
+      "id": "c30",
+      "kind": "train",
+      "priority": "P2",
+      "title": "Standalone 1.5B SSD 5-round recreation",
+      "reviewers": [
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "historical_complete_eval16_final_eval64_pending",
+      "model": "qwen1.5b",
+      "method": "ssd",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50
+    },
+    {
+      "id": "c31",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Fixed first-round spectral geometry (no recalibration)",
+      "reviewers": [
+        "w3G2",
+        "ygkV"
+      ],
+      "source_status": "not_run",
+      "model": "qwen1.5b",
+      "method": "spectral_soft",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "reestimate_each_round": false
+    }
+  ]
+}

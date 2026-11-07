@@ -140,6 +140,21 @@ def validate_config(config):
     if (type(n) is not int or n < 1 or type(gen.get('train_samples', 1)) is not int
             or gen.get('train_samples', 1) < 1):
         raise ValueError('Generation sample counts must be positive integers')
+    # Optional isolated rebuttal control: alter SYNTHESIS decoding only.
+    # Native evaluation remains at the common 0.8/.95/0 distribution.
+    synthesis = gen.get('training_decoder_overrides')
+    if synthesis is not None:
+        if not isinstance(synthesis, dict) or set(synthesis) != {'temperature', 'top_p', 'top_k'}:
+            raise ValueError('generation.training_decoder_overrides needs exact temperature/top_p/top_k')
+        if 'ssd' in methods:
+            raise ValueError('Do not override the declared SSD recipe')
+        temperature, top_p, top_k = (synthesis[x] for x in ('temperature', 'top_p', 'top_k'))
+        if (isinstance(temperature, bool) or not isinstance(temperature, (int, float))
+                or not math.isfinite(temperature) or temperature <= 0
+                or isinstance(top_p, bool) or not isinstance(top_p, (int, float))
+                or not math.isfinite(top_p) or not 0 < top_p <= 1
+                or type(top_k) is not int or top_k < 0):
+            raise ValueError('Invalid generation.training_decoder_overrides sampling values')
     diagnostics = config.get('diagnostics', {})
     if not isinstance(diagnostics, dict):
         raise ValueError('diagnostics must be a mapping')
@@ -819,6 +834,10 @@ def run_experiment(config, *, resume=False):
                 training_settings = dict(train_gen)
                 if method == 'ssd':
                     training_settings.update({'temperature': 1.5, 'top_p': .8, 'top_k': 20})
+                elif gen.get('training_decoder_overrides') is not None:
+                    training_settings.update(gen['training_decoder_overrides'])
+                # Do not leak this control into held-out evaluation generation.
+                training_settings.pop('training_decoder_overrides', None)
                 with (folded_operators(model, operators)
                       if operators is not None and not selected_identity else nullcontext()):
                     with record_stage(directory, 'training_generation'):

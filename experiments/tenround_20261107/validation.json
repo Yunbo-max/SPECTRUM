@@ -1,0 +1,24 @@
+{
+  "as_of": "2026-11-07",
+  "status": "software_validated_experiments_not_started",
+  "cpu_regression": {
+    "passed": 64,
+    "failed": 0,
+    "command": "PYTHONPATH=src CUDA_VISIBLE_DEVICES= python -m pytest tests/test_experiment_matrix.py tests/test_tenround_selection.py tests/test_pipeline.py tests/test_release_reporting.py tests/test_formal_transfer.py -q"
+  },
+  "local_manifest_check": {
+    "verified": true,
+    "cases": 72,
+    "completed": 0,
+    "gpu_work_started": false
+  },
+  "review_fixes": [
+    "Preserve prepared text data path bindings and verify private seed identity locally.",
+    "Reap worker processes when scheduler receives SIGTERM.",
+    "Require native completion and payload integrity before accepting success."
+  ],
+  "scientific_results": {
+    "new_matrix_completed_cases": 0,
+    "new_gpu_experiments_started": false
+  }
+}

@@ -591,8 +591,14 @@ def _preflight_verification(settings):
     return {'docker_image': image, 'docker_image_id': image_id}
 
 
-def run_experiment(config, *, resume=False):
+def run_experiment(config, *, resume=False, method=None, base_only=False):
+    if base_only and method is not None:
+        raise ValueError('base_only cannot select a training method')
     validate_config(config)
+    if method is not None and method not in config['methods']:
+        raise ValueError('Selected method is absent from the frozen study')
+    selected_methods = [] if base_only else ([method] if method is not None else config['methods'])
+    selection_requested = method is not None
     splits = {name: read_jsonl(path) for name, path in config['data'].items()}
     if set(splits) != {'train', 'calibration', 'validation', 'eval'}:
         raise ValueError('Use exactly train, calibration, validation and eval data paths')
@@ -683,7 +689,7 @@ def run_experiment(config, *, resume=False):
     model_settings = dict(config['model'])
     if base_state.get('resolved_revision'):
         model_settings['revision'] = base_state['resolved_revision']
-    for method in config['methods']:
+    for method in selected_methods:
         previous_checkpoint = None
         previous_directory = None
         identity = base_identity
@@ -868,8 +874,10 @@ def run_experiment(config, *, resume=False):
             gc.collect()
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-    result = {'status': 'completed', 'output_dir': str(root), 'methods': config['methods'],
-              'rounds': config.get('rounds', 1), 'elapsed_this_invocation_seconds': time.monotonic() - started,
+    result = {'status': 'completed', 'output_dir': str(root), 'methods': selected_methods,
+              'rounds': 0 if base_only else config.get('rounds', 1), 'elapsed_this_invocation_seconds': time.monotonic() - started,
               'verification': 'pending' if evaluation.get('backend') == 'none' else 'completed'}
-    atomic_json(root / 'run_status.json', result)
+    status_name = 'run_status.base.json' if base_only else (
+        f'run_status.{selected_methods[0]}.json' if selection_requested else 'run_status.json')
+    atomic_json(root / status_name, result)
     return result

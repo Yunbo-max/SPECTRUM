@@ -341,7 +341,7 @@ def export_longitudinal(run_dir, output_dir=None, *, bootstrap_samples=2000, see
 def evaluate_checkpoints(run_dir, output_dir, *, samples=64, rounds=None, methods=None,
                          eval_tasks_path=None, model_settings=None, evaluation_overrides=None,
                          generation_overrides=None, bootstrap_samples=2000, resume=False,
-                         evaluator=None, evaluator_identity=None):
+                         evaluator=None, evaluator_identity=None, include_base=True):
     """Evaluate the initial model and retained round checkpoints in a new directory.
 
     No training is performed. Missing/pruned checkpoints are listed as unavailable.
@@ -419,7 +419,7 @@ def evaluate_checkpoints(run_dir, output_dir, *, samples=64, rounds=None, method
     original_base_sha = source_manifest.get('local_base_fingerprint')
     if original_base_sha and local_base_sha != original_base_sha:
         raise ValueError('Local initial checkpoint differs from the training source')
-    jobs = [('base', 0, None)] + [(method, index, root / method / f'round_{index}' / 'model')
+    jobs = ([('base', 0, None)] if include_base else []) + [(method, index, root / method / f'round_{index}' / 'model')
                                 for method in selected_methods for index in selected_rounds]
     checkpoint_hashes, missing = {}, []
     for method, index, checkpoint in jobs:
@@ -429,7 +429,7 @@ def evaluate_checkpoints(run_dir, output_dir, *, samples=64, rounds=None, method
                 missing.append({'id': name, 'reason': 'checkpoint_missing_or_pruned', 'checkpoint': str(checkpoint)})
                 continue
             checkpoint_hashes[name] = checkpoint_fingerprint(checkpoint)
-    protocol = {'source_run': str(root), 'source_manifest_sha256': _sha(manifest_path),
+    protocol = {'include_base': include_base, 'source_run': str(root), 'source_manifest_sha256': _sha(manifest_path),
                 'source_checkpoint_hashes': checkpoint_hashes, 'model': settings,
                 'local_base_fingerprint': local_base_sha, 'task_sha256': _sha(task_path),
                 'task_ids': [task['task_id'] for task in tasks], 'methods': selected_methods,

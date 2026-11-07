@@ -1,5 +1,19 @@
 # SPECTRUM
 
+## Ten-round independent cases — 7 November 2026
+
+[Experiment list and run instructions](experiments/tenround_20261107/README.md)
+· [72-case JSON](experiments/tenround_20261107/experiment_list.json)
+· [CSV table](experiments/tenround_20261107/experiment_list.csv)
+
+The new queue executes one method per training case for ten rounds, shares one
+initial evaluation per model/study, and explicitly gates final-checkpoint transfer.
+Software validation: **64 CPU tests passed**. Scientific status: **not started**;
+the previous GPU processes were stopped at the user's request, with outputs retained.
+Historical Qwen/MBPP checkpoint requirements and ARC qualification blockers remain
+visible in the list. This entry supersedes the older five-round scheduling choice
+for the newly planned queue; it does not relabel historical results.
+
 **Proximal Spectral Modulation for Looped Self-Distillation**
 
 ## Selected experiment — 1 November 2026

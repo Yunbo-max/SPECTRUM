@@ -1,0 +1,1011 @@
+{
+  "protocol": "independent-ten-round-cases-v1",
+  "status": "planned_not_started",
+  "as_of": "2026-11-07",
+  "training_rounds": 10,
+  "one_method_per_training_case": true,
+  "counts": {
+    "total": 72,
+    "runnable_dependency_chains": 52,
+    "unavailable_or_waiting": 20,
+    "by_kind": {
+      "code_base": 3,
+      "code_train": 9,
+      "code_eval": 48,
+      "text_base": 2,
+      "text_train": 6,
+      "arc_base": 1,
+      "arc_train": 3
+    }
+  },
+  "jobs": [
+    {
+      "id": "code.qwen7b.mbpp.base",
+      "kind": "code_base",
+      "model": "qwen7b",
+      "dataset": "mbpp",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "external_required",
+      "reason": "User requested reuse of historical Qwen/MBPP; exact checkpoints and provenance must be bound before transfer."
+    },
+    {
+      "id": "code.qwen7b.mbpp.plain",
+      "kind": "code_train",
+      "model": "qwen7b",
+      "dataset": "mbpp",
+      "method": "plain",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.qwen7b.mbpp.base"
+      ],
+      "availability": "external_required",
+      "reason": "User requested reuse of historical Qwen/MBPP; exact checkpoints and provenance must be bound before transfer."
+    },
+    {
+      "id": "code.qwen7b.mbpp.ssd",
+      "kind": "code_train",
+      "model": "qwen7b",
+      "dataset": "mbpp",
+      "method": "ssd",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.qwen7b.mbpp.base"
+      ],
+      "availability": "external_required",
+      "reason": "User requested reuse of historical Qwen/MBPP; exact checkpoints and provenance must be bound before transfer."
+    },
+    {
+      "id": "code.qwen7b.mbpp.spectral_soft",
+      "kind": "code_train",
+      "model": "qwen7b",
+      "dataset": "mbpp",
+      "method": "spectral_soft",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.qwen7b.mbpp.base"
+      ],
+      "availability": "external_required",
+      "reason": "User requested reuse of historical Qwen/MBPP; exact checkpoints and provenance must be bound before transfer."
+    },
+    {
+      "id": "eval.qwen7b.humanevalplus.base",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "humanevalplus",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.humanevalplus.plain",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "humanevalplus",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.humanevalplus.ssd",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "humanevalplus",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.humanevalplus.spectral_soft",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "humanevalplus",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.apps_intro.base",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "apps_intro",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.apps_intro.plain",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "apps_intro",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.apps_intro.ssd",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "apps_intro",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.apps_intro.spectral_soft",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "apps_intro",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.codecontests.base",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "codecontests",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.codecontests.plain",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "codecontests",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.codecontests.ssd",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "codecontests",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.codecontests.spectral_soft",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "codecontests",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.livecodebench.base",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "livecodebench",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.livecodebench.plain",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "livecodebench",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.livecodebench.ssd",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "livecodebench",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.qwen7b.livecodebench.spectral_soft",
+      "kind": "code_eval",
+      "model": "qwen7b",
+      "dataset": "livecodebench",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.qwen7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.llama8b.mbpp.base",
+      "kind": "code_base",
+      "model": "llama8b",
+      "dataset": "mbpp",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.llama8b.mbpp.plain",
+      "kind": "code_train",
+      "model": "llama8b",
+      "dataset": "mbpp",
+      "method": "plain",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.llama8b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.llama8b.mbpp.ssd",
+      "kind": "code_train",
+      "model": "llama8b",
+      "dataset": "mbpp",
+      "method": "ssd",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.llama8b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.llama8b.mbpp.spectral_soft",
+      "kind": "code_train",
+      "model": "llama8b",
+      "dataset": "mbpp",
+      "method": "spectral_soft",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.llama8b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.humanevalplus.base",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "humanevalplus",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.llama8b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.humanevalplus.plain",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "humanevalplus",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.humanevalplus.ssd",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "humanevalplus",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.humanevalplus.spectral_soft",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "humanevalplus",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.apps_intro.base",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "apps_intro",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.llama8b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.apps_intro.plain",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "apps_intro",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.apps_intro.ssd",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "apps_intro",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.apps_intro.spectral_soft",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "apps_intro",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.codecontests.base",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "codecontests",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.llama8b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.codecontests.plain",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "codecontests",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.codecontests.ssd",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "codecontests",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.codecontests.spectral_soft",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "codecontests",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.livecodebench.base",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "livecodebench",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.llama8b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.livecodebench.plain",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "livecodebench",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.livecodebench.ssd",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "livecodebench",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.llama8b.livecodebench.spectral_soft",
+      "kind": "code_eval",
+      "model": "llama8b",
+      "dataset": "livecodebench",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.llama8b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.deepseek6.7b.mbpp.base",
+      "kind": "code_base",
+      "model": "deepseek6.7b",
+      "dataset": "mbpp",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.deepseek6.7b.mbpp.plain",
+      "kind": "code_train",
+      "model": "deepseek6.7b",
+      "dataset": "mbpp",
+      "method": "plain",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.deepseek6.7b.mbpp.ssd",
+      "kind": "code_train",
+      "model": "deepseek6.7b",
+      "dataset": "mbpp",
+      "method": "ssd",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "code.deepseek6.7b.mbpp.spectral_soft",
+      "kind": "code_train",
+      "model": "deepseek6.7b",
+      "dataset": "mbpp",
+      "method": "spectral_soft",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.humanevalplus.base",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "humanevalplus",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.humanevalplus.plain",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "humanevalplus",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.humanevalplus.ssd",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "humanevalplus",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.humanevalplus.spectral_soft",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "humanevalplus",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.apps_intro.base",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "apps_intro",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.apps_intro.plain",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "apps_intro",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.apps_intro.ssd",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "apps_intro",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.apps_intro.spectral_soft",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "apps_intro",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.codecontests.base",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "codecontests",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.codecontests.plain",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "codecontests",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.codecontests.ssd",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "codecontests",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.codecontests.spectral_soft",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "codecontests",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.livecodebench.base",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "livecodebench",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.livecodebench.plain",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "livecodebench",
+      "method": "plain",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.plain"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.livecodebench.ssd",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "livecodebench",
+      "method": "ssd",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.ssd"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "eval.deepseek6.7b.livecodebench.spectral_soft",
+      "kind": "code_eval",
+      "model": "deepseek6.7b",
+      "dataset": "livecodebench",
+      "method": "spectral_soft",
+      "rounds": 0,
+      "source_round": 10,
+      "depends_on": [
+        "code.deepseek6.7b.mbpp.spectral_soft"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.math.base",
+      "kind": "text_base",
+      "model": "qwen25-7b",
+      "dataset": "math500",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.math.plain",
+      "kind": "text_train",
+      "model": "qwen25-7b",
+      "dataset": "math500",
+      "method": "plain",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "text.math.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.math.ssd",
+      "kind": "text_train",
+      "model": "qwen25-7b",
+      "dataset": "math500",
+      "method": "ssd",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "text.math.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.math.spectral_soft",
+      "kind": "text_train",
+      "model": "qwen25-7b",
+      "dataset": "math500",
+      "method": "spectral_soft",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "text.math.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.qa.base",
+      "kind": "text_base",
+      "model": "qwen25-7b",
+      "dataset": "mmlu_pro",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.qa.plain",
+      "kind": "text_train",
+      "model": "qwen25-7b",
+      "dataset": "mmlu_pro",
+      "method": "plain",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "text.qa.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.qa.ssd",
+      "kind": "text_train",
+      "model": "qwen25-7b",
+      "dataset": "mmlu_pro",
+      "method": "ssd",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "text.qa.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "text.qa.spectral_soft",
+      "kind": "text_train",
+      "model": "qwen25-7b",
+      "dataset": "mmlu_pro",
+      "method": "spectral_soft",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "text.qa.base"
+      ],
+      "availability": "enabled",
+      "reason": ""
+    },
+    {
+      "id": "arc.base",
+      "kind": "arc_base",
+      "model": "qwen38-27b",
+      "dataset": "arc_agi3",
+      "method": "base",
+      "rounds": 0,
+      "source_round": null,
+      "depends_on": [],
+      "availability": "blocked",
+      "reason": "ARC native 27B long-context qualification and successful replay-verified calibration are not available."
+    },
+    {
+      "id": "arc.plain",
+      "kind": "arc_train",
+      "model": "qwen38-27b",
+      "dataset": "arc_agi3",
+      "method": "plain",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "arc.base"
+      ],
+      "availability": "blocked",
+      "reason": "ARC native 27B long-context qualification and successful replay-verified calibration are not available."
+    },
+    {
+      "id": "arc.ssd",
+      "kind": "arc_train",
+      "model": "qwen38-27b",
+      "dataset": "arc_agi3",
+      "method": "ssd",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "arc.base"
+      ],
+      "availability": "blocked",
+      "reason": "ARC native 27B long-context qualification and successful replay-verified calibration are not available."
+    },
+    {
+      "id": "arc.spectral_soft",
+      "kind": "arc_train",
+      "model": "qwen38-27b",
+      "dataset": "arc_agi3",
+      "method": "spectral_soft",
+      "rounds": 10,
+      "source_round": null,
+      "depends_on": [
+        "arc.base"
+      ],
+      "availability": "blocked",
+      "reason": "ARC native 27B long-context qualification and successful replay-verified calibration are not available."
+    }
+  ]
+}

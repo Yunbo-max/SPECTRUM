@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-08",
+  "upstream_commit": "caa408c699f13c209a6484f626939cf3a3dcbe18",
+  "cpu_tests": {
+    "passed": 100,
+    "failed": 0,
+    "command": "CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 python -m pytest -q tests/test_spd_upstream.py tests/test_rebuttal_cases.py tests/test_pipeline.py tests/test_calibration.py tests/test_spectral.py tests/test_training.py tests/test_tenround_selection.py tests/test_transfer_diagnostics.py tests/test_operator_probe.py"
+  },
+  "review": "Independent code review; aligned-to-mbpp_solutions routing corrected with failing then passing upstream-loss parity regression.",
+  "local_plan": {
+    "case": "c48",
+    "rounds": 5,
+    "calibration_tasks": 50,
+    "min_assertion_targets_per_task": 21,
+    "maximum_calibration_tokens": 401,
+    "dry_run_passed": true
+  },
+  "production_gpu_experiment_started": false,
+  "production_memory_qualified": false
+}

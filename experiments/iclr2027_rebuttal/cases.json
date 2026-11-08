@@ -1159,6 +1159,40 @@
         1,
         5
       ]
+    },
+    {
+      "id": "c48",
+      "kind": "train",
+      "priority": "P1",
+      "title": "Upstream SPD centered-SVD five-round matched-protocol adaptation",
+      "reviewers": [
+        "w3G2",
+        "FUKc",
+        "ygkV"
+      ],
+      "source_status": "new_baseline_prepared_not_executed",
+      "model": "qwen1.5b",
+      "method": "spd_upstream",
+      "seed": 43,
+      "rounds": 5,
+      "train_samples": 16,
+      "eval_samples": 64,
+      "max_new_tokens": 512,
+      "calibration_examples": 50,
+      "lora_update_scale": 1.0,
+      "token_loss_reweighting": false,
+      "diagnostic_rounds": [
+        1,
+        5
+      ],
+      "upstream_repository": "https://github.com/gh540-svg/SPD",
+      "upstream_commit": "caa408c699f13c209a6484f626939cf3a3dcbe18",
+      "calibration_overrides": {
+        "upstream_spd": true,
+        "max_length": 4096,
+        "rank_fraction": 0.5,
+        "reestimate_each_round": true
+      }
     }
   ],
   "primary_protocol": "Original submitted comparison: 1.5B/five-round/512-token",

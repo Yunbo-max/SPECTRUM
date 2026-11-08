@@ -115,11 +115,11 @@ def evaluation_stage(mod, tmp_path):
     return stage, task_ids, metrics
 
 
-def test_catalog_has_48_stable_separate_entrypoints(mod):
+def test_catalog_has_49_stable_separate_entrypoints(mod):
     spec = mod.load_spec()
     assert spec["protocol"] == "iclr2027-spectrum-case-isolation-v2"
     assert mod.DEFAULT_ROOT == "runs/iclr2027_rebuttal_isolated_v2"
-    assert [case["id"] for case in spec["cases"]] == [f"c{i:02d}" for i in range(48)]
+    assert [case["id"] for case in spec["cases"]] == [f"c{i:02d}" for i in range(49)]
     assert all((ROOT / "scripts/rebuttal_cases" / f"{case['id']}.py").is_file()
                for case in spec["cases"])
 

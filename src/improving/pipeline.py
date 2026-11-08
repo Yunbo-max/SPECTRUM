@@ -25,7 +25,7 @@ from .generation import atomic_json, generate_to_file, stable_hash
 from .modeling import collate_examples, encode_example, load_model, render_prompt
 from .training import train_on_records, validate_full_completion_targets
 
-METHODS = {'plain', 'ssd', 'spd_hard', 'spectral_soft', 'residual_blend', 'random_hard',
+METHODS = {'plain', 'ssd', 'spd_hard', 'spd_upstream', 'spectral_soft', 'residual_blend', 'random_hard',
            'random_soft', 'isotropic_soft', 'matched_blend', 'spectral_learned'}
 
 
@@ -165,6 +165,13 @@ def validate_config(config):
         if value is not None and (type(value) is not int or value < 1):
             raise ValueError(f'diagnostics.{key} must be a positive integer or null')
     calibration = config.get('calibration', {})
+    if 'spd_upstream' in methods or calibration.get('upstream_spd'):
+        if methods != ['spd_upstream'] or calibration.get('upstream_spd') is not True:
+            raise ValueError('spd_upstream requires a separate study and upstream_spd=true')
+        if (calibration.get('rank') is not None or calibration.get('rank_fraction', .5) != .5
+                or not calibration.get('reestimate_each_round', True)
+                or calibration.get('tau_decay') is not None or calibration.get('tau_mode') is not None):
+            raise ValueError('spd_upstream requires half-rank and fresh geometry every round')
     if type(calibration.get('reestimate_each_round', True)) is not bool:
         raise ValueError('calibration.reestimate_each_round must be boolean')
     if calibration.get('rank') is not None and (type(calibration['rank']) is not int
@@ -290,6 +297,9 @@ def evaluate_file(tasks, records, path, settings, *, expected_samples, seed=42):
 
 
 def _calibrate(model, tokenizer, tasks, settings, path, model_identity):
+    if settings.get('upstream_spd'):
+        from .spd_upstream import calibrate
+        return calibrate(model, tokenizer, tasks, settings, path, model_identity)
     from .calibration import collect_covariances, save_calibration, load_calibration
     from .spectral import target_modules
     count = int(settings.get('max_examples', 50))
@@ -390,6 +400,8 @@ def _tau_for_round(settings, round_index, *, entropy_ratio=None):
 
 def _operators(covariances, method, settings, seed, *, round_index=1, entropy_ratio=None):
     from .spectral import make_operator
+    if method == 'spd_upstream':
+        return {name: record['spd_operator'] for name, record in covariances.items()}
     kinds = {'spd_hard': 'hard', 'spectral_soft': 'spectral_soft',
              'residual_blend': 'blend', 'random_hard': 'random',
              'random_soft': 'random_soft', 'isotropic_soft': 'isotropic_soft',

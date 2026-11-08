@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/gh540-svg/SPD",
+  "commit": "caa408c699f13c209a6484f626939cf3a3dcbe18",
+  "source_file": "utils.py",
+  "vendored_file": "src/improving/_spd_upstream_utils.py",
+  "local_file_sha256": "b6295a613360d029289716bb1363c3d0efc5ec79304bdf157dca0176730cb61e",
+  "modifications": "none",
+  "upstream_license_declaration": "README states MIT; no standalone LICENSE file in pinned tree",
+  "adaptation_document": "docs/SPD_UPSTREAM_BASELINE_ZH.md"
+}

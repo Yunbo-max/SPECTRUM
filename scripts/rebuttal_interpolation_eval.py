@@ -65,6 +65,11 @@ def main(argv=None) -> int:
     p.add_argument("--alpha", required=True, type=float)
     p.add_argument("--round", type=int, default=5)
     p.add_argument("--samples", type=int, default=64)
+    # Probed generation triple, measured 2026-11-08 on one H100 80GB; see
+    # runs/batch_probe_20261108/PROBE_REPORT.md section 3.1 (qwen15b_mbpp_eval_1024_512).
+    p.add_argument("--batch-size", type=int, default=64)
+    p.add_argument("--task-batch-size", type=int, default=38)
+    p.add_argument("--sequence-batch-size", type=int, default=2432)
     p.add_argument("--resume", action="store_true")
     args = p.parse_args(argv)
     if args.alpha not in (0.5, 0.75) or args.round != 5 or args.samples != 64:
@@ -126,8 +131,9 @@ def main(argv=None) -> int:
         evaluation["docker_image"] = runtime["docker_image_id"]
     generation = {"temperature":.8, "top_p":.95, "top_k":0,
                   "max_prompt_tokens":1024, "max_new_tokens":512,
-                  "samples":64, "batch_size":1,
-                  "sequence_batch_size":1, "task_batch_size":1}
+                  "samples":64, "batch_size":args.batch_size,
+                  "sequence_batch_size":args.sequence_batch_size,
+                  "task_batch_size":args.task_batch_size}
     protocol = {
         "purpose":"evaluation_only_full_parameter_interpolation",
         "source_run":str(source),"source_manifest_sha":sha(source_manifest),

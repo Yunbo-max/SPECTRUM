@@ -25,6 +25,11 @@ def main(argv=None) -> int:
     parser.add_argument("--samples", type=int, default=64)
     parser.add_argument("--decoder", required=True, choices=POLICIES)
     parser.add_argument("--methods", help="Selected comma-separated source model arms")
+    # Probed generation triple, measured 2026-11-08 on one H100 80GB; see
+    # runs/batch_probe_20261108/PROBE_REPORT.md section 3.1 (qwen15b_mbpp_eval_1024_512).
+    parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument("--task-batch-size", type=int, default=38)
+    parser.add_argument("--sequence-batch-size", type=int, default=2432)
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args(argv)
     if args.round < 1 or args.samples != 64:
@@ -46,8 +51,9 @@ def main(argv=None) -> int:
             raise FileNotFoundError(f"Source model missing: {name} round {args.round}")
     overrides = {
         **POLICIES[args.decoder], "max_new_tokens": 512,
-        "max_prompt_tokens": 1024, "batch_size": 1,
-        "task_batch_size": 1, "sequence_batch_size": 1,
+        "max_prompt_tokens": 1024, "batch_size": args.batch_size,
+        "task_batch_size": args.task_batch_size,
+        "sequence_batch_size": args.sequence_batch_size,
     }
     result = evaluate_checkpoints(
         source, args.output_dir, samples=64, rounds=[args.round],

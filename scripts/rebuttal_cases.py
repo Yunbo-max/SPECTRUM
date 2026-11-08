@@ -213,10 +213,21 @@ def config_for(case: dict, args: argparse.Namespace, run_root: Path) -> dict:
                              max_new_tokens=case["max_new_tokens"],
                              max_prompt_tokens=case.get("max_prompt_tokens", 1024),
                              temperature=.8, top_p=.95, top_k=0)
-    if case["max_new_tokens"] == 4096:
-        # A profile is a budget hint, never evidence of native memory capacity.
-        # Historical templates retain their original settings on disk.
-        cfg["generation"].update(batch_size=1, task_batch_size=1, sequence_batch_size=1)
+    # Probed generation triples (batch_size, task_batch_size, sequence_batch_size),
+    # measured 2026-11-08 on one H100 80GB with the repo venv; device-reserved peaks
+    # 71.5-72.5 GiB, below the 76.9 GiB checkpoint-save danger band. See
+    # runs/batch_probe_20261108/PROBE_REPORT.md section 3.1. Every arm in a group
+    # shares the same triple so batching does not shift the batch_seed RNG stream.
+    _probed_generation = {
+        "qwen1.5b": (64, 38, 2432),      # qwen15b_train_512 / qwen15b_mbpp_eval_1024_512
+        "qwen3b": (16, 120, 1920),       # qwen3b_train_512
+        "deepseek6.7b": (16, 9, 144),    # deepseek67b_train_512
+        "qwen7b": (16, 48, 768),         # qwen7b_train_4096
+    }.get(case["model"])
+    if _probed_generation:
+        cfg["generation"].update(batch_size=_probed_generation[0],
+                                 task_batch_size=_probed_generation[1],
+                                 sequence_batch_size=_probed_generation[2])
     calibration = cfg.setdefault("calibration", {})
     calibration.update(max_examples=int(case["calibration_examples"]), tau=float(case.get("tau", 1.0)),
                        reestimate_each_round=case.get("reestimate_each_round", True))
@@ -250,7 +261,9 @@ def config_for(case: dict, args: argparse.Namespace, run_root: Path) -> dict:
                       "validation_task_count": 30,
                       "max_prompt_tokens": cfg["generation"]["max_prompt_tokens"],
                       "max_new_tokens": cfg["generation"]["max_new_tokens"],
-                      "batch_size": 1, "task_batch_size": 1, "sequence_batch_size": 1,
+                      "batch_size": _probed_generation[0] if _probed_generation else 1,
+                      "task_batch_size": _probed_generation[1] if _probed_generation else 1,
+                      "sequence_batch_size": _probed_generation[2] if _probed_generation else 1,
                       "reference_nll_each_round": True},
         operator_probe={"enabled": True, "examples": 8, "max_new_tokens": 128, "kl_chunk_tokens": 32})
     return cfg

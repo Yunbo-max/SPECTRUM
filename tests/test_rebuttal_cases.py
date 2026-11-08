@@ -156,8 +156,10 @@ def test_4096_templates_keep_conservative_batches(mod, tmp_path, profile):
         assert template.read_bytes() == original
         assert cfg["rounds"] == 10 and cfg["methods"] == [case["method"]]
         assert cfg["generation"]["max_new_tokens"] == 4096
-        assert all(cfg["generation"][key] == 1
-                   for key in ("batch_size", "task_batch_size", "sequence_batch_size"))
+        # Measured on one H100 80GB, 2026-11-08: runs/batch_probe_20261108/PROBE_REPORT.md
+        # section 3.1. Device-reserved peak 71.76 GiB, below the 76.9 GiB danger band.
+        assert (cfg["generation"]["batch_size"], cfg["generation"]["task_batch_size"],
+                cfg["generation"]["sequence_batch_size"]) == (16, 48, 768)
         assert cfg["evaluation"]["backend"] == "bwrap"
         assert cfg["train"]["loss_scope"] == "all"
         assert cfg["diagnostics"]["transfer_gap"]["rounds"] == [1, 5, 10]

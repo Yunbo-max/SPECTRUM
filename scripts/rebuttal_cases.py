@@ -194,7 +194,8 @@ def config_for(case: dict, args: argparse.Namespace, run_root: Path) -> dict:
             raise ImportError("Missing native experiment config builder")
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        native = SimpleNamespace(profile=args.profile, backend="bwrap", allow_unsafe_local=False,
+        native = SimpleNamespace(profile=args.profile, backend=args.eval_backend,
+                                 allow_unsafe_local=(args.eval_backend == "local"),
                                  workers=args.workers, data_root=str(abs_path(args.data_root)))
         cfg = mod.native_config(native, case["model"], int(case["seed"]))
     asset = read_json(ASSETS)["models"][case["model"]]
@@ -250,7 +251,8 @@ def config_for(case: dict, args: argparse.Namespace, run_root: Path) -> dict:
         cfg["generation"]["training_decoder_overrides"] = case["training_decoder_overrides"]
     else:
         cfg["generation"].pop("training_decoder_overrides", None)
-    cfg["evaluation"].update(backend="bwrap", allow_unsafe_local=False,
+    cfg["evaluation"].update(backend=args.eval_backend,
+                             allow_unsafe_local=(args.eval_backend == "local"),
                              workers=args.workers, bootstrap_samples=2000)
     diagnostic_rounds = case.get("diagnostic_rounds", [1, case["rounds"]])
     if not diagnostic_rounds or any(type(r) is not int or not 1 <= r <= case["rounds"] for r in diagnostic_rounds):
@@ -1044,6 +1046,9 @@ def make_parser() -> argparse.ArgumentParser:
     parser.add_argument("--execute", action="store_true", help="Only explicit flag can launch a case")
     parser.add_argument("--verify-hashes", action="store_true", help="Inspect every sealed file and every task/sample ID")
     parser.add_argument("--rerun-historical", action="store_true", help="Explicitly reproduce a fully archived historical study in a fresh root")
+    parser.add_argument("--eval-backend", choices=["bwrap", "local"], default="bwrap",
+                        help="Native evaluation isolation: bwrap sandbox (default) or "
+                             "unsafe local execution for hosts without user namespaces")
     return parser
 
 

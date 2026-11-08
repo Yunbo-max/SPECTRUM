@@ -221,11 +221,14 @@ def config_for(case: dict, args: argparse.Namespace, run_root: Path) -> dict:
     # 71.5-72.5 GiB, below the 76.9 GiB checkpoint-save danger band. See
     # runs/batch_probe_20261108/PROBE_REPORT.md section 3.1. Every arm in a group
     # shares the same triple so batching does not shift the batch_seed RNG stream.
+    # qwen7b uses the safe S=512 fallback (16, 32, 512): the probe's S=768 point
+    # (63.7 GiB post-eval) leaves no headroom once the in-process SFT state and the
+    # dev_generation checkpoint reload add ~12 GiB, which OOMs at 78.2 GiB.
     _probed_generation = {
         "qwen1.5b": (64, 38, 2432),      # qwen15b_train_512 / qwen15b_mbpp_eval_1024_512
         "qwen3b": (16, 120, 1920),       # qwen3b_train_512
         "deepseek6.7b": (16, 9, 144),    # deepseek67b_train_512
-        "qwen7b": (16, 48, 768),         # qwen7b_train_4096
+        "qwen7b": (16, 32, 512),         # qwen7b_train_4096 (safe fallback, 43.8 GiB, 816 tok/s)
     }.get(case["model"])
     if _probed_generation:
         cfg["generation"].update(batch_size=_probed_generation[0],

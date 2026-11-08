@@ -157,9 +157,10 @@ def test_4096_templates_keep_conservative_batches(mod, tmp_path, profile):
         assert cfg["rounds"] == 10 and cfg["methods"] == [case["method"]]
         assert cfg["generation"]["max_new_tokens"] == 4096
         # Measured on one H100 80GB, 2026-11-08: runs/batch_probe_20261108/PROBE_REPORT.md
-        # section 3.1. Device-reserved peak 71.76 GiB, below the 76.9 GiB danger band.
+        # section 3.1. The safe S=512 fallback (43.8 GiB) leaves headroom for the
+        # ~12 GiB SFT-state + checkpoint-reload overhead that OOMs S=768 at dev_generation.
         assert (cfg["generation"]["batch_size"], cfg["generation"]["task_batch_size"],
-                cfg["generation"]["sequence_batch_size"]) == (16, 48, 768)
+                cfg["generation"]["sequence_batch_size"]) == (16, 32, 512)
         assert cfg["evaluation"]["backend"] == "bwrap"
         assert cfg["train"]["loss_scope"] == "all"
         assert cfg["diagnostics"]["transfer_gap"]["rounds"] == [1, 5, 10]

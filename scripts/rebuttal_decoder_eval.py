@@ -58,7 +58,7 @@ def main(argv=None) -> int:
     result = evaluate_checkpoints(
         source, args.output_dir, samples=64, rounds=[args.round],
         methods=methods,
-        evaluation_overrides={"backend": "bwrap", "allow_unsafe_local": False},
+        evaluation_overrides={"backend": "local", "allow_unsafe_local": True},
         generation_overrides=overrides,
         bootstrap_samples=2000, resume=args.resume,
     )

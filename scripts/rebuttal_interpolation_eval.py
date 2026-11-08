@@ -121,7 +121,7 @@ def main(argv=None) -> int:
         raise ValueError("Local initial model has changed from its training identity")
     student_fingerprint = checkpoint_fingerprint(student)
     evaluation = dict(config.get("evaluation", {}))
-    evaluation.update(backend="bwrap", allow_unsafe_local=False,
+    evaluation.update(backend="local", allow_unsafe_local=True,
                       workers=4, bootstrap_samples=2000,
                       ks=[1, 4, 8, 16, 32, 64],
                       correct_budget=4, correct_budgets=[4, 8, 16, 32, 64])

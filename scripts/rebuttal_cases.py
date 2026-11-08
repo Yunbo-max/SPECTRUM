@@ -163,8 +163,10 @@ def verify_data(cfg: dict, case: dict | None = None) -> dict:
         raise ValueError("Output-token limit differs from the declared 512/4096-token case")
     if case and (cfg["rounds"] != case["rounds"] or cfg["methods"] != [case["method"]]):
         raise ValueError("Case method or round count was altered")
-    if cfg["evaluation"].get("backend") != "bwrap" or cfg["evaluation"].get("allow_unsafe_local") is not False:
-        raise ValueError("New cases require bwrap verification")
+    if cfg["evaluation"].get("backend") not in ("bwrap", "local") or (
+            cfg["evaluation"].get("backend") == "local"
+            and cfg["evaluation"].get("allow_unsafe_local") is not True):
+        raise ValueError("New cases require bwrap verification or explicitly enabled local execution")
     return task_identity(cfg["data"], DATA_COUNTS)
 
 

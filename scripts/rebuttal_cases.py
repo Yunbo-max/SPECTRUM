@@ -602,9 +602,12 @@ def build_plan(case: dict, args: argparse.Namespace) -> dict:
             plan["benchmark_identity"] = benchmark_identity(Path(plan["benchmark_root"]), case["benchmark"])
             fit = {name: item["path"] for name, item in plan["source_identity"]["data"].items() if name != "eval"}
             task_identity({**fit, "eval": plan["benchmark_identity"]["tasks"]["path"]})
+            backend_args = ["--backend", args.eval_backend]
+            if args.eval_backend == "local":
+                backend_args.append("--allow-unsafe-local")
             plan["command"] = [sys.executable, "experiments/iclr2027/transfer.py", *common,
                                "--benchmark", case["benchmark"], "--benchmark-root", plan["benchmark_root"],
-                               "--bootstrap-samples", "2000", "--backend", "bwrap", "--methods", ",".join(selected)]
+                               "--bootstrap-samples", "2000", *backend_args, "--methods", ",".join(selected)]
         else:
             plan["command"] = [sys.executable, "scripts/rebuttal_decoder_eval.py", *common,
                                "--decoder", case["decoder"], "--methods", ",".join(selected)]

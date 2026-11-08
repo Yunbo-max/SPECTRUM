@@ -1,0 +1,32 @@
+{
+  "project": "SPECTRUM",
+  "round": "20261108-continual-gains",
+  "role": "web_source_authoring",
+  "role_source": "existing AGENTS.md and owner request to update code for Local testing",
+  "scope": "owner-selected bounded extension: continual shared spectral gains with conditional conflict projection",
+  "target_repository": "Yunbo-max/SPECTRUM",
+  "target_branch": "main",
+  "base_main": "2c5fac3d030abd6afc189a9de57aa19e29eb6411",
+  "design_base_main": "44154a2ec882ea2b32c3d26203fae724ec15d6fb",
+  "method_source": "rounds/20261108-continual-gains/METHOD.md",
+  "source_status": "generated_unexecuted",
+  "case_count": 16,
+  "first_comparison": ["cg00", "cg01", "cg02", "cg03"],
+  "new_project_execution": false,
+  "new_scientific_downloads": false,
+  "model_loading": false,
+  "local_tests": "authored; pending Local execution",
+  "native_experiments": "not started by this delivery",
+  "diffusion": "deferred; not implemented or queued",
+  "host": {
+    "ssh_alias": null,
+    "gpu_model": null,
+    "vram": null,
+    "capacity_verified": false
+  },
+  "source_inspection": "SOURCE_INSPECTION.json",
+  "source_review": "SOURCE_REVIEW.md; source-only findings, not runtime acceptance",
+  "publication_evidence": "exact resulting main commit and file readback in delivery response",
+  "next_action": "Local pins delivered commit, verifies existing inputs, runs authored software and real-model qualification, then launches each selected case separately",
+  "skill_source": "e1/skill-6ac68a8f6ff481919a700388dd326f62; workflow-harness and local-code-handoff"
+}

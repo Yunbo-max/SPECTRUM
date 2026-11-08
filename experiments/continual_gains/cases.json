@@ -1,0 +1,246 @@
+{
+  "protocol": "spectrum-continual-gains-case-isolation-v1",
+  "study_protocol": "spectrum-continual-gains-v1",
+  "status": "generated_unexecuted",
+  "parent_revision": "2c5fac3d030abd6afc189a9de57aa19e29eb6411",
+  "default_root": "runs/continual_gains_isolated_v1",
+  "initial_batch": [
+    "cg00",
+    "cg01",
+    "cg02",
+    "cg03"
+  ],
+  "scope": "One explicit case per invocation; remaining orders/protocols are optional separate launches.",
+  "methods": [
+    "native",
+    "sequential",
+    "retention",
+    "conflict"
+  ],
+  "cases": [
+    {
+      "id": "cg00",
+      "method": "native",
+      "config": "configs/continual_gains/frozen_math_qa.json",
+      "backbone_update": "frozen",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": true,
+      "output_leaf": "cg00",
+      "entrypoint": "scripts/continual_gain_cases/cg00.py"
+    },
+    {
+      "id": "cg01",
+      "method": "sequential",
+      "config": "configs/continual_gains/frozen_math_qa.json",
+      "backbone_update": "frozen",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": true,
+      "output_leaf": "cg01",
+      "entrypoint": "scripts/continual_gain_cases/cg01.py"
+    },
+    {
+      "id": "cg02",
+      "method": "retention",
+      "config": "configs/continual_gains/frozen_math_qa.json",
+      "backbone_update": "frozen",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": true,
+      "output_leaf": "cg02",
+      "entrypoint": "scripts/continual_gain_cases/cg02.py"
+    },
+    {
+      "id": "cg03",
+      "method": "conflict",
+      "config": "configs/continual_gains/frozen_math_qa.json",
+      "backbone_update": "frozen",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": true,
+      "output_leaf": "cg03",
+      "entrypoint": "scripts/continual_gain_cases/cg03.py"
+    },
+    {
+      "id": "cg04",
+      "method": "native",
+      "config": "configs/continual_gains/frozen_qa_math.json",
+      "backbone_update": "frozen",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg04",
+      "entrypoint": "scripts/continual_gain_cases/cg04.py"
+    },
+    {
+      "id": "cg05",
+      "method": "sequential",
+      "config": "configs/continual_gains/frozen_qa_math.json",
+      "backbone_update": "frozen",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg05",
+      "entrypoint": "scripts/continual_gain_cases/cg05.py"
+    },
+    {
+      "id": "cg06",
+      "method": "retention",
+      "config": "configs/continual_gains/frozen_qa_math.json",
+      "backbone_update": "frozen",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg06",
+      "entrypoint": "scripts/continual_gain_cases/cg06.py"
+    },
+    {
+      "id": "cg07",
+      "method": "conflict",
+      "config": "configs/continual_gains/frozen_qa_math.json",
+      "backbone_update": "frozen",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg07",
+      "entrypoint": "scripts/continual_gain_cases/cg07.py"
+    },
+    {
+      "id": "cg08",
+      "method": "native",
+      "config": "configs/continual_gains/self_distill_math_qa.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg08",
+      "entrypoint": "scripts/continual_gain_cases/cg08.py"
+    },
+    {
+      "id": "cg09",
+      "method": "sequential",
+      "config": "configs/continual_gains/self_distill_math_qa.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg09",
+      "entrypoint": "scripts/continual_gain_cases/cg09.py"
+    },
+    {
+      "id": "cg10",
+      "method": "retention",
+      "config": "configs/continual_gains/self_distill_math_qa.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg10",
+      "entrypoint": "scripts/continual_gain_cases/cg10.py"
+    },
+    {
+      "id": "cg11",
+      "method": "conflict",
+      "config": "configs/continual_gains/self_distill_math_qa.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "math",
+        "qa"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg11",
+      "entrypoint": "scripts/continual_gain_cases/cg11.py"
+    },
+    {
+      "id": "cg12",
+      "method": "native",
+      "config": "configs/continual_gains/self_distill_qa_math.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg12",
+      "entrypoint": "scripts/continual_gain_cases/cg12.py"
+    },
+    {
+      "id": "cg13",
+      "method": "sequential",
+      "config": "configs/continual_gains/self_distill_qa_math.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg13",
+      "entrypoint": "scripts/continual_gain_cases/cg13.py"
+    },
+    {
+      "id": "cg14",
+      "method": "retention",
+      "config": "configs/continual_gains/self_distill_qa_math.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg14",
+      "entrypoint": "scripts/continual_gain_cases/cg14.py"
+    },
+    {
+      "id": "cg15",
+      "method": "conflict",
+      "config": "configs/continual_gains/self_distill_qa_math.json",
+      "backbone_update": "self_distill",
+      "order": [
+        "qa",
+        "math"
+      ],
+      "rounds_per_domain": 1,
+      "initial_batch": false,
+      "output_leaf": "cg15",
+      "entrypoint": "scripts/continual_gain_cases/cg15.py"
+    }
+  ]
+}

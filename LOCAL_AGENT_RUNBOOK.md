@@ -1,4 +1,32 @@
-# ICLR 2027 final rebuttal cases
+# Continual spectral gains — current Local entry, 8 November 2026
+
+Repository **Yunbo-max/SPECTRUM**, branch **main**, immutable delivered revision.
+The owner selected CGL-inspired conflict handling on shared generation-time gain
+coordinates. Read [the full Chinese guide](docs/CONTINUAL_GAINS_ZH.md),
+[method](rounds/20261108-continual-gains/METHOD.md), and
+[handoff](rounds/20261108-continual-gains/WEB_HANDOFF.md) before execution.
+
+1. Restore actual host/environment/allocation facts and preserve running studies.
+   Use a separate checkout and new output root for this source.
+2. Verify/reuse the pinned Math/QA prepared inputs, existing private seed and full
+   local Qwen2.5-7B-Instruct checkpoint. Follow the guide's acquisition section if
+   absent; no new scientific assets were downloaded during Web authoring.
+3. Run the authored continual-gain and relevant existing software checks, then
+   qualify the real model, fold/restore, full-vocabulary KL, context and scorer.
+   Status remains generated_unexecuted until actual Local receipts exist.
+4. Prepare each selected cgNN plan separately. The first intended comparison is
+   cg00–cg03 (frozen backbone, Math→QA, four methods). A wrapper `run --execute`
+   is one bounded foreground experiment; there is no automatic 16-case queue.
+5. Keep the same geometry and inherited gains through each sequence. In the
+   self_distill cases, resume committed students without repeating SFT. Return
+   complete native/controlled scores, old-domain losses, source/data/state hashes,
+   raw outputs, timings, projection diagnostics, rejected and failed cases.
+
+The new catalog is separate from every cNN rebuttal case, the 72-case ten-round
+queue, and the 14B SPD studies. It adds no diffusion training. Frozen controller
+retention and student retention are distinct scientific outcomes.
+
+# ICLR 2027 final rebuttal cases — previous entry
 
 Current entry: **7 November 2026**, repository **Yunbo-max/SPECTRUM**, branch
 **main**, at the immutable delivered revision. The user requested the final

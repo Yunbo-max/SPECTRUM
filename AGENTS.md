@@ -1,5 +1,35 @@
 # SPECTRUM current agent entry
 
+## Selected continual-gain extension — 8 November 2026
+
+Read [the guide](docs/CONTINUAL_GAINS_ZH.md),
+[method](rounds/20261108-continual-gains/METHOD.md), and
+[handoff](rounds/20261108-continual-gains/WEB_HANDOFF.md), including data/model
+acquisition. The owner selected conditional conflict handling on generation-time
+gain parameters; this is a bounded extension, not a new open discovery campaign.
+
+- Web prepares source only. Status is generated_unexecuted: no project tests,
+  model loads, scientific downloads or GPU jobs were run by this delivery.
+- Cases cg00–cg15 have independent wrappers, plans, outputs and attempt logs.
+  First intended comparison is cg00–cg03; reading the catalog starts no work.
+- Freeze first-domain FIT geometry for the whole lineage. Inherit one reduced
+  gain state; never reset it or silently rotate coordinates at a domain change.
+- Historical FIT memory is explicit. Guard is final-only veto and evaluation
+  labels never enter fitting. New/old gradients use the same current backbone,
+  incoming state and geometry. No SFT/GRPO gradient surgery is added to students.
+- Check every old-domain endpoint loss and actual cast/fold feasibility. Failed
+  candidates restore incoming gains, not identity. KL is anchored to the incoming
+  controlled policy; this is distinct from old round-local Learned.
+- Frozen-backbone limits persist from domain exit. Self-distillation limits are
+  calibration-entry limits on the current student, not a post-SFT no-forgetting
+  guarantee. Report native and controlled evaluation for all domains each stage.
+- Preserve committed checkpoint receipts on resume; do not repeat completed SFT
+  after an evaluation interruption. Keep incompatible/partial attempts intact.
+- Do not edit or renumber the old rebuttal catalog, the 72-case queue, the 14B SPD
+  studies or historical results. Preserve live checkouts at their source pins.
+- No diffusion, automatic broad sweep, runtime capacity claim or scientific PASS
+  is part of this source delivery. Publish main with expected-head/readback checks.
+
 ## ICLR 2027 final rebuttal cases — 7 November 2026
 
 Read [the final guide](docs/ICLR2027_FINAL_CASES_ZH.md),

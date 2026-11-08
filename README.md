@@ -1,5 +1,25 @@
 # SPECTRUM
 
+## Continual spectral gains — 8 November 2026
+
+[**Continual-gain guide and independent commands**](docs/CONTINUAL_GAINS_ZH.md)
+· [Method](rounds/20261108-continual-gains/METHOD.md)
+· [Local handoff](rounds/20261108-continual-gains/WEB_HANDOFF.md)
+· [16-case catalog](experiments/continual_gains/cases.json)
+
+The selected extension learns one inherited generation-time gain vector across
+Math and QA in a fixed first-domain eigenbasis. It compares native generation,
+sequential fitting, old-domain endpoint checks, and conditional gradient conflict
+projection **in gain coordinates**. Historical FIT references are explicit memory;
+the student still receives ordinary unweighted SFT on raw generated outputs.
+Frozen-backbone and full self-distillation protocols, in both task orders, have
+separate `scripts/continual_gain_cases/cgNN.py` launchers and sealed outputs.
+
+Start with the four frozen Math→QA cases `cg00`–`cg03`. All 16 cases are prepared,
+not scheduled. Status: **generated_unexecuted**; new tests are authored and await
+Local execution. No diffusion model or scientific improvement is claimed.
+Existing rebuttal cases, the 72-case queue, and the Qwen14B SPD studies are retained.
+
 ## ICLR 2027 reviewer cases — 7 November 2026
 
 [**Local Codex: start here**](LOCAL_AGENT_RUNBOOK.md#iclr-2027-final-rebuttal-cases)

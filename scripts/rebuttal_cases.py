@@ -556,6 +556,22 @@ def validate_unused_selectors(case: dict, args: argparse.Namespace) -> None:
         raise ValueError("Interpolation source method is fixed by its case")
 
 
+
+def backend_matches_plan(plan: dict, protocol: dict) -> bool:
+    """Dependent-case receipts may be sandboxed (bwrap) or explicitly local.
+
+    Plans made after the --eval-backend option record their backend and must
+    match exactly. Legacy plans (frozen before the option existed) accept the
+    two honest combinations, since their runs were launched with either the
+    delivered bwrap default or an explicit local override.
+    """
+    backend = protocol.get("evaluation", {}).get("backend")
+    unsafe = protocol.get("evaluation", {}).get("allow_unsafe_local")
+    if "eval_backend" in plan:
+        return backend == plan["eval_backend"] and unsafe is (plan["eval_backend"] == "local")
+    return (backend, unsafe) in (("bwrap", False), ("local", True))
+
+
 def build_plan(case: dict, args: argparse.Namespace) -> dict:
     validate_unused_selectors(case, args)
     if args.workers < 1:
@@ -590,7 +606,8 @@ def build_plan(case: dict, args: argparse.Namespace) -> dict:
         cfg_source = read_json(source / "manifest.json")["config"]
         selected = source_methods(case["method"] if case["kind"] == "interpolate" else args.source_methods,
                                   cfg_source["methods"])
-        plan.update(source_run=str(source), source_methods=",".join(selected), round=case["round"], samples=case["samples"])
+        plan.update(source_run=str(source), source_methods=",".join(selected), round=case["round"], samples=case["samples"],
+                    eval_backend=args.eval_backend)
         plan["source_identity"] = dependency_identity(source, selected, case["round"])
         common = ["--run-dir", str(source), "--output-dir", str(run_root),
                   "--round", str(case["round"]), "--samples", str(case["samples"]), "--resume"]
@@ -864,8 +881,7 @@ def inspect_eval(plan: dict, case: dict, hashes: bool = False) -> dict:
                 or protocol.get("source_manifest_sha256") != plan["source_identity"]["manifest_sha256"]
                 or protocol.get("methods") != selected or protocol.get("rounds") != [case["round"]]
                 or protocol.get("include_base") is not True or manifest.get("fingerprint") != digest(protocol)
-                or protocol.get("evaluation", {}).get("backend") != "bwrap"
-                or protocol.get("evaluation", {}).get("allow_unsafe_local") is not False):
+                or not backend_matches_plan(plan, protocol)):
             raise ValueError("Evaluation source, selected methods, round or runtime differs from the frozen case")
         if case["kind"] == "transfer":
             expected = plan["benchmark_identity"]["tasks"]
@@ -921,8 +937,7 @@ def inspect_interpolation(plan: dict, case: dict, hashes: bool = False) -> dict:
                 or protocol.get("alpha") != case["alpha"] or protocol.get("training_performed") is not False
                 or protocol.get("eval_tasks_sha") != expected["sha256"] or protocol.get("tasks") != expected["task_ids"]
                 or done.get("samples_per_task") != case["samples"] or done.get("task_count") != expected["count"]
-                or protocol.get("evaluation", {}).get("backend") != "bwrap"
-                or protocol.get("evaluation", {}).get("allow_unsafe_local") is not False):
+                or not backend_matches_plan(plan, protocol)):
             raise ValueError("Interpolation source, alpha, round, task identity or runtime differs from its case")
         metrics = inspect_stage(root, expected["task_ids"], case["samples"], hashes=hashes,
                                 protocol_fingerprint=manifest["fingerprint"])

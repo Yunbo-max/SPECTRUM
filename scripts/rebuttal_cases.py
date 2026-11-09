@@ -230,11 +230,11 @@ def config_for(case: dict, args: argparse.Namespace, run_root: Path) -> dict:
         "qwen1.5b": (64, 38, 2432),      # qwen15b_train_512 / qwen15b_mbpp_eval_1024_512
         "qwen3b": (16, 120, 1920),       # qwen3b_train_512
         "deepseek6.7b": (16, 9, 144),    # deepseek67b_train_512
-        "qwen7b": (8, 8, 64),            # qwen7b_train_4096: 64 concurrent sequences; four
-                                       # S-reductions after the real run OOMs at 78.2 GiB on
-                                       # S=256 (probe S=768 fit in 66 GiB; a hidden allocator
-                                       # adds ~50 GiB in the full pipeline, see
-                                       # runs/private/oomprobe_20261109)
+        "qwen7b": (16, 11, 176),         # qwen7b_train_4096: real-run slope ~0.31 GiB/S
+                                       # (S=64 -> 18.3 GiB, S=256 -> OOM at 78.2). S=176
+                                       # lands ~53 GiB base eval (~3x the S=64 point, per
+                                       # user 2026-11-09: keep sustained >=40 GiB), with
+                                       # ~20 GiB headroom below the wall.
     }.get(case["model"])
     if _probed_generation:
         cfg["generation"].update(batch_size=_probed_generation[0],

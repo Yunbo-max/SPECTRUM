@@ -160,7 +160,7 @@ def test_4096_templates_keep_conservative_batches(mod, tmp_path, profile):
         # section 3.1. The safe S=512 fallback (43.8 GiB) leaves headroom for the
         # ~12 GiB SFT-state + checkpoint-reload overhead that OOMs S=768 at dev_generation.
         assert (cfg["generation"]["batch_size"], cfg["generation"]["task_batch_size"],
-                cfg["generation"]["sequence_batch_size"]) == (16, 32, 512)
+                cfg["generation"]["sequence_batch_size"]) == (16, 16, 256)
         assert cfg["evaluation"]["backend"] == "bwrap"
         assert cfg["train"]["loss_scope"] == "all"
         assert cfg["diagnostics"]["transfer_gap"]["rounds"] == [1, 5, 10]

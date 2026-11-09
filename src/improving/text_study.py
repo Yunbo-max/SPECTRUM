@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 6640)
-Total output lines: 465
-
 """Recursive text-domain study with independent method lineages and bound resume."""
 from __future__ import annotations
 
@@ -212,7 +209,119 @@ def _preflight_math(config):
 
 
 def validate_prepared_binding(config, data_manifest, seed):
-    """Reject cross-domain, changed-selection and incomplete-popula…1640 tokens truncated…heckpoint binding mismatch')
+    """Reject cross-domain, changed-selection and incomplete-population reuse."""
+    if data_manifest['identity']['seed_sha256'] != stable_hash(seed):
+        raise ValueError('Data and run randomization identities differ')
+    if (data_manifest['identity']['domain'] != config['domain']
+            or data_manifest['identity']['data'] != config['data']):
+        raise ValueError('Prepared domain/splits differ from the requested configuration')
+    if config['domain'] == 'math':
+        expected_counts = {'math500': 500}
+    else:
+        expected_counts = {'mmlu_pro': 12032}
+        if config.get('include_gpqa', False):
+            expected_counts['gpqa_diamond'] = 198
+    if data_manifest['evaluation_counts'] != expected_counts:
+        raise ValueError('Prepared evaluation does not contain the complete native populations')
+    if data_manifest['identity']['builder_sha256'] != file_sha(Path(__file__).with_name('text_tasks.py')):
+        raise ValueError('Data builder changed after preparation; freeze a fresh prepared directory')
+
+
+def run_text_study(config, method, *, resume=False, evaluate_only=False, checkpoint=None):
+    import torch
+    from .modeling import load_model
+    from .pipeline import (_calibrate, _operators, checkpoint_fingerprint,
+                           record_stage)
+    from .spectral import folded_operators
+    from .training import train_on_records
+    from .generation import generate_to_file
+
+    validate_text_config(config)
+    if method not in methods_for_config(config):
+        raise ValueError(f'Unknown/unconfigured method: {method}')
+    if checkpoint and not evaluate_only:
+        raise ValueError('--checkpoint is only for explicit transfer/evaluation mode')
+    if evaluate_only and not checkpoint:
+        raise ValueError('--evaluate-only requires the exact source checkpoint')
+    seed = private_seed(config['seed_file'])
+    splits, data_manifest = verify_prepared_data(config['data']['output_dir'])
+    validate_prepared_binding(config, data_manifest, seed)
+    _preflight_math(config)
+    binding = _binding(config, data_manifest, seed)
+    base_identity = _base_identity(config)
+    binding['base_checkpoint_identity'] = base_identity
+    root = Path(config['output_dir'])
+    # All method lineages must share one frozen study, even when launched in
+    # separate processes/days. Per-lineage resume checks alone would permit
+    # comparing an old Vanilla run with a newly configured SPECTRUM run.
+    with _exclusive(root / '.study.lock'):
+        study_manifest = root / 'study_manifest.json'
+        if study_manifest.exists():
+            if json.loads(study_manifest.read_text()) != binding:
+                raise ValueError('Another arm froze different study conditions; use a new output directory')
+        else:
+            atomic_json(study_manifest, binding)
+    if evaluate_only:
+        identity = checkpoint_fingerprint(checkpoint)
+        method_root = root / 'transfer' / identity[:20]
+    else:
+        method_root = root / method
+    with _exclusive(method_root / '.writer.lock'):
+        manifest_path = method_root / 'manifest.json'
+        _manifest(manifest_path, {**binding, 'method': method,
+                                  'evaluation_only_checkpoint': str(Path(checkpoint).resolve()) if checkpoint else None}, resume)
+        if method == 'base' or evaluate_only:
+            identity = checkpoint_fingerprint(checkpoint) if checkpoint else base_identity
+            stage = method_root / 'round_0'
+            if not _check_completed(stage, identity):
+                model, tokenizer = load_model(config['model'], checkpoint)
+                hashes = _evaluate(config, model, tokenizer, splits['eval'], stage, identity,
+                                   seed, method, 0, resume)
+                atomic_json(stage / 'complete.json', {'identity': identity, 'output_hashes': hashes})
+                del model, tokenizer
+                gc.collect()
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+            return text_report(config)
+
+        parent_path = None
+        parent_identity = base_identity
+        for round_index in range(1, config['rounds'] + 1):
+            directory = method_root / f'round_{round_index}'
+            directory.mkdir(parents=True, exist_ok=True)
+            checkpoint_dir = directory / 'model'
+            checkpoint_receipt = directory / 'checkpoint.json'
+            round_binding = stable_hash({'parent': parent_identity, 'round': round_index,
+                                         'method': method, 'study': binding})
+            if method == 'spectral_learned' and (
+                    checkpoint_receipt.exists() or (directory / 'synthetic.jsonl').exists()
+                    or (directory / 'complete.json').exists()):
+                from .gain_pipeline import validate_saved_learned_round
+                validate_saved_learned_round(
+                    directory, parent_identity, config['calibration'],
+                    splits['calibration'], splits['train'], seed=seed,
+                    round_index=round_index)
+            if _check_completed(directory, round_binding):
+                receipt = json.loads(checkpoint_receipt.read_text())
+                pruned = directory / 'checkpoint_pruned.json'
+                if pruned.exists():
+                    prune_receipt = json.loads(pruned.read_text())
+                    descendant = method_root / f'round_{round_index + 1}'
+                    if (prune_receipt['checkpoint_identity'] != receipt['checkpoint_identity']
+                            or not (descendant / 'complete.json').exists()
+                            or prune_receipt['replaced_by_complete_sha256'] != file_sha(descendant / 'complete.json')):
+                        raise ValueError('Invalid checkpoint pruning chain')
+                    if checkpoint_dir.exists():
+                        # Finish only this already sealed, explicitly recorded cleanup.
+                        shutil.rmtree(checkpoint_dir)
+                elif checkpoint_fingerprint(checkpoint_dir) != receipt['checkpoint_identity']:
+                    raise ValueError('Saved descendant checkpoint changed')
+                parent_path, parent_identity = checkpoint_dir, receipt['checkpoint_identity']
+                continue
+            if checkpoint_receipt.exists():
+                receipt = json.loads(checkpoint_receipt.read_text())
+                if receipt['round_binding'] != round_binding or checkpoint_fingerprint(checkpoint_dir) != receipt['checkpoint_identity']:
+                    raise ValueError('Training checkpoint binding mismatch')
                 model, tokenizer = load_model(config['model'], checkpoint_dir)
             else:
                 if checkpoint_dir.exists():

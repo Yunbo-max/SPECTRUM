@@ -1,0 +1,19 @@
+{
+  "case": "c46",
+  "historical_source_status": "not_run",
+  "kind": "decoder",
+  "no_experiment_if_kind_is_audit_or_semantic": false,
+  "plan_sha256": "fd917cf730c5bd0623736a56122259233bfae07c3d10b9cc3196fb5b0c0032b2",
+  "status": "completed",
+  "verified": {
+    "case": "c46",
+    "integrity": "all_sealed_files_and_exact_records_checked",
+    "issues": [],
+    "kind": "decoder",
+    "stages": [
+      "base",
+      "spectral_soft/round_5"
+    ],
+    "state": "complete"
+  }
+}

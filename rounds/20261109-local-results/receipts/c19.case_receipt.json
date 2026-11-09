@@ -1,0 +1,13 @@
+{
+  "case": "c19",
+  "historical_source_status": "not_confirmed",
+  "kind": "train",
+  "no_experiment_if_kind_is_audit_or_semantic": false,
+  "plan_sha256": "d5e3f07a750a1141ee1736757cf7595b5a906dc85dbbbdda4b229b613fd83e7e",
+  "status": "completed",
+  "verified": {
+    "case": "c19",
+    "integrity": "all_sealed_files_and_exact_records_checked",
+    "state": "complete"
+  }
+}

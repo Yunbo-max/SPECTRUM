@@ -1,0 +1,23 @@
+{
+  "case": "c35",
+  "historical_source_status": "not_run",
+  "kind": "interpolate",
+  "no_experiment_if_kind_is_audit_or_semantic": false,
+  "plan_sha256": "d8cad847fae79c285f86b0c55732e30862bd175b3fefee3ac31c51abd212b3d3",
+  "status": "completed",
+  "verified": {
+    "case": "c35",
+    "endpoints": {
+      "C64": 11.388,
+      "D4": 3.1689240716174645,
+      "D4_eligible": 324,
+      "pass@1": 0.39278125,
+      "pass@16": 0.6633578195143424,
+      "pass@64": 0.726
+    },
+    "integrity": "all_sealed_files_and_exact_records_checked",
+    "issues": [],
+    "kind": "interpolate",
+    "state": "complete"
+  }
+}

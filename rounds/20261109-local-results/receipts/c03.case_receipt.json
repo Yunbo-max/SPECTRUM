@@ -1,0 +1,33 @@
+{
+  "case": "c03",
+  "historical_source_status": "one_round_only",
+  "kind": "train",
+  "no_experiment_if_kind_is_audit_or_semantic": false,
+  "plan_sha256": "78f70d542ff4a43d600a0db5843c2556629b49c24f68fc1cbba9653c0d1e9bb4",
+  "status": "completed",
+  "verified": {
+    "case": "c03",
+    "endpoints": {
+      "C64": 11.888,
+      "D4": 3.1995936816505854,
+      "D4_eligible": 321,
+      "pass@1": 0.39603125,
+      "pass@16": 0.662550230757698,
+      "pass@64": 0.726
+    },
+    "expected_rounds": 5,
+    "integrity": "all_sealed_files_and_exact_records_checked",
+    "issues": [],
+    "kind": "train",
+    "state": "complete",
+    "verified_rounds": 5,
+    "verified_stages": [
+      "base",
+      "isotropic_soft/round_1",
+      "isotropic_soft/round_2",
+      "isotropic_soft/round_3",
+      "isotropic_soft/round_4",
+      "isotropic_soft/round_5"
+    ]
+  }
+}

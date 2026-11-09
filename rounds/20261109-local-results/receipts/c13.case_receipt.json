@@ -1,0 +1,33 @@
+{
+  "case": "c13",
+  "historical_source_status": "one_round_7b_existing",
+  "kind": "train",
+  "no_experiment_if_kind_is_audit_or_semantic": false,
+  "plan_sha256": "e4477476a42a91df17c6bd60abdd7e5d838a3af48b9127378e5d4b53904110d3",
+  "status": "completed",
+  "verified": {
+    "case": "c13",
+    "endpoints": {
+      "C64": 12.694,
+      "D4": 3.2881903083742503,
+      "D4_eligible": 327,
+      "pass@1": 0.38959375,
+      "pass@16": 0.6650934749084222,
+      "pass@64": 0.728
+    },
+    "expected_rounds": 5,
+    "integrity": "all_sealed_files_and_exact_records_checked",
+    "issues": [],
+    "kind": "train",
+    "state": "complete",
+    "verified_rounds": 5,
+    "verified_stages": [
+      "base",
+      "spectral_soft/round_1",
+      "spectral_soft/round_2",
+      "spectral_soft/round_3",
+      "spectral_soft/round_4",
+      "spectral_soft/round_5"
+    ]
+  }
+}

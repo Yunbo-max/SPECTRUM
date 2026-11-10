@@ -9,6 +9,18 @@
 建议先运行 `cg00`–`cg03`，验证冻结主模型时增益能否跨数据集保留；
 再按结果运行逆序和完整自蒸馏。读取这份指南不会自动启动任何作业。
 
+
+### 当前短时验证设置
+
+为缩短首轮效果对照的运行时间，下一次新建 pilot 默认使用
+[快速 cg02/cg03 配置](CONTINUAL_GAIN_QUICK_PILOT_ZH.md)：冻结 Qwen2.5-7B-Instruct，
+Math→QA，每域 32 道分层抽样题、每题生成一次，Math/QA 输出上限分别为 1,024/128 tokens，
+进程显存预算 28 GiB。它保留原 54 FIT、10 guard 校准量，只比较 cg02 retention 和
+cg03 conflict。该设置是方向性小样本 pilot，不能替代 100 题/域结果或完整评测。
+
+原 100 题/域运行器及已封存的运行目录不变；不要在运行中改它们的任务列表、token 上限或
+manifest。短时配置使用新的入口和输出目录，且须在计划中再次核对预算。
+
 - [方法定义](../rounds/20261108-continual-gains/METHOD.md)
 - [本轮交接](../rounds/20261108-continual-gains/WEB_HANDOFF.md)
 - [独立 case 清单](../experiments/continual_gains/cases.json)

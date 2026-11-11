@@ -341,7 +341,8 @@ def export_longitudinal(run_dir, output_dir=None, *, bootstrap_samples=2000, see
 def evaluate_checkpoints(run_dir, output_dir, *, samples=64, rounds=None, methods=None,
                          eval_tasks_path=None, model_settings=None, evaluation_overrides=None,
                          generation_overrides=None, bootstrap_samples=2000, resume=False,
-                         evaluator=None, evaluator_identity=None, include_base=True):
+                         evaluator=None, evaluator_identity=None, include_base=True,
+                         generate_only=False, verify_only=False):
     """Evaluate the initial model and retained round checkpoints in a new directory.
 
     No training is performed. Missing/pruned checkpoints are listed as unavailable.
@@ -363,6 +364,8 @@ def evaluate_checkpoints(run_dir, output_dir, *, samples=64, rounds=None, method
         raise ValueError('Use a separate output directory, not the training root')
     if type(samples) is not int or samples < 1:
         raise ValueError('samples must be a positive integer')
+    if generate_only and verify_only:
+        raise ValueError('generate_only and verify_only are mutually exclusive')
     manifest_path = root / 'manifest.json'
     source_manifest = _read(manifest_path)
     config = source_manifest['config']
@@ -481,6 +484,27 @@ def evaluate_checkpoints(run_dir, output_dir, *, samples=64, rounds=None, method
                 raise ValueError(f'Post-hoc completion integrity failure: {directory}')
             completed.append(name)
             continue
+        path = directory / 'evaluation.jsonl'
+        if verify_only:
+            # CPU-only tail for hosts without GPUs: generation must already exist.
+            if not path.exists():
+                raise ValueError(f'Verify-only requires existing generation output: {path}')
+            records = read_jsonl(path)
+            identity = stable_hash([settings, checkpoint_hashes.get(name, local_base_sha)])
+            with record_stage(directory, 'verification_and_metrics'):
+                summary = verify(tasks, records, path, evaluation, expected_samples=samples, seed=seed)
+            if set(summary.get('per_task', {})) != {task['task_id'] for task in tasks}:
+                raise ValueError('Evaluator did not return the complete task universe')
+            expected = [path, path.with_suffix('.verified.jsonl'), path.with_suffix('.metrics.json')]
+            if any(not item.exists() for item in expected):
+                raise ValueError('Evaluator must preserve verified programs and full metrics')
+            files = {str(item.relative_to(directory)): _sha(item) for item in directory.rglob('*')
+                     if item.is_file() and '.parts' not in item.parts and not any(part.endswith('.parts') for part in item.parts)
+                     and item.name != 'complete.json'}
+            atomic_json(marker, {'status': 'completed', 'protocol_fingerprint': fingerprint,
+                                  'model_identity': identity, 'files': files})
+            completed.append(name)
+            continue
         with record_stage(directory, 'model_loading'):
             model, tokenizer = load_model(settings, checkpoint)
         try:
@@ -488,11 +512,13 @@ def evaluate_checkpoints(run_dir, output_dir, *, samples=64, rounds=None, method
             identity = stable_hash([settings, checkpoint_hashes.get(name, local_base_sha), revision])
             if method == 'base' and base_state.get('resolved_revision') and revision != base_state['resolved_revision']:
                 raise ValueError('Loaded initial model revision differs from training source')
-            path = directory / 'evaluation.jsonl'
             with record_stage(directory, 'evaluation_generation'):
                 records = generate_to_file(model, tokenizer, tasks, path, generation,
                                             seed=seed, model_identity=identity, method=method,
                                             round_index=index, stage='evaluation', resume=resume)
+            if generate_only:
+                # Leave verification and the completion marker to a later CPU pass.
+                continue
             with record_stage(directory, 'verification_and_metrics'):
                 summary = verify(tasks, records, path, evaluation, expected_samples=samples, seed=seed)
             if set(summary.get('per_task', {})) != {task['task_id'] for task in tasks}:

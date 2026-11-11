@@ -81,14 +81,7 @@ def validate_text_config(config):
     if config['domain'] == 'qa' and config['evaluation']['samples'] != 1:
         raise ValueError('QA primary protocol uses one answer per question')
     if config['domain'] == 'math' and config['evaluation']['samples'] != 16:
-        evaluation = config['evaluation']
-        task_ids = evaluation.get('task_ids')
-        if (evaluation.get('profile') != 'matched_pilot_v1'
-                or evaluation['samples'] != 1
-                or not isinstance(task_ids, list) or not task_ids
-                or any(not isinstance(task_id, str) or not task_id for task_id in task_ids)
-                or len(task_ids) != len(set(task_ids))):
-            raise ValueError('Math uses 16 answers per question except for an explicit one-sample pilot subset')
+        raise ValueError('Math coverage protocol uses exactly 16 answers per question')
     if config.get('checkpoint_retention', 'all') not in ('all', 'latest'):
         raise ValueError('checkpoint_retention must be all or latest')
     return config

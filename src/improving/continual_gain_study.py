@@ -215,17 +215,8 @@ def validate_continual_config(config):
             raise ValueError("Each domain uses exactly 54 FIT and 10 final-veto guard references")
         if calibration.get("span_mode", "completion") != "completion":
             raise ValueError("Use the native completion-reference calibration targets")
-        evaluation = item["evaluation"]
-        task_ids = evaluation.get("task_ids")
-        if task_ids is None:
-            if evaluation["samples"] != (16 if domain == "math" else 1):
-                raise ValueError("Native populations require MATH500 x16 and MMLU-Pro x1")
-        elif (evaluation.get("profile") != "matched_pilot_v1"
-              or evaluation.get("samples") != 1
-              or not isinstance(task_ids, list) or not task_ids
-              or any(not isinstance(task_id, str) or not task_id for task_id in task_ids)
-              or len(task_ids) != len(set(task_ids))):
-            raise ValueError("Pilot evaluation requires the explicit one-sample matched-pilot profile and unique task_ids")
+        if item["evaluation"]["samples"] != (16 if domain == "math" else 1):
+            raise ValueError("Native populations require MATH500 x16 and MMLU-Pro x1")
         for phase in ("synthesis", "evaluation"):
             spec = item[phase]
             for key in ("samples", "batch_size", "task_batch_size", "sequence_batch_size",
@@ -436,36 +427,8 @@ def _exact_records(path, task_ids, samples, *, scored=False):
         raise ValueError(f"Missing full native task/sample population: {path}")
 
 
-def _select_evaluation_rows(evaluation, rows):
-    requested = evaluation.get("task_ids")
-    if requested is None:
-        return list(rows)
-    if (not isinstance(requested, list) or not requested
-            or any(not isinstance(task_id, str) or not task_id for task_id in requested)
-            or len(requested) != len(set(requested))):
-        raise ValueError("Evaluation task_ids must be nonempty, valid and unique")
-    by_id = {row.get("task_id"): row for row in rows}
-    missing = [task_id for task_id in requested if task_id not in by_id]
-    if missing:
-        raise ValueError(f"Evaluation subset contains unknown task IDs: {missing[:3]}")
-    return [by_id[task_id] for task_id in requested]
-
-
-def _evaluation_task_ids(config, domain, available):
-    requested = config["domains"][domain]["evaluation"].get("task_ids")
-    if requested is None:
-        return list(available)
-    if not isinstance(requested, list) or len(requested) != len(set(requested)):
-        raise ValueError("Evaluation task_ids must be unique")
-    unknown = set(requested) - set(available)
-    if unknown:
-        raise ValueError(f"Evaluation subset contains unknown task IDs: {sorted(unknown)[:3]}")
-    return list(requested)
-
-
-def _verify_evaluation(directory, domain, task_ids, samples=None):
-    benchmark, default_samples = ("math500", 16) if domain == "math" else ("mmlu_pro", 1)
-    samples = default_samples if samples is None else samples
+def _verify_evaluation(directory, domain, task_ids):
+    benchmark, samples = ("math500", 16) if domain == "math" else ("mmlu_pro", 1)
     metrics = _json(Path(directory) / "metrics.json")
     if set(metrics) != {benchmark}:
         raise ValueError("Evaluation contains another benchmark population")
@@ -790,25 +753,13 @@ def _evaluation_binding(config, context, stage_binding, geometry, state,
     return {
         "schema": 1, "stage_binding_sha256": _digest(stage_binding),
         "domain": domain, "policy": policy, "policy_identity": _digest(policy),
-        "task_ids": _evaluation_task_ids(
-            config, domain, data["task_ids"]["eval"]),
+        "task_ids": data["task_ids"]["eval"],
         "task_file_sha256": data["files"][
             str(_path(config["domains"][domain]["data"]["output_dir"]) / "eval.jsonl")],
         "evaluation_settings": config["domains"][domain]["evaluation"],
         "seed_sha256": context["binding"]["seed_sha256"],
         "evaluation_sampling_round": 0,
     }
-
-
-def _evaluation_rng_group(config, method, role, domain=None):
-    domain = domain or config["order"][0]
-    evaluation = config["domains"][domain]["evaluation"]
-    if "task_ids" in evaluation:
-        value = evaluation.get("rng_group", "continual_gain_pilot_shared")
-        if not isinstance(value, str) or not value:
-            raise ValueError("Pilot RNG group must be a nonempty string")
-        return value
-    return f"continual_{method}_{role}"
 
 
 def _evaluate_all_domains(config, context, stage, stage_binding, geometry,
@@ -820,10 +771,7 @@ def _evaluate_all_domains(config, context, stage, stage_binding, geometry,
     for domain in DOMAINS:
         item = context["domains"][domain]
         result[domain] = {}
-        selected_rows = _select_evaluation_rows(
-            item["config"]["evaluation"], item["splits"]["eval"])
-        task_ids = [task["task_id"] for task in selected_rows]
-        samples = item["config"]["evaluation"]["samples"]
+        task_ids = [task["task_id"] for task in item["splits"]["eval"]]
         for role in ("native", "controlled"):
             directory = Path(stage) / "evaluation" / domain / role
             binding = _evaluation_binding(
@@ -833,12 +781,12 @@ def _evaluate_all_domains(config, context, stage, stage_binding, geometry,
                 with record_stage(directory, "whole_policy_evaluation"):
                     with (_policy_context(model, operators, state) if role == "controlled" else nullcontext()):
                         _evaluate(
-                            item["config"], model, tokenizer, selected_rows, directory,
-                            binding["policy_identity"], context["seed"],
-                            _evaluation_rng_group(config, method, role, domain), 0, resume)
-                _verify_evaluation(directory, domain, task_ids, samples)
+                            item["config"], model, tokenizer, item["splits"]["eval"], directory,
+                            binding["policy_identity"], context["seed"], f"continual_{method}_{role}",
+                            0, resume)
+                _verify_evaluation(directory, domain, task_ids)
                 _seal(directory, binding)
-            result[domain][role] = _verify_evaluation(directory, domain, task_ids, samples)
+            result[domain][role] = _verify_evaluation(directory, domain, task_ids)
     return result
 
 
@@ -953,10 +901,8 @@ def _inspect_stage(config, context, stage, stage_binding, geometry,
             receipt = _read_seal(directory, evaluation_binding)
             if receipt is None:
                 raise ValueError("Completed stage evaluation belongs to another policy")
-            task_ids = _evaluation_task_ids(
-                config, domain, context["binding"]["data"][domain]["task_ids"]["eval"])
             evaluations[domain][role] = _verify_evaluation(
-                directory, domain, task_ids, config["domains"][domain]["evaluation"]["samples"])
+                directory, domain, context["binding"]["data"][domain]["task_ids"]["eval"])
     return {"state": state, "checkpoint": checkpoint, "memory_exits": expected_memory,
             "receipt": complete, "evaluations": evaluations}
 

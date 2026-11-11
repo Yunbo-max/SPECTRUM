@@ -55,9 +55,6 @@ def main():
     parser.add_argument("--evalplus-image", default="improving-evalplus:0.3.1")
     parser.add_argument("--backend", choices=["docker", "local", "bwrap"])
     parser.add_argument("--allow-unsafe-local", action="store_true")
-    parser.add_argument("--phase", choices=["full", "generation", "verification"], default="full",
-                        help="full: generate and verify; generation: GPU generation only; "
-                             "verification: CPU-only verification of existing outputs")
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     os.chdir(REPO)
@@ -112,12 +109,7 @@ def main():
             rounds=[args.round], methods=methods, eval_tasks_path=task_path,
             evaluation_overrides=evaluation, generation_overrides=generation,
             bootstrap_samples=args.bootstrap_samples, resume=args.resume,
-            evaluator=callback, evaluator_identity=identity,
-            generate_only=(args.phase == "generation"),
-            verify_only=(args.phase == "verification"))
-        if args.phase == "generation":
-            print(json.dumps(result, indent=2))
-            return 0 if result["status"] in ("completed", "partial") else 2
+            evaluator=callback, evaluator_identity=identity)
         if result["status"] != "completed":
             print(json.dumps(result, indent=2))
             return 2

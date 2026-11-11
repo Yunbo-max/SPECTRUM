@@ -630,8 +630,7 @@ def build_plan(case: dict, args: argparse.Namespace) -> dict:
                 backend_args.append("--allow-unsafe-local")
             plan["command"] = [sys.executable, "experiments/iclr2027/transfer.py", *common,
                                "--benchmark", case["benchmark"], "--benchmark-root", plan["benchmark_root"],
-                               "--bootstrap-samples", "2000", *backend_args, "--methods", ",".join(selected),
-                               "--phase", "generation"]
+                               "--bootstrap-samples", "2000", *backend_args, "--methods", ",".join(selected)]
         else:
             plan["command"] = [sys.executable, "scripts/rebuttal_decoder_eval.py", *common,
                                "--decoder", case["decoder"], "--methods", ",".join(selected)]

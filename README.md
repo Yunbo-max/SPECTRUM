@@ -1,5 +1,11 @@
 # SPECTRUM
 
+## Four-domain pilot status — 12 November 2026
+
+[Interim baseline measurements and limitations](docs/FOUR_DOMAIN_PILOT_STATUS_20261112.md)
+
+The small Qwen2.5-7B-Instruct pilot has completed initial baseline scoring on Math, QA, MBPP, and a 100-prompt SafeChain slice. **Post-training method evaluations are still running; no method advantage is claimed.**
+
 ## Rebuttal writing packet — 12 November 2026
 
 [**English replies and author guide**](rounds/20261112-rebuttal-draft/README.md)

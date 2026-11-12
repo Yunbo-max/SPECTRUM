@@ -1,6 +1,6 @@
 # Four-domain SPECTRUM pilot: interim baseline status
 
-**Snapshot:** 12 November 2026, 19:33 UTC  
+**Snapshot:** 12 November 2026, 19:35 UTC  
 **Status:** initial evaluations only; no post-training method comparison is complete.
 
 This is a small pilot on Qwen2.5-7B-Instruct using the sealed four-domain evaluation bundle. Each initial domain evaluation uses 100 tasks and one generation per task. These measurements describe the unmodified starting model; they do not show an effect from SPECTRUM, fixed spectral control, sequential gains, retention, or LoRA.
@@ -20,7 +20,7 @@ The SafeChain slice is small and uses one sample per prompt. It is not an offici
 
 ## Training and evaluation status
 
-Fixed-spectrum and conflict are generating Math training data. SD-LoRA has completed its initial Safety evaluation and entered Math synthesis; its stored Safety summary was corrected from the unchanged responses and WildGuard outputs as described above. Retention has receipt-verified initial Math (74/100), QA (56/100), and Code (16/100, with 81 parse errors) results and continues the initial pipeline. Sequential is queued until GPU 0 has sufficient free memory. No post-training method evaluation is complete.
+Fixed-spectrum, conflict, and SD-LoRA are generating Math training data. At this snapshot their synthesis artifact counts are 74/256, 107/256, and 47/256 records, respectively. SD-LoRA has completed its initial Safety evaluation; its stored Safety summary was corrected from the unchanged responses and WildGuard outputs as described above. Retention has receipt-verified initial Math (74/100), QA (56/100), and Code (16/100, with 81 parse errors) results, and has started writing initial Safety response records; its Safety metrics and receipt are not yet complete. Sequential remains queued until GPU 0 has sufficient free memory. No post-training method evaluation is complete.
 
 No method should be described as outperforming another from this snapshot. The next comparable table should use completed, receipt-verified post-training evaluation for each method and domain.
 

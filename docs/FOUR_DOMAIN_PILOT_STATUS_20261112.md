@@ -1,6 +1,6 @@
 # Four-domain SPECTRUM pilot: interim baseline status
 
-**Snapshot:** 12 November 2026, 20:05 UTC  
+**Snapshot:** 12 November 2026, 20:09 UTC  
 **Status:** initial evaluations only; no post-training method comparison is complete.
 
 This is a small pilot on Qwen2.5-7B-Instruct using the sealed four-domain evaluation bundle. Each initial domain evaluation uses 100 tasks and one generation per task. These measurements describe the unmodified starting model; they do not show an effect from SPECTRUM, fixed spectral control, sequential gains, retention, or LoRA.
@@ -20,7 +20,7 @@ The SafeChain slice is small and uses one sample per prompt. It is not an offici
 
 ## Training and evaluation status
 
-Fixed-spectrum, conflict, and SD-LoRA are generating Math training data. At this snapshot their synthesis artifact counts are 119/256, 165/256, and 91/256 records, respectively. SD-LoRA has completed its initial Safety evaluation; its stored Safety summary was corrected from the unchanged responses and WildGuard outputs as described above. Retention has receipt-verified initial Math (74/100), QA (56/100), and Code (16/100, with 81 parse errors) results, and has generated 75/100 initial Safety responses; Safety scoring and its completion receipt are not yet available. Sequential resumed on GPU 0 from saved state with a 39 GiB runtime allocator cap and has generated 16/256 Math synthesis records; the experiment configuration, data, and seed remain unchanged. GPU 0 is using about 76 GiB and GPU 1 about 70 GiB. No post-training method evaluation is complete.
+Fixed-spectrum, conflict, and SD-LoRA are generating Math training data. At this snapshot their synthesis artifact counts are 127/256, 173/256, and 95/256 records, respectively. SD-LoRA has completed its initial Safety evaluation; its stored Safety summary was corrected from the unchanged responses and WildGuard outputs as described above. Retention has receipt-verified initial Math (74/100), QA (56/100), and Code (16/100, with 81 parse errors) results, and has generated 87/100 initial Safety responses; Safety scoring and its completion receipt are not yet available. Sequential resumed on GPU 0 from saved state with a 39 GiB runtime allocator cap and has generated 24/256 Math synthesis records; the experiment configuration, data, and seed remain unchanged. GPU 0 is using about 76 GiB and GPU 1 about 70 GiB. No post-training method evaluation is complete.
 
 No method should be described as outperforming another from this snapshot. The next comparable table should use completed, receipt-verified post-training evaluation for each method and domain.
 

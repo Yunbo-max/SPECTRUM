@@ -1,5 +1,25 @@
 # SPECTRUM current agent entry
 
+## Rebuttal writing decision — 12 November 2026
+
+The owner selected writing from the available evidence rather than automatically
+expanding the experiment matrix. Read the [current author packet](rounds/20261112-rebuttal-draft/README.md),
+[18-issue map](rounds/20261112-rebuttal-draft/REVIEWER_COVERAGE_ZH.md), and
+[source tables](rounds/20261112-rebuttal-draft/EVIDENCE_TABLES.md).
+
+- Status is an author-review draft, not an OpenReview submission or a revised PDF.
+- Prioritize supported strengths, with material adverse results in the replies
+  to the questions they directly affect. Do not turn a small observed drop into
+  a noninferiority/equivalence claim without the appropriate analysis.
+- Fixed is the original main method. Learned, CGL, historical 4096 results and
+  single-round n128 evidence keep their separate scope and provenance.
+- Three review bodies/note IDs remain unavailable; the mapping covers 18 saved
+  summaries, not independently verified completeness of the original reviews.
+- Preserve the experimental catalogs, original results and live source pins.
+  Do not launch new experiments or post comments as part of writing without
+  applicable authorization. Existing authorized runtime work is not cancelled.
+- Deliver the writing packet to main with expected-parent/readback checks.
+
 ## Selected continual-gain extension — 8 November 2026
 
 Read [the guide](docs/CONTINUAL_GAINS_ZH.md),

@@ -1,0 +1,17 @@
+# Response to Reviewer FUKc
+
+Thank you for the questions on generalization, reference information, compute, and the practical meaning of diversity. The additional results directly test several of these concerns.
+
+**Trained models and independent seeds.** Three paired five-round Qwen2.5-Coder-1.5B lineages on MBPP500, with a 512-token generation limit and 64 evaluation samples per task, increase C64 from **8.158/8.484/8.314 to 10.870/11.498/11.156**, with pass@64 gains of **1.2/1.2/1.0 percentage points**. Mean C64 is **8.319 ± 0.163 versus 11.175 ± 0.314**; ± is the sample standard deviation across training seeds. Mean pass@1 decreases by 1.33 points. Trained Qwen2.5-Coder-3B and DeepSeek-Coder-6.7B pairs also improve C64, by **38.2% and 17.7%**, although their pass@64 changes are −1.2 and −0.2 points. These are trained-student comparisons, distinct from the initial-model matrix.
+
+**Access to the same reference answers.** Giving Plain supervised replay of the same 50 references yields pass@64 **70.6%** and C64 **7.936**, versus **72.4% and 10.870** for Fixed SPECTRUM. Replay does not reproduce the richness benefit in this control. Fixed's common-eligible D4 advantage over replay is **+0.293 on 315 tasks**. Using 40 references for Fixed gives similar results, **72.6% / 11.134**. These comparisons address reference access, while gradient calibration and supervised replay remain different uses of that information.
+
+**Training exposure and cost.** The additional 7.2M-target-token-per-round setting is unfavorable to Fixed: Plain/Fixed/Plain-plus-replay obtain pass@64 **45.4%/29.4%/49.4%** and C64 **5.666/3.072/6.132**. The main advantage therefore does not extend to this setting. This budget is a configured minimum over shifted supervised targets, with whole-record overshoot; it is not exact token equality or equal FLOPs. Realized exposure and runtime accounting remain incomplete, so we make no audited equal-compute claim and do not infer the cause of the degradation.
+
+**Attenuation and orientation.** Random-basis and isotropic controls achieve C64 **12.768 and 11.888**, compared with Fixed's **10.870**, with slightly lower pass@1. Accordingly, we do not attribute the benefit uniquely to the reference-gradient orientation. Matching a spectrum or Frobenius displacement also does not establish equal output KL.
+
+**Structural versus semantic diversity.** C64 measures distinct correct normalized AST classes within a fixed total sampling budget. Conditional D4 compares four correct samples on the same eligible tasks. These are structural proxies: the primary seed's control-flow D4 change is only **+0.0029**, versus **+0.2624** for AST-D4 on 312 shared tasks. Human algorithm-family labels are not yet available. We will retain the structural scope throughout the manuscript.
+
+**Accuracy, strong alternatives, and transfer.** In the main single-seed comparison, Fixed obtains pass@1/pass@64/C64 of **40.24%/72.4%/10.870**; the implemented SSD recipe obtains **35.92%/72.0%/12.048**. Thus, SSD offers greater richness at lower accuracy. Plain–initial weight interpolation also provides a strong trade-off. Historical HumanEval+ transfer has equal pass@16 with slightly greater C16 for Fixed, whereas adapted APPS transfer is unfavorable. We retain both outcomes.
+
+The supported result is a repeatable improvement in correct structural richness under the main self-distillation protocol, with setting-specific accuracy and coverage trade-offs. We will make those trade-offs and the additional calibration information explicit.

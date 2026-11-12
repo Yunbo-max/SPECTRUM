@@ -1,0 +1,675 @@
+{
+  "purpose": "Descriptive transcription and arithmetic for an author-review rebuttal draft; not a new experiment, raw-program re-score, scientific gate, or significance test.",
+  "source_commit": "0d9207e4422a6c98d02a37985271aef05d0cc3b3",
+  "read_date_utc": "2026-11-12",
+  "metric_definitions": {
+    "C64": "Expected distinct correct normalized AST classes among 64 total draws, averaged over all tasks.",
+    "D4": "Expected distinct correct normalized AST classes among four correct draws; reported here on common eligible task sets.",
+    "uncertainty": "Sample SD across the three recorded paired training seeds only; no new CI, p-value, or equivalence claim."
+  },
+  "source_artifacts": [
+    {
+      "path": "experiments/iclr2027_rebuttal/cases.json",
+      "sha256": "2c8b95e206de87755c4ea7953e1901699c3e4170d25a0f80053f6b3285c04aa5"
+    },
+    {
+      "path": "experiments/iclr2027_rebuttal/reviewer_case_mapping.json",
+      "sha256": "113fbcac38c8586f2021ab0d50dfb8db98e78a346c31734cb87f5045eba834ba"
+    },
+    {
+      "path": "research/audit/observed_results.json",
+      "sha256": "6c9353517eb67ac08a68955023a7f0dff7b978597eb5c6a0cc671aa9ada64f93"
+    },
+    {
+      "path": "research/audit-20261107/EXPERIMENT_INVENTORY.csv",
+      "sha256": "bc0cdc90905e2d13ccb34ee72494b63a8d3afc5bc385ad6d0e7e3ec320407e24"
+    },
+    {
+      "path": "research/audit-20261107/OPERATOR_ABLATION.csv",
+      "sha256": "c23aaf53b6c176f00289dee00993d59ecd1819ad9897ceea0951aee5d1ab9a50"
+    },
+    {
+      "path": "src/improving/spectral.py",
+      "sha256": "4330ea85a76292a11adcdd5fcc4e1b4912915f8530324c9506f558411777672c"
+    },
+    {
+      "path": "src/improving/metrics.py",
+      "sha256": "9e2fc30e1c8df0c9d9ff95f6a025f69245226efb6cf29ee9738243b30a311528"
+    }
+  ],
+  "case_metrics": [
+    {
+      "case": "c01",
+      "source": "rounds/20261109-local-results/metrics/c01.evaluation.metrics.json",
+      "sha256": "ab5426c29d946d6a7b5bfcadaa608536c070817ba81dfae92ef5cc7deb3c31a9",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.4024375,
+      "pass_at_16": 0.6589495349454791,
+      "pass_at_64": 0.724,
+      "C64": 10.87
+    },
+    {
+      "case": "c02",
+      "source": "rounds/20261109-local-results/metrics/c02.evaluation.metrics.json",
+      "sha256": "948e213704f9065cf98faf1aec69fa1712232cace445a4af2dcfb29d60e87c6f",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.39246875,
+      "pass_at_16": 0.6621025132983714,
+      "pass_at_64": 0.73,
+      "C64": 12.768
+    },
+    {
+      "case": "c03",
+      "source": "rounds/20261109-local-results/metrics/c03.evaluation.metrics.json",
+      "sha256": "b3f0d171b4833810b6af797d51c6ed28dd415223774e2f217e2b4635fa2ad0ad",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.39603125,
+      "pass_at_16": 0.662550230757698,
+      "pass_at_64": 0.726,
+      "C64": 11.888
+    },
+    {
+      "case": "c04",
+      "source": "rounds/20261109-local-results/metrics/c04.evaluation.metrics.json",
+      "sha256": "a863c256fdc0a20cac4c9d50c4e46eee78f49403b2295f838637aa6dc161faf9",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.42059375,
+      "pass_at_16": 0.6545931958051802,
+      "pass_at_64": 0.712,
+      "C64": 8.004
+    },
+    {
+      "case": "c05",
+      "source": "rounds/20261109-local-results/metrics/c05.evaluation.metrics.json",
+      "sha256": "99981a9eb015eb4e4c930caa021862cc30a2d607150441a1cb3ef03697ee6d2e",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.41790625,
+      "pass_at_16": 0.6532443542289932,
+      "pass_at_64": 0.706,
+      "C64": 7.936
+    },
+    {
+      "case": "c06",
+      "source": "rounds/20261109-local-results/metrics/c06.evaluation.metrics.json",
+      "sha256": "eb1fb25b963c14928878ae0a3149667c7d41c811878f03b86e2ebed067d843b5",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.41334375,
+      "pass_at_16": 0.6592579787618461,
+      "pass_at_64": 0.716,
+      "C64": 8.484
+    },
+    {
+      "case": "c07",
+      "source": "rounds/20261109-local-results/metrics/c07.evaluation.metrics.json",
+      "sha256": "026ccb00ae4b7b3380cb41726648d3ed2f5e8831c280e66b5971d300c01e53e8",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.400625,
+      "pass_at_16": 0.6633511048938128,
+      "pass_at_64": 0.728,
+      "C64": 11.498
+    },
+    {
+      "case": "c08",
+      "source": "rounds/20261109-local-results/metrics/c08.evaluation.metrics.json",
+      "sha256": "80c36b974e45fc8ae2b119ffbd0b9b7540db90dbde0e4e49a1449587db2da82b",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.415875,
+      "pass_at_16": 0.6545494566415937,
+      "pass_at_64": 0.702,
+      "C64": 8.314
+    },
+    {
+      "case": "c09",
+      "source": "rounds/20261109-local-results/metrics/c09.evaluation.metrics.json",
+      "sha256": "14fd2a078e447c4085b14ac3f075d34b2b66fe09c4d8a31763e01278dc981a61",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.40090625,
+      "pass_at_16": 0.6557502096440444,
+      "pass_at_64": 0.712,
+      "C64": 11.156
+    },
+    {
+      "case": "c10",
+      "source": "rounds/20261109-local-results/metrics/c10.evaluation.metrics.json",
+      "sha256": "08128ed3206a6c0e10eccee12cd2058f4b902983336eb7bad0d7c57af3a49f89",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.2095,
+      "pass_at_16": 0.39899259709644125,
+      "pass_at_64": 0.454,
+      "C64": 5.666
+    },
+    {
+      "case": "c11",
+      "source": "rounds/20261109-local-results/metrics/c11.evaluation.metrics.json",
+      "sha256": "a918c9ad5faa711c98c9a0a228958a963dd67c073674c1c9d9497a53cb8e74ca",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.090375,
+      "pass_at_16": 0.2322897515793161,
+      "pass_at_64": 0.294,
+      "C64": 3.072
+    },
+    {
+      "case": "c12",
+      "source": "rounds/20261109-local-results/metrics/c12.evaluation.metrics.json",
+      "sha256": "bcd4f200442827d0dc8a82230a6e41e5047749d1c3cd76cfe1f3107cefe8d13c",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.413625,
+      "pass_at_16": 0.6561643737405195,
+      "pass_at_64": 0.718,
+      "C64": 9.458
+    },
+    {
+      "case": "c13",
+      "source": "rounds/20261109-local-results/metrics/c13.evaluation.metrics.json",
+      "sha256": "3e8772fea0c082949d0af16349762f01774b2d4c9677c83c181f26b8005cd141",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.38959375,
+      "pass_at_16": 0.6650934749084222,
+      "pass_at_64": 0.728,
+      "C64": 12.694
+    },
+    {
+      "case": "c14",
+      "source": "rounds/20261109-local-results/metrics/c14.evaluation.metrics.json",
+      "sha256": "c57c237c4be76bdacdcffe61802fd3b982cdf0c5215e49a53c1f1696cb9d1ee5",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.474375,
+      "pass_at_16": 0.6674840727626401,
+      "pass_at_64": 0.726,
+      "C64": 8.026
+    },
+    {
+      "case": "c15",
+      "source": "rounds/20261109-local-results/metrics/c15.evaluation.metrics.json",
+      "sha256": "936300cc2b1ced4630b43951541cd5213c153be4486d7fd533090759aa2c8197",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.4679375,
+      "pass_at_16": 0.6708341626471722,
+      "pass_at_64": 0.724,
+      "C64": 9.446
+    },
+    {
+      "case": "c18",
+      "source": "rounds/20261109-local-results/metrics/c18.evaluation.metrics.json",
+      "sha256": "9c3696996cad7eeedbaa808ba5c0f8b42f8d7ae8325feceb79d6cd676fae37ef",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.50621875,
+      "pass_at_16": 0.6844498360385194,
+      "pass_at_64": 0.732,
+      "C64": 13.32
+    },
+    {
+      "case": "c19",
+      "source": "rounds/20261109-local-results/metrics/c19.evaluation.metrics.json",
+      "sha256": "ae25828785831ddcce6ab60b46cf89fc07aaac5ea808a73e5fb0f484ed8d1a1b",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.49890625,
+      "pass_at_16": 0.6782223534683519,
+      "pass_at_64": 0.72,
+      "C64": 18.406
+    },
+    {
+      "case": "c20",
+      "source": "rounds/20261109-local-results/metrics/c20.evaluation.metrics.json",
+      "sha256": "3d28d5154469425ac88b6f0c1ad68f8cbcde8802a9027590fe26a3e78b4116ec",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.42065625,
+      "pass_at_16": 0.6465987087816716,
+      "pass_at_64": 0.704,
+      "C64": 9.288
+    },
+    {
+      "case": "c21",
+      "source": "rounds/20261109-local-results/metrics/c21.evaluation.metrics.json",
+      "sha256": "d620032621cad4ab066b69dcf8052a9ad0ae6f5460e79e41dc6053108502309f",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.37565625,
+      "pass_at_16": 0.6622623372814649,
+      "pass_at_64": 0.722,
+      "C64": 12.24
+    },
+    {
+      "case": "c22",
+      "source": "rounds/20261109-local-results/metrics/c22.evaluation.metrics.json",
+      "sha256": "6cad10f99d6daa8373f0526282af04c9675711eecd5fdb2586c92187c4fe377e",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.3471875,
+      "pass_at_16": 0.6587867477173163,
+      "pass_at_64": 0.726,
+      "C64": 12.428
+    },
+    {
+      "case": "c23",
+      "source": "rounds/20261109-local-results/metrics/c23.evaluation.metrics.json",
+      "sha256": "fe09cc78e3659f2281f1b484a29739c2545b4fe0a566f013da1b955c9bd6472c",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.40534375,
+      "pass_at_16": 0.6618409101580499,
+      "pass_at_64": 0.724,
+      "C64": 9.97
+    },
+    {
+      "case": "c24",
+      "source": "rounds/20261109-local-results/metrics/c24.evaluation.metrics.json",
+      "sha256": "7fcbf613a100e6616a14f3569a7ba2e33d9e75fd78374b35a427000f175e2a6c",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.41503125,
+      "pass_at_16": 0.6593048864717136,
+      "pass_at_64": 0.716,
+      "C64": 8.87
+    },
+    {
+      "case": "c27",
+      "source": "rounds/20261109-local-results/metrics/c27.evaluation.metrics.json",
+      "sha256": "39c099c08130019fd12006a0d0783f84aafffab89056e2b39ed52c1697bfcb89",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.40278125,
+      "pass_at_16": 0.6606860473171281,
+      "pass_at_64": 0.726,
+      "C64": 11.134
+    },
+    {
+      "case": "c28",
+      "source": "rounds/20261109-local-results/metrics/c28.evaluation.metrics.json",
+      "sha256": "fb35f2f41651368160df7740641f87aadf08bf23a62a2ed1dba2f2fb50afda68",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.39078125,
+      "pass_at_16": 0.661174856157604,
+      "pass_at_64": 0.73,
+      "C64": 9.932
+    },
+    {
+      "case": "c29",
+      "source": "rounds/20261109-local-results/metrics/c29.evaluation.metrics.json",
+      "sha256": "caeb5f12cc726beac4d78371c6ab1ebc7193f0a9891dd055958fa975e6a64c7c",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.35928125,
+      "pass_at_16": 0.6608798637623858,
+      "pass_at_64": 0.724,
+      "C64": 11.994
+    },
+    {
+      "case": "c30",
+      "source": "rounds/20261109-local-results/metrics/c30.evaluation.metrics.json",
+      "sha256": "3c5b1dc71ebcb4ce6a46217bc0b670644d17370c0878a81400dc5cc2a4a319ba",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.3591875,
+      "pass_at_16": 0.6594003923358353,
+      "pass_at_64": 0.72,
+      "C64": 12.048
+    },
+    {
+      "case": "c31",
+      "source": "rounds/20261109-local-results/metrics/c31.evaluation.metrics.json",
+      "sha256": "245c5cd2caf37ad321975210a3159e0ebbe5c8ae706611fc8c14e483be2fd153",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.4005625,
+      "pass_at_16": 0.6604628594159133,
+      "pass_at_64": 0.728,
+      "C64": 11.496
+    },
+    {
+      "case": "c32",
+      "source": "rounds/20261109-local-results/metrics/c32.evaluation.metrics.json",
+      "sha256": "87437b80c6c3210cbab3787a819411873fba1671a42aff6551163c758213197c",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.39271875,
+      "pass_at_16": 0.6612295435810597,
+      "pass_at_64": 0.734,
+      "C64": 10.778
+    },
+    {
+      "case": "c33",
+      "source": "rounds/20261109-local-results/metrics/c33.evaluation.metrics.json",
+      "sha256": "7def8a1d0b9356b915eae31ea0698de28f6df0659effba63e60e2a37c96c98d3",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.40453125,
+      "pass_at_16": 0.655426029744275,
+      "pass_at_64": 0.71,
+      "C64": 9.384
+    },
+    {
+      "case": "c34",
+      "source": "rounds/20261109-local-results/metrics/c34.evaluation.metrics.json",
+      "sha256": "aa8c8f39db9cf5ee3e45e603e5e6e19371f2989da4088b3db47d45a6442a63c2",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.38575,
+      "pass_at_16": 0.664715875667232,
+      "pass_at_64": 0.736,
+      "C64": 12.426
+    },
+    {
+      "case": "c35",
+      "source": "rounds/20261109-local-results/metrics/c35.evaluation.metrics.json",
+      "sha256": "0557fc8f35c32f1a39850a967d35b6727d591785246d27a268a3cabe3c3b8fcf",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.39278125,
+      "pass_at_16": 0.6633578195143424,
+      "pass_at_64": 0.726,
+      "C64": 11.388
+    },
+    {
+      "case": "c36",
+      "source": "rounds/20261109-local-results/metrics/c36.evaluation.metrics.json",
+      "sha256": "d6a09be4ac695fd622e90a33d354c493165ed3c8081b3c32fcb9c2f77ce81ce2",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.41465625,
+      "pass_at_16": 0.6548920089151498,
+      "pass_at_64": 0.712,
+      "C64": 8.158
+    },
+    {
+      "case": "c44",
+      "source": "rounds/20261109-local-results/metrics/c44.evaluation.metrics.json",
+      "sha256": "b5cc4ddeb0ff7e18d880b5c7376c14dc647da3562581389bd242ce5624050ca9",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.206625,
+      "pass_at_16": 0.42016144446093884,
+      "pass_at_64": 0.494,
+      "C64": 6.132
+    },
+    {
+      "case": "c45",
+      "source": "rounds/20261109-local-results/metrics/c45.evaluation.metrics.json",
+      "sha256": "823f2f9923e7b3b1eb7a50ad32585394e4b113214fd65a320eb772a75b5ce3d5",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.41653125,
+      "pass_at_16": 0.652097595858737,
+      "pass_at_64": 0.706,
+      "C64": 8.128
+    },
+    {
+      "case": "c46",
+      "source": "rounds/20261109-local-results/metrics/c46.evaluation.metrics.json",
+      "sha256": "79f3aba881a25ea2fe60f42abbf9623d55e72b7aba5665f69f43c5e14919cf78",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.42215625,
+      "pass_at_16": 0.6448327438446071,
+      "pass_at_64": 0.702,
+      "C64": 8.736
+    },
+    {
+      "case": "c47",
+      "source": "rounds/20261109-local-results/metrics/c47.evaluation.metrics.json",
+      "sha256": "46e5bc215f4af6753e809326b676846ae7e16194a2da826c3be62d4c9a1be2d9",
+      "task_count": 500,
+      "sample_count": 32000,
+      "pass_at_1": 0.4286875,
+      "pass_at_16": 0.6514929155737639,
+      "pass_at_64": 0.704,
+      "C64": 6.734
+    }
+  ],
+  "paired_common_D4": [
+    {
+      "left": "c36",
+      "right": "c01",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 312,
+          "left_D4": 2.826589825996762,
+          "right_D4": 3.088942494425289,
+          "difference": 0.26235266842852684,
+          "common_task_ids_sha256": "46784d9c0c559a495f3e31b9e7e1c7c7f66486748fd264a61be681dedd09e752"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 312,
+          "left_D4": 1.9343256027952402,
+          "right_D4": 1.9372116532221735,
+          "difference": 0.0028860504269332433,
+          "common_task_ids_sha256": "46784d9c0c559a495f3e31b9e7e1c7c7f66486748fd264a61be681dedd09e752"
+        }
+      }
+    },
+    {
+      "left": "c06",
+      "right": "c07",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 316,
+          "left_D4": 2.8457676381542116,
+          "right_D4": 3.1349238452191908,
+          "difference": 0.2891562070649792,
+          "common_task_ids_sha256": "d843f9c2e494c2e57bec04dd59bc84dd1ae52daa47ff75b86e301e90c791dac8"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 316,
+          "left_D4": 1.9479619971779607,
+          "right_D4": 1.9713496028875697,
+          "difference": 0.023387605709609013,
+          "common_task_ids_sha256": "d843f9c2e494c2e57bec04dd59bc84dd1ae52daa47ff75b86e301e90c791dac8"
+        }
+      }
+    },
+    {
+      "left": "c08",
+      "right": "c09",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 315,
+          "left_D4": 2.8200473684434315,
+          "right_D4": 3.1200361379827948,
+          "difference": 0.2999887695393632,
+          "common_task_ids_sha256": "7981a05f9844ded6de5c956480d4b4f9801f581b8f61b0e22facf82d0fb703ea"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 315,
+          "left_D4": 1.9197165272230634,
+          "right_D4": 1.9722666284183141,
+          "difference": 0.052550101195250616,
+          "common_task_ids_sha256": "7981a05f9844ded6de5c956480d4b4f9801f581b8f61b0e22facf82d0fb703ea"
+        }
+      }
+    },
+    {
+      "left": "c14",
+      "right": "c15",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 320,
+          "left_D4": 2.6033105699735715,
+          "right_D4": 2.766880728122698,
+          "difference": 0.16357015814912654,
+          "common_task_ids_sha256": "1e0a810cc476a6ed4a69c1f6c3f695dfadbfe17dd3dca2c4888fec505a8e9275"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 320,
+          "left_D4": 1.7101350160256452,
+          "right_D4": 1.8185029142670917,
+          "difference": 0.10836789824144641,
+          "common_task_ids_sha256": "1e0a810cc476a6ed4a69c1f6c3f695dfadbfe17dd3dca2c4888fec505a8e9275"
+        }
+      }
+    },
+    {
+      "left": "c18",
+      "right": "c19",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 326,
+          "left_D4": 3.1320764145053013,
+          "right_D4": 3.5576354011142506,
+          "difference": 0.4255589866089494,
+          "common_task_ids_sha256": "0dcceda4eeae6b337332719534a37b5e5a77aff9590d90482ddc3a651fce2a6e"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 326,
+          "left_D4": 1.8480135357328484,
+          "right_D4": 1.948361380426124,
+          "difference": 0.1003478446932754,
+          "common_task_ids_sha256": "0dcceda4eeae6b337332719534a37b5e5a77aff9590d90482ddc3a651fce2a6e"
+        }
+      }
+    },
+    {
+      "left": "c05",
+      "right": "c01",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 315,
+          "left_D4": 2.7962351740903135,
+          "right_D4": 3.089072224026611,
+          "difference": 0.29283704993629756,
+          "common_task_ids_sha256": "9ce787391e70e24bd78e5f257e02286624ad153d1176c1579445bd834b4486dd"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 315,
+          "left_D4": 1.901792474891696,
+          "right_D4": 1.9409388891778807,
+          "difference": 0.03914641428618494,
+          "common_task_ids_sha256": "9ce787391e70e24bd78e5f257e02286624ad153d1176c1579445bd834b4486dd"
+        }
+      }
+    },
+    {
+      "left": "c01",
+      "right": "c02",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 313,
+          "left_D4": 3.085807509803139,
+          "right_D4": 3.2766310950754685,
+          "difference": 0.19082358527232957,
+          "common_task_ids_sha256": "8edbcc835263aa62424c0415badd2555340f3c9cea71d098248ec39c51bd9b1c"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 313,
+          "left_D4": 1.9450343453387617,
+          "right_D4": 1.9893007929822417,
+          "difference": 0.044266447643479874,
+          "common_task_ids_sha256": "8edbcc835263aa62424c0415badd2555340f3c9cea71d098248ec39c51bd9b1c"
+        }
+      }
+    },
+    {
+      "left": "c01",
+      "right": "c03",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 313,
+          "left_D4": 3.0864464874389217,
+          "right_D4": 3.194471475430792,
+          "difference": 0.10802498799187045,
+          "common_task_ids_sha256": "8c8ef5bac124072b70ba3a5f4f699b2ebbea05237142d3432fe1cc92f50f2ac0"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 313,
+          "left_D4": 1.9488682111534583,
+          "right_D4": 1.9856501874620542,
+          "difference": 0.036781976308596,
+          "common_task_ids_sha256": "8c8ef5bac124072b70ba3a5f4f699b2ebbea05237142d3432fe1cc92f50f2ac0"
+        }
+      }
+    },
+    {
+      "left": "c01",
+      "right": "c30",
+      "definition": "right minus left on common tasks with >=4 correct samples in each arm",
+      "metrics": {
+        "implementation_proxy": {
+          "common_eligible_tasks": 306,
+          "left_D4": 3.0699849442026954,
+          "right_D4": 3.3287628500769517,
+          "difference": 0.25877790587425653,
+          "common_task_ids_sha256": "a2d59db3b8e63c52ffbedec131d03a36ceaa27ff6512c42b731f78ddd05b66b4"
+        },
+        "control_flow_proxy": {
+          "common_eligible_tasks": 306,
+          "left_D4": 1.9349076169183435,
+          "right_D4": 2.114036530990619,
+          "difference": 0.1791289140722755,
+          "common_task_ids_sha256": "a2d59db3b8e63c52ffbedec131d03a36ceaa27ff6512c42b731f78ddd05b66b4"
+        }
+      }
+    }
+  ],
+  "three_seed_statistics": {
+    "Plain": {
+      "cases": [
+        "c36",
+        "c06",
+        "c08"
+      ],
+      "n_training_seeds": 3,
+      "statistics": {
+        "pass_at_1": {
+          "mean": 0.414625,
+          "sample_sd": 0.0012659143187830609
+        },
+        "pass_at_64": {
+          "mean": 0.71,
+          "sample_sd": 0.007211102550927985
+        },
+        "C64": {
+          "mean": 8.318666666666667,
+          "sample_sd": 0.16305009455174632
+        }
+      }
+    },
+    "Fixed": {
+      "cases": [
+        "c01",
+        "c07",
+        "c09"
+      ],
+      "n_training_seeds": 3,
+      "statistics": {
+        "pass_at_1": {
+          "mean": 0.4013229166666667,
+          "sample_sd": 0.000975447279884117
+        },
+        "pass_at_64": {
+          "mean": 0.7213333333333333,
+          "sample_sd": 0.008326663997864539
+        },
+        "C64": {
+          "mean": 11.174666666666667,
+          "sample_sd": 0.31441586049901066
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,10 @@
 # SPECTRUM — ICLR 2027 point-by-point response draft
 
+**Current writing packet (12 November):** [English replies and author guide](../rounds/20261112-rebuttal-draft/README.md),
+[updated response/evidence map](../rounds/20261112-rebuttal-draft/REVIEWER_COVERAGE_ZH.md).
+The material below is retained as the 7 November planning draft; its pending
+slots are not the current result inventory. Neither draft has been submitted.
+
 **Submission:** 45902. **Reviewers:** w3G2, FUKc, ygkV. **Prepared:** 2026-11-07.
 
 **Status: author-review draft with pending evidence slots. This document has not been submitted to OpenReview. Creating case specifications or diagnostic code does not constitute a completed experiment.**

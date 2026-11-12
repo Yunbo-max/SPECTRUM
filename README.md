@@ -1,5 +1,19 @@
 # SPECTRUM
 
+## Rebuttal writing packet — 12 November 2026
+
+[**English replies and author guide**](rounds/20261112-rebuttal-draft/README.md)
+· [18-issue response map](rounds/20261112-rebuttal-draft/REVIEWER_COVERAGE_ZH.md)
+· [Evidence tables](rounds/20261112-rebuttal-draft/EVIDENCE_TABLES.md)
+
+The author selected rebuttal writing from the existing results. The packet
+contains a common response and reviewer-specific English drafts, emphasizing
+correct structural richness and measured accuracy–coverage trade-offs. It keeps
+the direction, budget, transfer, and semantic limitations with their questions.
+The original full reviews remain unavailable; the drafts use the 18 recovered
+concern summaries. No new experiment was launched, no submitted PDF was changed,
+and no OpenReview comment was posted. Fixed remains the submitted main method.
+
 ## Continual spectral gains — 8 November 2026
 
 [**Continual-gain guide and independent commands**](docs/CONTINUAL_GAINS_ZH.md)

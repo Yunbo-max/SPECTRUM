@@ -1,6 +1,6 @@
 # Four-domain SPECTRUM pilot: interim baseline status
 
-**Snapshot:** 12 November 2026, 19:08 UTC  
+**Snapshot:** 12 November 2026, 19:25 UTC  
 **Status:** initial evaluations only; no post-training method comparison is complete.
 
 This is a small pilot on Qwen2.5-7B-Instruct using the sealed four-domain evaluation bundle. Each initial domain evaluation uses 100 tasks and one generation per task. These measurements describe the unmodified starting model; they do not show an effect from SPECTRUM, fixed spectral control, sequential gains, retention, or LoRA.
@@ -14,13 +14,13 @@ This is a small pilot on Qwen2.5-7B-Instruct using the sealed four-domain evalua
 | Code | 100 MBPP tasks | 16/100 passed (16%) | 81 parse errors, 3 runtime errors, 0 timeouts; treat this as a format/parser warning as well as a code result |
 | Safety | 50 harmful + 50 benign SafeChain prompts | 5/50 harmful prompts received a harmful answer (10%); 1/50 benign prompts received a false refusal (2%) | WildGuard judged 100/100 responses; these rates are behavior estimates, not safety accuracy |
 
-Math, QA, and MBPP baseline metrics agree across the four initialized method lineages. The Safety result has now been independently recomputed from unchanged initial responses and saved WildGuard outputs for three lineages (fixed-spectrum, sequential, and SD-LoRA); all three produce the same counts, with zero invalid or missing judgments. WildGuard's three labels were stored in the generation field named `completion`; the pilot runner initially looked for a `judgment` field, so its first saved Safety summaries showed 100 invalid judgments. The recomputation reads the stored field correctly and does not regenerate or alter model responses. The third lineage's original summary was preserved, with corrected metrics in a separate, input-hashed sidecar.
+Math and MBPP baseline metrics agree across four initialized method lineages. QA has now also been completed for the learned-retention lineage: it is 56/100 (56%), with zero grader timeouts, length caps, or unparsed samples, matching the existing initial baseline. This fifth lineage's QA stage has a complete receipt. These remain unmodified-model starting measurements; no post-training effect is measured. The Safety result has now been independently recomputed from unchanged initial responses and saved WildGuard outputs for three lineages (fixed-spectrum, sequential, and SD-LoRA); all three produce the same counts, with zero invalid or missing judgments. WildGuard's three labels were stored in the generation field named `completion`; the pilot runner initially looked for a `judgment` field, so its first saved Safety summaries showed 100 invalid judgments. The recomputation reads the stored field correctly and does not regenerate or alter model responses. The third lineage's original summary was preserved, with corrected metrics in a separate, input-hashed sidecar.
 
 The SafeChain slice is small and uses one sample per prompt. It is not an official leaderboard score, and WildGuard judgments are not ground truth. The MBPP parse-error rate is high, so the 16% pass rate should not be read as a clean estimate of coding ability until output-format handling is reviewed.
 
 ## Training and evaluation status
 
-Fixed-spectrum and conflict are generating Math training data. SD-LoRA has completed its initial Safety evaluation and entered Math synthesis; its stored Safety summary was corrected from the unchanged responses and WildGuard outputs as described above. Retention is continuing initial QA evaluation. Sequential is queued until GPU 0 has sufficient free memory. No post-training method evaluation is complete.
+Fixed-spectrum and conflict are generating Math training data. SD-LoRA has completed its initial Safety evaluation and entered Math synthesis; its stored Safety summary was corrected from the unchanged responses and WildGuard outputs as described above. Retention has receipt-verified initial Math (74/100) and QA (56/100) results and is now running its initial Code evaluation. Sequential is queued until GPU 0 has sufficient free memory. No post-training method evaluation is complete.
 
 No method should be described as outperforming another from this snapshot. The next comparable table should use completed, receipt-verified post-training evaluation for each method and domain.
 

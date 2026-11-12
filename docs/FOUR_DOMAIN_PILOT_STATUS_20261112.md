@@ -1,6 +1,6 @@
 # Four-domain SPECTRUM pilot: interim baseline status
 
-**Snapshot:** 12 November 2026, 20:47 UTC  
+**Snapshot:** 12 November 2026, 20:49 UTC  
 **Status:** initial evaluations only; no post-training method comparison is complete.
 
 This is a small pilot on Qwen2.5-7B-Instruct using the sealed four-domain evaluation bundle. Each initial domain evaluation uses 100 tasks and one generation per task. These measurements describe the unmodified starting model; they do not show an effect from SPECTRUM, fixed spectral control, sequential gains, retention, conflict handling, or LoRA.
@@ -24,11 +24,13 @@ The SafeChain slice is small and uses one sample per prompt. It is not an offici
 
 **Correction to the earlier progress counts:** the counter included the eight top-level fields in each synthesis `manifest.json` as if they were generated examples. Counts below include only saved task records from synthesis part files; task IDs are unique within each counted set.
 
-Current Math synthesis records are: fixed-spectrum 185/256, learned-conflict 256/256, learned-retention 57/256, and SD-LoRA 155/256. Sequential has 39/256 saved Math synthesis records and is paused. These are generated training records, not training-completion or evaluation metrics. The learned-retention initial Safety sidecar is complete and receipt inputs were left unchanged. Although learned-conflict has 256 saved records, its synthesis stage has not yet sealed a completion receipt and no post-training evaluation is available.
+Current Math synthesis records are: fixed-spectrum 186/256, learned-conflict 256/256, learned-retention 58/256, and SD-LoRA 158/256. Sequential has 39/256 saved Math synthesis records and is paused. These are generated training records, not training-completion or evaluation metrics. The learned-retention initial Safety sidecar is complete and receipt inputs were left unchanged.
 
-GPU 0 is using about 68.6 GiB and GPU 1 about 68.5 GiB. Sequential was paused after its saved outputs were preserved because per-process allocator limits do not impose an aggregate GPU memory limit; continuing all GPU 0 jobs together had pushed aggregate use above the 85 GiB target. Its case configuration, dataset, and seed are unchanged; resumption is pending sufficient GPU 0 headroom.
+The learned-conflict synthesis stage has now sealed its completion receipt at 256 records, and a training intent has been recorded. Its training receipt/checkpoint and post-training evaluation are not yet available. No post-training method evaluation is complete.
 
-No post-training method evaluation is complete. Do not interpret synthesis counts or initial baselines as evidence that one method outperforms another. The comparable results table requires completed, receipt-verified post-training evaluation for each method and domain.
+GPU 0 is using about 75.0 GiB and GPU 1 about 68.5 GiB. Sequential remains paused because per-process allocator limits do not impose an aggregate GPU memory limit; continuing all GPU 0 jobs together had pushed aggregate use above the 85 GiB target. Its case configuration, dataset, and seed are unchanged; resumption is pending sufficient GPU 0 headroom.
+
+Do not interpret synthesis counts or initial baselines as evidence that one method outperforms another. The comparable results table requires completed, receipt-verified post-training evaluation for each method and domain.
 
 ## Reproducibility record
 

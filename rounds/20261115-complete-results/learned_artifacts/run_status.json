@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "output_dir": "runs/spectrum_7b/spectral_learned_7b_r10_4096",
+  "methods": [
+    "spectral_learned"
+  ],
+  "rounds": 10,
+  "elapsed_this_invocation_seconds": 91914.87641301495,
+  "verification": "completed"
+}

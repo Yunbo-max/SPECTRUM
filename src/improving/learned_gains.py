@@ -31,6 +31,13 @@ CORE_DEFAULTS = {
     'degeneracy_rtol': 1e-7,
     'degeneracy_atol': 1e-12,
     'kl_chunk_tokens': 32,
+    # Gain-basis controls for the reviewer-direction 2x2 design:
+    # reference = eigh(reference-gradient covariance) basis (default, historical)
+    # random    = seeded Haar basis, same learned gain fitting
+    # isotropic = learn per-direction gains, deploy their mean as a uniform
+    #             scalar (documented approximation of a learned scalar)
+    'basis_mode': 'reference',
+    'basis_seed': 43,
 }
 NUMERICAL_TOLERANCE = 1e-6
 
@@ -65,6 +72,10 @@ def validate_gain_settings(settings: Mapping[str, Any] | None = None) -> dict:
     for name in ('degeneracy_rtol', 'degeneracy_atol'):
         if not 0 <= result[name] < 1:
             raise ValueError(f'gain_learning.{name} must be in [0, 1)')
+    if result['basis_mode'] not in ('reference', 'random', 'isotropic'):
+        raise ValueError("gain_learning.basis_mode must be reference, random or isotropic")
+    if isinstance(result['basis_seed'], bool) or not isinstance(result['basis_seed'], int):
+        raise ValueError('gain_learning.basis_seed must be an integer')
     return result
 
 
@@ -374,6 +385,13 @@ def fit_learned_operators(model, fit_batches, guard_batches, probe_batches,
         _, eigs[name], bases[name] = _covariance_eigh(record['covariance'])
         if bases[name].shape[0] != originals[name].out_features:
             raise ValueError(f'covariance dimension disagrees with target {name}')
+        if cfg['basis_mode'] == 'random':
+            dim = bases[name].shape[0]
+            generator = torch.Generator(device='cpu').manual_seed(cfg['basis_seed'])
+            rand_basis, triangular = torch.linalg.qr(torch.randn(
+                dim, dim, generator=generator, dtype=torch.float64))
+            signs = torch.where(triangular.diagonal() < 0, -1.0, 1.0)
+            bases[name] = (rand_basis * signs.unsqueeze(0)).to(bases[name].device)
         ids[name] = spectral_groups(eigs[name], cfg['degeneracy_rtol'], cfg['degeneracy_atol'])
     if len({id(m) for m in originals.values()}) != len(originals):
         raise ValueError('multiple learned-gain names refer to the same module')
@@ -465,6 +483,8 @@ def fit_learned_operators(model, fit_batches, guard_batches, probe_batches,
                 group_gains = wrapper.gains.detach().cpu().double()
                 gains = group_gains[ids[name]]
                 basis = bases[name]
+                if cfg['basis_mode'] == 'isotropic':
+                    gains = torch.full_like(gains, gains.mean())
                 operators[name] = identities[name] + (basis * (gains - 1).unsqueeze(0)) @ basis.T
                 positive = eigs[name][eigs[name] > 0]
                 probabilities = positive / positive.sum()

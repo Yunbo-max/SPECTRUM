@@ -1,0 +1,20 @@
+{
+  "workspace_id": "ws-9dcc0e1f-80a4-4af2-bc2f-0e352e7b17e6",
+  "project_id": "project-160ccb20-98ab-4538-a847-01d1f83d5b0f",
+  "logic_compute_group_id": "lcg-79b2ad0e-a375-43f3-a0b1-b4ce79710fd7",
+  "name": "spectrum-rebuttal-c35-f-v3",
+  "description": "SPECTRUM rebuttal c35 wave3 v3 (f), frozen r5 source, container-local eval, current impl",
+  "framework": "pytorch",
+  "command": "{ set -e; cd /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/SPECTRUM-learned; export LD_LIBRARY_PATH=/inspire/hdd/global_user/zhangjiaquan-253108540222/backup/SPECTRUM-learned/.venv/lib/python3.12/site-packages/torch/lib; export HF_HOME=/inspire/hdd/global_user/zhangjiaquan-253108540222/hf_cache; export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True; .venv/bin/python -u scripts/rebuttal_cases/c35.py run --root runs/iclr2027_rebuttal_transfer_fixed_v3 --execute; } > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/SPECTRUM-learned/logs/qz_rebuttal_probed/c35_f_v3.log 2>&1",
+  "max_running_time_ms": "259200000",
+  "task_priority": 4,
+  "framework_config": [
+    {
+      "image": "docker.sii.shaipower.online/inspire-studio/relay2:v2",
+      "image_type": "SOURCE_PRIVATE",
+      "instance_count": 1,
+      "spec_id": "79fe954a-be92-4772-ac0b-94ad8a79b7bb",
+      "shm_gi": 1800
+    }
+  ]
+}

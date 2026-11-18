@@ -1,0 +1,15 @@
+{
+  "workspace_id": "ws-9dcc0e1f-80a4-4af2-bc2f-0e352e7b17e6",
+  "project_id": "project-160ccb20-98ab-4538-a847-01d1f83d5b0f",
+  "logic_compute_group_id": "lcg-71b971a7-5bdd-4798-b5ba-08f1eabde49e",
+  "name": "spectrum-userns-diag-20261108",
+  "description": "Diagnose user namespace availability for bwrap sandbox",
+  "framework": "pytorch",
+  "command": "{ echo DIAG_START; id; cat /proc/sys/kernel/unprivileged_userns_clone 2>&1; sysctl user.max_user_namespaces 2>&1; sysctl -w user.max_user_namespaces=10000 2>&1; sysctl -w kernel.unprivileged_userns_clone=1 2>&1; unshare -U -m true 2>&1 && echo UNSHARE_OK || echo UNSHARE_FAIL; export PATH=/inspire/hdd/global_user/zhangjiaquan-253108540222/backup/SPECTRUM-learned/bin:$PATH; bwrap --dev-bind / / -- true 2>&1 && echo BWRAP_MIN_OK || echo BWRAP_MIN_FAIL; echo DIAG_END; } > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/SPECTRUM-learned/runs/qz_jobs/userns_diag.log 2>&1",
+  "max_running_time_ms": "600000",
+  "task_priority": 4,
+  "framework_config": [
+    {"image": "docker.sii.shaipower.online/inspire-studio/relay2:v2", "image_type": "SOURCE_PRIVATE",
+     "instance_count": 1, "spec_id": "79fe954a-be92-4772-ac0b-94ad8a79b7bb", "shm_gi": 1800}
+  ]
+}

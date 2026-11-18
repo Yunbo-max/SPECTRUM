@@ -1,0 +1,20 @@
+{
+  "workspace_id": "ws-9dcc0e1f-80a4-4af2-bc2f-0e352e7b17e6",
+  "project_id": "project-e5bca319-ec1f-44e2-b5f6-7aca59ce62cc",
+  "logic_compute_group_id": "lcg-79b2ad0e-a375-43f3-a0b1-b4ce79710fd7",
+  "name": "spectrum-isotropic7b-tenround-v1",
+  "description": "7B ten-round 4096 isotropic_soft control (equal-strength scaling) for reviewer w3G2",
+  "framework": "pytorch",
+  "command": "{ set -e; cd /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/SPECTRUM-learned; export LD_LIBRARY_PATH=$PWD/.venv/lib/python3.12/site-packages/torch/lib; export HF_HOME=/inspire/hdd/global_user/zhangjiaquan-253108540222/hf_cache; export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True; .venv/bin/python -u -m improving run --config runs/qz_jobs/isotropic7b_config.json --resume; } > logs/qz_rebuttal_probed/isotropic7b_v1.log 2>&1",
+  "max_running_time_ms": "259200000",
+  "task_priority": 4,
+  "framework_config": [
+    {
+      "image": "docker.sii.shaipower.online/inspire-studio/relay2:v2",
+      "image_type": "SOURCE_PRIVATE",
+      "instance_count": 1,
+      "spec_id": "79fe954a-be92-4772-ac0b-94ad8a79b7bb",
+      "shm_gi": 1800
+    }
+  ]
+}

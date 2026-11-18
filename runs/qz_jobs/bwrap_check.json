@@ -1,0 +1,15 @@
+{
+  "workspace_id": "ws-9dcc0e1f-80a4-4af2-bc2f-0e352e7b17e6",
+  "project_id": "project-160ccb20-98ab-4538-a847-01d1f83d5b0f",
+  "logic_compute_group_id": "lcg-71b971a7-5bdd-4798-b5ba-08f1eabde49e",
+  "name": "spectrum-bwrap-check-20261108",
+  "description": "Verify bwrap availability in relay2 image for native eval isolation",
+  "framework": "pytorch",
+  "command": "set -x; command -v bwrap && bwrap --version || (apt-get update -qq && apt-get install -y -qq bubblewrap && bwrap --version); echo BWAP_CHECK_DONE",
+  "max_running_time_ms": "600000",
+  "task_priority": 4,
+  "framework_config": [
+    {"image": "docker.sii.shaipower.online/inspire-studio/relay2:v2", "image_type": "SOURCE_PRIVATE",
+     "instance_count": 1, "spec_id": "79fe954a-be92-4772-ac0b-94ad8a79b7bb", "shm_gi": 1800}
+  ]
+}

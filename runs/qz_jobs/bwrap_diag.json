@@ -1,0 +1,15 @@
+{
+  "workspace_id": "ws-9dcc0e1f-80a4-4af2-bc2f-0e352e7b17e6",
+  "project_id": "project-160ccb20-98ab-4538-a847-01d1f83d5b0f",
+  "logic_compute_group_id": "lcg-71b971a7-5bdd-4798-b5ba-08f1eabde49e",
+  "name": "spectrum-bwrap-diag-20261108",
+  "description": "Diagnose bwrap/apt in relay2 image with full output capture",
+  "framework": "pytorch",
+  "command": "{ echo DIAG_START; command -v bwrap || echo NO_BWRAP; bwrap --version 2>&1 || true; which apt-get || echo NO_APT; timeout 60 apt-get update -qq 2>&1 | tail -2; echo APT_UPDATE_RC=$?; timeout 120 apt-get install -y -qq bubblewrap 2>&1 | tail -3; echo APT_INSTALL_RC=$?; command -v bwrap && bwrap --version; ls /lib/x86_64-linux-gnu/libcap.so.2 /lib/x86_64-linux-gnu/libselinux.so.1 2>&1; echo DIAG_END; } > /inspire/hdd/global_user/zhangjiaquan-253108540222/backup/SPECTRUM-learned/runs/qz_jobs/bwrap_diag.log 2>&1",
+  "max_running_time_ms": "600000",
+  "task_priority": 4,
+  "framework_config": [
+    {"image": "docker.sii.shaipower.online/inspire-studio/relay2:v2", "image_type": "SOURCE_PRIVATE",
+     "instance_count": 1, "spec_id": "79fe954a-be92-4772-ac0b-94ad8a79b7bb", "shm_gi": 1800}
+  ]
+}

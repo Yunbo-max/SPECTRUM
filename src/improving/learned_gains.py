@@ -55,7 +55,7 @@ def validate_gain_settings(settings: Mapping[str, Any] | None = None) -> dict:
     for name, minimum in (('max_steps', 1), ('max_backtracks', 0), ('kl_chunk_tokens', 1)):
         if type(result[name]) is not int or result[name] < minimum:
             raise ValueError(f'gain_learning.{name} must be an integer >= {minimum}')
-    for name in set(CORE_DEFAULTS) - {'max_steps', 'max_backtracks', 'kl_chunk_tokens'}:
+    for name in set(CORE_DEFAULTS) - {'max_steps', 'max_backtracks', 'kl_chunk_tokens', 'basis_mode', 'basis_seed'}:
         value = result[name]
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
             raise ValueError(f'gain_learning.{name} must be finite and numeric')

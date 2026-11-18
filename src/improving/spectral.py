@@ -46,6 +46,7 @@ def make_operator(
     tau: float = 1.0,
     rho: float = 0.5,
     seed: int = 42,
+    fixed_spectrum: bool = False,
 ) -> Tensor:
     """Return a CPU float64 operator from an uncentered gradient covariance.
 
@@ -77,7 +78,12 @@ def make_operator(
                                         "matched_blend"} and tau == 0):
         return identity
     if kind in {"spectral_soft", "random_soft", "isotropic_soft", "matched_blend"}:
-        gains = 1 / (1 + tau * (1 - eigenvalues / eigenvalues[-1]))
+        if fixed_spectrum:
+            # Gradient-free fixed profile: linear spectral decay from 1 (top) to
+            # 1/(1+tau) (bottom). No covariance, no reference gradients.
+            gains = 1 / (1 + tau * (1 - torch.linspace(0.0, 1.0, dimension, dtype=torch.float64)))
+        else:
+            gains = 1 / (1 + tau * (1 - eigenvalues / eigenvalues[-1]))
         target_distance = float(torch.linalg.vector_norm(1 - gains))
         if kind == "isotropic_soft":
             return (1 - target_distance / math.sqrt(dimension)) * identity

@@ -415,7 +415,8 @@ def _operators(covariances, method, settings, seed, *, round_index=1, entropy_ra
             rank = max(1, int(dimension * float(settings.get('rank_fraction', .5))))
         output[name] = make_operator(record['covariance'], kind=kinds[method], rank=rank,
                                      tau=tau, rho=float(settings.get('rho', .5)),
-                                     seed=int(stable_hash([seed, name])[:8], 16))
+                                     seed=int(stable_hash([seed, name])[:8], 16),
+                                     fixed_spectrum=(settings.get('calibration_mode') == 'none'))
     return output
 
 
@@ -832,9 +833,15 @@ def run_experiment(config, *, resume=False, method=None, base_only=False):
                     calibration_identity = identity if reestimate else base_identity
                     if not reestimate and round_index > 1 and not calibration_path.exists():
                         raise ValueError('Fixed geometry requires the saved round-1 calibration; do not fit it on a later checkpoint')
-                    with record_stage(directory, 'calibration'):
-                        covariances = _calibrate(model, tokenizer, splits['calibration'], fixed_cal,
-                                                 calibration_path, calibration_identity)
+                    if fixed_cal.get('calibration_mode') == 'none' and method in {'random_soft', 'isotropic_soft'}:
+                        from .spectral import target_modules
+                        covariances = {name: {'covariance': torch.eye(
+                            model.get_submodule(name).out_features, dtype=torch.float64)}
+                            for name in target_modules(model, layers=fixed_cal.get('layers'))}
+                    else:
+                        with record_stage(directory, 'calibration'):
+                            covariances = _calibrate(model, tokenizer, splits['calibration'], fixed_cal,
+                                                     calibration_path, calibration_identity)
                     entropy_ratio = None
                     if reestimate and cal.get('tau_mode') == 'adaptive':
                         entropy_ref_path = root / method / 'spectral_entropy_ref.json'

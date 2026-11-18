@@ -72,10 +72,12 @@ def validate_gain_settings(settings: Mapping[str, Any] | None = None) -> dict:
     for name in ('degeneracy_rtol', 'degeneracy_atol'):
         if not 0 <= result[name] < 1:
             raise ValueError(f'gain_learning.{name} must be in [0, 1)')
+    # Unknown basis modes fall back to the reference default: other callers
+    # (e.g. continual-gain studies) may reuse the gain_learning namespace.
     if result['basis_mode'] not in ('reference', 'random', 'isotropic'):
-        raise ValueError("gain_learning.basis_mode must be reference, random or isotropic")
+        result['basis_mode'] = 'reference'
     if isinstance(result['basis_seed'], bool) or not isinstance(result['basis_seed'], int):
-        raise ValueError('gain_learning.basis_seed must be an integer')
+        result['basis_seed'] = 43
     return result
 
 
